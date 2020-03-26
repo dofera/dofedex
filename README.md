@@ -1,5 +1,3 @@
-# Dofedex
-
 <p align="center">
   <img
     alt="Dofedex"
@@ -7,6 +5,7 @@
     width="300"
   />
 </p>
+<h1 align="center">Dofedex</h1>
 <p align="center">A collection of Dofus Retro clients</p>
 
 [Releases](https://github.com/Dofera/Dofedex/releases)
