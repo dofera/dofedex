@@ -1,13 +1,13 @@
 # Dofedex
-A collection of Dofus Retro clients
 
 <p align="center">
   <img
     alt="Dofedex"
     src="https://i.imgur.com/OUexCmL.jpg"
-    width="400"
+    width="500"
   />
 </p>
+<p align="center">A collection of Dofus Retro clients</p>
 
 [Releases](https://github.com/Dofera/Dofedex/releases)
 -----
