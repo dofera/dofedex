@@ -3,8 +3,8 @@
 <p align="center">
   <img
     alt="Dofedex"
-    src="https://i.imgur.com/OUexCmL.jpg"
-    width="500"
+    src="https://raw.githubusercontent.com/Dofera/Dofedex/master/dofedex.png"
+    width="300"
   />
 </p>
 <p align="center">A collection of Dofus Retro clients</p>
