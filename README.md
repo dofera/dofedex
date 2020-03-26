@@ -8,7 +8,7 @@
 <h1 align="center">Dofedex</h1>
 <p align="center">A collection of Dofus Retro clients</p>
 
-[Releases](https://github.com/Dofera/Dofedex/releases)
+Releases
 -----
 - [1.31.3 (Remastered)](https://github.com/Dofera/dofedex/releases/tag/1.31.3-remastered)
 - [1.31.2 (Remastered)](https://github.com/Dofera/dofedex/releases/tag/1.31.2-remastered)
@@ -26,6 +26,6 @@
 - [1.13.0](https://github.com/Dofera/dofedex/releases/tag/1.13.0)
 - [1.9.1](https://github.com/Dofera/dofedex/releases/tag/1.9.1)
 
-Contribute
+Contributing
 -----
 If you have any client that doesn't appears on the list above, feel free to submit it by opening an [issue](https://github.com/Dofera/Dofedex/issues/new).
