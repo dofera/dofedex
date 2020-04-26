@@ -1,6 +1,6 @@
 class dofus.utils.criterions.ICriterion
 {
-   function ICriterion()
-   {
-   }
+	function ICriterion()
+	{
+	}
 }

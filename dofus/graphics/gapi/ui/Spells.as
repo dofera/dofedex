@@ -1,227 +1,227 @@
 class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvancedComponent
 {
-   static var CLASS_NAME = "Spells";
-   static var TAB_LIST = ["Guild","Water","Fire","Earth","Air"];
-   static var TAB_TITLE_LIST = ["SPELL_TAB_GUILD_TITLE","SPELL_TAB_WATER_TITLE","SPELL_TAB_FIRE_TITLE","SPELL_TAB_EARTH_TITLE","SPELL_TAB_AIR_TITLE"];
-   function Spells()
-   {
-      super();
-   }
-   function init()
-   {
-      super.init(false,dofus.graphics.gapi.ui.Spells.CLASS_NAME);
-      this.gapi.getUIComponent("Banner").shortcuts.setCurrentTab("Spells");
-   }
-   function destroy()
-   {
-      this.gapi.hideTooltip();
-   }
-   function callClose()
-   {
-      this.unloadThis();
-      return true;
-   }
-   function createChildren()
-   {
-      this._nSelectedSpellType = 0;
-      this._mcSpellFullInfosPlacer._visible = false;
-      this.addToQueue({object:this,method:this.addListeners});
-      this.addToQueue({object:this,method:this.initData});
-      this.addToQueue({object:this,method:this.initTexts});
-      this.hideSpellBoostViewer(true);
-   }
-   function addListeners()
-   {
-      this._btnClose.addEventListener("click",this);
-      this._dgSpells.addEventListener("itemRollOver",this);
-      this._dgSpells.addEventListener("itemRollOut",this);
-      this._dgSpells.addEventListener("itemDrag",this);
-      this._dgSpells.addEventListener("itemSelected",this);
-      this._cbType.addEventListener("itemSelected",this);
-      this.api.datacenter.Player.addEventListener("bonusSpellsChanged",this);
-      this.api.datacenter.Player.Spells.addEventListener("modelChanged",this);
-   }
-   function initData()
-   {
-      this.updateBonus();
-   }
-   function initTexts()
-   {
-      this._winBackground.title = this.api.lang.getText("YOUR_SPELLS");
-      this._dgSpells.columnsNames = [this.api.lang.getText("NAME_BIG"),this.api.lang.getText("LEVEL")];
-      this._lblBonusTitle.text = this.api.lang.getText("SPELL_BOOST_POINT");
-      this._lblSpellType.text = this.api.lang.getText("SPELL_TYPE");
-      var _loc2_ = new ank.utils.ExtendedArray();
-      _loc2_.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),type:-2});
-      _loc2_.push({label:this.api.lang.getText("SPELL_TAB_GUILD"),type:0});
-      _loc2_.push({label:this.api.lang.getText("SPELL_TAB_WATER"),type:1});
-      _loc2_.push({label:this.api.lang.getText("SPELL_TAB_FIRE"),type:2});
-      _loc2_.push({label:this.api.lang.getText("SPELL_TAB_EARTH"),type:3});
-      _loc2_.push({label:this.api.lang.getText("SPELL_TAB_AIR"),type:4});
-      this._cbType.dataProvider = _loc2_;
-      this._cbType.selectedIndex = 1;
-   }
-   function updateSpells()
-   {
-      var _loc2_ = this.api.datacenter.Player.Spells;
-      var _loc3_ = new ank.utils.ExtendedArray();
-      for(var k in _loc2_)
-      {
-         var _loc4_ = _loc2_[k];
-         if(_loc4_.classID != -1 && (_loc4_.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
-         {
-            _loc3_.push(_loc4_);
-         }
-      }
-      if(this.api.kernel.OptionsManager.getOption("SeeAllSpell") && this.api.datacenter.Basics.canUseSeeAllSpell)
-      {
-         var _loc5_ = this.api.lang.getClassText(this.api.datacenter.Player.Guild).s;
-         var _loc6_ = 0;
-         while(_loc6_ < _loc5_.length)
-         {
-            var _loc7_ = _loc5_[_loc6_];
-            var _loc8_ = false;
-            var _loc9_ = 0;
-            while(_loc9_ < _loc3_.length && !_loc8_)
-            {
-               _loc8_ = _loc3_[_loc9_].ID == _loc7_;
-               _loc9_ = _loc9_ + 1;
-            }
-            var _loc10_ = new dofus.datacenter.Spell(_loc7_,1);
-            if(!_loc8_ && (_loc10_.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
-            {
-               _loc3_.push(_loc10_);
-            }
-            _loc6_ = _loc6_ + 1;
-         }
-      }
-      _loc3_.sortOn("_minPlayerLevel",Array.NUMERIC);
-      this._dgSpells.dataProvider = _loc3_;
-   }
-   function updateBonus(nValue)
-   {
-      this._lblBonus.text = nValue != undefined?String(nValue):String(this.api.datacenter.Player.BonusPointsSpell);
-      this.updateSpells();
-   }
-   function hideSpellBoostViewer(bHide, oSpell)
-   {
-      this._sbvSpellBoostViewer._visible = !bHide;
-      if(oSpell != undefined)
-      {
-         this._sbvSpellBoostViewer.spell = oSpell;
-      }
-   }
-   function showDetails(bShow)
-   {
-      this._sfivSpellFullInfosViewer.removeMovieClip();
-      if(bShow)
-      {
-         this.attachMovie("SpellFullInfosViewer","_sfivSpellFullInfosViewer",this.getNextHighestDepth(),{_x:this._mcSpellFullInfosPlacer._x,_y:this._mcSpellFullInfosPlacer._y});
-         this._sfivSpellFullInfosViewer.addEventListener("close",this);
-      }
-   }
-   function boostSpell(oSpell)
-   {
-      this.api.sounds.events.onSpellsBoostButtonClick();
-      if(this.canBoost(oSpell) != undefined)
-      {
-         var _loc3_ = new dofus.datacenter.Spell(oSpell.ID,oSpell.level + 1);
-         if(this.api.datacenter.Player.Level < _loc3_.minPlayerLevel)
-         {
-            this.api.kernel.showMessage(undefined,this.api.lang.getText("LEVEL_NEED_TO_BOOST",[_loc3_.minPlayerLevel]),"ERROR_BOX");
-            return false;
-         }
-         this.hideSpellBoostViewer(true);
-         this.api.network.Spells.boost(oSpell.ID);
-         this._sfivSpellFullInfosViewer.spell = _loc3_;
-         return true;
-      }
-      return false;
-   }
-   function getCostForBoost(oSpell)
-   {
-      return oSpell.level >= oSpell.maxLevel?-1:dofus.Constants.SPELL_BOOST_BONUS[oSpell.level];
-   }
-   function canBoost(oSpell)
-   {
-      if(oSpell != undefined)
-      {
-         if(this.getCostForBoost(oSpell) > this.api.datacenter.Player.BonusPointsSpell)
-         {
-            return false;
-         }
-         if(oSpell.level < oSpell.maxLevel)
-         {
-            return true;
-         }
-      }
-      return false;
-   }
-   function click(oEvent)
-   {
-      if((var _loc0_ = oEvent.target._name) === "_btnClose")
-      {
-         this.callClose();
-      }
-   }
-   function itemDrag(oEvent)
-   {
-      if(oEvent.row.item == undefined)
-      {
-         return undefined;
-      }
-      if(this.api.datacenter.Player.Level < oEvent.row.item._minPlayerLevel)
-      {
-         return undefined;
-      }
-      this.gapi.removeCursor();
-      this.gapi.setCursor(oEvent.row.item);
-   }
-   function itemRollOver(oEvent)
-   {
-   }
-   function itemRollOut(oEvent)
-   {
-   }
-   function itemSelected(oEvent)
-   {
-      switch(oEvent.target)
-      {
-         case this._dgSpells:
-            if(oEvent.row.item != undefined)
-            {
-               if(this._sfivSpellFullInfosViewer.spell.ID != oEvent.row.item.ID)
-               {
-                  this.showDetails(true);
-                  this._sfivSpellFullInfosViewer.spell = oEvent.row.item;
-               }
-               else
-               {
-                  this.showDetails(false);
-               }
-            }
-            break;
-         case this._cbType:
-            this._nSelectedSpellType = oEvent.target.selectedItem.type;
-            this.updateSpells();
-      }
-   }
-   function bonusSpellsChanged(oEvent)
-   {
-      this.updateBonus(oEvent.value);
-   }
-   function close(oEvent)
-   {
-      this.showDetails(false);
-   }
-   function modelChanged(oEvent)
-   {
-      switch(oEvent.eventName)
-      {
-         case "updateOne":
-         case "updateAll":
-      }
-      this.updateSpells();
-      this.hideSpellBoostViewer(true);
-   }
+	static var CLASS_NAME = "Spells";
+	static var TAB_LIST = ["Guild","Water","Fire","Earth","Air"];
+	static var TAB_TITLE_LIST = ["SPELL_TAB_GUILD_TITLE","SPELL_TAB_WATER_TITLE","SPELL_TAB_FIRE_TITLE","SPELL_TAB_EARTH_TITLE","SPELL_TAB_AIR_TITLE"];
+	function Spells()
+	{
+		super();
+	}
+	function init()
+	{
+		super.init(false,dofus.graphics.gapi.ui.Spells.CLASS_NAME);
+		this.gapi.getUIComponent("Banner").shortcuts.setCurrentTab("Spells");
+	}
+	function destroy()
+	{
+		this.gapi.hideTooltip();
+	}
+	function callClose()
+	{
+		this.unloadThis();
+		return true;
+	}
+	function createChildren()
+	{
+		this._nSelectedSpellType = 0;
+		this._mcSpellFullInfosPlacer._visible = false;
+		this.addToQueue({object:this,method:this.addListeners});
+		this.addToQueue({object:this,method:this.initData});
+		this.addToQueue({object:this,method:this.initTexts});
+		this.hideSpellBoostViewer(true);
+	}
+	function addListeners()
+	{
+		this._btnClose.addEventListener("click",this);
+		this._dgSpells.addEventListener("itemRollOver",this);
+		this._dgSpells.addEventListener("itemRollOut",this);
+		this._dgSpells.addEventListener("itemDrag",this);
+		this._dgSpells.addEventListener("itemSelected",this);
+		this._cbType.addEventListener("itemSelected",this);
+		this.api.datacenter.Player.addEventListener("bonusSpellsChanged",this);
+		this.api.datacenter.Player.Spells.addEventListener("modelChanged",this);
+	}
+	function initData()
+	{
+		this.updateBonus();
+	}
+	function initTexts()
+	{
+		this._winBackground.title = this.api.lang.getText("YOUR_SPELLS");
+		this._dgSpells.columnsNames = [this.api.lang.getText("NAME_BIG"),this.api.lang.getText("LEVEL")];
+		this._lblBonusTitle.text = this.api.lang.getText("SPELL_BOOST_POINT");
+		this._lblSpellType.text = this.api.lang.getText("SPELL_TYPE");
+		var loc2 = new ank.utils.();
+		loc2.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),type:-2});
+		loc2.push({label:this.api.lang.getText("SPELL_TAB_GUILD"),type:0});
+		loc2.push({label:this.api.lang.getText("SPELL_TAB_WATER"),type:1});
+		loc2.push({label:this.api.lang.getText("SPELL_TAB_FIRE"),type:2});
+		loc2.push({label:this.api.lang.getText("SPELL_TAB_EARTH"),type:3});
+		loc2.push({label:this.api.lang.getText("SPELL_TAB_AIR"),type:4});
+		this._cbType.dataProvider = loc2;
+		this._cbType.selectedIndex = 1;
+	}
+	function updateSpells()
+	{
+		var loc2 = this.api.datacenter.Player.Spells;
+		var loc3 = new ank.utils.();
+		for(var k in loc2)
+		{
+			var loc4 = loc2[k];
+			if(loc4.classID != -1 && (loc4.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
+			{
+				loc3.push(loc4);
+			}
+		}
+		if(this.api.kernel.OptionsManager.getOption("SeeAllSpell") && this.api.datacenter.Basics.canUseSeeAllSpell)
+		{
+			var loc5 = this.api.lang.getClassText(this.api.datacenter.Player.Guild).s;
+			var loc6 = 0;
+			while(loc6 < loc5.length)
+			{
+				var loc7 = loc5[loc6];
+				var loc8 = false;
+				var loc9 = 0;
+				while(loc9 < loc3.length && !loc8)
+				{
+					loc8 = loc3[loc9].ID == loc7;
+					loc9 = loc9 + 1;
+				}
+				var loc10 = new dofus.datacenter.(loc7,1);
+				if(!loc8 && (loc10.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
+				{
+					loc3.push(loc10);
+				}
+				loc6 = loc6 + 1;
+			}
+		}
+		loc3.sortOn("_minPlayerLevel",Array.NUMERIC);
+		this._dgSpells.dataProvider = loc3;
+	}
+	function updateBonus(loc2)
+	{
+		this._lblBonus.text = loc2 != undefined?String(loc2):String(this.api.datacenter.Player.BonusPointsSpell);
+		this.updateSpells();
+	}
+	function hideSpellBoostViewer(loc2, loc3)
+	{
+		this._sbvSpellBoostViewer._visible = !loc2;
+		if(loc3 != undefined)
+		{
+			this._sbvSpellBoostViewer.spell = loc3;
+		}
+	}
+	function showDetails(loc2)
+	{
+		this._sfivSpellFullInfosViewer.removeMovieClip();
+		if(loc2)
+		{
+			this.attachMovie("SpellFullInfosViewer","_sfivSpellFullInfosViewer",this.getNextHighestDepth(),{_x:this._mcSpellFullInfosPlacer._x,_y:this._mcSpellFullInfosPlacer._y});
+			this._sfivSpellFullInfosViewer.addEventListener("close",this);
+		}
+	}
+	function boostSpell(loc2)
+	{
+		this.api.sounds.events.onSpellsBoostButtonClick();
+		if(this.canBoost(loc2) != undefined)
+		{
+			var loc3 = new dofus.datacenter.(loc2.ID,loc2.level + 1);
+			if(this.api.datacenter.Player.Level < loc3.minPlayerLevel)
+			{
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("LEVEL_NEED_TO_BOOST",[loc3.minPlayerLevel]),"ERROR_BOX");
+				return false;
+			}
+			this.hideSpellBoostViewer(true);
+			this.api.network.Spells.boost(loc2.ID);
+			this._sfivSpellFullInfosViewer.spell = loc3;
+			return true;
+		}
+		return false;
+	}
+	function getCostForBoost(loc2)
+	{
+		return loc2.level >= loc2.maxLevel?-1:dofus.Constants.SPELL_BOOST_BONUS[loc2.level];
+	}
+	function canBoost(loc2)
+	{
+		if(loc2 != undefined)
+		{
+			if(this.getCostForBoost(loc2) > this.api.datacenter.Player.BonusPointsSpell)
+			{
+				return false;
+			}
+			if(loc2.level < loc2.maxLevel)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	function click(loc2)
+	{
+		if((var loc0 = loc2.target._name) === "_btnClose")
+		{
+			this.callClose();
+		}
+	}
+	function itemDrag(loc2)
+	{
+		if(loc2.row.item == undefined)
+		{
+			return undefined;
+		}
+		if(this.api.datacenter.Player.Level < loc2.row.item._minPlayerLevel)
+		{
+			return undefined;
+		}
+		this.gapi.removeCursor();
+		this.gapi.setCursor(loc2.row.item);
+	}
+	function itemRollOver(loc2)
+	{
+	}
+	function itemRollOut(loc2)
+	{
+	}
+	function itemSelected(loc2)
+	{
+		switch(loc2.target)
+		{
+			case this._dgSpells:
+				if(loc2.row.item != undefined)
+				{
+					if(this._sfivSpellFullInfosViewer.spell.ID != loc2.row.item.ID)
+					{
+						this.showDetails(true);
+						this._sfivSpellFullInfosViewer.spell = loc2.row.item;
+					}
+					else
+					{
+						this.showDetails(false);
+					}
+				}
+				break;
+			case this._cbType:
+				this._nSelectedSpellType = loc2.target.selectedItem.type;
+				this.updateSpells();
+		}
+	}
+	function bonusSpellsChanged(loc2)
+	{
+		this.updateBonus(loc2.value);
+	}
+	function close(loc2)
+	{
+		this.showDetails(false);
+	}
+	function modelChanged(loc2)
+	{
+		switch(loc2.eventName)
+		{
+			case "updateOne":
+			case "updateAll":
+		}
+		this.updateSpells();
+		this.hideSpellBoostViewer(true);
+	}
 }

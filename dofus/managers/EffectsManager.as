@@ -1,56 +1,56 @@
 class dofus.managers.EffectsManager extends dofus.utils.ApiElement
 {
-   function EffectsManager(oSprite, oAPI)
-   {
-      super();
-      var _loc5_ = new flash.display.BitmapData();
-      this.initialize(oSprite,oAPI);
-   }
-   function initialize(oSprite, oAPI)
-   {
-      super.initialize(oAPI);
-      this._oSprite = oSprite;
-      this._aEffects = new Array();
-   }
-   function getEffects()
-   {
-      return this._aEffects;
-   }
-   function addEffect(oEffect)
-   {
-      var _loc3_ = 0;
-      while(_loc3_ < this._aEffects.length)
-      {
-         var _loc4_ = this._aEffects[_loc3_];
-         if(_loc4_.spellID == oEffect.spellID && (_loc4_.type == oEffect.type && _loc4_.remainingTurn == oEffect.remainingTurn))
-         {
-            _loc4_.param1 = _loc4_.param1 + oEffect.param1;
-            return undefined;
-         }
-         _loc3_ = _loc3_ + 1;
-      }
-      this._aEffects.push(oEffect);
-   }
-   function terminateAllEffects()
-   {
-      var _loc2_ = this._aEffects.length;
-      while((_loc2_ = _loc2_ - 1) >= 0)
-      {
-         var _loc3_ = this._aEffects[_loc2_];
-         this._aEffects.splice(_loc2_,_loc2_ + 1);
-      }
-   }
-   function nextTurn()
-   {
-      var _loc2_ = this._aEffects.length;
-      while((_loc2_ = _loc2_ - 1) >= 0)
-      {
-         var _loc3_ = this._aEffects[_loc2_];
-         _loc3_.remainingTurn = _loc3_.remainingTurn - 1;
-         if(_loc3_.remainingTurn <= 0)
-         {
-            this._aEffects.splice(_loc2_,1);
-         }
-      }
-   }
+	function EffectsManager(oSprite, §\x1e\x1b\x1d§)
+	{
+		super();
+		var loc5 = new flash.display.BitmapData();
+		this.initialize(oSprite,loc4);
+	}
+	function initialize(oSprite, §\x1e\x1b\x1d§)
+	{
+		super.initialize(loc4);
+		this._oSprite = oSprite;
+		this._aEffects = new Array();
+	}
+	function getEffects()
+	{
+		return this._aEffects;
+	}
+	function addEffect(loc2)
+	{
+		var loc3 = 0;
+		while(loc3 < this._aEffects.length)
+		{
+			var loc4 = this._aEffects[loc3];
+			if(loc4.spellID == loc2.spellID && (loc4.type == loc2.type && loc4.remainingTurn == loc2.remainingTurn))
+			{
+				loc4.param1 = loc4.param1 + loc2.param1;
+				return undefined;
+			}
+			loc3 = loc3 + 1;
+		}
+		this._aEffects.push(loc2);
+	}
+	function terminateAllEffects()
+	{
+		var loc2 = this._aEffects.length;
+		while((loc2 = loc2 - 1) >= 0)
+		{
+			var loc3 = this._aEffects[loc2];
+			this._aEffects.splice(loc2,loc2 + 1);
+		}
+	}
+	function nextTurn()
+	{
+		var loc2 = this._aEffects.length;
+		while((loc2 = loc2 - 1) >= 0)
+		{
+			var loc3 = this._aEffects[loc2];
+			loc3.remainingTurn--;
+			if(loc3.remainingTurn <= 0)
+			{
+				this._aEffects.splice(loc2,1);
+			}
+		}
+	}
 }

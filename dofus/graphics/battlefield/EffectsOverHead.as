@@ -1,68 +1,68 @@
 class dofus.graphics.battlefield.EffectsOverHead extends MovieClip
 {
-   static var ICON_WIDTH = 20;
-   function EffectsOverHead(aEffects)
-   {
-      super();
-      this.initialize(aEffects);
-      this.draw();
-   }
-   function __get__height()
-   {
-      return 20;
-   }
-   function initialize(aEffects)
-   {
-      this.createEmptyMovieClip("_mcEffects",10);
-      this._aEffects = aEffects;
-   }
-   function draw()
-   {
-      var _loc2_ = this._aEffects.length - 1;
-      this._aEffectsQty = new Array();
-      while(_loc2_ >= 0)
-      {
-         var _loc3_ = this._aEffects[_loc2_];
-         if(this._aEffectsQty[_loc3_.type])
-         {
-            this._aEffectsQty[_loc3_.type].qty = this._aEffectsQty[_loc3_.type].qty + 1;
-         }
-         else
-         {
-            this._aEffectsQty[_loc3_.type] = {effect:_loc3_,qty:1};
-         }
-         _loc2_ = _loc2_ - 1;
-      }
-      var _loc5_ = 0;
-      var _loc6_ = 0;
-      for(var j in this._aEffectsQty)
-      {
-         _loc3_ = this._aEffectsQty[j].effect;
-         var _loc7_ = new MovieClipLoader();
-         _loc7_.addListener(this);
-         this._mcEffects.createEmptyMovieClip("_mcEffect" + j,Number(j));
-         var _loc4_ = this._mcEffects["_mcEffect" + j];
-         _loc4_._x = _loc5_;
-         _loc5_ = _loc5_ + dofus.graphics.battlefield.EffectsOverHead.ICON_WIDTH;
-         _loc4_.effect = _loc3_;
-         _loc7_.loadClip(dofus.Constants.EFFECTSICON_FILE,_loc4_);
-      }
-      this._x = (- _loc5_) / 2;
-   }
-   function onLoadInit(mc)
-   {
-      var _loc3_ = mc.getDepth();
-      var _loc4_ = this._aEffectsQty[_loc3_].effect;
-      var _loc5_ = mc.attachMovie("Icon_" + _loc4_.characteristic,"icon_mc",10);
-      _loc5_.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
-      var _loc6_ = (dofus.graphics.battlefield.EffectIcon)_loc5_;
-      _loc6_.initialize(_loc4_.operator,this._aEffectsQty[_loc3_].qty);
-      if(this._aEffectsQty[_loc3_].qty > 1)
-      {
-         _loc5_ = mc.attachMovie("Icon_" + _loc4_.characteristic,"icon_mc_multiple",5,{_x:3,_y:3});
-         _loc5_.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
-         _loc6_ = (dofus.graphics.battlefield.EffectIcon)_loc5_;
-         _loc6_.initialize(_loc4_.operator,this._aEffectsQty[_loc3_].qty);
-      }
-   }
+	static var ICON_WIDTH = 20;
+	function EffectsOverHead(loc3)
+	{
+		super();
+		this.initialize(loc3);
+		this.draw();
+	}
+	function __get__height()
+	{
+		return 20;
+	}
+	function initialize(loc2)
+	{
+		this.createEmptyMovieClip("_mcEffects",10);
+		this._aEffects = loc2;
+	}
+	function draw()
+	{
+		var loc2 = this._aEffects.length - 1;
+		this._aEffectsQty = new Array();
+		while(loc2 >= 0)
+		{
+			var loc3 = this._aEffects[loc2];
+			if(this._aEffectsQty[loc3.type])
+			{
+				this._aEffectsQty[loc3.type].qty++;
+			}
+			else
+			{
+				this._aEffectsQty[loc3.type] = {effect:loc3,qty:1};
+			}
+			loc2 = loc2 - 1;
+		}
+		var loc5 = 0;
+		var loc6 = 0;
+		for(var j in this._aEffectsQty)
+		{
+			loc3 = this._aEffectsQty[j].effect;
+			var loc7 = new MovieClipLoader();
+			loc7.addListener(this);
+			this._mcEffects.createEmptyMovieClip("_mcEffect" + j,Number(j));
+			var loc4 = this._mcEffects["_mcEffect" + j];
+			loc4._x = loc5;
+			loc5 = loc5 + dofus.graphics.battlefield.EffectsOverHead.ICON_WIDTH;
+			loc4.effect = loc3;
+			loc7.loadClip(dofus.Constants.EFFECTSICON_FILE,loc4);
+		}
+		this._x = (- loc5) / 2;
+	}
+	function onLoadInit(loc2)
+	{
+		var loc3 = loc2.getDepth();
+		var loc4 = this._aEffectsQty[loc3].effect;
+		var loc5 = loc2.attachMovie("Icon_" + loc4.characteristic,"icon_mc",10);
+		loc5.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
+		var loc6 = (dofus.graphics.battlefield.EffectIcon)loc5;
+		loc6.initialize(loc4.operator,this._aEffectsQty[loc3].qty);
+		if(this._aEffectsQty[loc3].qty > 1)
+		{
+			loc5 = loc2.attachMovie("Icon_" + loc4.characteristic,"icon_mc_multiple",5,{_x:3,_y:3});
+			loc5.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
+			loc6 = (dofus.graphics.battlefield.EffectIcon)loc5;
+			loc6.initialize(loc4.operator,this._aEffectsQty[loc3].qty);
+		}
+	}
 }

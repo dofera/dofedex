@@ -1,27 +1,27 @@
 class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerFeatsItem extends dofus.graphics.gapi.core.DofusAdvancedComponent
 {
-   function AlignmentViewerFeatsItem()
-   {
-      super();
-   }
-   function __set__list(mcList)
-   {
-      this._mcList = mcList;
-      return this.__get__list();
-   }
-   function setValue(bUsed, sSuggested, oItem)
-   {
-      if(bUsed)
-      {
-         this._ldrIcon.contentPath = oItem.iconFile;
-         this._lblName.text = oItem.name + (oItem.level != undefined?" (" + this._mcList.gapi.api.lang.getText("LEVEL_SMALL") + " " + oItem.level + ")":"");
-         this._lblEffect.text = oItem.effect.description != undefined?oItem.effect.description:"";
-      }
-      else if(this._lblName.text != undefined)
-      {
-         this._ldrIcon.contentPath = "";
-         this._lblName.text = "";
-         this._lblEffect.text = "";
-      }
-   }
+	function AlignmentViewerFeatsItem()
+	{
+		super();
+	}
+	function __set__list(loc2)
+	{
+		this._mcList = loc2;
+		return this.__get__list();
+	}
+	function setValue(loc2, loc3, loc4)
+	{
+		if(loc2)
+		{
+			this._ldrIcon.contentPath = loc4.iconFile;
+			this._lblName.text = loc4.name + (loc4.level != undefined?" (" + this._mcList.gapi.api.lang.getText("LEVEL_SMALL") + " " + loc4.level + ")":"");
+			this._lblEffect.text = loc4.effect.description != undefined?loc4.effect.description:"";
+		}
+		else if(this._lblName.text != undefined)
+		{
+			this._ldrIcon.contentPath = "";
+			this._lblName.text = "";
+			this._lblEffect.text = "";
+		}
+	}
 }

@@ -1,76 +1,76 @@
 class dofus.graphics.battlefield.AbstractTextOverHead extends ank.gapi.core.UIBasicComponent
 {
-   static var BACKGROUND_ALPHA = 70;
-   static var BACKGROUND_COLOR = 0;
-   static var TEXT_SMALL_FORMAT = new TextFormat("Font1",10,16777215,false,false,false,null,null,"left");
-   static var TEXT_FORMAT2 = new TextFormat("Font2",9,16777215,false,false,false,null,null,"center");
-   static var TEXT_FORMAT = new TextFormat("Font2",10,16777215,false,false,false,null,null,"center");
-   static var CORNER_RADIUS = 0;
-   static var WIDTH_SPACER = 4;
-   static var HEIGHT_SPACER = 4;
-   function AbstractTextOverHead()
-   {
-      super();
-   }
-   function __get__height()
-   {
-      return Math.ceil(this._height);
-   }
-   function __get__width()
-   {
-      return Math.ceil(this._width);
-   }
-   function initialize()
-   {
-      this.createEmptyMovieClip("_mcGfx",10);
-      this.createEmptyMovieClip("_mcTxtBackground",20);
-   }
-   function drawBackground(nWidth, nHeight, nColor)
-   {
-      this.drawRoundRect(this._mcTxtBackground,(- nWidth) / 2,0,nWidth,nHeight,3,nColor,dofus.graphics.battlefield.AbstractTextOverHead.BACKGROUND_ALPHA);
-   }
-   function drawGfx(sFile, nFrame)
-   {
-      this._mcGfx.attachClassMovie(ank.utils.SWFLoader,"_mcSwfLoader",10);
-      this._mcGfx._mcSwfLoader.loadSWF(sFile,nFrame);
-   }
-   function addPvpGfxEffect(nPvpGain, nFrame)
-   {
-      switch(nPvpGain)
-      {
-         case -1:
-            var _loc4_ = 0.5;
-            var _loc5_ = new Array();
-            _loc5_ = _loc5_.concat([_loc4_,0,0,0,0]);
-            _loc5_ = _loc5_.concat([0,_loc4_,0,0,0]);
-            _loc5_ = _loc5_.concat([0,0,_loc4_,0,0]);
-            _loc5_ = _loc5_.concat([0,0,0,1,0]);
-            var _loc6_ = new flash.filters.ColorMatrixFilter(_loc5_);
-            this._mcGfx.filters = new Array(_loc6_);
-            break;
-         case 1:
-            switch(Math.floor((nFrame - 1) / 10))
-            {
-               case 0:
-                  var _loc7_ = 11201279;
-                  break;
-               case 1:
-                  _loc7_ = 13369344;
-                  break;
-               case 2:
-                  _loc7_ = 0;
-            }
-            var _loc8_ = 0.5;
-            var _loc9_ = 10;
-            var _loc10_ = 10;
-            var _loc11_ = 2;
-            var _loc12_ = 3;
-            var _loc13_ = false;
-            var _loc14_ = false;
-            var _loc15_ = new flash.filters.GlowFilter(_loc7_,_loc8_,_loc9_,_loc10_,_loc11_,_loc12_,_loc13_,_loc14_);
-            var _loc16_ = new Array();
-            _loc16_.push(_loc15_);
-            this._mcGfx.filters = _loc16_;
-      }
-   }
+	static var BACKGROUND_ALPHA = 70;
+	static var BACKGROUND_COLOR = 0;
+	static var TEXT_SMALL_FORMAT = new TextFormat("Font1",10,16777215,false,false,false,null,null,"left");
+	static var TEXT_FORMAT2 = new TextFormat("Font2",9,16777215,false,false,false,null,null,"center");
+	static var TEXT_FORMAT = new TextFormat("Font2",10,16777215,false,false,false,null,null,"center");
+	static var CORNER_RADIUS = 0;
+	static var WIDTH_SPACER = 4;
+	static var HEIGHT_SPACER = 4;
+	function AbstractTextOverHead()
+	{
+		super();
+	}
+	function __get__height()
+	{
+		return Math.ceil(this._height);
+	}
+	function __get__width()
+	{
+		return Math.ceil(this._width);
+	}
+	function initialize()
+	{
+		this.createEmptyMovieClip("_mcGfx",10);
+		this.createEmptyMovieClip("_mcTxtBackground",20);
+	}
+	function drawBackground(loc2, loc3, loc4)
+	{
+		this.drawRoundRect(this._mcTxtBackground,(- loc2) / 2,0,loc2,loc3,3,loc4,dofus.graphics.battlefield.AbstractTextOverHead.BACKGROUND_ALPHA);
+	}
+	function drawGfx(loc2, loc3)
+	{
+		this._mcGfx.attachClassMovie(ank.utils.SWFLoader,"_mcSwfLoader",10);
+		this._mcGfx._mcSwfLoader.loadSWF(loc2,loc3);
+	}
+	function addPvpGfxEffect(loc2, loc3)
+	{
+		switch(loc2)
+		{
+			case -1:
+				var loc4 = 0.5;
+				var loc5 = new Array();
+				loc5 = loc5.concat([loc4,0,0,0,0]);
+				loc5 = loc5.concat([0,loc4,0,0,0]);
+				loc5 = loc5.concat([0,0,loc4,0,0]);
+				loc5 = loc5.concat([0,0,0,1,0]);
+				var loc6 = new flash.filters.ColorMatrixFilter(loc5);
+				this._mcGfx.filters = new Array(loc6);
+				break;
+			case 1:
+				switch(Math.floor((loc3 - 1) / 10))
+				{
+					case 0:
+						var loc7 = 11201279;
+						break;
+					case 1:
+						loc7 = 13369344;
+						break;
+					case 2:
+						loc7 = 0;
+				}
+				var loc8 = 0.5;
+				var loc9 = 10;
+				var loc10 = 10;
+				var loc11 = 2;
+				var loc12 = 3;
+				var loc13 = false;
+				var loc14 = false;
+				var loc15 = new flash.filters.GlowFilter(loc7,loc8,loc9,loc10,loc11,loc12,loc13,loc14);
+				var loc16 = new Array();
+				loc16.push(loc15);
+				this._mcGfx.filters = loc16;
+		}
+	}
 }

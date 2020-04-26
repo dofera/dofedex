@@ -1,12 +1,12 @@
 class com.ankamagames.types.Point
 {
-   function Point(x, y)
-   {
-      this.x = x;
-      this.y = y;
-   }
-   function toString()
-   {
-      return this.x + ";" + this.y;
-   }
+	function Point(loc3, loc4)
+	{
+		this.x = loc2;
+		this.y = loc3;
+	}
+	function toString()
+	{
+		return this.x + ";" + this.y;
+	}
 }

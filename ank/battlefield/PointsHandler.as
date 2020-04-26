@@ -1,46 +1,47 @@
 class ank.battlefield.PointsHandler
 {
-   function PointsHandler(b, c, d)
-   {
-      this.initialize(b,c,d);
-   }
-   function initialize(b, c, d)
-   {
-      this._mcBattlefield = b;
-      this._mcContainer = c;
-      this._oDatacenter = d;
-      this._oList = new Object();
-   }
-   function clear()
-   {
-      for(var k in this._mcContainer)
-      {
-         this._mcContainer[k].removeMovieClip();
-      }
-   }
-   function addPoints(sID, nX, nY, sValue, nColor)
-   {
-      var _loc7_ = this._mcContainer.getNextHighestDepth();
-      var _loc8_ = this._mcContainer.attachClassMovie(ank.battlefield.mc.Points,"points" + _loc7_,_loc7_,[this,sID,nY,sValue,nColor]);
-      _loc8_._x = nX;
-      _loc8_._y = nY;
-      if(this._oList[sID] == undefined)
-      {
-         this._oList[sID] = new Array();
-      }
-      this._oList[sID].push(_loc8_);
-      if(this._oList[sID].length == 1)
-      {
-         _loc8_.animate();
-      }
-   }
-   function onAnimateFinished(sID)
-   {
-      var _loc3_ = this._oList[sID];
-      _loc3_.shift();
-      if(_loc3_.length != 0)
-      {
-         _loc3_[0].animate();
-      }
-   }
+	function PointsHandler(loc3, loc4, loc5)
+	{
+		this.initialize(loc2,loc3,loc4);
+	}
+	function initialize(loc2, loc3, loc4)
+	{
+		this._mcBattlefield = loc2;
+		this._mcContainer = loc3;
+		this._oDatacenter = loc4;
+		this._oList = new Object();
+	}
+	function clear()
+	{
+		§§enumerate(this._mcContainer);
+		while((var loc0 = §§enumeration()) != null)
+		{
+			this._mcContainer[k].removeMovieClip();
+		}
+	}
+	function addPoints(sID, §\x1e\x1c\x13§, §\x1e\x1c\x0b§, §\x1e\x0e\x04§, §\b\t§)
+	{
+		var loc7 = this._mcContainer.getNextHighestDepth();
+		var loc8 = this._mcContainer.attachClassMovie(ank.battlefield.mc.Points,"points" + loc7,loc7,[this,sID,loc4,loc5,loc6]);
+		loc8._x = loc3;
+		loc8._y = loc4;
+		if(this._oList[sID] == undefined)
+		{
+			this._oList[sID] = new Array();
+		}
+		this._oList[sID].push(loc8);
+		if(this._oList[sID].length == 1)
+		{
+			loc8.animate();
+		}
+	}
+	function onAnimateFinished(sID)
+	{
+		var loc3 = this._oList[sID];
+		loc3.shift();
+		if(loc3.length != 0)
+		{
+			loc3[0].animate();
+		}
+	}
 }

@@ -1,234 +1,234 @@
 class ank.utils.Md5
 {
-   var hexcase = 0;
-   var b64pad = "";
-   var chrsz = 8;
-   function Md5()
-   {
-   }
-   function hex_md5(s)
-   {
-      return this.binl2hex(this.core_md5(this.str2binl(s),s.length * this.chrsz));
-   }
-   function b64_md5(s)
-   {
-      return this.binl2b64(this.core_md5(this.str2binl(s),s.length * this.chrsz));
-   }
-   function str_md5(s)
-   {
-      return this.binl2str(this.core_md5(this.str2binl(s),s.length * this.chrsz));
-   }
-   function hex_hmac_md5(key, data)
-   {
-      return this.binl2hex(this.core_hmac_md5(key,data));
-   }
-   function b64_hmac_md5(key, data)
-   {
-      return this.binl2b64(this.core_hmac_md5(key,data));
-   }
-   function str_hmac_md5(key, data)
-   {
-      return this.binl2str(this.core_hmac_md5(key,data));
-   }
-   function md5_vm_test()
-   {
-      return this.hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
-   }
-   function core_md5(x, len)
-   {
-      x[len >> 5] = x[len >> 5] | 128 << len % 32;
-      x[(len + 64 >>> 9 << 4) + 14] = len;
-      var _loc4_ = 1732584193;
-      var _loc5_ = -271733879;
-      var _loc6_ = -1732584194;
-      var _loc7_ = 271733878;
-      var _loc8_ = 0;
-      while(_loc8_ < x.length)
-      {
-         var _loc9_ = _loc4_;
-         var _loc10_ = _loc5_;
-         var _loc11_ = _loc6_;
-         var _loc12_ = _loc7_;
-         _loc4_ = this.md5_ff(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 0],7,-680876936);
-         _loc7_ = this.md5_ff(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 1],12,-389564586);
-         _loc6_ = this.md5_ff(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 2],17,606105819);
-         _loc5_ = this.md5_ff(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 3],22,-1044525330);
-         _loc4_ = this.md5_ff(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 4],7,-176418897);
-         _loc7_ = this.md5_ff(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 5],12,1200080426);
-         _loc6_ = this.md5_ff(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 6],17,-1473231341);
-         _loc5_ = this.md5_ff(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 7],22,-45705983);
-         _loc4_ = this.md5_ff(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 8],7,1770035416);
-         _loc7_ = this.md5_ff(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 9],12,-1958414417);
-         _loc6_ = this.md5_ff(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 10],17,-42063);
-         _loc5_ = this.md5_ff(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 11],22,-1990404162);
-         _loc4_ = this.md5_ff(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 12],7,1804603682);
-         _loc7_ = this.md5_ff(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 13],12,-40341101);
-         _loc6_ = this.md5_ff(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 14],17,-1502002290);
-         _loc5_ = this.md5_ff(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 15],22,1236535329);
-         _loc4_ = this.md5_gg(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 1],5,-165796510);
-         _loc7_ = this.md5_gg(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 6],9,-1069501632);
-         _loc6_ = this.md5_gg(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 11],14,643717713);
-         _loc5_ = this.md5_gg(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 0],20,-373897302);
-         _loc4_ = this.md5_gg(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 5],5,-701558691);
-         _loc7_ = this.md5_gg(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 10],9,38016083);
-         _loc6_ = this.md5_gg(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 15],14,-660478335);
-         _loc5_ = this.md5_gg(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 4],20,-405537848);
-         _loc4_ = this.md5_gg(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 9],5,568446438);
-         _loc7_ = this.md5_gg(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 14],9,-1019803690);
-         _loc6_ = this.md5_gg(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 3],14,-187363961);
-         _loc5_ = this.md5_gg(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 8],20,1163531501);
-         _loc4_ = this.md5_gg(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 13],5,-1444681467);
-         _loc7_ = this.md5_gg(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 2],9,-51403784);
-         _loc6_ = this.md5_gg(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 7],14,1735328473);
-         _loc5_ = this.md5_gg(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 12],20,-1926607734);
-         _loc4_ = this.md5_hh(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 5],4,-378558);
-         _loc7_ = this.md5_hh(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 8],11,-2022574463);
-         _loc6_ = this.md5_hh(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 11],16,1839030562);
-         _loc5_ = this.md5_hh(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 14],23,-35309556);
-         _loc4_ = this.md5_hh(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 1],4,-1530992060);
-         _loc7_ = this.md5_hh(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 4],11,1272893353);
-         _loc6_ = this.md5_hh(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 7],16,-155497632);
-         _loc5_ = this.md5_hh(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 10],23,-1094730640);
-         _loc4_ = this.md5_hh(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 13],4,681279174);
-         _loc7_ = this.md5_hh(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 0],11,-358537222);
-         _loc6_ = this.md5_hh(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 3],16,-722521979);
-         _loc5_ = this.md5_hh(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 6],23,76029189);
-         _loc4_ = this.md5_hh(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 9],4,-640364487);
-         _loc7_ = this.md5_hh(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 12],11,-421815835);
-         _loc6_ = this.md5_hh(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 15],16,530742520);
-         _loc5_ = this.md5_hh(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 2],23,-995338651);
-         _loc4_ = this.md5_ii(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 0],6,-198630844);
-         _loc7_ = this.md5_ii(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 7],10,1126891415);
-         _loc6_ = this.md5_ii(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 14],15,-1416354905);
-         _loc5_ = this.md5_ii(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 5],21,-57434055);
-         _loc4_ = this.md5_ii(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 12],6,1700485571);
-         _loc7_ = this.md5_ii(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 3],10,-1894986606);
-         _loc6_ = this.md5_ii(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 10],15,-1051523);
-         _loc5_ = this.md5_ii(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 1],21,-2054922799);
-         _loc4_ = this.md5_ii(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 8],6,1873313359);
-         _loc7_ = this.md5_ii(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 15],10,-30611744);
-         _loc6_ = this.md5_ii(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 6],15,-1560198380);
-         _loc5_ = this.md5_ii(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 13],21,1309151649);
-         _loc4_ = this.md5_ii(_loc4_,_loc5_,_loc6_,_loc7_,x[_loc8_ + 4],6,-145523070);
-         _loc7_ = this.md5_ii(_loc7_,_loc4_,_loc5_,_loc6_,x[_loc8_ + 11],10,-1120210379);
-         _loc6_ = this.md5_ii(_loc6_,_loc7_,_loc4_,_loc5_,x[_loc8_ + 2],15,718787259);
-         _loc5_ = this.md5_ii(_loc5_,_loc6_,_loc7_,_loc4_,x[_loc8_ + 9],21,-343485551);
-         _loc4_ = this.safe_add(_loc4_,_loc9_);
-         _loc5_ = this.safe_add(_loc5_,_loc10_);
-         _loc6_ = this.safe_add(_loc6_,_loc11_);
-         _loc7_ = this.safe_add(_loc7_,_loc12_);
-         _loc8_ = _loc8_ + 16;
-      }
-      return [_loc4_,_loc5_,_loc6_,_loc7_];
-   }
-   function md5_cmn(q, a, b, x, s, t)
-   {
-      return this.safe_add(this.bit_rol(this.safe_add(this.safe_add(a,q),this.safe_add(x,t)),s),b);
-   }
-   function md5_ff(a, b, c, d, x, s, t)
-   {
-      return this.md5_cmn(b & c | (b ^ -1) & d,a,b,x,s,t);
-   }
-   function md5_gg(a, b, c, d, x, s, t)
-   {
-      return this.md5_cmn(b & d | c & (d ^ -1),a,b,x,s,t);
-   }
-   function md5_hh(a, b, c, d, x, s, t)
-   {
-      return this.md5_cmn(b ^ c ^ d,a,b,x,s,t);
-   }
-   function md5_ii(a, b, c, d, x, s, t)
-   {
-      return this.md5_cmn(c ^ (b | d ^ -1),a,b,x,s,t);
-   }
-   function core_hmac_md5(key, data)
-   {
-      var _loc4_ = this.str2binl(key);
-      if(_loc4_.length > 16)
-      {
-         _loc4_ = this.core_md5(_loc4_,key.length * this.chrsz);
-      }
-      var _loc5_ = (Array)16;
-      var _loc6_ = (Array)16;
-      var _loc7_ = 0;
-      while(_loc7_ < 16)
-      {
-         _loc5_[_loc7_] = _loc4_[_loc7_] ^ 909522486;
-         _loc6_[_loc7_] = _loc4_[_loc7_] ^ 1549556828;
-         _loc7_ = _loc7_ + 1;
-      }
-      var _loc8_ = this.core_md5(_loc5_.concat(this.str2binl(data)),512 + data.length * this.chrsz);
-      return this.core_md5(_loc6_.concat(_loc8_),512 + 128);
-   }
-   function safe_add(x, y)
-   {
-      var _loc4_ = (x & 65535) + (y & 65535);
-      var _loc5_ = (x >> 16) + (y >> 16) + (_loc4_ >> 16);
-      return _loc5_ << 16 | _loc4_ & 65535;
-   }
-   function bit_rol(num, cnt)
-   {
-      return num << cnt | num >>> 32 - cnt;
-   }
-   function str2binl(str)
-   {
-      var _loc3_ = new Array();
-      var _loc4_ = (1 << this.chrsz) - 1;
-      var _loc5_ = 0;
-      while(_loc5_ < str.length * this.chrsz)
-      {
-         _loc3_[_loc5_ >> 5] = _loc3_[_loc5_ >> 5] | (str.charCodeAt(_loc5_ / this.chrsz) & _loc4_) << _loc5_ % 32;
-         _loc5_ = _loc5_ + this.chrsz;
-      }
-      return _loc3_;
-   }
-   function binl2str(bin)
-   {
-      var _loc3_ = "";
-      var _loc4_ = (1 << this.chrsz) - 1;
-      var _loc5_ = 0;
-      while(_loc5_ < bin.length * 32)
-      {
-         _loc3_ = _loc3_ + String.fromCharCode(bin[_loc5_ >> 5] >>> _loc5_ % 32 & _loc4_);
-         _loc5_ = _loc5_ + this.chrsz;
-      }
-      return _loc3_;
-   }
-   function binl2hex(binarray)
-   {
-      var _loc3_ = !this.hexcase?"0123456789abcdef":"0123456789ABCDEF";
-      var _loc4_ = "";
-      var _loc5_ = 0;
-      while(_loc5_ < binarray.length * 4)
-      {
-         _loc4_ = _loc4_ + (_loc3_.charAt(binarray[_loc5_ >> 2] >> _loc5_ % 4 * 8 + 4 & 15) + _loc3_.charAt(binarray[_loc5_ >> 2] >> _loc5_ % 4 * 8 & 15));
-         _loc5_ = _loc5_ + 1;
-      }
-      return _loc4_;
-   }
-   function binl2b64(binarray)
-   {
-      var _loc3_ = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-      var _loc4_ = "";
-      var _loc5_ = 0;
-      while(_loc5_ < binarray.length * 4)
-      {
-         var _loc6_ = (binarray[_loc5_ >> 2] >> 8 * (_loc5_ % 4) & 255) << 16 | (binarray[_loc5_ + 1 >> 2] >> 8 * ((_loc5_ + 1) % 4) & 255) << 8 | binarray[_loc5_ + 2 >> 2] >> 8 * ((_loc5_ + 2) % 4) & 255;
-         var _loc7_ = 0;
-         while(_loc7_ < 4)
-         {
-            if(_loc5_ * 8 + _loc7_ * 6 > binarray.length * 32)
-            {
-               _loc4_ = _loc4_ + this.b64pad;
-            }
-            else
-            {
-               _loc4_ = _loc4_ + _loc3_.charAt(_loc6_ >> 6 * (3 - _loc7_) & 63);
-            }
-            _loc7_ = _loc7_ + 1;
-         }
-         _loc5_ = _loc5_ + 3;
-      }
-      return _loc4_;
-   }
+	var hexcase = 0;
+	var b64pad = "";
+	var chrsz = 8;
+	function Md5()
+	{
+	}
+	function hex_md5(loc2)
+	{
+		return this.binl2hex(this.core_md5(this.str2binl(loc2),loc2.length * this.chrsz));
+	}
+	function b64_md5(loc2)
+	{
+		return this.binl2b64(this.core_md5(this.str2binl(loc2),loc2.length * this.chrsz));
+	}
+	function str_md5(loc2)
+	{
+		return this.binl2str(this.core_md5(this.str2binl(loc2),loc2.length * this.chrsz));
+	}
+	function hex_hmac_md5(loc2, loc3)
+	{
+		return this.binl2hex(this.core_hmac_md5(loc2,loc3));
+	}
+	function b64_hmac_md5(loc2, loc3)
+	{
+		return this.binl2b64(this.core_hmac_md5(loc2,loc3));
+	}
+	function str_hmac_md5(loc2, loc3)
+	{
+		return this.binl2str(this.core_hmac_md5(loc2,loc3));
+	}
+	function md5_vm_test()
+	{
+		return this.hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
+	}
+	function core_md5(loc2, loc3)
+	{
+		loc2[loc3 >> 5] = loc2[loc3 >> 5] | 128 << loc3 % 32;
+		loc2[(loc3 + 64 >>> 9 << 4) + 14] = loc3;
+		var loc4 = 1732584193;
+		var loc5 = -271733879;
+		var loc6 = -1732584194;
+		var loc7 = 271733878;
+		var loc8 = 0;
+		while(loc8 < loc2.length)
+		{
+			var loc9 = loc4;
+			var loc10 = loc5;
+			var loc11 = loc6;
+			var loc12 = loc7;
+			loc4 = this.md5_ff(loc4,loc5,loc6,loc7,loc2[loc8 + 0],7,-680876936);
+			loc7 = this.md5_ff(loc7,loc4,loc5,loc6,loc2[loc8 + 1],12,-389564586);
+			loc6 = this.md5_ff(loc6,loc7,loc4,loc5,loc2[loc8 + 2],17,606105819);
+			loc5 = this.md5_ff(loc5,loc6,loc7,loc4,loc2[loc8 + 3],22,-1044525330);
+			loc4 = this.md5_ff(loc4,loc5,loc6,loc7,loc2[loc8 + 4],7,-176418897);
+			loc7 = this.md5_ff(loc7,loc4,loc5,loc6,loc2[loc8 + 5],12,1200080426);
+			loc6 = this.md5_ff(loc6,loc7,loc4,loc5,loc2[loc8 + 6],17,-1473231341);
+			loc5 = this.md5_ff(loc5,loc6,loc7,loc4,loc2[loc8 + 7],22,-45705983);
+			loc4 = this.md5_ff(loc4,loc5,loc6,loc7,loc2[loc8 + 8],7,1770035416);
+			loc7 = this.md5_ff(loc7,loc4,loc5,loc6,loc2[loc8 + 9],12,-1958414417);
+			loc6 = this.md5_ff(loc6,loc7,loc4,loc5,loc2[loc8 + 10],17,-42063);
+			loc5 = this.md5_ff(loc5,loc6,loc7,loc4,loc2[loc8 + 11],22,-1990404162);
+			loc4 = this.md5_ff(loc4,loc5,loc6,loc7,loc2[loc8 + 12],7,1804603682);
+			loc7 = this.md5_ff(loc7,loc4,loc5,loc6,loc2[loc8 + 13],12,-40341101);
+			loc6 = this.md5_ff(loc6,loc7,loc4,loc5,loc2[loc8 + 14],17,-1502002290);
+			loc5 = this.md5_ff(loc5,loc6,loc7,loc4,loc2[loc8 + 15],22,1236535329);
+			loc4 = this.md5_gg(loc4,loc5,loc6,loc7,loc2[loc8 + 1],5,-165796510);
+			loc7 = this.md5_gg(loc7,loc4,loc5,loc6,loc2[loc8 + 6],9,-1069501632);
+			loc6 = this.md5_gg(loc6,loc7,loc4,loc5,loc2[loc8 + 11],14,643717713);
+			loc5 = this.md5_gg(loc5,loc6,loc7,loc4,loc2[loc8 + 0],20,-373897302);
+			loc4 = this.md5_gg(loc4,loc5,loc6,loc7,loc2[loc8 + 5],5,-701558691);
+			loc7 = this.md5_gg(loc7,loc4,loc5,loc6,loc2[loc8 + 10],9,38016083);
+			loc6 = this.md5_gg(loc6,loc7,loc4,loc5,loc2[loc8 + 15],14,-660478335);
+			loc5 = this.md5_gg(loc5,loc6,loc7,loc4,loc2[loc8 + 4],20,-405537848);
+			loc4 = this.md5_gg(loc4,loc5,loc6,loc7,loc2[loc8 + 9],5,568446438);
+			loc7 = this.md5_gg(loc7,loc4,loc5,loc6,loc2[loc8 + 14],9,-1019803690);
+			loc6 = this.md5_gg(loc6,loc7,loc4,loc5,loc2[loc8 + 3],14,-187363961);
+			loc5 = this.md5_gg(loc5,loc6,loc7,loc4,loc2[loc8 + 8],20,1163531501);
+			loc4 = this.md5_gg(loc4,loc5,loc6,loc7,loc2[loc8 + 13],5,-1444681467);
+			loc7 = this.md5_gg(loc7,loc4,loc5,loc6,loc2[loc8 + 2],9,-51403784);
+			loc6 = this.md5_gg(loc6,loc7,loc4,loc5,loc2[loc8 + 7],14,1735328473);
+			loc5 = this.md5_gg(loc5,loc6,loc7,loc4,loc2[loc8 + 12],20,-1926607734);
+			loc4 = this.md5_hh(loc4,loc5,loc6,loc7,loc2[loc8 + 5],4,-378558);
+			loc7 = this.md5_hh(loc7,loc4,loc5,loc6,loc2[loc8 + 8],11,-2022574463);
+			loc6 = this.md5_hh(loc6,loc7,loc4,loc5,loc2[loc8 + 11],16,1839030562);
+			loc5 = this.md5_hh(loc5,loc6,loc7,loc4,loc2[loc8 + 14],23,-35309556);
+			loc4 = this.md5_hh(loc4,loc5,loc6,loc7,loc2[loc8 + 1],4,-1530992060);
+			loc7 = this.md5_hh(loc7,loc4,loc5,loc6,loc2[loc8 + 4],11,1272893353);
+			loc6 = this.md5_hh(loc6,loc7,loc4,loc5,loc2[loc8 + 7],16,-155497632);
+			loc5 = this.md5_hh(loc5,loc6,loc7,loc4,loc2[loc8 + 10],23,-1094730640);
+			loc4 = this.md5_hh(loc4,loc5,loc6,loc7,loc2[loc8 + 13],4,681279174);
+			loc7 = this.md5_hh(loc7,loc4,loc5,loc6,loc2[loc8 + 0],11,-358537222);
+			loc6 = this.md5_hh(loc6,loc7,loc4,loc5,loc2[loc8 + 3],16,-722521979);
+			loc5 = this.md5_hh(loc5,loc6,loc7,loc4,loc2[loc8 + 6],23,76029189);
+			loc4 = this.md5_hh(loc4,loc5,loc6,loc7,loc2[loc8 + 9],4,-640364487);
+			loc7 = this.md5_hh(loc7,loc4,loc5,loc6,loc2[loc8 + 12],11,-421815835);
+			loc6 = this.md5_hh(loc6,loc7,loc4,loc5,loc2[loc8 + 15],16,530742520);
+			loc5 = this.md5_hh(loc5,loc6,loc7,loc4,loc2[loc8 + 2],23,-995338651);
+			loc4 = this.md5_ii(loc4,loc5,loc6,loc7,loc2[loc8 + 0],6,-198630844);
+			loc7 = this.md5_ii(loc7,loc4,loc5,loc6,loc2[loc8 + 7],10,1126891415);
+			loc6 = this.md5_ii(loc6,loc7,loc4,loc5,loc2[loc8 + 14],15,-1416354905);
+			loc5 = this.md5_ii(loc5,loc6,loc7,loc4,loc2[loc8 + 5],21,-57434055);
+			loc4 = this.md5_ii(loc4,loc5,loc6,loc7,loc2[loc8 + 12],6,1700485571);
+			loc7 = this.md5_ii(loc7,loc4,loc5,loc6,loc2[loc8 + 3],10,-1894986606);
+			loc6 = this.md5_ii(loc6,loc7,loc4,loc5,loc2[loc8 + 10],15,-1051523);
+			loc5 = this.md5_ii(loc5,loc6,loc7,loc4,loc2[loc8 + 1],21,-2054922799);
+			loc4 = this.md5_ii(loc4,loc5,loc6,loc7,loc2[loc8 + 8],6,1873313359);
+			loc7 = this.md5_ii(loc7,loc4,loc5,loc6,loc2[loc8 + 15],10,-30611744);
+			loc6 = this.md5_ii(loc6,loc7,loc4,loc5,loc2[loc8 + 6],15,-1560198380);
+			loc5 = this.md5_ii(loc5,loc6,loc7,loc4,loc2[loc8 + 13],21,1309151649);
+			loc4 = this.md5_ii(loc4,loc5,loc6,loc7,loc2[loc8 + 4],6,-145523070);
+			loc7 = this.md5_ii(loc7,loc4,loc5,loc6,loc2[loc8 + 11],10,-1120210379);
+			loc6 = this.md5_ii(loc6,loc7,loc4,loc5,loc2[loc8 + 2],15,718787259);
+			loc5 = this.md5_ii(loc5,loc6,loc7,loc4,loc2[loc8 + 9],21,-343485551);
+			loc4 = this.safe_add(loc4,loc9);
+			loc5 = this.safe_add(loc5,loc10);
+			loc6 = this.safe_add(loc6,loc11);
+			loc7 = this.safe_add(loc7,loc12);
+			loc8 = loc8 + 16;
+		}
+		return [loc4,loc5,loc6,loc7];
+	}
+	function md5_cmn(loc2, loc3, loc4, loc5, loc6, loc7)
+	{
+		return this.safe_add(this.bit_rol(this.safe_add(this.safe_add(loc3,loc2),this.safe_add(loc5,loc7)),loc6),loc4);
+	}
+	function md5_ff(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	{
+		return this.md5_cmn(loc3 & loc4 | (loc3 ^ -1) & loc5,loc2,loc3,loc6,loc7,loc8);
+	}
+	function md5_gg(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	{
+		return this.md5_cmn(loc3 & loc5 | loc4 & (loc5 ^ -1),loc2,loc3,loc6,loc7,loc8);
+	}
+	function md5_hh(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	{
+		return this.md5_cmn(loc3 ^ loc4 ^ loc5,loc2,loc3,loc6,loc7,loc8);
+	}
+	function md5_ii(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	{
+		return this.md5_cmn(loc4 ^ (loc3 | loc5 ^ -1),loc2,loc3,loc6,loc7,loc8);
+	}
+	function core_hmac_md5(loc2, loc3)
+	{
+		var loc4 = this.str2binl(loc2);
+		if(loc4.length > 16)
+		{
+			loc4 = this.core_md5(loc4,loc2.length * this.chrsz);
+		}
+		var loc5 = (Array)16;
+		var loc6 = (Array)16;
+		var loc7 = 0;
+		while(loc7 < 16)
+		{
+			loc5[loc7] = loc4[loc7] ^ 909522486;
+			loc6[loc7] = loc4[loc7] ^ 1549556828;
+			loc7 = loc7 + 1;
+		}
+		var loc8 = this.core_md5(loc5.concat(this.str2binl(loc3)),512 + loc3.length * this.chrsz);
+		return this.core_md5(loc6.concat(loc8),512 + 128);
+	}
+	function safe_add(loc2, loc3)
+	{
+		var loc4 = (loc2 & 65535) + (loc3 & 65535);
+		var loc5 = (loc2 >> 16) + (loc3 >> 16) + (loc4 >> 16);
+		return loc5 << 16 | loc4 & 65535;
+	}
+	function bit_rol(loc2, loc3)
+	{
+		return loc2 << loc3 | loc2 >>> 32 - loc3;
+	}
+	function str2binl(loc2)
+	{
+		var loc3 = new Array();
+		var loc4 = (1 << this.chrsz) - 1;
+		var loc5 = 0;
+		while(loc5 < loc2.length * this.chrsz)
+		{
+			loc3[loc5 >> 5] = loc3[loc5 >> 5] | (loc2.charCodeAt(loc5 / this.chrsz) & loc4) << loc5 % 32;
+			loc5 = loc5 + this.chrsz;
+		}
+		return loc3;
+	}
+	function binl2str(loc2)
+	{
+		var loc3 = "";
+		var loc4 = (1 << this.chrsz) - 1;
+		var loc5 = 0;
+		while(loc5 < loc2.length * 32)
+		{
+			loc3 = loc3 + String.fromCharCode(loc2[loc5 >> 5] >>> loc5 % 32 & loc4);
+			loc5 = loc5 + this.chrsz;
+		}
+		return loc3;
+	}
+	function binl2hex(loc2)
+	{
+		var loc3 = !this.hexcase?"0123456789abcdef":"0123456789ABCDEF";
+		var loc4 = "";
+		var loc5 = 0;
+		while(loc5 < loc2.length * 4)
+		{
+			loc4 = loc4 + (loc3.charAt(loc2[loc5 >> 2] >> loc5 % 4 * 8 + 4 & 15) + loc3.charAt(loc2[loc5 >> 2] >> loc5 % 4 * 8 & 15));
+			loc5 = loc5 + 1;
+		}
+		return loc4;
+	}
+	function binl2b64(loc2)
+	{
+		var loc3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+		var loc4 = "";
+		var loc5 = 0;
+		while(loc5 < loc2.length * 4)
+		{
+			var loc6 = (loc2[loc5 >> 2] >> 8 * (loc5 % 4) & 255) << 16 | (loc2[loc5 + 1 >> 2] >> 8 * ((loc5 + 1) % 4) & 255) << 8 | loc2[loc5 + 2 >> 2] >> 8 * ((loc5 + 2) % 4) & 255;
+			var loc7 = 0;
+			while(loc7 < 4)
+			{
+				if(loc5 * 8 + loc7 * 6 > loc2.length * 32)
+				{
+					loc4 = loc4 + this.b64pad;
+				}
+				else
+				{
+					loc4 = loc4 + loc3.charAt(loc6 >> 6 * (3 - loc7) & 63);
+				}
+				loc7 = loc7 + 1;
+			}
+			loc5 = loc5 + 3;
+		}
+		return loc4;
+	}
 }

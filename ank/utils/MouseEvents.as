@@ -1,25 +1,25 @@
 class ank.utils.MouseEvents
 {
-   function MouseEvents()
-   {
-   }
-   static function addListener(oListener)
-   {
-      Mouse.addListener(oListener);
-      ank.utils.MouseEvents.garbageCollector();
-   }
-   static function garbageCollector()
-   {
-      var _loc2_ = Mouse._listeners;
-      var _loc3_ = _loc2_.length;
-      while(_loc3_ >= 0)
-      {
-         var _loc4_ = _loc2_[_loc3_];
-         if(_loc4_ == undefined || _loc4_._target == undefined)
-         {
-            _loc2_.splice(_loc3_,1);
-         }
-         _loc3_ = _loc3_ - 1;
-      }
-   }
+	function MouseEvents()
+	{
+	}
+	static function addListener(loc2)
+	{
+		Mouse.addListener(loc2);
+		ank.utils.MouseEvents.garbageCollector();
+	}
+	static function garbageCollector()
+	{
+		var loc2 = Mouse._listeners;
+		var loc3 = loc2.length;
+		while(loc3 >= 0)
+		{
+			var loc4 = loc2[loc3];
+			if(loc4 == undefined || loc4._target == undefined)
+			{
+				loc2.splice(loc3,1);
+			}
+			loc3 = loc3 - 1;
+		}
+	}
 }

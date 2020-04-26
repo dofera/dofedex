@@ -1,37 +1,37 @@
 class dofus.datacenter.FeatEffect extends Object
 {
-   function FeatEffect(nIndex, aParams)
-   {
-      super();
-      this.api = _global.API;
-      this.initialize(nIndex,aParams);
-   }
-   function __get__index()
-   {
-      return this._nIndex;
-   }
-   function __set__index(nIndex)
-   {
-      this._nIndex = nIndex;
-      return this.__get__index();
-   }
-   function __get__description()
-   {
-      return ank.utils.PatternDecoder.getDescription(this._sFeatEffectInfos,this._aParams);
-   }
-   function __set__params(aParams)
-   {
-      this._aParams = aParams;
-      return this.__get__params();
-   }
-   function __get__params()
-   {
-      return this._aParams;
-   }
-   function initialize(nIndex, aParams)
-   {
-      this._nIndex = nIndex;
-      this._aParams = aParams;
-      this._sFeatEffectInfos = this.api.lang.getAlignmentFeatEffect(nIndex);
-   }
+	function FeatEffect(loc3, loc4)
+	{
+		super();
+		this.api = _global.API;
+		this.initialize(loc3,loc4);
+	}
+	function __get__index()
+	{
+		return this._nIndex;
+	}
+	function __set__index(loc2)
+	{
+		this._nIndex = loc2;
+		return this.__get__index();
+	}
+	function __get__description()
+	{
+		return ank.utils.PatternDecoder.getDescription(this._sFeatEffectInfos,this._aParams);
+	}
+	function __set__params(loc2)
+	{
+		this._aParams = loc2;
+		return this.__get__params();
+	}
+	function __get__params()
+	{
+		return this._aParams;
+	}
+	function initialize(loc2, loc3)
+	{
+		this._nIndex = loc2;
+		this._aParams = loc3;
+		this._sFeatEffectInfos = this.api.lang.getAlignmentFeatEffect(loc2);
+	}
 }

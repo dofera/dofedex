@@ -1,231 +1,244 @@
 class ank.battlefield.GlobalSpriteHandler
 {
-   function GlobalSpriteHandler()
-   {
-      this.initialize();
-   }
-   function initialize()
-   {
-      this._oSprites = new Object();
-      this._mclLoader = new MovieClipLoader();
-      this._mclLoader.addListener(this);
-      this._aFrameToGo = new Array();
-   }
-   function setAccessoriesRoot(path)
-   {
-      this._sAccessoriesPath = path;
-   }
-   function addSprite(mcSprite, oSpriteData)
-   {
-      this._oSprites[mcSprite._target] = {mc:mcSprite,data:oSpriteData};
-      this.garbageCollector();
-   }
-   function setColors(mc, color1, color2, color3)
-   {
-      var _loc6_ = this._oSprites[mc._target].data;
-      if(color1 != -1)
-      {
-         _loc6_.color1 = color1;
-      }
-      if(color2 != -1)
-      {
-         _loc6_.color2 = color2;
-      }
-      if(color3 != -1)
-      {
-         _loc6_.color3 = color3;
-      }
-   }
-   function setAccessories(mc, aAccessories)
-   {
-      var _loc4_ = this._oSprites[mc._target].data;
-      if(aAccessories != undefined)
-      {
-         _loc4_.accessories = aAccessories;
-      }
-   }
-   function applyColor(mc, nZone, isMount)
-   {
-      var _loc5_ = this.getSpriteData(mc);
-      if(_loc5_ != undefined)
-      {
-         var _loc6_ = !(isMount && _loc5_.mount != undefined)?_loc5_["color" + nZone]:_loc5_.mount["color" + nZone];
-         if(_loc6_ != undefined && _loc6_ != -1)
-         {
-            var _loc7_ = (_loc6_ & 16711680) >> 16;
-            var _loc8_ = (_loc6_ & 65280) >> 8;
-            var _loc9_ = _loc6_ & 255;
-            var _loc10_ = new Color(mc);
-            var _loc11_ = new Object();
-            _loc11_ = {ra:"0",rb:_loc7_,ga:"0",gb:_loc8_,ba:"0",bb:_loc9_,aa:"100",ab:"0"};
-            _loc10_.setTransform(_loc11_);
-         }
-      }
-   }
-   function applyAccessory(mc, accessoryID, side, mcToHide, bFix)
-   {
-      if(bFix == undefined)
-      {
-         bFix = false;
-      }
-      var _loc7_ = this.getSpriteData(mc);
-      if(_loc7_ != undefined)
-      {
-         var _loc8_ = _loc7_.accessories[accessoryID].gfx;
-         mc.clip.removeMovieClip();
-         if(bFix)
-         {
-            switch(_loc7_.direction)
-            {
-               case 3:
-               case 4:
-               case 7:
-                  mc._x = - mc._x;
-            }
-         }
-         if(_loc8_ != undefined)
-         {
-            if(mcToHide != undefined)
-            {
-               mcToHide.gotoAndStop(!(_loc8_.length == 0 || _loc8_ == "_")?2:1);
-            }
-            if(!ank.battlefield.Constants.USE_STREAMING_FILES || ank.battlefield.Constants.STREAMING_METHOD == "compact")
-            {
-               mc.attachMovie(_loc8_,"clip",10);
-               if(_loc7_.accessories[accessoryID].frame != undefined)
-               {
-                  mc.clip.gotoAndStop(side + _loc7_.accessories[accessoryID].frame);
-               }
-               else
-               {
-                  mc.clip.gotoAndStop(side);
-               }
-            }
-            else
-            {
-               var _loc9_ = _loc8_.split("_");
-               if(_loc9_[0] == undefined || (_global.isNaN(Number(_loc9_[0])) || (_loc9_[1] == undefined || _global.isNaN(Number(_loc9_[1])))))
-               {
-                  return undefined;
-               }
-               var _loc10_ = mc.createEmptyMovieClip("clip",10);
-               if(_loc7_.skin !== undefined)
-               {
-                  this._aFrameToGo[_loc10_] = side + _loc7_.skin;
-               }
-               else
-               {
-                  this._aFrameToGo[_loc10_] = side;
-               }
-               this._mclLoader.loadClip(this._sAccessoriesPath + _loc9_.join("/") + ".swf",_loc10_);
-            }
-         }
-      }
-   }
-   function applyAnim(mc, sAnim)
-   {
-      var _loc4_ = this.getSpriteData(mc);
-      if(_loc4_ != undefined)
-      {
-         if(_loc4_.bAnimLoop)
-         {
-            _loc4_.mc.saveLastAnimation(_loc4_.animation);
-         }
-         else
-         {
-            _loc4_.mc.setAnim(sAnim);
-         }
-      }
-   }
-   function applyEnd(mc)
-   {
-      var _loc3_ = this.getSpriteData(mc);
-      if(_loc3_ != undefined)
-      {
-         if(!_loc3_.bAnimLoop)
-         {
-            _loc3_.sequencer.onActionEnd();
-         }
-      }
-   }
-   function applySprite(mc)
-   {
-      var _loc3_ = this.getSpriteData(mc);
-      switch(_loc3_.direction)
-      {
-         case 0:
-         case 4:
-            mc.attachMovie(_loc3_.animation + "S","clip",1);
-            break;
-         case 1:
-         case 3:
-            mc.attachMovie(_loc3_.animation + "R","clip",1);
-            break;
-         case 2:
-            mc.attachMovie(_loc3_.animation + "F","clip",1);
-            break;
-         case 5:
-         case 7:
-            mc.attachMovie(_loc3_.animation + "L","clip",1);
-            break;
-         case 6:
-            mc.attachMovie(_loc3_.animation + "B","clip",1);
-      }
-   }
-   function registerCarried(mc)
-   {
-      var _loc3_ = this.getSpriteData(mc);
-      _loc3_.mc.mcCarried = mc;
-   }
-   function registerChevauchor(mc)
-   {
-      var _loc3_ = this.getSpriteData(mc);
-      _loc3_.mc.mcChevauchorPos = mc;
-      _loc3_.mc.updateChevauchorPosition();
-   }
-   function getSpriteData(mc)
-   {
-      var _loc3_ = mc._target;
-      for(var name in this._oSprites)
-      {
-         if(_loc3_.substring(0,name.length) == name)
-         {
-            if(_loc3_.charAt(name.length) != "/")
-            {
-               continue;
-            }
-            if(this._oSprites[name] != undefined)
-            {
-               return this._oSprites[name].data;
-            }
-         }
-      }
-   }
-   function garbageCollector(Void)
-   {
-      for(var o in this._oSprites)
-      {
-         if(this._oSprites[o].mc._target == undefined)
-         {
-            delete this._oSprites.o;
-         }
-      }
-   }
-   function recursiveGotoAndStop(mc, frame)
-   {
-      mc.stop();
-      mc.gotoAndStop(frame);
-      for(var i in mc)
-      {
-         if(mc[i] instanceof MovieClip)
-         {
-            this.recursiveGotoAndStop(mc[i],frame);
-         }
-      }
-   }
-   function onLoadInit(mc)
-   {
-      this.recursiveGotoAndStop(mc,this._aFrameToGo[mc]);
-      delete this._aFrameToGo.mc;
-   }
+	function GlobalSpriteHandler()
+	{
+		this.initialize();
+	}
+	function initialize()
+	{
+		this._oSprites = new Object();
+		this._mclLoader = new MovieClipLoader();
+		this._mclLoader.addListener(this);
+		this._aFrameToGo = new Array();
+	}
+	function setAccessoriesRoot(loc2)
+	{
+		this._sAccessoriesPath = loc2;
+	}
+	function addSprite(loc2, loc3)
+	{
+		this._oSprites[loc2._target] = {mc:loc2,data:loc3};
+		this.garbageCollector();
+	}
+	function setColors(loc2, loc3, loc4, loc5)
+	{
+		var loc6 = this._oSprites[loc2._target].data;
+		if(loc3 != -1)
+		{
+			loc6.color1 = loc3;
+		}
+		if(loc4 != -1)
+		{
+			loc6.color2 = loc4;
+		}
+		if(loc5 != -1)
+		{
+			loc6.color3 = loc5;
+		}
+	}
+	function setAccessories(loc2, loc3)
+	{
+		var loc4 = this._oSprites[loc2._target].data;
+		if(loc3 != undefined)
+		{
+			loc4.accessories = loc3;
+		}
+	}
+	function applyColor(loc2, loc3, loc4)
+	{
+		var loc5 = this.getSpriteData(loc2);
+		if(loc5 != undefined)
+		{
+			var loc6 = !(loc4 && loc5.mount != undefined)?loc5["color" + loc3]:loc5.mount["color" + loc3];
+			if(loc6 != undefined && loc6 != -1)
+			{
+				var loc7 = (loc6 & 16711680) >> 16;
+				var loc8 = (loc6 & 65280) >> 8;
+				var loc9 = loc6 & 255;
+				var loc10 = new Color(loc2);
+				var loc11 = new Object();
+				loc11 = {ra:"0",rb:loc7,ga:"0",gb:loc8,ba:"0",bb:loc9,aa:"100",ab:"0"};
+				loc10.setTransform(loc11);
+			}
+		}
+	}
+	function applyAccessory(loc2, loc3, loc4, loc5, loc6)
+	{
+		if(loc6 == undefined)
+		{
+			loc6 = false;
+		}
+		var loc7 = this.getSpriteData(loc2);
+		if(loc7 != undefined)
+		{
+			var loc8 = loc7.accessories[loc3].gfx;
+			loc2.clip.removeMovieClip();
+			if(loc6)
+			{
+				switch(loc7.direction)
+				{
+					default:
+						if(loc0 === 7)
+						{
+							break;
+						}
+					case 3:
+					case 4:
+				}
+				loc2._x = - loc2._x;
+			}
+			if(loc8 != undefined)
+			{
+				if(loc5 != undefined)
+				{
+					loc5.gotoAndStop(!(loc8.length == 0 || loc8 == "_")?2:1);
+				}
+				if(!ank.battlefield.Constants.USE_STREAMING_FILES || ank.battlefield.Constants.STREAMING_METHOD == "compact")
+				{
+					loc2.attachMovie(loc8,"clip",10);
+					if(loc7.accessories[loc3].frame != undefined)
+					{
+						loc2.clip.gotoAndStop(loc4 + loc7.accessories[loc3].frame);
+					}
+					else
+					{
+						loc2.clip.gotoAndStop(loc4);
+					}
+				}
+				else
+				{
+					var loc9 = loc8.split("_");
+					if(loc9[0] == undefined || (_global.isNaN(Number(loc9[0])) || (loc9[1] == undefined || _global.isNaN(Number(loc9[1])))))
+					{
+						return undefined;
+					}
+					var loc10 = loc2.createEmptyMovieClip("clip",10);
+					if(loc7.skin !== undefined)
+					{
+						this._aFrameToGo[loc10] = loc4 + loc7.skin;
+					}
+					else
+					{
+						this._aFrameToGo[loc10] = loc4;
+					}
+					this._mclLoader.loadClip(this._sAccessoriesPath + loc9.join("/") + ".swf",loc10);
+				}
+			}
+		}
+	}
+	function applyAnim(loc2, loc3)
+	{
+		var loc4 = this.getSpriteData(loc2);
+		if(loc4 != undefined)
+		{
+			if(loc4.bAnimLoop)
+			{
+				loc4.mc.saveLastAnimation(loc4.animation);
+			}
+			else
+			{
+				loc4.mc.setAnim(loc3);
+			}
+		}
+	}
+	function applyEnd(loc2)
+	{
+		var loc3 = this.getSpriteData(loc2);
+		if(loc3 != undefined)
+		{
+			if(!loc3.bAnimLoop)
+			{
+				loc3.sequencer.onActionEnd();
+			}
+		}
+	}
+	function applySprite(loc2)
+	{
+		var loc3 = this.getSpriteData(loc2);
+		if((var loc0 = loc3.direction) !== 0)
+		{
+			switch(null)
+			{
+				case 4:
+					break;
+				case 1:
+				case 3:
+					loc2.attachMovie(loc3.animation + "R","clip",1);
+					break;
+				case 2:
+					loc2.attachMovie(loc3.animation + "F","clip",1);
+					break;
+				default:
+					switch(null)
+					{
+						case 7:
+							break;
+						case 6:
+							loc2.attachMovie(loc3.animation + "B","clip",1);
+					}
+					break;
+				case 5:
+					loc2.attachMovie(loc3.animation + "L","clip",1);
+			}
+		}
+		loc2.attachMovie(loc3.animation + "S","clip",1);
+	}
+	function registerCarried(loc2)
+	{
+		var loc3 = this.getSpriteData(loc2);
+		loc3.mc.mcCarried = loc2;
+	}
+	function registerChevauchor(loc2)
+	{
+		var loc3 = this.getSpriteData(loc2);
+		loc3.mc.mcChevauchorPos = loc2;
+		loc3.mc.updateChevauchorPosition();
+	}
+	function getSpriteData(loc2)
+	{
+		var loc3 = loc2._target;
+		§§enumerate(this._oSprites);
+		while((var loc0 = §§enumeration()) != null)
+		{
+			if(loc3.substring(0,name.length) == name)
+			{
+				if(loc3.charAt(name.length) != "/")
+				{
+					continue;
+				}
+				if(this._oSprites[name] != undefined)
+				{
+					return this._oSprites[name].data;
+				}
+			}
+		}
+	}
+	function garbageCollector(loc2)
+	{
+		§§enumerate(this._oSprites);
+		while((var loc0 = §§enumeration()) != null)
+		{
+			if(this._oSprites[o].mc._target == undefined)
+			{
+				delete this._oSprites.o;
+			}
+		}
+	}
+	function recursiveGotoAndStop(loc2, loc3)
+	{
+		loc2.stop();
+		loc2.gotoAndStop(loc3);
+		for(var i in loc2)
+		{
+			if(loc2[i] instanceof MovieClip)
+			{
+				this.recursiveGotoAndStop(loc2[i],loc3);
+			}
+		}
+	}
+	function onLoadInit(loc2)
+	{
+		this.recursiveGotoAndStop(loc2,this._aFrameToGo[loc2]);
+		delete this._aFrameToGo.register2;
+	}
 }

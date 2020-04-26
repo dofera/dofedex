@@ -1,68 +1,68 @@
 class dofus.graphics.gapi.ui.HouseIndoor extends dofus.graphics.gapi.core.DofusAdvancedComponent
 {
-   static var CLASS_NAME = "HouseIndoor";
-   function HouseIndoor()
-   {
-      super();
-   }
-   function __set__house(oHouse)
-   {
-      this._oHouse = oHouse;
-      oHouse.addEventListener("forsale",this);
-      oHouse.addEventListener("locked",this);
-      this._mcForSale._visible = oHouse.isForSale;
-      this._mcLock._visible = oHouse.isLocked;
-      return this.__get__house();
-   }
-   function __set__skills(aSkills)
-   {
-      this._aSkills = aSkills;
-      return this.__get__skills();
-   }
-   function init()
-   {
-      super.init(false,dofus.graphics.gapi.ui.HouseIndoor.CLASS_NAME);
-   }
-   function createChildren()
-   {
-      this._mcHouse.onRelease = this.click;
-      if(this._oHouse == undefined)
-      {
-         this._mcForSale._visible = false;
-         this._mcLock._visible = false;
-      }
-   }
-   function click()
-   {
-      var _loc2_ = this._parent.gapi.createPopupMenu();
-      var _loc3_ = this._parent._oHouse;
-      var _loc4_ = this._parent.api;
-      _loc2_.addStaticItem(_loc3_.name);
-      for(var k in this._parent._aSkills)
-      {
-         var _loc5_ = this._parent._aSkills[k];
-         var _loc6_ = _loc5_.getState(true,_loc3_.localOwner,_loc3_.isForSale,_loc3_.isLocked,true);
-         if(_loc6_ != "X")
-         {
-            _loc2_.addItem(_loc5_.description,_loc4_.kernel.GameManager,_loc4_.kernel.GameManager.useSkill,[_loc5_.id],_loc6_ == "V");
-         }
-      }
-      if(_loc4_.datacenter.Player.guildInfos != undefined && _loc4_.datacenter.Player.guildInfos.isValid)
-      {
-         _loc2_.addItem(_loc4_.lang.getText("GUILD_HOUSE_CONFIGURATION"),this._parent,this._parent.guildHouse);
-      }
-      _loc2_.show(_root._xmouse,_root._ymouse);
-   }
-   function guildHouse()
-   {
-      this.api.ui.loadUIComponent("GuildHouseRights","GuildHouseRights",{house:this._oHouse});
-   }
-   function forsale(oEvent)
-   {
-      this._mcForSale._visible = oEvent.value;
-   }
-   function locked(oEvent)
-   {
-      this._mcLock._visible = oEvent.value;
-   }
+	static var CLASS_NAME = "HouseIndoor";
+	function HouseIndoor()
+	{
+		super();
+	}
+	function __set__house(loc2)
+	{
+		this._oHouse = loc2;
+		loc2.addEventListener("forsale",this);
+		loc2.addEventListener("locked",this);
+		this._mcForSale._visible = loc2.isForSale;
+		this._mcLock._visible = loc2.isLocked;
+		return this.__get__house();
+	}
+	function __set__skills(loc2)
+	{
+		this._aSkills = loc2;
+		return this.__get__skills();
+	}
+	function init()
+	{
+		super.init(false,dofus.graphics.gapi.ui.HouseIndoor.CLASS_NAME);
+	}
+	function createChildren()
+	{
+		this._mcHouse.onRelease = this.click;
+		if(this._oHouse == undefined)
+		{
+			this._mcForSale._visible = false;
+			this._mcLock._visible = false;
+		}
+	}
+	function click()
+	{
+		var loc2 = this._parent.gapi.createPopupMenu();
+		var loc3 = this._parent._oHouse;
+		var loc4 = this._parent.api;
+		loc2.addStaticItem(loc3.name);
+		for(var k in this._parent._aSkills)
+		{
+			var loc5 = this._parent._aSkills[k];
+			var loc6 = loc5.getState(true,loc3.localOwner,loc3.isForSale,loc3.isLocked,true);
+			if(loc6 != "X")
+			{
+				loc2.addItem(loc5.description,loc4.kernel.GameManager,loc4.kernel.GameManager.useSkill,[loc5.id],loc6 == "V");
+			}
+		}
+		if(loc4.datacenter.Player.guildInfos != undefined && loc4.datacenter.Player.guildInfos.isValid)
+		{
+			loc2.addItem(loc4.lang.getText("GUILD_HOUSE_CONFIGURATION"),this._parent,this._parent.guildHouse);
+		}
+		loc2.show(_root._xmouse,_root._ymouse);
+	}
+	function guildHouse()
+	{
+		this.api.ui.loadUIComponent("GuildHouseRights","GuildHouseRights",{house:this._oHouse});
+	}
+	function forsale(loc2)
+	{
+		this._mcForSale._visible = loc2.value;
+	}
+	function locked(loc2)
+	{
+		this._mcLock._visible = loc2.value;
+	}
 }

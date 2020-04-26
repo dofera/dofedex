@@ -1,103 +1,115 @@
 class dofus.aks.Fights extends dofus.aks.Handler
 {
-   function Fights(oAKS, oAPI)
-   {
-      super.initialize(oAKS,oAPI);
-   }
-   function getList()
-   {
-      this.aks.send("fL");
-   }
-   function getDetails(nID)
-   {
-      this.aks.send("fD" + nID,false);
-   }
-   function blockSpectators()
-   {
-      this.aks.send("fS");
-   }
-   function blockJoinerExceptParty()
-   {
-      this.aks.send("fP");
-   }
-   function blockJoiner()
-   {
-      this.aks.send("fN");
-   }
-   function needHelp()
-   {
-      this.aks.send("fH");
-   }
-   function onCount(sExtraData)
-   {
-      var _loc3_ = Number(sExtraData);
-      if(_global.isNaN(_loc3_) || (sExtraData.length == 0 || _loc3_ == 0))
-      {
-         this.api.ui.getUIComponent("Banner").fightsCount = 0;
-      }
-      else
-      {
-         this.api.ui.getUIComponent("Banner").fightsCount = _loc3_;
-      }
-   }
-   function onList(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = new Array();
-      var _loc5_ = 0;
-      while(_loc5_ < _loc3_.length)
-      {
-         if(String(_loc3_[_loc5_]).length != 0)
-         {
-            var _loc6_ = _loc3_[_loc5_].split(";");
-            var _loc7_ = Number(_loc6_[0]);
-            var _loc8_ = Number(_loc6_[1]);
-            var _loc9_ = _loc8_ != -1?this.api.kernel.NightManager.getDiffDate(_loc8_):-1;
-            var _loc10_ = new dofus.datacenter.FightInfos(_loc7_,_loc9_);
-            var _loc11_ = String(_loc6_[2]).split(",");
-            var _loc12_ = Number(_loc11_[0]);
-            var _loc13_ = Number(_loc11_[1]);
-            var _loc14_ = Number(_loc11_[2]);
-            _loc10_.addTeam(1,_loc12_,_loc13_,_loc14_);
-            var _loc15_ = String(_loc6_[3]).split(",");
-            var _loc16_ = Number(_loc15_[0]);
-            var _loc17_ = Number(_loc15_[1]);
-            var _loc18_ = Number(_loc15_[2]);
-            _loc10_.addTeam(2,_loc16_,_loc17_,_loc18_);
-            _loc4_.push(_loc10_);
-         }
-         _loc5_ = _loc5_ + 1;
-      }
-      this.api.ui.getUIComponent("FightsInfos").fights.replaceAll(0,_loc4_);
-   }
-   function onDetails(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = Number(_loc3_[0]);
-      var _loc5_ = new ank.utils.ExtendedArray();
-      var _loc6_ = _loc3_[1].split(";");
-      var _loc7_ = 0;
-      while(_loc7_ < _loc6_.length)
-      {
-         if(_loc6_[_loc7_] != "")
-         {
-            var _loc8_ = _loc6_[_loc7_].split("~");
-            _loc5_.push({name:this.api.kernel.CharactersManager.getNameFromData(_loc8_[0]).name,level:Number(_loc8_[1]),type:this.api.kernel.CharactersManager.getNameFromData(_loc8_[0]).type});
-         }
-         _loc7_ = _loc7_ + 1;
-      }
-      var _loc9_ = new ank.utils.ExtendedArray();
-      var _loc10_ = _loc3_[2].split(";");
-      var _loc11_ = 0;
-      while(_loc11_ < _loc10_.length)
-      {
-         if(_loc10_[_loc11_] != "")
-         {
-            var _loc12_ = _loc10_[_loc11_].split("~");
-            _loc9_.push({name:this.api.kernel.CharactersManager.getNameFromData(_loc12_[0]).name,level:Number(_loc12_[1]),type:this.api.kernel.CharactersManager.getNameFromData(_loc12_[0]).type});
-         }
-         _loc11_ = _loc11_ + 1;
-      }
-      this.api.ui.getUIComponent("FightsInfos").addFightTeams(_loc4_,_loc5_,_loc9_);
-   }
+	function Fights(loc3, loc4)
+	{
+		super.initialize(loc3,loc4);
+	}
+	function getList()
+	{
+		this.aks.send("fL");
+	}
+	function getDetails(loc2)
+	{
+		this.aks.send("fD" + loc2,false);
+	}
+	function blockSpectators()
+	{
+		this.aks.send("fS");
+	}
+	function blockJoinerExceptParty()
+	{
+		this.aks.send("fP");
+	}
+	function blockJoiner()
+	{
+		this.aks.send("fN");
+	}
+	function needHelp()
+	{
+		this.aks.send("fH");
+	}
+	function onCount(loc2)
+	{
+		var loc3 = Number(loc2);
+		if(_global.isNaN(loc3) || (loc2.length == 0 || loc3 == 0))
+		{
+			this.api.ui.getUIComponent("Banner").fightsCount = 0;
+		}
+		else if(loc3 < 0)
+		{
+			if(this.api.ui.getUIComponent("Banner").fightsCount >= loc3)
+			{
+				this.api.ui.getUIComponent("Banner").fightsCount = this.api.ui.getUIComponent("Banner").fightsCount + loc3;
+			}
+		}
+		else
+		{
+			this.api.ui.getUIComponent("Banner").fightsCount = loc3;
+		}
+	}
+	function onList(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = new Array();
+		var loc5 = 0;
+		while(loc5 < loc3.length)
+		{
+			if(String(loc3[loc5]).length != 0)
+			{
+				var loc6 = loc3[loc5].split(";");
+				var loc7 = Number(loc6[0]);
+				var loc8 = Number(loc6[1]);
+				var loc9 = loc8 != -1?this.api.kernel.NightManager.getDiffDate(loc8):-1;
+				var loc10 = new dofus.datacenter.(loc7,loc9);
+				var loc11 = String(loc6[2]).split(",");
+				var loc12 = Number(loc11[0]);
+				var loc13 = Number(loc11[1]);
+				var loc14 = Number(loc11[2]);
+				loc10.addTeam(1,loc12,loc13,loc14);
+				var loc15 = String(loc6[3]).split(",");
+				var loc16 = Number(loc15[0]);
+				var loc17 = Number(loc15[1]);
+				var loc18 = Number(loc15[2]);
+				loc10.addTeam(2,loc16,loc17,loc18);
+				loc4.push(loc10);
+			}
+			loc5 = loc5 + 1;
+		}
+		var loc19 = this.api.ui.getUIComponent("FightsInfos").fights;
+		if(loc19 != null)
+		{
+			loc19.splice(0,loc19.length);
+			loc19.replaceAll(0,loc4);
+		}
+	}
+	function onDetails(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = Number(loc3[0]);
+		var loc5 = new ank.utils.();
+		var loc6 = loc3[1].split(";");
+		var loc7 = 0;
+		while(loc7 < loc6.length)
+		{
+			if(loc6[loc7] != "")
+			{
+				var loc8 = loc6[loc7].split("~");
+				loc5.push({name:this.api.kernel.CharactersManager.getNameFromData(loc8[0]).name,level:Number(loc8[1]),type:this.api.kernel.CharactersManager.getNameFromData(loc8[0]).type});
+			}
+			loc7 = loc7 + 1;
+		}
+		var loc9 = new ank.utils.();
+		var loc10 = loc3[2].split(";");
+		var loc11 = 0;
+		while(loc11 < loc10.length)
+		{
+			if(loc10[loc11] != "")
+			{
+				var loc12 = loc10[loc11].split("~");
+				loc9.push({name:this.api.kernel.CharactersManager.getNameFromData(loc12[0]).name,level:Number(loc12[1]),type:this.api.kernel.CharactersManager.getNameFromData(loc12[0]).type});
+			}
+			loc11 = loc11 + 1;
+		}
+		this.api.ui.getUIComponent("FightsInfos").addFightTeams(loc4,loc5,loc9);
+	}
 }

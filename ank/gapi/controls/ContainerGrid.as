@@ -1,352 +1,350 @@
 class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 {
-   static var CLASS_NAME = "ContainerGrid";
-   var _nVisibleRowCount = 3;
-   var _nVisibleColumnCount = 3;
-   var _nRowCount = 1;
-   var _bInvalidateLayout = false;
-   var _bScrollBar = true;
-   var _bSelectable = true;
-   var _nScrollPosition = 0;
-   var _nStyleMargin = 0;
-   function ContainerGrid()
-   {
-      super();
-   }
-   function __set__selectable(bSelectable)
-   {
-      this._bSelectable = bSelectable;
-      return this.__get__selectable();
-   }
-   function __get__selectable()
-   {
-      return this._bSelectable;
-   }
-   function __set__visibleRowCount(nVisibleRowCount)
-   {
-      this._nVisibleRowCount = nVisibleRowCount;
-      return this.__get__visibleRowCount();
-   }
-   function __get__visibleRowCount()
-   {
-      return this._nVisibleRowCount;
-   }
-   function __set__visibleColumnCount(nVisibleColumnCount)
-   {
-      this._nVisibleColumnCount = nVisibleColumnCount;
-      return this.__get__visibleColumnCount();
-   }
-   function __get__visibleColumnCount()
-   {
-      return this._nVisibleColumnCount;
-   }
-   function __set__dataProvider(eaDataProvider)
-   {
-      this._eaDataProvider = eaDataProvider;
-      this._eaDataProvider.addEventListener("modelChanged",this);
-      this.modelChanged();
-      var _loc3_ = this.getMaxRow();
-      if(this._nScrollPosition > _loc3_)
-      {
-         this.setVPosition(_loc3_);
-      }
-      return this.__get__dataProvider();
-   }
-   function __get__dataProvider()
-   {
-      return this._eaDataProvider;
-   }
-   function __set__selectedIndex(nSelectedIndex)
-   {
-      this.setSelectedItem(nSelectedIndex);
-      return this.__get__selectedIndex();
-   }
-   function __get__selectedIndex()
-   {
-      return this._nSelectedIndex;
-   }
-   function __get__selectedItem()
-   {
-      return this._mcScrollContent["c" + this._nSelectedIndex];
-   }
-   function __set__scrollBar(bScrollBar)
-   {
-      this._bScrollBar = bScrollBar;
-      return this.__get__scrollBar();
-   }
-   function __get__scrollBar()
-   {
-      return this._bScrollBar;
-   }
-   function setVPosition(nPosition)
-   {
-      var _loc3_ = this.getMaxRow();
-      if(nPosition > _loc3_)
-      {
-         nPosition = _loc3_;
-      }
-      if(nPosition < 0)
-      {
-         nPosition = 0;
-      }
-      if(this._nScrollPosition != nPosition)
-      {
-         this._nScrollPosition = nPosition;
-         this.setScrollBarProperties();
-         var _loc4_ = this.__height / this._nVisibleRowCount;
-         this.layoutContent();
-      }
-   }
-   function getContainer(nIndex)
-   {
-      return (ank.gapi.controls.Container)this._mcScrollContent["c" + nIndex];
-   }
-   function init()
-   {
-      super.init(false,ank.gapi.controls.ContainerGrid.CLASS_NAME);
-   }
-   function createChildren()
-   {
-      this.createEmptyMovieClip("_mcScrollContent",10);
-      this.createEmptyMovieClip("_mcMask",20);
-      this.drawRoundRect(this._mcMask,0,0,1,1,0,0);
-      this._mcScrollContent.setMask(this._mcMask);
-      if(this._bScrollBar)
-      {
-         this.attachMovie("ScrollBar","_sbVertical",30);
-         this._sbVertical.addEventListener("scroll",this);
-      }
-      ank.utils.MouseEvents.addListener(this);
-   }
-   function size()
-   {
-      super.size();
-      this.arrange();
-   }
-   function arrange()
-   {
-      if(this._bScrollBar)
-      {
-         this._sbVertical.setSize(this.__height);
-         this._sbVertical.move(this.__width - this._sbVertical.width,0);
-      }
-      this._mcMask._width = this.__width - (!this._bScrollBar?0:this._sbVertical.width);
-      this._mcMask._height = this.__height;
-      this.setScrollBarProperties();
-      this._bInvalidateLayout = this._bInitialized;
-      this.layoutContent();
-   }
-   function layoutContent()
-   {
-      var _loc2_ = (this.__width - (!this._bScrollBar?0:this._sbVertical.width)) / this._nVisibleColumnCount;
-      var _loc3_ = this.__height / this._nVisibleRowCount;
-      var _loc4_ = 0;
-      if(!this._bInvalidateLayout)
-      {
-         var _loc5_ = 0;
-         while(_loc5_ < this._nVisibleRowCount)
-         {
-            var _loc6_ = 0;
-            while(_loc6_ < this._nVisibleColumnCount)
-            {
-               var _loc7_ = this._mcScrollContent["c" + _loc4_];
-               if(_loc7_ == undefined)
-               {
-                  _loc7_ = (ank.gapi.controls.Container)this._mcScrollContent.attachMovie("Container","c" + _loc4_,_loc4_,{margin:this._nStyleMargin});
-                  _loc7_.addEventListener("drag",this);
-                  _loc7_.addEventListener("drop",this);
-                  _loc7_.addEventListener("over",this);
-                  _loc7_.addEventListener("out",this);
-                  _loc7_.addEventListener("click",this);
-                  _loc7_.addEventListener("dblClick",this);
-               }
-               _loc7_._x = _loc2_ * _loc6_;
-               _loc7_._y = _loc3_ * _loc5_;
-               _loc7_.setSize(_loc2_,_loc3_);
-               _loc4_ = _loc4_ + 1;
-               _loc6_ = _loc6_ + 1;
-            }
-            _loc5_ = _loc5_ + 1;
-         }
-      }
-      var _loc8_ = 0;
-      _loc4_ = this._nScrollPosition * this._nVisibleColumnCount;
-      var _loc9_ = 0;
-      while(_loc9_ < this._nVisibleRowCount)
-      {
-         var _loc10_ = 0;
-         while(_loc10_ < this._nVisibleColumnCount)
-         {
-            var _loc11_ = this._mcScrollContent["c" + _loc8_];
-            _loc11_.showLabel = this._eaDataProvider[_loc4_].label != undefined && this._eaDataProvider[_loc4_].label > 0;
-            _loc11_.contentData = this._eaDataProvider[_loc4_];
-            _loc11_.id = _loc4_;
-            if(_loc4_ == this._nSelectedIndex)
-            {
-               _loc11_.selected = true;
-            }
-            else
-            {
-               _loc11_.selected = false;
-            }
-            _loc11_.enabled = this._bEnabled;
-            _loc4_ = _loc4_ + 1;
-            _loc8_ = _loc8_ + 1;
-            _loc10_ = _loc10_ + 1;
-         }
-         _loc9_ = _loc9_ + 1;
-      }
-      if(this._bInvalidateLayout)
-      {
-      }
-      this._bInvalidateLayout = false;
-   }
-   function draw()
-   {
-      this._bInvalidateLayout = !this._bInitialized;
-      this.layoutContent();
-      var _loc2_ = this.getStyle();
-      var _loc3_ = _loc2_.containerbackground;
-      var _loc4_ = _loc2_.containerborder;
-      var _loc5_ = _loc2_.containerhighlight;
-      this._nStyleMargin = _loc2_.containermargin;
-      for(var k in this._mcScrollContent)
-      {
-         var _loc6_ = this._mcScrollContent[k];
-         _loc6_.backgroundRenderer = _loc3_;
-         _loc6_.borderRenderer = _loc4_;
-         _loc6_.highlightRenderer = _loc5_;
-         _loc6_.margin = this._nStyleMargin;
-         _loc6_.styleName = _loc2_.containerstyle;
-      }
-      if(this._bScrollBar)
-      {
-         this._sbVertical.styleName = _loc2_.scrollbarstyle;
-      }
-   }
-   function setEnabled()
-   {
-      for(var k in this._mcScrollContent)
-      {
-         this._mcScrollContent[k].enabled = this._bEnabled;
-      }
-      this.addToQueue({object:this,method:function()
-      {
-         this._sbVertical.enabled = this._bEnabled;
-      }});
-   }
-   function getMaxRow()
-   {
-      return Math.ceil(this._eaDataProvider.length / this._nVisibleColumnCount) - this._nVisibleRowCount;
-   }
-   function setScrollBarProperties()
-   {
-      var _loc2_ = this._nRowCount - this._nVisibleRowCount;
-      var _loc3_ = this._nVisibleRowCount * (_loc2_ / this._nRowCount);
-      this._sbVertical.setScrollProperties(_loc3_,0,_loc2_);
-      this._sbVertical.scrollPosition = this._nScrollPosition;
-   }
-   function getItemById(nIndex)
-   {
-      var _loc3_ = 0;
-      var _loc4_ = 0;
-      var _loc5_ = 0;
-      while(_loc5_ < this._nVisibleRowCount)
-      {
-         var _loc6_ = 0;
-         while(_loc6_ < this._nVisibleColumnCount)
-         {
-            var _loc7_ = this._mcScrollContent["c" + _loc3_];
-            if(nIndex == _loc7_.id)
-            {
-               return _loc7_;
-            }
-            _loc3_ = _loc3_ + 1;
-            _loc6_ = _loc6_ + 1;
-         }
-         _loc5_ = _loc5_ + 1;
-      }
-   }
-   function setSelectedItem(nIndex)
-   {
-      var _loc3_ = 0;
-      var _loc4_ = 0;
-      var _loc5_ = 0;
-      while(_loc5_ < this._nVisibleRowCount)
-      {
-         var _loc6_ = 0;
-         while(_loc6_ < this._nVisibleColumnCount)
-         {
-            var _loc7_ = this._mcScrollContent["c" + _loc3_];
-            if(nIndex == _loc7_.id)
-            {
-               nIndex = _loc3_;
-               _loc4_ = _loc7_.id;
-            }
-            _loc3_ = _loc3_ + 1;
-            _loc6_ = _loc6_ + 1;
-         }
-         _loc5_ = _loc5_ + 1;
-      }
-      if(this._nSelectedIndex != _loc4_)
-      {
-         var _loc8_ = this.getItemById(this._nSelectedIndex);
-         var _loc9_ = this._mcScrollContent["c" + nIndex];
-         if(_loc9_.contentData == undefined)
-         {
-            return undefined;
-         }
-         _loc8_.selected = false;
-         _loc9_.selected = true;
-         this._nSelectedIndex = _loc4_;
-      }
-   }
-   function modelChanged(oEvent)
-   {
-      var _loc3_ = this._nRowCount;
-      this._nRowCount = Math.ceil(this._eaDataProvider.length / this._nVisibleColumnCount);
-      this._bInvalidateLayout = true;
-      this.layoutContent();
-      this.draw();
-      this.setScrollBarProperties();
-   }
-   function scroll(oEvent)
-   {
-      this.setVPosition(oEvent.target.scrollPosition);
-   }
-   function drag(oEvent)
-   {
-      this.dispatchEvent({type:"dragItem",target:oEvent.target});
-   }
-   function drop(oEvent)
-   {
-      this.dispatchEvent({type:"dropItem",target:oEvent.target});
-   }
-   function over(oEvent)
-   {
-      this.dispatchEvent({type:"overItem",target:oEvent.target});
-   }
-   function out(oEvent)
-   {
-      this.dispatchEvent({type:"outItem",target:oEvent.target});
-   }
-   function click(oEvent)
-   {
-      if(this._bSelectable)
-      {
-         this.setSelectedItem(oEvent.target.id);
-      }
-      this.dispatchEvent({type:"selectItem",target:oEvent.target,owner:this});
-   }
-   function dblClick(oEvent)
-   {
-      this.dispatchEvent({type:"dblClickItem",target:oEvent.target,owner:this});
-   }
-   function onMouseWheel(nDelta, mc)
-   {
-      if(String(mc._target).indexOf(this._target) != -1)
-      {
-         this._sbVertical.scrollPosition = this._sbVertical.scrollPosition - (nDelta <= 0?-1:1);
-      }
-   }
+	static var CLASS_NAME = "ContainerGrid";
+	var _nVisibleRowCount = 3;
+	var _nVisibleColumnCount = 3;
+	var _nRowCount = 1;
+	var _bInvalidateLayout = false;
+	var _bScrollBar = true;
+	var _bSelectable = true;
+	var _nScrollPosition = 0;
+	var _nStyleMargin = 0;
+	function ContainerGrid()
+	{
+		super();
+	}
+	function __set__selectable(loc2)
+	{
+		this._bSelectable = loc2;
+		return this.__get__selectable();
+	}
+	function __get__selectable()
+	{
+		return this._bSelectable;
+	}
+	function __set__visibleRowCount(loc2)
+	{
+		this._nVisibleRowCount = loc2;
+		return this.__get__visibleRowCount();
+	}
+	function __get__visibleRowCount()
+	{
+		return this._nVisibleRowCount;
+	}
+	function __set__visibleColumnCount(loc2)
+	{
+		this._nVisibleColumnCount = loc2;
+		return this.__get__visibleColumnCount();
+	}
+	function __get__visibleColumnCount()
+	{
+		return this._nVisibleColumnCount;
+	}
+	function __set__dataProvider(loc2)
+	{
+		this._eaDataProvider = loc2;
+		this._eaDataProvider.addEventListener("modelChanged",this);
+		this.modelChanged();
+		var loc3 = this.getMaxRow();
+		if(this._nScrollPosition > loc3)
+		{
+			this.setVPosition(loc3);
+		}
+		return this.__get__dataProvider();
+	}
+	function __get__dataProvider()
+	{
+		return this._eaDataProvider;
+	}
+	function __set__selectedIndex(loc2)
+	{
+		this.setSelectedItem(loc2);
+		return this.__get__selectedIndex();
+	}
+	function __get__selectedIndex()
+	{
+		return this._nSelectedIndex;
+	}
+	function __get__selectedItem()
+	{
+		return this._mcScrollContent["c" + this._nSelectedIndex];
+	}
+	function __set__scrollBar(loc2)
+	{
+		this._bScrollBar = loc2;
+		return this.__get__scrollBar();
+	}
+	function __get__scrollBar()
+	{
+		return this._bScrollBar;
+	}
+	function setVPosition(loc2)
+	{
+		var loc3 = this.getMaxRow();
+		if(loc2 > loc3)
+		{
+			loc2 = loc3;
+		}
+		if(loc2 < 0)
+		{
+			loc2 = 0;
+		}
+		if(this._nScrollPosition != loc2)
+		{
+			this._nScrollPosition = loc2;
+			this.setScrollBarProperties();
+			var loc4 = this.__height / this._nVisibleRowCount;
+			this.layoutContent();
+		}
+	}
+	function getContainer(loc2)
+	{
+		return (ank.gapi.controls.Container)this._mcScrollContent["c" + loc2];
+	}
+	function init()
+	{
+		super.init(false,ank.gapi.controls.ContainerGrid.CLASS_NAME);
+	}
+	function createChildren()
+	{
+		this.createEmptyMovieClip("_mcScrollContent",10);
+		this.createEmptyMovieClip("_mcMask",20);
+		this.drawRoundRect(this._mcMask,0,0,1,1,0,0);
+		this._mcScrollContent.setMask(this._mcMask);
+		if(this._bScrollBar)
+		{
+			this.attachMovie("ScrollBar","_sbVertical",30);
+			this._sbVertical.addEventListener("scroll",this);
+		}
+		ank.utils.MouseEvents.addListener(this);
+	}
+	function size()
+	{
+		super.size();
+		this.arrange();
+	}
+	function arrange()
+	{
+		if(this._bScrollBar)
+		{
+			this._sbVertical.setSize(this.__height);
+			this._sbVertical.move(this.__width - this._sbVertical.width,0);
+		}
+		this._mcMask._width = this.__width - (!this._bScrollBar?0:this._sbVertical.width);
+		this._mcMask._height = this.__height;
+		this.setScrollBarProperties();
+		this._bInvalidateLayout = this._bInitialized;
+		this.layoutContent();
+	}
+	function layoutContent()
+	{
+		var loc2 = (this.__width - (!this._bScrollBar?0:this._sbVertical.width)) / this._nVisibleColumnCount;
+		var loc3 = this.__height / this._nVisibleRowCount;
+		var loc4 = 0;
+		if(!this._bInvalidateLayout)
+		{
+			var loc5 = 0;
+			while(loc5 < this._nVisibleRowCount)
+			{
+				var loc6 = 0;
+				while(loc6 < this._nVisibleColumnCount)
+				{
+					var loc7 = this._mcScrollContent["c" + loc4];
+					if(loc7 == undefined)
+					{
+						loc7 = (ank.gapi.controls.Container)this._mcScrollContent.attachMovie("Container","c" + loc4,loc4,{margin:this._nStyleMargin});
+						loc7.addEventListener("drag",this);
+						loc7.addEventListener("drop",this);
+						loc7.addEventListener("over",this);
+						loc7.addEventListener("out",this);
+						loc7.addEventListener("click",this);
+						loc7.addEventListener("dblClick",this);
+					}
+					loc7._x = loc2 * loc6;
+					loc7._y = loc3 * loc5;
+					loc7.setSize(loc2,loc3);
+					loc4 = loc4 + 1;
+					loc6 = loc6 + 1;
+				}
+				loc5 = loc5 + 1;
+			}
+		}
+		var loc8 = 0;
+		loc4 = this._nScrollPosition * this._nVisibleColumnCount;
+		var loc9 = 0;
+		while(loc9 < this._nVisibleRowCount)
+		{
+			var loc10 = 0;
+			while(loc10 < this._nVisibleColumnCount)
+			{
+				var loc11 = this._mcScrollContent["c" + loc8];
+				loc11.showLabel = this._eaDataProvider[loc4].label != undefined && this._eaDataProvider[loc4].label > 0;
+				loc11.contentData = this._eaDataProvider[loc4];
+				loc11.id = loc4;
+				if(loc4 == this._nSelectedIndex)
+				{
+					loc11.selected = true;
+				}
+				else
+				{
+					loc11.selected = false;
+				}
+				loc11.enabled = this._bEnabled;
+				loc4 = loc4 + 1;
+				loc8 = loc8 + 1;
+				loc10 = loc10 + 1;
+			}
+			loc9 = loc9 + 1;
+		}
+		if(this._bInvalidateLayout)
+		{
+		}
+		this._bInvalidateLayout = false;
+	}
+	function draw()
+	{
+		this._bInvalidateLayout = !this._bInitialized;
+		this.layoutContent();
+		var loc2 = this.getStyle();
+		var loc3 = loc2.containerbackground;
+		var loc4 = loc2.containerborder;
+		var loc5 = loc2.containerhighlight;
+		this._nStyleMargin = loc2.containermargin;
+		for(var loc6 in this._mcScrollContent)
+		{
+			loc6.backgroundRenderer = loc3;
+			loc6.borderRenderer = loc4;
+			loc6.highlightRenderer = loc5;
+			loc6.margin = this._nStyleMargin;
+			loc6.styleName = loc2.containerstyle;
+		}
+		if(this._bScrollBar)
+		{
+			this._sbVertical.styleName = loc2.scrollbarstyle;
+		}
+	}
+	function setEnabled()
+	{
+		for(this._mcScrollContent[k].enabled in this._mcScrollContent)
+		{
+		}
+		this.addToQueue({object:this,method:function()
+		{
+			this._sbVertical.enabled = this._bEnabled;
+		}});
+	}
+	function getMaxRow()
+	{
+		return Math.ceil(this._eaDataProvider.length / this._nVisibleColumnCount) - this._nVisibleRowCount;
+	}
+	function setScrollBarProperties()
+	{
+		var loc2 = this._nRowCount - this._nVisibleRowCount;
+		var loc3 = this._nVisibleRowCount * (loc2 / this._nRowCount);
+		this._sbVertical.setScrollProperties(loc3,0,loc2);
+		this._sbVertical.scrollPosition = this._nScrollPosition;
+	}
+	function getItemById(loc2)
+	{
+		var loc3 = 0;
+		var loc4 = 0;
+		var loc5 = 0;
+		while(loc5 < this._nVisibleRowCount)
+		{
+			var loc6 = 0;
+			while(loc6 < this._nVisibleColumnCount)
+			{
+				var loc7 = this._mcScrollContent["c" + loc3];
+				if(loc2 == loc7.id)
+				{
+					return loc7;
+				}
+				loc3 = loc3 + 1;
+				loc6 = loc6 + 1;
+			}
+			loc5 = loc5 + 1;
+		}
+	}
+	function setSelectedItem(loc2)
+	{
+		var loc3 = 0;
+		var loc4 = 0;
+		var loc5 = 0;
+		while(loc5 < this._nVisibleRowCount)
+		{
+			var loc6 = 0;
+			while(loc6 < this._nVisibleColumnCount)
+			{
+				var loc7 = this._mcScrollContent["c" + loc3];
+				if(loc2 == loc7.id)
+				{
+					loc2 = loc3;
+					loc4 = loc7.id;
+				}
+				loc3 = loc3 + 1;
+				loc6 = loc6 + 1;
+			}
+			loc5 = loc5 + 1;
+		}
+		if(this._nSelectedIndex != loc4)
+		{
+			var loc8 = this.getItemById(this._nSelectedIndex);
+			var loc9 = this._mcScrollContent["c" + loc2];
+			if(loc9.contentData == undefined)
+			{
+				return undefined;
+			}
+			loc8.selected = false;
+			loc9.selected = true;
+			this._nSelectedIndex = loc4;
+		}
+	}
+	function modelChanged(loc2)
+	{
+		var loc3 = this._nRowCount;
+		this._nRowCount = Math.ceil(this._eaDataProvider.length / this._nVisibleColumnCount);
+		this._bInvalidateLayout = true;
+		this.layoutContent();
+		this.draw();
+		this.setScrollBarProperties();
+	}
+	function scroll(loc2)
+	{
+		this.setVPosition(loc2.target.scrollPosition);
+	}
+	function drag(loc2)
+	{
+		this.dispatchEvent({type:"dragItem",target:loc2.target});
+	}
+	function drop(loc2)
+	{
+		this.dispatchEvent({type:"dropItem",target:loc2.target});
+	}
+	function over(loc2)
+	{
+		this.dispatchEvent({type:"overItem",target:loc2.target});
+	}
+	function out(loc2)
+	{
+		this.dispatchEvent({type:"outItem",target:loc2.target});
+	}
+	function click(loc2)
+	{
+		if(this._bSelectable)
+		{
+			this.setSelectedItem(loc2.target.id);
+		}
+		this.dispatchEvent({type:"selectItem",target:loc2.target,owner:this});
+	}
+	function dblClick(loc2)
+	{
+		this.dispatchEvent({type:"dblClickItem",target:loc2.target,owner:this});
+	}
+	function onMouseWheel(loc2, loc3)
+	{
+		if(String(loc3._target).indexOf(this._target) != -1)
+		{
+			this._sbVertical.scrollPosition = this._sbVertical.scrollPosition - (loc2 <= 0?-1:1);
+		}
+	}
 }

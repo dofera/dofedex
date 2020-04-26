@@ -1,1705 +1,1690 @@
 class dofus.aks.Game extends dofus.aks.Handler
 {
-   static var TYPE_SOLO = 1;
-   static var TYPE_FIGHT = 2;
-   var _bIsBusy = false;
-   var _aGameSpriteLeftHistory = new Array();
-   var nLastMapIdReceived = -1;
-   function Game(oAKS, oAPI)
-   {
-      super.initialize(oAKS,oAPI);
-   }
-   function __get__isBusy()
-   {
-      return this._bIsBusy;
-   }
-   function create()
-   {
-      this.aks.send("GC" + dofus.aks.Game.TYPE_SOLO);
-   }
-   function leave(sSpriteID)
-   {
-      this.aks.send("GQ" + (sSpriteID != undefined?sSpriteID:""));
-   }
-   function setPlayerPosition(nCellNum)
-   {
-      this.aks.send("Gp" + nCellNum,true);
-   }
-   function ready(bReady)
-   {
-      this.aks.send("GR" + (!bReady?"0":"1"));
-   }
-   function getMapData(nMapID)
-   {
-      if(this.api.lang.getConfigText("ENABLE_CLIENT_MAP_REQUEST"))
-      {
-         this.aks.send("GD" + (nMapID == undefined?"":String(nMapID)));
-      }
-   }
-   function getExtraInformations()
-   {
-      this.aks.send("GI");
-   }
-   function turnEnd()
-   {
-      if(this.api.datacenter.Player.isCurrentPlayer)
-      {
-         this.aks.send("Gt",false);
-      }
-   }
-   function turnOk(sSpriteID)
-   {
-      this.aks.send("GT" + (sSpriteID == undefined?"":sSpriteID),false);
-   }
-   function turnOk2(sSpriteID)
-   {
-      this.aks.send("GT" + (sSpriteID == undefined?"":sSpriteID),false);
-   }
-   function askDisablePVPMode()
-   {
-      this.aks.send("GP*",false);
-   }
-   function enabledPVPMode(bEnabled)
-   {
-      this.aks.send("GP" + (!bEnabled?"-":"+"),false);
-   }
-   function freeMySoul()
-   {
-      this.aks.send("GF",false);
-   }
-   function setFlag(nCellID)
-   {
-      this.aks.send("Gf" + nCellID,false);
-   }
-   function showFightChallengeTarget(challengeId)
-   {
-      this.aks.send("Gdi" + challengeId,false);
-   }
-   function onCreate(bSuccess, sExtraData)
-   {
-      if(!bSuccess)
-      {
-         ank.utils.Logger.err("[onCreate] Impossible de créer la partie");
-         return undefined;
-      }
-      var _loc4_ = sExtraData.split("|");
-      var _loc5_ = Number(_loc4_[0]);
-      if(_loc5_ != 1)
-      {
-         ank.utils.Logger.err("[onCreate] Type incorrect");
-         return undefined;
-      }
-      this.api.datacenter.Game = new dofus.datacenter.Game();
-      this.api.datacenter.Game.state = _loc5_;
-      this.api.datacenter.Player.data.initAP(false);
-      this.api.datacenter.Player.data.initMP(false);
-      this.api.datacenter.Player.SpellsManager.clear();
-      this.api.datacenter.Player.data.CharacteristicsManager.initialize();
-      this.api.datacenter.Player.data.EffectsManager.initialize();
-      this.api.datacenter.Player.clearSummon();
-      this.api.gfx.cleanMap(1);
-      this.onCreateSolo();
-   }
-   function onJoin(sExtraData)
-   {
-      this.api.ui.getUIComponent("Zoom").callClose();
-      this.api.datacenter.Player.guildInfos.defendedTaxCollectorID = undefined;
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = Number(_loc3_[0]);
-      var _loc5_ = _loc3_[1] != "0"?true:false;
-      var _loc6_ = _loc3_[2] != "0"?true:false;
-      var _loc7_ = _loc3_[3] != "0"?true:false;
-      var _loc8_ = Number(_loc3_[4]);
-      var _loc9_ = Number(_loc3_[5]);
-      this.api.datacenter.Game = new dofus.datacenter.Game();
-      this.api.datacenter.Game.state = _loc4_;
-      this.api.datacenter.Game.fightType = _loc9_;
-      this.api.datacenter.Game.isSpectator = _loc7_;
-      if(!_loc7_)
-      {
-         this.api.datacenter.Player.data.initAP(false);
-         this.api.datacenter.Player.data.initMP(false);
-         this.api.datacenter.Player.SpellsManager.clear();
-      }
-      this.api.ui.getUIComponent("Banner").shortcuts.setCurrentTab("Spells");
-      this.api.gfx.cleanMap(1);
-      if(this.api.datacenter.Game.isTacticMode)
-      {
-         this.api.datacenter.Game.isTacticMode = true;
-      }
-      if(_loc6_)
-      {
-         this.api.ui.loadUIComponent("ChallengeMenu","ChallengeMenu",{labelReady:this.api.lang.getText("READY"),labelCancel:this.api.lang.getText("CANCEL_SMALL"),cancelButton:_loc5_,ready:false},{bStayIfPresent:true});
-      }
-      if(!_global.isNaN(_loc8_))
-      {
-         this.api.ui.getUIComponent("Banner").startTimer(_loc8_ / 1000);
-      }
-      this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_OBJECT_NONE);
-      this.api.ui.unloadLastUIAutoHideComponent();
-      this.api.ui.unloadUIComponent("Fights");
-   }
-   function onPositionStart(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = _loc3_[0];
-      var _loc5_ = _loc3_[1];
-      var _loc6_ = Number(_loc3_[2]);
-      this.api.datacenter.Basics.aks_current_team = _loc6_;
-      this.api.datacenter.Basics.aks_team1_starts = new Array();
-      this.api.datacenter.Basics.aks_team2_starts = new Array();
-      this.api.kernel.StreamingDisplayManager.onFightStart();
-      this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
-      this.api.datacenter.Game.setInteractionType("place");
-      if(_loc6_ == undefined)
-      {
-         ank.utils.Logger.err("[onPositionStart] Impossible de trouver l\'équipe du joueur local !");
-      }
-      var _loc7_ = 0;
-      while(_loc7_ < _loc4_.length)
-      {
-         var _loc8_ = ank.utils.Compressor.decode64(_loc4_.charAt(_loc7_)) << 6;
-         _loc8_ = _loc8_ + ank.utils.Compressor.decode64(_loc4_.charAt(_loc7_ + 1));
-         this.api.datacenter.Basics.aks_team1_starts.push(_loc8_);
-         if(_loc6_ == 0)
-         {
-            this.api.gfx.setInteractionOnCell(_loc8_,ank.battlefield.Constants.INTERACTION_CELL_RELEASE);
-         }
-         this.api.gfx.select(_loc8_,dofus.Constants.TEAMS_COLOR[0],"startPosition");
-         _loc7_ = _loc7_ + 2;
-      }
-      var _loc9_ = 0;
-      while(_loc9_ < _loc5_.length)
-      {
-         var _loc10_ = ank.utils.Compressor.decode64(_loc5_.charAt(_loc9_)) << 6;
-         _loc10_ = _loc10_ + ank.utils.Compressor.decode64(_loc5_.charAt(_loc9_ + 1));
-         this.api.datacenter.Basics.aks_team2_starts.push(_loc10_);
-         if(_loc6_ == 1)
-         {
-            this.api.gfx.setInteractionOnCell(_loc10_,ank.battlefield.Constants.INTERACTION_CELL_RELEASE);
-         }
-         this.api.gfx.select(_loc10_,dofus.Constants.TEAMS_COLOR[1],"startPosition");
-         _loc9_ = _loc9_ + 2;
-      }
-      if(this.api.ui.getUIComponent("FightOptionButtons") == undefined)
-      {
-         this.api.ui.loadUIComponent("FightOptionButtons","FightOptionButtons");
-      }
-      this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_PLACEMENT);
-   }
-   function onPlayersCoordinates(sExtraData)
-   {
-      if(sExtraData != "e")
-      {
-         var _loc3_ = sExtraData.split("|");
-         var _loc4_ = 0;
-         while(_loc4_ < _loc3_.length)
-         {
-            var _loc5_ = _loc3_[_loc4_].split(";");
-            var _loc6_ = _loc5_[0];
-            var _loc7_ = Number(_loc5_[1]);
-            this.api.gfx.setSpritePosition(_loc6_,_loc7_);
-            _loc4_ = _loc4_ + 1;
-         }
-      }
-      else
-      {
-         this.api.sounds.events.onError();
-      }
-   }
-   function onReady(sExtraData)
-   {
-      var _loc3_ = sExtraData.charAt(0) == "1";
-      var _loc4_ = sExtraData.substr(1);
-      if(_loc3_)
-      {
-         this.api.gfx.addSpriteExtraClip(_loc4_,dofus.Constants.READY_FILE);
-      }
-      else
-      {
-         this.api.gfx.removeSpriteExtraClip(_loc4_);
-      }
-   }
-   function onStartToPlay()
-   {
-      this.api.ui.getUIComponent("Banner").stopTimer();
-      this.aks.GameActions.onActionsFinish(this.api.datacenter.Player.ID);
-      this.api.sounds.events.onGameStart(this.api.datacenter.Map.musics);
-      this.api.kernel.StreamingDisplayManager.onFightStartEnd();
-      var _loc2_ = this.api.ui.getUIComponent("Banner");
-      _loc2_.showGiveUpButton(true);
-      if(!this.api.datacenter.Game.isSpectator)
-      {
-         var _loc3_ = this.api.datacenter.Player.data;
-         _loc3_.initAP();
-         _loc3_.initMP();
-         _loc3_.initLP();
-         _loc2_.showPoints(true);
-         _loc2_.showNextTurnButton(true);
-         this.api.ui.loadUIComponent("CenterText","CenterText",{text:this.api.lang.getText("GAME_LAUNCH"),background:true,timer:2000},{bForceLoad:true});
-         this.api.ui.getUIComponent("FightOptionButtons").onGameRunning();
-      }
-      else
-      {
-         this.api.ui.loadUIComponent("FightOptionButtons","FightOptionButtons");
-      }
-      this.api.ui.loadUIComponent("Timeline","Timeline");
-      this.api.ui.unloadUIComponent("ChallengeMenu");
-      this.api.gfx.unSelect(true);
-      this.api.gfx.drawGrid();
-      this.api.datacenter.Game.setInteractionType("move");
-      this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
-      this.api.kernel.GameManager.signalFightActivity();
-      this.api.datacenter.Game.isRunning = true;
-      var _loc4_ = this.api.datacenter.Sprites.getItems();
-      for(var k in _loc4_)
-      {
-         this.api.gfx.addSpriteExtraClip(k,dofus.Constants.CIRCLE_FILE,dofus.Constants.TEAMS_COLOR[_loc4_[k].Team]);
-      }
-      if(this.api.datacenter.Game.isTacticMode)
-      {
-         this.api.datacenter.Game.isTacticMode = true;
-      }
-   }
-   function onTurnStart(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = _loc3_[0];
-      var _loc5_ = Number(_loc3_[1]) / 1000;
-      var _loc6_ = this.api.datacenter.Sprites.getItemAt(_loc4_);
-      _loc6_.GameActionsManager.clear();
-      this.api.gfx.unSelect(true);
-      this.api.datacenter.Game.currentPlayerID = _loc4_;
-      this.api.kernel.GameManager.cleanPlayer(this.api.datacenter.Game.lastPlayerID);
-      this.api.ui.getUIComponent("Timeline").nextTurn(_loc4_);
-      if(this.api.datacenter.Player.isCurrentPlayer)
-      {
-         this.api.electron.makeNotification(this.api.lang.getText("PLAYER_TURN",[this.api.datacenter.Player.Name]));
-         if(this.api.kernel.OptionsManager.getOption("StartTurnSound"))
-         {
-            this.api.sounds.events.onTurnStart();
-         }
-         if(this.api.kernel.GameManager.autoSkip && this.api.datacenter.Game.isFight)
-         {
-            this.api.network.Game.turnEnd();
-         }
-         this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT);
-         this.api.datacenter.Player.SpellsManager.nextTurn();
-         this.api.ui.getUIComponent("Banner").startTimer(_loc5_);
-         this.api.kernel.GameManager.startInactivityDetector();
-         dofus.DofusCore.getInstance().forceMouseOver();
-         this.api.gfx.mapHandler.resetEmptyCells();
-      }
-      else
-      {
-         this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
-         this.api.ui.getUIComponent("Timeline").startChrono(_loc5_);
-      }
-      if(this.api.kernel.OptionsManager.getOption("StringCourse"))
-      {
-         var _loc7_ = new Array();
-         _loc7_[1] = _loc6_.color1;
-         _loc7_[2] = _loc6_.color2;
-         _loc7_[3] = _loc6_.color3;
-         this.api.ui.loadUIComponent("StringCourse","StringCourse",{gfx:_loc6_.artworkFile,name:_loc6_.name,level:this.api.lang.getText("LEVEL_SMALL") + " " + _loc6_.Level,colors:_loc7_},{bForceLoad:true});
-      }
-      this.api.kernel.GameManager.cleanUpGameArea(true);
-      ank.utils.Timer.setTimer(this.api.network.Ping,"GameDecoDetect",this.api.network,this.api.network.quickPing,_loc5_ * 1000);
-      this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_START);
-   }
-   function onTurnFinish(sExtraData)
-   {
-      var _loc3_ = sExtraData;
-      var _loc4_ = this.api.datacenter.Sprites.getItemAt(_loc3_);
-      if(this.api.datacenter.Player.isCurrentPlayer)
-      {
-         this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
-         this.api.kernel.GameManager.stopInactivityDetector();
-         this.api.kernel.GameManager.onTurnEnd();
-      }
-      this.api.datacenter.Game.lastPlayerID = this.api.datacenter.Game.currentPlayerID;
-      this.api.datacenter.Game.currentPlayerID = undefined;
-      this.api.ui.getUIComponent("Banner").stopTimer();
-      this.api.ui.getUIComponent("Timeline").stopChrono();
-      this.api.kernel.GameManager.cleanUpGameArea(true);
-   }
-   function onTurnlist(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      this.api.datacenter.Game.turnSequence = _loc3_;
-      this.api.ui.getUIComponent("Timeline").update();
-   }
-   function onTurnMiddle(sExtraData)
-   {
-      if(!this.api.datacenter.Game.isRunning)
-      {
-         ank.utils.Logger.err("[innerOnTurnMiddle] on est pas en combat");
-         return undefined;
-      }
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = new Object();
-      var _loc5_ = 0;
-      while(_loc5_ < _loc3_.length)
-      {
-         var _loc6_ = _loc3_[_loc5_].split(";");
-         if(_loc6_.length != 0)
-         {
-            var _loc7_ = _loc6_[0];
-            var _loc8_ = _loc6_[1] != "1"?false:true;
-            var _loc9_ = Number(_loc6_[2]);
-            var _loc10_ = Number(_loc6_[3]);
-            var _loc11_ = Number(_loc6_[4]);
-            var _loc12_ = Number(_loc6_[5]);
-            var _loc13_ = Number(_loc6_[6]);
-            var _loc14_ = Number(_loc6_[7]);
-            _loc4_[_loc7_] = true;
-            var _loc15_ = this.api.datacenter.Sprites.getItemAt(_loc7_);
-            if(_loc15_ != undefined)
-            {
-               _loc15_.sequencer.clearAllNextActions();
-               if(_loc8_)
-               {
-                  _loc15_.mc.clear();
-                  this.api.gfx.removeSpriteOverHeadLayer(_loc7_,"text");
-               }
-               else
-               {
-                  _loc15_.LP = _loc9_;
-                  _loc15_.LPmax = _loc14_;
-                  _loc15_.AP = _loc10_;
-                  _loc15_.MP = _loc11_;
-                  if(!_global.isNaN(_loc12_) && !_loc15_.hasCarriedParent())
-                  {
-                     this.api.gfx.setSpritePosition(_loc7_,_loc12_);
-                  }
-                  if(_loc15_.hasCarriedChild())
-                  {
-                     _loc15_.carriedChild.updateCarriedPosition();
-                  }
-               }
-            }
-            else
-            {
-               ank.utils.Logger.err("[onTurnMiddle] le sprite n\'existe pas");
-            }
-         }
-         _loc5_ = _loc5_ + 1;
-      }
-      var _loc16_ = this.api.datacenter.Sprites.getItems();
-      for(var k in _loc16_)
-      {
-         if(!_loc4_[k])
-         {
-            _loc16_[k].mc.clear();
-            this.api.datacenter.Sprites.removeItemAt(k);
-         }
-      }
-      this.api.ui.getUIComponent("Timeline").timelineControl.updateCharacters();
-   }
-   function onTurnReady(sExtraData)
-   {
-      var _loc3_ = sExtraData;
-      var _loc4_ = this.api.datacenter.Sprites.getItemAt(_loc3_);
-      if(_loc4_ != undefined)
-      {
-         var _loc5_ = _loc4_.sequencer;
-         _loc5_.addAction(false,this,this.turnOk);
-         _loc5_.execute();
-      }
-      else
-      {
-         ank.utils.Logger.err("[onTurnReday] le sprite " + _loc3_ + " n\'existe pas");
-         this.turnOk2();
-      }
-   }
-   function onMapData(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = _loc3_[0];
-      var _loc5_ = _loc3_[1];
-      var _loc6_ = _loc3_[2];
-      if(Number(_loc4_) == this.api.datacenter.Map.id)
-      {
-         if(!this.api.datacenter.Map.bOutdoor)
-         {
-            this.api.kernel.NightManager.noEffects();
-         }
-         this.api.gfx.onMapLoaded();
-         return undefined;
-      }
-      this.api.gfx.showContainer(false);
-      this.nLastMapIdReceived = _global.parseInt(_loc4_,10);
-      this.api.kernel.MapsServersManager.loadMap(_loc4_,_loc5_,_loc6_);
-   }
-   function onMapLoaded()
-   {
-      this.api.gfx.showContainer(true);
-      if(dofus.Constants.SAVING_THE_WORLD)
-      {
-         dofus.SaveTheWorld.getInstance().nextAction();
-      }
-   }
-   function onMovement(sExtraData, bIsSummoned)
-   {
-      var _loc4_ = sExtraData.split("|");
-      var _loc5_ = 0;
-      for(; _loc5_ < _loc4_.length; _loc5_ = _loc5_ + 1)
-      {
-         var _loc6_ = _loc4_[_loc5_];
-         if(_loc6_.length != 0)
-         {
-            var _loc7_ = false;
-            var _loc8_ = false;
-            var _loc9_ = _loc6_.charAt(0);
-            if(_loc9_ == "+")
-            {
-               _loc8_ = true;
-            }
-            else if(_loc9_ == "~")
-            {
-               _loc8_ = true;
-               _loc7_ = true;
-            }
-            else if(_loc9_ != "-")
-            {
-               continue;
-            }
-            if(_loc8_)
-            {
-               var _loc10_ = _loc6_.substr(1).split(";");
-               var _loc11_ = _loc10_[0];
-               var _loc12_ = _loc10_[1];
-               var _loc13_ = Number(_loc10_[2]);
-               var _loc14_ = _loc10_[3];
-               var _loc15_ = _loc10_[4];
-               var _loc16_ = _loc10_[5];
-               var _loc17_ = _loc10_[6];
-               var _loc18_ = false;
-               var _loc19_ = true;
-               if(_loc17_.charAt(_loc17_.length - 1) == "*")
-               {
-                  _loc17_ = _loc17_.substr(0,_loc17_.length - 1);
-                  _loc18_ = true;
-               }
-               if(_loc17_.charAt(0) == "*")
-               {
-                  _loc19_ = false;
-                  _loc17_ = _loc17_.substr(1);
-               }
-               var _loc20_ = _loc17_.split("^");
-               var _loc21_ = _loc20_.length != 2?_loc17_:_loc20_[0];
-               var _loc22_ = _loc16_.split(",");
-               var _loc23_ = _loc22_[0];
-               var _loc24_ = _loc22_[1];
-               var _loc25_ = undefined;
-               if(_loc24_.length)
-               {
-                  var _loc26_ = _loc24_.split("*");
-                  _loc25_ = new dofus.datacenter.Title(_global.parseInt(_loc26_[0]),_loc26_[1]);
-               }
-               var _loc27_ = 100;
-               var _loc28_ = 100;
-               if(_loc20_.length == 2)
-               {
-                  var _loc29_ = _loc20_[1];
-                  if(_global.isNaN(Number(_loc29_)))
-                  {
-                     var _loc30_ = _loc29_.split("x");
-                     _loc27_ = _loc30_.length != 2?100:Number(_loc30_[0]);
-                     _loc28_ = _loc30_.length != 2?100:Number(_loc30_[1]);
-                  }
-                  else
-                  {
-                     _loc27_ = _loc28_ = Number(_loc29_);
-                  }
-               }
-               if(_loc7_)
-               {
-                  var _loc31_ = this.api.datacenter.Sprites.getItemAt(_loc14_);
-                  this.onSpriteMovement(false,_loc31_);
-               }
-               switch(_loc23_)
-               {
-                  case "-1":
-                  case "-2":
-                     var _loc33_ = new Object();
-                     _loc33_.spriteType = _loc23_;
-                     _loc33_.gfxID = _loc21_;
-                     _loc33_.scaleX = _loc27_;
-                     _loc33_.scaleY = _loc28_;
-                     _loc33_.noFlip = _loc18_;
-                     _loc33_.cell = _loc11_;
-                     _loc33_.dir = _loc12_;
-                     _loc33_.powerLevel = _loc10_[7];
-                     _loc33_.color1 = _loc10_[8];
-                     _loc33_.color2 = _loc10_[9];
-                     _loc33_.color3 = _loc10_[10];
-                     _loc33_.accessories = _loc10_[11];
-                     if(this.api.datacenter.Game.isFight)
-                     {
-                        _loc33_.LP = _loc10_[12];
-                        _loc33_.AP = _loc10_[13];
-                        _loc33_.MP = _loc10_[14];
-                        if(_loc10_.length > 18)
-                        {
-                           _loc33_.resistances = new Array(Number(_loc10_[15]),Number(_loc10_[16]),Number(_loc10_[17]),Number(_loc10_[18]),Number(_loc10_[19]),Number(_loc10_[20]),Number(_loc10_[21]));
-                           _loc33_.team = _loc10_[22];
-                        }
-                        else
-                        {
-                           _loc33_.team = _loc10_[15];
-                        }
-                        _loc33_.summoned = bIsSummoned;
-                     }
-                     if(_loc23_ == -1)
-                     {
-                        _loc31_ = this.api.kernel.CharactersManager.createCreature(_loc14_,_loc15_,_loc33_);
-                     }
-                     else
-                     {
-                        _loc31_ = this.api.kernel.CharactersManager.createMonster(_loc14_,_loc15_,_loc33_);
-                     }
-                     break;
-                  case "-3":
-                     var _loc34_ = new Object();
-                     _loc34_.spriteType = _loc23_;
-                     _loc34_.level = _loc10_[7];
-                     _loc34_.scaleX = _loc27_;
-                     _loc34_.scaleY = _loc28_;
-                     _loc34_.noFlip = _loc18_;
-                     _loc34_.cell = Number(_loc11_);
-                     _loc34_.dir = _loc12_;
-                     var _loc35_ = _loc10_[8].split(",");
-                     _loc34_.color1 = _loc35_[0];
-                     _loc34_.color2 = _loc35_[1];
-                     _loc34_.color3 = _loc35_[2];
-                     _loc34_.accessories = _loc10_[9];
-                     _loc34_.bonusValue = _loc13_;
-                     var _loc36_ = this.sliptGfxData(_loc17_);
-                     var _loc37_ = _loc36_.gfx;
-                     this.splitGfxForScale(_loc37_[0],_loc34_);
-                     _loc31_ = this.api.kernel.CharactersManager.createMonsterGroup(_loc14_,_loc15_,_loc34_);
-                     if(this.api.kernel.OptionsManager.getOption("ViewAllMonsterInGroup") == true)
-                     {
-                        var _loc38_ = _loc14_;
-                        var _loc39_ = 1;
-                        while(_loc39_ < _loc37_.length)
-                        {
-                           if(_loc37_[_loc5_] != "")
-                           {
-                              this.splitGfxForScale(_loc37_[_loc39_],_loc34_);
-                              _loc35_ = _loc10_[8 + 2 * _loc39_].split(",");
-                              _loc34_.color1 = _loc35_[0];
-                              _loc34_.color2 = _loc35_[1];
-                              _loc34_.color3 = _loc35_[2];
-                              _loc34_.dir = random(4) * 2 + 1;
-                              _loc34_.accessories = _loc10_[9 + 2 * _loc39_];
-                              var _loc40_ = _loc14_ + "_" + _loc39_;
-                              var _loc41_ = this.api.kernel.CharactersManager.createMonsterGroup(_loc40_,undefined,_loc34_);
-                              var _loc42_ = _loc38_;
-                              if(random(3) != 0 && _loc39_ != 1)
-                              {
-                                 _loc42_ = _loc14_ + "_" + (random(_loc39_ - 1) + 1);
-                              }
-                              var _loc43_ = random(8);
-                              this.api.gfx.addLinkedSprite(_loc40_,_loc42_,_loc43_,_loc41_);
-                              if(!_global.isNaN(_loc41_.scaleX))
-                              {
-                                 this.api.gfx.setSpriteScale(_loc41_.id,_loc41_.scaleX,_loc41_.scaleY);
-                              }
-                              switch(_loc36_.shape)
-                              {
-                                 case "circle":
-                                    _loc43_ = _loc39_;
-                                    break;
-                                 case "line":
-                                    _loc42_ = _loc40_;
-                                    _loc43_ = 2;
-                              }
-                           }
-                           _loc39_ = _loc39_ + 1;
-                        }
-                     }
-                     break;
-                  case "-4":
-                     var _loc44_ = new Object();
-                     _loc44_.spriteType = _loc23_;
-                     _loc44_.gfxID = _loc21_;
-                     _loc44_.scaleX = _loc27_;
-                     _loc44_.scaleY = _loc28_;
-                     _loc44_.cell = _loc11_;
-                     _loc44_.dir = _loc12_;
-                     _loc44_.sex = _loc10_[7];
-                     _loc44_.color1 = _loc10_[8];
-                     _loc44_.color2 = _loc10_[9];
-                     _loc44_.color3 = _loc10_[10];
-                     _loc44_.accessories = _loc10_[11];
-                     _loc44_.extraClipID = !(_loc10_[12] != undefined && !_global.isNaN(Number(_loc10_[12])))?-1:Number(_loc10_[12]);
-                     _loc44_.customArtwork = Number(_loc10_[13]);
-                     _loc31_ = this.api.kernel.CharactersManager.createNonPlayableCharacter(_loc14_,Number(_loc15_),_loc44_);
-                     break;
-                  case "-5":
-                     var _loc45_ = new Object();
-                     _loc45_.spriteType = _loc23_;
-                     _loc45_.gfxID = _loc21_;
-                     _loc45_.scaleX = _loc27_;
-                     _loc45_.scaleY = _loc28_;
-                     _loc45_.cell = _loc11_;
-                     _loc45_.dir = _loc12_;
-                     _loc45_.color1 = _loc10_[7];
-                     _loc45_.color2 = _loc10_[8];
-                     _loc45_.color3 = _loc10_[9];
-                     _loc45_.accessories = _loc10_[10];
-                     _loc45_.guildName = _loc10_[11];
-                     _loc45_.emblem = _loc10_[12];
-                     _loc45_.offlineType = _loc10_[13];
-                     _loc31_ = this.api.kernel.CharactersManager.createOfflineCharacter(_loc14_,_loc15_,_loc45_);
-                     break;
-                  case "-6":
-                     var _loc46_ = new Object();
-                     _loc46_.spriteType = _loc23_;
-                     _loc46_.gfxID = _loc21_;
-                     _loc46_.scaleX = _loc27_;
-                     _loc46_.scaleY = _loc28_;
-                     _loc46_.cell = _loc11_;
-                     _loc46_.dir = _loc12_;
-                     _loc46_.level = _loc10_[7];
-                     if(this.api.datacenter.Game.isFight)
-                     {
-                        _loc46_.LP = _loc10_[8];
-                        _loc46_.AP = _loc10_[9];
-                        _loc46_.MP = _loc10_[10];
-                        _loc46_.resistances = new Array(Number(_loc10_[11]),Number(_loc10_[12]),Number(_loc10_[13]),Number(_loc10_[14]),Number(_loc10_[15]),Number(_loc10_[16]),Number(_loc10_[17]));
-                        _loc46_.team = _loc10_[18];
-                     }
-                     else
-                     {
-                        _loc46_.guildName = _loc10_[8];
-                        _loc46_.emblem = _loc10_[9];
-                     }
-                     _loc31_ = this.api.kernel.CharactersManager.createTaxCollector(_loc14_,_loc15_,_loc46_);
-                     break;
-                  case "-7":
-                  case "-8":
-                     var _loc47_ = new Object();
-                     _loc47_.spriteType = _loc23_;
-                     _loc47_.gfxID = _loc21_;
-                     _loc47_.scaleX = _loc27_;
-                     _loc47_.scaleY = _loc28_;
-                     _loc47_.cell = _loc11_;
-                     _loc47_.dir = _loc12_;
-                     _loc47_.sex = _loc10_[7];
-                     _loc47_.powerLevel = _loc10_[8];
-                     _loc47_.accessories = _loc10_[9];
-                     if(this.api.datacenter.Game.isFight)
-                     {
-                        _loc47_.LP = _loc10_[10];
-                        _loc47_.AP = _loc10_[11];
-                        _loc47_.MP = _loc10_[12];
-                        _loc47_.team = _loc10_[20];
-                     }
-                     else
-                     {
-                        _loc47_.emote = _loc10_[10];
-                        _loc47_.emoteTimer = _loc10_[11];
-                        _loc47_.restrictions = Number(_loc10_[12]);
-                     }
-                     if(_loc23_ == "-8")
-                     {
-                        _loc47_.showIsPlayer = true;
-                        var _loc48_ = _loc15_.split("~");
-                        _loc47_.monsterID = _loc48_[0];
-                        _loc47_.playerName = _loc48_[1];
-                     }
-                     else
-                     {
-                        _loc47_.showIsPlayer = false;
-                        _loc47_.monsterID = _loc15_;
-                     }
-                     _loc31_ = this.api.kernel.CharactersManager.createMutant(_loc14_,_loc47_);
-                     break;
-                  case "-9":
-                     var _loc49_ = new Object();
-                     _loc49_.spriteType = _loc23_;
-                     _loc49_.gfxID = _loc21_;
-                     _loc49_.scaleX = _loc27_;
-                     _loc49_.scaleY = _loc28_;
-                     _loc49_.cell = _loc11_;
-                     _loc49_.dir = _loc12_;
-                     _loc49_.ownerName = _loc10_[7];
-                     _loc49_.level = _loc10_[8];
-                     _loc49_.modelID = _loc10_[9];
-                     _loc31_ = this.api.kernel.CharactersManager.createParkMount(_loc14_,_loc15_ == ""?this.api.lang.getText("NO_NAME"):_loc15_,_loc49_);
-                     break;
-                  case "-10":
-                     var _loc50_ = new Object();
-                     _loc50_.spriteType = _loc23_;
-                     _loc50_.gfxID = _loc21_;
-                     _loc50_.scaleX = _loc27_;
-                     _loc50_.scaleY = _loc28_;
-                     _loc50_.cell = _loc11_;
-                     _loc50_.dir = _loc12_;
-                     _loc50_.level = _loc10_[7];
-                     _loc50_.alignment = new dofus.datacenter.Alignment(Number(_loc10_[9]),Number(_loc10_[8]));
-                     _loc31_ = this.api.kernel.CharactersManager.createPrism(_loc14_,_loc15_,_loc50_);
-                     break;
-                  default:
-                     var _loc52_ = new Object();
-                     _loc52_.spriteType = _loc23_;
-                     _loc52_.cell = _loc11_;
-                     _loc52_.scaleX = _loc27_;
-                     _loc52_.scaleY = _loc28_;
-                     _loc52_.dir = _loc12_;
-                     _loc52_.sex = _loc10_[7];
-                     if(this.api.datacenter.Game.isFight)
-                     {
-                        _loc52_.level = _loc10_[8];
-                        var _loc51_ = _loc10_[9];
-                        _loc52_.color1 = _loc10_[10];
-                        _loc52_.color2 = _loc10_[11];
-                        _loc52_.color3 = _loc10_[12];
-                        _loc52_.accessories = _loc10_[13];
-                        _loc52_.LP = _loc10_[14];
-                        _loc52_.AP = _loc10_[15];
-                        _loc52_.MP = _loc10_[16];
-                        _loc52_.resistances = new Array(Number(_loc10_[17]),Number(_loc10_[18]),Number(_loc10_[19]),Number(_loc10_[20]),Number(_loc10_[21]),Number(_loc10_[22]),Number(_loc10_[23]));
-                        _loc52_.team = _loc10_[24];
-                        if(_loc10_[25].indexOf(",") != -1)
-                        {
-                           var _loc53_ = _loc10_[25].split(",");
-                           var _loc54_ = Number(_loc53_[0]);
-                           var _loc55_ = _global.parseInt(_loc53_[1],16);
-                           var _loc56_ = _global.parseInt(_loc53_[2],16);
-                           var _loc57_ = _global.parseInt(_loc53_[3],16);
-                           if(_loc55_ == -1 || _global.isNaN(_loc55_))
-                           {
-                              _loc55_ = this.api.datacenter.Player.color1;
-                           }
-                           if(_loc56_ == -1 || _global.isNaN(_loc56_))
-                           {
-                              _loc56_ = this.api.datacenter.Player.color2;
-                           }
-                           if(_loc57_ == -1 || _global.isNaN(_loc57_))
-                           {
-                              _loc57_ = this.api.datacenter.Player.color3;
-                           }
-                           if(!_global.isNaN(_loc54_))
-                           {
-                              var _loc58_ = new dofus.datacenter.Mount(_loc54_,Number(_loc21_));
-                              _loc58_.customColor1 = _loc55_;
-                              _loc58_.customColor2 = _loc56_;
-                              _loc58_.customColor3 = _loc57_;
-                              _loc52_.mount = _loc58_;
-                           }
-                        }
-                        else
-                        {
-                           var _loc59_ = Number(_loc10_[25]);
-                           if(!_global.isNaN(_loc59_))
-                           {
-                              _loc52_.mount = new dofus.datacenter.Mount(_loc59_,Number(_loc21_));
-                           }
-                        }
-                     }
-                     else
-                     {
-                        _loc51_ = _loc10_[8];
-                        _loc52_.color1 = _loc10_[9];
-                        _loc52_.color2 = _loc10_[10];
-                        _loc52_.color3 = _loc10_[11];
-                        _loc52_.accessories = _loc10_[12];
-                        _loc52_.aura = _loc10_[13];
-                        _loc52_.emote = _loc10_[14];
-                        _loc52_.emoteTimer = _loc10_[15];
-                        _loc52_.guildName = _loc10_[16];
-                        _loc52_.emblem = _loc10_[17];
-                        _loc52_.restrictions = _loc10_[18];
-                        if(_loc10_[19].indexOf(",") != -1)
-                        {
-                           var _loc60_ = _loc10_[19].split(",");
-                           var _loc61_ = Number(_loc60_[0]);
-                           var _loc62_ = _global.parseInt(_loc60_[1],16);
-                           var _loc63_ = _global.parseInt(_loc60_[2],16);
-                           var _loc64_ = _global.parseInt(_loc60_[3],16);
-                           if(_loc62_ == -1 || _global.isNaN(_loc62_))
-                           {
-                              _loc62_ = this.api.datacenter.Player.color1;
-                           }
-                           if(_loc63_ == -1 || _global.isNaN(_loc63_))
-                           {
-                              _loc63_ = this.api.datacenter.Player.color2;
-                           }
-                           if(_loc64_ == -1 || _global.isNaN(_loc64_))
-                           {
-                              _loc64_ = this.api.datacenter.Player.color3;
-                           }
-                           if(!_global.isNaN(_loc61_))
-                           {
-                              var _loc65_ = new dofus.datacenter.Mount(_loc61_,Number(_loc21_));
-                              _loc65_.customColor1 = _loc62_;
-                              _loc65_.customColor2 = _loc63_;
-                              _loc65_.customColor3 = _loc64_;
-                              _loc52_.mount = _loc65_;
-                           }
-                        }
-                        else
-                        {
-                           var _loc66_ = Number(_loc10_[19]);
-                           if(!_global.isNaN(_loc66_))
-                           {
-                              _loc52_.mount = new dofus.datacenter.Mount(_loc66_,Number(_loc21_));
-                           }
-                        }
-                     }
-                     if(_loc7_)
-                     {
-                        var _loc32_ = [_loc14_,this.createTransitionEffect(),_loc11_,10];
-                     }
-                     var _loc67_ = _loc51_.split(",");
-                     _loc52_.alignment = new dofus.datacenter.Alignment(Number(_loc67_[0]),Number(_loc67_[1]));
-                     _loc52_.rank = new dofus.datacenter.Rank(Number(_loc67_[2]));
-                     _loc52_.alignment.fallenAngelDemon = _loc67_[4] == 1;
-                     if(_loc67_.length > 3 && _loc14_ != this.api.datacenter.Player.ID)
-                     {
-                        if(this.api.lang.getAlignmentCanViewPvpGain(this.api.datacenter.Player.alignment.index,Number(_loc52_.alignment.index)))
-                        {
-                           var _loc68_ = Number(_loc67_[3]) - _global.parseInt(_loc14_);
-                           var _loc69_ = this.api.lang.getConfigText("PVP_VIEW_BONUS_MINOR_LIMIT");
-                           var _loc70_ = this.api.lang.getConfigText("PVP_VIEW_BONUS_MINOR_LIMIT_PRC");
-                           var _loc71_ = this.api.lang.getConfigText("PVP_VIEW_BONUS_MAJOR_LIMIT");
-                           var _loc72_ = this.api.lang.getConfigText("PVP_VIEW_BONUS_MAJOR_LIMIT_PRC");
-                           var _loc73_ = 0;
-                           if(this.api.datacenter.Player.Level * (1 - _loc70_ / 100) > _loc68_)
-                           {
-                              _loc73_ = -1;
-                           }
-                           if(this.api.datacenter.Player.Level - _loc68_ > _loc69_)
-                           {
-                              _loc73_ = -1;
-                           }
-                           if(this.api.datacenter.Player.Level * (1 + _loc72_ / 100) < _loc68_)
-                           {
-                              _loc73_ = 1;
-                           }
-                           if(this.api.datacenter.Player.Level - _loc68_ < _loc71_)
-                           {
-                              _loc73_ = 1;
-                           }
-                           _loc52_.pvpGain = _loc73_;
-                        }
-                     }
-                     if(!this.api.datacenter.Game.isFight && (_global.parseInt(_loc14_,10) != this.api.datacenter.Player.ID && ((this.api.datacenter.Player.alignment.index == 1 || this.api.datacenter.Player.alignment.index == 2) && ((_loc52_.alignment.index == 1 || _loc52_.alignment.index == 2) && (_loc52_.alignment.index != this.api.datacenter.Player.alignment.index && (_loc52_.rank.value && this.api.datacenter.Map.bCanAttack))))))
-                     {
-                        if(this.api.datacenter.Player.rank.value > _loc52_.rank.value)
-                        {
-                           this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_NEW_ENEMY_WEAK);
-                        }
-                        if(this.api.datacenter.Player.rank.value < _loc52_.rank.value)
-                        {
-                           this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_NEW_ENEMY_STRONG);
-                        }
-                     }
-                     var _loc74_ = this.sliptGfxData(_loc17_);
-                     var _loc75_ = _loc74_.gfx;
-                     this.splitGfxForScale(_loc75_[0],_loc52_);
-                     _loc52_.title = _loc25_;
-                     _loc31_ = this.api.kernel.CharactersManager.createCharacter(_loc14_,_loc15_,_loc52_);
-                     (dofus.datacenter.Character)_loc31_.isClear = false;
-                     _loc31_.allowGhostMode = _loc19_;
-                     var _loc76_ = _loc14_;
-                     var _loc77_ = _loc74_.shape != "circle"?2:0;
-                     var _loc78_ = 1;
-                     while(_loc78_ < _loc75_.length)
-                     {
-                        if(_loc75_[_loc78_] != "")
-                        {
-                           var _loc79_ = _loc14_ + "_" + _loc78_;
-                           var _loc80_ = new Object();
-                           this.splitGfxForScale(_loc75_[_loc78_],_loc80_);
-                           var _loc81_ = new ank.battlefield.datacenter.Sprite(_loc79_,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + _loc80_.gfxID + ".swf");
-                           _loc81_.allDirections = false;
-                           this.api.gfx.addLinkedSprite(_loc79_,_loc76_,_loc77_,_loc81_);
-                           if(!_global.isNaN(_loc80_.scaleX))
-                           {
-                              this.api.gfx.setSpriteScale(_loc81_.id,_loc80_.scaleX,_loc80_.scaleY);
-                           }
-                           switch(_loc74_.shape)
-                           {
-                              case "circle":
-                                 _loc77_ = _loc78_;
-                                 break;
-                              case "line":
-                                 _loc76_ = _loc79_;
-                                 _loc77_ = 2;
-                           }
-                        }
-                        _loc78_ = _loc78_ + 1;
-                     }
-               }
-               this.onSpriteMovement(_loc8_,_loc31_,_loc32_);
-            }
-            else
-            {
-               var _loc82_ = _loc6_.substr(1);
-               var _loc83_ = this.api.datacenter.Sprites.getItemAt(_loc82_);
-               if(!this.api.datacenter.Game.isRunning && this.api.datacenter.Game.isLoggingMapDisconnections)
-               {
-                  var _loc84_ = _loc83_.id;
-                  var _loc85_ = _loc83_.name;
-                  var _loc86_ = this._aGameSpriteLeftHistory[_loc84_];
-                  if(!_global.isNaN(_loc86_) && getTimer() - _loc86_ < 300)
-                  {
-                     this.api.kernel.showMessage(undefined,this.api.kernel.DebugManager.getTimestamp() + " (Map) " + this.api.kernel.ChatManager.getLinkName(_loc85_) + " s\'est déconnecté","ADMIN_CHAT");
-                  }
-                  this._aGameSpriteLeftHistory[_loc84_] = getTimer();
-               }
-               this.onSpriteMovement(_loc8_,_loc83_);
-            }
-         }
-      }
-   }
-   function onCellData(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = 0;
-      while(_loc4_ < _loc3_.length)
-      {
-         var _loc5_ = _loc3_[_loc4_].split(";");
-         var _loc6_ = Number(_loc5_[0]);
-         var _loc7_ = _loc5_[1].substring(0,10);
-         var _loc8_ = _loc5_[1].substr(10);
-         var _loc9_ = _loc5_[2] != "0"?1:0;
-         this.api.gfx.updateCell(_loc6_,_loc7_,_loc8_,_loc9_);
-         _loc4_ = _loc4_ + 1;
-      }
-   }
-   function onZoneData(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = 0;
-      while(_loc4_ < _loc3_.length)
-      {
-         var _loc5_ = _loc3_[_loc4_];
-         var _loc6_ = _loc5_.charAt(0) != "+"?false:true;
-         var _loc7_ = _loc5_.substr(1).split(";");
-         var _loc8_ = Number(_loc7_[0]);
-         var _loc9_ = Number(_loc7_[1]);
-         var _loc10_ = _loc7_[2];
-         if(_loc6_)
-         {
-            this.api.gfx.drawZone(_loc8_,0,_loc9_,_loc10_,dofus.Constants.ZONE_COLOR[_loc10_]);
-         }
-         else
-         {
-            this.api.gfx.clearZone(_loc8_,_loc9_,_loc10_);
-         }
-         _loc4_ = _loc4_ + 1;
-      }
-   }
-   function onCellObject(sExtraData)
-   {
-      var _loc3_ = sExtraData.charAt(0) == "+";
-      var _loc4_ = sExtraData.substr(1).split("|");
-      var _loc5_ = 0;
-      while(_loc5_ < _loc4_.length)
-      {
-         var _loc6_ = _loc4_[_loc5_].split(";");
-         var _loc7_ = Number(_loc6_[0]);
-         var _loc8_ = _global.parseInt(_loc6_[1]);
-         if(_loc3_)
-         {
-            var _loc9_ = new dofus.datacenter.Item(0,_loc8_);
-            var _loc10_ = Number(_loc6_[2]);
-            switch(_loc10_)
-            {
-               case 0:
-                  this.api.gfx.updateCellObjectExternalWithExternalClip(_loc7_,_loc9_.iconFile,1,true,true,_loc9_);
-                  break;
-               case 1:
-                  if(this.api.gfx.mapHandler.getCellData(_loc7_).layerObjectExternalData.unicID != _loc8_)
-                  {
-                     this.api.gfx.updateCellObjectExternalWithExternalClip(_loc7_,_loc9_.iconFile,1,true,false,_loc9_);
-                  }
-                  else
-                  {
-                     _loc9_ = this.api.gfx.mapHandler.getCellData(_loc7_).layerObjectExternalData;
-                  }
-                  _loc9_.durability = Number(_loc6_[3]);
-                  _loc9_.durabilityMax = Number(_loc6_[4]);
-            }
-         }
-         else
-         {
-            this.api.gfx.initializeCell(_loc7_,1);
-         }
-         _loc5_ = _loc5_ + 1;
-      }
-   }
-   function onFrameObject2(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = 0;
-      while(_loc4_ < _loc3_.length)
-      {
-         var _loc5_ = _loc3_[_loc4_].split(";");
-         var _loc6_ = Number(_loc5_[0]);
-         var _loc7_ = _loc5_[1];
-         var _loc8_ = _loc5_[2] != undefined;
-         var _loc9_ = _loc5_[2] != "1"?false:true;
-         if(_loc8_)
-         {
-            this.api.gfx.setObject2Interactive(_loc6_,_loc9_,2);
-         }
-         this.api.gfx.setObject2Frame(_loc6_,_loc7_);
-         _loc4_ = _loc4_ + 1;
-      }
-   }
-   function onFrameObjectExternal(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = 0;
-      while(_loc4_ < _loc3_.length)
-      {
-         var _loc5_ = _loc3_[_loc4_].split(";");
-         var _loc6_ = Number(_loc5_[0]);
-         var _loc7_ = Number(_loc5_[1]);
-         this.api.gfx.setObjectExternalFrame(_loc6_,_loc7_);
-         _loc4_ = _loc4_ + 1;
-      }
-   }
-   function onEffect(sExtraData)
-   {
-      var _loc3_ = sExtraData.split(";");
-      var _loc4_ = _loc3_[0];
-      var _loc5_ = _loc3_[1].split(",");
-      var _loc6_ = _loc3_[2];
-      var _loc7_ = _loc3_[3];
-      var _loc8_ = _loc3_[4];
-      var _loc9_ = _loc3_[5];
-      var _loc10_ = Number(_loc3_[6]);
-      var _loc11_ = _loc3_[7];
-      var _loc12_ = 0;
-      while(_loc12_ < _loc5_.length)
-      {
-         var _loc13_ = _loc5_[_loc12_];
-         if(_loc13_ == this.api.datacenter.Game.currentPlayerID)
-         {
-            _loc10_ = _loc10_ + 1;
-         }
-         var _loc14_ = new dofus.datacenter.Effect(Number(_loc4_),Number(_loc6_),Number(_loc7_),Number(_loc8_),_loc9_,Number(_loc10_),Number(_loc11_));
-         var _loc15_ = this.api.datacenter.Sprites.getItemAt(_loc13_);
-         _loc15_.EffectsManager.addEffect(_loc14_);
-         _loc12_ = _loc12_ + 1;
-      }
-   }
-   function onClearAllEffect(sExtraData)
-   {
-      var _loc3_ = this.api.datacenter.Sprites;
-      for(var a in _loc3_)
-      {
-         _loc3_[a].EffectsManager.terminateAllEffects();
-      }
-   }
-   function onChallenge(sExtraData)
-   {
-      var _loc3_ = sExtraData.charAt(0) == "+";
-      var _loc4_ = sExtraData.substr(1).split("|");
-      var _loc5_ = _loc4_.shift().split(";");
-      var _loc6_ = Number(_loc5_[0]);
-      var _loc7_ = Number(_loc5_[1]);
-      var _loc8_ = (Math.cos(_loc6_) + 1) * 8388607;
-      if(_loc3_)
-      {
-         var _loc9_ = new dofus.datacenter.Challenge(_loc6_,_loc7_);
-         this.api.datacenter.Challenges.addItemAt(_loc6_,_loc9_);
-         var _loc10_ = 0;
-         while(_loc10_ < _loc4_.length)
-         {
-            var _loc11_ = _loc4_[_loc10_].split(";");
-            var _loc12_ = _loc11_[0];
-            var _loc13_ = Number(_loc11_[1]);
-            var _loc14_ = Number(_loc11_[2]);
-            var _loc15_ = Number(_loc11_[3]);
-            var _loc16_ = dofus.Constants.getTeamFileFromType(_loc14_,_loc15_);
-            var _loc17_ = new dofus.datacenter.Team(_loc12_,ank.battlefield.mc.Sprite,_loc16_,_loc13_,_loc8_,_loc14_,_loc15_);
-            _loc9_.addTeam(_loc17_);
-            this.api.gfx.addSprite(_loc17_.id,_loc17_);
-            _loc10_ = _loc10_ + 1;
-         }
-      }
-      else
-      {
-         var _loc18_ = this.api.datacenter.Challenges.getItemAt(_loc6_).teams;
-         for(var k in _loc18_)
-         {
-            var _loc19_ = _loc18_[k];
-            this.api.gfx.removeSprite(_loc19_.id);
-         }
-         this.api.datacenter.Challenges.removeItemAt(_loc6_);
-      }
-   }
-   function onTeam(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = Number(_loc3_.shift());
-      var _loc5_ = this.api.datacenter.Sprites.getItemAt(_loc4_);
-      var _loc6_ = 0;
-      while(_loc6_ < _loc3_.length)
-      {
-         var _loc7_ = _loc3_[_loc6_].split(";");
-         var _loc8_ = _loc7_[0].charAt(0) == "+";
-         var _loc9_ = _loc7_[0].substr(1);
-         var _loc10_ = _loc7_[1];
-         var _loc11_ = _loc7_[2];
-         var _loc12_ = _loc10_.split(",");
-         var _loc13_ = Number(_loc10_);
-         if(_loc12_.length > 1)
-         {
-            _loc10_ = this.api.lang.getFullNameText(_loc12_);
-         }
-         else if(!_global.isNaN(_loc13_))
-         {
-            _loc10_ = this.api.lang.getMonstersText(_loc13_).n;
-         }
-         if(_loc8_)
-         {
-            var _loc14_ = new Object();
-            _loc14_.id = _loc9_;
-            _loc14_.name = _loc10_;
-            _loc14_.level = _loc11_;
-            _loc5_.addPlayer(_loc14_);
-         }
-         else
-         {
-            _loc5_.removePlayer(_loc9_);
-         }
-         _loc6_ = _loc6_ + 1;
-      }
-   }
-   function onFightOption(sExtraData)
-   {
-      var _loc3_ = sExtraData.substr(2);
-      var _loc4_ = this.api.datacenter.Sprites.getItemAt(_loc3_);
-      if(_loc4_ != undefined)
-      {
-         var _loc5_ = sExtraData.charAt(0) == "+";
-         var _loc6_ = sExtraData.charAt(1);
-         switch(_loc6_)
-         {
-            case "H":
-               _loc4_.options[dofus.datacenter.Team.OPT_NEED_HELP] = _loc5_;
-               break;
-            case "S":
-               _loc4_.options[dofus.datacenter.Team.OPT_BLOCK_SPECTATOR] = _loc5_;
-               break;
-            case "A":
-               _loc4_.options[dofus.datacenter.Team.OPT_BLOCK_JOINER] = _loc5_;
-               break;
-            case "P":
-               _loc4_.options[dofus.datacenter.Team.OPT_BLOCK_JOINER_EXCEPT_PARTY_MEMBER] = _loc5_;
-         }
-         this.api.gfx.addSpriteOverHeadItem(_loc3_,"FightOptions",dofus.graphics.battlefield.FightOptionsOverHead,[_loc4_],undefined);
-      }
-   }
-   function onLeave()
-   {
-      this.api.datacenter.Game.currentPlayerID = undefined;
-      this.api.ui.getUIComponent("Banner").stopTimer();
-      this.api.ui.getUIComponent("Banner").hideRightPanel();
-      this.api.ui.unloadUIComponent("Timeline");
-      this.api.ui.unloadUIComponent("StringCourse");
-      this.api.ui.unloadUIComponent("PlayerInfos");
-      this.api.ui.unloadUIComponent("SpriteInfos");
-      this.aks.GameActions.onActionsFinish(String(this.api.datacenter.Player.ID));
-      this.api.datacenter.Player.reset();
-      var _loc2_ = (dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge");
-      _loc2_.cleanChallenge();
-      this.create();
-   }
-   function onEnd(sExtraData)
-   {
-      if(this.api.kernel.MapsServersManager.isBuilding)
-      {
-         this.addToQueue({object:this,method:this.onEnd,params:[sExtraData]});
-         return undefined;
-      }
-      this._bIsBusy = true;
-      var _loc3_ = (dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge");
-      this.api.kernel.StreamingDisplayManager.onFightEnd();
-      var _loc4_ = {winners:[],loosers:[],collectors:[],challenges:_loc3_.challenges.clone()};
-      this.api.datacenter.Game.results = _loc4_;
-      _loc3_.cleanChallenge();
-      var _loc5_ = sExtraData.split("|");
-      var _loc6_ = -1;
-      if(!_global.isNaN(Number(_loc5_[0])))
-      {
-         _loc4_.duration = Number(_loc5_[0]);
-      }
-      else
-      {
-         var _loc7_ = _loc5_[0].split(";");
-         _loc4_.duration = Number(_loc7_[0]);
-         _loc6_ = Number(_loc7_[1]);
-      }
-      this.api.datacenter.Basics.aks_game_end_bonus = _loc6_;
-      var _loc8_ = Number(_loc5_[1]);
-      var _loc9_ = Number(_loc5_[2]);
-      _loc4_.fightType = _loc9_;
-      var _loc10_ = new ank.utils.ExtendedArray();
-      var _loc11_ = 0;
-      this.parsePlayerData(_loc4_,3,_loc8_,_loc5_,_loc9_,_loc11_,_loc10_);
-   }
-   function parsePlayerData(oResults, nStartIndex, nSenderID, aTmp, nFightType, nKamaDrop, eaFightDrop)
-   {
-      var _loc9_ = nStartIndex;
-      var _loc10_ = aTmp[_loc9_].split(";");
-      var _loc11_ = new Object();
-      if(Number(_loc10_[0]) != 6)
-      {
-         _loc11_.id = Number(_loc10_[1]);
-         if(_loc11_.id == this.api.datacenter.Player.ID)
-         {
-            if(Number(_loc10_[0]) == 0)
-            {
-               this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_FIGHT_LOST);
-            }
-            else
-            {
-               this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_FIGHT_WON);
-            }
-         }
-         var _loc13_ = this.api.kernel.CharactersManager.getNameFromData(_loc10_[2]);
-         _loc11_.name = _loc13_.name;
-         _loc11_.type = _loc13_.type;
-         _loc11_.level = Number(_loc10_[3]);
-         _loc11_.bDead = _loc10_[4] != "1"?false:true;
-         switch(nFightType)
-         {
-            case 0:
-               _loc11_.minxp = Number(_loc10_[5]);
-               _loc11_.xp = Number(_loc10_[6]);
-               _loc11_.maxxp = Number(_loc10_[7]);
-               _loc11_.winxp = Number(_loc10_[8]);
-               _loc11_.guildxp = Number(_loc10_[9]);
-               _loc11_.mountxp = Number(_loc10_[10]);
-               var _loc12_ = _loc10_[11].split(",");
-               if(_loc11_.id == this.api.datacenter.Player.ID && _loc12_.length > 10)
-               {
-                  this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
-               }
-               _loc11_.kama = _loc10_[12];
-               break;
-            case 1:
-               _loc11_.minhonour = Number(_loc10_[5]);
-               _loc11_.honour = Number(_loc10_[6]);
-               _loc11_.maxhonour = Number(_loc10_[7]);
-               _loc11_.winhonour = Number(_loc10_[8]);
-               _loc11_.rank = Number(_loc10_[9]);
-               _loc11_.disgrace = Number(_loc10_[10]);
-               _loc11_.windisgrace = Number(_loc10_[11]);
-               _loc11_.maxdisgrace = this.api.lang.getMaxDisgracePoints();
-               _loc11_.mindisgrace = 0;
-               _loc12_ = _loc10_[12].split(",");
-               if(_loc11_.id == this.api.datacenter.Player.ID && _loc12_.length > 10)
-               {
-                  this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
-               }
-               _loc11_.kama = _loc10_[13];
-               _loc11_.minxp = Number(_loc10_[14]);
-               _loc11_.xp = Number(_loc10_[15]);
-               _loc11_.maxxp = Number(_loc10_[16]);
-               _loc11_.winxp = Number(_loc10_[17]);
-         }
-      }
-      else
-      {
-         _loc12_ = _loc10_[1].split(",");
-         _loc11_.kama = _loc10_[2];
-         nKamaDrop = nKamaDrop + Number(_loc11_.kama);
-      }
-      _loc11_.items = new Array();
-      var _loc14_ = _loc12_.length;
-      while((_loc14_ = _loc14_ - 1) >= 0)
-      {
-         var _loc15_ = _loc12_[_loc14_].split("~");
-         var _loc16_ = Number(_loc15_[0]);
-         var _loc17_ = Number(_loc15_[1]);
-         if(_global.isNaN(_loc16_))
-         {
-            break;
-         }
-         if(_loc16_ != 0)
-         {
-            var _loc18_ = new dofus.datacenter.Item(0,_loc16_,_loc17_);
-            _loc11_.items.push(_loc18_);
-         }
-      }
-      switch(Number(_loc10_[0]))
-      {
-         case 0:
-            oResults.loosers.push(_loc11_);
-            break;
-         case 2:
-            oResults.winners.push(_loc11_);
-            break;
-         case 5:
-            oResults.collectors.push(_loc11_);
-            break;
-         case 6:
-            eaFightDrop = eaFightDrop.concat(_loc11_.items);
-      }
-      _loc9_ = _loc9_ + 1;
-      if(_loc9_ < aTmp.length)
-      {
-         this.addToQueue({object:this,method:this.parsePlayerData,params:[oResults,_loc9_,nSenderID,aTmp,nFightType,nKamaDrop,eaFightDrop]});
-      }
-      else
-      {
-         this.onParseItemEnd(nSenderID,oResults,eaFightDrop,nKamaDrop);
-      }
-   }
-   function onParseItemEnd(nSenderID, oResults, eaFightDrop, nKamaDrop)
-   {
-      if(eaFightDrop.length)
-      {
-         var _loc6_ = Math.ceil(eaFightDrop.length / oResults.winners.length);
-         var _loc7_ = 0;
-         while(_loc7_ < oResults.winners.length)
-         {
-            var _loc8_ = eaFightDrop.length;
-            oResults.winners[_loc7_].kama = Math.ceil(nKamaDrop / _loc6_);
-            if(_loc7_ == oResults.winners.length - 1)
-            {
-               _loc6_ = _loc8_;
-            }
-            var _loc9_ = _loc8_ - _loc6_;
-            while(_loc9_ < _loc8_)
-            {
-               oResults.winners[_loc7_].items.push(eaFightDrop.pop());
-               _loc9_ = _loc9_ + 1;
-            }
-            _loc7_ = _loc7_ + 1;
-         }
-      }
-      if(nSenderID == this.api.datacenter.Player.ID)
-      {
-         this.aks.GameActions.onActionsFinish(String(nSenderID));
-      }
-      this.api.datacenter.Game.isRunning = false;
-      var _loc10_ = this.api.datacenter.Sprites.getItemAt(nSenderID).sequencer;
-      this._bIsBusy = false;
-      if(_loc10_ != undefined)
-      {
-         _loc10_.addAction(false,this.api.kernel.GameManager,this.api.kernel.GameManager.terminateFight);
-         _loc10_.execute(false);
-      }
-      else
-      {
-         ank.utils.Logger.err("[AKS.Game.onEnd] Impossible de trouver le sequencer");
-         ank.utils.Timer.setTimer(this,"game",this.api.kernel.GameManager,this.api.kernel.GameManager.terminateFight,500);
-      }
-      this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_ENDFIGHT);
-   }
-   function onExtraClip(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = _loc3_[0];
-      var _loc5_ = _loc3_[1].split(";");
-      var _loc6_ = dofus.Constants.EXTRA_PATH + _loc4_ + ".swf";
-      var _loc7_ = _loc4_ == "-";
-      for(var k in _loc5_)
-      {
-         var _loc8_ = _loc5_[k];
-         if(_loc7_)
-         {
-            this.api.gfx.removeSpriteExtraClip(_loc8_,false);
-         }
-         else
-         {
-            this.api.gfx.addSpriteExtraClip(_loc8_,_loc6_,undefined,false);
-         }
-      }
-   }
-   function onPVP(sExtraData, bEnabled)
-   {
-      if(!bEnabled)
-      {
-         var _loc4_ = Number(sExtraData);
-         this.api.kernel.showMessage(undefined,this.api.lang.getText("ASK_DISABLE_PVP",[_loc4_]),"CAUTION_YESNO",{name:"DisabledPVP",listener:this});
-      }
-      else
-      {
-         this.api.kernel.showMessage(undefined,this.api.lang.getText("ASK_ENABLED_PVP"),"CAUTION_YESNO",{name:"EnabledPVP",listener:this});
-      }
-   }
-   function onGameOver()
-   {
-      this.api.network.softDisconnect();
-      this.api.ui.loadUIComponent("GameOver","GameOver",undefined,{bAlwaysOnTop:true});
-   }
-   function onCreateSolo()
-   {
-      this.api.datacenter.Player.InteractionsManager.setState(false);
-      this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE_OVER_OUT);
-      this.api.ui.removeCursor();
-      this.api.ui.getUIComponent("Banner").shortcuts.setCurrentTab("Items");
-      this.api.datacenter.Basics.gfx_isSpritesHidden = false;
-      this.api.gfx.spriteHandler.unmaskAllSprites();
-      if(!this.api.gfx.isMapBuild)
-      {
-         if(this.api.ui.getUIComponent("Banner") == undefined)
-         {
-            this.api.kernel.OptionsManager.applyAllOptions();
-            this.api.ui.loadUIComponent("Banner","Banner",{data:this.api.datacenter.Player},{bAlwaysOnTop:true});
-            this.api.ui.setScreenSize(742,432);
-         }
-         this.addToQueue({object:this,method:this.getMapData,params:[this.api.datacenter.Map.id]});
-      }
-      else
-      {
-         var _loc2_ = this.api.ui.getUIComponent("Banner");
-         _loc2_.showPoints(false);
-         _loc2_.showNextTurnButton(false);
-         _loc2_.showGiveUpButton(false);
-         this.api.ui.unloadUIComponent("FightOptionButtons");
-         this.api.ui.unloadUIComponent("ChallengeMenu");
-         this.api.gfx.cleanMap(2);
-         this.getMapData(this.api.datacenter.Map.id);
-      }
-   }
-   function onSpriteMovement(bAdd, oSprite, aEffect)
-   {
-      if(oSprite instanceof dofus.datacenter.Character)
-      {
-         this.api.datacenter.Game.playerCount = this.api.datacenter.Game.playerCount + (!bAdd?-1:1);
-      }
-      if(bAdd)
-      {
-         if(aEffect != undefined)
-         {
-            this.api.gfx.spriteLaunchVisualEffect.apply(this.api.gfx,aEffect);
-         }
-         this.api.gfx.addSprite(oSprite.id);
-         if(!_global.isNaN(oSprite.scaleX))
-         {
-            this.api.gfx.setSpriteScale(oSprite.id,oSprite.scaleX,oSprite.scaleY);
-         }
-         if(oSprite instanceof dofus.datacenter.OfflineCharacter)
-         {
-            oSprite.mc.addExtraClip(dofus.Constants.EXTRA_PATH + oSprite.offlineType + ".swf",undefined,true);
-            return undefined;
-         }
-         if(oSprite instanceof dofus.datacenter.NonPlayableCharacter)
-         {
-            if(!_global.isNaN(oSprite.extraClipID))
-            {
-               this.api.gfx.addSpriteExtraClip(oSprite.id,dofus.Constants.EXTRA_PATH + oSprite.extraClipID + ".swf",undefined,false);
-               return undefined;
-            }
-         }
-         if(this.api.datacenter.Game.isRunning)
-         {
-            this.api.gfx.addSpriteExtraClip(oSprite.id,dofus.Constants.CIRCLE_FILE,dofus.Constants.TEAMS_COLOR[oSprite.Team]);
-         }
-         else if(oSprite.Aura != 0 && (oSprite.Aura != undefined && this.api.kernel.OptionsManager.getOption("Aura")))
-         {
-            this.api.gfx.addSpriteExtraClip(oSprite.id,dofus.Constants.AURA_PATH + oSprite.Aura + ".swf",undefined,true);
-         }
-         if(oSprite.id == this.api.datacenter.Player.ID)
-         {
-            this.api.ui.getUIComponent("Banner").updateLocalPlayer();
-         }
-         else if(this.api.gfx.spriteHandler.isPlayerSpritesHidden && (oSprite instanceof dofus.datacenter.Character || (oSprite instanceof dofus.datacenter.PlayerShop || oSprite instanceof dofus.datacenter.MonsterGroup)))
-         {
-            this.api.gfx.spriteHandler.hidePlayerSprites();
-         }
-         else if(this.api.gfx.spriteHandler.isShowingMonstersTooltip && oSprite instanceof dofus.datacenter.MonsterGroup)
-         {
-            oSprite.mc._rollOver();
-         }
-      }
-      else if(!this.api.datacenter.Game.isRunning)
-      {
-         this.api.gfx.removeSprite(oSprite.id);
-      }
-      else
-      {
-         var _loc5_ = oSprite.sequencer;
-         var _loc6_ = oSprite.mc;
-         _loc5_.addAction(false,this.api.kernel,this.api.kernel.showMessage,[undefined,this.api.lang.getText("LEAVE_GAME",[oSprite.name]),"INFO_CHAT"]);
-         _loc5_.addAction(false,this.api.ui.getUIComponent("Timeline"),this.api.ui.getUIComponent("Timeline").hideItem,[oSprite.id]);
-         _loc5_.addAction(true,_loc6_,_loc6_.setAnim,["Die"],1500);
-         if(oSprite.hasCarriedChild())
-         {
-            this.api.gfx.uncarriedSprite(oSprite.carriedChild.id,oSprite.cellNum,false,_loc5_);
-            _loc5_.addAction(false,this.api.gfx,this.api.gfx.addSpriteExtraClip,[oSprite.carriedChild.id,dofus.Constants.CIRCLE_FILE,dofus.Constants.TEAMS_COLOR[oSprite.carriedChild.Team]]);
-         }
-         _loc5_.addAction(false,_loc6_,_loc6_.clear);
-         _loc5_.execute();
-         if(this.api.datacenter.Game.currentPlayerID == oSprite.id)
-         {
-            this.api.ui.getUIComponent("Banner").stopTimer();
-            this.api.ui.getUIComponent("Timeline").stopChrono();
-         }
-      }
-      if(!this.api.datacenter.Game.isFight)
-      {
-         var _loc7_ = this.api.datacenter.Game.playerCount;
-         var _loc8_ = this.api.kernel.OptionsManager.getOption("CreaturesMode");
-         var _loc9_ = _loc8_ - 2;
-         if(_loc7_ >= _loc8_)
-         {
-            var _loc10_ = this.api.datacenter.Sprites.getItems();
-            for(var k in _loc10_)
-            {
-               var _loc11_ = _loc10_[k];
-               if(_loc11_ instanceof dofus.datacenter.Character)
-               {
-                  if(_loc11_.canSwitchInCreaturesMode)
-                  {
-                     if(!(_loc11_ instanceof dofus.datacenter.Mutant))
-                     {
-                        if(!_loc11_.bInCreaturesMode)
-                        {
-                           _loc11_.tmpGfxFile = _loc11_.gfxFile;
-                           _loc11_.tmpMount = _loc11_.mount;
-                           _loc11_.mount = undefined;
-                           var _loc12_ = dofus.Constants.CLIPS_PERSOS_PATH + _loc11_.Guild + "2.swf";
-                           this.api.gfx.setSpriteGfx(_loc11_.id,_loc12_);
-                           _loc11_.bInCreaturesMode = true;
-                        }
-                     }
-                  }
-               }
-            }
-            this.api.datacenter.Game.isInCreaturesMode = true;
-         }
-         if(_loc7_ < _loc9_)
-         {
-            var _loc13_ = this.api.datacenter.Sprites.getItems();
-            for(var k in _loc13_)
-            {
-               var _loc14_ = _loc13_[k];
-               if(_loc14_ instanceof dofus.datacenter.Character)
-               {
-                  if(_loc14_.canSwitchInCreaturesMode)
-                  {
-                     if(!(_loc14_ instanceof dofus.datacenter.Mutant))
-                     {
-                        if(_loc14_.bInCreaturesMode)
-                        {
-                           _loc14_.mount = _loc14_.tmpMount;
-                           delete register14.tmpMount;
-                           var _loc15_ = _loc14_.tmpGfxFile != undefined?_loc14_.tmpGfxFile:_loc14_.gfxFile;
-                           delete register14.tmpGfxFile;
-                           this.api.gfx.setSpriteGfx(_loc14_.id,_loc15_);
-                           _loc14_.bInCreaturesMode = false;
-                        }
-                     }
-                  }
-               }
-            }
-            this.api.datacenter.Game.isInCreaturesMode = false;
-         }
-      }
-   }
-   function onFlag(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = _loc3_[0];
-      var _loc5_ = Number(_loc3_[1]);
-      var _loc6_ = this.api.datacenter.Sprites.getItemAt(_loc4_);
-      var _loc7_ = new ank.battlefield.datacenter.VisualEffect();
-      _loc7_.file = dofus.Constants.CLIPS_PATH + "flag.swf";
-      _loc7_.bInFrontOfSprite = true;
-      _loc7_.bTryToBypassContainerColor = true;
-      this.api.kernel.showMessage(undefined,this.api.lang.getText("PLAYER_SET_FLAG",[_loc6_.name,_loc5_]),"INFO_CHAT");
-      this.api.gfx.spriteLaunchVisualEffect(_loc4_,_loc7_,_loc5_,11,undefined,undefined,undefined,true);
-   }
-   function onFightChallenge(sExtraData)
-   {
-      var _loc3_ = sExtraData.split(";");
-      if(!this.api.ui.getUIComponent("FightChallenge"))
-      {
-         this.api.ui.loadUIComponent("FightChallenge","FightChallenge");
-      }
-      var _loc4_ = new dofus.datacenter.FightChallengeData(_global.parseInt(_loc3_[0]),_loc3_[1] == "1",_global.parseInt(_loc3_[2]),_global.parseInt(_loc3_[3]),_global.parseInt(_loc3_[4]),_global.parseInt(_loc3_[5]),_global.parseInt(_loc3_[6]));
-      (dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge").addChallenge(_loc4_);
-   }
-   function onFightChallengeUpdate(sExtraData, success)
-   {
-      var _loc4_ = _global.parseInt(sExtraData);
-      (dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge").updateChallenge(_loc4_,success);
-      var _loc5_ = !success?this.api.lang.getText("FIGHT_CHALLENGE_FAILED"):this.api.lang.getText("FIGHT_CHALLENGE_DONE");
-      _loc5_ = _loc5_ + (" : " + this.api.lang.getFightChallenge(_loc4_).n);
-      this.api.kernel.showMessage(undefined,_loc5_,"INFO_CHAT");
-   }
-   function sliptGfxData(sGfx)
-   {
-      if(sGfx.indexOf(",") != -1)
-      {
-         var _loc3_ = sGfx.split(",");
-         return {shape:"circle",gfx:_loc3_};
-      }
-      if(sGfx.indexOf(":") != -1)
-      {
-         var _loc4_ = sGfx.split(":");
-         return {shape:"line",gfx:_loc4_};
-      }
-      return {shape:"none",gfx:[sGfx]};
-   }
-   function createTransitionEffect()
-   {
-      var _loc2_ = new ank.battlefield.datacenter.VisualEffect();
-      _loc2_.id = 5;
-      _loc2_.file = dofus.Constants.SPELLS_PATH + "transition.swf";
-      _loc2_.level = 5;
-      _loc2_.params = [];
-      _loc2_.bInFrontOfSprite = true;
-      _loc2_.bTryToBypassContainerColor = false;
-      return _loc2_;
-   }
-   function splitGfxForScale(sGfxInput, oData)
-   {
-      var _loc4_ = sGfxInput.split("^");
-      var _loc5_ = _loc4_.length != 2?sGfxInput:_loc4_[0];
-      var _loc6_ = 100;
-      var _loc7_ = 100;
-      if(_loc4_.length == 2)
-      {
-         var _loc8_ = _loc4_[1];
-         if(_global.isNaN(Number(_loc8_)))
-         {
-            var _loc9_ = _loc8_.split("x");
-            _loc6_ = _loc9_.length != 2?100:Number(_loc9_[0]);
-            _loc7_ = _loc9_.length != 2?100:Number(_loc9_[1]);
-         }
-         else
-         {
-            _loc6_ = _loc7_ = Number(_loc8_);
-         }
-      }
-      oData.gfxID = _loc5_;
-      oData.scaleX = _loc6_;
-      oData.scaleY = _loc7_;
-   }
-   function cancel(oEvent)
-   {
-      var _loc0_ = oEvent.target._name;
-   }
-   function yes(oEvent)
-   {
-      switch(oEvent.target._name)
-      {
-         case "AskYesNoEnabledPVP":
-            this.api.network.Game.enabledPVPMode(true);
-            break;
-         case "AskYesNoDisabledPVP":
-            this.api.network.Game.enabledPVPMode(false);
-      }
-   }
-   function no(oEvent)
-   {
-      var _loc0_ = oEvent.target._name;
-   }
+	static var TYPE_SOLO = 1;
+	static var TYPE_FIGHT = 2;
+	var _bIsBusy = false;
+	var _aGameSpriteLeftHistory = new Array();
+	var nLastMapIdReceived = -1;
+	function Game(loc3, loc4)
+	{
+		super.initialize(loc3,loc4);
+	}
+	function __get__isBusy()
+	{
+		return this._bIsBusy;
+	}
+	function create()
+	{
+		this.aks.send("GC" + dofus.aks.Game.TYPE_SOLO);
+	}
+	function leave(loc2)
+	{
+		this.aks.send("GQ" + (loc2 != undefined?loc2:""));
+	}
+	function setPlayerPosition(loc2)
+	{
+		this.aks.send("Gp" + loc2,true);
+	}
+	function ready(loc2)
+	{
+		this.aks.send("GR" + (!loc2?"0":"1"));
+	}
+	function getMapData(loc2)
+	{
+		if(this.api.lang.getConfigText("ENABLE_CLIENT_MAP_REQUEST"))
+		{
+			this.aks.send("GD" + (loc2 == undefined?"":String(loc2)));
+		}
+	}
+	function getExtraInformations()
+	{
+		this.aks.send("GI");
+	}
+	function turnEnd()
+	{
+		if(this.api.datacenter.Player.isCurrentPlayer)
+		{
+			this.aks.send("Gt",false);
+		}
+	}
+	function turnOk(loc2)
+	{
+		this.aks.send("GT" + (loc2 == undefined?"":loc2),false);
+	}
+	function turnOk2(loc2)
+	{
+		this.aks.send("GT" + (loc2 == undefined?"":loc2),false);
+	}
+	function askDisablePVPMode()
+	{
+		this.aks.send("GP*",false);
+	}
+	function enabledPVPMode(loc2)
+	{
+		this.aks.send("GP" + (!loc2?"-":"+"),false);
+	}
+	function freeMySoul()
+	{
+		this.aks.send("GF",false);
+	}
+	function setFlag(loc2)
+	{
+		this.aks.send("Gf" + loc2,false);
+	}
+	function showFightChallengeTarget(loc2)
+	{
+		this.aks.send("Gdi" + loc2,false);
+	}
+	function onCreate(loc2, loc3)
+	{
+		if(!loc2)
+		{
+			ank.utils.Logger.err("[onCreate] Impossible de créer la partie");
+			return undefined;
+		}
+		var loc4 = loc3.split("|");
+		var loc5 = Number(loc4[0]);
+		if(loc5 != 1)
+		{
+			ank.utils.Logger.err("[onCreate] Type incorrect");
+			return undefined;
+		}
+		this.api.datacenter.Game = new dofus.datacenter.Game();
+		this.api.datacenter.Game.state = loc5;
+		this.api.ui.getUIComponent("Banner").showGaugeMode();
+		this.api.datacenter.Player.data.initAP(false);
+		this.api.datacenter.Player.data.initMP(false);
+		this.api.datacenter.Player.SpellsManager.clear();
+		this.api.datacenter.Player.data.CharacteristicsManager.initialize();
+		this.api.datacenter.Player.data.EffectsManager.initialize();
+		this.api.datacenter.Player.clearSummon();
+		this.api.gfx.cleanMap(1);
+		this.onCreateSolo();
+	}
+	function onJoin(loc2)
+	{
+		this.api.ui.getUIComponent("Zoom").callClose();
+		this.api.datacenter.Player.guildInfos.defendedTaxCollectorID = undefined;
+		var loc3 = loc2.split("|");
+		var loc4 = Number(loc3[0]);
+		var loc5 = loc3[1] != "0"?true:false;
+		var loc6 = loc3[2] != "0"?true:false;
+		var loc7 = loc3[3] != "0"?true:false;
+		var loc8 = Number(loc3[4]);
+		var loc9 = Number(loc3[5]);
+		this.api.datacenter.Game = new dofus.datacenter.Game();
+		this.api.datacenter.Game.state = loc4;
+		this.api.datacenter.Game.fightType = loc9;
+		var loc10 = this.api.ui.getUIComponent("Banner");
+		loc10.redrawChrono();
+		loc10.updateEye();
+		this.api.datacenter.Game.isSpectator = loc7;
+		if(!loc7)
+		{
+			this.api.datacenter.Player.data.initAP(false);
+			this.api.datacenter.Player.data.initMP(false);
+			this.api.datacenter.Player.SpellsManager.clear();
+		}
+		loc10.shortcuts.setCurrentTab("Spells");
+		this.api.gfx.cleanMap(1);
+		if(this.api.datacenter.Game.isTacticMode)
+		{
+			this.api.datacenter.Game.isTacticMode = true;
+		}
+		if(loc6)
+		{
+			this.api.ui.loadUIComponent("ChallengeMenu","ChallengeMenu",{labelReady:this.api.lang.getText("READY"),labelCancel:this.api.lang.getText("CANCEL_SMALL"),cancelButton:loc5,ready:false},{bStayIfPresent:true});
+		}
+		if(!_global.isNaN(loc8))
+		{
+			loc10.startTimer(loc8 / 1000);
+		}
+		this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_OBJECT_NONE);
+		this.api.ui.unloadLastUIAutoHideComponent();
+		this.api.ui.unloadUIComponent("FightsInfos");
+	}
+	function onPositionStart(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = loc3[0];
+		var loc5 = loc3[1];
+		var loc6 = Number(loc3[2]);
+		this.api.datacenter.Basics.aks_current_team = loc6;
+		this.api.datacenter.Basics.aks_team1_starts = new Array();
+		this.api.datacenter.Basics.aks_team2_starts = new Array();
+		this.api.kernel.StreamingDisplayManager.onFightStart();
+		this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
+		this.api.datacenter.Game.setInteractionType("place");
+		if(loc6 == undefined)
+		{
+			ank.utils.Logger.err("[onPositionStart] Impossible de trouver l\'équipe du joueur local !");
+		}
+		var loc7 = 0;
+		while(loc7 < loc4.length)
+		{
+			var loc8 = ank.utils.Compressor.decode64(loc4.charAt(loc7)) << 6;
+			loc8 = loc8 + ank.utils.Compressor.decode64(loc4.charAt(loc7 + 1));
+			this.api.datacenter.Basics.aks_team1_starts.push(loc8);
+			if(loc6 == 0)
+			{
+				this.api.gfx.setInteractionOnCell(loc8,ank.battlefield.Constants.INTERACTION_CELL_RELEASE);
+			}
+			this.api.gfx.select(loc8,dofus.Constants.TEAMS_COLOR[0],"startPosition");
+			loc7 = loc7 + 2;
+		}
+		var loc9 = 0;
+		while(loc9 < loc5.length)
+		{
+			var loc10 = ank.utils.Compressor.decode64(loc5.charAt(loc9)) << 6;
+			loc10 = loc10 + ank.utils.Compressor.decode64(loc5.charAt(loc9 + 1));
+			this.api.datacenter.Basics.aks_team2_starts.push(loc10);
+			if(loc6 == 1)
+			{
+				this.api.gfx.setInteractionOnCell(loc10,ank.battlefield.Constants.INTERACTION_CELL_RELEASE);
+			}
+			this.api.gfx.select(loc10,dofus.Constants.TEAMS_COLOR[1],"startPosition");
+			loc9 = loc9 + 2;
+		}
+		if(this.api.ui.getUIComponent("FightOptionButtons") == undefined)
+		{
+			this.api.ui.loadUIComponent("FightOptionButtons","FightOptionButtons");
+		}
+		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_PLACEMENT);
+	}
+	function onPlayersCoordinates(loc2)
+	{
+		if(loc2 != "e")
+		{
+			var loc3 = loc2.split("|");
+			var loc4 = 0;
+			while(loc4 < loc3.length)
+			{
+				var loc5 = loc3[loc4].split(";");
+				var loc6 = loc5[0];
+				var loc7 = Number(loc5[1]);
+				this.api.gfx.setSpritePosition(loc6,loc7);
+				loc4 = loc4 + 1;
+			}
+		}
+		else
+		{
+			this.api.sounds.events.onError();
+		}
+	}
+	function onReady(loc2)
+	{
+		var loc3 = loc2.charAt(0) == "1";
+		var loc4 = loc2.substr(1);
+		if(loc3)
+		{
+			this.api.gfx.addSpriteExtraClip(loc4,dofus.Constants.READY_FILE,undefined,true);
+		}
+		else
+		{
+			this.api.gfx.removeSpriteExtraClip(loc4,true);
+		}
+	}
+	function onStartToPlay()
+	{
+		this.api.ui.getUIComponent("Banner").stopTimer();
+		this.aks.GameActions.onActionsFinish(this.api.datacenter.Player.ID);
+		this.api.sounds.events.onGameStart(this.api.datacenter.Map.musics);
+		this.api.kernel.StreamingDisplayManager.onFightStartEnd();
+		var loc2 = this.api.ui.getUIComponent("Banner");
+		loc2.showGiveUpButton(true);
+		if(!this.api.datacenter.Game.isSpectator)
+		{
+			var loc3 = this.api.datacenter.Player.data;
+			loc3.initAP();
+			loc3.initMP();
+			loc3.initLP();
+			loc2.showPoints(true);
+			loc2.showNextTurnButton(true);
+			this.api.ui.loadUIComponent("CenterText","CenterText",{text:this.api.lang.getText("GAME_LAUNCH"),background:true,timer:2000},{bForceLoad:true});
+			this.api.ui.getUIComponent("FightOptionButtons").onGameRunning();
+		}
+		else
+		{
+			this.api.ui.loadUIComponent("FightOptionButtons","FightOptionButtons");
+		}
+		this.api.ui.loadUIComponent("Timeline","Timeline");
+		this.api.ui.unloadUIComponent("ChallengeMenu");
+		this.api.gfx.unSelect(true);
+		if(!this.api.gfx.gridHandler.bGridVisible)
+		{
+			this.api.gfx.drawGrid();
+		}
+		this.api.datacenter.Game.setInteractionType("move");
+		this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
+		this.api.kernel.GameManager.signalFightActivity();
+		this.api.datacenter.Game.isRunning = true;
+		var loc4 = this.api.datacenter.Sprites.getItems();
+		for(var k in loc4)
+		{
+			this.api.gfx.addSpriteExtraClip(k,dofus.Constants.CIRCLE_FILE,dofus.Constants.TEAMS_COLOR[loc4[k].Team]);
+		}
+		if(this.api.datacenter.Game.isTacticMode)
+		{
+			this.api.datacenter.Game.isTacticMode = true;
+		}
+	}
+	function onTurnStart(loc2)
+	{
+		if(this.api.datacenter.Game.isFirstTurn)
+		{
+			this.api.datacenter.Game.isFirstTurn = false;
+			var loc3 = this.api.gfx.spriteHandler.getSprites().getItems();
+			for(var sID in loc3)
+			{
+				this.api.gfx.removeSpriteExtraClip(sID,true);
+			}
+		}
+		var loc4 = loc2.split("|");
+		var loc5 = loc4[0];
+		var loc6 = Number(loc4[1]) / 1000;
+		var loc7 = this.api.datacenter.Sprites.getItemAt(loc5);
+		loc7.GameActionsManager.clear();
+		this.api.gfx.unSelect(true);
+		this.api.datacenter.Game.currentPlayerID = loc5;
+		this.api.kernel.GameManager.cleanPlayer(this.api.datacenter.Game.lastPlayerID);
+		this.api.ui.getUIComponent("Timeline").nextTurn(loc5);
+		if(this.api.datacenter.Player.isCurrentPlayer)
+		{
+			this.api.electron.makeNotification(this.api.lang.getText("PLAYER_TURN",[this.api.datacenter.Player.Name]));
+			if(this.api.kernel.OptionsManager.getOption("StartTurnSound"))
+			{
+				this.api.sounds.events.onTurnStart();
+			}
+			if(this.api.kernel.GameManager.autoSkip && this.api.datacenter.Game.isFight)
+			{
+				this.api.network.Game.turnEnd();
+			}
+			this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT);
+			this.api.datacenter.Player.SpellsManager.nextTurn();
+			this.api.ui.getUIComponent("Banner").startTimer(loc6);
+			this.api.kernel.GameManager.startInactivityDetector();
+			dofus.DofusCore.getInstance().forceMouseOver();
+			this.api.gfx.mapHandler.resetEmptyCells();
+		}
+		else
+		{
+			this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
+			this.api.ui.getUIComponent("Timeline").startChrono(loc6);
+			if(this.api.datacenter.Game.isSpectator && this.api.kernel.OptionsManager.getOption("SpriteInfos"))
+			{
+				this.api.ui.getUIComponent("Banner").showRightPanel("BannerSpriteInfos",{data:loc7},true);
+			}
+		}
+		if(this.api.kernel.OptionsManager.getOption("StringCourse"))
+		{
+			var loc8 = new Array();
+			loc8[1] = loc7.color1;
+			loc8[2] = loc7.color2;
+			loc8[3] = loc7.color3;
+			this.api.ui.loadUIComponent("StringCourse","StringCourse",{gfx:loc7.artworkFile,name:loc7.name,level:this.api.lang.getText("LEVEL_SMALL") + " " + loc7.Level,colors:loc8},{bForceLoad:true});
+		}
+		this.api.kernel.GameManager.cleanUpGameArea(true);
+		ank.utils.Timer.setTimer(this.api.network.Ping,"GameDecoDetect",this.api.network,this.api.network.quickPing,loc6 * 1000);
+		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_START);
+	}
+	function onTurnFinish(loc2)
+	{
+		var loc3 = loc2;
+		var loc4 = this.api.datacenter.Sprites.getItemAt(loc3);
+		if(this.api.datacenter.Player.isCurrentPlayer)
+		{
+			this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_NONE);
+			this.api.kernel.GameManager.stopInactivityDetector();
+			this.api.kernel.GameManager.onTurnEnd();
+		}
+		this.api.datacenter.Game.lastPlayerID = this.api.datacenter.Game.currentPlayerID;
+		this.api.datacenter.Game.currentPlayerID = undefined;
+		this.api.ui.getUIComponent("Banner").stopTimer();
+		this.api.ui.getUIComponent("Timeline").stopChrono();
+		this.api.kernel.GameManager.cleanUpGameArea(true);
+	}
+	function onTurnlist(loc2)
+	{
+		var loc3 = loc2.split("|");
+		this.api.datacenter.Game.turnSequence = loc3;
+		this.api.ui.getUIComponent("Timeline").update();
+	}
+	function onTurnMiddle(loc2)
+	{
+		if(!this.api.datacenter.Game.isRunning)
+		{
+			ank.utils.Logger.err("[innerOnTurnMiddle] on est pas en combat");
+			return undefined;
+		}
+		var loc3 = loc2.split("|");
+		var loc4 = new Object();
+		var loc5 = 0;
+		while(loc5 < loc3.length)
+		{
+			var loc6 = loc3[loc5].split(";");
+			if(loc6.length != 0)
+			{
+				var loc7 = loc6[0];
+				var loc8 = loc6[1] != "1"?false:true;
+				var loc9 = Number(loc6[2]);
+				var loc10 = Number(loc6[3]);
+				var loc11 = Number(loc6[4]);
+				var loc12 = Number(loc6[5]);
+				var loc13 = Number(loc6[6]);
+				var loc14 = Number(loc6[7]);
+				loc4[loc7] = true;
+				var loc15 = this.api.datacenter.Sprites.getItemAt(loc7);
+				if(loc15 != undefined)
+				{
+					loc15.sequencer.clearAllNextActions();
+					if(loc8)
+					{
+						loc15.mc.clear();
+						this.api.gfx.removeSpriteOverHeadLayer(loc7,"text");
+					}
+					else
+					{
+						loc15.LP = loc9;
+						loc15.LPmax = loc14;
+						loc15.AP = loc10;
+						loc15.MP = loc11;
+						if(!_global.isNaN(loc12) && !loc15.hasCarriedParent())
+						{
+							this.api.gfx.setSpritePosition(loc7,loc12);
+						}
+						if(loc15.hasCarriedChild())
+						{
+							loc15.carriedChild.updateCarriedPosition();
+						}
+					}
+				}
+				else
+				{
+					ank.utils.Logger.err("[onTurnMiddle] le sprite n\'existe pas");
+				}
+			}
+			loc5 = loc5 + 1;
+		}
+		var loc16 = this.api.datacenter.Sprites.getItems();
+		for(var k in loc16)
+		{
+			if(!loc4[k])
+			{
+				loc16[k].mc.clear();
+				this.api.datacenter.Sprites.removeItemAt(k);
+			}
+		}
+		this.api.ui.getUIComponent("Timeline").timelineControl.updateCharacters();
+	}
+	function onTurnReady(loc2)
+	{
+		var loc3 = loc2;
+		var loc4 = this.api.datacenter.Sprites.getItemAt(loc3);
+		if(loc4 != undefined)
+		{
+			var loc5 = loc4.sequencer;
+			loc5.addAction(false,this,this.turnOk);
+			loc5.execute();
+		}
+		else
+		{
+			ank.utils.Logger.err("[onTurnReday] le sprite " + loc3 + " n\'existe pas");
+			this.turnOk2();
+		}
+	}
+	function onMapData(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = loc3[0];
+		var loc5 = loc3[1];
+		var loc6 = loc3[2];
+		if(Number(loc4) == this.api.datacenter.Map.id)
+		{
+			if(!this.api.datacenter.Map.bOutdoor)
+			{
+				this.api.kernel.NightManager.noEffects();
+			}
+			this.api.gfx.onMapLoaded();
+			return undefined;
+		}
+		this.api.gfx.showContainer(false);
+		this.nLastMapIdReceived = _global.parseInt(loc4,10);
+		this.api.kernel.MapsServersManager.loadMap(loc4,loc5,loc6);
+	}
+	function onMapLoaded()
+	{
+		this.api.gfx.showContainer(true);
+		this.api.kernel.GameManager.applyCreatureMode();
+		if(dofus.Constants.SAVING_THE_WORLD)
+		{
+			dofus.SaveTheWorld.getInstance().nextAction();
+		}
+	}
+	function onMovement(loc2, loc3)
+	{
+		var loc4 = loc2.split("|");
+		var loc5 = loc4.length - 1;
+		for(; loc5 >= 0; loc5 = loc5 - 1)
+		{
+			var loc6 = loc4[loc5];
+			if(loc6.length != 0)
+			{
+				var loc7 = false;
+				var loc8 = false;
+				var loc9 = loc6.charAt(0);
+				if(loc9 == "+")
+				{
+					loc8 = true;
+				}
+				else if(loc9 == "~")
+				{
+					loc8 = true;
+					loc7 = true;
+				}
+				else if(loc9 != "-")
+				{
+					continue;
+				}
+				if(loc8)
+				{
+					var loc10 = loc6.substr(1).split(";");
+					var loc11 = loc10[0];
+					if(loc11 == "-1")
+					{
+						loc11 = String(this.api.datacenter.Player.data.cellNum);
+					}
+					var loc12 = loc10[1];
+					var loc13 = Number(loc10[2]);
+					var loc14 = loc10[3];
+					var loc15 = loc10[4];
+					var loc16 = loc10[5];
+					var loc17 = loc10[6];
+					var loc18 = false;
+					var loc19 = true;
+					if(loc17.charAt(loc17.length - 1) == "*")
+					{
+						loc17 = loc17.substr(0,loc17.length - 1);
+						loc18 = true;
+					}
+					if(loc17.charAt(0) == "*")
+					{
+						loc19 = false;
+						loc17 = loc17.substr(1);
+					}
+					var loc20 = loc17.split("^");
+					var loc21 = loc20.length != 2?loc17:loc20[0];
+					var loc22 = loc16.split(",");
+					var loc23 = loc22[0];
+					var loc24 = loc22[1];
+					var loc25 = undefined;
+					if(loc24.length)
+					{
+						var loc26 = loc24.split("*");
+						loc25 = new dofus.datacenter.
+(_global.parseInt(loc26[0]),loc26[1]);
+					}
+					var loc27 = 100;
+					var loc28 = 100;
+					if(loc20.length == 2)
+					{
+						var loc29 = loc20[1];
+						if(_global.isNaN(Number(loc29)))
+						{
+							var loc30 = loc29.split("x");
+							loc27 = loc30.length != 2?100:Number(loc30[0]);
+							loc28 = loc30.length != 2?100:Number(loc30[1]);
+						}
+						else
+						{
+							loc27 = loc28 = Number(loc29);
+						}
+					}
+					if(loc7)
+					{
+						var loc31 = this.api.datacenter.Sprites.getItemAt(loc14);
+						this.onSpriteMovement(false,loc31);
+					}
+					loop3:
+					switch(loc23)
+					{
+						case "-1":
+						case "-2":
+							var loc33 = new Object();
+							loc33.spriteType = loc23;
+							loc33.gfxID = loc21;
+							loc33.scaleX = loc27;
+							loc33.scaleY = loc28;
+							loc33.noFlip = loc18;
+							loc33.cell = loc11;
+							loc33.dir = loc12;
+							loc33.powerLevel = loc10[7];
+							loc33.color1 = loc10[8];
+							loc33.color2 = loc10[9];
+							loc33.color3 = loc10[10];
+							loc33.accessories = loc10[11];
+							if(this.api.datacenter.Game.isFight)
+							{
+								loc33.LP = loc10[12];
+								loc33.AP = loc10[13];
+								loc33.MP = loc10[14];
+								if(loc10.length > 18)
+								{
+									loc33.resistances = new Array(Number(loc10[15]),Number(loc10[16]),Number(loc10[17]),Number(loc10[18]),Number(loc10[19]),Number(loc10[20]),Number(loc10[21]));
+									loc33.team = loc10[22];
+								}
+								else
+								{
+									loc33.team = loc10[15];
+								}
+								loc33.summoned = loc3;
+							}
+							if(loc23 == -1)
+							{
+								loc31 = this.api.kernel.CharactersManager.createCreature(loc14,loc15,loc33);
+							}
+							else
+							{
+								loc31 = this.api.kernel.CharactersManager.createMonster(loc14,loc15,loc33);
+							}
+							break;
+						case "-3":
+							var loc34 = new Object();
+							loc34.spriteType = loc23;
+							loc34.level = loc10[7];
+							loc34.scaleX = loc27;
+							loc34.scaleY = loc28;
+							loc34.noFlip = loc18;
+							loc34.cell = Number(loc11);
+							loc34.dir = loc12;
+							var loc35 = loc10[8].split(",");
+							loc34.color1 = loc35[0];
+							loc34.color2 = loc35[1];
+							loc34.color3 = loc35[2];
+							loc34.accessories = loc10[9];
+							loc34.bonusValue = loc13;
+							var loc36 = this.sliptGfxData(loc17);
+							var loc37 = loc36.gfx;
+							this.splitGfxForScale(loc37[0],loc34);
+							loc31 = this.api.kernel.CharactersManager.createMonsterGroup(loc14,loc15,loc34);
+							if(this.api.kernel.OptionsManager.getOption("ViewAllMonsterInGroup") == true)
+							{
+								var loc38 = loc14;
+								var loc39 = 1;
+								while(loc39 < loc37.length)
+								{
+									if(loc37[loc5] != "")
+									{
+										this.splitGfxForScale(loc37[loc39],loc34);
+										loc35 = loc10[8 + 2 * loc39].split(",");
+										loc34.color1 = loc35[0];
+										loc34.color2 = loc35[1];
+										loc34.color3 = loc35[2];
+										loc34.dir = random(4) * 2 + 1;
+										loc34.accessories = loc10[9 + 2 * loc39];
+										var loc40 = loc14 + "_" + loc39;
+										var loc41 = this.api.kernel.CharactersManager.createMonsterGroup(loc40,undefined,loc34);
+										var loc42 = loc38;
+										if(random(3) != 0 && loc39 != 1)
+										{
+											loc42 = loc14 + "_" + (random(loc39 - 1) + 1);
+										}
+										var loc43 = random(8);
+										this.api.gfx.addLinkedSprite(loc40,loc42,loc43,loc41);
+										if(!_global.isNaN(loc41.scaleX))
+										{
+											this.api.gfx.setSpriteScale(loc41.id,loc41.scaleX,loc41.scaleY);
+										}
+										switch(loc36.shape)
+										{
+											case "circle":
+												loc43 = loc39;
+												break;
+											case "line":
+												loc42 = loc40;
+												loc43 = 2;
+										}
+									}
+									loc39 = loc39 + 1;
+								}
+							}
+							break;
+						default:
+							switch(null)
+							{
+								case "-4":
+									var loc44 = new Object();
+									loc44.spriteType = loc23;
+									loc44.gfxID = loc21;
+									loc44.scaleX = loc27;
+									loc44.scaleY = loc28;
+									loc44.cell = loc11;
+									loc44.dir = loc12;
+									loc44.sex = loc10[7];
+									loc44.color1 = loc10[8];
+									loc44.color2 = loc10[9];
+									loc44.color3 = loc10[10];
+									loc44.accessories = loc10[11];
+									loc44.extraClipID = !(loc10[12] != undefined && !_global.isNaN(Number(loc10[12])))?-1:Number(loc10[12]);
+									loc44.customArtwork = Number(loc10[13]);
+									loc31 = this.api.kernel.CharactersManager.createNonPlayableCharacter(loc14,Number(loc15),loc44);
+									break loop3;
+								case "-5":
+									var loc45 = new Object();
+									loc45.spriteType = loc23;
+									loc45.gfxID = loc21;
+									loc45.scaleX = loc27;
+									loc45.scaleY = loc28;
+									loc45.cell = loc11;
+									loc45.dir = loc12;
+									loc45.color1 = loc10[7];
+									loc45.color2 = loc10[8];
+									loc45.color3 = loc10[9];
+									loc45.accessories = loc10[10];
+									loc45.guildName = loc10[11];
+									loc45.emblem = loc10[12];
+									loc45.offlineType = loc10[13];
+									loc31 = this.api.kernel.CharactersManager.createOfflineCharacter(loc14,loc15,loc45);
+									break loop3;
+								case "-6":
+									var loc46 = new Object();
+									loc46.spriteType = loc23;
+									loc46.gfxID = loc21;
+									loc46.scaleX = loc27;
+									loc46.scaleY = loc28;
+									loc46.cell = loc11;
+									loc46.dir = loc12;
+									loc46.level = loc10[7];
+									if(this.api.datacenter.Game.isFight)
+									{
+										loc46.LP = loc10[8];
+										loc46.AP = loc10[9];
+										loc46.MP = loc10[10];
+										loc46.resistances = new Array(Number(loc10[11]),Number(loc10[12]),Number(loc10[13]),Number(loc10[14]),Number(loc10[15]),Number(loc10[16]),Number(loc10[17]));
+										loc46.team = loc10[18];
+									}
+									else
+									{
+										loc46.guildName = loc10[8];
+										loc46.emblem = loc10[9];
+									}
+									loc31 = this.api.kernel.CharactersManager.createTaxCollector(loc14,loc15,loc46);
+									break loop3;
+								case "-7":
+								case "-8":
+									var loc47 = new Object();
+									loc47.spriteType = loc23;
+									loc47.gfxID = loc21;
+									loc47.scaleX = loc27;
+									loc47.scaleY = loc28;
+									loc47.cell = loc11;
+									loc47.dir = loc12;
+									loc47.sex = loc10[7];
+									loc47.powerLevel = loc10[8];
+									loc47.accessories = loc10[9];
+									if(this.api.datacenter.Game.isFight)
+									{
+										loc47.LP = loc10[10];
+										loc47.AP = loc10[11];
+										loc47.MP = loc10[12];
+										loc47.team = loc10[20];
+									}
+									else
+									{
+										loc47.emote = loc10[10];
+										loc47.emoteTimer = loc10[11];
+										loc47.restrictions = Number(loc10[12]);
+									}
+									if(loc23 == "-8")
+									{
+										loc47.showIsPlayer = true;
+										var loc48 = loc15.split("~");
+										loc47.monsterID = loc48[0];
+										loc47.playerName = loc48[1];
+									}
+									else
+									{
+										loc47.showIsPlayer = false;
+										loc47.monsterID = loc15;
+									}
+									loc31 = this.api.kernel.CharactersManager.createMutant(loc14,loc47);
+									break loop3;
+								default:
+									switch(null)
+									{
+										case "-9":
+											var loc49 = new Object();
+											loc49.spriteType = loc23;
+											loc49.gfxID = loc21;
+											loc49.scaleX = loc27;
+											loc49.scaleY = loc28;
+											loc49.cell = loc11;
+											loc49.dir = loc12;
+											loc49.ownerName = loc10[7];
+											loc49.level = loc10[8];
+											loc49.modelID = loc10[9];
+											loc31 = this.api.kernel.CharactersManager.createParkMount(loc14,loc15 == ""?this.api.lang.getText("NO_NAME"):loc15,loc49);
+											break loop3;
+										case "-10":
+											var loc50 = new Object();
+											loc50.spriteType = loc23;
+											loc50.gfxID = loc21;
+											loc50.scaleX = loc27;
+											loc50.scaleY = loc28;
+											loc50.cell = loc11;
+											loc50.dir = loc12;
+											loc50.level = loc10[7];
+											loc50.alignment = new dofus.datacenter.(Number(loc10[9]),Number(loc10[8]));
+											loc31 = this.api.kernel.CharactersManager.createPrism(loc14,loc15,loc50);
+											break loop3;
+										default:
+											var loc52 = new Object();
+											loc52.spriteType = loc23;
+											loc52.cell = loc11;
+											loc52.scaleX = loc27;
+											loc52.scaleY = loc28;
+											loc52.dir = loc12;
+											loc52.sex = loc10[7];
+											if(this.api.datacenter.Game.isFight)
+											{
+												loc52.level = loc10[8];
+												var loc51 = loc10[9];
+												loc52.color1 = loc10[10];
+												loc52.color2 = loc10[11];
+												loc52.color3 = loc10[12];
+												loc52.accessories = loc10[13];
+												loc52.LP = loc10[14];
+												loc52.AP = loc10[15];
+												loc52.MP = loc10[16];
+												loc52.resistances = new Array(Number(loc10[17]),Number(loc10[18]),Number(loc10[19]),Number(loc10[20]),Number(loc10[21]),Number(loc10[22]),Number(loc10[23]));
+												loc52.team = loc10[24];
+												if(loc10[25].indexOf(",") != -1)
+												{
+													var loc53 = loc10[25].split(",");
+													var loc54 = Number(loc53[0]);
+													var loc55 = _global.parseInt(loc53[1],16);
+													var loc56 = _global.parseInt(loc53[2],16);
+													var loc57 = _global.parseInt(loc53[3],16);
+													if(loc55 == -1 || _global.isNaN(loc55))
+													{
+														loc55 = this.api.datacenter.Player.color1;
+													}
+													if(loc56 == -1 || _global.isNaN(loc56))
+													{
+														loc56 = this.api.datacenter.Player.color2;
+													}
+													if(loc57 == -1 || _global.isNaN(loc57))
+													{
+														loc57 = this.api.datacenter.Player.color3;
+													}
+													if(!_global.isNaN(loc54))
+													{
+														var loc58 = new dofus.datacenter.Mount(loc54,Number(loc21));
+														loc58.customColor1 = loc55;
+														loc58.customColor2 = loc56;
+														loc58.customColor3 = loc57;
+														loc52.mount = loc58;
+													}
+												}
+												else
+												{
+													var loc59 = Number(loc10[25]);
+													if(!_global.isNaN(loc59))
+													{
+														loc52.mount = new dofus.datacenter.Mount(loc59,Number(loc21));
+													}
+												}
+											}
+											else
+											{
+												loc51 = loc10[8];
+												loc52.color1 = loc10[9];
+												loc52.color2 = loc10[10];
+												loc52.color3 = loc10[11];
+												loc52.accessories = loc10[12];
+												loc52.aura = loc10[13];
+												loc52.emote = loc10[14];
+												loc52.emoteTimer = loc10[15];
+												loc52.guildName = loc10[16];
+												loc52.emblem = loc10[17];
+												loc52.restrictions = loc10[18];
+												if(loc10[19].indexOf(",") != -1)
+												{
+													var loc60 = loc10[19].split(",");
+													var loc61 = Number(loc60[0]);
+													var loc62 = _global.parseInt(loc60[1],16);
+													var loc63 = _global.parseInt(loc60[2],16);
+													var loc64 = _global.parseInt(loc60[3],16);
+													if(loc62 == -1 || _global.isNaN(loc62))
+													{
+														loc62 = this.api.datacenter.Player.color1;
+													}
+													if(loc63 == -1 || _global.isNaN(loc63))
+													{
+														loc63 = this.api.datacenter.Player.color2;
+													}
+													if(loc64 == -1 || _global.isNaN(loc64))
+													{
+														loc64 = this.api.datacenter.Player.color3;
+													}
+													if(!_global.isNaN(loc61))
+													{
+														var loc65 = new dofus.datacenter.Mount(loc61,Number(loc21));
+														loc65.customColor1 = loc62;
+														loc65.customColor2 = loc63;
+														loc65.customColor3 = loc64;
+														loc52.mount = loc65;
+													}
+												}
+												else
+												{
+													var loc66 = Number(loc10[19]);
+													if(!_global.isNaN(loc66))
+													{
+														loc52.mount = new dofus.datacenter.Mount(loc66,Number(loc21));
+													}
+												}
+											}
+											if(loc7)
+											{
+												var loc32 = [loc14,this.createTransitionEffect(),loc11,10];
+											}
+											var loc67 = loc51.split(",");
+											loc52.alignment = new dofus.datacenter.(Number(loc67[0]),Number(loc67[1]));
+											loc52.rank = new dofus.datacenter.Rank(Number(loc67[2]));
+											loc52.alignment.fallenAngelDemon = loc67[4] == 1;
+											if(loc67.length > 3 && loc14 != this.api.datacenter.Player.ID)
+											{
+												if(this.api.lang.getAlignmentCanViewPvpGain(this.api.datacenter.Player.alignment.index,Number(loc52.alignment.index)))
+												{
+													var loc68 = Number(loc67[3]) - _global.parseInt(loc14);
+													var loc69 = this.api.lang.getConfigText("PVP_VIEW_BONUS_MINOR_LIMIT");
+													var loc70 = this.api.lang.getConfigText("PVP_VIEW_BONUS_MINOR_LIMIT_PRC");
+													var loc71 = this.api.lang.getConfigText("PVP_VIEW_BONUS_MAJOR_LIMIT");
+													var loc72 = this.api.lang.getConfigText("PVP_VIEW_BONUS_MAJOR_LIMIT_PRC");
+													var loc73 = 0;
+													if(this.api.datacenter.Player.Level * (1 - loc70 / 100) > loc68)
+													{
+														loc73 = -1;
+													}
+													if(this.api.datacenter.Player.Level - loc68 > loc69)
+													{
+														loc73 = -1;
+													}
+													if(this.api.datacenter.Player.Level * (1 + loc72 / 100) < loc68)
+													{
+														loc73 = 1;
+													}
+													if(this.api.datacenter.Player.Level - loc68 < loc71)
+													{
+														loc73 = 1;
+													}
+													loc52.pvpGain = loc73;
+												}
+											}
+											if(!this.api.datacenter.Game.isFight && (_global.parseInt(loc14,10) != this.api.datacenter.Player.ID && ((this.api.datacenter.Player.alignment.index == 1 || this.api.datacenter.Player.alignment.index == 2) && ((loc52.alignment.index == 1 || loc52.alignment.index == 2) && (loc52.alignment.index != this.api.datacenter.Player.alignment.index && (loc52.rank.value && this.api.datacenter.Map.bCanAttack))))))
+											{
+												if(this.api.datacenter.Player.rank.value > loc52.rank.value)
+												{
+													this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_NEW_ENEMY_WEAK);
+												}
+												if(this.api.datacenter.Player.rank.value < loc52.rank.value)
+												{
+													this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_NEW_ENEMY_STRONG);
+												}
+											}
+											var loc74 = this.sliptGfxData(loc17);
+											var loc75 = loc74.gfx;
+											this.splitGfxForScale(loc75[0],loc52);
+											loc52.title = loc25;
+											loc31 = this.api.kernel.CharactersManager.createCharacter(loc14,loc15,loc52);
+											(dofus.datacenter.Character)loc31.isClear = false;
+											loc31.allowGhostMode = loc19;
+											var loc76 = loc14;
+											var loc77 = loc74.shape != "circle"?2:0;
+											var loc78 = 1;
+											while(loc78 < loc75.length)
+											{
+												if(loc75[loc78] != "")
+												{
+													var loc79 = loc14 + "_" + loc78;
+													var loc80 = new Object();
+													this.splitGfxForScale(loc75[loc78],loc80);
+													var loc81 = new ank.battlefield.datacenter.(loc79,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc80.gfxID + ".swf");
+													loc81.allDirections = false;
+													this.api.gfx.addLinkedSprite(loc79,loc76,loc77,loc81);
+													if(!_global.isNaN(loc80.scaleX))
+													{
+														this.api.gfx.setSpriteScale(loc81.id,loc80.scaleX,loc80.scaleY);
+													}
+													switch(loc74.shape)
+													{
+														case "circle":
+															loc77 = loc78;
+															break;
+														case "line":
+															loc76 = loc79;
+															loc77 = 2;
+													}
+												}
+												loc78 = loc78 + 1;
+											}
+									}
+							}
+					}
+					break loop2;
+				}
+				var loc82 = loc6.substr(1);
+				var loc83 = this.api.datacenter.Sprites.getItemAt(loc82);
+				if(!this.api.datacenter.Game.isRunning && this.api.datacenter.Game.isLoggingMapDisconnections)
+				{
+					var loc84 = loc83.name;
+					var loc85 = this._aGameSpriteLeftHistory[loc82];
+					if(!_global.isNaN(loc85) && getTimer() - loc85 < 300)
+					{
+						this.api.kernel.showMessage(undefined,this.api.kernel.DebugManager.getTimestamp() + " (Map) " + this.api.kernel.ChatManager.getLinkName(loc84) + " s\'est déconnecté (" + loc82 + ")","ADMIN_CHAT");
+					}
+					this._aGameSpriteLeftHistory[loc82] = getTimer();
+				}
+				this.onSpriteMovement(loc8,loc83);
+			}
+		}
+	}
+	function onCellData(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = 0;
+		while(loc4 < loc3.length)
+		{
+			var loc5 = loc3[loc4].split(";");
+			var loc6 = Number(loc5[0]);
+			var loc7 = loc5[1].substring(0,10);
+			var loc8 = loc5[1].substr(10);
+			var loc9 = loc5[2] != "0"?1:0;
+			this.api.gfx.updateCell(loc6,loc7,loc8,loc9);
+			loc4 = loc4 + 1;
+		}
+	}
+	function onZoneData(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = 0;
+		while(loc4 < loc3.length)
+		{
+			var loc5 = loc3[loc4];
+			var loc6 = loc5.charAt(0) != "+"?false:true;
+			var loc7 = loc5.substr(1).split(";");
+			var loc8 = Number(loc7[0]);
+			var loc9 = Number(loc7[1]);
+			var loc10 = loc7[2];
+			if(loc6)
+			{
+				this.api.gfx.drawZone(loc8,0,loc9,loc10,dofus.Constants.ZONE_COLOR[loc10]);
+			}
+			else
+			{
+				this.api.gfx.clearZone(loc8,loc9,loc10);
+			}
+			loc4 = loc4 + 1;
+		}
+	}
+	function onCellObject(loc2)
+	{
+		var loc3 = loc2.charAt(0) == "+";
+		var loc4 = loc2.substr(1).split("|");
+		var loc5 = 0;
+		while(loc5 < loc4.length)
+		{
+			var loc6 = loc4[loc5].split(";");
+			var loc7 = Number(loc6[0]);
+			var loc8 = _global.parseInt(loc6[1]);
+			if(loc3)
+			{
+				var loc9 = new dofus.datacenter.(0,loc8);
+				var loc10 = Number(loc6[2]);
+				switch(loc10)
+				{
+					case 0:
+						this.api.gfx.updateCellObjectExternalWithExternalClip(loc7,loc9.iconFile,1,true,true,loc9);
+						break;
+					case 1:
+						if(this.api.gfx.mapHandler.getCellData(loc7).layerObjectExternalData.unicID != loc8)
+						{
+							this.api.gfx.updateCellObjectExternalWithExternalClip(loc7,loc9.iconFile,1,true,false,loc9);
+						}
+						else
+						{
+							loc9 = this.api.gfx.mapHandler.getCellData(loc7).layerObjectExternalData;
+						}
+						loc9.durability = Number(loc6[3]);
+						loc9.durabilityMax = Number(loc6[4]);
+				}
+			}
+			else
+			{
+				this.api.gfx.initializeCell(loc7,1);
+			}
+			loc5 = loc5 + 1;
+		}
+	}
+	function onFrameObject2(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = 0;
+		while(loc4 < loc3.length)
+		{
+			var loc5 = loc3[loc4].split(";");
+			var loc6 = Number(loc5[0]);
+			var loc7 = loc5[1];
+			var loc8 = loc5[2] != undefined;
+			var loc9 = loc5[2] != "1"?false:true;
+			if(loc8)
+			{
+				this.api.gfx.setObject2Interactive(loc6,loc9,2);
+			}
+			this.api.gfx.setObject2Frame(loc6,loc7);
+			loc4 = loc4 + 1;
+		}
+	}
+	function onFrameObjectExternal(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = 0;
+		while(loc4 < loc3.length)
+		{
+			var loc5 = loc3[loc4].split(";");
+			var loc6 = Number(loc5[0]);
+			var loc7 = Number(loc5[1]);
+			this.api.gfx.setObjectExternalFrame(loc6,loc7);
+			loc4 = loc4 + 1;
+		}
+	}
+	function onEffect(loc2)
+	{
+		var loc3 = loc2.split(";");
+		var loc4 = loc3[0];
+		var loc5 = loc3[1].split(",");
+		var loc6 = loc3[2];
+		var loc7 = loc3[3];
+		var loc8 = loc3[4];
+		var loc9 = loc3[5];
+		var loc10 = Number(loc3[6]);
+		var loc11 = loc3[7];
+		var loc12 = 0;
+		while(loc12 < loc5.length)
+		{
+			var loc13 = loc5[loc12];
+			if(loc13 == this.api.datacenter.Game.currentPlayerID && loc10 != -1)
+			{
+				loc10 = loc10 + 1;
+			}
+			var loc14 = new dofus.datacenter.(Number(loc4),Number(loc6),Number(loc7),Number(loc8),loc9,Number(loc10),Number(loc11));
+			var loc15 = this.api.datacenter.Sprites.getItemAt(loc13);
+			loc15.EffectsManager.addEffect(loc14);
+			loc12 = loc12 + 1;
+		}
+	}
+	function onClearAllEffect(loc2)
+	{
+		var loc3 = this.api.datacenter.Sprites;
+		for(var a in loc3)
+		{
+			loc3[a].EffectsManager.terminateAllEffects();
+		}
+	}
+	function onChallenge(loc2)
+	{
+		var loc3 = loc2.charAt(0) == "+";
+		var loc4 = loc2.substr(1).split("|");
+		var loc5 = loc4.shift().split(";");
+		var loc6 = Number(loc5[0]);
+		var loc7 = Number(loc5[1]);
+		var loc8 = (Math.cos(loc6) + 1) * 8388607;
+		if(loc3)
+		{
+			var loc9 = new dofus.datacenter.Challenge(loc6,loc7);
+			this.api.datacenter.Challenges.addItemAt(loc6,loc9);
+			var loc10 = 0;
+			while(loc10 < loc4.length)
+			{
+				var loc11 = loc4[loc10].split(";");
+				var loc12 = loc11[0];
+				var loc13 = Number(loc11[1]);
+				var loc14 = Number(loc11[2]);
+				var loc15 = Number(loc11[3]);
+				var loc16 = dofus.Constants.getTeamFileFromType(loc14,loc15);
+				var loc17 = new dofus.datacenter.Team(loc12,ank.battlefield.mc.Sprite,loc16,loc13,loc8,loc14,loc15);
+				loc9.addTeam(loc17);
+				this.api.gfx.addSprite(loc17.id,loc17);
+				loc10 = loc10 + 1;
+			}
+		}
+		else
+		{
+			var loc18 = this.api.datacenter.Challenges.getItemAt(loc6).teams;
+			for(var k in loc18)
+			{
+				var loc19 = loc18[k];
+				this.api.gfx.removeSprite(loc19.id);
+			}
+			this.api.datacenter.Challenges.removeItemAt(loc6);
+		}
+	}
+	function onTeam(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = Number(loc3.shift());
+		var loc5 = this.api.datacenter.Sprites.getItemAt(loc4);
+		var loc6 = 0;
+		while(loc6 < loc3.length)
+		{
+			var loc7 = loc3[loc6].split(";");
+			var loc8 = loc7[0].charAt(0) == "+";
+			var loc9 = loc7[0].substr(1);
+			var loc10 = loc7[1];
+			var loc11 = loc7[2];
+			var loc12 = loc10.split(",");
+			var loc13 = Number(loc10);
+			if(loc12.length > 1)
+			{
+				loc10 = this.api.lang.getFullNameText(loc12);
+			}
+			else if(!_global.isNaN(loc13))
+			{
+				loc10 = this.api.lang.getMonstersText(loc13).n;
+			}
+			if(loc8)
+			{
+				var loc14 = new Object();
+				loc14.id = loc9;
+				loc14.name = loc10;
+				loc14.level = loc11;
+				loc5.addPlayer(loc14);
+			}
+			else
+			{
+				loc5.removePlayer(loc9);
+			}
+			loc6 = loc6 + 1;
+		}
+	}
+	function onFightOption(loc2)
+	{
+		var loc3 = loc2.substr(2);
+		var loc4 = this.api.datacenter.Sprites.getItemAt(loc3);
+		if(loc4 != undefined)
+		{
+			var loc5 = loc2.charAt(0) == "+";
+			var loc6 = loc2.charAt(1);
+			switch(loc6)
+			{
+				case "H":
+					loc4.options[dofus.datacenter.Team.OPT_NEED_HELP] = loc5;
+					break;
+				case "S":
+					loc4.options[dofus.datacenter.Team.OPT_BLOCK_SPECTATOR] = loc5;
+					break;
+				case "A":
+					loc4.options[dofus.datacenter.Team.OPT_BLOCK_JOINER] = loc5;
+					break;
+				default:
+					if(loc0 !== "P")
+					{
+						break;
+					}
+					loc4.options[dofus.datacenter.Team.OPT_BLOCK_JOINER_EXCEPT_PARTY_MEMBER] = loc5;
+					break;
+			}
+			this.api.gfx.addSpriteOverHeadItem(loc3,"FightOptions",dofus.graphics.battlefield.FightOptionsOverHead,[loc4],undefined);
+		}
+	}
+	function onLeave()
+	{
+		this.api.datacenter.Game.currentPlayerID = undefined;
+		this.api.ui.getUIComponent("Banner").hideRightPanel(true);
+		this.api.ui.unloadUIComponent("Timeline");
+		this.api.ui.unloadUIComponent("StringCourse");
+		this.api.ui.unloadUIComponent("PlayerInfos");
+		this.api.ui.unloadUIComponent("SpriteInfos");
+		this.aks.GameActions.onActionsFinish(String(this.api.datacenter.Player.ID));
+		this.api.datacenter.Player.reset();
+		var loc2 = (dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge");
+		loc2.cleanChallenge();
+		this.create();
+	}
+	function onEnd(loc2)
+	{
+		if(this.api.kernel.MapsServersManager.isBuilding)
+		{
+			this.addToQueue({object:this,method:this.onEnd,params:[loc2]});
+			return undefined;
+		}
+		this._bIsBusy = true;
+		var loc3 = (dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge");
+		this.api.kernel.StreamingDisplayManager.onFightEnd();
+		var loc4 = {winners:[],loosers:[],collectors:[],challenges:loc3.challenges.clone()};
+		this.api.datacenter.Game.results = loc4;
+		loc3.cleanChallenge();
+		var loc5 = loc2.split("|");
+		var loc6 = -1;
+		if(!_global.isNaN(Number(loc5[0])))
+		{
+			loc4.duration = Number(loc5[0]);
+		}
+		else
+		{
+			var loc7 = loc5[0].split(";");
+			loc4.duration = Number(loc7[0]);
+			loc6 = Number(loc7[1]);
+		}
+		this.api.datacenter.Basics.aks_game_end_bonus = loc6;
+		var loc8 = Number(loc5[1]);
+		var loc9 = Number(loc5[2]);
+		loc4.fightType = loc9;
+		var loc10 = new ank.utils.();
+		var loc11 = 0;
+		this.parsePlayerData(loc4,3,loc8,loc5,loc9,loc11,loc10);
+	}
+	function parsePlayerData(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	{
+		var loc9 = loc3;
+		var loc10 = loc5[loc9].split(";");
+		var loc11 = new Object();
+		if(Number(loc10[0]) != 6)
+		{
+			loc11.id = Number(loc10[1]);
+			if(loc11.id == this.api.datacenter.Player.ID)
+			{
+				if(Number(loc10[0]) == 0)
+				{
+					this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_FIGHT_LOST);
+				}
+				else
+				{
+					this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_FIGHT_WON);
+				}
+			}
+			var loc13 = this.api.kernel.CharactersManager.getNameFromData(loc10[2]);
+			loc11.name = loc13.name;
+			loc11.type = loc13.type;
+			loc11.level = Number(loc10[3]);
+			loc11.bDead = loc10[4] != "1"?false:true;
+			switch(loc6)
+			{
+				case 0:
+					loc11.minxp = Number(loc10[5]);
+					loc11.xp = Number(loc10[6]);
+					loc11.maxxp = Number(loc10[7]);
+					loc11.winxp = Number(loc10[8]);
+					loc11.guildxp = Number(loc10[9]);
+					loc11.mountxp = Number(loc10[10]);
+					var loc12 = loc10[11].split(",");
+					if(loc11.id == this.api.datacenter.Player.ID && loc12.length > 10)
+					{
+						this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
+					}
+					loc11.kama = loc10[12];
+					break;
+				case 1:
+					loc11.minhonour = Number(loc10[5]);
+					loc11.honour = Number(loc10[6]);
+					loc11.maxhonour = Number(loc10[7]);
+					loc11.winhonour = Number(loc10[8]);
+					loc11.rank = Number(loc10[9]);
+					loc11.disgrace = Number(loc10[10]);
+					loc11.windisgrace = Number(loc10[11]);
+					loc11.maxdisgrace = this.api.lang.getMaxDisgracePoints();
+					loc11.mindisgrace = 0;
+					loc12 = loc10[12].split(",");
+					if(loc11.id == this.api.datacenter.Player.ID && loc12.length > 10)
+					{
+						this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
+					}
+					loc11.kama = loc10[13];
+					loc11.minxp = Number(loc10[14]);
+					loc11.xp = Number(loc10[15]);
+					loc11.maxxp = Number(loc10[16]);
+					loc11.winxp = Number(loc10[17]);
+			}
+		}
+		else
+		{
+			loc12 = loc10[1].split(",");
+			loc11.kama = loc10[2];
+			loc7 = loc7 + Number(loc11.kama);
+		}
+		loc11.items = new Array();
+		var loc14 = loc12.length;
+		while((loc14 = loc14 - 1) >= 0)
+		{
+			var loc15 = loc12[loc14].split("~");
+			var loc16 = Number(loc15[0]);
+			var loc17 = Number(loc15[1]);
+			if(_global.isNaN(loc16))
+			{
+				break;
+			}
+			if(loc16 != 0)
+			{
+				var loc18 = new dofus.datacenter.(0,loc16,loc17);
+				loc11.items.push(loc18);
+			}
+		}
+		switch(Number(loc10[0]))
+		{
+			case 0:
+				loc2.loosers.push(loc11);
+				break;
+			case 2:
+				loc2.winners.push(loc11);
+				break;
+			case 5:
+				loc2.collectors.push(loc11);
+				break;
+			default:
+				if(loc0 !== 6)
+				{
+					break;
+				}
+				loc8 = loc8.concat(loc11.items);
+				break;
+		}
+		loc9 = loc9 + 1;
+		if(loc9 < loc5.length)
+		{
+			this.addToQueue({object:this,method:this.parsePlayerData,params:[loc2,loc9,loc4,loc5,loc6,loc7,loc8]});
+		}
+		else
+		{
+			this.onParseItemEnd(loc4,loc2,loc8,loc7);
+		}
+	}
+	function onParseItemEnd(loc2, loc3, loc4, loc5)
+	{
+		if(loc4.length)
+		{
+			var loc6 = Math.ceil(loc4.length / loc3.winners.length);
+			var loc7 = 0;
+			while(loc7 < loc3.winners.length)
+			{
+				var loc8 = loc4.length;
+				loc3.winners[loc7].kama = Math.ceil(loc5 / loc6);
+				if(loc7 == loc3.winners.length - 1)
+				{
+					loc6 = loc8;
+				}
+				var loc9 = loc8 - loc6;
+				while(loc9 < loc8)
+				{
+					loc3.winners[loc7].items.push(loc4.pop());
+					loc9 = loc9 + 1;
+				}
+				loc7 = loc7 + 1;
+			}
+		}
+		if(loc2 == this.api.datacenter.Player.ID)
+		{
+			this.aks.GameActions.onActionsFinish(String(loc2));
+		}
+		this.api.datacenter.Game.isRunning = false;
+		var loc10 = this.api.datacenter.Sprites.getItemAt(loc2).sequencer;
+		this._bIsBusy = false;
+		if(loc10 != undefined)
+		{
+			loc10.addAction(false,this.api.kernel.GameManager,this.api.kernel.GameManager.terminateFight);
+			loc10.execute(false);
+		}
+		else
+		{
+			ank.utils.Logger.err("[AKS.Game.onEnd] Impossible de trouver le sequencer");
+			ank.utils.Timer.setTimer(this,"game",this.api.kernel.GameManager,this.api.kernel.GameManager.terminateFight,500);
+		}
+		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_ENDFIGHT);
+	}
+	function onExtraClip(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = loc3[0];
+		var loc5 = loc3[1].split(";");
+		var loc6 = dofus.Constants.EXTRA_PATH + loc4 + ".swf";
+		var loc7 = loc4 == "-";
+		for(var k in loc5)
+		{
+			var loc8 = loc5[k];
+			if(loc7)
+			{
+				this.api.gfx.removeSpriteExtraClip(loc8,false);
+			}
+			else
+			{
+				this.api.gfx.addSpriteExtraClip(loc8,loc6,undefined,false);
+			}
+		}
+	}
+	function onPVP(loc2, loc3)
+	{
+		if(!loc3)
+		{
+			var loc4 = Number(loc2);
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("ASK_DISABLE_PVP",[loc4]),"CAUTION_YESNO",{name:"DisabledPVP",listener:this});
+		}
+		else
+		{
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("ASK_ENABLED_PVP"),"CAUTION_YESNO",{name:"EnabledPVP",listener:this});
+		}
+	}
+	function onGameOver()
+	{
+		this.api.network.softDisconnect();
+		this.api.ui.loadUIComponent("GameOver","GameOver",undefined,{bAlwaysOnTop:true});
+	}
+	function onCreateSolo()
+	{
+		this.api.datacenter.Player.InteractionsManager.setState(false);
+		this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE_OVER_OUT);
+		this.api.ui.removeCursor();
+		this.api.ui.getUIComponent("Banner").shortcuts.setCurrentTab("Items");
+		this.api.datacenter.Basics.gfx_isSpritesHidden = false;
+		this.api.gfx.spriteHandler.unmaskAllSprites();
+		if(this.api.ui.getUIComponent("Banner") == undefined)
+		{
+			this.api.kernel.OptionsManager.applyAllOptions();
+			this.api.ui.loadUIComponent("Banner","Banner",{data:this.api.datacenter.Player},{bAlwaysOnTop:true});
+			this.api.ui.setScreenSize(742,432);
+		}
+		else
+		{
+			var loc2 = this.api.ui.getUIComponent("Banner");
+			loc2.showPoints(false);
+			loc2.showNextTurnButton(false);
+			loc2.showGiveUpButton(false);
+			this.api.ui.unloadUIComponent("FightOptionButtons");
+			this.api.ui.unloadUIComponent("ChallengeMenu");
+		}
+		this.api.gfx.cleanMap(2);
+	}
+	function onSpriteMovement(loc2, loc3, loc4)
+	{
+		if(oSprite instanceof dofus.datacenter.Character)
+		{
+			this.api.datacenter.Game.playerCount = this.api.datacenter.Game.playerCount + (!loc2?-1:1);
+		}
+		if(loc2)
+		{
+			if(loc4 != undefined)
+			{
+				this.api.gfx.spriteLaunchVisualEffect.apply(this.api.gfx,loc4);
+			}
+			this.api.gfx.addSprite(oSprite.id);
+			if(!_global.isNaN(oSprite.scaleX))
+			{
+				this.api.gfx.setSpriteScale(oSprite.id,oSprite.scaleX,oSprite.scaleY);
+			}
+			if(oSprite instanceof dofus.datacenter.OfflineCharacter)
+			{
+				oSprite.mc.addExtraClip(dofus.Constants.EXTRA_PATH + oSprite.offlineType + ".swf",undefined,true);
+				return undefined;
+			}
+			if(oSprite instanceof dofus.datacenter.NonPlayableCharacter)
+			{
+				if(!_global.isNaN(oSprite.extraClipID))
+				{
+					this.api.gfx.addSpriteExtraClip(oSprite.id,dofus.Constants.EXTRA_PATH + oSprite.extraClipID + ".swf",undefined,false);
+					return undefined;
+				}
+			}
+			if(this.api.datacenter.Game.isRunning)
+			{
+				this.api.gfx.addSpriteExtraClip(oSprite.id,dofus.Constants.CIRCLE_FILE,dofus.Constants.TEAMS_COLOR[oSprite.Team]);
+			}
+			else if(oSprite.Aura != 0 && (oSprite.Aura != undefined && this.api.kernel.OptionsManager.getOption("Aura")))
+			{
+				this.api.gfx.addSpriteExtraClip(oSprite.id,dofus.Constants.AURA_PATH + oSprite.Aura + ".swf",undefined,true);
+			}
+			if(oSprite.id == this.api.datacenter.Player.ID)
+			{
+				this.api.ui.getUIComponent("Banner").updateLocalPlayer();
+				if(oSprite instanceof dofus.datacenter.Character)
+				{
+					if(oSprite.name != this.api.datacenter.Player.Name)
+					{
+						this.api.datacenter.Player.Name = oSprite.name;
+					}
+				}
+			}
+			else if(this.api.gfx.spriteHandler.isPlayerSpritesHidden && (oSprite instanceof dofus.datacenter.Character || (oSprite instanceof dofus.datacenter.PlayerShop || oSprite instanceof dofus.datacenter.MonsterGroup)))
+			{
+				this.api.gfx.spriteHandler.hidePlayerSprites();
+			}
+			else if(this.api.gfx.spriteHandler.isShowingMonstersTooltip && oSprite instanceof dofus.datacenter.MonsterGroup)
+			{
+				oSprite.mc._rollOver();
+			}
+		}
+		else if(!this.api.datacenter.Game.isRunning)
+		{
+			this.api.gfx.removeSprite(oSprite.id);
+		}
+		else
+		{
+			var loc5 = oSprite.sequencer;
+			var loc6 = oSprite.mc;
+			loc5.addAction(false,this.api.kernel,this.api.kernel.showMessage,[undefined,this.api.lang.getText("LEAVE_GAME",[oSprite.name]),"INFO_CHAT"]);
+			loc5.addAction(false,this.api.ui.getUIComponent("Timeline"),this.api.ui.getUIComponent("Timeline").hideItem,[oSprite.id]);
+			loc5.addAction(true,loc6,loc6.setAnim,["Die"],1500,true);
+			if(oSprite.hasCarriedChild())
+			{
+				this.api.gfx.uncarriedSprite(oSprite.carriedChild.id,oSprite.cellNum,false,loc5);
+				loc5.addAction(false,this.api.gfx,this.api.gfx.addSpriteExtraClip,[oSprite.carriedChild.id,dofus.Constants.CIRCLE_FILE,dofus.Constants.TEAMS_COLOR[oSprite.carriedChild.Team]]);
+			}
+			loc5.addAction(false,loc6,loc6.clear);
+			loc5.execute();
+			if(this.api.datacenter.Game.currentPlayerID == oSprite.id)
+			{
+				this.api.ui.getUIComponent("Banner").stopTimer();
+				this.api.ui.getUIComponent("Timeline").stopChrono();
+			}
+		}
+		this.api.kernel.GameManager.applyCreatureMode();
+	}
+	function onFlag(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = loc3[0];
+		var loc5 = Number(loc3[1]);
+		var loc6 = this.api.datacenter.Sprites.getItemAt(loc4);
+		var loc7 = new ank.battlefield.datacenter.
+();
+		loc7.file = dofus.Constants.CLIPS_PATH + "flag.swf";
+		loc7.bInFrontOfSprite = true;
+		loc7.bTryToBypassContainerColor = true;
+		this.api.kernel.showMessage(undefined,this.api.lang.getText("PLAYER_SET_FLAG",[loc6.name,loc5]),"INFO_CHAT");
+		this.api.gfx.spriteLaunchVisualEffect(loc4,loc7,loc5,11,undefined,undefined,undefined,true);
+	}
+	function onFightChallenge(loc2)
+	{
+		var loc3 = loc2.split(";");
+		if(!this.api.ui.getUIComponent("FightChallenge"))
+		{
+			this.api.ui.loadUIComponent("FightChallenge","FightChallenge");
+		}
+		var loc4 = new dofus.datacenter.(_global.parseInt(loc3[0]),loc3[1] == "1",_global.parseInt(loc3[2]),_global.parseInt(loc3[3]),_global.parseInt(loc3[4]),_global.parseInt(loc3[5]),_global.parseInt(loc3[6]));
+		(dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge").addChallenge(loc4);
+	}
+	function onFightChallengeUpdate(loc2, loc3)
+	{
+		var loc4 = _global.parseInt(loc2);
+		(dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge").updateChallenge(loc4,loc3);
+		var loc5 = !loc3?this.api.lang.getText("FIGHT_CHALLENGE_FAILED"):this.api.lang.getText("FIGHT_CHALLENGE_DONE");
+		loc5 = loc5 + (" : " + this.api.lang.getFightChallenge(loc4).n);
+		this.api.kernel.showMessage(undefined,loc5,"INFO_CHAT");
+	}
+	function sliptGfxData(loc2)
+	{
+		if(loc2.indexOf(",") != -1)
+		{
+			var loc3 = loc2.split(",");
+			return {shape:"circle",gfx:loc3};
+		}
+		if(loc2.indexOf(":") != -1)
+		{
+			var loc4 = loc2.split(":");
+			return {shape:"line",gfx:loc4};
+		}
+		return {shape:"none",gfx:[loc2]};
+	}
+	function createTransitionEffect()
+	{
+		var loc2 = new ank.battlefield.datacenter.
+();
+		loc2.id = 5;
+		loc2.file = dofus.Constants.SPELLS_PATH + "transition.swf";
+		loc2.level = 5;
+		loc2.params = [];
+		loc2.bInFrontOfSprite = true;
+		loc2.bTryToBypassContainerColor = false;
+		return loc2;
+	}
+	function splitGfxForScale(loc2, loc3)
+	{
+		var loc4 = loc2.split("^");
+		var loc5 = loc4.length != 2?loc2:loc4[0];
+		var loc6 = 100;
+		var loc7 = 100;
+		if(loc4.length == 2)
+		{
+			var loc8 = loc4[1];
+			if(_global.isNaN(Number(loc8)))
+			{
+				var loc9 = loc8.split("x");
+				loc6 = loc9.length != 2?100:Number(loc9[0]);
+				loc7 = loc9.length != 2?100:Number(loc9[1]);
+			}
+			else
+			{
+				loc6 = loc7 = Number(loc8);
+			}
+		}
+		loc3.gfxID = loc5;
+		loc3.scaleX = loc6;
+		loc3.scaleY = loc7;
+	}
+	function cancel(loc2)
+	{
+		var loc0 = loc2.target._name;
+	}
+	function yes(loc2)
+	{
+		switch(loc2.target._name)
+		{
+			case "AskYesNoEnabledPVP":
+				this.api.network.Game.enabledPVPMode(true);
+				break;
+			case "AskYesNoDisabledPVP":
+				this.api.network.Game.enabledPVPMode(false);
+		}
+	}
+	function no(loc2)
+	{
+		var loc0 = loc2.target._name;
+	}
 }

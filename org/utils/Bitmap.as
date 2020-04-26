@@ -1,23 +1,23 @@
-class org.utils.Bitmap
+class eval("\x1e\x19\x13").utils.Bitmap
 {
-   function Bitmap()
-   {
-   }
-   static function loadBitmapSmoothed(url, target)
-   {
-      var _loc4_ = target.createEmptyMovieClip("bmc",target.getNextHighestDepth());
-      var _loc5_ = new Object();
-      _loc5_.tmc = target;
-      _loc5_.onLoadInit = function(mc)
-      {
-         mc._visible = false;
-         mc.forceSmoothing = true;
-         var _loc3_ = new flash.display.BitmapData(mc._width,mc._height,true);
-         this.tmc.attachBitmap(_loc3_,this.tmc.getNextHighestDepth(),"auto",true);
-         _loc3_.draw(mc);
-      };
-      var _loc6_ = new MovieClipLoader();
-      _loc6_.addListener(_loc5_);
-      _loc6_.loadClip(url,_loc4_);
-   }
+	function Bitmap()
+	{
+	}
+	static function loadBitmapSmoothed(loc2, loc3)
+	{
+		var loc4 = loc3.createEmptyMovieClip("bmc",loc3.getNextHighestDepth());
+		var loc5 = new Object();
+		loc5.tmc = loc3;
+		loc5.onLoadInit = function(loc2)
+		{
+			loc2._visible = false;
+			loc2.forceSmoothing = true;
+			var loc3 = new flash.display.BitmapData(loc2._width,loc2._height,true);
+			this.tmc.attachBitmap(loc3,this.tmc.getNextHighestDepth(),"auto",true);
+			loc3.draw(loc2);
+		};
+		var loc6 = new MovieClipLoader();
+		loc6.addListener(loc5);
+		loc6.loadClip(loc2,loc4);
+	}
 }

@@ -1,94 +1,105 @@
 class ank.utils.CyclicTimer extends Object
 {
-   static var _aFunctions = new Array();
-   static var _nInterval = 40;
-   static var _bPlaying = false;
-   static var _oCyclicTimer = new ank.utils.CyclicTimer();
-   function CyclicTimer()
-   {
-      super();
-   }
-   static function __get__interval()
-   {
-      return ank.utils.CyclicTimer._nInterval;
-   }
-   static function addFunction(oRef, oObjFn, fFunction, aParams, oObjFnEnd, fFunctionEnd, aParamsEnd)
-   {
-      var _loc9_ = new Object();
-      _loc9_.objRef = oRef;
-      _loc9_.objFn = oObjFn;
-      _loc9_.fn = fFunction;
-      _loc9_.params = aParams;
-      _loc9_.objFnEnd = oObjFnEnd;
-      _loc9_.fnEnd = fFunctionEnd;
-      _loc9_.paramsEnd = aParamsEnd;
-      ank.utils.CyclicTimer._aFunctions.push(_loc9_);
-      ank.utils.CyclicTimer.play();
-   }
-   static function removeFunction(oRef)
-   {
-      var _loc3_ = ank.utils.CyclicTimer._aFunctions.length - 1;
-      while(_loc3_ >= 0)
-      {
-         var _loc4_ = ank.utils.CyclicTimer._aFunctions[_loc3_];
-         if(oRef == _loc4_.objRef)
-         {
-            ank.utils.CyclicTimer._aFunctions.splice(_loc3_,1);
-         }
-         _loc3_ = _loc3_ - 1;
-      }
-   }
-   static function clear()
-   {
-      ank.utils.CyclicTimer.stop();
-      ank.utils.CyclicTimer._aFunctions = new Array();
-   }
-   static function play()
-   {
-      if(ank.utils.CyclicTimer._bPlaying)
-      {
-         return undefined;
-      }
-      ank.utils.CyclicTimer._bPlaying = true;
-      ank.utils.CyclicTimer.doCycle();
-   }
-   static function stop()
-   {
-      ank.utils.CyclicTimer._bPlaying = false;
-   }
-   static function getInstance()
-   {
-      return ank.utils.CyclicTimer._oCyclicTimer;
-   }
-   static function doCycle()
-   {
-      var _loc2_ = ank.utils.CyclicTimer._aFunctions.length - 1;
-      while(_loc2_ >= 0)
-      {
-         var _loc3_ = ank.utils.CyclicTimer._aFunctions[_loc2_];
-         if(!_loc3_.fn.apply(_loc3_.objFn,_loc3_.params))
-         {
-            ank.utils.CyclicTimer.onFunctionEnd(_loc2_,_loc3_);
-         }
-         _loc2_ = _loc2_ - 1;
-      }
-      if(ank.utils.CyclicTimer._aFunctions.length != 0)
-      {
-         var _loc4_ = ank.utils.CyclicTimer._nInterval;
-         if(_global.doubleFramerate)
-         {
-            _loc4_ = _loc4_ / 2;
-         }
-         ank.utils.Timer.setTimer(ank.utils.CyclicTimer._oCyclicTimer,"cyclicTimer",ank.utils.CyclicTimer,ank.utils.CyclicTimer.doCycle,_loc4_);
-      }
-      else
-      {
-         ank.utils.CyclicTimer.stop();
-      }
-   }
-   static function onFunctionEnd(nIndex, oFunction)
-   {
-      oFunction.fnEnd.apply(oFunction.objFnEnd,oFunction.paramsEnd);
-      ank.utils.CyclicTimer._aFunctions.splice(nIndex,1);
-   }
+	static var _aFunctions = new Array();
+	static var _nInterval = 40;
+	static var _bPlaying = false;
+	static var _api = _global.API;
+	static var _oCyclicTimer = new ank.utils.();
+	function CyclicTimer()
+	{
+		super();
+	}
+	static function __get__interval()
+	{
+		return ank.utils.CyclicTimer._nInterval;
+	}
+	static function addFunction(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	{
+		var loc9 = new Object();
+		loc9.objRef = loc2;
+		loc9.objFn = loc3;
+		loc9.fn = loc4;
+		loc9.params = loc5;
+		loc9.objFnEnd = loc6;
+		loc9.fnEnd = loc7;
+		loc9.paramsEnd = loc8;
+		ank.utils.CyclicTimer._aFunctions.push(loc9);
+		ank.utils.CyclicTimer.play();
+	}
+	static function removeFunction(loc2)
+	{
+		var loc3 = ank.utils.CyclicTimer._aFunctions.length - 1;
+		while(loc3 >= 0)
+		{
+			var loc4 = ank.utils.CyclicTimer._aFunctions[loc3];
+			if(loc2 == loc4.objRef)
+			{
+				ank.utils.CyclicTimer._aFunctions.splice(loc3,1);
+			}
+			loc3 = loc3 - 1;
+		}
+	}
+	static function clear()
+	{
+		ank.utils.CyclicTimer.stop();
+		ank.utils.CyclicTimer._aFunctions = new Array();
+	}
+	static function play()
+	{
+		if(ank.utils.CyclicTimer._bPlaying)
+		{
+			return undefined;
+		}
+		ank.utils.CyclicTimer._bPlaying = true;
+		ank.utils.CyclicTimer.doCycle();
+	}
+	static function stop()
+	{
+		ank.utils.CyclicTimer._bPlaying = false;
+	}
+	static function getInstance()
+	{
+		return ank.utils.CyclicTimer._oCyclicTimer;
+	}
+	static function doCycle()
+	{
+		var loc2 = ank.utils.CyclicTimer._aFunctions.length - 1;
+		while(loc2 >= 0)
+		{
+			var loc3 = ank.utils.CyclicTimer._aFunctions[loc2];
+			if(!loc3.fn.apply(loc3.objFn,loc3.params))
+			{
+				ank.utils.CyclicTimer.onFunctionEnd(loc2,loc3);
+			}
+			loc2 = loc2 - 1;
+		}
+		if(ank.utils.CyclicTimer._aFunctions.length != 0)
+		{
+			if(dofus.Constants.DOUBLEFRAMERATE)
+			{
+				if(ank.utils.CyclicTimer._api.electron.enabled)
+				{
+					var loc4 = 2;
+				}
+				else
+				{
+					loc4 = ank.utils.CyclicTimer._nInterval / 2;
+				}
+			}
+			else
+			{
+				loc4 = ank.utils.CyclicTimer._nInterval;
+			}
+			ank.utils.Timer.setTimer(ank.utils.CyclicTimer._oCyclicTimer,"cyclicTimer",ank.utils.CyclicTimer,ank.utils.CyclicTimer.doCycle,loc4);
+		}
+		else
+		{
+			ank.utils.CyclicTimer.stop();
+		}
+	}
+	static function onFunctionEnd(loc2, loc3)
+	{
+		loc3.fnEnd.apply(loc3.objFnEnd,loc3.paramsEnd);
+		ank.utils.CyclicTimer._aFunctions.splice(loc2,1);
+	}
 }

@@ -1,949 +1,1297 @@
 class dofus.aks.DataProcessor extends dofus.aks.Handler
 {
-   function DataProcessor(oAKS, oAPI)
-   {
-      super.initialize(oAKS,oAPI);
-   }
-   function process(sData)
-   {
-      var _loc3_ = sData.charAt(0);
-      var _loc4_ = sData.charAt(1);
-      var _loc5_ = sData.charAt(2) == "E";
-      this.postProcess(_loc3_,_loc4_,_loc5_,sData);
-   }
-   function postProcess(sType, sAction, bError, sData)
-   {
-      switch(sType)
-      {
-         case "H":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.onHelloConnectionServer(sData.substr(2));
-                  break;
-               case "G":
-                  this.aks.onHelloGameServer(sData.substr(2));
-                  break;
-               default:
-                  this.aks.disconnect(false,true);
-            }
-            break;
-         case "p":
-            this.aks.onPong();
-            break;
-         case "q":
-            this.aks.onQuickPong();
-            break;
-         case "r":
-            this.aks.send("rpong" + sData.substr(5),false);
-            break;
-         case "M":
-            this.aks.onServerMessage(sData.substr(1));
-            break;
-         case "k":
-            this.aks.onServerWillDisconnect();
-            break;
-         case "B":
-            switch(sAction)
-            {
-               case "N":
-                  return undefined;
-               case "A":
-                  switch(sData.charAt(2))
-                  {
-                     case "T":
-                        this.aks.Basics.onAuthorizedCommand(true,sData.substr(3));
-                        break;
-                     case "L":
-                        this.aks.Basics.onAuthorizedLine(sData.substr(3));
-                        break;
-                     case "P":
-                        this.aks.Basics.onAuthorizedCommandPrompt(sData.substr(3));
-                        break;
-                     case "C":
-                        this.aks.Basics.onAuthorizedCommandClear();
-                        break;
-                     case "E":
-                        this.aks.Basics.onAuthorizedCommand(false);
-                        break;
-                     case "I":
-                        switch(sData.charAt(3))
-                        {
-                           case "O":
-                              this.aks.Basics.onAuthorizedInterfaceOpen(sData.substr(4));
-                              break;
-                           case "C":
-                              this.aks.Basics.onAuthorizedInterfaceClose(sData.substr(4));
-                        }
-                  }
-               case "T":
-                  this.aks.Basics.onReferenceTime(sData.substr(2));
-               case "D":
-                  this.aks.Basics.onDate(sData.substr(2));
-               case "W":
-                  this.aks.Basics.onWhoIs(!bError,sData.substr(3));
-               case "P":
-                  this.aks.Basics.onSubscriberRestriction(sData.substr(2));
-               case "C":
-                  this.aks.Basics.onFileCheck(sData.substr(2));
-               case "p":
-                  this.aks.Basics.onAveragePing(sData.substr(2));
-            }
-            break;
-         case "A":
-            switch(sAction)
-            {
-               case "c":
-                  this.aks.Account.onCommunity(sData.substr(2));
-                  break;
-               case "d":
-                  this.aks.Account.onDofusPseudo(sData.substr(2));
-                  break;
-               case "l":
-                  this.aks.Account.onLogin(!bError,sData.substr(3));
-                  break;
-               case "L":
-                  this.aks.Account.onCharactersList(!bError,sData.substr(3));
-                  break;
-               case "x":
-                  this.aks.Account.onServersList(!bError,sData.substr(3));
-                  break;
-               case "A":
-                  this.aks.Account.onCharacterAdd(!bError,sData.substr(3));
-                  break;
-               case "T":
-                  this.aks.Account.onTicketResponse(!bError,sData.substr(3));
-                  break;
-               case "X":
-                  this.aks.Account.onSelectServer(!bError,true,sData.substr(3));
-                  break;
-               case "Y":
-                  this.aks.Account.onSelectServer(!bError,false,sData.substr(3));
-                  break;
-               case "S":
-                  this.aks.Account.onCharacterSelected(!bError,sData.substr(4));
-                  break;
-               case "s":
-                  this.aks.Account.onStats(sData.substr(2));
-                  break;
-               case "N":
-                  this.aks.Account.onNewLevel(sData.substr(2));
-                  break;
-               case "R":
-                  this.aks.Account.onRestrictions(sData.substr(2));
-                  break;
-               case "H":
-                  this.aks.Account.onHosts(sData.substr(2));
-                  break;
-               case "r":
-                  this.aks.Account.onRescue(!bError);
-                  break;
-               case "g":
-                  this.aks.Account.onGiftsList(sData.substr(2));
-                  break;
-               case "G":
-                  this.aks.Account.onGiftStored(!bError);
-                  break;
-               case "q":
-                  this.aks.Account.onQueue(sData.substr(2));
-                  break;
-               case "f":
-                  this.aks.Account.onNewQueue(sData.substr(2));
-                  break;
-               case "V":
-                  this.aks.Account.onRegionalVersion(sData.substr(2));
-                  break;
-               case "P":
-                  this.aks.Account.onCharacterNameGenerated(!bError,sData.substr(3));
-                  break;
-               case "K":
-                  this.aks.Account.onKey(sData.substr(2));
-                  break;
-               case "Q":
-                  this.aks.Account.onSecretQuestion(sData.substr(2));
-                  break;
-               case "D":
-                  this.aks.Account.onCharacterDelete(!bError,sData.substr(3));
-                  break;
-               case "M":
-                  if((_loc0_ = sData.charAt(2)) !== "?")
-                  {
-                     this.aks.Account.onCharactersList(!bError,sData.substr(3),true);
-                  }
-                  else
-                  {
-                     this.aks.Account.onCharactersMigrationAskConfirm(sData.substr(3));
-                  }
-                  break;
-               case "F":
-                  this.aks.Account.onFriendServerList(sData.substr(2));
-                  break;
-               case "m":
-                  if(!_global.CONFIG.isStreaming)
-                  {
-                     this.aks.Account.onMiniClipInfo();
-                  }
-                  else
-                  {
-                     var _loc6_ = _global.parseInt(sData.charAt(2),10);
-                     if(_global.isNaN(_loc6_))
-                     {
-                        _loc6_ = 3;
-                     }
-                     getURL("FSCommand:" add "GoToCongratulation",_loc6_);
-                  }
-            }
-            break;
-         case "G":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.Game.onCreate(!bError,sData.substr(4));
-                  break;
-               case "J":
-                  this.aks.Game.onJoin(sData.substr(3));
-                  break;
-               case "P":
-                  this.aks.Game.onPositionStart(sData.substr(2));
-                  break;
-               case "R":
-                  this.aks.Game.onReady(sData.substr(2));
-                  break;
-               case "S":
-                  this.aks.Game.onStartToPlay();
-                  break;
-               case "E":
-                  this.aks.Game.onEnd(sData.substr(2));
-                  break;
-               case "M":
-                  this.aks.Game.onMovement(sData.substr(3));
-                  break;
-               case "c":
-                  this.aks.Game.onChallenge(sData.substr(2));
-                  break;
-               case "t":
-                  this.aks.Game.onTeam(sData.substr(2));
-                  break;
-               case "V":
-                  this.aks.Game.onLeave(true,sData.substr(2));
-                  break;
-               case "f":
-                  this.aks.Game.onFlag(sData.substr(2));
-                  break;
-               case "I":
-                  switch(sData.charAt(2))
-                  {
-                     case "C":
-                        this.aks.Game.onPlayersCoordinates(sData.substr(4));
-                        break;
-                     case "E":
-                        this.aks.Game.onEffect(sData.substr(3));
-                        break;
-                     case "e":
-                        this.aks.Game.onClearAllEffect(sData.substr(3));
-                        break;
-                     case "P":
-                        this.aks.Game.onPVP(sData.substr(3),false);
-                  }
-                  break;
-               case "D":
-                  switch(sData.charAt(2))
-                  {
-                     case "M":
-                        this.aks.Game.onMapData(sData.substr(4));
-                        break;
-                     case "K":
-                        this.aks.Game.onMapLoaded();
-                        break;
-                     case "C":
-                        this.aks.Game.onCellData(sData.substr(3));
-                        break;
-                     case "Z":
-                        this.aks.Game.onZoneData(sData.substring(3));
-                        break;
-                     case "O":
-                        this.aks.Game.onCellObject(sData.substring(3));
-                        break;
-                     case "F":
-                        this.aks.Game.onFrameObject2(sData.substring(4));
-                        break;
-                     case "E":
-                        this.aks.Game.onFrameObjectExternal(sData.substring(4));
-                  }
-                  break;
-               case "d":
-                  switch(sData.charAt(3))
-                  {
-                     case "K":
-                        this.aks.Game.onFightChallengeUpdate(sData.substr(4),true);
-                        break;
-                     case "O":
-                        this.aks.Game.onFightChallengeUpdate(sData.substr(4),false);
-                        break;
-                     default:
-                        this.aks.Game.onFightChallenge(sData.substr(2));
-                  }
-                  break;
-               case "A":
-                  switch(sData.charAt(2))
-                  {
-                     case "S":
-                        this.aks.GameActions.onActionsStart(sData.substr(3));
-                        break;
-                     case "F":
-                        this.aks.GameActions.onActionsFinish(sData.substr(3));
-                        break;
-                     default:
-                        this.aks.GameActions.onActions(sData.substr(2));
-                  }
-                  break;
-               case "T":
-                  switch(sData.charAt(2))
-                  {
-                     case "S":
-                        this.aks.Game.onTurnStart(sData.substr(3));
-                        break;
-                     case "F":
-                        this.aks.Game.onTurnFinish(sData.substr(3));
-                        break;
-                     case "L":
-                        this.aks.Game.onTurnlist(sData.substr(4));
-                        break;
-                     case "M":
-                        this.aks.Game.onTurnMiddle(sData.substr(4));
-                        break;
-                     case "R":
-                        this.aks.Game.onTurnReady(sData.substr(3));
-                  }
-                  break;
-               case "X":
-                  this.aks.Game.onExtraClip(sData.substr(2));
-                  break;
-               case "o":
-                  this.aks.Game.onFightOption(sData.substr(2));
-                  break;
-               case "O":
-                  this.aks.Game.onGameOver();
-            }
-            break;
-         case "c":
-            switch(sAction)
-            {
-               case "M":
-                  this.aks.Chat.onMessage(!bError,sData.substr(3));
-                  break;
-               case "s":
-                  this.aks.Chat.onServerMessage(sData.substr(2));
-                  break;
-               case "S":
-                  this.aks.Chat.onSmiley(sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Chat.onSubscribeChannel(sData.substr(2));
-            }
-            break;
-         case "D":
-            switch(sAction)
-            {
-               case "A":
-                  this.aks.Dialog.onCustomAction(sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Dialog.onCreate(!bError,sData.substr(3));
-                  break;
-               case "Q":
-                  this.aks.Dialog.onQuestion(sData.substr(2));
-                  break;
-               case "V":
-                  this.aks.Dialog.onLeave();
-                  break;
-               case "P":
-                  this.aks.Dialog.onPause();
-            }
-            break;
-         case "I":
-            switch(sAction)
-            {
-               case "M":
-                  this.aks.Infos.onInfoMaps(sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Infos.onInfoCompass(sData.substr(2));
-                  break;
-               case "H":
-                  this.aks.Infos.onInfoCoordinatespHighlight(sData.substr(2));
-                  break;
-               case "m":
-                  this.aks.Infos.onMessage(sData.substr(2));
-                  break;
-               case "Q":
-                  this.aks.Infos.onQuantity(sData.substr(2));
-                  break;
-               case "O":
-                  this.aks.Infos.onObject(sData.substr(2));
-                  break;
-               case "L":
-                  switch(sData.charAt(2))
-                  {
-                     case "S":
-                        this.aks.Infos.onLifeRestoreTimerStart(sData.substr(3));
-                        break;
-                     case "F":
-                        this.aks.Infos.onLifeRestoreTimerFinish(sData.substr(3));
-                  }
-            }
-            break;
-         case "S":
-            switch(sAction)
-            {
-               case "L":
-                  if((_loc0_ = sData.charAt(2)) !== "o")
-                  {
-                     this.aks.Spells.onList(sData.substr(2));
-                  }
-                  else
-                  {
-                     this.aks.Spells.onChangeOption(sData.substr(3));
-                  }
-                  break;
-               case "U":
-                  this.aks.Spells.onUpgradeSpell(!bError,sData.substr(3));
-                  break;
-               case "B":
-                  this.aks.Spells.onSpellBoost(sData.substr(2));
-                  break;
-               case "F":
-                  this.aks.Spells.onSpellForget(sData.substr(2));
-            }
-            break;
-         case "O":
-            switch(sAction)
-            {
-               case "a":
-                  this.aks.Items.onAccessories(sData.substr(2));
-                  break;
-               case "D":
-                  this.aks.Items.onDrop(!bError,sData.substr(3));
-                  break;
-               case "A":
-                  this.aks.Items.onAdd(!bError,sData.substr(3));
-                  break;
-               case "C":
-                  this.aks.Items.onChange(sData.substr(3));
-                  break;
-               case "R":
-                  this.aks.Items.onRemove(sData.substr(2));
-                  break;
-               case "Q":
-                  this.aks.Items.onQuantity(sData.substr(2));
-                  break;
-               case "M":
-                  this.aks.Items.onMovement(sData.substr(2));
-                  break;
-               case "T":
-                  this.aks.Items.onTool(sData.substr(2));
-                  break;
-               case "w":
-                  this.aks.Items.onWeight(sData.substr(2));
-                  break;
-               case "S":
-                  this.aks.Items.onItemSet(sData.substr(2));
-                  break;
-               case "K":
-                  this.aks.Items.onItemUseCondition(sData.substr(2));
-                  break;
-               case "F":
-                  this.aks.Items.onItemFound(sData.substr(2));
-            }
-            break;
-         case "F":
-            switch(sAction)
-            {
-               case "A":
-                  this.aks.Friends.onAddFriend(!bError,sData.substr(3));
-                  break;
-               case "D":
-                  this.aks.Friends.onRemoveFriend(!bError,sData.substr(3));
-                  break;
-               case "L":
-                  this.aks.Friends.onFriendsList(sData.substr(3));
-                  break;
-               case "S":
-                  this.aks.Friends.onSpouse(sData.substr(2));
-                  break;
-               case "O":
-                  this.aks.Friends.onNotifyChange(sData.substr(2));
-            }
-            break;
-         case "i":
-            switch(sAction)
-            {
-               case "A":
-                  this.aks.Enemies.onAddEnemy(!bError,sData.substr(3));
-                  break;
-               case "D":
-                  this.aks.Enemies.onRemoveEnemy(!bError,sData.substr(3));
-                  break;
-               case "L":
-                  this.aks.Enemies.onEnemiesList(sData.substr(3));
-            }
-            break;
-         case "K":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.Key.onCreate(sData.substr(3));
-                  break;
-               case "K":
-                  this.aks.Key.onKey(!bError);
-                  break;
-               case "V":
-                  this.aks.Key.onLeave();
-            }
-            break;
-         case "J":
-            switch(sAction)
-            {
-               case "S":
-                  this.aks.Job.onSkills(sData.substr(3));
-                  break;
-               case "X":
-                  this.aks.Job.onXP(sData.substr(3));
-                  break;
-               case "N":
-                  this.aks.Job.onLevel(sData.substr(2));
-                  break;
-               case "R":
-                  this.aks.Job.onRemove(sData.substr(2));
-                  break;
-               case "O":
-                  this.aks.Job.onOptions(sData.substr(2));
-            }
-            break;
-         case "E":
-            switch(sAction)
-            {
-               case "R":
-                  this.aks.Exchange.onRequest(!bError,sData.substr(3));
-                  break;
-               case "K":
-                  this.aks.Exchange.onReady(sData.substr(2));
-                  break;
-               case "V":
-                  this.aks.Exchange.onLeave(!bError,sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Exchange.onCreate(!bError,sData.substr(3));
-                  break;
-               case "c":
-                  this.aks.Exchange.onCraft(!bError,sData.substr(3));
-                  break;
-               case "M":
-                  this.aks.Exchange.onLocalMovement(!bError,sData.substr(3));
-                  break;
-               case "m":
-                  this.aks.Exchange.onDistantMovement(!bError,sData.substr(3));
-                  break;
-               case "r":
-                  this.aks.Exchange.onCoopMovement(!bError,sData.substr(3));
-                  break;
-               case "p":
-                  this.aks.Exchange.onPayMovement(!bError,sData.substr(2));
-                  break;
-               case "s":
-                  this.aks.Exchange.onStorageMovement(!bError,sData.substr(3));
-                  break;
-               case "i":
-                  this.aks.Exchange.onPlayerShopMovement(!bError,sData.substr(3));
-                  break;
-               case "W":
-                  this.aks.Exchange.onCraftPublicMode(sData.substr(2));
-                  break;
-               case "e":
-                  this.aks.Exchange.onMountStorage(sData.substr(2));
-                  break;
-               case "f":
-                  this.aks.Exchange.onMountPark(sData.substr(2));
-                  break;
-               case "w":
-                  this.aks.Exchange.onMountPods(sData.substr(2));
-                  break;
-               case "L":
-                  this.aks.Exchange.onList(sData.substr(2));
-                  break;
-               case "S":
-                  this.aks.Exchange.onSell(!bError);
-                  break;
-               case "B":
-                  this.aks.Exchange.onBuy(!bError);
-                  break;
-               case "q":
-                  this.aks.Exchange.onAskOfflineExchange(sData.substr(2));
-                  break;
-               case "H":
-                  switch(sData.charAt(2))
-                  {
-                     case "S":
-                        this.aks.Exchange.onSearch(sData.substr(3));
-                        break;
-                     case "L":
-                        this.aks.Exchange.onBigStoreTypeItemsList(sData.substr(3));
-                        break;
-                     case "M":
-                        this.aks.Exchange.onBigStoreTypeItemsMovement(sData.substr(3));
-                        break;
-                     case "l":
-                        this.aks.Exchange.onBigStoreItemsList(sData.substr(3));
-                        break;
-                     case "m":
-                        this.aks.Exchange.onBigStoreItemsMovement(sData.substr(3));
-                        break;
-                     case "P":
-                        this.aks.Exchange.onItemMiddlePriceInBigStore(sData.substr(3));
-                  }
-                  break;
-               case "J":
-                  this.aks.Exchange.onCrafterListChanged(sData.substr(2));
-                  break;
-               case "j":
-                  this.aks.Exchange.onCrafterReference(sData.substr(2));
-                  break;
-               case "A":
-                  this.aks.Exchange.onCraftLoop(sData.substr(2));
-                  break;
-               case "a":
-                  this.aks.Exchange.onCraftLoopEnd(sData.substr(2));
-            }
-            break;
-         case "h":
-            switch(sAction)
-            {
-               case "L":
-                  this.aks.Houses.onList(sData.substr(2));
-                  break;
-               case "P":
-                  this.aks.Houses.onProperties(sData.substr(2));
-                  break;
-               case "X":
-                  this.aks.Houses.onLockedProperty(sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Houses.onCreate(sData.substr(3));
-                  break;
-               case "S":
-                  this.aks.Houses.onSell(!bError,sData.substr(3));
-                  break;
-               case "B":
-                  this.aks.Houses.onBuy(!bError,sData.substr(3));
-                  break;
-               case "V":
-                  this.aks.Houses.onLeave();
-                  break;
-               case "G":
-                  this.aks.Houses.onGuildInfos(sData.substr(2));
-            }
-            break;
-         case "s":
-            switch(sAction)
-            {
-               case "L":
-                  this.aks.Storages.onList(sData.substr(2));
-                  break;
-               case "X":
-                  this.aks.Storages.onLockedProperty(sData.substr(2));
-            }
-            break;
-         case "e":
-            switch(sAction)
-            {
-               case "U":
-                  this.aks.Emotes.onUse(!bError,sData.substr(3));
-                  break;
-               case "L":
-                  this.aks.Emotes.onList(sData.substr(2));
-                  break;
-               case "A":
-                  this.aks.Emotes.onAdd(sData.substr(2));
-                  break;
-               case "R":
-                  this.aks.Emotes.onRemove(sData.substr(2));
-                  break;
-               case "D":
-                  this.aks.Emotes.onDirection(sData.substr(2));
-            }
-            break;
-         case "d":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.Documents.onCreate(!bError,sData.substr(3));
-                  break;
-               case "V":
-                  this.aks.Documents.onLeave();
-            }
-            break;
-         case "g":
-            switch(sAction)
-            {
-               case "n":
-                  this.aks.Guild.onNew();
-                  break;
-               case "C":
-                  this.aks.Guild.onCreate(!bError,sData.substr(3));
-                  break;
-               case "S":
-                  this.aks.Guild.onStats(sData.substr(2));
-                  break;
-               case "I":
-                  switch(sData.charAt(2))
-                  {
-                     case "G":
-                        this.aks.Guild.onInfosGeneral(sData.substr(3));
-                        break;
-                     case "M":
-                        this.aks.Guild.onInfosMembers(sData.substr(3));
-                        break;
-                     case "B":
-                        this.aks.Guild.onInfosBoosts(sData.substr(3));
-                        break;
-                     case "F":
-                        this.aks.Guild.onInfosMountPark(sData.substr(3));
-                        break;
-                     case "T":
-                        switch(sData.charAt(3))
-                        {
-                           case "M":
-                              this.aks.Guild.onInfosTaxCollectorsMovement(sData.substr(4));
-                              break;
-                           case "P":
-                              this.aks.Guild.onInfosTaxCollectorsPlayers(sData.substr(4));
-                              break;
-                           case "p":
-                              this.aks.Guild.onInfosTaxCollectorsAttackers(sData.substr(4));
-                        }
-                        break;
-                     case "H":
-                        this.aks.Guild.onInfosHouses(sData.substr(3));
-                  }
-                  break;
-               case "J":
-                  switch(sData.charAt(2))
-                  {
-                     case "E":
-                        this.aks.Guild.onJoinError(sData.substr(3));
-                        break;
-                     case "R":
-                        this.aks.Guild.onRequestLocal(sData.substr(3));
-                        break;
-                     case "r":
-                        this.aks.Guild.onRequestDistant(sData.substr(3));
-                        break;
-                     case "K":
-                        this.aks.Guild.onJoinOk(sData.substr(3));
-                        break;
-                     case "C":
-                        this.aks.Guild.onJoinDistantOk();
-                  }
-                  break;
-               case "V":
-                  this.aks.Guild.onLeave();
-                  break;
-               case "K":
-                  this.aks.Guild.onBann(!bError,sData.substr(3));
-                  break;
-               case "H":
-                  this.aks.Guild.onHireTaxCollector(!bError,sData.substr(3));
-                  break;
-               case "A":
-                  this.aks.Guild.onTaxCollectorAttacked(sData.substr(2));
-                  break;
-               case "T":
-                  this.aks.Guild.onTaxCollectorInfo(sData.substr(2));
-                  break;
-               case "U":
-                  this.aks.Guild.onUserInterfaceOpen(sData.substr(2));
-            }
-            break;
-         case "W":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.Waypoints.onCreate(sData.substr(2));
-                  break;
-               case "V":
-                  this.aks.Waypoints.onLeave();
-                  break;
-               case "U":
-                  this.aks.Waypoints.onUseError();
-                  break;
-               case "c":
-                  this.aks.Subway.onCreate(sData.substr(2));
-                  break;
-               case "v":
-                  this.aks.Subway.onLeave();
-                  break;
-               case "u":
-                  this.aks.Subway.onUseError();
-                  break;
-               case "p":
-                  this.aks.Subway.onPrismCreate(sData.substr(2));
-                  break;
-               case "w":
-                  this.aks.Subway.onPrismLeave();
-            }
-            break;
-         case "a":
-            switch(sAction)
-            {
-               case "l":
-                  this.aks.Subareas.onList(sData.substr(3));
-                  break;
-               case "m":
-                  this.aks.Subareas.onAlignmentModification(sData.substr(2));
-                  break;
-               case "M":
-                  this.aks.Conquest.onAreaAlignmentChanged(sData.substr(2));
-            }
-            break;
-         case "C":
-            switch(sAction)
-            {
-               case "I":
-                  switch(sData.charAt(2))
-                  {
-                     case "J":
-                        this.aks.Conquest.onPrismInfosJoined(sData.substr(3));
-                        break;
-                     case "V":
-                        this.aks.Conquest.onPrismInfosClosing(sData.substr(3));
-                  }
-                  break;
-               case "B":
-                  this.aks.Conquest.onConquestBonus(sData.substr(2));
-                  break;
-               case "A":
-                  this.aks.Conquest.onPrismAttacked(sData.substr(2));
-                  break;
-               case "S":
-                  this.aks.Conquest.onPrismSurvived(sData.substr(2));
-                  break;
-               case "D":
-                  this.aks.Conquest.onPrismDead(sData.substr(2));
-                  break;
-               case "P":
-                  this.aks.Conquest.onPrismFightAddPlayer(sData.substr(2));
-                  break;
-               case "p":
-                  this.aks.Conquest.onPrismFightAddEnemy(sData.substr(2));
-                  break;
-               case "W":
-                  this.aks.Conquest.onWorldData(sData.substr(2));
-                  break;
-               case "b":
-                  this.aks.Conquest.onConquestBalance(sData.substr(2));
-            }
-            break;
-         case "Z":
-            switch(sAction)
-            {
-               case "S":
-                  this.aks.Specialization.onSet(sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Specialization.onChange(sData.substr(2));
-            }
-            break;
-         case "f":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.Fights.onCount(sData.substr(2));
-                  break;
-               case "L":
-                  this.aks.Fights.onList(sData.substr(2));
-                  break;
-               case "D":
-                  this.aks.Fights.onDetails(sData.substr(2));
-            }
-            break;
-         case "T":
-            switch(sAction)
-            {
-               case "C":
-                  this.aks.Tutorial.onCreate(sData.substr(2));
-                  break;
-               case "T":
-                  this.aks.Tutorial.onShowTip(sData.substr(2));
-                  break;
-               case "B":
-                  this.aks.Tutorial.onGameBegin();
-            }
-            break;
-         case "Q":
-            switch(sAction)
-            {
-               case "L":
-                  this.aks.Quests.onList(sData.substr(3));
-                  break;
-               case "S":
-                  this.aks.Quests.onStep(sData.substr(2));
-            }
-            break;
-         case "P":
-            switch(sAction)
-            {
-               case "I":
-                  this.aks.Party.onInvite(!bError,sData.substr(3));
-                  break;
-               case "L":
-                  this.aks.Party.onLeader(sData.substr(2));
-                  break;
-               case "R":
-                  this.aks.Party.onRefuse(sData.substr(2));
-                  break;
-               case "A":
-                  this.aks.Party.onAccept(sData.substr(2));
-                  break;
-               case "C":
-                  this.aks.Party.onCreate(!bError,sData.substr(3));
-                  break;
-               case "V":
-                  this.aks.Party.onLeave(sData.substr(2));
-                  break;
-               case "F":
-                  this.aks.Party.onFollow(!bError,sData.substr(3));
-                  break;
-               case "M":
-                  this.aks.Party.onMovement(sData.substr(2));
-            }
-            break;
-         case "R":
-            switch(sAction)
-            {
-               case "e":
-                  this.aks.Mount.onEquip(sData.substr(2));
-                  break;
-               case "x":
-                  this.aks.Mount.onXP(sData.substr(2));
-                  break;
-               case "n":
-                  this.aks.Mount.onName(sData.substr(2));
-                  break;
-               case "d":
-                  this.aks.Mount.onData(sData.substr(2));
-                  break;
-               case "p":
-                  this.aks.Mount.onMountPark(sData.substr(2));
-                  break;
-               case "D":
-                  this.aks.Mount.onMountParkBuy(sData.substr(2));
-                  break;
-               case "v":
-                  this.aks.Mount.onLeave(sData.substr(2));
-                  break;
-               case "r":
-                  this.aks.Mount.onRidingState(sData.substr(2));
-            }
-      }
-   }
+	function DataProcessor(loc3, loc4)
+	{
+		super.initialize(loc3,loc4);
+	}
+	function process(loc2)
+	{
+		var loc3 = loc2.charAt(0);
+		var loc4 = loc2.charAt(1);
+		var loc5 = loc2.charAt(2) == "E";
+		this.postProcess(loc3,loc4,loc5,loc2);
+	}
+	function defaultProcessAction(loc2, loc3, loc4, loc5)
+	{
+		this.api.network.defaultProcessAction(loc2,loc3,loc4,loc5);
+	}
+	function postProcess(loc2, loc3, loc4, loc5)
+	{
+		loop0:
+		switch(loc2)
+		{
+			case "H":
+				switch(loc3)
+				{
+					case "C":
+						this.aks.onHelloConnectionServer(loc5.substr(2));
+						break;
+					case "G":
+						this.aks.onHelloGameServer(loc5.substr(2));
+						break;
+					default:
+						this.aks.disconnect(false,true);
+				}
+				break;
+			case "p":
+				this.aks.onPong();
+				break;
+			case "q":
+				this.aks.onQuickPong();
+				break;
+			case "r":
+				this.aks.send("rpong" + loc5.substr(5),false);
+				break;
+			default:
+				switch(null)
+				{
+					case "M":
+						this.aks.onServerMessage(loc5.substr(1));
+						break loop0;
+					case "k":
+						this.aks.onServerWillDisconnect();
+						break loop0;
+					case "B":
+						loop3:
+						switch(loc3)
+						{
+							case "N":
+								return undefined;
+								break;
+							case "A":
+								loop4:
+								switch(loc5.charAt(2))
+								{
+									case "T":
+										this.aks.Basics.onAuthorizedCommand(true,loc5.substr(3));
+										break;
+									case "L":
+										this.aks.Basics.onAuthorizedLine(loc5.substr(3));
+										break;
+									default:
+										switch(null)
+										{
+											case "P":
+												this.aks.Basics.onAuthorizedCommandPrompt(loc5.substr(3));
+												break loop4;
+											case "C":
+												this.aks.Basics.onAuthorizedCommandClear();
+												break loop4;
+											case "E":
+												this.aks.Basics.onAuthorizedCommand(false);
+												break loop4;
+											case "I":
+												if((loc0 = loc5.charAt(3)) !== "O")
+												{
+													if(loc0 !== "C")
+													{
+														this.defaultProcessAction(loc2,loc3,loc4,loc5);
+													}
+													else
+													{
+														this.aks.Basics.onAuthorizedInterfaceClose(loc5.substr(4));
+													}
+												}
+												else
+												{
+													this.aks.Basics.onAuthorizedInterfaceOpen(loc5.substr(4));
+												}
+												break loop4;
+											default:
+												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										}
+								}
+								break;
+							case "T":
+								this.aks.Basics.onReferenceTime(loc5.substr(2));
+								break;
+							case "D":
+								this.aks.Basics.onDate(loc5.substr(2));
+								break;
+							case "W":
+								this.aks.Basics.onWhoIs(!loc4,loc5.substr(3));
+								break;
+							default:
+								switch(null)
+								{
+									case "P":
+										this.aks.Basics.onSubscriberRestriction(loc5.substr(2));
+										break loop3;
+									case "C":
+										this.aks.Basics.onFileCheck(loc5.substr(2));
+										break loop3;
+									case "p":
+										this.aks.Basics.onAveragePing(loc5.substr(2));
+										break loop3;
+									case "M":
+										this.aks.Basics.onPopupMessage(loc5.substr(2));
+										break loop3;
+									default:
+										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+								}
+						}
+						break loop0;
+					case "A":
+						loop7:
+						switch(loc3)
+						{
+							case "E":
+								var loc6 = false;
+								var loc7 = false;
+								if((loc0 = loc5.charAt(2)) !== "n")
+								{
+									if(loc0 === "c")
+									{
+										loc7 = true;
+									}
+								}
+								else
+								{
+									loc6 = true;
+								}
+								var loc8 = loc5.charAt(3) != undefined && loc5.charAt(3) == "f";
+								if(this.api.ui.getUIComponent("EditPlayer") == undefined)
+								{
+									this.api.ui.loadUIComponent("EditPlayer","EditPlayer",{editName:loc6,editColors:loc7,force:loc8});
+								}
+								break;
+							case "c":
+								this.aks.Account.onCommunity(loc5.substr(2));
+								break;
+							case "d":
+								this.aks.Account.onDofusPseudo(loc5.substr(2));
+								break;
+							case "l":
+								this.aks.Account.onLogin(!loc4,loc5.substr(3));
+								break;
+							default:
+								switch(null)
+								{
+									case "L":
+										this.aks.Account.onCharactersList(!loc4,loc5.substr(3));
+										break loop7;
+									case "x":
+										this.aks.Account.onServersList(!loc4,loc5.substr(3));
+										break loop7;
+									case "A":
+										this.aks.Account.onCharacterAdd(!loc4,loc5.substr(3));
+										break loop7;
+									case "T":
+										this.aks.Account.onTicketResponse(!loc4,loc5.substr(3));
+										break loop7;
+									default:
+										switch(null)
+										{
+											case "X":
+												this.aks.Account.onSelectServer(!loc4,true,loc5.substr(3));
+												break loop7;
+											case "Y":
+												this.aks.Account.onSelectServer(!loc4,false,loc5.substr(3));
+												break loop7;
+											case "S":
+												this.aks.Account.onCharacterSelected(!loc4,loc5.substr(4));
+												break loop7;
+											case "s":
+												this.aks.Account.onStats(loc5.substr(2));
+												break loop7;
+											case "N":
+												this.aks.Account.onNewLevel(loc5.substr(2));
+												break loop7;
+											default:
+												switch(null)
+												{
+													case "R":
+														this.aks.Account.onRestrictions(loc5.substr(2));
+														break loop7;
+													case "H":
+														this.aks.Account.onHosts(loc5.substr(2));
+														break loop7;
+													case "r":
+														this.aks.Account.onRescue(!loc4);
+														break loop7;
+													case "g":
+														this.aks.Account.onGiftsList(loc5.substr(2));
+														break loop7;
+													case "G":
+														this.aks.Account.onGiftStored(!loc4);
+														break loop7;
+													default:
+														switch(null)
+														{
+															case "q":
+																this.aks.Account.onQueue(loc5.substr(2));
+																break loop7;
+															case "f":
+																this.aks.Account.onNewQueue(loc5.substr(2));
+																break loop7;
+															case "V":
+																this.aks.Account.onRegionalVersion(loc5.substr(2));
+																break loop7;
+															case "P":
+																this.aks.Account.onCharacterNameGenerated(!loc4,loc5.substr(3));
+																break loop7;
+															default:
+																switch(null)
+																{
+																	case "K":
+																		this.aks.Account.onKey(loc5.substr(2));
+																		break loop7;
+																	case "Q":
+																		this.aks.Account.onSecretQuestion(loc5.substr(2));
+																		break loop7;
+																	case "D":
+																		this.aks.Account.onCharacterDelete(!loc4,loc5.substr(3));
+																		break loop7;
+																	case "M":
+																		if((loc0 = loc5.charAt(2)) !== "?")
+																		{
+																			this.aks.Account.onCharactersList(!loc4,loc5.substr(3),true);
+																		}
+																		else
+																		{
+																			this.aks.Account.onCharactersMigrationAskConfirm(loc5.substr(3));
+																		}
+																		break loop7;
+																	case "F":
+																		this.aks.Account.onFriendServerList(loc5.substr(2));
+																		break loop7;
+																	case "m":
+																		if(!_global.CONFIG.isStreaming)
+																		{
+																			this.aks.Account.onMiniClipInfo();
+																			break loop7;
+																		}
+																		var loc9 = _global.parseInt(loc5.charAt(2),10);
+																		if(_global.isNaN(loc9))
+																		{
+																			loc9 = 3;
+																		}
+																		getURL("FSCommand:" add "GoToCongratulation",loc9);
+																		break loop7;
+																}
+														}
+												}
+										}
+								}
+						}
+						break loop0;
+					case "G":
+						loop13:
+						switch(loc3)
+						{
+							case "C":
+								this.aks.Game.onCreate(!loc4,loc5.substr(4));
+								break;
+							case "J":
+								this.aks.Game.onJoin(loc5.substr(3));
+								break;
+							case "P":
+								this.aks.Game.onPositionStart(loc5.substr(2));
+								break;
+							default:
+								switch(null)
+								{
+									case "R":
+										this.aks.Game.onReady(loc5.substr(2));
+										break loop13;
+									case "S":
+										this.aks.Game.onStartToPlay();
+										break loop13;
+									case "E":
+										this.aks.Game.onEnd(loc5.substr(2));
+										break loop13;
+									case "M":
+										this.aks.Game.onMovement(loc5.substr(3));
+										break loop13;
+									case "c":
+										this.aks.Game.onChallenge(loc5.substr(2));
+										break loop13;
+									default:
+										switch(null)
+										{
+											case "t":
+												this.aks.Game.onTeam(loc5.substr(2));
+												break loop13;
+											case "V":
+												this.aks.Game.onLeave(true,loc5.substr(2));
+												break loop13;
+											case "f":
+												this.aks.Game.onFlag(loc5.substr(2));
+												break loop13;
+											case "I":
+												switch(loc5.charAt(2))
+												{
+													case "C":
+														this.aks.Game.onPlayersCoordinates(loc5.substr(4));
+														break;
+													case "E":
+														this.aks.Game.onEffect(loc5.substr(3));
+														break;
+													case "e":
+														this.aks.Game.onClearAllEffect(loc5.substr(3));
+														break;
+													default:
+														if(loc0 !== "P")
+														{
+															this.defaultProcessAction(loc2,loc3,loc4,loc5);
+															break;
+														}
+														this.aks.Game.onPVP(loc5.substr(3),false);
+														break;
+												}
+												break loop13;
+											case "D":
+												loop17:
+												switch(loc5.charAt(2))
+												{
+													case "M":
+														this.aks.Game.onMapData(loc5.substr(4));
+														break;
+													case "K":
+														this.aks.Game.onMapLoaded();
+														break;
+													case "C":
+														this.aks.Game.onCellData(loc5.substr(3));
+														break;
+													case "Z":
+														this.aks.Game.onZoneData(loc5.substring(3));
+														break;
+													default:
+														switch(null)
+														{
+															case "O":
+																this.aks.Game.onCellObject(loc5.substring(3));
+																break loop17;
+															case "F":
+																this.aks.Game.onFrameObject2(loc5.substring(4));
+																break loop17;
+															case "E":
+																this.aks.Game.onFrameObjectExternal(loc5.substring(4));
+																break loop17;
+															default:
+																this.defaultProcessAction(loc2,loc3,loc4,loc5);
+														}
+												}
+												break loop13;
+											default:
+												switch(null)
+												{
+													case "d":
+														switch(loc5.charAt(3))
+														{
+															case "K":
+																this.aks.Game.onFightChallengeUpdate(loc5.substr(4),true);
+																break;
+															case "O":
+																this.aks.Game.onFightChallengeUpdate(loc5.substr(4),false);
+																break;
+															default:
+																this.aks.Game.onFightChallenge(loc5.substr(2));
+														}
+														break loop13;
+													case "A":
+														switch(loc5.charAt(2))
+														{
+															case "S":
+																this.aks.GameActions.onActionsStart(loc5.substr(3));
+																break;
+															case "F":
+																this.aks.GameActions.onActionsFinish(loc5.substr(3));
+																break;
+															default:
+																this.aks.GameActions.onActions(loc5.substr(2));
+														}
+														break loop13;
+													case "T":
+														loop22:
+														switch(loc5.charAt(2))
+														{
+															case "S":
+																this.aks.Game.onTurnStart(loc5.substr(3));
+																break;
+															case "F":
+																this.aks.Game.onTurnFinish(loc5.substr(3));
+																break;
+															default:
+																switch(null)
+																{
+																	case "L":
+																		this.aks.Game.onTurnlist(loc5.substr(4));
+																		break loop22;
+																	case "M":
+																		this.aks.Game.onTurnMiddle(loc5.substr(4));
+																		break loop22;
+																	case "R":
+																		this.aks.Game.onTurnReady(loc5.substr(3));
+																		break loop22;
+																	default:
+																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																}
+														}
+														break loop13;
+													case "X":
+														this.aks.Game.onExtraClip(loc5.substr(2));
+														break loop13;
+													default:
+														switch(null)
+														{
+															case "o":
+																this.aks.Game.onFightOption(loc5.substr(2));
+																break loop13;
+															case "O":
+																this.aks.Game.onGameOver();
+																break loop13;
+															default:
+																this.defaultProcessAction(loc2,loc3,loc4,loc5);
+														}
+												}
+										}
+								}
+						}
+						break loop0;
+					default:
+						switch(null)
+						{
+							case "c":
+								switch(loc3)
+								{
+									case "M":
+										this.aks.Chat.onMessage(!loc4,loc5.substr(3));
+										break;
+									case "s":
+										this.aks.Chat.onServerMessage(loc5.substr(2));
+										break;
+									case "S":
+										this.aks.Chat.onSmiley(loc5.substr(2));
+										break;
+									case "C":
+										this.aks.Chat.onSubscribeChannel(loc5.substr(2));
+										break;
+									default:
+										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+								}
+								break loop0;
+							case "D":
+								loop27:
+								switch(loc3)
+								{
+									case "A":
+										this.aks.Dialog.onCustomAction(loc5.substr(2));
+										break;
+									case "C":
+										this.aks.Dialog.onCreate(!loc4,loc5.substr(3));
+										break;
+									case "Q":
+										this.aks.Dialog.onQuestion(loc5.substr(2));
+										break;
+									default:
+										switch(null)
+										{
+											case "V":
+												this.aks.Dialog.onLeave();
+												break loop27;
+											case "P":
+												this.aks.Dialog.onPause();
+												break loop27;
+											default:
+												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										}
+								}
+								break loop0;
+							case "I":
+								if((loc0 = loc3) !== "M")
+								{
+									switch(null)
+									{
+										case "C":
+											this.aks.Infos.onInfoCompass(loc5.substr(2));
+											break;
+										case "H":
+											this.aks.Infos.onInfoCoordinatespHighlight(loc5.substr(2));
+											break;
+										case "m":
+											this.aks.Infos.onMessage(loc5.substr(2));
+											break;
+										case "Q":
+											this.aks.Infos.onQuantity(loc5.substr(2));
+											break;
+										case "O":
+											this.aks.Infos.onObject(loc5.substr(2));
+											break;
+										case "L":
+											switch(loc5.charAt(2))
+											{
+												case "S":
+													this.aks.Infos.onLifeRestoreTimerStart(loc5.substr(3));
+													break;
+												case "F":
+													this.aks.Infos.onLifeRestoreTimerFinish(loc5.substr(3));
+													break;
+												default:
+													this.defaultProcessAction(loc2,loc3,loc4,loc5);
+											}
+											break;
+										default:
+											this.defaultProcessAction(loc2,loc3,loc4,loc5);
+									}
+								}
+								else
+								{
+									this.aks.Infos.onInfoMaps(loc5.substr(2));
+								}
+								break loop0;
+							case "S":
+								switch(loc3)
+								{
+									case "L":
+										if((loc0 = loc5.charAt(2)) !== "o")
+										{
+											this.aks.Spells.onList(loc5.substr(2));
+										}
+										else
+										{
+											this.aks.Spells.onChangeOption(loc5.substr(3));
+										}
+										break;
+									case "U":
+										this.aks.Spells.onUpgradeSpell(!loc4,loc5.substr(3));
+										break;
+									case "B":
+										this.aks.Spells.onSpellBoost(loc5.substr(2));
+										break;
+									case "F":
+										this.aks.Spells.onSpellForget(loc5.substr(2));
+										break;
+									default:
+										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+								}
+								break loop0;
+							default:
+								switch(null)
+								{
+									case "O":
+										loop33:
+										switch(loc3)
+										{
+											case "a":
+												this.aks.Items.onAccessories(loc5.substr(2));
+												break;
+											case "D":
+												this.aks.Items.onDrop(!loc4,loc5.substr(3));
+												break;
+											default:
+												switch(null)
+												{
+													case "A":
+														this.aks.Items.onAdd(!loc4,loc5.substr(3));
+														break loop33;
+													case "C":
+														this.aks.Items.onChange(loc5.substr(3));
+														break loop33;
+													case "R":
+														this.aks.Items.onRemove(loc5.substr(2));
+														break loop33;
+													case "Q":
+														this.aks.Items.onQuantity(loc5.substr(2));
+														break loop33;
+													case "M":
+														this.aks.Items.onMovement(loc5.substr(2));
+														break loop33;
+													default:
+														switch(null)
+														{
+															case "T":
+																this.aks.Items.onTool(loc5.substr(2));
+																break loop33;
+															case "w":
+																this.aks.Items.onWeight(loc5.substr(2));
+																break loop33;
+															case "S":
+																this.aks.Items.onItemSet(loc5.substr(2));
+																break loop33;
+															case "K":
+																this.aks.Items.onItemUseCondition(loc5.substr(2));
+																break loop33;
+															default:
+																if(loc0 !== "F")
+																{
+																	this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																	break loop33;
+																}
+																this.aks.Items.onItemFound(loc5.substr(2));
+																break loop33;
+														}
+												}
+										}
+										break loop0;
+									case "F":
+										switch(loc3)
+										{
+											case "A":
+												this.aks.Friends.onAddFriend(!loc4,loc5.substr(3));
+												break;
+											case "D":
+												this.aks.Friends.onRemoveFriend(!loc4,loc5.substr(3));
+												break;
+											case "L":
+												this.aks.Friends.onFriendsList(loc5.substr(3));
+												break;
+											case "S":
+												this.aks.Friends.onSpouse(loc5.substr(2));
+												break;
+											case "O":
+												this.aks.Friends.onNotifyChange(loc5.substr(2));
+												break;
+											default:
+												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										}
+										break loop0;
+									case "i":
+										switch(loc3)
+										{
+											case "A":
+												this.aks.Enemies.onAddEnemy(!loc4,loc5.substr(3));
+												break;
+											case "D":
+												this.aks.Enemies.onRemoveEnemy(!loc4,loc5.substr(3));
+												break;
+											case "L":
+												this.aks.Enemies.onEnemiesList(loc5.substr(3));
+												break;
+											default:
+												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										}
+										break loop0;
+									case "K":
+										switch(loc3)
+										{
+											case "C":
+												this.aks.Key.onCreate(loc5.substr(3));
+												break;
+											case "K":
+												this.aks.Key.onKey(!loc4);
+												break;
+											case "V":
+												this.aks.Key.onLeave();
+												break;
+											default:
+												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										}
+										break loop0;
+									default:
+										switch(null)
+										{
+											case "J":
+												loop40:
+												switch(loc3)
+												{
+													case "S":
+														this.aks.Job.onSkills(loc5.substr(3));
+														break;
+													case "X":
+														this.aks.Job.onXP(loc5.substr(3));
+														break;
+													default:
+														switch(null)
+														{
+															case "N":
+																this.aks.Job.onLevel(loc5.substr(2));
+																break loop40;
+															case "R":
+																this.aks.Job.onRemove(loc5.substr(2));
+																break loop40;
+															case "O":
+																this.aks.Job.onOptions(loc5.substr(2));
+																break loop40;
+															default:
+																this.defaultProcessAction(loc2,loc3,loc4,loc5);
+														}
+												}
+												break loop0;
+											case "E":
+												loop42:
+												switch(loc3)
+												{
+													case "R":
+														this.aks.Exchange.onRequest(!loc4,loc5.substr(3));
+														break;
+													case "K":
+														this.aks.Exchange.onReady(loc5.substr(2));
+														break;
+													case "V":
+														this.aks.Exchange.onLeave(!loc4,loc5.substr(2));
+														break;
+													default:
+														switch(null)
+														{
+															case "C":
+																this.aks.Exchange.onCreate(!loc4,loc5.substr(3));
+																break loop42;
+															case "c":
+																this.aks.Exchange.onCraft(!loc4,loc5.substr(3));
+																break loop42;
+															case "M":
+																this.aks.Exchange.onLocalMovement(!loc4,loc5.substr(3));
+																break loop42;
+															case "m":
+																this.aks.Exchange.onDistantMovement(!loc4,loc5.substr(3));
+																break loop42;
+															default:
+																switch(null)
+																{
+																	case "r":
+																		this.aks.Exchange.onCoopMovement(!loc4,loc5.substr(3));
+																		break loop42;
+																	case "p":
+																		this.aks.Exchange.onPayMovement(!loc4,loc5.substr(2));
+																		break loop42;
+																	case "s":
+																		this.aks.Exchange.onStorageMovement(!loc4,loc5.substr(3));
+																		break loop42;
+																	case "i":
+																		this.aks.Exchange.onPlayerShopMovement(!loc4,loc5.substr(3));
+																		break loop42;
+																	case "W":
+																		this.aks.Exchange.onCraftPublicMode(loc5.substr(2));
+																		break loop42;
+																	default:
+																		switch(null)
+																		{
+																			case "e":
+																				this.aks.Exchange.onMountStorage(loc5.substr(2));
+																				break loop42;
+																			case "f":
+																				this.aks.Exchange.onMountPark(loc5.substr(2));
+																				break loop42;
+																			case "w":
+																				this.aks.Exchange.onMountPods(loc5.substr(2));
+																				break loop42;
+																			case "L":
+																				this.aks.Exchange.onList(loc5.substr(2));
+																				break loop42;
+																			default:
+																				switch(null)
+																				{
+																					case "S":
+																						this.aks.Exchange.onSell(!loc4);
+																						break loop42;
+																					case "B":
+																						this.aks.Exchange.onBuy(!loc4);
+																						break loop42;
+																					case "q":
+																						this.aks.Exchange.onAskOfflineExchange(loc5.substr(2));
+																						break loop42;
+																					case "H":
+																						loop47:
+																						switch(loc5.charAt(2))
+																						{
+																							case "S":
+																								this.aks.Exchange.onSearch(loc5.substr(3));
+																								break;
+																							case "L":
+																								this.aks.Exchange.onBigStoreTypeItemsList(loc5.substr(3));
+																								break;
+																							case "M":
+																								this.aks.Exchange.onBigStoreTypeItemsMovement(loc5.substr(3));
+																								break;
+																							case "l":
+																								this.aks.Exchange.onBigStoreItemsList(loc5.substr(3));
+																								break;
+																							default:
+																								switch(null)
+																								{
+																									case "m":
+																										this.aks.Exchange.onBigStoreItemsMovement(loc5.substr(3));
+																										break loop47;
+																									case "P":
+																										this.aks.Exchange.onItemMiddlePriceInBigStore(loc5.substr(3));
+																										break loop47;
+																									default:
+																										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																								}
+																						}
+																						break loop42;
+																					case "J":
+																						this.aks.Exchange.onCrafterListChanged(loc5.substr(2));
+																						break loop42;
+																					default:
+																						switch(null)
+																						{
+																							case "j":
+																								this.aks.Exchange.onCrafterReference(loc5.substr(2));
+																								break loop42;
+																							case "A":
+																								this.aks.Exchange.onCraftLoop(loc5.substr(2));
+																								break loop42;
+																							case "a":
+																								this.aks.Exchange.onCraftLoopEnd(loc5.substr(2));
+																								break loop42;
+																							default:
+																								this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																						}
+																				}
+																		}
+																}
+														}
+												}
+												break loop0;
+											case "h":
+												loop50:
+												switch(loc3)
+												{
+													case "L":
+														this.aks.Houses.onList(loc5.substr(2));
+														break;
+													case "P":
+														this.aks.Houses.onProperties(loc5.substr(2));
+														break;
+													case "X":
+														this.aks.Houses.onLockedProperty(loc5.substr(2));
+														break;
+													default:
+														switch(null)
+														{
+															case "C":
+																this.aks.Houses.onCreate(loc5.substr(3));
+																break loop50;
+															case "S":
+																this.aks.Houses.onSell(!loc4,loc5.substr(3));
+																break loop50;
+															case "B":
+																this.aks.Houses.onBuy(!loc4,loc5.substr(3));
+																break loop50;
+															case "V":
+																this.aks.Houses.onLeave();
+																break loop50;
+															default:
+																if(loc0 !== "G")
+																{
+																	this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																	break loop50;
+																}
+																this.aks.Houses.onGuildInfos(loc5.substr(2));
+																break loop50;
+														}
+												}
+												break loop0;
+											case "s":
+												switch(loc3)
+												{
+													case "L":
+														this.aks.Storages.onList(loc5.substr(2));
+														break;
+													case "X":
+														this.aks.Storages.onLockedProperty(loc5.substr(2));
+														break;
+													default:
+														this.defaultProcessAction(loc2,loc3,loc4,loc5);
+												}
+												break loop0;
+											default:
+												switch(null)
+												{
+													case "e":
+														loop54:
+														switch(loc3)
+														{
+															case "U":
+																this.aks.Emotes.onUse(!loc4,loc5.substr(3));
+																break;
+															case "L":
+																this.aks.Emotes.onList(loc5.substr(2));
+																break;
+															default:
+																switch(null)
+																{
+																	case "A":
+																		this.aks.Emotes.onAdd(loc5.substr(2));
+																		break loop54;
+																	case "R":
+																		this.aks.Emotes.onRemove(loc5.substr(2));
+																		break loop54;
+																	case "D":
+																		this.aks.Emotes.onDirection(loc5.substr(2));
+																		break loop54;
+																	default:
+																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																}
+														}
+														break loop0;
+													case "d":
+														switch(loc3)
+														{
+															case "C":
+																this.aks.Documents.onCreate(!loc4,loc5.substr(3));
+																break;
+															case "V":
+																this.aks.Documents.onLeave();
+																break;
+															default:
+																this.defaultProcessAction(loc2,loc3,loc4,loc5);
+														}
+														break loop0;
+													case "g":
+														loop57:
+														switch(loc3)
+														{
+															case "n":
+																this.aks.Guild.onNew();
+																break;
+															case "C":
+																this.aks.Guild.onCreate(!loc4,loc5.substr(3));
+																break;
+															default:
+																switch(null)
+																{
+																	case "S":
+																		this.aks.Guild.onStats(loc5.substr(2));
+																		break loop57;
+																	case "I":
+																		loop59:
+																		switch(loc5.charAt(2))
+																		{
+																			case "G":
+																				this.aks.Guild.onInfosGeneral(loc5.substr(3));
+																				break;
+																			case "M":
+																				this.aks.Guild.onInfosMembers(loc5.substr(3));
+																				break;
+																			default:
+																				switch(null)
+																				{
+																					case "B":
+																						this.aks.Guild.onInfosBoosts(loc5.substr(3));
+																						break loop59;
+																					case "F":
+																						this.aks.Guild.onInfosMountPark(loc5.substr(3));
+																						break loop59;
+																					case "T":
+																						switch(loc5.charAt(3))
+																						{
+																							case "M":
+																								this.aks.Guild.onInfosTaxCollectorsMovement(loc5.substr(4));
+																								break;
+																							case "P":
+																								this.aks.Guild.onInfosTaxCollectorsPlayers(loc5.substr(4));
+																								break;
+																							case "p":
+																								this.aks.Guild.onInfosTaxCollectorsAttackers(loc5.substr(4));
+																								break;
+																							default:
+																								this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																						}
+																						break loop59;
+																					case "H":
+																						this.aks.Guild.onInfosHouses(loc5.substr(3));
+																						break loop59;
+																					default:
+																						this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																				}
+																		}
+																		break loop57;
+																	case "J":
+																		switch(loc5.charAt(2))
+																		{
+																			case "E":
+																				this.aks.Guild.onJoinError(loc5.substr(3));
+																				break;
+																			case "R":
+																				this.aks.Guild.onRequestLocal(loc5.substr(3));
+																				break;
+																			case "r":
+																				this.aks.Guild.onRequestDistant(loc5.substr(3));
+																				break;
+																			case "K":
+																				this.aks.Guild.onJoinOk(loc5.substr(3));
+																				break;
+																			case "C":
+																				this.aks.Guild.onJoinDistantOk();
+																				break;
+																			default:
+																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		}
+																		break loop57;
+																	case "V":
+																		this.aks.Guild.onLeave();
+																		break loop57;
+																	default:
+																		switch(null)
+																		{
+																			case "K":
+																				this.aks.Guild.onBann(!loc4,loc5.substr(3));
+																				break loop57;
+																			case "H":
+																				this.aks.Guild.onHireTaxCollector(!loc4,loc5.substr(3));
+																				break loop57;
+																			case "A":
+																				this.aks.Guild.onTaxCollectorAttacked(loc5.substr(2));
+																				break loop57;
+																			case "T":
+																				this.aks.Guild.onTaxCollectorInfo(loc5.substr(2));
+																				break loop57;
+																			case "U":
+																				this.aks.Guild.onUserInterfaceOpen(loc5.substr(2));
+																				break loop57;
+																			default:
+																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		}
+																}
+														}
+														break loop0;
+													case "W":
+														if((loc0 = loc3) !== "C")
+														{
+															loop64:
+															switch(null)
+															{
+																case "V":
+																	this.aks.Waypoints.onLeave();
+																	break;
+																case "U":
+																	this.aks.Waypoints.onUseError();
+																	break;
+																case "c":
+																	this.aks.Subway.onCreate(loc5.substr(2));
+																	break;
+																case "v":
+																	this.aks.Subway.onLeave();
+																	break;
+																default:
+																	switch(null)
+																	{
+																		case "u":
+																			this.aks.Subway.onUseError();
+																			break loop64;
+																		case "p":
+																			this.aks.Subway.onPrismCreate(loc5.substr(2));
+																			break loop64;
+																		case "w":
+																			this.aks.Subway.onPrismLeave();
+																			break loop64;
+																		default:
+																			this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																	}
+															}
+														}
+														else
+														{
+															this.aks.Waypoints.onCreate(loc5.substr(2));
+														}
+														break loop0;
+													default:
+														switch(null)
+														{
+															case "a":
+																if((loc0 = loc3) !== "l")
+																{
+																	switch(null)
+																	{
+																		case "m":
+																			this.aks.Subareas.onAlignmentModification(loc5.substr(2));
+																			break;
+																		case "M":
+																			this.aks.Conquest.onAreaAlignmentChanged(loc5.substr(2));
+																			break;
+																		default:
+																			this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																	}
+																}
+																else
+																{
+																	this.aks.Subareas.onList(loc5.substr(3));
+																}
+																break loop0;
+															case "C":
+																loop68:
+																switch(loc3)
+																{
+																	case "I":
+																		switch(loc5.charAt(2))
+																		{
+																			case "J":
+																				this.aks.Conquest.onPrismInfosJoined(loc5.substr(3));
+																				break;
+																			case "V":
+																				this.aks.Conquest.onPrismInfosClosing(loc5.substr(3));
+																				break;
+																			default:
+																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		}
+																		break;
+																	case "B":
+																		this.aks.Conquest.onConquestBonus(loc5.substr(2));
+																		break;
+																	case "A":
+																		this.aks.Conquest.onPrismAttacked(loc5.substr(2));
+																		break;
+																	case "S":
+																		this.aks.Conquest.onPrismSurvived(loc5.substr(2));
+																		break;
+																	default:
+																		switch(null)
+																		{
+																			case "D":
+																				this.aks.Conquest.onPrismDead(loc5.substr(2));
+																				break loop68;
+																			case "P":
+																				this.aks.Conquest.onPrismFightAddPlayer(loc5.substr(2));
+																				break loop68;
+																			case "p":
+																				this.aks.Conquest.onPrismFightAddEnemy(loc5.substr(2));
+																				break loop68;
+																			case "W":
+																				this.aks.Conquest.onWorldData(loc5.substr(2));
+																				break loop68;
+																			case "b":
+																				this.aks.Conquest.onConquestBalance(loc5.substr(2));
+																				break loop68;
+																			default:
+																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		}
+																}
+																break loop0;
+															case "Z":
+																switch(loc3)
+																{
+																	case "S":
+																		this.aks.Specialization.onSet(loc5.substr(2));
+																		break;
+																	case "C":
+																		this.aks.Specialization.onChange(loc5.substr(2));
+																		break;
+																	default:
+																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																}
+																break loop0;
+															case "f":
+																switch(loc3)
+																{
+																	case "C":
+																		this.aks.Fights.onCount(loc5.substr(2));
+																		break;
+																	case "L":
+																		this.aks.Fights.onList(loc5.substr(2));
+																		break;
+																	case "D":
+																		this.aks.Fights.onDetails(loc5.substr(2));
+																		break;
+																	default:
+																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																}
+																break loop0;
+															default:
+																loop73:
+																switch(null)
+																{
+																	case "T":
+																		switch(loc3)
+																		{
+																			case "C":
+																				this.aks.Tutorial.onCreate(loc5.substr(2));
+																				break;
+																			case "T":
+																				this.aks.Tutorial.onShowTip(loc5.substr(2));
+																				break;
+																			case "B":
+																				this.aks.Tutorial.onGameBegin();
+																				break;
+																			default:
+																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		}
+																		break;
+																	case "Q":
+																		switch(loc3)
+																		{
+																			case "L":
+																				this.aks.Quests.onList(loc5.substr(3));
+																				break;
+																			case "S":
+																				this.aks.Quests.onStep(loc5.substr(2));
+																				break;
+																			default:
+																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		}
+																		break;
+																	case "P":
+																		loop76:
+																		switch(loc3)
+																		{
+																			case "I":
+																				this.aks.Party.onInvite(!loc4,loc5.substr(3));
+																				break;
+																			case "L":
+																				this.aks.Party.onLeader(loc5.substr(2));
+																				break;
+																			case "R":
+																				this.aks.Party.onRefuse(loc5.substr(2));
+																				break;
+																			case "A":
+																				this.aks.Party.onAccept(loc5.substr(2));
+																				break;
+																			case "C":
+																				this.aks.Party.onCreate(!loc4,loc5.substr(3));
+																				break;
+																			default:
+																				switch(null)
+																				{
+																					case "V":
+																						this.aks.Party.onLeave(loc5.substr(2));
+																						break loop76;
+																					case "F":
+																						this.aks.Party.onFollow(!loc4,loc5.substr(3));
+																						break loop76;
+																					case "M":
+																						this.aks.Party.onMovement(loc5.substr(2));
+																						break loop76;
+																					default:
+																						this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																				}
+																		}
+																		break;
+																	case "R":
+																		switch(loc3)
+																		{
+																			case "e":
+																				this.aks.Mount.onEquip(loc5.substr(2));
+																				break loop73;
+																			case "x":
+																				this.aks.Mount.onXP(loc5.substr(2));
+																				break loop73;
+																			default:
+																				switch(null)
+																				{
+																					case "n":
+																						this.aks.Mount.onName(loc5.substr(2));
+																						break loop73;
+																					case "d":
+																						this.aks.Mount.onData(loc5.substr(2));
+																						break loop73;
+																					case "p":
+																						this.aks.Mount.onMountPark(loc5.substr(2));
+																						break loop73;
+																					case "D":
+																						this.aks.Mount.onMountParkBuy(loc5.substr(2));
+																						break loop73;
+																					case "v":
+																						this.aks.Mount.onLeave(loc5.substr(2));
+																						break loop73;
+																					default:
+																						if(loc0 !== "r")
+																						{
+																							this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																							break loop73;
+																						}
+																						this.aks.Mount.onRidingState(loc5.substr(2));
+																						break loop73;
+																				}
+																		}
+																}
+														}
+												}
+										}
+								}
+						}
+				}
+		}
+	}
 }

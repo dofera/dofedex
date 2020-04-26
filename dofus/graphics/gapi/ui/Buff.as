@@ -1,94 +1,94 @@
 class dofus.graphics.gapi.ui.Buff extends dofus.graphics.gapi.core.DofusAdvancedComponent
 {
-   static var CLASS_NAME = "Buff";
-   static var LAST_CONTAINER = 27;
-   function Buff()
-   {
-      super();
-   }
-   function init()
-   {
-      super.init(false,dofus.graphics.gapi.ui.Buff.CLASS_NAME);
-   }
-   function createChildren()
-   {
-      this.addToQueue({object:this,method:this.addListeners});
-      this.addToQueue({object:this,method:this.updateData});
-   }
-   function addListeners()
-   {
-      var _loc2_ = 20;
-      while(_loc2_ <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
-      {
-         var _loc3_ = this["_ctr" + _loc2_];
-         _loc3_.addEventListener("click",this);
-         _loc3_.addEventListener("over",this);
-         _loc3_.addEventListener("out",this);
-         _loc2_ = _loc2_ + 1;
-      }
-      this.api.datacenter.Player.Inventory.addEventListener("modelChanged",this);
-   }
-   function updateData()
-   {
-      var _loc2_ = new Array();
-      var _loc3_ = 20;
-      while(_loc3_ <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
-      {
-         _loc2_[_loc3_] = true;
-         _loc3_ = _loc3_ + 1;
-      }
-      var _loc4_ = this.api.datacenter.Player.Inventory;
-      for(var k in _loc4_)
-      {
-         var _loc5_ = _loc4_[k];
-         if(!_global.isNaN(_loc5_.position))
-         {
-            var _loc6_ = _loc5_.position;
-            if(_loc6_ < 20 || _loc6_ > dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
-            {
-               continue;
-            }
-            var _loc7_ = this["_ctr" + _loc6_];
-            _loc7_.contentData = _loc5_;
-            _loc7_.enabled = true;
-            _loc2_[_loc6_] = false;
-         }
-      }
-      var _loc8_ = 20;
-      while(_loc8_ <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
-      {
-         if(_loc2_[_loc8_])
-         {
-            var _loc9_ = this["_ctr" + _loc8_];
-            _loc9_.contentData = undefined;
-            _loc9_.enabled = false;
-         }
-         _loc8_ = _loc8_ + 1;
-      }
-   }
-   function modelChanged(oEvent)
-   {
-      switch(oEvent.eventName)
-      {
-         case "updateOne":
-         case "updateAll":
-      }
-      this.updateData();
-   }
-   function click(oEvent)
-   {
-      this.gapi.loadUIComponent("BuffInfos","BuffInfos",{data:oEvent.target.contentData},{bStayIfPresent:true});
-   }
-   function over(oEvent)
-   {
-      var _loc3_ = oEvent.target.contentData;
-      if(_loc3_ != undefined)
-      {
-         this.gapi.showTooltip(_loc3_.name + "\n" + _loc3_.visibleEffects,oEvent.target,30);
-      }
-   }
-   function out(oEvent)
-   {
-      this.gapi.hideTooltip();
-   }
+	static var CLASS_NAME = "Buff";
+	static var LAST_CONTAINER = 27;
+	function Buff()
+	{
+		super();
+	}
+	function init()
+	{
+		super.init(false,dofus.graphics.gapi.ui.Buff.CLASS_NAME);
+	}
+	function createChildren()
+	{
+		this.addToQueue({object:this,method:this.addListeners});
+		this.addToQueue({object:this,method:this.updateData});
+	}
+	function addListeners()
+	{
+		var loc2 = 20;
+		while(loc2 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+		{
+			var loc3 = this["_ctr" + loc2];
+			loc3.addEventListener("click",this);
+			loc3.addEventListener("over",this);
+			loc3.addEventListener("out",this);
+			loc2 = loc2 + 1;
+		}
+		this.api.datacenter.Player.Inventory.addEventListener("modelChanged",this);
+	}
+	function updateData()
+	{
+		var loc2 = new Array();
+		var loc3 = 20;
+		while(loc3 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+		{
+			loc2[loc3] = true;
+			loc3 = loc3 + 1;
+		}
+		var loc4 = this.api.datacenter.Player.Inventory;
+		for(var k in loc4)
+		{
+			var loc5 = loc4[k];
+			if(!_global.isNaN(loc5.position))
+			{
+				var loc6 = loc5.position;
+				if(loc6 < 20 || loc6 > dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+				{
+					continue;
+				}
+				var loc7 = this["_ctr" + loc6];
+				loc7.contentData = loc5;
+				loc7.enabled = true;
+				loc2[loc6] = false;
+			}
+		}
+		var loc8 = 20;
+		while(loc8 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+		{
+			if(loc2[loc8])
+			{
+				var loc9 = this["_ctr" + loc8];
+				loc9.contentData = undefined;
+				loc9.enabled = false;
+			}
+			loc8 = loc8 + 1;
+		}
+	}
+	function modelChanged(loc2)
+	{
+		switch(loc2.eventName)
+		{
+			case "updateOne":
+			case "updateAll":
+		}
+		this.updateData();
+	}
+	function click(loc2)
+	{
+		this.gapi.loadUIComponent("BuffInfos","BuffInfos",{data:loc2.target.contentData},{bStayIfPresent:true});
+	}
+	function over(loc2)
+	{
+		var loc3 = loc2.target.contentData;
+		if(loc3 != undefined)
+		{
+			this.gapi.showTooltip(loc3.name + "\n" + loc3.visibleEffects,loc2.target,30);
+		}
+	}
+	function out(loc2)
+	{
+		this.gapi.hideTooltip();
+	}
 }

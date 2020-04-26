@@ -1,70 +1,70 @@
 class ank.battlefield.mc.BubbleThink extends ank.battlefield.mc.Bubble
 {
-   function BubbleThink(text, x, y, maxW)
-   {
-      super(text,x,y,maxW);
-   }
-   function drawCircle(mc, x, y, ray, color)
-   {
-      var _loc7_ = x + Math.sin(360 / 15 * 0 * Math.PI / 180) * ray;
-      var _loc8_ = y + Math.cos(360 / 15 * 0 * Math.PI / 180) * ray;
-      mc.moveTo(_loc7_,_loc8_);
-      mc.beginFill(color,100);
-      var _loc9_ = 0;
-      while(_loc9_ <= 15)
-      {
-         var _loc10_ = x + Math.sin(360 / 15 * _loc9_ * Math.PI / 180) * ray;
-         var _loc11_ = y + Math.cos(360 / 15 * _loc9_ * Math.PI / 180) * ray;
-         mc.lineTo(_loc10_,_loc11_);
-         _loc9_ = _loc9_ + 1;
-      }
-      mc.endFill();
-   }
-   function drawBackground(w, h)
-   {
-      var _loc4_ = ank.battlefield.Constants.BUBBLE_MARGIN * 2;
-      this.createEmptyMovieClip("_bg",10);
-      var _loc5_ = - h - _loc4_ - ank.battlefield.Constants.BUBBLE_PIC_HEIGHT;
-      var _loc6_ = - ank.battlefield.Constants.BUBBLE_PIC_HEIGHT;
-      var _loc7_ = 0;
-      var _loc8_ = w + _loc4_;
-      this._bg.moveTo(_loc7_,_loc5_);
-      this._bg.lineStyle(0,16777215);
-      this._bg.beginFill(16777215,100);
-      this._bg.lineTo(_loc8_,_loc5_);
-      this._bg.lineTo(_loc8_,_loc6_);
-      this._bg.lineTo(_loc7_,_loc6_);
-      this._bg.lineTo(_loc7_,_loc5_);
-      this._bg.endFill();
-      var _loc9_ = _loc7_;
-      while(_loc9_ <= _loc8_)
-      {
-         this.drawCircle(this._bg,_loc9_,_loc5_,7,16777215);
-         _loc9_ = _loc9_ + 14;
-      }
-      var _loc10_ = _loc7_;
-      while(_loc10_ <= _loc8_)
-      {
-         this.drawCircle(this._bg,_loc10_,_loc6_,7,16777215);
-         _loc10_ = _loc10_ + 14;
-      }
-      var _loc11_ = _loc5_;
-      while(_loc11_ <= _loc6_)
-      {
-         this.drawCircle(this._bg,_loc8_,_loc11_,7,16777215);
-         _loc11_ = _loc11_ + 14;
-      }
-      var _loc12_ = _loc5_;
-      while(_loc12_ <= _loc6_)
-      {
-         this.drawCircle(this._bg,_loc7_,_loc12_,7,16777215);
-         _loc12_ = _loc12_ + 14;
-      }
-      this.drawCircle(this._bg,_loc7_,_loc6_ + 5,8,16777215);
-      this.drawCircle(this._bg,-5,5,4,16777215);
-      var _loc13_ = new Array();
-      _loc13_.push(new flash.filters.GlowFilter(0,30,2,2,3,3,false,false));
-      this._bg.filters = _loc13_;
-      this._bg._alpha = 90;
-   }
+	function BubbleThink(loc3, loc4, loc5, loc6)
+	{
+		super(loc3,loc4,loc5,loc6);
+	}
+	function drawCircle(loc2, loc3, loc4, loc5, loc6)
+	{
+		var loc7 = loc3 + Math.sin(360 / 15 * 0 * Math.PI / 180) * loc5;
+		var loc8 = loc4 + Math.cos(360 / 15 * 0 * Math.PI / 180) * loc5;
+		loc2.moveTo(loc7,loc8);
+		loc2.beginFill(loc6,100);
+		var loc9 = 0;
+		while(loc9 <= 15)
+		{
+			var loc10 = loc3 + Math.sin(360 / 15 * loc9 * Math.PI / 180) * loc5;
+			var loc11 = loc4 + Math.cos(360 / 15 * loc9 * Math.PI / 180) * loc5;
+			loc2.lineTo(loc10,loc11);
+			loc9 = loc9 + 1;
+		}
+		loc2.endFill();
+	}
+	function drawBackground(loc2, loc3)
+	{
+		var loc4 = ank.battlefield.Constants.BUBBLE_MARGIN * 2;
+		this.createEmptyMovieClip("_bg",10);
+		var loc5 = - loc3 - loc4 - ank.battlefield.Constants.BUBBLE_PIC_HEIGHT;
+		var loc6 = - ank.battlefield.Constants.BUBBLE_PIC_HEIGHT;
+		var loc7 = 0;
+		var loc8 = loc2 + loc4;
+		this._bg.moveTo(loc7,loc5);
+		this._bg.lineStyle(0,16777215);
+		this._bg.beginFill(16777215,100);
+		this._bg.lineTo(loc8,loc5);
+		this._bg.lineTo(loc8,loc6);
+		this._bg.lineTo(loc7,loc6);
+		this._bg.lineTo(loc7,loc5);
+		this._bg.endFill();
+		var loc9 = loc7;
+		while(loc9 <= loc8)
+		{
+			this.drawCircle(this._bg,loc9,loc5,7,16777215);
+			loc9 = loc9 + 14;
+		}
+		var loc10 = loc7;
+		while(loc10 <= loc8)
+		{
+			this.drawCircle(this._bg,loc10,loc6,7,16777215);
+			loc10 = loc10 + 14;
+		}
+		var loc11 = loc5;
+		while(loc11 <= loc6)
+		{
+			this.drawCircle(this._bg,loc8,loc11,7,16777215);
+			loc11 = loc11 + 14;
+		}
+		var loc12 = loc5;
+		while(loc12 <= loc6)
+		{
+			this.drawCircle(this._bg,loc7,loc12,7,16777215);
+			loc12 = loc12 + 14;
+		}
+		this.drawCircle(this._bg,loc7,loc6 + 5,8,16777215);
+		this.drawCircle(this._bg,-5,5,4,16777215);
+		var loc13 = new Array();
+		loc13.push(new flash.filters.GlowFilter(0,30,2,2,3,3,false,false));
+		this._bg.filters = loc13;
+		this._bg._alpha = 90;
+	}
 }

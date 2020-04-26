@@ -1,92 +1,92 @@
 class ank.utils.ConsoleUtils
 {
-   function ConsoleUtils()
-   {
-   }
-   static function autoCompletion(aList, sCmd)
-   {
-      var _loc4_ = ank.utils.ConsoleUtils.removeAndGetLastWord(sCmd);
-      var _loc5_ = _loc4_.lastWord;
-      sCmd = _loc4_.leftCmd;
-      _loc5_ = _loc5_.toLowerCase();
-      var _loc6_ = ank.utils.ConsoleUtils.getStringsStartWith(aList,_loc5_);
-      if(_loc6_.length > 1)
-      {
-         var _loc7_ = "";
-         var _loc8_ = 0;
-         while(_loc8_ < _loc6_.length)
-         {
-            _loc7_ = String(_loc6_[_loc8_]).charAt(_loc5_.length);
-            if(_loc7_ != "")
-            {
-               break;
-            }
-            _loc8_ = _loc8_ + 1;
-         }
-         if(_loc7_ == "")
-         {
-            return {result:sCmd + _loc5_,full:false};
-         }
-         return ank.utils.ConsoleUtils.autoCompletionRecurcive(_loc6_,sCmd,_loc5_ + _loc7_);
-      }
-      if(_loc6_.length != 0)
-      {
-         return {result:sCmd + _loc6_[0],isFull:true};
-      }
-      return {result:sCmd + _loc5_,list:_loc6_,isFull:false};
-   }
-   static function removeAndGetLastWord(sCmd)
-   {
-      var _loc3_ = sCmd.split(" ");
-      if(_loc3_.length == 0)
-      {
-         return {leftCmd:"",lastWord:""};
-      }
-      var _loc4_ = String(_loc3_.pop());
-      return {leftCmd:(_loc3_.length != 0?_loc3_.join(" ") + " ":""),lastWord:_loc4_};
-   }
-   static function autoCompletionRecurcive(aList, sLeftCmd, sPattern)
-   {
-      sPattern = sPattern.toLowerCase();
-      var _loc5_ = ank.utils.ConsoleUtils.getStringsStartWith(aList,sPattern);
-      if(_loc5_.length > 1 && _loc5_.length == aList.length)
-      {
-         var _loc6_ = "";
-         var _loc7_ = 0;
-         while(_loc7_ < _loc5_.length)
-         {
-            _loc6_ = String(_loc5_[_loc7_]).charAt(sPattern.length);
-            if(_loc6_ != "")
-            {
-               break;
-            }
-            _loc7_ = _loc7_ + 1;
-         }
-         if(_loc6_ == "")
-         {
-            return {result:sLeftCmd + sPattern,isFull:false};
-         }
-         return ank.utils.ConsoleUtils.autoCompletionRecurcive(_loc5_,sLeftCmd,sPattern + _loc6_);
-      }
-      if(_loc5_.length != 0)
-      {
-         return {result:sLeftCmd + sPattern.substr(0,sPattern.length - 1),list:aList,isFull:false};
-      }
-      return {result:sLeftCmd + sPattern,list:aList,isFull:false};
-   }
-   static function getStringsStartWith(aList, sPattern)
-   {
-      var _loc4_ = new Array();
-      var _loc5_ = 0;
-      while(_loc5_ < aList.length)
-      {
-         var _loc6_ = String(aList[_loc5_]).toLowerCase().split(sPattern);
-         if(_loc6_[0] == "" && (_loc6_.length != 0 && String(aList[_loc5_]).length >= sPattern.length))
-         {
-            _loc4_.push(aList[_loc5_]);
-         }
-         _loc5_ = _loc5_ + 1;
-      }
-      return _loc4_;
-   }
+	function ConsoleUtils()
+	{
+	}
+	static function autoCompletion(loc2, loc3)
+	{
+		var loc4 = ank.utils.ConsoleUtils.removeAndGetLastWord(loc3);
+		var loc5 = loc4.lastWord;
+		loc3 = loc4.leftCmd;
+		loc5 = loc5.toLowerCase();
+		var loc6 = ank.utils.ConsoleUtils.getStringsStartWith(loc2,loc5);
+		if(loc6.length > 1)
+		{
+			var loc7 = "";
+			var loc8 = 0;
+			while(loc8 < loc6.length)
+			{
+				loc7 = String(loc6[loc8]).charAt(loc5.length);
+				if(loc7 != "")
+				{
+					break;
+				}
+				loc8 = loc8 + 1;
+			}
+			if(loc7 == "")
+			{
+				return {result:loc3 + loc5,full:false};
+			}
+			return ank.utils.ConsoleUtils.autoCompletionRecurcive(loc6,loc3,loc5 + loc7);
+		}
+		if(loc6.length != 0)
+		{
+			return {result:loc3 + loc6[0],isFull:true};
+		}
+		return {result:loc3 + loc5,list:loc6,isFull:false};
+	}
+	static function removeAndGetLastWord(loc2)
+	{
+		var loc3 = loc2.split(" ");
+		if(loc3.length == 0)
+		{
+			return {leftCmd:"",lastWord:""};
+		}
+		var loc4 = String(loc3.pop());
+		return {leftCmd:(loc3.length != 0?loc3.join(" ") + " ":""),lastWord:loc4};
+	}
+	static function autoCompletionRecurcive(loc2, loc3, loc4)
+	{
+		loc4 = loc4.toLowerCase();
+		var loc5 = ank.utils.ConsoleUtils.getStringsStartWith(loc2,loc4);
+		if(loc5.length > 1 && loc5.length == loc2.length)
+		{
+			var loc6 = "";
+			var loc7 = 0;
+			while(loc7 < loc5.length)
+			{
+				loc6 = String(loc5[loc7]).charAt(loc4.length);
+				if(loc6 != "")
+				{
+					break;
+				}
+				loc7 = loc7 + 1;
+			}
+			if(loc6 == "")
+			{
+				return {result:loc3 + loc4,isFull:false};
+			}
+			return ank.utils.ConsoleUtils.autoCompletionRecurcive(loc5,loc3,loc4 + loc6);
+		}
+		if(loc5.length != 0)
+		{
+			return {result:loc3 + loc4.substr(0,loc4.length - 1),list:loc2,isFull:false};
+		}
+		return {result:loc3 + loc4,list:loc2,isFull:false};
+	}
+	static function getStringsStartWith(loc2, loc3)
+	{
+		var loc4 = new Array();
+		var loc5 = 0;
+		while(loc5 < loc2.length)
+		{
+			var loc6 = String(loc2[loc5]).toLowerCase().split(loc3);
+			if(loc6[0] == "" && (loc6.length != 0 && String(loc2[loc5]).length >= loc3.length))
+			{
+				loc4.push(loc2[loc5]);
+			}
+			loc5 = loc5 + 1;
+		}
+		return loc4;
+	}
 }

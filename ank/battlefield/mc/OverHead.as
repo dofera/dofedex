@@ -1,140 +1,140 @@
 class ank.battlefield.mc.OverHead extends MovieClip
 {
-   static var TOP_Y = -50;
-   static var BOTTOM_Y = 10;
-   static var MODERATOR_Y = 15;
-   function OverHead(mcSprite, nZoom, mcBattlefield)
-   {
-      super();
-      this._mcBattlefield = mcBattlefield;
-      this._mcSprite = mcSprite;
-      this._nZoom = nZoom != undefined?nZoom:100;
-      this.initialize();
-   }
-   function __get__top()
-   {
-      return ank.battlefield.mc.OverHead.TOP_Y * this._nZoom / 100;
-   }
-   function __get__bottom()
-   {
-      return ank.battlefield.mc.OverHead.BOTTOM_Y * this._nZoom / 100;
-   }
-   function __get__moderator()
-   {
-      return ank.battlefield.mc.OverHead.MODERATOR_Y * this._nZoom / 100;
-   }
-   function initialize()
-   {
-      this._nCurrentItemID = 0;
-      this.clear();
-   }
-   function clear()
-   {
-      this._oLayers = new Object();
-      this.clearView();
-   }
-   function clearView()
-   {
-      this.createEmptyMovieClip("_mcItems",10);
-   }
-   function setPosition(nItemsHeight, nMaxWidth)
-   {
-      var _loc4_ = {x:this._parent._parent._x,y:this._parent._parent._y};
-      this._parent._parent.localToGlobal(_loc4_);
-      this._x = this._mcSprite._x;
-      this._y = this._mcSprite._y;
-      var _loc5_ = 100 / this._nZoom;
-      var _loc6_ = this.top;
-      var _loc7_ = this.moderator;
-      nItemsHeight = nItemsHeight * _loc5_;
-      if(this._mcSprite._y < - _loc6_ + nItemsHeight - _loc4_.y + _loc7_)
-      {
-         this._mcItems._y = this._mcItems._y + (this.bottom + nItemsHeight);
-         var _loc8_ = 0;
-         for(var k in this._oLayers)
-         {
-            var _loc9_ = this._mcItems["item" + _loc8_];
-            _loc9_.reverseClip();
-            _loc8_ = _loc8_ + 1;
-         }
-      }
-      else
-      {
-         var _loc10_ = Math.abs(_loc6_);
-         if(this._mcSprite._height > _loc10_ + _loc7_)
-         {
-            this._mcItems._y = this._mcItems._y + (_loc6_ - _loc7_);
-         }
-         else if(this._mcSprite._height < _loc10_ - _loc7_)
-         {
-            this._mcItems._y = this._mcItems._y + (_loc6_ + _loc7_);
-         }
-         else
-         {
-            this._mcItems._y = this._mcItems._y + _loc6_;
-         }
-      }
-      var _loc11_ = nMaxWidth * _loc5_ / 2;
-      if(this._mcSprite._x < _loc11_ - _loc4_.x)
-      {
-         this._x = _loc11_;
-      }
-      if(this._mcSprite._x > this._mcBattlefield.screenWidth * _loc5_ - _loc11_ + _loc4_.x)
-      {
-         this._x = this._mcBattlefield.screenWidth * _loc5_ - _loc11_;
-      }
-   }
-   function addItem(sLayerName, className, args, delay)
-   {
-      var _loc6_ = new Object();
-      _loc6_.id = this._nCurrentItemID;
-      _loc6_.className = className;
-      _loc6_.args = args;
-      if(delay != undefined)
-      {
-         ank.utils.Timer.setTimer(_loc6_,"battlefield",this,this.removeItem,delay,[this._nCurrentItemID]);
-      }
-      this._oLayers[sLayerName] = _loc6_;
-      this._nCurrentItemID = this._nCurrentItemID + 1;
-      this.refresh();
-   }
-   function remove(Void)
-   {
-      this.swapDepths(1);
-      this.removeMovieClip();
-   }
-   function refresh()
-   {
-      this.clearView();
-      var _loc2_ = 0;
-      var _loc3_ = 0;
-      var _loc4_ = 0;
-      for(var k in this._oLayers)
-      {
-         var _loc5_ = this._oLayers[k];
-         var _loc6_ = this._mcItems.attachClassMovie(_loc5_.className,"item" + _loc2_,_loc2_,_loc5_.args);
-         _loc3_ = _loc3_ - _loc6_.height;
-         _loc4_ = Math.max(_loc4_,_loc6_.width);
-         _loc6_._y = _loc3_;
-         _loc2_ = _loc2_ + 1;
-      }
-      this.setPosition(Math.abs(_loc3_),_loc4_);
-   }
-   function removeLayer(layerName)
-   {
-      delete this._oLayers.layerName;
-      this.refresh();
-   }
-   function removeItem(nItemID)
-   {
-      for(var _loc3_ in this._oLayers)
-      {
-         if(this._oLayers[_loc3_].id == nItemID)
-         {
-            delete this._oLayers.register3;
-            this.refresh();
-            break;
-         }
-      }
-   }
+	static var TOP_Y = -50;
+	static var BOTTOM_Y = 10;
+	static var MODERATOR_Y = 15;
+	function OverHead(§\x0b\x13§, §\x1e\x1c\x05§, mcBattlefield)
+	{
+		super();
+		this._mcBattlefield = mcBattlefield;
+		this._mcSprite = loc3;
+		this._nZoom = loc4 != undefined?loc4:100;
+		this.initialize();
+	}
+	function __get__top()
+	{
+		return ank.battlefield.mc.OverHead.TOP_Y * this._nZoom / 100;
+	}
+	function __get__bottom()
+	{
+		return ank.battlefield.mc.OverHead.BOTTOM_Y * this._nZoom / 100;
+	}
+	function __get__moderator()
+	{
+		return ank.battlefield.mc.OverHead.MODERATOR_Y * this._nZoom / 100;
+	}
+	function initialize()
+	{
+		this._nCurrentItemID = 0;
+		this.clear();
+	}
+	function clear()
+	{
+		this._oLayers = new Object();
+		this.clearView();
+	}
+	function clearView()
+	{
+		this.createEmptyMovieClip("_mcItems",10);
+	}
+	function setPosition(loc2, loc3)
+	{
+		var loc4 = {x:this._parent._parent._x,y:this._parent._parent._y};
+		this._parent._parent.localToGlobal(loc4);
+		this._x = this._mcSprite._x;
+		this._y = this._mcSprite._y;
+		var loc5 = 100 / this._nZoom;
+		var loc6 = this.top;
+		var loc7 = this.moderator;
+		loc2 = loc2 * loc5;
+		if(this._mcSprite._y < - loc6 + loc2 - loc4.y + loc7)
+		{
+			this._mcItems._y = this._mcItems._y + (this.bottom + loc2);
+			var loc8 = 0;
+			for(var k in this._oLayers)
+			{
+				var loc9 = this._mcItems["item" + loc8];
+				loc9.reverseClip();
+				loc8 = loc8 + 1;
+			}
+		}
+		else
+		{
+			var loc10 = Math.abs(loc6);
+			if(this._mcSprite._height > loc10 + loc7)
+			{
+				this._mcItems._y = this._mcItems._y + (loc6 - loc7);
+			}
+			else if(this._mcSprite._height < loc10 - loc7)
+			{
+				this._mcItems._y = this._mcItems._y + (loc6 + loc7);
+			}
+			else
+			{
+				this._mcItems._y = this._mcItems._y + loc6;
+			}
+		}
+		var loc11 = loc3 * loc5 / 2;
+		if(this._mcSprite._x < loc11 - loc4.x)
+		{
+			this._x = loc11;
+		}
+		if(this._mcSprite._x > this._mcBattlefield.screenWidth * loc5 - loc11 + loc4.x)
+		{
+			this._x = this._mcBattlefield.screenWidth * loc5 - loc11;
+		}
+	}
+	function addItem(loc2, loc3, loc4, loc5)
+	{
+		var loc6 = new Object();
+		loc6.id = this._nCurrentItemID;
+		loc6.className = className;
+		loc6.args = loc4;
+		if(loc5 != undefined)
+		{
+			ank.utils.Timer.setTimer(loc6,"battlefield",this,this.removeItem,loc5,[this._nCurrentItemID]);
+		}
+		this._oLayers[loc2] = loc6;
+		this._nCurrentItemID++;
+		this.refresh();
+	}
+	function remove(loc2)
+	{
+		this.swapDepths(1);
+		this.removeMovieClip();
+	}
+	function refresh()
+	{
+		this.clearView();
+		var loc2 = 0;
+		var loc3 = 0;
+		var loc4 = 0;
+		for(var k in this._oLayers)
+		{
+			var loc5 = this._oLayers[k];
+			var loc6 = this._mcItems.attachClassMovie(loc5.className,"item" + loc2,loc2,loc5.args);
+			loc3 = loc3 - loc6.height;
+			loc4 = Math.max(loc4,loc6.width);
+			loc6._y = loc3;
+			loc2 = loc2 + 1;
+		}
+		this.setPosition(Math.abs(loc3),loc4);
+	}
+	function removeLayer(loc2)
+	{
+		delete this._oLayers.register2;
+		this.refresh();
+	}
+	function removeItem(loc2)
+	{
+		for(var loc3 in this._oLayers)
+		{
+			if(this._oLayers[loc3].id == loc2)
+			{
+				delete this._oLayers.register3;
+				this.refresh();
+				break;
+			}
+		}
+	}
 }

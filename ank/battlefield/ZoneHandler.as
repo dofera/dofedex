@@ -1,124 +1,123 @@
 class ank.battlefield.ZoneHandler
 {
-   function ZoneHandler(b, c)
-   {
-      this.initialize(b,c);
-   }
-   function initialize(b, c)
-   {
-      this._mcBattlefield = b;
-      this._mcContainer = c;
-      this.clear();
-   }
-   function clear(Void)
-   {
-      this._mcZones.removeMovieClip();
-      this._mcZones = this._mcContainer.createEmptyMovieClip("zones",10);
-      this._nNextLayerDepth = 0;
-   }
-   function clearZone(nCellNum, radius, layer)
-   {
-      nCellNum = Number(nCellNum);
-      radius = Number(radius);
-      if(nCellNum < 0)
-      {
-         return undefined;
-      }
-      if(nCellNum > this._mcBattlefield.mapHandler.getCellCount())
-      {
-         return undefined;
-      }
-      var _loc5_ = nCellNum * 1000 + radius * 100;
-      this._mcZones[layer]["zone" + _loc5_].clear();
-   }
-   function clearZoneLayer(layer)
-   {
-      this._mcZones[layer].removeMovieClip();
-   }
-   function drawZone(nCellNum, radiusIn, radiusOut, layer, col, shape)
-   {
-      nCellNum = Number(nCellNum);
-      radiusIn = Number(radiusIn);
-      radiusOut = Number(radiusOut);
-      col = Number(col);
-      if(nCellNum < 0)
-      {
-         return undefined;
-      }
-      if(nCellNum > this._mcBattlefield.mapHandler.getCellCount())
-      {
-         return undefined;
-      }
-      if(_global.isNaN(radiusIn) || _global.isNaN(radiusOut))
-      {
-         return undefined;
-      }
-      var _loc8_ = nCellNum * 1000 + radiusOut * 100;
-      if(this._mcZones[layer] == undefined)
-      {
-         this._nNextLayerDepth = this._nNextLayerDepth + 1;
-         this._mcZones.createEmptyMovieClip(layer,this._nNextLayerDepth);
-      }
-      this._mcZones[layer].__proto__ = MovieClip.prototype;
-      this._mcZones[layer].cacheAsBitmap = this._mcZones.cacheAsBitmap = _global.CONFIG.cacheAsBitmap["Zone/Zone"];
-      var _loc9_ = this._mcZones[layer].attachClassMovie(ank.battlefield.mc.Zone,"zone" + _loc8_,_loc8_,[this._mcBattlefield.mapHandler]);
-      switch(shape)
-      {
-         case "C":
-            if(radiusIn == 0)
-            {
-               _loc9_.drawCircle(radiusOut,col,nCellNum);
-            }
-            else
-            {
-               if(radiusIn > 0)
-               {
-                  radiusIn = radiusIn - 1;
-               }
-               _loc9_.drawRing(radiusIn,radiusOut,col,nCellNum);
-            }
-            break;
-         case "X":
-            if(radiusIn == 0)
-            {
-               _loc9_.drawCross(radiusOut,col,nCellNum);
-            }
-            else
-            {
-               var _loc10_ = this._mcBattlefield.mapHandler;
-               var _loc12_ = _loc10_.getWidth();
-               var _loc13_ = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(_loc10_,nCellNum);
-               var _loc11_ = nCellNum - _loc12_ * radiusIn;
-               if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(_loc10_,_loc11_).y == _loc13_.y)
-               {
-                  _loc9_.drawLine(radiusOut - radiusIn,col,_loc11_,nCellNum,true);
-               }
-               _loc11_ = nCellNum - (_loc12_ - 1) * radiusIn;
-               if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(_loc10_,_loc11_).x == _loc13_.x)
-               {
-                  _loc9_.drawLine(radiusOut - radiusIn,col,_loc11_,nCellNum,true);
-               }
-               _loc11_ = nCellNum + _loc12_ * radiusIn;
-               if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(_loc10_,_loc11_).y == _loc13_.y)
-               {
-                  _loc9_.drawLine(radiusOut - radiusIn,col,_loc11_,nCellNum,true);
-               }
-               _loc11_ = nCellNum + (_loc12_ - 1) * radiusIn;
-               if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(_loc10_,_loc11_).x == _loc13_.x)
-               {
-                  _loc9_.drawLine(radiusOut - radiusIn,col,_loc11_,nCellNum,true);
-               }
-            }
-            break;
-         default:
-            _loc9_.drawCircle(radiusOut,col,nCellNum);
-      }
-      this.moveZoneTo(_loc9_,nCellNum);
-   }
-   function moveZoneTo(zone, nCellNum)
-   {
-      var _loc4_ = this._mcBattlefield.mapHandler.getCellData(nCellNum);
-      zone._x = _loc4_.x;
-      zone._y = _loc4_.y + ank.battlefield.Constants.LEVEL_HEIGHT * (_loc4_.groundLevel - 7);
-   }
+	function ZoneHandler(loc3, loc4)
+	{
+		this.initialize(loc2,loc3);
+	}
+	function initialize(loc2, loc3)
+	{
+		this._mcBattlefield = loc2;
+		this._mcContainer = loc3;
+		this.clear();
+	}
+	function clear(loc2)
+	{
+		this._mcZones.removeMovieClip();
+		this._mcZones = this._mcContainer.createEmptyMovieClip("zones",10);
+		this._nNextLayerDepth = 0;
+	}
+	function clearZone(loc2, loc3, loc4)
+	{
+		loc2 = Number(loc2);
+		loc3 = Number(loc3);
+		if(loc2 < 0)
+		{
+			return undefined;
+		}
+		if(loc2 > this._mcBattlefield.mapHandler.getCellCount())
+		{
+			return undefined;
+		}
+		var loc5 = loc2 * 1000 + loc3 * 100;
+		this._mcZones[loc4]["zone" + loc5].clear();
+	}
+	function clearZoneLayer(loc2)
+	{
+		this._mcZones[loc2].removeMovieClip();
+	}
+	function drawZone(loc2, loc3, loc4, loc5, loc6, loc7)
+	{
+		loc2 = Number(loc2);
+		loc3 = Number(loc3);
+		loc4 = Number(loc4);
+		loc6 = Number(loc6);
+		if(loc2 < 0)
+		{
+			return undefined;
+		}
+		if(loc2 > this._mcBattlefield.mapHandler.getCellCount())
+		{
+			return undefined;
+		}
+		if(_global.isNaN(loc3) || _global.isNaN(loc4))
+		{
+			return undefined;
+		}
+		var loc8 = loc2 * 1000 + loc4 * 100;
+		if(this._mcZones[loc5] == undefined)
+		{
+			this._mcZones.createEmptyMovieClip(loc5,this._nNextLayerDepth++);
+		}
+		this._mcZones[loc5].__proto__ = MovieClip.prototype;
+		this._mcZones[loc5].cacheAsBitmap = this._mcZones.cacheAsBitmap = _global.CONFIG.cacheAsBitmap["Zone/Zone"];
+		var loc9 = this._mcZones[loc5].attachClassMovie(ank.battlefield.mc.Zone,"zone" + loc8,loc8,[this._mcBattlefield.mapHandler]);
+		switch(loc7)
+		{
+			case "C":
+				if(loc3 == 0)
+				{
+					loc9.drawCircle(loc4,loc6,loc2);
+				}
+				else
+				{
+					if(loc3 > 0)
+					{
+						loc3 = loc3 - 1;
+					}
+					loc9.drawRing(loc3,loc4,loc6,loc2);
+				}
+				break;
+			case "X":
+				if(loc3 == 0)
+				{
+					loc9.drawCross(loc4,loc6,loc2);
+				}
+				else
+				{
+					var loc10 = this._mcBattlefield.mapHandler;
+					var loc12 = loc10.getWidth();
+					var loc13 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(loc10,loc2);
+					var loc11 = loc2 - loc12 * loc3;
+					if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(loc10,loc11).y == loc13.y)
+					{
+						loc9.drawLine(loc4 - loc3,loc6,loc11,loc2,true);
+					}
+					loc11 = loc2 - (loc12 - 1) * loc3;
+					if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(loc10,loc11).x == loc13.x)
+					{
+						loc9.drawLine(loc4 - loc3,loc6,loc11,loc2,true);
+					}
+					loc11 = loc2 + loc12 * loc3;
+					if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(loc10,loc11).y == loc13.y)
+					{
+						loc9.drawLine(loc4 - loc3,loc6,loc11,loc2,true);
+					}
+					loc11 = loc2 + (loc12 - 1) * loc3;
+					if(ank.battlefield.utils.Pathfinding.getCaseCoordonnee(loc10,loc11).x == loc13.x)
+					{
+						loc9.drawLine(loc4 - loc3,loc6,loc11,loc2,true);
+					}
+				}
+				break;
+			default:
+				loc9.drawCircle(loc4,loc6,loc2);
+		}
+		this.moveZoneTo(loc9,loc2);
+	}
+	function moveZoneTo(loc2, loc3)
+	{
+		var loc4 = this._mcBattlefield.mapHandler.getCellData(loc3);
+		loc2._x = loc4.x;
+		loc2._y = loc4.y + ank.battlefield.Constants.LEVEL_HEIGHT * (loc4.groundLevel - 7);
+	}
 }

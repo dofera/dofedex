@@ -1,30 +1,26 @@
 class ank.utils.Extensions
 {
-   static var bExtended = false;
-   function Extensions()
-   {
-   }
-   static function addExtensions()
-   {
-      if(ank.utils.Extensions.bExtended == true)
-      {
-         return true;
-      }
-      var _loc2_ = ank.utils.extensions.MovieClipExtensions.prototype;
-      var _loc3_ = MovieClip.prototype;
-      _loc3_.attachClassMovie = _loc2_.attachClassMovie;
-      _loc3_.alignOnPixel = _loc2_.alignOnPixel;
-      _loc3_.playFirstChildren = _loc2_.playFirstChildren;
-      _loc3_.getFirstParentProperty = _loc2_.getFirstParentProperty;
-      _loc3_.getActionClip = _loc2_.getActionClip;
-      _loc3_.end = _loc2_.end;
-      _loc3_.playAll = _loc2_.playAll;
-      _loc3_.stopAll = _loc2_.stopAll;
-      String.prototype.replace = function(searchStr, replaceStr)
-      {
-         return this.split(searchStr).join(replaceStr);
-      };
-      ank.utils.Extensions.bExtended = true;
-      return true;
-   }
+	static var bExtended = false;
+	function Extensions()
+	{
+	}
+	static function addExtensions()
+	{
+		if(ank.utils.Extensions.bExtended == true)
+		{
+			return true;
+		}
+		var loc2 = ank.utils.extensions.MovieClipExtensions.prototype;
+		var loc3 = MovieClip.prototype;
+		loc3.attachClassMovie = loc2.attachClassMovie;
+		loc3.alignOnPixel = loc2.alignOnPixel;
+		loc3.playFirstChildren = loc2.playFirstChildren;
+		loc3.getFirstParentProperty = loc2.getFirstParentProperty;
+		loc3.getActionClip = loc2.getActionClip;
+		loc3.end = loc2.end;
+		loc3.playAll = loc2.playAll;
+		loc3.stopAll = loc2.stopAll;
+		ank.utils.Extensions.bExtended = true;
+		return true;
+	}
 }

@@ -1,17 +1,17 @@
 class dofus.datacenter.MountableCreature
 {
-   function MountableCreature(sGfxFile, nGfxID)
-   {
-      this.initialize(sGfxFile,nGfxID);
-   }
-   function __get__gfxFile()
-   {
-      return this._sGfxFile;
-   }
-   function initialize(sGfxFile, nGfxID)
-   {
-      this._sGfxFile = sGfxFile;
-      this._nGfxID = nGfxID;
-      mx.events.EventDispatcher.initialize(this);
-   }
+	function MountableCreature(loc3, loc4)
+	{
+		this.initialize(loc2,loc3);
+	}
+	function __get__gfxFile()
+	{
+		return this._sGfxFile;
+	}
+	function initialize(loc2, loc3)
+	{
+		this._sGfxFile = loc2;
+		this._nGfxID = loc3;
+		eval("\n\x0b").events.EventDispatcher.initialize(this);
+	}
 }

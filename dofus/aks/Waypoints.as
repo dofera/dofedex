@@ -1,40 +1,40 @@
 class dofus.aks.Waypoints extends dofus.aks.Handler
 {
-   function Waypoints(oAKS, oAPI)
-   {
-      super.initialize(oAKS,oAPI);
-   }
-   function leave()
-   {
-      this.aks.send("WV",true);
-   }
-   function use(nWaypointID)
-   {
-      this.aks.send("WU" + nWaypointID,true);
-   }
-   function onCreate(sExtraData)
-   {
-      var _loc3_ = sExtraData.split("|");
-      var _loc4_ = Number(_loc3_[0]);
-      var _loc5_ = new ank.utils.ExtendedArray();
-      var _loc6_ = 1;
-      while(_loc6_ < _loc3_.length)
-      {
-         var _loc7_ = _loc3_[_loc6_].split(";");
-         var _loc8_ = Number(_loc7_[0]);
-         var _loc9_ = Number(_loc7_[1]);
-         var _loc10_ = new dofus.datacenter.Waypoint(_loc8_,_loc8_ == this.api.datacenter.Map.id,_loc8_ == _loc4_,_loc9_);
-         _loc5_.push(_loc10_);
-         _loc6_ = _loc6_ + 1;
-      }
-      this.api.ui.loadUIComponent("Waypoints","Waypoints",{data:_loc5_});
-   }
-   function onLeave()
-   {
-      this.api.ui.unloadUIComponent("Waypoints");
-   }
-   function onUseError()
-   {
-      this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_USE_WAYPOINT"),"ERROR_CHAT");
-   }
+	function Waypoints(loc3, loc4)
+	{
+		super.initialize(loc3,loc4);
+	}
+	function leave()
+	{
+		this.aks.send("WV",true);
+	}
+	function use(loc2)
+	{
+		this.aks.send("WU" + loc2,true);
+	}
+	function onCreate(loc2)
+	{
+		var loc3 = loc2.split("|");
+		var loc4 = Number(loc3[0]);
+		var loc5 = new ank.utils.();
+		var loc6 = 1;
+		while(loc6 < loc3.length)
+		{
+			var loc7 = loc3[loc6].split(";");
+			var loc8 = Number(loc7[0]);
+			var loc9 = Number(loc7[1]);
+			var loc10 = new dofus.datacenter.(loc8,loc8 == this.api.datacenter.Map.id,loc8 == loc4,loc9);
+			loc5.push(loc10);
+			loc6 = loc6 + 1;
+		}
+		this.api.ui.loadUIComponent("Waypoints","Waypoints",{data:loc5});
+	}
+	function onLeave()
+	{
+		this.api.ui.unloadUIComponent("Waypoints");
+	}
+	function onUseError()
+	{
+		this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_USE_WAYPOINT"),"ERROR_CHAT");
+	}
 }
