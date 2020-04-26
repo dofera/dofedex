@@ -8,6 +8,8 @@
 <h1 align="center">Dofedex</h1>
 <p align="center">A collection of Dofus Retro clients</p>
 
+![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Latest releases sources will now (almost) be fully deobfuscated and available in this repository.**
+
 Releases
 -----
 - [1.31.3 (Remastered)](https://github.com/Dofera/dofedex/releases/tag/1.31.3-remastered)
