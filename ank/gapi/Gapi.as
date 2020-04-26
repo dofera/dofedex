@@ -377,7 +377,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		this.clear();
 		ank.gapi.styles.StylesManager.loadStylePackage(ank.gapi.styles.DefaultStylePackage);
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function addDragClip()
 	{

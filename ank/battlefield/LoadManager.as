@@ -56,7 +56,7 @@ class ank.battlefield.LoadManager extends MovieClip
 	}
 	function initialize(loc2)
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		ank.battlefield.LoadManager._aMovieClipLoader = new Array();
 		this._mcMainContainer = loc2;
 	}

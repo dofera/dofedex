@@ -3,7 +3,7 @@ class ank.utils.rss.RSSLoader extends XML
 	function RSSLoader()
 	{
 		super();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.ignoreWhite = true;
 		this.initialize();
 	}

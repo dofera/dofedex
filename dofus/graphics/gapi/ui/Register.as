@@ -135,7 +135,7 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 		while(loc5 < 13)
 		{
 			var loc6 = new Date(0,loc5,0,0,0,0,0);
-			loc4.push({label:eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(loc6,"MMM",this.api.config.language),data:loc5});
+			loc4.push({label:org.utils.SimpleDateFormatter.formatDate(loc6,"MMM",this.api.config.language),data:loc5});
 			loc5 = loc5 + 1;
 		}
 		this._cbMonth.dataProvider = loc4;

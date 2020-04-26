@@ -11,7 +11,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 	function initialize(loc2, loc3, loc4, loc5, loc6)
 	{
 		super.initialize(loc3,loc4,loc5,loc6);
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this._oAPI = loc7;
 	}
 	function addSpritePoints(sID, §\x1e\x0e\x04§, §\b\t§)

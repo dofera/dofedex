@@ -117,7 +117,7 @@ class dofus.datacenter.Server
 	function __get__dateStr()
 	{
 		var loc2 = new Date(Number(this.api.lang.getServerInfos(this._nID).date));
-		return eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(loc2,this.api.lang.getConfigText("LONG_DATE_FORMAT"),this.api.config.language);
+		return org.utils.SimpleDateFormatter.formatDate(loc2,this.api.lang.getConfigText("LONG_DATE_FORMAT"),this.api.config.language);
 	}
 	function __get__type()
 	{

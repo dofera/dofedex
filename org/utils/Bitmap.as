@@ -1,4 +1,4 @@
-class eval("\x1e\x19\x13").utils.Bitmap
+class org.utils.Bitmap
 {
 	function Bitmap()
 	{

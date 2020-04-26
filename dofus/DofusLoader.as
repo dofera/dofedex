@@ -588,7 +588,7 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 					{
 						var loc7 = this._aLoadingBannersFiles[loc6];
 						var loc5 = this.createEmptyMovieClip("_mcBanner",this.getNextHighestDepth());
-						eval("\x1e\x19\x13").utils.Bitmap.loadBitmapSmoothed(dofus.Constants.LOADING_BANNERS_PATH + loc7,loc5);
+						org.utils.Bitmap.loadBitmapSmoothed(dofus.Constants.LOADING_BANNERS_PATH + loc7,loc5);
 					}
 				}
 				var loc8 = "";

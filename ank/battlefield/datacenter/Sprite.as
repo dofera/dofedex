@@ -30,7 +30,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 		this._bVisible = true;
 		this._bClear = false;
 		this._eoLinkedChilds = new ank.utils.();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function __get__hasChilds()
 	{

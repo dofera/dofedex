@@ -15,7 +15,7 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 	function initialize(loc2)
 	{
 		super.initialize(loc3);
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this._so = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME];
 		if(this._so.data.loaded == undefined)
 		{

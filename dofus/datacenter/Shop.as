@@ -35,6 +35,6 @@ class dofus.datacenter.Shop extends Object
 	}
 	function initialize()
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 }

@@ -16,7 +16,7 @@ class dofus.datacenter.ServerProblem extends Object
 		var loc11 = loc9.config.language;
 		var loc12 = String(this._nDate);
 		var loc13 = new Date(Number(loc12.substr(0,4)),Number(loc12.substr(4,2)) - 1,Number(loc12.substr(6,2)));
-		this._sDate = eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(loc13,loc10,loc11);
+		this._sDate = org.utils.SimpleDateFormatter.formatDate(loc13,loc10,loc11);
 	}
 	function __get__id()
 	{

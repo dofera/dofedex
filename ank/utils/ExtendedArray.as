@@ -19,7 +19,7 @@ class ank.utils.ExtendedArray extends Array
 	}
 	function initialize(loc2)
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function createFromArray(loc2)
 	{

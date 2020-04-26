@@ -58,7 +58,7 @@ class dofus.datacenter.Exchange extends Object
 	}
 	function initialize(loc2)
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this._nDistantPlayerID = loc2;
 		this._eaLocalGarbage = new ank.utils.();
 		this._eaDistantGarbage = new ank.utils.();

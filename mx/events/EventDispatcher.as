@@ -1,4 +1,4 @@
-class eval("\n\x0b").events.EventDispatcher
+class mx.events.EventDispatcher
 {
 	static var _fEventDispatcher = undefined;
 	function EventDispatcher()
@@ -24,14 +24,14 @@ class eval("\n\x0b").events.EventDispatcher
 	}
 	static function initialize(loc2)
 	{
-		if(eval("\n\x0b").events.EventDispatcher._fEventDispatcher == undefined)
+		if(mx.events.EventDispatcher._fEventDispatcher == undefined)
 		{
-			eval("\n\x0b").events.EventDispatcher._fEventDispatcher = new eval("\n\x0b").events.();
+			mx.events.EventDispatcher._fEventDispatcher = new mx.events.();
 		}
-		loc2.__proto__.addEventListener = eval("\n\x0b").events.EventDispatcher._fEventDispatcher.addEventListener;
-		loc2.__proto__.removeEventListener = eval("\n\x0b").events.EventDispatcher._fEventDispatcher.removeEventListener;
-		loc2.__proto__.dispatchEvent = eval("\n\x0b").events.EventDispatcher._fEventDispatcher.dispatchEvent;
-		loc2.__proto__.dispatchQueue = eval("\n\x0b").events.EventDispatcher._fEventDispatcher.dispatchQueue;
+		loc2.__proto__.addEventListener = mx.events.EventDispatcher._fEventDispatcher.addEventListener;
+		loc2.__proto__.removeEventListener = mx.events.EventDispatcher._fEventDispatcher.removeEventListener;
+		loc2.__proto__.dispatchEvent = mx.events.EventDispatcher._fEventDispatcher.dispatchEvent;
+		loc2.__proto__.dispatchQueue = mx.events.EventDispatcher._fEventDispatcher.dispatchQueue;
 	}
 	function dispatchQueue(loc2, loc3)
 	{
@@ -78,12 +78,12 @@ class eval("\n\x0b").events.EventDispatcher
 			this[loc4] = new Array();
 		}
 		_global.ASSetPropFlags(this,loc4,1);
-		eval("\n\x0b").events.EventDispatcher._removeEventListener(this[loc4],loc2,loc3);
+		mx.events.EventDispatcher._removeEventListener(this[loc4],loc2,loc3);
 		this[loc4].push(loc3);
 	}
 	function removeEventListener(loc2, loc3)
 	{
 		var loc4 = "__q_" + loc2;
-		eval("\n\x0b").events.EventDispatcher._removeEventListener(this[loc4],loc2,loc3);
+		mx.events.EventDispatcher._removeEventListener(this[loc4],loc2,loc3);
 	}
 }

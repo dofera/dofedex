@@ -42,7 +42,7 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	function initialize(loc2)
 	{
 		super.initialize(loc3);
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.generateNextMsgCount(true);
 	}
 	function __get__nextMsgDelay()

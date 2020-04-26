@@ -147,7 +147,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 			this.boundingBox_mc._visible = false;
 			this.boundingBox_mc._width = this.boundingBox_mc._height = 0;
 		}
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function getStyle()
 	{

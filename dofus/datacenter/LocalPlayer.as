@@ -14,9 +14,9 @@ class dofus.datacenter.LocalPlayer extends dofus.utils.ApiElement
 	function initialize(_loc2_)
 	{
 		super.initialize(_loc3_);
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.clean();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function clean()
 	{

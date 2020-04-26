@@ -23,7 +23,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 			this._mp = this.api.datacenter.Player.MP;
 		}
 		AsBroadcaster.initialize(this);
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this._states = new Object();
 	}
 	function updateLP(loc2)

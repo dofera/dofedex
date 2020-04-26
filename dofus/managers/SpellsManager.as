@@ -10,7 +10,7 @@ class dofus.managers.SpellsManager
 		this.api = loc2.api;
 		this.clear();
 		this._oSpellsModificators = new Object();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function clear()
 	{

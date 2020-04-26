@@ -12,7 +12,7 @@ class dofus.datacenter.ServerProblemEvent extends Object
 		var loc8 = loc7.lang.getConfigText("HOUR_FORMAT");
 		var loc9 = loc7.config.language;
 		var loc10 = new Date(this._nTimestamp);
-		this._sHour = eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(loc10,loc8,loc9);
+		this._sHour = org.utils.SimpleDateFormatter.formatDate(loc10,loc8,loc9);
 	}
 	function __get__timestamp()
 	{

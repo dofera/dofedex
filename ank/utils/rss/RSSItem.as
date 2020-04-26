@@ -25,12 +25,12 @@ class ank.utils.rss.RSSItem
 					break;
 				case "pubdate":
 					this._sPubDate = loc3.childNodes.join("");
-					this._dPubDate = eval("\x1e\x19\x13").utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
+					this._dPubDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
 					if(this._dPubDate == null)
 					{
-						this._dPubDate = eval("\x1e\x19\x13").utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E,  d MMM yyyy H:m:s");
+						this._dPubDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E,  d MMM yyyy H:m:s");
 					}
-					this.sortByDate = eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(this._dPubDate,"yyyyMMdd");
+					this.sortByDate = org.utils.SimpleDateFormatter.formatDate(this._dPubDate,"yyyyMMdd");
 					break;
 				case "guid":
 					this._sGuid = loc3.childNodes.join("");
@@ -60,7 +60,7 @@ class ank.utils.rss.RSSItem
 	}
 	function getPubDateStr(loc2, loc3)
 	{
-		return this._dPubDate != null?eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(this._dPubDate,loc2,loc3):this._sPubDate;
+		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,loc2,loc3):this._sPubDate;
 	}
 	function getGuid()
 	{

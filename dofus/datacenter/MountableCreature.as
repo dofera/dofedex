@@ -12,6 +12,6 @@ class dofus.datacenter.MountableCreature
 	{
 		this._sGfxFile = loc2;
 		this._nGfxID = loc3;
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 }

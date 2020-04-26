@@ -10,7 +10,7 @@ class ank.external.ExternalConnector extends LocalConnection
 	function ExternalConnector()
 	{
 		super();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this._sConnectionName = ank.external.ExternalConnector.CONNECTION_NAME + new Date().getTime() + random(100000);
 		this.connect(this._sConnectionName);
 		ank.utils.Timer.setTimer(this,"externalconnector",this,this.initialize,100);

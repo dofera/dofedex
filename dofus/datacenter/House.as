@@ -154,7 +154,7 @@ class dofus.datacenter.House extends Object
 	function initialize(loc2)
 	{
 		this.api = _global.API;
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this._nID = loc2;
 		var loc3 = this.api.lang.getHouseText(loc2);
 		this._sName = loc3.n;

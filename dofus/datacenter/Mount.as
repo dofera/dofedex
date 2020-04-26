@@ -4,7 +4,7 @@ class dofus.datacenter.Mount extends Object
 	function Mount(nModelID, nChevauchorGfxID, bNewBorn)
 	{
 		super();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.newBorn = bNewBorn;
 		this.modelID = nModelID;
 		this._lang = _global.API.lang.getMountText(this.modelID);

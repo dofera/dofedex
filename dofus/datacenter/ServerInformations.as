@@ -21,7 +21,7 @@ class dofus.datacenter.ServerInformations extends Object
 	function initialize()
 	{
 		this.api = _global.API;
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function parseXml(loc2)
 	{

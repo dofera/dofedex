@@ -8,7 +8,7 @@ class ank.utils.ExtendedObject extends Object
 	function initialize(loc2)
 	{
 		this.clear();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function clear(loc2)
 	{

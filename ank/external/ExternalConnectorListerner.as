@@ -2,7 +2,7 @@ class ank.external.ExternalConnectorListerner
 {
 	function ExternalConnectorListerner()
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		ank.external.ExternalConnector.getInstance().addEventListener("onExternalConnectionFaild",this);
 	}
 	function getParams()

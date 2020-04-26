@@ -34,11 +34,11 @@ class ank.utils.rss.RSSChannel
 					{
 						case "pubdate":
 							this._sPubDate = loc3.childNodes.join("");
-							this._dPubDate = eval("\x1e\x19\x13").utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
+							this._dPubDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
 							break loop1;
 						case "lastbuilddate":
 							this._sLastBuildDate = loc3.childNodes.join("");
-							this._dLastBuildDate = eval("\x1e\x19\x13").utils.SimpleDateFormatter.getDateFromFormat(this._sLastBuildDate.substr(0,25),"E, d MMM yyyy H:m:s");
+							this._dLastBuildDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sLastBuildDate.substr(0,25),"E, d MMM yyyy H:m:s");
 							break loop1;
 						case "docs":
 							this._sDocs = loc3.childNodes.join("");
@@ -95,7 +95,7 @@ class ank.utils.rss.RSSChannel
 	}
 	function getPubDateStr(loc2, loc3)
 	{
-		return this._dPubDate != null?eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(this._dPubDate,loc2,loc3):this._sPubDate;
+		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,loc2,loc3):this._sPubDate;
 	}
 	function getLastBuildDate()
 	{
@@ -103,7 +103,7 @@ class ank.utils.rss.RSSChannel
 	}
 	function getLastBuildDateStr(loc2, loc3)
 	{
-		return this._dLastBuildDate != null?eval("\x1e\x19\x13").utils.SimpleDateFormatter.formatDate(this._dLastBuildDate,loc2,loc3):this._sLastBuildDate;
+		return this._dLastBuildDate != null?org.utils.SimpleDateFormatter.formatDate(this._dLastBuildDate,loc2,loc3):this._sLastBuildDate;
 	}
 	function getDocs()
 	{

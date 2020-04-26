@@ -129,7 +129,7 @@ class dofus.datacenter.Game extends Object
 	}
 	function initialize()
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.api = _global.API;
 		this._bRunning = false;
 		this._nPlayerCount = 0;

@@ -4,7 +4,7 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		super();
 		this.api = _global.API;
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.initialize(loc3,loc4,loc5,loc6,loc7,loc8);
 		this._eaMembers = new ank.utils.();
 		this._eaTaxCollectors = new ank.utils.();

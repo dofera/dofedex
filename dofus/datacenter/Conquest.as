@@ -4,7 +4,7 @@ class dofus.datacenter.Conquest extends Object
 	{
 		super();
 		this.clear();
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 	}
 	function clear()
 	{

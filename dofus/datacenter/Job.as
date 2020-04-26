@@ -89,7 +89,7 @@ class dofus.datacenter.Job extends Object
 	}
 	function initialize(§\x06\x02§, §\x10\x15§, options)
 	{
-		eval("\n\x0b").events.EventDispatcher.initialize(this);
+		mx.events.EventDispatcher.initialize(this);
 		this.api = _global.API;
 		this._nID = loc2;
 		this._eaSkills = loc3;
