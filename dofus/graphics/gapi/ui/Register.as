@@ -5,8 +5,8 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 	var _nHearingAboutFailCount = 0;
 	var _bHearAboutFailed = false;
 	var _nCurrentStep = 0;
-	var � = false;
-	var � = false;
+	var _bCryptoAlreadyLoaded = false;
+	var _bCurrentlyLoading = false;
 	function Register()
 	{
 		super();
@@ -15,11 +15,10 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 	{
 		super.init(false,dofus.graphics.gapi.ui.Register.CLASS_NAME);
 		this._oLoader = new LoadVars();
-		var ref = this;
 		this._lvHearAbout = new LoadVars();
-		this._lvHearAbout.onLoad = function(loc2)
+		this._lvHearAbout.onLoad = function(var2)
 		{
-			ref.onHearAboutLoad(loc2);
+			ref.onHearAboutLoad(var2);
 		};
 		this._lvHearAbout.load(this.api.lang.getConfigText("WHERE_HEAR_LINK"));
 	}
@@ -71,7 +70,6 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 	function addListeners()
 	{
 		this._btnClose.addEventListener("click",this);
-		var ref = this;
 		this._mcNewsletterTrigger.onRelease = function()
 		{
 			ref.click({target:this});
@@ -119,76 +117,76 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 		this._tiPassword2.password = true;
 		this._btnMale.radio = true;
 		this._btnFemale.radio = true;
-		var loc2 = new ank.utils.();
-		loc2.push({label:"-",data:"-1"});
-		var loc3 = 1;
-		while(loc3 < 32)
+		var var2 = new ank.utils.();
+		var2.push({label:"-",data:"-1"});
+		var var3 = 1;
+		while(var3 < 32)
 		{
-			loc2.push({label:loc3,data:loc3});
-			loc3 = loc3 + 1;
+			var2.push({label:var3,data:var3});
+			var3 = var3 + 1;
 		}
-		this._cbDay.dataProvider = loc2;
+		this._cbDay.dataProvider = var2;
 		this._cbDay.selectedIndex = 0;
-		var loc4 = new ank.utils.();
-		loc4.push({label:"-",data:"-1"});
-		var loc5 = 1;
-		while(loc5 < 13)
+		var var4 = new ank.utils.();
+		var4.push({label:"-",data:"-1"});
+		var var5 = 1;
+		while(var5 < 13)
 		{
-			var loc6 = new Date(0,loc5,0,0,0,0,0);
-			loc4.push({label:org.utils.SimpleDateFormatter.formatDate(loc6,"MMM",this.api.config.language),data:loc5});
-			loc5 = loc5 + 1;
+			var var6 = new Date(0,var5,0,0,0,0,0);
+			var4.push({label:org.utils.SimpleDateFormatter.formatDate(var6,"MMM",this.api.config.language),data:var5});
+			var5 = var5 + 1;
 		}
-		this._cbMonth.dataProvider = loc4;
+		this._cbMonth.dataProvider = var4;
 		this._cbMonth.selectedIndex = 0;
-		var loc7 = new ank.utils.();
-		loc7.push({label:"-",data:"-1"});
-		var loc8 = new Date().getFullYear() - 5;
-		while(loc8 > new Date().getFullYear() - 105)
+		var var7 = new ank.utils.();
+		var7.push({label:"-",data:"-1"});
+		var var8 = new Date().getFullYear() - 5;
+		while(var8 > new Date().getFullYear() - 105)
 		{
-			loc7.push({label:loc8,data:loc8});
-			loc8 = loc8 - 1;
+			var7.push({label:var8,data:var8});
+			var8 = var8 - 1;
 		}
-		this._cbYear.dataProvider = loc7;
+		this._cbYear.dataProvider = var7;
 		this._cbYear.selectedIndex = 0;
 		this.addToQueue({object:this,method:this.refreshHearingAbout});
-		var loc9 = ank.utils.Countries.COUNTRIES[this.api.config.language];
-		if(loc9 == undefined)
+		var var9 = ank.utils.Countries.COUNTRIES[this.api.config.language];
+		if(var9 == undefined)
 		{
-			loc9 = ank.utils.Countries.COUNTRIES.en;
+			var9 = ank.utils.Countries.COUNTRIES.en;
 		}
-		var loc10 = new ank.utils.();
-		loc10.push({label:"",data:"--"});
-		for(var k in loc9)
+		var var10 = new ank.utils.();
+		var10.push({label:"",data:"--"});
+		for(var k in var9)
 		{
-			loc10.push({label:loc9[k],data:k});
+			var10.push({label:var9[k],data:k});
 		}
-		this._cbCountry.dataProvider = loc10;
+		this._cbCountry.dataProvider = var10;
 		this._cbCountry.selectedIndex = 0;
-		var loc11 = this.api.lang.getServerCommunities();
-		var loc12 = new ank.utils.();
-		var loc13 = 1;
-		loc12.push({label:"",data:"--"});
-		var loc14 = 0;
-		while(loc14 < loc11.length)
+		var var11 = this.api.lang.getServerCommunities();
+		var var12 = new ank.utils.();
+		var var13 = 1;
+		var12.push({label:"",data:"--"});
+		var var14 = 0;
+		while(var14 < var11.length)
 		{
-			if(loc11[loc14].d)
+			if(var11[var14].d)
 			{
-				loc13;
-				loc12.push({label:loc11[loc14].n,data:loc11[loc14].i,c:loc11[loc14].c,index:loc13++});
+				var13;
+				var12.push({label:var11[var14].n,data:var11[var14].i,c:var11[var14].c,index:var13++});
 			}
-			loc14 = loc14 + 1;
+			var14 = var14 + 1;
 		}
-		this._cbCommunity.dataProvider = loc12;
+		this._cbCommunity.dataProvider = var12;
 		this._cbCommunity.selectedIndex = 0;
 		this._tiAccount.setFocus();
 	}
-	function initCrypto(loc2)
+	function initCrypto(var2)
 	{
 		if(this._bCurrentlyLoading)
 		{
 			return undefined;
 		}
-		if(this._nCurrentStep != 2 && !loc2)
+		if(this._nCurrentStep != 2 && !var2)
 		{
 			return undefined;
 		}
@@ -197,9 +195,9 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 		this._ldrCrypto.contentPath = this.api.lang.getConfigText("CRYPTO_LINK");
 		this._tiCopyCode.text = "";
 	}
-	function switchToStep(loc2)
+	function switchToStep(var2)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case 1:
 				this._bgStep2._visible = false;
@@ -336,55 +334,55 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 				this._tiCopyCode.tabIndex = 7;
 				this._tiQuestion.setFocus();
 		}
-		this._nCurrentStep = loc2;
+		this._nCurrentStep = var2;
 	}
-	function selectCountry(loc2)
+	function selectCountry(var2)
 	{
-		if((var loc0 = loc2) === "UK")
+		if((var var0 = var2) === "UK")
 		{
-			loc2 = "GB";
+			var2 = "GB";
 		}
-		var loc3 = this._cbCountry.dataProvider;
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var3 = this._cbCountry.dataProvider;
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			if(loc3[loc4].data == loc2)
+			if(var3[var4].data == var2)
 			{
-				this._cbCountry.selectedIndex = loc4;
-				this.selectCommunityFromCountry(loc2);
+				this._cbCountry.selectedIndex = var4;
+				this.selectCommunityFromCountry(var2);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 	}
-	function selectCommunityFromCountry(loc2)
+	function selectCommunityFromCountry(var2)
 	{
-		var loc3 = this._cbCommunity.dataProvider;
-		var loc4 = 0;
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var3 = this._cbCommunity.dataProvider;
+		var var4 = 0;
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = loc3[loc5].c;
-			var loc7 = 0;
-			while(loc7 < loc6.length)
+			var var6 = var3[var5].c;
+			var var7 = 0;
+			while(var7 < var6.length)
 			{
-				if(loc6[loc7] == loc2)
+				if(var6[var7] == var2)
 				{
-					this._cbCommunity.selectedIndex = loc3[loc5].index;
+					this._cbCommunity.selectedIndex = var3[var5].index;
 					return undefined;
 				}
-				if(loc6[loc7] == "XX")
+				if(var6[var7] == "XX")
 				{
-					loc4 = loc3[loc5].index;
+					var4 = var3[var5].index;
 				}
-				loc7 = loc7 + 1;
+				var7 = var7 + 1;
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		this._cbCommunity.selectedIndex = loc4;
+		this._cbCommunity.selectedIndex = var4;
 	}
-	function preValidateForm(loc2)
+	function preValidateForm(var2)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case 1:
 				if(this._tiAccount.text.length <= 0 || (this._tiPassword1.text.length <= 0 || (this._tiPassword2.text.length <= 0 || (this._tiEmail.text.length <= 0 || (this._tiLastName.text.length <= 0 || (this._tiFirstName.text.length <= 0 || (this._cbDay.selectedItem.data == -1 || (this._cbMonth.selectedItem.data == -1 || (this._cbYear.selectedItem.data == -1 || this._cbKnowingDofus.selectedItem.id == 0)))))))))
@@ -439,9 +437,9 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 		}
 		this._oResult = new LoadVars();
 		this._oResult.owner = this;
-		this._oResult.onLoad = function(loc2)
+		this._oResult.onLoad = function(var2)
 		{
-			this.owner.onResultLoad(loc2);
+			this.owner.onResultLoad(var2);
 		};
 		this._oLoader.sendAndLoad(this.api.lang.getConfigText("REGISTER_LINK"),this._oResult,"POST");
 		this._lblNextStepButton.text = this.api.lang.getText("LOADING");
@@ -465,15 +463,15 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 			this.addToQueue({object:this,method:this.refreshHearingAbout});
 			return undefined;
 		}
-		var loc2 = new ank.utils.();
-		loc2.push({label:this.api.lang.getText("PLEASE_SELECT"),id:0});
-		var loc3 = 0;
-		while(loc3 < this._aHearAboutIDs.length)
+		var var2 = new ank.utils.();
+		var2.push({label:this.api.lang.getText("PLEASE_SELECT"),id:0});
+		var var3 = 0;
+		while(var3 < this._aHearAboutIDs.length)
 		{
-			loc2.push({label:this._aHearAboutStrings["ID" + this._aHearAboutIDs[loc3]],data:this._aHearAboutIDs[loc3]});
-			loc3 = loc3 + 1;
+			var2.push({label:this._aHearAboutStrings["ID" + this._aHearAboutIDs[var3]],data:this._aHearAboutIDs[var3]});
+			var3 = var3 + 1;
 		}
-		this._cbKnowingDofus.dataProvider = loc2;
+		this._cbKnowingDofus.dataProvider = var2;
 		this._cbKnowingDofus.selectedIndex = 0;
 	}
 	function showCryptoTooltip()
@@ -484,9 +482,9 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 	{
 		this.gapi.hideTooltip();
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG")
+		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
 			if(this._tiAccount.focused || (this._tiAnswer.focused || (this._tiCopyCode.focused || (this._tiEmail.focused || (this._tiFirstName.focused || (this._tiLastName.focused || (this._tiPassword1.focused || (this._tiPassword2.focused || this._tiQuestion.focused))))))))
 			{
@@ -496,40 +494,40 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 		}
 		return true;
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		if((var loc0 = loc2.target) === this._cbCountry)
+		if((var var0 = var2.target) === this._cbCountry)
 		{
-			var loc3 = this._cbCountry.selectedItem.data;
-			if(loc3.length != 2)
+			var var3 = this._cbCountry.selectedItem.data;
+			if(var3.length != 2)
 			{
 				return undefined;
 			}
-			this.selectCommunityFromCountry(loc3);
+			this.selectCommunityFromCountry(var3);
 		}
 	}
-	function stateChanged(loc2)
+	function stateChanged(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnFemale:
 				this._btnMale.removeEventListener("stateChanged",this);
-				this._btnMale.selected = !loc2.value;
+				this._btnMale.selected = !var2.value;
 				this._btnMale.addEventListener("stateChanged",this);
 				break;
 			case this._btnMale:
 				this._btnFemale.removeEventListener("stateChanged",this);
-				this._btnFemale.selected = !loc2.value;
+				this._btnFemale.selected = !var2.value;
 				this._btnFemale.addEventListener("stateChanged",this);
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		if(this._bCurrentlyLoading)
 		{
 			return undefined;
 		}
-		if((var loc0 = loc2.target) !== this._mcNewsletterTrigger)
+		if((var var0 = var2.target) !== this._mcNewsletterTrigger)
 		{
 			switch(null)
 			{
@@ -542,31 +540,32 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 				case this._mcCGUTrigger:
 					this._btnCGU.selected = !this._btnCGU.selected;
 					break;
-				case this._btnClose:
-					this.callClose();
-					break;
-				case this._mcValidateButton:
-					switch(this._nCurrentStep)
+				default:
+					switch(null)
 					{
-						case 1:
-							if(this.preValidateForm(1))
+						case this._btnClose:
+							this.callClose();
+							break;
+						case this._mcValidateButton:
+							switch(this._nCurrentStep)
 							{
-								this.switchToStep(2);
+								case 1:
+									if(this.preValidateForm(1))
+									{
+										this.switchToStep(2);
+									}
+									break;
+								case 2:
+									if(this.preValidateForm(2))
+									{
+										this.validateForm();
+										break;
+									}
 							}
 							break;
-						case 2:
-							if(this.preValidateForm(2))
-							{
-								this.validateForm();
-								break;
-							}
-							break;
-						default:
-							§§pop()[§§pop()].selected = true;
+						case this._mcBackButton:
+							this.switchToStep(1);
 					}
-					break;
-				case this._mcBackButton:
-					this.switchToStep(1);
 			}
 		}
 		else
@@ -574,12 +573,12 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 			this._btnNewsletter.selected = !this._btnNewsletter.selected;
 		}
 	}
-	function onResultLoad(loc2)
+	function onResultLoad(var2)
 	{
 		this._lblNextStepButton.text = this.api.lang.getText("TERMINATE_WORD").toUpperCase();
 		this._bCurrentlyLoading = false;
 		this.api.ui.unloadUIComponent("CenterText");
-		if(!loc2)
+		if(!var2)
 		{
 			this.api.kernel.showMessage(this.api.lang.getText("LOGIN_SUBSCRIBE"),this.api.lang.getText("REGISTRATION_ERROR"),"ERROR_BOX");
 			this.initCrypto(true);
@@ -595,20 +594,20 @@ class dofus.graphics.gapi.ui.Register extends dofus.graphics.gapi.core.DofusAdva
 			this.callClose();
 		}
 	}
-	function onHearAboutLoad(loc2)
+	function onHearAboutLoad(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc3 = Number(this._lvHearAbout.answer_count);
+			var var3 = Number(this._lvHearAbout.answer_count);
 			this._aHearAboutStrings = new Array();
 			this._aHearAboutIDs = new Array();
-			var loc4 = 0;
-			while(loc4 < loc3)
+			var var4 = 0;
+			while(var4 < var3)
 			{
-				var loc5 = loc4 + 1;
-				this._aHearAboutIDs.push(Number(this._lvHearAbout["answer_id" + loc5]));
-				this._aHearAboutStrings["ID" + this._lvHearAbout["answer_id" + loc5]] = this._lvHearAbout["answer_desc" + loc5];
-				loc4 = loc4 + 1;
+				var var5 = var4 + 1;
+				this._aHearAboutIDs.push(Number(this._lvHearAbout["answer_id" + var5]));
+				this._aHearAboutStrings["ID" + this._lvHearAbout["answer_id" + var5]] = this._lvHearAbout["answer_desc" + var5];
+				var4 = var4 + 1;
 			}
 		}
 		else

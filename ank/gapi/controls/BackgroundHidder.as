@@ -5,9 +5,9 @@ class ank.gapi.controls.BackgroundHidder extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__handCursor(loc2)
+	function __set__handCursor(var2)
 	{
-		this.useHandCursor = loc2;
+		this.useHandCursor = var2;
 		return this.__get__handCursor();
 	}
 	function init()
@@ -29,10 +29,10 @@ class ank.gapi.controls.BackgroundHidder extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		var loc3 = loc2.backgroundcolor != undefined?loc2.backgroundcolor:0;
-		var loc4 = loc2.backgroundalpha != undefined?loc2.backgroundalpha:10;
+		var var2 = this.getStyle();
+		var var3 = var2.backgroundcolor != undefined?var2.backgroundcolor:0;
+		var var4 = var2.backgroundalpha != undefined?var2.backgroundalpha:10;
 		this.hidden_mc.clear();
-		this.drawRoundRect(this.hidden_mc,0,0,1,1,0,loc3,loc4);
+		this.drawRoundRect(this.hidden_mc,0,0,1,1,0,var3,var4);
 	}
 }

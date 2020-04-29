@@ -5,19 +5,19 @@ class dofus.graphics.gapi.controls.Card extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__name(loc2)
+	function __set__name(var2)
 	{
-		this._sName = loc2;
+		this._sName = var2;
 		return this.__get__name();
 	}
-	function __set__background(loc2)
+	function __set__background(var2)
 	{
-		this._nBackground = loc2;
+		this._nBackground = var2;
 		return this.__get__background();
 	}
-	function __set__gfxFile(loc2)
+	function __set__gfxFile(var2)
 	{
-		this._sGfxFile = loc2;
+		this._sGfxFile = var2;
 		return this.__get__gfxFile();
 	}
 	function init()

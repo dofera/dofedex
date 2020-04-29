@@ -6,32 +6,32 @@ class ank.gapi.controls.ToolTip extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__params(loc2)
+	function __set__params(var2)
 	{
-		this._oParams = loc2;
+		this._oParams = var2;
 		return this.__get__params();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		if(this.initialized)
 		{
 			this.layoutContent();
 		}
 		return this.__get__text();
 	}
-	function __set__x(loc2)
+	function __set__x(var2)
 	{
-		this._nX = loc2;
+		this._nX = var2;
 		if(this.initialized)
 		{
 			this.placeToolTip();
 		}
 		return this.__get__x();
 	}
-	function __set__y(loc2)
+	function __set__y(var2)
 	{
-		this._nY = loc2;
+		this._nY = var2;
 		if(this.initialized)
 		{
 			this.placeToolTip();
@@ -58,53 +58,53 @@ class ank.gapi.controls.ToolTip extends ank.gapi.core.UIBasicComponent
 	}
 	function placeToolTip()
 	{
-		var loc2 = !(this._oParams.bXLimit || this._oParams.bXLimit == undefined)?Number.MAX_VALUE:this.gapi.screenWidth;
-		var loc3 = !(this._oParams.bYLimit || this._oParams.bYLimit == undefined)?Number.MAX_VALUE:this.gapi.screenHeight;
-		var loc4 = !(!this._oParams.bRightAlign || this._oParams.bRightAlign == undefined)?this._oParams.bRightAlign:false;
-		var loc5 = !(!this._oParams.bTopAlign || this._oParams.bTopAlign == undefined)?this._oParams.bTopAlign:false;
-		var loc6 = !loc4?this._nX:this._nX - this.__width;
-		var loc7 = !loc5?this._nY:this._nY - this.__height;
-		if(loc6 > loc2 - this.__width)
+		var var2 = !(this._oParams.bXLimit || this._oParams.bXLimit == undefined)?Number.MAX_VALUE:this.gapi.screenWidth;
+		var var3 = !(this._oParams.bYLimit || this._oParams.bYLimit == undefined)?Number.MAX_VALUE:this.gapi.screenHeight;
+		var var4 = !(!this._oParams.bRightAlign || this._oParams.bRightAlign == undefined)?this._oParams.bRightAlign:false;
+		var var5 = !(!this._oParams.bTopAlign || this._oParams.bTopAlign == undefined)?this._oParams.bTopAlign:false;
+		var var6 = !var4?this._nX:this._nX - this.__width;
+		var var7 = !var5?this._nY:this._nY - this.__height;
+		if(var6 > var2 - this.__width)
 		{
-			this._x = loc2 - this.__width;
+			this._x = var2 - this.__width;
 		}
-		else if(loc6 < 0)
+		else if(var6 < 0)
 		{
 			this._x = 0;
 		}
 		else
 		{
-			this._x = loc6;
+			this._x = var6;
 		}
-		if(loc7 > loc3 - this.__height)
+		if(var7 > var3 - this.__height)
 		{
-			this._y = loc3 - this.__height;
+			this._y = var3 - this.__height;
 		}
-		else if(loc7 < 0)
+		else if(var7 < 0)
 		{
 			this._y = 0;
 		}
 		else
 		{
-			this._y = loc7;
+			this._y = var7;
 		}
 		this._visible = true;
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		this.drawRoundRect(this._mcBackground,0,0,1,1,0,loc2.bgcolor);
-		this._mcBackground._alpha = loc2.bgalpha;
+		var var2 = this.getStyle();
+		this.drawRoundRect(this._mcBackground,0,0,1,1,0,var2.bgcolor);
+		this._mcBackground._alpha = var2.bgalpha;
 		this._tfTextFormat = new TextFormat();
-		this._tfTextFormat.font = loc2.font;
-		this._tfTextFormat.size = loc2.size;
-		this._tfTextFormat.color = loc2.color;
-		this._tfTextFormat.bold = loc2.bold;
-		this._tfTextFormat.italic = loc2.italic;
-		this._tfTextFormat.size = loc2.size;
-		this._tfTextFormat.size = loc2.size;
-		this._tfText.embedFonts = loc2.embedfonts;
-		this._tfText.antiAliasType = loc2.antialiastype;
+		this._tfTextFormat.font = var2.font;
+		this._tfTextFormat.size = var2.size;
+		this._tfTextFormat.color = var2.color;
+		this._tfTextFormat.bold = var2.bold;
+		this._tfTextFormat.italic = var2.italic;
+		this._tfTextFormat.size = var2.size;
+		this._tfTextFormat.size = var2.size;
+		this._tfText.embedFonts = var2.embedfonts;
+		this._tfText.antiAliasType = var2.antialiastype;
 	}
 	function layoutContent()
 	{

@@ -1,21 +1,21 @@
 class dofus.aks.Documents extends dofus.aks.Handler
 {
-	function Documents(loc3, loc4)
+	function Documents(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function leave()
 	{
 		this.aks.send("dV");
 	}
-	function onCreate(loc2, loc3)
+	function onCreate(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc4 = loc3;
-			var loc5 = this.api.config.language;
+			var var4 = var3;
+			var var5 = this.api.config.language;
 			this.api.ui.loadUIComponent("CenterText","CenterText",{text:this.api.lang.getText("LOADING"),background:false},{bForceLoad:true});
-			this.api.kernel.DocumentsServersManager.loadDocument(loc5 + "_" + loc4);
+			this.api.kernel.DocumentsServersManager.loadDocument(var5 + "_" + var4);
 		}
 	}
 	function onLeave()

@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.ItemViewer extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__item(loc2)
+	function __set__item(var2)
 	{
-		this._oItem = loc2;
+		this._oItem = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -58,9 +58,9 @@ class dofus.graphics.gapi.ui.ItemViewer extends dofus.graphics.gapi.core.DofusAd
 		this._btnClose.label = this.api.lang.getText("CLOSE");
 		this._lblWarning.text = this.api.lang.getText("ITEMS_CHAT_WARNING");
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnClose)
+		if((var var0 = var2.target) === this._btnClose)
 		{
 			this.callClose();
 		}

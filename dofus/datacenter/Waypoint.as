@@ -1,14 +1,14 @@
 class dofus.datacenter.Waypoint extends Object
 {
-	function Waypoint(§\x06\x02§, bCurrent, bRespawn, nCost)
+	function Waypoint(§\x05\x1d§, bCurrent, bRespawn, nCost)
 	{
 		super();
 		this.api = _global.API;
-		this._nID = loc3;
+		this._nID = var3;
 		this._bCurrent = bCurrent;
 		this._bRespawn = bRespawn;
 		this._nCost = nCost;
-		this.fieldToSort = this.name + loc3;
+		this.fieldToSort = this.name + var3;
 	}
 	function __get__id()
 	{

@@ -21,151 +21,151 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__cellRenderer(loc2)
+	function __set__cellRenderer(var2)
 	{
-		this._sCellRenderer = loc2;
+		this._sCellRenderer = var2;
 		return this.__get__cellRenderer();
 	}
 	function __get__cellRenderer()
 	{
 		return this._sCellRenderer;
 	}
-	function __set__isButtonLeft(loc2)
+	function __set__isButtonLeft(var2)
 	{
-		this._bButtonLeft = loc2;
+		this._bButtonLeft = var2;
 		return this.__get__isButtonLeft();
 	}
 	function __get__isButtonLeft()
 	{
 		return this._bButtonLeft;
 	}
-	function __set__rowHeight(loc2)
+	function __set__rowHeight(var2)
 	{
-		if(loc2 == 0)
+		if(var2 == 0)
 		{
 			return undefined;
 		}
-		this._nRowHeight = loc2;
+		this._nRowHeight = var2;
 		return this.__get__rowHeight();
 	}
 	function __get__rowHeight()
 	{
 		return this._nRowHeight;
 	}
-	function __set__buttonWidth(loc2)
+	function __set__buttonWidth(var2)
 	{
-		this._nButtonWidth = loc2;
+		this._nButtonWidth = var2;
 		return this.__get__buttonWidth();
 	}
 	function __get__buttonWidth()
 	{
 		return this._nButtonWidth;
 	}
-	function __set__labelLeftMargin(loc2)
+	function __set__labelLeftMargin(var2)
 	{
-		this._nLabelLeftMargin = loc2;
+		this._nLabelLeftMargin = var2;
 		return this.__get__labelLeftMargin();
 	}
 	function __get__labelLeftMargin()
 	{
 		return this._nLabelLeftMargin;
 	}
-	function __set__labelRightMargin(loc2)
+	function __set__labelRightMargin(var2)
 	{
-		this._nLabelRightMargin = loc2;
+		this._nLabelRightMargin = var2;
 		return this.__get__labelRightMargin();
 	}
 	function __get__labelRightMargin()
 	{
 		return this._nLabelRightMargin;
 	}
-	function __set__labelTopMargin(loc2)
+	function __set__labelTopMargin(var2)
 	{
-		this._nLabelTopMargin = loc2;
+		this._nLabelTopMargin = var2;
 		return this.__get__labelTopMargin();
 	}
 	function __get__labelTopMargin()
 	{
 		return this._nLabelTopMargin;
 	}
-	function __set__labelBottomMargin(loc2)
+	function __set__labelBottomMargin(var2)
 	{
-		this._nLabelBottomMargin = loc2;
+		this._nLabelBottomMargin = var2;
 		return this.__get__labelBottomMargin();
 	}
 	function __get__labelBottomMargin()
 	{
 		return this._nLabelBottomMargin;
 	}
-	function __set__listLeftMargin(loc2)
+	function __set__listLeftMargin(var2)
 	{
-		this._nListLeftMargin = loc2;
+		this._nListLeftMargin = var2;
 		return this.__get__listLeftMargin();
 	}
 	function __get__listLeftMargin()
 	{
 		return this._nListLeftMargin;
 	}
-	function __set__listRightMargin(loc2)
+	function __set__listRightMargin(var2)
 	{
-		this._nListRightMargin = loc2;
+		this._nListRightMargin = var2;
 		return this.__get__listRightMargin();
 	}
 	function __get__listRightMargin()
 	{
 		return this._nListRightMargin;
 	}
-	function __set__rowCount(loc2)
+	function __set__rowCount(var2)
 	{
-		this._nRowCount = loc2;
+		this._nRowCount = var2;
 		return this.__get__rowCount();
 	}
 	function __get__rowCount()
 	{
 		return this._nRowCount;
 	}
-	function __set__mcListParent(loc2)
+	function __set__mcListParent(var2)
 	{
-		this._sMcListParent = loc2;
+		this._sMcListParent = var2;
 		return this.__get__mcListParent();
 	}
 	function __get__mcListParent()
 	{
 		return this._sMcListParent;
 	}
-	function __set__background(loc2)
+	function __set__background(var2)
 	{
-		this._sBackground = loc2;
+		this._sBackground = var2;
 		return this.__get__background();
 	}
 	function __get__background()
 	{
 		return this._sBackground;
 	}
-	function __set__buttonBackgroundUp(loc2)
+	function __set__buttonBackgroundUp(var2)
 	{
-		this._sButtonBackgroundUp = loc2;
+		this._sButtonBackgroundUp = var2;
 		return this.__get__buttonBackgroundUp();
 	}
 	function __get__backgroundUp()
 	{
 		return this._sButtonBackgroundUp;
 	}
-	function __set__buttonBackgroundDown(loc2)
+	function __set__buttonBackgroundDown(var2)
 	{
-		this._sButtonBackgroundDown = loc2;
+		this._sButtonBackgroundDown = var2;
 		return this.__get__buttonBackgroundDown();
 	}
 	function __get__buttonBackgroundDown()
 	{
 		return this._sButtonBackgroundDown;
 	}
-	function __set__buttonIcon(loc2)
+	function __set__buttonIcon(var2)
 	{
-		this._sButtonIcon = loc2;
+		this._sButtonIcon = var2;
 		if(this.initialized)
 		{
-			this._btnOpen.icon = loc2;
+			this._btnOpen.icon = var2;
 		}
 		return this.__get__buttonIcon();
 	}
@@ -173,9 +173,9 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sButtonIcon;
 	}
-	function __set__dataProvider(loc2)
+	function __set__dataProvider(var2)
 	{
-		this._eaDataProvider = loc2;
+		this._eaDataProvider = var2;
 		this._eaDataProvider.addEventListener("modelChanged",this);
 		this.modelChanged();
 		if(this.initialized)
@@ -189,9 +189,9 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider;
 	}
-	function __set__selectedIndex(loc2)
+	function __set__selectedIndex(var2)
 	{
-		this._nSelectedIndex = loc2;
+		this._nSelectedIndex = var2;
 		if(this.initialized)
 		{
 			this.removeList();
@@ -231,9 +231,9 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	}
 	function arrange()
 	{
-		var loc2 = Math.max(this.__width - this._nButtonWidth - this._nLabelLeftMargin - this._nLabelRightMargin,0);
-		var loc3 = Math.max(this.__height - this._nLabelTopMargin - this._nLabelBottomMargin,0);
-		this._lblCombo.setSize(loc2,loc3);
+		var var2 = Math.max(this.__width - this._nButtonWidth - this._nLabelLeftMargin - this._nLabelRightMargin,0);
+		var var3 = Math.max(this.__height - this._nLabelTopMargin - this._nLabelBottomMargin,0);
+		this._lblCombo.setSize(var2,var3);
 		this._btnOpen.setSize(this._nButtonWidth,this.__height);
 		this._lblCombo._y = this._nLabelTopMargin;
 		if(this._bButtonLeft)
@@ -250,10 +250,10 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		this._lblCombo.styleName = loc2.labelstyle;
-		this._btnOpen.styleName = loc2.buttonstyle;
-		this._mcBack.setStyleColor(loc2,"color");
+		var var2 = this.getStyle();
+		this._lblCombo.styleName = var2.labelstyle;
+		this._btnOpen.styleName = var2.buttonstyle;
+		this._mcBack.setStyleColor(var2,"color");
 	}
 	function setEnabled()
 	{
@@ -269,15 +269,15 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	}
 	function calculateListSize()
 	{
-		var loc2 = this._eaDataProvider != undefined?this._eaDataProvider.length:1;
-		var loc3 = this._nListLeftMargin;
-		var loc4 = this.__height;
+		var var2 = this._eaDataProvider != undefined?this._eaDataProvider.length:1;
+		var var3 = this._nListLeftMargin;
+		var var4 = this.__height;
 		this._nListWidth = this.__width - this._nListLeftMargin - this._nListRightMargin - 2;
-		this._nListHeight = Math.min(loc2,this._nRowCount) * this._nRowHeight + 1;
-		var loc5 = {x:loc3,y:loc4};
-		this.localToGlobal(loc5);
-		this._nListX = loc5.x;
-		this._nListY = loc5.y;
+		this._nListHeight = Math.min(var2,this._nRowCount) * this._nRowHeight + 1;
+		var var5 = {x:var3,y:var4};
+		this.localToGlobal(var5);
+		this._nListX = var5.x;
+		this._nListY = var5.y;
 	}
 	function clearDrawedList()
 	{
@@ -287,23 +287,23 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		if(this._sMcListParent == "_parent")
 		{
-			var loc2 = this._parent;
+			var var2 = this._parent;
 		}
 		else
 		{
-			var loc3 = new ank.utils.(String(this._sMcListParent));
-			var loc4 = loc3.replace("this",String(this));
-			loc2 = eval(String(loc4));
+			var var3 = new ank.utils.(String(this._sMcListParent));
+			var var4 = var3.replace("this",String(this));
+			var2 = eval(String(var4));
 		}
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._parent;
+			var2 = this._parent;
 		}
-		if(loc2._mcComboBoxPopup != undefined)
+		if(var2._mcComboBoxPopup != undefined)
 		{
-			loc2._mcComboBoxPopup.comboBox.removeList();
+			var2._mcComboBoxPopup.comboBox.removeList();
 		}
-		this._mcComboBoxPopup = loc2.createEmptyMovieClip("_mcComboBoxPopup",loc2.getNextHighestDepth());
+		this._mcComboBoxPopup = var2.createEmptyMovieClip("_mcComboBoxPopup",var2.getNextHighestDepth());
 		this._mcComboBoxPopup.comboBox = this;
 		this.drawRoundRect(this._mcComboBoxPopup,this._nListX,this._nListY,this._nListWidth,this._nListHeight,0,this.getStyle().listbordercolor);
 		this._mcComboBoxPopup.attachMovie("List","_lstCombo",this._mcComboBoxPopup.getNextHighestDepth(),{styleName:this.getStyle().liststyle,rowHeight:this._nRowHeight,_x:this._nListX + 1,_y:this._nListY,_width:this._nListWidth - 2,_height:this._nListHeight - 1,dataProvider:this._eaDataProvider,selectedIndex:this._nSelectedIndex,cellRenderer:this._sCellRenderer});
@@ -331,20 +331,20 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 			this.drawList();
 		}
 	}
-	function setLabel(loc2)
+	function setLabel(var2)
 	{
-		this._lblCombo.text = loc2 != undefined?loc2:"";
+		this._lblCombo.text = var2 != undefined?var2:"";
 	}
 	function getSelectedItemText()
 	{
-		var loc2 = this.selectedItem;
-		if(typeof loc2 == "string")
+		var var2 = this.selectedItem;
+		if(typeof var2 == "string")
 		{
-			return String(loc2);
+			return String(var2);
 		}
-		if(loc2.label != undefined)
+		if(var2.label != undefined)
 		{
-			return loc2.label;
+			return var2.label;
 		}
 		return "";
 	}
@@ -356,7 +356,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		this.removeList();
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		if(this._btnOpen.selected)
 		{
@@ -367,7 +367,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 			this.removeList();
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		this._nSelectedIndex = this._lstCombo.selectedIndex;
 		this.setLabel(this.getSelectedItemText());

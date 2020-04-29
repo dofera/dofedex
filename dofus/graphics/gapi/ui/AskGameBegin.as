@@ -27,9 +27,9 @@ class dofus.graphics.gapi.ui.AskGameBegin extends dofus.graphics.gapi.core.Dofus
 		this._lblTemple.text = this.api.lang.getText("POPUP_GAME_BEGINNING_PARAGRAPH2");
 		this._lblBoon.text = this.api.lang.getText("POPUP_GAME_BEGINNING_PARAGRAPH3");
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_btnOk")
+		if((var var0 = var2.target._name) === "_btnOk")
 		{
 			this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_START_POPUP);
 			this.dispatchEvent({type:"ok",params:this.params});

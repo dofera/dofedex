@@ -1,10 +1,10 @@
 class dofus.datacenter.Hint extends Object
 {
-	function Hint(loc3)
+	function Hint(var3)
 	{
 		super();
 		this.api = _global.API;
-		this._oData = loc3;
+		this._oData = var3;
 	}
 	function __get__mapID()
 	{
@@ -44,10 +44,10 @@ class dofus.datacenter.Hint extends Object
 	}
 	function __get__superAreaID()
 	{
-		var loc2 = this.api.lang.getMapText(this._oData.m).sa;
-		var loc3 = this.api.lang.getMapSubAreaText(loc2).a;
-		var loc4 = this.api.lang.getMapAreaText(loc3).sua;
-		return loc4;
+		var var2 = this.api.lang.getMapText(this._oData.m).sa;
+		var var3 = this.api.lang.getMapSubAreaText(var2).a;
+		var var4 = this.api.lang.getMapAreaText(var3).sua;
+		return var4;
 	}
 	function __get__gfx()
 	{

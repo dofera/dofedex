@@ -1,10 +1,10 @@
 class dofus.datacenter.Accessory extends Object
 {
-	function Accessory(loc3, loc4, loc5)
+	function Accessory(var3, var4, var5)
 	{
 		super();
 		this.api = _global.API;
-		this.initialize(loc3,loc4,loc5);
+		this.initialize(var3,var4,var5);
 	}
 	function __get__unicID()
 	{
@@ -30,17 +30,17 @@ class dofus.datacenter.Accessory extends Object
 	{
 		return this._nFrame;
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
-		this._nUnicID = loc2;
-		if(loc4 != undefined)
+		this._nUnicID = var2;
+		if(var4 != undefined)
 		{
-			this._nFrame = loc4;
+			this._nFrame = var4;
 		}
-		if(loc3 != undefined)
+		if(var3 != undefined)
 		{
-			this._nType = loc3;
+			this._nType = var3;
 		}
-		this._oItemText = this.api.lang.getItemUnicText(loc2);
+		this._oItemText = this.api.lang.getItemUnicText(var2);
 	}
 }

@@ -9,24 +9,24 @@ class dofus.graphics.gapi.ui.PopupQuantity extends dofus.graphics.gapi.core.Dofu
 	{
 		super();
 	}
-	function __set__value(loc2)
+	function __set__value(var2)
 	{
-		this._nValue = loc2;
+		this._nValue = var2;
 		return this.__get__value();
 	}
-	function __set__max(loc2)
+	function __set__max(var2)
 	{
-		this._nMax = loc2;
+		this._nMax = var2;
 		return this.__get__max();
 	}
-	function __set__min(loc2)
+	function __set__min(var2)
 	{
-		this._nMin = loc2;
+		this._nMin = var2;
 		return this.__get__min();
 	}
-	function __set__useAllStage(loc2)
+	function __set__useAllStage(var2)
 	{
-		this._bUseAllStage = loc2;
+		this._bUseAllStage = var2;
 		return this.__get__useAllStage();
 	}
 	function init()
@@ -45,54 +45,54 @@ class dofus.graphics.gapi.ui.PopupQuantity extends dofus.graphics.gapi.core.Dofu
 	}
 	function initWindowContent()
 	{
-		var loc2 = this._winBackground.content;
-		loc2._btnOk.addEventListener("click",this);
-		loc2._btnMax.addEventListener("click",this);
-		loc2._btnMin.addEventListener("click",this);
-		loc2._btnMax.label = this.api.lang.getText("MAX_WORD");
-		loc2._btnMin.label = this.api.lang.getText("MIN_WORD");
-		loc2._tiInput.restrict = "0-9";
-		loc2._tiInput.text = this._nValue;
-		loc2._tiInput.setFocus();
+		var var2 = this._winBackground.content;
+		var2._btnOk.addEventListener("click",this);
+		var2._btnMax.addEventListener("click",this);
+		var2._btnMin.addEventListener("click",this);
+		var2._btnMax.label = this.api.lang.getText("MAX_WORD");
+		var2._btnMin.label = this.api.lang.getText("MIN_WORD");
+		var2._tiInput.restrict = "0-9";
+		var2._tiInput.text = this._nValue;
+		var2._tiInput.setFocus();
 	}
 	function placeWindow()
 	{
-		var loc2 = this._xmouse - this._winBackground.width;
-		var loc3 = this._ymouse - this._winBackground._height;
-		var loc4 = !this._bUseAllStage?this.gapi.screenWidth:Stage.width;
-		var loc5 = !this._bUseAllStage?this.gapi.screenHeight:Stage.height;
-		if(loc2 < 0)
+		var var2 = this._xmouse - this._winBackground.width;
+		var var3 = this._ymouse - this._winBackground._height;
+		var var4 = !this._bUseAllStage?this.gapi.screenWidth:Stage.width;
+		var var5 = !this._bUseAllStage?this.gapi.screenHeight:Stage.height;
+		if(var2 < 0)
 		{
-			loc2 = 0;
+			var2 = 0;
 		}
-		if(loc3 < 0)
+		if(var3 < 0)
 		{
-			loc3 = 0;
+			var3 = 0;
 		}
-		if(loc2 > loc4 - this._winBackground.width)
+		if(var2 > var4 - this._winBackground.width)
 		{
-			loc2 = loc4 - this._winBackground.width;
+			var2 = var4 - this._winBackground.width;
 		}
-		if(loc3 > loc5 - this._winBackground.height)
+		if(var3 > var5 - this._winBackground.height)
 		{
-			loc3 = loc5 - this._winBackground.height;
+			var3 = var5 - this._winBackground.height;
 		}
-		this._winBackground._x = loc2;
-		this._winBackground._y = loc3;
+		this._winBackground._x = var2;
+		this._winBackground._y = var3;
 	}
 	function validate()
 	{
 		this.api.kernel.KeyManager.removeShortcutsListener(this);
 		this.dispatchEvent({type:"validate",value:_global.parseInt(this._winBackground.content._tiInput.text,10),params:this._oParams});
 	}
-	function complete(loc2)
+	function complete(var2)
 	{
 		this.placeWindow();
 		this.addToQueue({object:this,method:this.initWindowContent});
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnOk":
 				this.validate();
@@ -107,22 +107,21 @@ class dofus.graphics.gapi.ui.PopupQuantity extends dofus.graphics.gapi.core.Dofu
 				this._winBackground.content._tiInput.setFocus();
 				return undefined;
 				break;
-			case "_btnMin":
-				this._winBackground.content._tiInput.text = this._nMin;
-				this._winBackground.content._tiInput.setFocus();
-				return undefined;
-				break;
 			default:
-				if(loc0 !== "_bgHidder")
+				switch(null)
 				{
-					break;
+					case "_btnMin":
+						this._winBackground.content._tiInput.text = this._nMin;
+						this._winBackground.content._tiInput.setFocus();
+						return undefined;
+					case "_bgHidder":
 				}
 		}
 		this.unloadThis();
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG")
+		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
 			this.validate();
 			this.unloadThis();

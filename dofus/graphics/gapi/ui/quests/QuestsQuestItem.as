@@ -4,19 +4,19 @@ class dofus.graphics.gapi.ui.quests.QuestsQuestItem extends ank.gapi.core.UIBasi
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			this._lblName.text = loc4.name;
-			this._mcCheckFinished._visible = loc4.isFinished;
-			this._mcCurrent._visible = !loc4.isFinished;
+			this._oItem = var4;
+			this._lblName.text = var4.name;
+			this._mcCheckFinished._visible = var4.isFinished;
+			this._mcCurrent._visible = !var4.isFinished;
 		}
 		else if(this._lblName.text != undefined)
 		{

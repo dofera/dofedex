@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.QuestStepViewer extends dofus.graphics.gapi.c
 	{
 		super();
 	}
-	function __set__step(loc2)
+	function __set__step(var2)
 	{
-		this._oStep = loc2;
+		this._oStep = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -49,30 +49,30 @@ class dofus.graphics.gapi.controls.QuestStepViewer extends dofus.graphics.gapi.c
 			this._btnDialog._visible = this._oStep.dialogID != undefined;
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this._oStep.dialogID;
-		var loc4 = this._oStep.dialogParams;
-		var loc5 = new dofus.datacenter.(loc3,undefined,loc4);
-		this.gapi.showTooltip(this.api.lang.getText("STEP_DIALOG") + " :\n\n" + loc5.label,loc2.target,20);
+		var var3 = this._oStep.dialogID;
+		var var4 = this._oStep.dialogParams;
+		var var5 = new dofus.datacenter.(var3,undefined,var4);
+		this.gapi.showTooltip(this.api.lang.getText("STEP_DIALOG") + " :\n\n" + var5.label,var2.target,20);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = this._oStep.dialogID;
-		var loc4 = this._oStep.dialogParams;
-		var loc5 = new dofus.datacenter.(loc3,undefined,loc4);
-		this.api.kernel.showMessage(this.api.lang.getText("STEP_DIALOG"),loc5.label,"ERROR_BOX");
+		var var3 = this._oStep.dialogID;
+		var var4 = this._oStep.dialogParams;
+		var var5 = new dofus.datacenter.(var3,undefined,var4);
+		this.api.kernel.showMessage(this.api.lang.getText("STEP_DIALOG"),var5.label,"ERROR_BOX");
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		var loc3 = loc2.row.item;
-		if(loc3.x != undefined && loc3.y != undefined)
+		var var3 = var2.row.item;
+		if(var3.x != undefined && var3.y != undefined)
 		{
-			this.api.kernel.GameManager.updateCompass(loc3.x,loc3.y);
+			this.api.kernel.GameManager.updateCompass(var3.x,var3.y);
 		}
 	}
 }

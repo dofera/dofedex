@@ -5,14 +5,14 @@ class dofus.graphics.gapi.ui.gameresult.GameResultTeamPVP extends dofus.graphics
 	{
 		super();
 	}
-	function __set__title(loc2)
+	function __set__title(var2)
 	{
-		this._sTitle = loc2;
+		this._sTitle = var2;
 		return this.__get__title();
 	}
-	function __set__dataProvider(loc2)
+	function __set__dataProvider(var2)
 	{
-		this._eaDataProvider = loc2;
+		this._eaDataProvider = var2;
 		return this.__get__dataProvider();
 	}
 	function init()
@@ -57,15 +57,15 @@ class dofus.graphics.gapi.ui.gameresult.GameResultTeamPVP extends dofus.graphics
 		{
 			this._lstPlayers.cellRenderer = "GameResultPlayerPVP";
 		}
-		var loc2 = this._eaDataProvider.length;
+		var var2 = this._eaDataProvider.length;
 		this._lstPlayers.dataProvider = this._eaDataProvider;
-		this._lstPlayers.setSize(undefined,Math.min(loc2,dofus.graphics.gapi.ui.GameResult.MAX_VISIBLE_PLAYERS_IN_TEAM) * this._lstPlayers.rowHeight);
+		this._lstPlayers.setSize(undefined,Math.min(var2,dofus.graphics.gapi.ui.GameResult.MAX_VISIBLE_PLAYERS_IN_TEAM) * this._lstPlayers.rowHeight);
 		this._lstPlayers._visible = true;
 	}
-	function itemRollOver(loc2)
+	function itemRollOver(var2)
 	{
 	}
-	function itemRollOut(loc2)
+	function itemRollOut(var2)
 	{
 		this.gapi.hideTooltip();
 	}

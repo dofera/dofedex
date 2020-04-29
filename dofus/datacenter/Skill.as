@@ -1,9 +1,9 @@
 class dofus.datacenter.Skill extends Object
 {
-	function Skill(loc3, loc4, loc5, loc6, loc7)
+	function Skill(var3, var4, var5, var6, var7)
 	{
 		super();
-		this.initialize(loc3,loc4,loc5,loc6,loc7);
+		this.initialize(var3,var4,var5,var6,var7);
 	}
 	function __get__id()
 	{
@@ -27,7 +27,7 @@ class dofus.datacenter.Skill extends Object
 		{
 			return null;
 		}
-		return new dofus.datacenter.(0,this._oSkillText.i);
+		return new dofus.datacenter.(0,this._oSkillText.i);
 	}
 	function __get__interactiveObject()
 	{
@@ -56,130 +56,130 @@ class dofus.datacenter.Skill extends Object
 			return this._oCraftsList;
 		}
 		this._oCraftsList = new Array();
-		var loc2 = 0;
-		while(loc2 < this._oSkillText.cl.length)
+		var var2 = 0;
+		while(var2 < this._oSkillText.cl.length)
 		{
-			var loc3 = this.api.lang.getItemUnicText(this._oSkillText.cl[loc2]).ep;
-			if(loc3 <= this.api.datacenter.Basics.aks_current_regional_version && (loc3 != undefined && !_global.isNaN(loc3)))
+			var var3 = this.api.lang.getItemUnicText(this._oSkillText.cl[var2]).ep;
+			if(var3 <= this.api.datacenter.Basics.aks_current_regional_version && (var3 != undefined && !_global.isNaN(var3)))
 			{
-				this._oCraftsList.push(this._oSkillText.cl[loc2]);
+				this._oCraftsList.push(this._oSkillText.cl[var2]);
 			}
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
 		return this._oCraftsList;
 	}
-	function initialize(loc2, loc3, loc4, loc5, loc6)
+	function initialize(var2, var3, var4, var5, var6)
 	{
 		this.api = _global.API;
-		this._nID = loc2;
-		if(loc3 != 0)
+		this._nID = var2;
+		if(var3 != 0)
 		{
-			this._nParam1 = loc3;
+			this._nParam1 = var3;
 		}
-		if(loc4 != 0)
+		if(var4 != 0)
 		{
-			this._nParam2 = loc4;
+			this._nParam2 = var4;
 		}
-		if(loc5 != 0)
+		if(var5 != 0)
 		{
-			this._nParam3 = loc5;
+			this._nParam3 = var5;
 		}
-		if(loc6 != 0)
+		if(var6 != 0)
 		{
-			this._nParam4 = loc6;
+			this._nParam4 = var6;
 		}
-		this._oSkillText = this.api.lang.getSkillText(loc2);
+		this._oSkillText = this.api.lang.getSkillText(var2);
 		this.skillName = this.description;
 	}
-	function getState(loc2, loc3, loc4, loc5, loc6, loc7)
+	function getState(var2, var3, var4, var5, var6, var7)
 	{
 		if(this.criterion == undefined || this.criterion.length == 0)
 		{
 			return "V";
 		}
-		var loc8 = this.criterion.split("?");
-		var loc9 = loc8[0].split("&");
-		var loc10 = loc8[1].split(":");
-		var loc11 = loc10[0];
-		var loc12 = loc10[1];
-		var loc13 = 0;
-		while(loc13 < loc9.length)
+		var var8 = this.criterion.split("?");
+		var var9 = var8[0].split("&");
+		var var10 = var8[1].split(":");
+		var var11 = var10[0];
+		var var12 = var10[1];
+		var var13 = 0;
+		while(var13 < var9.length)
 		{
-			var loc14 = loc9[loc13];
-			var loc15 = loc14.charAt(0) == "!";
-			if(loc15)
+			var var14 = var9[var13];
+			var var15 = var14.charAt(0) == "!";
+			if(var15)
 			{
-				loc14 = loc14.substr(1);
+				var14 = var14.substr(1);
 			}
-			switch(loc14)
+			switch(var14)
 			{
 				case "J":
-					if(loc15)
+					if(var15)
 					{
-						loc2 = !loc2;
+						var2 = !var2;
 					}
-					if(!loc2)
+					if(!var2)
 					{
-						return loc12;
+						return var12;
 					}
 					break;
 				case "O":
-					if(loc15)
+					if(var15)
 					{
-						loc3 = !loc3;
+						var3 = !var3;
 					}
-					if(!loc3)
+					if(!var3)
 					{
-						return loc12;
+						return var12;
 					}
 					break;
 				default:
 					switch(null)
 					{
 						case "S":
-							if(loc15)
+							if(var15)
 							{
-								loc4 = !loc4;
+								var4 = !var4;
 							}
-							if(!loc4)
+							if(!var4)
 							{
-								return loc12;
+								return var12;
 							}
 							break;
 						case "L":
-							if(loc15)
+							if(var15)
 							{
-								loc5 = !loc5;
+								var5 = !var5;
 							}
-							if(!loc5)
+							if(!var5)
 							{
-								return loc12;
+								return var12;
 							}
 							break;
 						case "I":
-							if(loc15)
+							if(var15)
 							{
-								loc6 = !loc6;
+								var6 = !var6;
 							}
-							if(!loc6)
+							if(!var6)
 							{
-								return loc12;
+								return var12;
 							}
 							break;
 						case "N":
-							if(loc15)
+							if(var15)
 							{
-								loc7 = !loc7;
+								var7 = !var7;
 							}
-							if(!loc7)
+							if(!var7)
 							{
-								return loc12;
+								return var12;
 							}
 							break;
 					}
 			}
-			loc13 = loc13 + 1;
+			var13 = var13 + 1;
 		}
-		return loc11;
+		return var11;
 	}
 }

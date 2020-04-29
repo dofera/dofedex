@@ -3,12 +3,12 @@ class ank.battlefield.mc.OverHead extends MovieClip
 	static var TOP_Y = -50;
 	static var BOTTOM_Y = 10;
 	static var MODERATOR_Y = 15;
-	function OverHead(§\x0b\x13§, §\x1e\x1c\x05§, mcBattlefield)
+	function OverHead(§\x0b\x11§, §\x1e\x1c\x03§, mcBattlefield)
 	{
 		super();
 		this._mcBattlefield = mcBattlefield;
-		this._mcSprite = loc3;
-		this._nZoom = loc4 != undefined?loc4:100;
+		this._mcSprite = var3;
+		this._nZoom = var4 != undefined?var4:100;
 		this.initialize();
 	}
 	function __get__top()
@@ -37,68 +37,67 @@ class ank.battlefield.mc.OverHead extends MovieClip
 	{
 		this.createEmptyMovieClip("_mcItems",10);
 	}
-	function setPosition(loc2, loc3)
+	function setPosition(var2, var3)
 	{
-		var loc4 = {x:this._parent._parent._x,y:this._parent._parent._y};
-		this._parent._parent.localToGlobal(loc4);
+		var var4 = {x:this._parent._parent._x,y:this._parent._parent._y};
+		this._parent._parent.localToGlobal(var4);
 		this._x = this._mcSprite._x;
 		this._y = this._mcSprite._y;
-		var loc5 = 100 / this._nZoom;
-		var loc6 = this.top;
-		var loc7 = this.moderator;
-		loc2 = loc2 * loc5;
-		if(this._mcSprite._y < - loc6 + loc2 - loc4.y + loc7)
+		var var5 = 100 / this._nZoom;
+		var var6 = this.top;
+		var var7 = this.moderator;
+		var2 = var2 * var5;
+		if(this._mcSprite._y < - var6 + var2 - var4.y + var7)
 		{
-			this._mcItems._y = this._mcItems._y + (this.bottom + loc2);
-			var loc8 = 0;
-			for(var k in this._oLayers)
+			this._mcItems._y = this._mcItems._y + (this.bottom + var2);
+			var var8 = 0;
+			for(var var9 in this._oLayers)
 			{
-				var loc9 = this._mcItems["item" + loc8];
-				loc9.reverseClip();
-				loc8 = loc8 + 1;
+				var9.reverseClip();
+				var8 = var8 + 1;
 			}
 		}
 		else
 		{
-			var loc10 = Math.abs(loc6);
-			if(this._mcSprite._height > loc10 + loc7)
+			var var10 = Math.abs(var6);
+			if(this._mcSprite._height > var10 + var7)
 			{
-				this._mcItems._y = this._mcItems._y + (loc6 - loc7);
+				this._mcItems._y = this._mcItems._y + (var6 - var7);
 			}
-			else if(this._mcSprite._height < loc10 - loc7)
+			else if(this._mcSprite._height < var10 - var7)
 			{
-				this._mcItems._y = this._mcItems._y + (loc6 + loc7);
+				this._mcItems._y = this._mcItems._y + (var6 + var7);
 			}
 			else
 			{
-				this._mcItems._y = this._mcItems._y + loc6;
+				this._mcItems._y = this._mcItems._y + var6;
 			}
 		}
-		var loc11 = loc3 * loc5 / 2;
-		if(this._mcSprite._x < loc11 - loc4.x)
+		var var11 = var3 * var5 / 2;
+		if(this._mcSprite._x < var11 - var4.x)
 		{
-			this._x = loc11;
+			this._x = var11;
 		}
-		if(this._mcSprite._x > this._mcBattlefield.screenWidth * loc5 - loc11 + loc4.x)
+		if(this._mcSprite._x > this._mcBattlefield.screenWidth * var5 - var11 + var4.x)
 		{
-			this._x = this._mcBattlefield.screenWidth * loc5 - loc11;
+			this._x = this._mcBattlefield.screenWidth * var5 - var11;
 		}
 	}
-	function addItem(loc2, loc3, loc4, loc5)
+	function addItem(var2, var3, var4, var5)
 	{
-		var loc6 = new Object();
-		loc6.id = this._nCurrentItemID;
-		loc6.className = className;
-		loc6.args = loc4;
-		if(loc5 != undefined)
+		var var6 = new Object();
+		var6.id = this._nCurrentItemID;
+		var6.className = className;
+		var6.args = var4;
+		if(var5 != undefined)
 		{
-			ank.utils.Timer.setTimer(loc6,"battlefield",this,this.removeItem,loc5,[this._nCurrentItemID]);
+			ank.utils.Timer.setTimer(var6,"battlefield",this,this.removeItem,var5,[this._nCurrentItemID]);
 		}
-		this._oLayers[loc2] = loc6;
+		this._oLayers[var2] = var6;
 		this._nCurrentItemID++;
 		this.refresh();
 	}
-	function remove(loc2)
+	function remove(var2)
 	{
 		this.swapDepths(1);
 		this.removeMovieClip();
@@ -106,30 +105,30 @@ class ank.battlefield.mc.OverHead extends MovieClip
 	function refresh()
 	{
 		this.clearView();
-		var loc2 = 0;
-		var loc3 = 0;
-		var loc4 = 0;
+		var var2 = 0;
+		var var3 = 0;
+		var var4 = 0;
 		for(var k in this._oLayers)
 		{
-			var loc5 = this._oLayers[k];
-			var loc6 = this._mcItems.attachClassMovie(loc5.className,"item" + loc2,loc2,loc5.args);
-			loc3 = loc3 - loc6.height;
-			loc4 = Math.max(loc4,loc6.width);
-			loc6._y = loc3;
-			loc2 = loc2 + 1;
+			var var5 = this._oLayers[k];
+			var var6 = this._mcItems.attachClassMovie(var5.className,"item" + var2,var2,var5.args);
+			var3 = var3 - var6.height;
+			var4 = Math.max(var4,var6.width);
+			var6._y = var3;
+			var2 = var2 + 1;
 		}
-		this.setPosition(Math.abs(loc3),loc4);
+		this.setPosition(Math.abs(var3),var4);
 	}
-	function removeLayer(loc2)
+	function removeLayer(var2)
 	{
 		delete this._oLayers.register2;
 		this.refresh();
 	}
-	function removeItem(loc2)
+	function removeItem(var2)
 	{
-		for(var loc3 in this._oLayers)
+		for(var var3 in this._oLayers)
 		{
-			if(this._oLayers[loc3].id == loc2)
+			if(this._oLayers[var3].id == var2)
 			{
 				delete this._oLayers.register3;
 				this.refresh();

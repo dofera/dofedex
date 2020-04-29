@@ -19,412 +19,412 @@ class org.utils.SimpleDateFormatter
 	function SimpleDateFormatter()
 	{
 	}
-	static function LZ(loc2)
+	static function LZ(var2)
 	{
-		return (!(loc2 < 0 || loc2 > 9)?"0":"") + loc2;
+		return (!(var2 < 0 || var2 > 9)?"0":"") + var2;
 	}
-	static function formatDate(date, §\x0f\x06§, §\f\x1c§)
+	static function formatDate(date, §\x0f\x04§, §\f\x1a§)
 	{
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = "en";
+			var4 = "en";
 		}
-		loc3 = loc3 + "";
-		var loc5 = "";
-		var loc6 = 0;
-		var loc7 = "";
-		var loc8 = "";
-		var loc9 = date.getYear() + "";
-		var loc10 = date.getMonth() + 1;
-		var loc11 = date.getDate();
-		var loc12 = date.getDay();
-		var loc13 = date.getHours();
-		var loc14 = date.getMinutes();
-		var loc15 = date.getSeconds();
-		var loc16 = date.getMilliseconds();
-		var loc17 = new Object();
-		if(loc9.length < 4)
+		var3 = var3 + "";
+		var var5 = "";
+		var var6 = 0;
+		var var7 = "";
+		var var8 = "";
+		var var9 = date.getYear() + "";
+		var var10 = date.getMonth() + 1;
+		var var11 = date.getDate();
+		var var12 = date.getDay();
+		var var13 = date.getHours();
+		var var14 = date.getMinutes();
+		var var15 = date.getSeconds();
+		var var16 = date.getMilliseconds();
+		var var17 = new Object();
+		if(var9.length < 4)
 		{
-			loc9 = "" + (loc9 - 0 + 1900);
+			var9 = "" + (var9 - 0 + 1900);
 		}
-		loc17.y = "" + loc9;
-		loc17.yyyy = loc9;
-		loc17.yy = loc9.substring(2,4);
-		loc17.M = loc10;
-		loc17.MM = org.utils.SimpleDateFormatter.LZ(loc10);
-		loc17.MMM = org.utils.SimpleDateFormatter.MONTH_NAMES[loc4][loc10 - 1];
-		loc17.NNN = org.utils.SimpleDateFormatter.MONTH_NAMES[loc4][loc10 + 11];
-		loc17.d = loc11;
-		loc17.dd = org.utils.SimpleDateFormatter.LZ(loc11);
-		loc17.E = org.utils.SimpleDateFormatter.DAY_NAMES[loc4][loc12 + 7];
-		loc17.EE = org.utils.SimpleDateFormatter.DAY_NAMES[loc4][loc12];
-		loc17.H = loc13;
-		loc17.HH = org.utils.SimpleDateFormatter.LZ(loc13);
-		if(loc13 == 0)
+		var17.y = "" + var9;
+		var17.yyyy = var9;
+		var17.yy = var9.substring(2,4);
+		var17.M = var10;
+		var17.MM = org.utils.SimpleDateFormatter.LZ(var10);
+		var17.MMM = org.utils.SimpleDateFormatter.MONTH_NAMES[var4][var10 - 1];
+		var17.NNN = org.utils.SimpleDateFormatter.MONTH_NAMES[var4][var10 + 11];
+		var17.d = var11;
+		var17.dd = org.utils.SimpleDateFormatter.LZ(var11);
+		var17.E = org.utils.SimpleDateFormatter.DAY_NAMES[var4][var12 + 7];
+		var17.EE = org.utils.SimpleDateFormatter.DAY_NAMES[var4][var12];
+		var17.H = var13;
+		var17.HH = org.utils.SimpleDateFormatter.LZ(var13);
+		if(var13 == 0)
 		{
-			loc17.h = 12;
+			var17.h = 12;
 		}
-		else if(loc13 > 12)
+		else if(var13 > 12)
 		{
-			loc17.h = loc13 - 12;
-		}
-		else
-		{
-			loc17.h = loc13;
-		}
-		loc17.hh = org.utils.SimpleDateFormatter.LZ(loc17.h);
-		if(loc13 > 11)
-		{
-			loc17.K = loc13 - 12;
+			var17.h = var13 - 12;
 		}
 		else
 		{
-			loc17.K = loc13;
+			var17.h = var13;
 		}
-		loc17.k = loc13 + 1;
-		loc17.KK = org.utils.SimpleDateFormatter.LZ(loc17.K);
-		loc17.kk = org.utils.SimpleDateFormatter.LZ(loc17.k);
-		if(loc13 > 11)
+		var17.hh = org.utils.SimpleDateFormatter.LZ(var17.h);
+		if(var13 > 11)
 		{
-			loc17.a = "PM";
+			var17.K = var13 - 12;
 		}
 		else
 		{
-			loc17.a = "AM";
+			var17.K = var13;
 		}
-		loc17.m = loc14;
-		loc17.mm = org.utils.SimpleDateFormatter.LZ(loc14);
-		loc17.s = loc15;
-		loc17.ss = org.utils.SimpleDateFormatter.LZ(loc15);
-		loc17.i = loc16;
-		loc17.ii = org.utils.SimpleDateFormatter.LZ(loc16);
-		while(loc6 < loc3.length)
+		var17.k = var13 + 1;
+		var17.KK = org.utils.SimpleDateFormatter.LZ(var17.K);
+		var17.kk = org.utils.SimpleDateFormatter.LZ(var17.k);
+		if(var13 > 11)
 		{
-			loc7 = loc3.charAt(loc6);
-			loc8 = "";
-			while(loc3.charAt(loc6) == loc7 && loc6 < loc3.length)
+			var17.a = "PM";
+		}
+		else
+		{
+			var17.a = "AM";
+		}
+		var17.m = var14;
+		var17.mm = org.utils.SimpleDateFormatter.LZ(var14);
+		var17.s = var15;
+		var17.ss = org.utils.SimpleDateFormatter.LZ(var15);
+		var17.i = var16;
+		var17.ii = org.utils.SimpleDateFormatter.LZ(var16);
+		while(var6 < var3.length)
+		{
+			var7 = var3.charAt(var6);
+			var8 = "";
+			while(var3.charAt(var6) == var7 && var6 < var3.length)
 			{
-				loc6;
-				loc8 = loc8 + loc3.charAt(loc6++);
+				var6;
+				var8 = var8 + var3.charAt(var6++);
 			}
-			if(loc17[loc8] != null)
+			if(var17[var8] != null)
 			{
-				loc5 = loc5 + loc17[loc8];
+				var5 = var5 + var17[var8];
 			}
 			else
 			{
-				loc5 = loc5 + loc8;
+				var5 = var5 + var8;
 			}
 		}
-		return loc5;
+		return var5;
 	}
-	static function isDate(loc2, loc3, loc4)
+	static function isDate(var2, var3, var4)
 	{
-		var loc5 = org.utils.SimpleDateFormatter.getDateFromFormat(loc2,loc3,loc4);
-		if(loc5 == 0)
+		var var5 = org.utils.SimpleDateFormatter.getDateFromFormat(var2,var3,var4);
+		if(var5 == 0)
 		{
 			return false;
 		}
 		return true;
 	}
-	static function compareDates(loc2, loc3, loc4, loc5, loc6, loc7)
+	static function compareDates(var2, var3, var4, var5, var6, var7)
 	{
-		var loc8 = org.utils.SimpleDateFormatter.getDateFromFormat(loc2,loc3,loc4);
-		var loc9 = org.utils.SimpleDateFormatter.getDateFromFormat(loc5,loc6,loc7);
-		if(loc8 == 0 || loc9 == 0)
+		var var8 = org.utils.SimpleDateFormatter.getDateFromFormat(var2,var3,var4);
+		var var9 = org.utils.SimpleDateFormatter.getDateFromFormat(var5,var6,var7);
+		if(var8 == 0 || var9 == 0)
 		{
 			return -1;
 		}
-		if(loc8 > loc9)
+		if(var8 > var9)
 		{
 			return 1;
 		}
 		return 0;
 	}
-	static function getDateFromFormat(loc2, loc3, loc4)
+	static function getDateFromFormat(var2, var3, var4)
 	{
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = "en";
+			var4 = "en";
 		}
-		loc2 = loc2 + "";
-		loc3 = loc3 + "";
-		var loc5 = 0;
-		var loc6 = 0;
-		var loc7 = "";
-		var loc8 = "";
-		var loc9 = "";
-		var loc12 = new Date();
-		var loc13 = loc12.getYear();
-		var loc14 = loc12.getMonth() + 1;
-		var loc15 = 1;
-		var loc16 = loc12.getHours();
-		var loc17 = loc12.getMinutes();
-		var loc18 = loc12.getSeconds();
-		var loc19 = loc12.getMilliseconds();
-		var loc20 = "";
+		var2 = var2 + "";
+		var3 = var3 + "";
+		var var5 = 0;
+		var var6 = 0;
+		var var7 = "";
+		var var8 = "";
+		var var9 = "";
+		var var12 = new Date();
+		var var13 = var12.getYear();
+		var var14 = var12.getMonth() + 1;
+		var var15 = 1;
+		var var16 = var12.getHours();
+		var var17 = var12.getMinutes();
+		var var18 = var12.getSeconds();
+		var var19 = var12.getMilliseconds();
+		var var20 = "";
 		while(true)
 		{
-			if(loc6 < loc3.length)
+			if(var6 < var3.length)
 			{
-				loc7 = loc3.charAt(loc6);
-				loc8 = "";
-				while(loc3.charAt(loc6) == loc7 && loc6 < loc3.length)
+				var7 = var3.charAt(var6);
+				var8 = "";
+				while(var3.charAt(var6) == var7 && var6 < var3.length)
 				{
-					loc6;
-					loc8 = loc8 + loc3.charAt(loc6++);
+					var6;
+					var8 = var8 + var3.charAt(var6++);
 				}
-				if(loc8 == "yyyy" || (loc8 == "yy" || loc8 == "y"))
+				if(var8 == "yyyy" || (var8 == "yy" || var8 == "y"))
 				{
-					if(loc8 == "yyyy")
+					if(var8 == "yyyy")
 					{
-						var loc10 = 4;
-						var loc11 = 4;
+						var var10 = 4;
+						var var11 = 4;
 					}
-					if(loc8 == "yy")
+					if(var8 == "yy")
 					{
-						loc10 = 2;
-						loc11 = 2;
+						var10 = 2;
+						var11 = 2;
 					}
-					if(loc8 == "y")
+					if(var8 == "y")
 					{
-						loc10 = 2;
-						loc11 = 4;
+						var10 = 2;
+						var11 = 4;
 					}
-					loc13 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc10,loc11);
-					if(loc13 == null)
+					var13 = org.utils.SimpleDateFormatter._getInt(var2,var5,var10,var11);
+					if(var13 == null)
 					{
 						return null;
 					}
-					loc5 = loc5 + loc13.length;
-					if(loc13.length == 2)
+					var5 = var5 + var13.length;
+					if(var13.length == 2)
 					{
-						if(loc13 > 70)
+						if(var13 > 70)
 						{
-							loc13 = 1900 + (loc13 - 0);
+							var13 = 1900 + (var13 - 0);
 						}
 						else
 						{
-							loc13 = 2000 + (loc13 - 0);
+							var13 = 2000 + (var13 - 0);
 						}
 					}
 				}
-				else if(loc8 == "MMM" || loc8 == "NNN")
+				else if(var8 == "MMM" || var8 == "NNN")
 				{
-					loc14 = 0;
-					var loc21 = 0;
-					while(loc21 < org.utils.SimpleDateFormatter.MONTH_NAMES[loc4].length)
+					var14 = 0;
+					var var21 = 0;
+					while(var21 < org.utils.SimpleDateFormatter.MONTH_NAMES[var4].length)
 					{
-						var loc22 = org.utils.SimpleDateFormatter.MONTH_NAMES[loc4][loc21];
-						if(loc2.substring(loc5,loc5 + loc22.length).toLowerCase() == loc22.toLowerCase())
+						var var22 = org.utils.SimpleDateFormatter.MONTH_NAMES[var4][var21];
+						if(var2.substring(var5,var5 + var22.length).toLowerCase() == var22.toLowerCase())
 						{
-							if(loc8 == "MMM" || loc8 == "NNN" && loc21 > 11)
+							if(var8 == "MMM" || var8 == "NNN" && var21 > 11)
 							{
-								loc14 = loc21 + 1;
-								if(loc14 > 12)
+								var14 = var21 + 1;
+								if(var14 > 12)
 								{
-									loc14 = loc14 - 12;
+									var14 = var14 - 12;
 								}
-								loc5 = loc5 + loc22.length;
+								var5 = var5 + var22.length;
 								break;
 							}
 						}
-						loc21 = loc21 + 1;
+						var21 = var21 + 1;
 					}
-					if(loc14 < 1 || loc14 > 12)
+					if(var14 < 1 || var14 > 12)
 					{
 						break;
 					}
 				}
-				else if(loc8 == "EE" || loc8 == "E")
+				else if(var8 == "EE" || var8 == "E")
 				{
-					var loc23 = 0;
-					while(loc23 < org.utils.SimpleDateFormatter.DAY_NAMES[loc4].length)
+					var var23 = 0;
+					while(var23 < org.utils.SimpleDateFormatter.DAY_NAMES[var4].length)
 					{
-						var loc24 = org.utils.SimpleDateFormatter.DAY_NAMES[loc4][loc23];
-						if(loc2.substring(loc5,loc5 + loc24.length).toLowerCase() == loc24.toLowerCase())
+						var var24 = org.utils.SimpleDateFormatter.DAY_NAMES[var4][var23];
+						if(var2.substring(var5,var5 + var24.length).toLowerCase() == var24.toLowerCase())
 						{
-							loc5 = loc5 + loc24.length;
+							var5 = var5 + var24.length;
 							break;
 						}
-						loc23 = loc23 + 1;
+						var23 = var23 + 1;
 					}
 				}
-				else if(loc8 == "MM" || loc8 == "M")
+				else if(var8 == "MM" || var8 == "M")
 				{
-					loc14 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc14 == null || (loc14 < 1 || loc14 > 12))
+					var14 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var14 == null || (var14 < 1 || var14 > 12))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc14.length;
+					var5 = var5 + var14.length;
 				}
-				else if(loc8 == "dd" || loc8 == "d")
+				else if(var8 == "dd" || var8 == "d")
 				{
-					loc15 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc15 == null || (loc15 < 1 || loc15 > 31))
+					var15 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var15 == null || (var15 < 1 || var15 > 31))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc15.length;
+					var5 = var5 + var15.length;
 				}
-				else if(loc8 == "hh" || loc8 == "h")
+				else if(var8 == "hh" || var8 == "h")
 				{
-					loc16 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc16 == null || (loc16 < 1 || loc16 > 12))
+					var16 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var16 == null || (var16 < 1 || var16 > 12))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc16.length;
+					var5 = var5 + var16.length;
 				}
-				else if(loc8 == "HH" || loc8 == "H")
+				else if(var8 == "HH" || var8 == "H")
 				{
-					loc16 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc16 == null || (loc16 < 0 || loc16 > 23))
+					var16 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var16 == null || (var16 < 0 || var16 > 23))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc16.length;
+					var5 = var5 + var16.length;
 				}
-				else if(loc8 == "KK" || loc8 == "K")
+				else if(var8 == "KK" || var8 == "K")
 				{
-					loc16 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc16 == null || (loc16 < 0 || loc16 > 11))
+					var16 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var16 == null || (var16 < 0 || var16 > 11))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc16.length;
+					var5 = var5 + var16.length;
 				}
-				else if(loc8 == "kk" || loc8 == "k")
+				else if(var8 == "kk" || var8 == "k")
 				{
-					loc16 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc16 == null || (loc16 < 1 || loc16 > 24))
+					var16 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var16 == null || (var16 < 1 || var16 > 24))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc16.length;
-					loc16 = loc16 - 1;
+					var5 = var5 + var16.length;
+					var16 = var16 - 1;
 				}
-				else if(loc8 == "mm" || loc8 == "m")
+				else if(var8 == "mm" || var8 == "m")
 				{
-					loc17 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc17 == null || (loc17 < 0 || loc17 > 59))
+					var17 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var17 == null || (var17 < 0 || var17 > 59))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc17.length;
+					var5 = var5 + var17.length;
 				}
-				else if(loc8 == "ss" || loc8 == "s")
+				else if(var8 == "ss" || var8 == "s")
 				{
-					loc18 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc18 == null || (loc18 < 0 || loc18 > 59))
+					var18 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var18 == null || (var18 < 0 || var18 > 59))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc18.length;
+					var5 = var5 + var18.length;
 				}
-				else if(loc8 == "ii" || loc8 == "i")
+				else if(var8 == "ii" || var8 == "i")
 				{
-					loc19 = org.utils.SimpleDateFormatter._getInt(loc2,loc5,loc8.length,2);
-					if(loc19 == null || (loc19 < 0 || loc19 > 999))
+					var19 = org.utils.SimpleDateFormatter._getInt(var2,var5,var8.length,2);
+					if(var19 == null || (var19 < 0 || var19 > 999))
 					{
 						return null;
 					}
-					loc5 = loc5 + loc19.length;
+					var5 = var5 + var19.length;
 				}
-				else if(loc8 == "a")
+				else if(var8 == "a")
 				{
-					if(loc2.substring(loc5,loc5 + 2).toLowerCase() == "am")
+					if(var2.substring(var5,var5 + 2).toLowerCase() == "am")
 					{
-						loc20 = "AM";
+						var20 = "AM";
 					}
-					else if(loc2.substring(loc5,loc5 + 2).toLowerCase() == "pm")
+					else if(var2.substring(var5,var5 + 2).toLowerCase() == "pm")
 					{
-						loc20 = "PM";
+						var20 = "PM";
 					}
 					else
 					{
 						return null;
 					}
-					loc5 = loc5 + 2;
+					var5 = var5 + 2;
 				}
 				else
 				{
-					if(loc2.substring(loc5,loc5 + loc8.length) != loc8)
+					if(var2.substring(var5,var5 + var8.length) != var8)
 					{
 						return null;
 					}
-					loc5 = loc5 + loc8.length;
+					var5 = var5 + var8.length;
 				}
 				continue;
 			}
-			if(loc5 != loc2.length)
+			if(var5 != var2.length)
 			{
 				return null;
 			}
-			if(loc14 == 2)
+			if(var14 == 2)
 			{
-				if(loc13 % 4 == 0 && loc13 % 100 != 0 || loc13 % 400 == 0)
+				if(var13 % 4 == 0 && var13 % 100 != 0 || var13 % 400 == 0)
 				{
-					if(loc15 > 29)
+					if(var15 > 29)
 					{
 						return null;
 					}
 				}
-				else if(loc15 > 28)
+				else if(var15 > 28)
 				{
 					return null;
 				}
 			}
-			if(loc14 == 4 || (loc14 == 6 || (loc14 == 9 || loc14 == 11)))
+			if(var14 == 4 || (var14 == 6 || (var14 == 9 || var14 == 11)))
 			{
-				if(loc15 > 30)
+				if(var15 > 30)
 				{
 					return null;
 				}
 			}
-			if(loc16 < 12 && loc20 == "PM")
+			if(var16 < 12 && var20 == "PM")
 			{
-				loc16 = loc16 - 0 + 12;
+				var16 = var16 - 0 + 12;
 			}
-			else if(loc16 > 11 && loc20 == "AM")
+			else if(var16 > 11 && var20 == "AM")
 			{
-				loc16 = loc16 - 12;
+				var16 = var16 - 12;
 			}
-			var loc25 = new Date(loc13,loc14 - 1,loc15,loc16,loc17,loc18,loc19);
-			return loc25;
+			var var25 = new Date(var13,var14 - 1,var15,var16,var17,var18,var19);
+			return var25;
 		}
 		return null;
 	}
-	static function _isInteger(loc2)
+	static function _isInteger(var2)
 	{
-		var loc3 = "1234567890";
-		var loc4 = 0;
-		while(loc4 < loc2.length)
+		var var3 = "1234567890";
+		var var4 = 0;
+		while(var4 < var2.length)
 		{
-			if(loc3.indexOf(loc2.charAt(loc4)) == -1)
+			if(var3.indexOf(var2.charAt(var4)) == -1)
 			{
 				return false;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 		return true;
 	}
-	static function _getInt(loc2, loc3, loc4, loc5)
+	static function _getInt(var2, var3, var4, var5)
 	{
-		var loc6 = loc5;
-		while(loc6 >= loc4)
+		var var6 = var5;
+		while(var6 >= var4)
 		{
-			var loc7 = loc2.substring(loc3,loc3 + loc6);
-			if(loc7.length < loc4)
+			var var7 = var2.substring(var3,var3 + var6);
+			if(var7.length < var4)
 			{
 				return null;
 			}
-			if(org.utils.SimpleDateFormatter._isInteger(loc7))
+			if(org.utils.SimpleDateFormatter._isInteger(var7))
 			{
-				return loc7;
+				return var7;
 			}
-			loc6 = loc6 - 1;
+			var6 = var6 - 1;
 		}
 		return null;
 	}

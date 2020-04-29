@@ -28,25 +28,25 @@ class dofus.graphics.gapi.controls.alignmentviewer.SpecializationViewer extends 
 	{
 		this.specializationChanged({specialization:this.api.datacenter.Player.specialization});
 	}
-	function setFeatsFromSpecialization(loc2)
+	function setFeatsFromSpecialization(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._lblFeats.text = this.api.lang.getText("FEATS") + " (" + loc2.name + ")";
-			this._lstFeats.dataProvider = loc2.feats;
+			this._lblFeats.text = this.api.lang.getText("FEATS") + " (" + var2.name + ")";
+			this._lstFeats.dataProvider = var2.feats;
 		}
 		else
 		{
 			this._lblFeats.text = this.api.lang.getText("FEATS");
-			this._lstFeats.dataProvider = new ank.utils.();
+			this._lstFeats.dataProvider = new ank.utils.();
 		}
 	}
-	function specializationChanged(loc2)
+	function specializationChanged(var2)
 	{
 		this._mcTree.removeMovieClip();
 		this._mcOrder.removeMovieClip();
-		var loc3 = loc2.specialization;
-		if(loc3 != undefined)
+		var var3 = var2.specialization;
+		if(var3 != undefined)
 		{
 			this._lblNoSpecialization._visible = false;
 			this._lblFeats._visible = true;
@@ -63,12 +63,12 @@ class dofus.graphics.gapi.controls.alignmentviewer.SpecializationViewer extends 
 			this._lstFeats._visible = false;
 		}
 	}
-	function specializationSelected(loc2)
+	function specializationSelected(var2)
 	{
 		this._mcOrder.removeMovieClip();
-		this.setFeatsFromSpecialization(loc2.specialization);
+		this.setFeatsFromSpecialization(var2.specialization);
 	}
-	function orderSelected(loc2)
+	function orderSelected(var2)
 	{
 		this._mcOrder.removeMovieClip();
 		this.attachMovie("AlignmentViewerOrder","_mcOrder",this.getNextHighestDepth(),{_x:this._mcOrderPlacer._x,_y:this._mcOrderPlacer._y,specialization:this.api.datacenter.Player.specialization});

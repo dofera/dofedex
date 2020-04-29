@@ -1,12 +1,12 @@
 class ank.utils.ExtendedString extends String
 {
 	static var DEFAULT_SPACECHARS = " \n\r\t";
-	function ExtendedString(loc3)
+	function ExtendedString(var3)
 	{
 		super();
-		this._s = String(loc3);
+		this._s = String(var3);
 	}
-	function replace(loc2, loc3)
+	function replace(var2, var3)
 	{
 		if(arguments.length == 0)
 		{
@@ -14,165 +14,165 @@ class ank.utils.ExtendedString extends String
 		}
 		if(arguments.length == 1)
 		{
-			if(loc2 instanceof Array)
+			if(var2 instanceof Array)
 			{
-				loc3 = new Array(loc2.length);
+				var3 = new Array(var2.length);
 			}
 			else
 			{
-				return this._s.split(loc2).join("");
+				return this._s.split(var2).join("");
 			}
 		}
-		if(!(loc2 instanceof Array))
+		if(!(var2 instanceof Array))
 		{
-			return this._s.split(loc2).join(loc3);
+			return this._s.split(var2).join(var3);
 		}
-		var loc4 = loc2.length;
-		var loc5 = this._s;
-		if(loc3 instanceof Array)
+		var var4 = var2.length;
+		var var5 = this._s;
+		if(var3 instanceof Array)
 		{
-			var loc6 = 0;
-			while(loc6 < loc4)
+			var var6 = 0;
+			while(var6 < var4)
 			{
-				loc5 = loc5.split(loc2[loc6]).join(loc3[loc6]);
-				loc6 = loc6 + 1;
+				var5 = var5.split(var2[var6]).join(var3[var6]);
+				var6 = var6 + 1;
 			}
 		}
 		else
 		{
-			var loc7 = 0;
-			while(loc7 < loc4)
+			var var7 = 0;
+			while(var7 < var4)
 			{
-				loc5 = loc5.split(loc2[loc7]).join(loc3);
-				loc7 = loc7 + 1;
+				var5 = var5.split(var2[var7]).join(var3);
+				var7 = var7 + 1;
 			}
 		}
-		return loc5;
+		return var5;
 	}
-	function addLeftChar(loc2, loc3)
+	function addLeftChar(var2, var3)
 	{
-		var loc4 = loc3 - this._s.length;
-		var loc5 = new String();
-		var loc6 = 0;
-		while(loc6 < loc4)
+		var var4 = var3 - this._s.length;
+		var var5 = new String();
+		var var6 = 0;
+		while(var6 < var4)
 		{
-			loc5 = loc5 + loc2;
-			loc6 = loc6 + 1;
+			var5 = var5 + var2;
+			var6 = var6 + 1;
 		}
-		loc5 = loc5 + this._s;
-		return loc5;
+		var5 = var5 + this._s;
+		return var5;
 	}
-	function addMiddleChar(§\b\x13§, nCount)
+	function addMiddleChar(§\b\x11§, nCount)
 	{
 		if(_global.isNaN(nCount))
 		{
 			nCount = Number(nCount);
 		}
 		nCount = Math.abs(nCount);
-		var loc5 = new Array();
-		var loc4 = this._s.length;
-		while(loc4 > 0)
+		var var5 = new Array();
+		var var4 = this._s.length;
+		while(var4 > 0)
 		{
-			if(Math.max(0,loc4 - nCount) == 0)
+			if(Math.max(0,var4 - nCount) == 0)
 			{
-				loc5.push(this._s.substr(0,loc4));
+				var5.push(this._s.substr(0,var4));
 			}
 			else
 			{
-				loc5.push(this._s.substr(loc4 - nCount,nCount));
+				var5.push(this._s.substr(var4 - nCount,nCount));
 			}
-			loc4 = loc4 - nCount;
+			var4 = var4 - nCount;
 		}
-		loc5.reverse();
-		return loc5.join(loc2);
+		var5.reverse();
+		return var5.join(var2);
 	}
-	function lTrim(loc2)
+	function lTrim(var2)
 	{
 		this._clearOutOfRange();
-		this._lTrim(this.spaceStringToObject(loc2));
+		this._lTrim(this.spaceStringToObject(var2));
 		return this;
 	}
-	function rTrim(loc2)
+	function rTrim(var2)
 	{
 		this._clearOutOfRange();
-		this._rTrim(this.spaceStringToObject(loc2));
+		this._rTrim(this.spaceStringToObject(var2));
 		return this;
 	}
-	function trim(loc2)
+	function trim(var2)
 	{
-		var loc3 = this.spaceStringToObject(loc2);
+		var var3 = this.spaceStringToObject(var2);
 		this._clearOutOfRange();
-		this._rTrim(loc3);
-		this._lTrim(loc3);
+		this._rTrim(var3);
+		this._lTrim(var3);
 		return this;
 	}
 	function toString()
 	{
 		return this._s;
 	}
-	function spaceStringToObject(loc2)
+	function spaceStringToObject(var2)
 	{
-		var loc3 = new Object();
-		if(loc2 == undefined)
+		var var3 = new Object();
+		if(var2 == undefined)
 		{
-			loc2 = ank.utils.ExtendedString.DEFAULT_SPACECHARS;
+			var2 = ank.utils.ExtendedString.DEFAULT_SPACECHARS;
 		}
-		if(typeof loc2 == "string")
+		if(typeof var2 == "string")
 		{
-			var loc4 = loc2.length;
-			while((loc4 = loc4 - 1) >= 0)
+			var var4 = var2.length;
+			while((var4 = var4 - 1) >= 0)
 			{
-				loc3[loc2.charAt(loc4)] = true;
+				var3[var2.charAt(var4)] = true;
 			}
 		}
 		else
 		{
-			loc3 = loc2;
+			var3 = var2;
 		}
-		return loc3;
+		return var3;
 	}
-	function _lTrim(loc2)
+	function _lTrim(var2)
 	{
-		var loc3 = this._s.length;
-		var loc4 = 0;
-		while(loc3 > 0)
+		var var3 = this._s.length;
+		var var4 = 0;
+		while(var3 > 0)
 		{
-			if(!loc2[this._s.charAt(loc4)])
+			if(!var2[this._s.charAt(var4)])
 			{
 				break;
 			}
-			loc4 = loc4 + 1;
-			loc3 = loc3 - 1;
+			var4 = var4 + 1;
+			var3 = var3 - 1;
 		}
-		this._s = this._s.slice(loc4);
+		this._s = this._s.slice(var4);
 	}
-	function _rTrim(loc2)
+	function _rTrim(var2)
 	{
-		var loc3 = this._s.length;
-		var loc4 = loc3 - 1;
-		while(loc3 > 0)
+		var var3 = this._s.length;
+		var var4 = var3 - 1;
+		while(var3 > 0)
 		{
-			if(!loc2[this._s.charAt(loc4)])
+			if(!var2[this._s.charAt(var4)])
 			{
 				break;
 			}
-			loc4 = loc4 - 1;
-			loc3 = loc3 - 1;
+			var4 = var4 - 1;
+			var3 = var3 - 1;
 		}
-		this._s = this._s.slice(0,loc4 + 1);
+		this._s = this._s.slice(0,var4 + 1);
 	}
 	function _clearOutOfRange()
 	{
-		var loc2 = "";
-		var loc3 = 0;
-		while(loc3 < this._s.length)
+		var var2 = "";
+		var var3 = 0;
+		while(var3 < this._s.length)
 		{
-			if(this._s.charCodeAt(loc3) >= 32 && this._s.charCodeAt(loc3) <= 255)
+			if(this._s.charCodeAt(var3) >= 32 && this._s.charCodeAt(var3) <= 255)
 			{
-				loc2 = loc2 + this._s.charAt(loc3);
+				var2 = var2 + this._s.charAt(var3);
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		this._s = loc2;
+		this._s = var2;
 	}
 }

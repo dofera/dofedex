@@ -23,7 +23,7 @@ class ank.external.ExternalConnector extends LocalConnection
 		}
 		return ank.external.ExternalConnector._oInstance;
 	}
-	function pushCall(loc2)
+	function pushCall(var2)
 	{
 		this._aCallQueue.push({args:arguments});
 		if(!this._bInitializing)
@@ -38,25 +38,25 @@ class ank.external.ExternalConnector extends LocalConnection
 			}
 		}
 	}
-	function call(loc2)
+	function call(var2)
 	{
 		this._bCalling = true;
-		var loc3 = new Array();
-		loc3.push(ank.external.ExternalConnector.CONNECTION_NAME);
-		loc3.push(loc2);
-		loc3.push(this._sConnectionName);
-		var loc4 = 1;
-		while(loc4 < arguments.length)
+		var var3 = new Array();
+		var3.push(ank.external.ExternalConnector.CONNECTION_NAME);
+		var3.push(var2);
+		var3.push(this._sConnectionName);
+		var var4 = 1;
+		while(var4 < arguments.length)
 		{
-			loc3.push(arguments[loc4]);
-			loc4 = loc4 + 1;
+			var3.push(arguments[var4]);
+			var4 = var4 + 1;
 		}
-		this.send.apply(this,loc3);
+		this.send.apply(this,var3);
 	}
-	function onStatus(loc2)
+	function onStatus(var2)
 	{
 		this._bCalling = false;
-		switch(loc2.level)
+		switch(var2.level)
 		{
 			case "status":
 				break;
@@ -82,14 +82,14 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		if(this._aCallQueue.length != 0)
 		{
-			var loc2 = this._aCallQueue.shift();
+			var var2 = this._aCallQueue.shift();
 			if(!this._bInitialized)
 			{
 				this.dispatchEvent({type:"onExternalConnectionFaild"});
 			}
 			else
 			{
-				this.call.apply(this,loc2.args);
+				this.call.apply(this,var2.args);
 			}
 		}
 	}
@@ -111,43 +111,43 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		this.dispatchEvent({type:"onExternalConnectionFaild"});
 	}
-	function onApplicationArgs(loc2)
+	function onApplicationArgs(var2)
 	{
-		this.dispatchEvent({type:"onApplicationArgs",args:loc2.split(" ")});
+		this.dispatchEvent({type:"onApplicationArgs",args:var2.split(" ")});
 	}
 	function onBrowseFileCancel()
 	{
 		this.dispatchEvent({type:"onBrowseFileCancel"});
 	}
-	function onBrowseFileSelect(loc2)
+	function onBrowseFileSelect(var2)
 	{
-		this.dispatchEvent({type:"onBrowseFileSelect",files:loc2});
+		this.dispatchEvent({type:"onBrowseFileSelect",files:var2});
 	}
 	function onBrowseFileToSaveCancel()
 	{
 		this.dispatchEvent({type:"onBrowseFileToSaveCancel"});
 	}
-	function onBrowseFileToSaveSelect(loc2)
+	function onBrowseFileToSaveSelect(var2)
 	{
-		this.dispatchEvent({type:"onBrowseFileToSaveSelect",file:loc2});
+		this.dispatchEvent({type:"onBrowseFileToSaveSelect",file:var2});
 	}
-	function onHttpDownloadError(loc2, loc3)
+	function onHttpDownloadError(var2, var3)
 	{
-		this.dispatchEvent({type:"onHttpDownloadError",msg:loc2,params:loc3});
+		this.dispatchEvent({type:"onHttpDownloadError",msg:var2,params:var3});
 	}
-	function onHttpDownloadProgress(loc2, loc3)
+	function onHttpDownloadProgress(var2, var3)
 	{
-		this.dispatchEvent({type:"onHttpDownloadProgress",bl:loc2,bt:loc3});
+		this.dispatchEvent({type:"onHttpDownloadProgress",bl:var2,bt:var3});
 	}
 	function onHttpDownloadComplete()
 	{
 		this.dispatchEvent({type:"onHttpDownloadComplete"});
 	}
-	function onScreenResolutionError(loc2)
+	function onScreenResolutionError(var2)
 	{
 		this.dispatchEvent({type:"onScreenResolutionError"});
 	}
-	function onScreenResolutionSuccess(loc2)
+	function onScreenResolutionSuccess(var2)
 	{
 		this.dispatchEvent({type:"onScreenResolutionSuccess"});
 	}

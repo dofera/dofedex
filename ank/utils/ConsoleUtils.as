@@ -3,90 +3,90 @@ class ank.utils.ConsoleUtils
 	function ConsoleUtils()
 	{
 	}
-	static function autoCompletion(loc2, loc3)
+	static function autoCompletion(var2, var3)
 	{
-		var loc4 = ank.utils.ConsoleUtils.removeAndGetLastWord(loc3);
-		var loc5 = loc4.lastWord;
-		loc3 = loc4.leftCmd;
-		loc5 = loc5.toLowerCase();
-		var loc6 = ank.utils.ConsoleUtils.getStringsStartWith(loc2,loc5);
-		if(loc6.length > 1)
+		var var4 = ank.utils.ConsoleUtils.removeAndGetLastWord(var3);
+		var var5 = var4.lastWord;
+		var3 = var4.leftCmd;
+		var5 = var5.toLowerCase();
+		var var6 = ank.utils.ConsoleUtils.getStringsStartWith(var2,var5);
+		if(var6.length > 1)
 		{
-			var loc7 = "";
-			var loc8 = 0;
-			while(loc8 < loc6.length)
+			var var7 = "";
+			var var8 = 0;
+			while(var8 < var6.length)
 			{
-				loc7 = String(loc6[loc8]).charAt(loc5.length);
-				if(loc7 != "")
+				var7 = String(var6[var8]).charAt(var5.length);
+				if(var7 != "")
 				{
 					break;
 				}
-				loc8 = loc8 + 1;
+				var8 = var8 + 1;
 			}
-			if(loc7 == "")
+			if(var7 == "")
 			{
-				return {result:loc3 + loc5,full:false};
+				return {result:var3 + var5,full:false};
 			}
-			return ank.utils.ConsoleUtils.autoCompletionRecurcive(loc6,loc3,loc5 + loc7);
+			return ank.utils.ConsoleUtils.autoCompletionRecurcive(var6,var3,var5 + var7);
 		}
-		if(loc6.length != 0)
+		if(var6.length != 0)
 		{
-			return {result:loc3 + loc6[0],isFull:true};
+			return {result:var3 + var6[0],isFull:true};
 		}
-		return {result:loc3 + loc5,list:loc6,isFull:false};
+		return {result:var3 + var5,list:var6,isFull:false};
 	}
-	static function removeAndGetLastWord(loc2)
+	static function removeAndGetLastWord(var2)
 	{
-		var loc3 = loc2.split(" ");
-		if(loc3.length == 0)
+		var var3 = var2.split(" ");
+		if(var3.length == 0)
 		{
 			return {leftCmd:"",lastWord:""};
 		}
-		var loc4 = String(loc3.pop());
-		return {leftCmd:(loc3.length != 0?loc3.join(" ") + " ":""),lastWord:loc4};
+		var var4 = String(var3.pop());
+		return {leftCmd:(var3.length != 0?var3.join(" ") + " ":""),lastWord:var4};
 	}
-	static function autoCompletionRecurcive(loc2, loc3, loc4)
+	static function autoCompletionRecurcive(var2, var3, var4)
 	{
-		loc4 = loc4.toLowerCase();
-		var loc5 = ank.utils.ConsoleUtils.getStringsStartWith(loc2,loc4);
-		if(loc5.length > 1 && loc5.length == loc2.length)
+		var4 = var4.toLowerCase();
+		var var5 = ank.utils.ConsoleUtils.getStringsStartWith(var2,var4);
+		if(var5.length > 1 && var5.length == var2.length)
 		{
-			var loc6 = "";
-			var loc7 = 0;
-			while(loc7 < loc5.length)
+			var var6 = "";
+			var var7 = 0;
+			while(var7 < var5.length)
 			{
-				loc6 = String(loc5[loc7]).charAt(loc4.length);
-				if(loc6 != "")
+				var6 = String(var5[var7]).charAt(var4.length);
+				if(var6 != "")
 				{
 					break;
 				}
-				loc7 = loc7 + 1;
+				var7 = var7 + 1;
 			}
-			if(loc6 == "")
+			if(var6 == "")
 			{
-				return {result:loc3 + loc4,isFull:false};
+				return {result:var3 + var4,isFull:false};
 			}
-			return ank.utils.ConsoleUtils.autoCompletionRecurcive(loc5,loc3,loc4 + loc6);
+			return ank.utils.ConsoleUtils.autoCompletionRecurcive(var5,var3,var4 + var6);
 		}
-		if(loc5.length != 0)
+		if(var5.length != 0)
 		{
-			return {result:loc3 + loc4.substr(0,loc4.length - 1),list:loc2,isFull:false};
+			return {result:var3 + var4.substr(0,var4.length - 1),list:var2,isFull:false};
 		}
-		return {result:loc3 + loc4,list:loc2,isFull:false};
+		return {result:var3 + var4,list:var2,isFull:false};
 	}
-	static function getStringsStartWith(loc2, loc3)
+	static function getStringsStartWith(var2, var3)
 	{
-		var loc4 = new Array();
-		var loc5 = 0;
-		while(loc5 < loc2.length)
+		var var4 = new Array();
+		var var5 = 0;
+		while(var5 < var2.length)
 		{
-			var loc6 = String(loc2[loc5]).toLowerCase().split(loc3);
-			if(loc6[0] == "" && (loc6.length != 0 && String(loc2[loc5]).length >= loc3.length))
+			var var6 = String(var2[var5]).toLowerCase().split(var3);
+			if(var6[0] == "" && (var6.length != 0 && String(var2[var5]).length >= var3.length))
 			{
-				loc4.push(loc2[loc5]);
+				var4.push(var2[var5]);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		return loc4;
+		return var4;
 	}
 }

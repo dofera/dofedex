@@ -61,29 +61,29 @@ class dofus.graphics.gapi.controls.ConquestStatsViewer extends dofus.graphics.ga
 	}
 	function updateBonus()
 	{
-		var loc2 = new ank.utils.();
-		var loc3 = this.api.datacenter.Conquest.alignBonus;
-		var loc4 = this.api.datacenter.Conquest.rankMultiplicator;
-		var loc5 = this.api.datacenter.Conquest.alignMalus;
-		loc2.push({type:this.api.lang.getText("EXPERIMENT"),bonus:(loc4.drop != 0?"+" + loc3.xp * loc4.xp + "% (" + loc3.xp + "% x" + loc4.xp + ")":"0%"),malus:loc5.xp + "%"});
-		loc2.push({type:this.api.lang.getText("COLLECT"),bonus:(loc4.drop != 0?"+" + loc3.recolte * loc4.recolte + "% (" + loc3.recolte + "% x" + loc4.recolte + ")":"0%"),malus:loc5.recolte + "%"});
-		loc2.push({type:this.api.lang.getText("LOOT"),bonus:(loc4.drop != 0?"+" + loc3.drop * loc4.drop + "% (" + loc3.drop + "% x" + loc4.drop + ")":"0%"),malus:loc5.drop + "%"});
-		this._lstBonuses.dataProvider = loc2;
+		var var2 = new ank.utils.();
+		var var3 = this.api.datacenter.Conquest.alignBonus;
+		var var4 = this.api.datacenter.Conquest.rankMultiplicator;
+		var var5 = this.api.datacenter.Conquest.alignMalus;
+		var2.push({type:this.api.lang.getText("EXPERIMENT"),bonus:(var4.drop != 0?"+" + var3.xp * var4.xp + "% (" + var3.xp + "% x" + var4.xp + ")":"0%"),malus:var5.xp + "%"});
+		var2.push({type:this.api.lang.getText("COLLECT"),bonus:(var4.drop != 0?"+" + var3.recolte * var4.recolte + "% (" + var3.recolte + "% x" + var4.recolte + ")":"0%"),malus:var5.recolte + "%"});
+		var2.push({type:this.api.lang.getText("LOOT"),bonus:(var4.drop != 0?"+" + var3.drop * var4.drop + "% (" + var3.drop + "% x" + var4.drop + ")":"0%"),malus:var5.drop + "%"});
+		this._lstBonuses.dataProvider = var2;
 	}
-	function bonusChanged(loc2)
+	function bonusChanged(var2)
 	{
 		this.updateBonus();
 	}
-	function rankChanged(loc2)
+	function rankChanged(var2)
 	{
-		this._oRank = loc2.rank;
-		var loc3 = this.api.lang.getGradeHonourPointsBounds(this._oRank.value);
-		this._pbHonour.maximum = !_global.isNaN(loc3.max)?loc3.max:0;
-		this._pbHonour.minimum = !_global.isNaN(loc3.min)?loc3.min:0;
+		this._oRank = var2.rank;
+		var var3 = this.api.lang.getGradeHonourPointsBounds(this._oRank.value);
+		this._pbHonour.maximum = !_global.isNaN(var3.max)?var3.max:0;
+		this._pbHonour.minimum = !_global.isNaN(var3.min)?var3.min:0;
 		this._pbHonour.value = !_global.isNaN(this._oRank.honour)?this._oRank.honour:0;
 		this._mcHonour.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.honour).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbHonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.honour).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbHonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcHonour.onRollOut = function()
 		{
@@ -93,7 +93,7 @@ class dofus.graphics.gapi.controls.ConquestStatsViewer extends dofus.graphics.ga
 		this._pbDishonour.maximum = this.api.lang.getMaxDisgracePoints();
 		this._mcDishonour.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.disgrace).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbDishonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.disgrace).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbDishonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcDishonour.onRollOut = function()
 		{
@@ -101,7 +101,7 @@ class dofus.graphics.gapi.controls.ConquestStatsViewer extends dofus.graphics.ga
 		};
 		if(this._oRank.enable && this._lblInfos.text != undefined)
 		{
-			var loc4 = this.api.datacenter.Player.alignment.index;
+			var var4 = this.api.datacenter.Player.alignment.index;
 			this._btnTogglePvP.label = this.api.lang.getText("DISABLE_PVP_SHORT");
 		}
 		else if(this._lblInfos.text != undefined)
@@ -110,9 +110,9 @@ class dofus.graphics.gapi.controls.ConquestStatsViewer extends dofus.graphics.ga
 		}
 		this._btnDisgraceSanction._visible = this.api.datacenter.Player.rank.disgrace > 0;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnDisgraceSanction:
 				this.api.kernel.GameManager.showDisgraceSanction();
@@ -127,9 +127,9 @@ class dofus.graphics.gapi.controls.ConquestStatsViewer extends dofus.graphics.ga
 				break;
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnTogglePvP:
 				this.gapi.showTooltip(this.api.lang.getText(!this._oRank.enable?"ENABLE_PVP":"DISABLE_PVP"),this._btnTogglePvP,-20);
@@ -148,7 +148,7 @@ class dofus.graphics.gapi.controls.ConquestStatsViewer extends dofus.graphics.ga
 				}
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

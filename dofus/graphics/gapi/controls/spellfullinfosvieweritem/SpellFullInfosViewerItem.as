@@ -5,37 +5,37 @@ class dofus.graphics.gapi.controls.spellfullinfosvieweritem.SpellFullInfosViewer
 		super();
 		this._mcArea._visible = false;
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			if(loc4.fx.description == undefined && loc4.description == undefined)
+			this._oItem = var4;
+			if(var4.fx.description == undefined && var4.description == undefined)
 			{
-				this._lbl.text = loc3;
+				this._lbl.text = var3;
 			}
 			else
 			{
-				if(loc4.fx.description != undefined)
+				if(var4.fx.description != undefined)
 				{
-					this._lbl.text = loc4.fx.description;
+					this._lbl.text = var4.fx.description;
 				}
-				else if(loc4.description != undefined)
+				else if(var4.description != undefined)
 				{
-					this._lbl.text = loc4.description;
+					this._lbl.text = var4.description;
 				}
-				var loc5 = undefined;
-				if(loc4.fx.element != undefined)
+				var var5 = undefined;
+				if(var4.fx.element != undefined)
 				{
-					loc5 = loc4.fx.element;
+					var5 = var4.fx.element;
 				}
-				else if(loc4.element != undefined)
+				else if(var4.element != undefined)
 				{
-					loc5 = loc4.element;
+					var5 = var4.element;
 				}
-				if(loc5 != undefined)
+				if(var5 != undefined)
 				{
-					switch(loc5)
+					switch(var5)
 					{
 						case "N":
 							this._ctrElement.contentPath = "IconNeutralDommage";
@@ -56,20 +56,20 @@ class dofus.graphics.gapi.controls.spellfullinfosvieweritem.SpellFullInfosViewer
 							this._ctrElement.contentPath = "";
 					}
 				}
-				else if(loc4.fx.icon != undefined)
+				else if(var4.fx.icon != undefined)
 				{
-					this._ctrElement.contentPath = loc4.fx.icon;
+					this._ctrElement.contentPath = var4.fx.icon;
 				}
-				else if(loc4.icon != undefined)
+				else if(var4.icon != undefined)
 				{
-					this._ctrElement.contentPath = loc4.icon;
+					this._ctrElement.contentPath = var4.icon;
 				}
 				else
 				{
 					this._ctrElement.contentPath = "";
 				}
 			}
-			if(loc4.ar > 1)
+			if(var4.ar > 1)
 			{
 				this._mcArea._visible = true;
 				this._mcArea.onRollOver = function()
@@ -80,7 +80,7 @@ class dofus.graphics.gapi.controls.spellfullinfosvieweritem.SpellFullInfosViewer
 				{
 					this._parent.onTooltipOut();
 				};
-				this._lblArea.text = (loc4.ar != 63?loc4.ar:_global.API.lang.getText("INFINIT_SHORT")) + " (" + loc4.at + ")";
+				this._lblArea.text = (var4.ar != 63?var4.ar:_global.API.lang.getText("INFINIT_SHORT")) + " (" + var4.at + ")";
 			}
 			else
 			{

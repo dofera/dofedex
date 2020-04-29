@@ -9,54 +9,54 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__updateOnLoad(loc2)
+	function __set__updateOnLoad(var2)
 	{
-		this._bUpdateOnLoad = loc2;
+		this._bUpdateOnLoad = var2;
 		return this.__get__updateOnLoad();
 	}
 	function __get__updateOnLoad()
 	{
 		return this._bUpdateOnLoad;
 	}
-	function __set__background(loc2)
+	function __set__background(var2)
 	{
-		this._sBackground = loc2;
+		this._sBackground = var2;
 		return this.__get__background();
 	}
 	function __get__background()
 	{
 		return this._sBackground;
 	}
-	function __set__arrow(loc2)
+	function __set__arrow(var2)
 	{
-		this._sArrow = loc2;
+		this._sArrow = var2;
 		return this.__get__arrow();
 	}
 	function __get__arrow()
 	{
 		return this._sArrow;
 	}
-	function __set__noArrow(loc2)
+	function __set__noArrow(var2)
 	{
-		this._sNoArrow = loc2;
+		this._sNoArrow = var2;
 		return this.__get__noArrow();
 	}
 	function __get__noArrow()
 	{
 		return this._sNoArrow;
 	}
-	function __set__currentCoords(loc2)
+	function __set__currentCoords(var2)
 	{
-		this._aCurrentCoords = loc2;
+		this._aCurrentCoords = var2;
 		if(this.initialized)
 		{
 			this.layoutContent();
 		}
 		return this.__get__currentCoords();
 	}
-	function __set__targetCoords(loc2)
+	function __set__targetCoords(var2)
 	{
-		this._aTargetCoords = loc2;
+		this._aTargetCoords = var2;
 		if(this.initialized)
 		{
 			this.layoutContent();
@@ -67,10 +67,10 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		return this._aTargetCoords;
 	}
-	function __set__allCoords(loc2)
+	function __set__allCoords(var2)
 	{
-		this._aTargetCoords = loc2.targetCoords;
-		this._aCurrentCoords = loc2.currentCoords;
+		this._aTargetCoords = var2.targetCoords;
+		this._aCurrentCoords = var2.currentCoords;
 		if(this.initialized)
 		{
 			this.addToQueue({object:this,method:this.layoutContent});
@@ -124,9 +124,9 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 			return undefined;
 		}
 		ank.utils.Timer.removeTimer(this,"compass");
-		var loc2 = this._aTargetCoords[0] - this._aCurrentCoords[0];
-		var loc3 = this._aTargetCoords[1] - this._aCurrentCoords[1];
-		if(loc2 == 0 && loc3 == 0)
+		var var2 = this._aTargetCoords[0] - this._aCurrentCoords[0];
+		var var3 = this._aTargetCoords[1] - this._aCurrentCoords[1];
+		if(var2 == 0 && var3 == 0)
 		{
 			this._mcArrow._ldrArrow.contentPath = this._sNoArrow;
 			this._mcArrow._ldrArrow.content._rotation = this._mcArrow._rotation;
@@ -135,20 +135,20 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 		}
 		else
 		{
-			var loc4 = Math.atan2(loc3,loc2) * (180 / Math.PI);
+			var var4 = Math.atan2(var3,var2) * (180 / Math.PI);
 			this._mcArrow._ldrArrow.contentPath = this._sArrow;
-			this._mcArrow._ldrArrow.content._rotation = this._mcArrow._rotation - loc4;
-			this._mcArrow._rotation = loc4;
-			this.smoothRotation(loc4,1);
+			this._mcArrow._ldrArrow.content._rotation = this._mcArrow._rotation - var4;
+			this._mcArrow._rotation = var4;
+			this.smoothRotation(var4,1);
 		}
 	}
-	function smoothRotation(loc2, loc3)
+	function smoothRotation(var2, var3)
 	{
-		this._mcArrow._ldrArrow.content._rotation = this._mcArrow._ldrArrow.content._rotation + loc3;
-		loc3 = (- this._mcArrow._ldrArrow.content._rotation) * 0.2 + loc3 * 0.7;
-		if(Math.abs(loc3) > 0.01)
+		this._mcArrow._ldrArrow.content._rotation = this._mcArrow._ldrArrow.content._rotation + var3;
+		var3 = (- this._mcArrow._ldrArrow.content._rotation) * 0.2 + var3 * 0.7;
+		if(Math.abs(var3) > 0.01)
 		{
-			ank.utils.Timer.setTimer(this,"compass",this,this.smoothRotation,50,[loc2,loc3]);
+			ank.utils.Timer.setTimer(this,"compass",this,this.smoothRotation,50,[var2,var3]);
 		}
 		else
 		{

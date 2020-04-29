@@ -2,10 +2,10 @@ class dofus.datacenter.Item extends Object
 {
 	static var LEVEL_STEP = [0,10,21,33,46,60,75,91,108,126,145,165,186,208,231,255,280,306,333,361];
 	static var DATE_ID = 0;
-	function Item(_loc3_, _loc4_, _loc5_, _loc6_, _loc7_, _loc8_, _loc9_, _loc10_)
+	function Item(var3, var4, var5, var6, var7, var8, var9, var10)
 	{
 		super();
-		this.initialize(_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,_loc9_,_loc10_);
+		this.initialize(var3,var4,var5,var6,var7,var8,var9,var10);
 	}
 	function __get__label()
 	{
@@ -23,48 +23,48 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._sEffects;
 	}
-	function __set__Quantity(_loc2_)
+	function __set__Quantity(var2)
 	{
-		if(_global.isNaN(Number(_loc2_)))
+		if(_global.isNaN(Number(var2)))
 		{
 			return undefined;
 		}
-		this._nQuantity = Number(_loc2_);
+		this._nQuantity = Number(var2);
 		return this.__get__Quantity();
 	}
 	function __get__Quantity()
 	{
 		return this._nQuantity;
 	}
-	function __set__remainingHours(_loc2_)
+	function __set__remainingHours(var2)
 	{
-		this._nRemainingHours = _loc2_;
+		this._nRemainingHours = var2;
 		return this.__get__remainingHours();
 	}
 	function __get__remainingHours()
 	{
 		return this._nRemainingHours;
 	}
-	function __set__position(_loc2_)
+	function __set__position(var2)
 	{
-		if(_global.isNaN(Number(_loc2_)))
+		if(_global.isNaN(Number(var2)))
 		{
 			return undefined;
 		}
-		this._nPosition = Number(_loc2_);
+		this._nPosition = Number(var2);
 		return this.__get__position();
 	}
 	function __get__position()
 	{
 		return this._nPosition;
 	}
-	function __set__priceMultiplicator(_loc2_)
+	function __set__priceMultiplicator(var2)
 	{
-		if(_global.isNaN(Number(_loc2_)))
+		if(_global.isNaN(Number(var2)))
 		{
 			return undefined;
 		}
-		this._nPriceMultiplicator = Number(_loc2_);
+		this._nPriceMultiplicator = Number(var2);
 		return this.__get__priceMultiplicator();
 	}
 	function __get__priceMultiplicator()
@@ -77,18 +77,18 @@ class dofus.datacenter.Item extends Object
 	}
 	function __get__description()
 	{
-		var _loc2_ = this.api.lang.getItemTypeText(this.type).n;
-		var _loc3_ = "";
+		var var2 = this.api.lang.getItemTypeText(this.type).n;
+		var var3 = "";
 		if(this.isFromItemSet)
 		{
-			var _loc4_ = new dofus.datacenter.ItemSet(this.itemSetID);
-			_loc3_ = "<u>" + _loc4_.name + " (" + this.api.lang.getText("ITEM_TYPE") + " : " + _loc2_ + ")</u>\n";
+			var var4 = new dofus.datacenter.ItemSet(this.itemSetID);
+			var3 = "<u>" + var4.name + " (" + this.api.lang.getText("ITEM_TYPE") + " : " + var2 + ")</u>\n";
 		}
 		else
 		{
-			_loc3_ = "<u>" + this.api.lang.getText("ITEM_TYPE") + " : " + _loc2_ + "</u>\n";
+			var3 = "<u>" + this.api.lang.getText("ITEM_TYPE") + " : " + var2 + "</u>\n";
 		}
-		return _loc3_ + ank.utils.PatternDecoder.getDescription(this.api.lang.fetchString(this._oUnicInfos.d),this.api.lang.getItemUnicStringText());
+		return var3 + ank.utils.PatternDecoder.getDescription(this.api.lang.fetchString(this._oUnicInfos.d),this.api.lang.getItemUnicStringText());
 	}
 	function __get__type()
 	{
@@ -98,9 +98,9 @@ class dofus.datacenter.Item extends Object
 		}
 		return Number(this._oUnicInfos.t);
 	}
-	function __set__type(_loc2_)
+	function __set__type(var2)
 	{
-		this._nRealType = _loc2_;
+		this._nRealType = var2;
 		return this.__get__type();
 	}
 	function __get__realType()
@@ -141,11 +141,13 @@ class dofus.datacenter.Item extends Object
 		{
 			for(var k in this._aEffects)
 			{
-				var _loc2_ = this._aEffects[k];
-				if(_loc2_[0] == 812)
+				var var2 = this._aEffects[k];
+				if(var2[0] == 812)
 				{
-					return new dofus.datacenter.
-(_loc2_[0],_loc2_[1],_loc2_[2],_loc2_[3]);
+					while(§§pop() != null)
+					{
+					}
+					return new dofus.datacenter.(var2[0],var2[1],var2[2],var2[3]);
 				}
 			}
 		}
@@ -215,9 +217,9 @@ class dofus.datacenter.Item extends Object
 		}
 		return this._oUnicInfos.g;
 	}
-	function __set__gfx(_loc2_)
+	function __set__gfx(var2)
 	{
-		this._sGfx = _loc2_;
+		this._sGfx = var2;
 		return this.__get__gfx();
 	}
 	function __get__realGfx()
@@ -282,128 +284,129 @@ class dofus.datacenter.Item extends Object
 	}
 	function __get__characteristics()
 	{
-		var _loc2_ = new Array();
-		_loc2_.push(this.api.lang.getText("ITEM_AP",[this.apCost]));
-		_loc2_.push(this.api.lang.getText("ITEM_RANGE",[(this.rangeMin == 0?"":this.rangeMin + " " + this.api.lang.getText("TO_RANGE") + " ") + this.rangeMax]));
-		_loc2_.push(this.api.lang.getText("ITEM_CRITICAL_BONUS",[this.criticalHitBonus <= 0?String(this.criticalHitBonus):"+" + this.criticalHitBonus]));
-		_loc2_.push((this.criticalHit == 0?"":this.api.lang.getText("ITEM_CRITICAL",[this.criticalHit])) + (!(this.criticalHit != 0 && this.criticalFailure != 0)?"":" - ") + (this.criticalFailure == 0?"":this.api.lang.getText("ITEM_MISS",[this.criticalFailure])));
+		var var2 = new Array();
+		var2.push(this.api.lang.getText("ITEM_AP",[this.apCost]));
+		var2.push(this.api.lang.getText("ITEM_RANGE",[(this.rangeMin == 0?"":this.rangeMin + " " + this.api.lang.getText("TO_RANGE") + " ") + this.rangeMax]));
+		var2.push(this.api.lang.getText("ITEM_CRITICAL_BONUS",[this.criticalHitBonus <= 0?String(this.criticalHitBonus):"+" + this.criticalHitBonus]));
+		var2.push((this.criticalHit == 0?"":this.api.lang.getText("ITEM_CRITICAL",[this.criticalHit])) + (!(this.criticalHit != 0 && this.criticalFailure != 0)?"":" - ") + (this.criticalFailure == 0?"":this.api.lang.getText("ITEM_MISS",[this.criticalFailure])));
 		if(this.criticalHit > 0 && this.ID == this.api.datacenter.Player.weaponItem.ID)
 		{
-			var _loc3_ = this.api.kernel.GameManager.getCriticalHitChance(this.criticalHit);
-			_loc2_.push(this.api.lang.getText("ITEM_CRITICAL_REAL",["1/" + _loc3_]));
+			var var3 = this.api.kernel.GameManager.getCriticalHitChance(this.criticalHit);
+			var2.push(this.api.lang.getText("ITEM_CRITICAL_REAL",["1/" + var3]));
 		}
-		return _loc2_;
+		return var2;
 	}
 	function __get__conditions()
 	{
-		var _loc2_ = [">","<","=","!"];
-		var _loc3_ = this._oUnicInfos.c;
-		if(_loc3_ == undefined || _loc3_.length == 0)
+		var var2 = [">","<","=","!"];
+		var var3 = this._oUnicInfos.c;
+		if(var3 == undefined || var3.length == 0)
 		{
 			return [String(this.api.lang.getText("NO_CONDITIONS"))];
 		}
-		var _loc4_ = _loc3_.split("&");
-		var _loc5_ = new Array();
-		var _loc6_ = 0;
-		while(_loc6_ < _loc4_.length)
+		var var4 = var3.split("&");
+		var var5 = new Array();
+		var var6 = 0;
+		while(var6 < var4.length)
 		{
-			_loc4_[_loc6_] = new ank.utils.(_loc4_[_loc6_]).replace(["(",")"],["",""]);
-			var _loc7_ = _loc4_[_loc6_].split("|");
-			var _loc8_ = 0;
-			for(; _loc8_ < _loc7_.length; _loc8_ = _loc8_ + 1)
+			var4[var6] = new ank.utils.(var4[var6]).replace(["(",")"],["",""]);
+			var var7 = var4[var6].split("|");
+			var var8 = 0;
+			for(; var8 < var7.length; var8 = var8 + 1)
 			{
-				var _loc11_ = 0;
-				while(_loc11_ < _loc2_.length)
+				var var11 = 0;
+				while(var11 < var2.length)
 				{
-					var _loc10_ = _loc2_[_loc11_];
-					var _loc9_ = _loc7_[_loc8_].split(_loc10_);
-					if(_loc9_.length > 1)
+					var var10 = var2[var11];
+					var var9 = var7[var8].split(var10);
+					if(var9.length > 1)
 					{
 						break;
 					}
-					_loc11_ = _loc11_ + 1;
+					var11 = var11 + 1;
 				}
-				if(_loc9_ != undefined)
+				if(var9 != undefined)
 				{
-					var _loc12_ = String(_loc9_[0]);
-					var _loc13_ = _loc9_[1];
-					if(_loc12_ == "PZ")
+					var var12 = String(var9[0]);
+					var var13 = var9[1];
+					if(var12 == "PZ")
 					{
 						break;
 					}
 					loop3:
-					switch(_loc12_)
+					switch(var12)
 					{
 						case "Ps":
-							_loc13_ = this.api.lang.getAlignment(Number(_loc13_)).n;
+							var13 = this.api.lang.getAlignment(Number(var13)).n;
 							break;
 						case "PS":
-							_loc13_ = _loc13_ != "1"?this.api.lang.getText("MALE"):this.api.lang.getText("FEMELE");
+							var13 = var13 != "1"?this.api.lang.getText("MALE"):this.api.lang.getText("FEMELE");
 							break;
 						case "Pr":
-							_loc13_ = this.api.lang.getAlignmentSpecialization(Number(_loc13_)).n;
+							var13 = this.api.lang.getAlignmentSpecialization(Number(var13)).n;
 							break;
 						default:
 							switch(null)
 							{
 								case "Pg":
-									var _loc14_ = _loc13_.split(",");
-									if(_loc14_.length == 2)
+									var var14 = var13.split(",");
+									if(var14.length == 2)
 									{
-										_loc13_ = this.api.lang.getAlignmentFeat(Number(_loc14_[0])).n + " (" + Number(_loc14_[1]) + ")";
+										var13 = this.api.lang.getAlignmentFeat(Number(var14[0])).n + " (" + Number(var14[1]) + ")";
 									}
 									else
 									{
-										_loc13_ = this.api.lang.getAlignmentFeat(Number(_loc13_)).n;
+										var13 = this.api.lang.getAlignmentFeat(Number(var13)).n;
 									}
 									break loop3;
 								case "PG":
-									_loc13_ = this.api.lang.getClassText(Number(_loc13_)).sn;
+									var13 = this.api.lang.getClassText(Number(var13)).sn;
 									break loop3;
 								case "PJ":
 								case "Pj":
-									var _loc15_ = _loc13_.split(",");
-									_loc13_ = this.api.lang.getJobText(_loc15_[0]).n + (_loc15_[1] != undefined?" (" + this.api.lang.getText("LEVEL_SMALL") + " " + _loc15_[1] + ")":"");
+									var var15 = var13.split(",");
+									var13 = this.api.lang.getJobText(var15[0]).n + (var15[1] != undefined?" (" + this.api.lang.getText("LEVEL_SMALL") + " " + var15[1] + ")":"");
 									break loop3;
+								case "PM":
+									continue;
 								default:
-									switch(null)
+									if(var0 !== "PO")
 									{
-										case "PM":
-											continue;
-										case "PO":
-											var _loc16_ = new dofus.datacenter.
-
-(-1,Number(_loc13_),1,0,"",0);
-											_loc13_ = _loc16_.name;
+										break loop3;
 									}
+									var var16 = new dofus.datacenter.
+(-1,Number(var13),1,0,"",0);
+									var13 = var16.name;
+									break loop3;
 							}
 					}
-					_loc12_ = new ank.utils.(_loc12_).replace(["CS","Cs","CV","Cv","CA","Ca","CI","Ci","CW","Cw","CC","Cc","CA","PG","PJ","Pj","PM","PA","PN","PE","<NO>","PS","PR","PL","PK","Pg","Pr","Ps","Pa","PP","PZ","CM"],this.api.lang.getText("ITEM_CHARACTERISTICS").split(","));
-					var _loc17_ = _loc10_ == "!";
-					_loc10_ = new ank.utils.(_loc10_).replace(["!"],[this.api.lang.getText("ITEM_NO")]);
-					switch(_loc12_)
+					var12 = new ank.utils.(var12).replace(["CS","Cs","CV","Cv","CA","Ca","CI","Ci","CW","Cw","CC","Cc","CA","PG","PJ","Pj","PM","PA","PN","PE","<NO>","PS","PR","PL","PK","Pg","Pr","Ps","Pa","PP","PZ","CM"],this.api.lang.getText("ITEM_CHARACTERISTICS").split(","));
+					var var17 = var10 == "!";
+					var10 = new ank.utils.(var10).replace(["!"],[this.api.lang.getText("ITEM_NO")]);
+					if((var0 = var12) !== "BI")
 					{
-						case "BI":
-							_loc5_.push(this.api.lang.getText("UNUSABLE"));
-							break;
-						case "PO":
-							if(_loc17_)
-							{
-								_loc5_.push(this.api.lang.getText("ITEM_DO_NOT_POSSESS",[_loc13_]) + " <" + _loc10_ + ">");
-							}
-							else
-							{
-								_loc5_.push(this.api.lang.getText("ITEM_DO_POSSESS",[_loc13_]) + " <" + _loc10_ + ">");
-							}
-							break;
-						default:
-							_loc5_.push((_loc8_ <= 0?"":this.api.lang.getText("ITEM_OR") + " ") + _loc12_ + " " + _loc10_ + " " + _loc13_);
+						if(var0 !== "PO")
+						{
+							var5.push((var8 <= 0?"":this.api.lang.getText("ITEM_OR") + " ") + var12 + " " + var10 + " " + var13);
+						}
+						else if(var17)
+						{
+							var5.push(this.api.lang.getText("ITEM_DO_NOT_POSSESS",[var13]) + " <" + var10 + ">");
+						}
+						else
+						{
+							var5.push(this.api.lang.getText("ITEM_DO_POSSESS",[var13]) + " <" + var10 + ">");
+						}
+					}
+					else
+					{
+						var5.push(this.api.lang.getText("UNUSABLE"));
 					}
 				}
 			}
-			_loc6_ = _loc6_ + 1;
+			var6 = var6 + 1;
 		}
-		return _loc5_;
+		return var5;
 	}
 	function __get__mood()
 	{
@@ -413,9 +416,9 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._nSkin;
 	}
-	function __set__skin(_loc2_)
+	function __set__skin(var2)
 	{
-		this._nSkin = _loc2_;
+		this._nSkin = var2;
 		return this.__get__skin();
 	}
 	function __get__params()
@@ -424,28 +427,24 @@ class dofus.datacenter.Item extends Object
 		{
 			return undefined;
 		}
-		var _loc3_ = this.skin;
-		if(_loc3_ == undefined || _global.isNaN(_loc3_))
+		var var3 = this.skin;
+		if(var3 == undefined || _global.isNaN(var3))
 		{
-			_loc3_ = 0;
+			var3 = 0;
 		}
-		if((var _loc0_ = this.mood) !== 1)
+		switch(this.mood)
 		{
-			switch(null)
-			{
-				case 2:
-				case 0:
-					var _loc2_ = "U";
-					break;
-				default:
-					_loc2_ = "H";
-			}
+			case 1:
+				var var2 = "H";
+				break;
+			case 2:
+			case 0:
+				var2 = "U";
+				break;
+			default:
+				var2 = "H";
 		}
-		else
-		{
-			_loc2_ = "H";
-		}
-		return {frame:_loc2_ + _loc3_,forceReload:this.isLeavingItem};
+		return {frame:var2 + var3,forceReload:this.isLeavingItem};
 	}
 	function __get__skineable()
 	{
@@ -465,14 +464,14 @@ class dofus.datacenter.Item extends Object
 	}
 	function __get__maxSkin()
 	{
-		var _loc2_ = 1;
-		while(_loc2_ < dofus.datacenter.Item.LEVEL_STEP.length)
+		var var2 = 1;
+		while(var2 < dofus.datacenter.Item.LEVEL_STEP.length)
 		{
-			if(this._nLivingXp < dofus.datacenter.Item.LEVEL_STEP[_loc2_])
+			if(this._nLivingXp < dofus.datacenter.Item.LEVEL_STEP[var2])
 			{
-				return _loc2_;
+				return var2;
 			}
-			_loc2_ = _loc2_ + 1;
+			var2 = var2 + 1;
 		}
 		return dofus.datacenter.Item.LEVEL_STEP.length;
 	}
@@ -482,27 +481,27 @@ class dofus.datacenter.Item extends Object
 	}
 	function __get__currentLivingLevelXpMax()
 	{
-		var _loc2_ = 1;
-		while(_loc2_ < dofus.datacenter.Item.LEVEL_STEP.length)
+		var var2 = 1;
+		while(var2 < dofus.datacenter.Item.LEVEL_STEP.length)
 		{
-			if(this._nLivingXp < dofus.datacenter.Item.LEVEL_STEP[_loc2_])
+			if(this._nLivingXp < dofus.datacenter.Item.LEVEL_STEP[var2])
 			{
-				return dofus.datacenter.Item.LEVEL_STEP[_loc2_];
+				return dofus.datacenter.Item.LEVEL_STEP[var2];
 			}
-			_loc2_ = _loc2_ + 1;
+			var2 = var2 + 1;
 		}
 		return -1;
 	}
 	function __get__currentLivingLevelXpMin()
 	{
-		var _loc2_ = 1;
-		while(_loc2_ < dofus.datacenter.Item.LEVEL_STEP.length)
+		var var2 = 1;
+		while(var2 < dofus.datacenter.Item.LEVEL_STEP.length)
 		{
-			if(this._nLivingXp < dofus.datacenter.Item.LEVEL_STEP[_loc2_])
+			if(this._nLivingXp < dofus.datacenter.Item.LEVEL_STEP[var2])
 			{
-				return dofus.datacenter.Item.LEVEL_STEP[_loc2_ - 1];
+				return dofus.datacenter.Item.LEVEL_STEP[var2 - 1];
 			}
-			_loc2_ = _loc2_ + 1;
+			var2 = var2 + 1;
 		}
 		return -1;
 	}
@@ -518,105 +517,104 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._bCanBeExchange;
 	}
-	function initialize(_loc2_, _loc3_, _loc4_, _loc5_, _loc6_, _loc7_, _loc8_, _loc9_)
+	function initialize(var2, var3, var4, var5, var6, var7, var8, var9)
 	{
 		this.api = _global.API;
 		this._itemDateId = dofus.datacenter.Item.DATE_ID--;
-		this._nID = _loc2_;
-		this._nUnicID = _loc3_;
-		this._nQuantity = _loc4_ != undefined?_loc4_:1;
-		this._nPosition = _loc5_ != undefined?_loc5_:-1;
-		if(_loc7_ != undefined)
+		this._nID = var2;
+		this._nUnicID = var3;
+		this._nQuantity = var4 != undefined?var4:1;
+		this._nPosition = var5 != undefined?var5:-1;
+		if(var7 != undefined)
 		{
-			this._nPrice = _loc7_;
+			this._nPrice = var7;
 		}
 		this._bCanBeExchange = true;
-		this._oUnicInfos = this.api.lang.getItemUnicText(_loc3_);
-		this.setEffects(_loc6_);
+		this._oUnicInfos = this.api.lang.getItemUnicText(var3);
+		this.setEffects(var6);
 		this._bIsSkineable = false;
 		this.updateDataFromEffect();
-		var _loc10_ = this.typeText.z;
-		var _loc11_ = _loc10_.split("");
+		var var10 = this.typeText.z;
+		var var11 = var10.split("");
 		this._aEffectZones = new Array();
-		var _loc12_ = 0;
-		while(_loc12_ < _loc11_.length)
+		var var12 = 0;
+		while(var12 < var11.length)
 		{
-			this._aEffectZones.push({shape:_loc11_[_loc12_],size:ank.utils.Compressor.decode64(_loc11_[_loc12_ + 1])});
-			_loc12_ = _loc12_ + 2;
+			this._aEffectZones.push({shape:var11[var12],size:ank.utils.Compressor.decode64(var11[var12 + 1])});
+			var12 = var12 + 2;
 		}
 		this._itemLevel = this.level;
 		this._itemType = this.type;
 		this._itemPrice = this.price;
 		this._itemName = this.name;
 		this._itemWeight = this.weight;
-		if(_loc8_ != undefined)
+		if(var8 != undefined)
 		{
-			this._nSkin = _loc8_;
+			this._nSkin = var8;
 		}
-		if(_loc9_ != undefined)
+		if(var9 != undefined)
 		{
-			this._nMood = _loc9_;
+			this._nMood = var9;
 		}
 	}
-	function setEffects(_loc2_)
+	function setEffects(var2)
 	{
-		this._sEffects = _loc2_;
+		this._sEffects = var2;
 		this._aEffects = new Array();
-		var _loc3_ = _loc2_.split(",");
-		var _loc4_ = 0;
-		while(_loc4_ < _loc3_.length)
+		var var3 = var2.split(",");
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var _loc5_ = _loc3_[_loc4_].split("#");
-			_loc5_[0] = _global.parseInt(_loc5_[0],16);
-			_loc5_[1] = _loc5_[1] != "0"?_global.parseInt(_loc5_[1],16):undefined;
-			_loc5_[2] = _loc5_[2] != "0"?_global.parseInt(_loc5_[2],16):undefined;
-			_loc5_[3] = _loc5_[3] != "0"?_global.parseInt(_loc5_[3],16):undefined;
-			_loc5_[4] = _loc5_[4];
-			this._aEffects.push(_loc5_);
-			_loc4_ = _loc4_ + 1;
+			var var5 = var3[var4].split("#");
+			var5[0] = _global.parseInt(var5[0],16);
+			var5[1] = var5[1] != "0"?_global.parseInt(var5[1],16):undefined;
+			var5[2] = var5[2] != "0"?_global.parseInt(var5[2],16):undefined;
+			var5[3] = var5[3] != "0"?_global.parseInt(var5[3],16):undefined;
+			var5[4] = var5[4];
+			this._aEffects.push(var5);
+			var4 = var4 + 1;
 		}
 	}
 	function clone()
 	{
 		return new dofus.datacenter.
-
-(this._nID,this._nUnicID,this._nQuantity,this._nPosition,this._sEffects);
+(this._nID,this._nUnicID,this._nQuantity,this._nPosition,this._sEffects);
 	}
-	function equals(_loc2_)
+	function equals(var2)
 	{
-		return this.unicID == _loc2_.unicID;
+		return this.unicID == var2.unicID;
 	}
-	function getItemFightEffectsText(_loc2_)
+	function getItemFightEffectsText(var2)
 	{
-		return this._oUnicInfos.e[_loc2_];
+		return this._oUnicInfos.e[var2];
 	}
 	function updateDataFromEffect()
 	{
 		for(var k in this._aEffects)
 		{
-			var _loc2_ = this._aEffects[k];
-			switch(_loc2_[0])
+			var var2 = this._aEffects[k];
+			switch(var2[0])
 			{
 				case 974:
-					this._nLivingXp = !_loc2_[3]?0:_loc2_[3];
+					this._nLivingXp = !var2[3]?0:var2[3];
 					break;
 				case 973:
-					this._nRealType = !_loc2_[3]?0:_loc2_[3];
+					this._nRealType = !var2[3]?0:var2[3];
+					break;
+				case 972:
+					this._nSkin = !var2[3]?0:_global.parseInt(var2[3]) - 1;
+					this._bIsSkineable = true;
 					break;
 				default:
 					switch(null)
 					{
-						case 972:
-							this._nSkin = !_loc2_[3]?0:_global.parseInt(_loc2_[3]) - 1;
-							this._bIsSkineable = true;
-							break;
 						case 971:
-							this._nMood = !_loc2_[3]?0:_loc2_[3];
+							this._nMood = !var2[3]?0:var2[3];
 							break;
 						case 970:
 							this._sRealGfx = this._oUnicInfos.g;
-							this._sGfx = this.api.lang.getItemUnicText(!_loc2_[3]?0:_loc2_[3]).g;
-							this._nRealUnicId = _loc2_[3];
+							this._sGfx = this.api.lang.getItemUnicText(!var2[3]?0:var2[3]).g;
+							this._nRealUnicId = var2[3];
 							break;
 						case 983:
 							this._bCanBeExchange = false;
@@ -624,36 +622,35 @@ class dofus.datacenter.Item extends Object
 			}
 		}
 	}
-	static function getItemDescriptionEffects(_loc2_, _loc3_)
+	static function getItemDescriptionEffects(var2, var3)
 	{
-		var _loc4_ = new Array();
-		var _loc5_ = _loc2_.length;
-		if(typeof _loc2_ == "object")
+		var var4 = new Array();
+		var var5 = var2.length;
+		if(typeof var2 == "object")
 		{
-			var _loc6_ = 0;
-			while(_loc6_ < _loc5_)
+			var var6 = 0;
+			while(var6 < var5)
 			{
-				var _loc7_ = _loc2_[_loc6_];
-				var _loc8_ = _loc7_[0];
-				var _loc9_ = new dofus.datacenter.
-(_loc8_,_loc7_[1],_loc7_[2],_loc7_[3],_loc7_[4]);
-				if(_loc9_.description != undefined)
+				var var7 = var2[var6];
+				var var8 = var7[0];
+				var var9 = new dofus.datacenter.(var8,var7[1],var7[2],var7[3],var7[4]);
+				if(var9.description != undefined)
 				{
-					if(_loc3_ == true)
+					if(var3 == true)
 					{
-						if(_loc9_.showInTooltip)
+						if(var9.showInTooltip)
 						{
-							_loc4_.push(_loc9_);
+							var4.push(var9);
 						}
 					}
 					else
 					{
-						_loc4_.push(_loc9_);
+						var4.push(var9);
 					}
 				}
-				_loc6_ = _loc6_ + 1;
+				var6 = var6 + 1;
 			}
-			return _loc4_;
+			return var4;
 		}
 		return null;
 	}

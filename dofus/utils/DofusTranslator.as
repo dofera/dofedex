@@ -13,103 +13,103 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return Number(this.getValueFromSOXtra("VERSION"));
 	}
-	function getText(_loc2_, _loc3_)
+	function getText(var2, var3)
 	{
-		if(_loc3_ == undefined)
+		if(var3 == undefined)
 		{
-			_loc3_ = new Array();
+			var3 = new Array();
 		}
-		var _loc4_ = new Array();
-		var _loc5_ = new Array();
-		var _loc6_ = 0;
-		while(_loc6_ < _loc3_.length)
+		var var4 = new Array();
+		var var5 = new Array();
+		var var6 = 0;
+		while(var6 < var3.length)
 		{
-			_loc4_.push("%" + (_loc6_ + 1));
-			_loc5_.push(_loc3_[_loc6_]);
-			_loc6_ = _loc6_ + 1;
+			var4.push("%" + (var6 + 1));
+			var5.push(var3[var6]);
+			var6 = var6 + 1;
 		}
-		var _loc7_ = this.getValueFromSOLang(_loc2_);
-		if(_loc7_ == "" || _loc7_ == undefined)
+		var var7 = this.getValueFromSOLang(var2);
+		if(var7 == "" || var7 == undefined)
 		{
-			return "!" + _loc2_ + "!";
+			return "!" + var2 + "!";
 		}
-		return new ank.utils.(_loc7_).replace(_loc4_,_loc5_);
+		return new ank.utils.(var7).replace(var4,var5);
 	}
-	function getConfigText(_loc2_)
+	function getConfigText(var2)
 	{
-		var _loc3_ = this.getValueFromSOLang("C")[_loc2_];
-		if(typeof _loc3_ == "string")
+		var var3 = this.getValueFromSOLang("C")[var2];
+		if(typeof var3 == "string")
 		{
-			var _loc4_ = _loc3_;
-			var _loc5_ = new ank.utils.(_loc4_);
-			return _loc5_.replace(["%CMNT%","%CMNTT%"],[this.api.datacenter.Basics.aks_community_id,this.api.datacenter.Basics.aks_detected_country.toLowerCase()]);
+			var var4 = var3;
+			var var5 = new ank.utils.(var4);
+			return var5.replace(["%CMNT%","%CMNTT%"],[this.api.datacenter.Basics.aks_community_id,this.api.datacenter.Basics.aks_detected_country.toLowerCase()]);
 		}
-		return _loc3_;
+		return var3;
 	}
 	function getAllMapsInfos()
 	{
 		return this.getValueFromSOXtra("MA").m;
 	}
-	function getMapMaxChallenge(_loc2_)
+	function getMapMaxChallenge(var2)
 	{
-		var _loc3_ = this.getValueFromSOXtra("MA").m[_loc2_].c;
-		if(_loc3_ == undefined || _global.isNaN(_loc3_))
+		var var3 = this.getValueFromSOXtra("MA").m[var2].c;
+		if(var3 == undefined || _global.isNaN(var3))
 		{
 			return dofus.Constants.MAX_PLAYERS_IN_CHALLENGE;
 		}
-		return _loc3_;
+		return var3;
 	}
-	function getMapMaxTeam(_loc2_)
+	function getMapMaxTeam(var2)
 	{
-		var _loc3_ = this.getValueFromSOXtra("MA").m[_loc2_].t;
-		if(_loc3_ == undefined || _global.isNaN(_loc3_))
+		var var3 = this.getValueFromSOXtra("MA").m[var2].t;
+		if(var3 == undefined || _global.isNaN(var3))
 		{
 			return dofus.Constants.MAX_PLAYERS_IN_TEAM;
 		}
-		return _loc3_;
+		return var3;
 	}
-	function getMapText(_loc2_)
+	function getMapText(var2)
 	{
-		return this.getValueFromSOXtra("MA").m[_loc2_];
+		return this.getValueFromSOXtra("MA").m[var2];
 	}
 	function getMapAreas()
 	{
 		return this.getValueFromSOXtra("MA").a;
 	}
-	function getMapSuperAreaText(_loc2_)
+	function getMapSuperAreaText(var2)
 	{
-		return this.getValueFromSOXtra("MA").sua[_loc2_];
+		return this.getValueFromSOXtra("MA").sua[var2];
 	}
-	function getMapAreaText(_loc2_)
+	function getMapAreaText(var2)
 	{
-		return this.getValueFromSOXtra("MA").a[_loc2_];
+		return this.getValueFromSOXtra("MA").a[var2];
 	}
 	function getMapSubAreas()
 	{
 		return this.getValueFromSOXtra("MA").sa;
 	}
-	function getMapSubAreaText(_loc2_)
+	function getMapSubAreaText(var2)
 	{
-		return this.getValueFromSOXtra("MA").sa[_loc2_];
+		return this.getValueFromSOXtra("MA").sa[var2];
 	}
-	function getMapAreaInfos(_loc2_)
+	function getMapAreaInfos(var2)
 	{
-		var _loc3_ = this.getValueFromSOXtra("MA").sa[_loc2_];
-		var _loc4_ = this.getValueFromSOXtra("MA").a[_loc3_.a];
-		var _loc5_ = this.getValueFromSOXtra("MA").a[_loc4_.sua];
-		return {superareaID:_loc4_.sua,superarea:_loc5_,areaID:_loc3_.a,area:_loc4_,subArea:_loc3_};
+		var var3 = this.getValueFromSOXtra("MA").sa[var2];
+		var var4 = this.getValueFromSOXtra("MA").a[var3.a];
+		var var5 = this.getValueFromSOXtra("MA").a[var4.sua];
+		return {superareaID:var4.sua,superarea:var5,areaID:var3.a,area:var4,subArea:var3};
 	}
-	function getItemSetText(_loc2_)
+	function getItemSetText(var2)
 	{
-		return this.getValueFromSOXtra("IS")[_loc2_];
+		return this.getValueFromSOXtra("IS")[var2];
 	}
-	function getItemStats(_loc2_)
+	function getItemStats(var2)
 	{
-		return this.getValueFromSOXtra("ISTA")[_loc2_];
+		return this.getValueFromSOXtra("ISTA")[var2];
 	}
-	function getItemUnicText(_loc2_)
+	function getItemUnicText(var2)
 	{
-		return this.getValueFromSOXtra("I").u[_loc2_];
+		return this.getValueFromSOXtra("I").u[var2];
 	}
 	function getItemUnics()
 	{
@@ -119,61 +119,61 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("I").us;
 	}
-	function getItemTypeText(_loc2_)
+	function getItemTypeText(var2)
 	{
-		return this.getValueFromSOXtra("I").t[_loc2_];
+		return this.getValueFromSOXtra("I").t[var2];
 	}
-	function getItemSuperTypeText(_loc2_)
+	function getItemSuperTypeText(var2)
 	{
-		return this.getValueFromSOXtra("I").st[_loc2_];
+		return this.getValueFromSOXtra("I").st[var2];
 	}
 	function getAllItemTypes()
 	{
 		return this.getValueFromSOXtra("I").t;
 	}
-	function getSlotsFromSuperType(_loc2_)
+	function getSlotsFromSuperType(var2)
 	{
-		return this.getValueFromSOXtra("I").ss[_loc2_];
+		return this.getValueFromSOXtra("I").ss[var2];
 	}
-	function getInteractiveObjectDataByGfxText(_loc2_)
+	function getInteractiveObjectDataByGfxText(var2)
 	{
-		return this.getInteractiveObjectDataText(this.getValueFromSOXtra("IO").g[_loc2_]);
+		return this.getInteractiveObjectDataText(this.getValueFromSOXtra("IO").g[var2]);
 	}
-	function getInteractiveObjectDataText(_loc2_)
+	function getInteractiveObjectDataText(var2)
 	{
-		return this.getValueFromSOXtra("IO").d[_loc2_];
+		return this.getValueFromSOXtra("IO").d[var2];
 	}
-	function getHouseText(_loc2_)
+	function getHouseText(var2)
 	{
-		return this.getValueFromSOXtra("H").h[_loc2_];
+		return this.getValueFromSOXtra("H").h[var2];
 	}
-	function getHousesMapText(_loc2_)
+	function getHousesMapText(var2)
 	{
-		return this.getValueFromSOXtra("H").m[_loc2_];
+		return this.getValueFromSOXtra("H").m[var2];
 	}
-	function getHousesDoorText(_loc2_, _loc3_)
+	function getHousesDoorText(var2, var3)
 	{
-		return this.getValueFromSOXtra("H").d[_loc2_]["c" + _loc3_];
+		return this.getValueFromSOXtra("H").d[var2]["c" + var3];
 	}
 	function getHousesIndoorSkillsText()
 	{
 		return this.getValueFromSOXtra("H").ids;
 	}
-	function getDungeonText(_loc2_)
+	function getDungeonText(var2)
 	{
-		return this.getValueFromSOXtra("DU")[_loc2_];
+		return this.getValueFromSOXtra("DU")[var2];
 	}
-	function getSpellText(_loc2_)
+	function getSpellText(var2)
 	{
-		return this.getValueFromSOXtra("S")[_loc2_];
+		return this.getValueFromSOXtra("S")[var2];
 	}
 	function getSpells()
 	{
 		return this.getValueFromSOXtra("S");
 	}
-	function getEffectText(_loc2_)
+	function getEffectText(var2)
 	{
-		return this.getValueFromSOXtra("E")[_loc2_];
+		return this.getValueFromSOXtra("E")[var2];
 	}
 	function getBoostedDamagingEffects()
 	{
@@ -183,61 +183,61 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("EHEL");
 	}
-	function getJobText(_loc2_)
+	function getJobText(var2)
 	{
-		return this.getValueFromSOXtra("J")[_loc2_];
+		return this.getValueFromSOXtra("J")[var2];
 	}
-	function getCraftText(_loc2_)
+	function getCraftText(var2)
 	{
-		return this.getValueFromSOXtra("CR")[_loc2_];
+		return this.getValueFromSOXtra("CR")[var2];
 	}
 	function getAllCrafts()
 	{
 		return this.getValueFromSOXtra("CR");
 	}
-	function getSkillText(_loc2_)
+	function getSkillText(var2)
 	{
-		return this.getValueFromSOXtra("SK")[_loc2_];
+		return this.getValueFromSOXtra("SK")[var2];
 	}
-	function getSkillForgemagus(_loc2_)
+	function getSkillForgemagus(var2)
 	{
-		return Number(this.getValueFromSOXtra("SK")[_loc2_].f);
+		return Number(this.getValueFromSOXtra("SK")[var2].f);
 	}
-	function getDialogQuestionText(_loc2_)
+	function getDialogQuestionText(var2)
 	{
-		return this.getValueFromSOXtra("D").q[_loc2_];
+		return this.getValueFromSOXtra("D").q[var2];
 	}
-	function getDialogResponseText(_loc2_)
+	function getDialogResponseText(var2)
 	{
-		return this.getValueFromSOXtra("D").a[_loc2_];
+		return this.getValueFromSOXtra("D").a[var2];
 	}
-	function getNonPlayableCharactersText(_loc2_)
+	function getNonPlayableCharactersText(var2)
 	{
-		return this.getValueFromSOXtra("N").d[_loc2_];
+		return this.getValueFromSOXtra("N").d[var2];
 	}
-	function getNonPlayableCharactersActionText(_loc2_)
+	function getNonPlayableCharactersActionText(var2)
 	{
-		return this.getValueFromSOXtra("N").a[_loc2_];
+		return this.getValueFromSOXtra("N").a[var2];
 	}
-	function getMonstersText(_loc2_)
+	function getMonstersText(var2)
 	{
-		return this.getValueFromSOXtra("M")[_loc2_];
+		return this.getValueFromSOXtra("M")[var2];
 	}
 	function getMonsters()
 	{
 		return this.getValueFromSOXtra("M");
 	}
-	function getMonstersRaceText(_loc2_)
+	function getMonstersRaceText(var2)
 	{
-		return this.getValueFromSOXtra("MR")[_loc2_];
+		return this.getValueFromSOXtra("MR")[var2];
 	}
 	function getMonstersRace()
 	{
 		return this.getValueFromSOXtra("MR");
 	}
-	function getMonstersSuperRaceText(_loc2_)
+	function getMonstersSuperRaceText(var2)
 	{
-		return this.getValueFromSOXtra("MSR")[_loc2_];
+		return this.getValueFromSOXtra("MSR")[var2];
 	}
 	function getMonstersSuperRace()
 	{
@@ -247,54 +247,54 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("T");
 	}
-	function getClassText(_loc2_)
+	function getClassText(var2)
 	{
-		return this.getValueFromSOXtra("G")[_loc2_];
+		return this.getValueFromSOXtra("G")[var2];
 	}
-	function getEmoteText(_loc2_)
+	function getEmoteText(var2)
 	{
-		return this.getValueFromSOXtra("EM")[_loc2_];
+		return this.getValueFromSOXtra("EM")[var2];
 	}
-	function getEmoteID(_loc2_)
+	function getEmoteID(var2)
 	{
-		var _loc3_ = this.getValueFromSOXtra("EM");
-		§§enumerate(_loc3_);
-		while((var _loc0_ = §§enumeration()) != null)
+		var var3 = this.getValueFromSOXtra("EM");
+		§§enumerate(var3);
+		while((var var0 = §§enumeration()) != null)
 		{
-			if(_loc3_[k].s == _loc2_)
+			if(var3[k].s == var2)
 			{
 				return Number(k);
 			}
 		}
 		return null;
 	}
-	function getGuildBoosts(_loc2_)
+	function getGuildBoosts(var2)
 	{
-		return this.getValueFromSOXtra("GU").b[_loc2_];
+		return this.getValueFromSOXtra("GU").b[var2];
 	}
-	function getGuildBoostsMax(_loc2_)
+	function getGuildBoostsMax(var2)
 	{
-		return this.getValueFromSOXtra("GU").b[_loc2_ + "m"];
+		return this.getValueFromSOXtra("GU").b[var2 + "m"];
 	}
-	function getNameText(_loc2_)
+	function getNameText(var2)
 	{
-		return this.getValueFromSOXtra("NF").n[_loc2_];
+		return this.getValueFromSOXtra("NF").n[var2];
 	}
-	function getFirstnameText(_loc2_)
+	function getFirstnameText(var2)
 	{
-		return this.getValueFromSOXtra("NF").f[_loc2_];
+		return this.getValueFromSOXtra("NF").f[var2];
 	}
-	function getFullNameText(_loc2_)
+	function getFullNameText(var2)
 	{
-		_loc2_[0] = _global.parseInt(_loc2_[0],36);
-		_loc2_[1] = _global.parseInt(_loc2_[1],36);
-		return this.getFirstnameText(_loc2_[0]) + " " + this.getNameText(_loc2_[1]);
+		var2[0] = _global.parseInt(var2[0],36);
+		var2[1] = _global.parseInt(var2[1],36);
+		return this.getFirstnameText(var2[0]) + " " + this.getNameText(var2[1]);
 	}
-	function getRankInfos(_loc2_)
+	function getRankInfos(var2)
 	{
-		return this.getValueFromSOXtra("R")[_loc2_];
+		return this.getValueFromSOXtra("R")[var2];
 	}
-	function getRanks(_loc2_)
+	function getRanks(var2)
 	{
 		return this.getValueFromSOXtra("R");
 	}
@@ -302,53 +302,53 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("A").a;
 	}
-	function getAlignment(_loc2_)
+	function getAlignment(var2)
 	{
-		return this.getValueFromSOXtra("A").a[_loc2_];
+		return this.getValueFromSOXtra("A").a[var2];
 	}
-	function getAlignmentCanJoin(_loc2_, _loc3_)
+	function getAlignmentCanJoin(var2, var3)
 	{
-		return this.getValueFromSOXtra("A").jo[_loc2_][_loc3_];
+		return this.getValueFromSOXtra("A").jo[var2][var3];
 	}
-	function getAlignmentCanAttack(_loc2_, _loc3_)
+	function getAlignmentCanAttack(var2, var3)
 	{
-		return this.getValueFromSOXtra("A").at[_loc2_][_loc3_];
+		return this.getValueFromSOXtra("A").at[var2][var3];
 	}
 	function getAlignmentSpecializations()
 	{
 		return this.getValueFromSOXtra("A").s;
 	}
-	function getAlignmentSpecialization(_loc2_)
+	function getAlignmentSpecialization(var2)
 	{
-		return this.getValueFromSOXtra("A").s[_loc2_];
+		return this.getValueFromSOXtra("A").s[var2];
 	}
-	function getAlignmentOrder(_loc2_)
+	function getAlignmentOrder(var2)
 	{
-		return this.getValueFromSOXtra("A").o[_loc2_];
+		return this.getValueFromSOXtra("A").o[var2];
 	}
-	function getAlignmentFeat(_loc2_)
+	function getAlignmentFeat(var2)
 	{
-		return this.getValueFromSOXtra("A").f[_loc2_];
+		return this.getValueFromSOXtra("A").f[var2];
 	}
-	function getAlignmentFeatEffect(_loc2_)
+	function getAlignmentFeatEffect(var2)
 	{
-		return this.getValueFromSOXtra("A").fe[_loc2_];
+		return this.getValueFromSOXtra("A").fe[var2];
 	}
 	function getAlignmentBalance()
 	{
 		return this.getValueFromSOXtra("A").b;
 	}
-	function getAlignmentCanViewPvpGain(_loc2_, _loc3_)
+	function getAlignmentCanViewPvpGain(var2, var3)
 	{
-		return this.getValueFromSOXtra("A").g[_loc2_][_loc3_];
+		return this.getValueFromSOXtra("A").g[var2][var3];
 	}
 	function getTips()
 	{
 		return this.getValueFromSOXtra("TI");
 	}
-	function getTip(_loc2_)
+	function getTip(var2)
 	{
-		return this.getValueFromSOXtra("TI")[_loc2_];
+		return this.getValueFromSOXtra("TI")[var2];
 	}
 	function getKeyboardShortcutsCategories()
 	{
@@ -362,13 +362,13 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("SST");
 	}
-	function getKeyboardShortcutsKeys(_loc2_, _loc3_)
+	function getKeyboardShortcutsKeys(var2, var3)
 	{
-		return this.getValueFromSOXtra("SSK")[String(_loc2_) + "|" + _loc3_];
+		return this.getValueFromSOXtra("SSK")[String(var2) + "|" + var3];
 	}
-	function getControlKeyString(_loc2_)
+	function getControlKeyString(var2)
 	{
-		switch(_loc2_)
+		switch(var2)
 		{
 			case 1:
 				return this.getText("KEY_CONTROL") + "+";
@@ -380,9 +380,9 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 				return "";
 		}
 	}
-	function getKeyStringFromKeyCode(_loc2_)
+	function getKeyStringFromKeyCode(var2)
 	{
-		switch(_loc2_)
+		switch(var2)
 		{
 			case 112:
 				return this.getText("KEY_F1");
@@ -390,11 +390,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 				return this.getText("KEY_F2");
 			case 114:
 				return this.getText("KEY_F3");
+			case 115:
+				return this.getText("KEY_F4");
 			default:
 				switch(null)
 				{
-					case 115:
-						return this.getText("KEY_F4");
 					case 116:
 						return this.getText("KEY_F5");
 					case 117:
@@ -414,11 +414,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 								return this.getText("KEY_F11");
 							case 123:
 								return this.getText("KEY_F12");
-							case 145:
-								return this.getText("KEY_SCROLL_LOCK");
 							default:
 								switch(null)
 								{
+									case 145:
+										return this.getText("KEY_SCROLL_LOCK");
 									case 19:
 										return this.getText("KEY_PAUSE");
 									case 45:
@@ -438,11 +438,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 												return this.getText("KEY_LEFT");
 											case 38:
 												return this.getText("KEY_UP");
+											case 39:
+												return this.getText("KEY_RIGHT");
 											default:
 												switch(null)
 												{
-													case 39:
-														return this.getText("KEY_RIGHT");
 													case 40:
 														return this.getText("KEY_DOWN");
 													case 27:
@@ -451,11 +451,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 														return this.getText("KEY_BACKSPACE");
 													case 20:
 														return this.getText("KEY_CAPS_LOCK");
+													case 13:
+														return this.getText("KEY_ENTER");
 													default:
 														switch(null)
 														{
-															case 13:
-																return this.getText("KEY_ENTER");
 															case 32:
 																return this.getText("KEY_SPACE");
 															case 46:
@@ -465,7 +465,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 															case -1:
 																return this.getText("KEY_UNDEFINED");
 															default:
-																return "(#" + String(_loc2_) + ")";
+																return "(#" + String(var2) + ")";
 														}
 												}
 										}
@@ -478,174 +478,178 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOLang("CNS");
 	}
-	function getServerInfos(_loc2_)
+	function getServerInfos(var2)
 	{
-		return this.getValueFromSOXtra("SR")[_loc2_];
+		return this.getValueFromSOXtra("SR")[var2];
 	}
-	function getServerPopulation(_loc2_)
+	function getServerPopulation(var2)
 	{
-		return this.getValueFromSOXtra("SRP")[_loc2_];
+		return this.getValueFromSOXtra("SRP")[var2];
 	}
-	function getServerPopulationWeight(_loc2_)
+	function getServerPopulationWeight(var2)
 	{
-		return Number(this.getValueFromSOXtra("SRPW")[_loc2_]);
+		return Number(this.getValueFromSOXtra("SRPW")[var2]);
 	}
 	function getServerCommunities()
 	{
 		return this.getValueFromSOLang("COM");
 	}
-	function getServerCommunity(_loc2_)
+	function getServerCommunity(var2)
 	{
-		return this.getValueFromSOXtra("SRC")[_loc2_].n;
+		return this.getValueFromSOXtra("SRC")[var2].n;
 	}
-	function getServerCommunityDisplayed(_loc2_)
+	function getServerCommunityDisplayed(var2)
 	{
-		return this.getValueFromSOXtra("SRC")[_loc2_].d;
+		return this.getValueFromSOXtra("SRC")[var2].d;
 	}
 	function getServerSpecificTexts()
 	{
 		return this.getValueFromSOXtra("SRVT");
 	}
-	function getServerSpecificText(_loc2_, _loc3_)
+	function getServerSpecificText(var2, var3)
 	{
-		return this.getValueFromSOXtra("SRVC")[_loc2_ + "|" + _loc3_];
+		return this.getValueFromSOXtra("SRVC")[var2 + "|" + var3];
 	}
-	function getQuestText(_loc2_)
+	function getQuests()
 	{
-		return this.getValueFromSOXtra("Q").q[_loc2_];
+		return this.getValueFromSOXtra("Q").q;
 	}
-	function getQuestStepText(_loc2_)
+	function getQuestText(var2)
 	{
-		return this.getValueFromSOXtra("Q").s[_loc2_];
+		return this.getQuests()[var2];
 	}
-	function getQuestObjectiveText(_loc2_)
+	function getQuestStepText(var2)
 	{
-		return this.getValueFromSOXtra("Q").o[_loc2_];
+		return this.getValueFromSOXtra("Q").s[var2];
 	}
-	function getQuestObjectiveTypeText(_loc2_)
+	function getQuestObjectiveText(var2)
 	{
-		return this.getValueFromSOXtra("Q").t[_loc2_];
+		return this.getValueFromSOXtra("Q").o[var2];
 	}
-	function getState(_loc2_)
+	function getQuestObjectiveTypeText(var2)
 	{
-		return this.getValueFromSOXtra("ST")[_loc2_];
+		return this.getValueFromSOXtra("Q").t[var2];
 	}
-	function getStateText(_loc2_)
+	function getState(var2)
 	{
-		return this.getValueFromSOXtra("ST")[_loc2_].n;
+		return this.getValueFromSOXtra("ST")[var2];
 	}
-	function getGradeHonourPointsBounds(_loc2_)
+	function getStateText(var2)
 	{
-		var _loc3_ = this.getValueFromSOXtra("PP").hp;
-		return {min:_loc3_[_loc2_ - 1],max:_loc3_[_loc2_]};
+		return this.getValueFromSOXtra("ST")[var2].n;
+	}
+	function getGradeHonourPointsBounds(var2)
+	{
+		var var3 = this.getValueFromSOXtra("PP").hp;
+		return {min:var3[var2 - 1],max:var3[var2]};
 	}
 	function getMaxDisgracePoints()
 	{
 		return this.getValueFromSOXtra("PP").maxdp;
 	}
-	function getRankLongName(_loc2_, _loc3_)
+	function getRankLongName(var2, var3)
 	{
-		return this.getValueFromSOXtra("PP").grds[_loc2_][_loc3_].nl;
+		return this.getValueFromSOXtra("PP").grds[var2][var3].nl;
 	}
-	function getRankShortName(_loc2_, _loc3_)
+	function getRankShortName(var2, var3)
 	{
-		return this.getValueFromSOXtra("PP").grds[_loc2_][_loc3_].nc;
+		return this.getValueFromSOXtra("PP").grds[var2][var3].nc;
 	}
-	function getHintsByMapID(_loc2_)
+	function getHintsByMapID(var2)
 	{
-		return this.getHintsBy("m",_loc2_);
+		return this.getHintsBy("m",var2);
 	}
 	function getHintsByCategory(categoryID)
 	{
 		return this.getHintsBy("c",categoryID);
 	}
-	function getHintsBy(_loc2_, _loc3_)
+	function getHintsBy(var2, var3)
 	{
-		var _loc4_ = this.getValueFromSOXtra("HI");
-		var _loc5_ = new Array();
-		var _loc6_ = 0;
-		while(_loc6_ < _loc4_.length)
+		var var4 = this.getValueFromSOXtra("HI");
+		var var5 = new Array();
+		var var6 = 0;
+		while(var6 < var4.length)
 		{
-			var _loc7_ = _loc4_[_loc6_];
-			if(_loc7_[_loc2_] == _loc3_)
+			var var7 = var4[var6];
+			if(var7[var2] == var3)
 			{
-				_loc5_.push(_loc7_);
+				var5.push(var7);
 			}
-			_loc6_ = _loc6_ + 1;
+			var6 = var6 + 1;
 		}
-		return _loc5_;
+		return var5;
 	}
-	function getHintsCategory(_loc2_)
+	function getHintsCategory(var2)
 	{
-		return this.getValueFromSOXtra("HIC")[_loc2_];
+		return this.getValueFromSOXtra("HIC")[var2];
 	}
 	function getHintsCategories()
 	{
 		return this.getValueFromSOXtra("HIC");
 	}
-	function getMountText(_loc2_)
+	function getMountText(var2)
 	{
-		return this.getValueFromSOXtra("RI")[_loc2_];
+		return this.getValueFromSOXtra("RI")[var2];
 	}
-	function getMountCapacity(_loc2_)
+	function getMountCapacity(var2)
 	{
-		return this.getValueFromSOXtra("RIA")[_loc2_];
+		return this.getValueFromSOXtra("RIA")[var2];
 	}
 	function getKnownledgeBaseCategories()
 	{
 		return this.getValueFromSOXtra("KBC");
 	}
-	function getKnownledgeBaseCategory(_loc2_)
+	function getKnownledgeBaseCategory(var2)
 	{
-		return this.getValueFromSOXtra("KBC")[_loc2_];
+		return this.getValueFromSOXtra("KBC")[var2];
 	}
 	function getKnownledgeBaseArticles()
 	{
 		return this.getValueFromSOXtra("KBA");
 	}
-	function getKnownledgeBaseArticle(_loc2_)
+	function getKnownledgeBaseArticle(var2)
 	{
-		return this.getValueFromSOXtra("KBA")[_loc2_];
+		return this.getValueFromSOXtra("KBA")[var2];
 	}
 	function getKnownledgeBaseTriggers()
 	{
 		return this.getValueFromSOXtra("KBD");
 	}
-	function getKnownledgeBaseTip(_loc2_)
+	function getKnownledgeBaseTip(var2)
 	{
-		return this.getValueFromSOXtra("KBT")[_loc2_];
+		return this.getValueFromSOXtra("KBT")[var2];
 	}
-	function getMusicFromKeyname(_loc2_)
+	function getMusicFromKeyname(var2)
 	{
-		return Number(this.getValueFromSOXtra("AUMC")[_loc2_]);
+		return Number(this.getValueFromSOXtra("AUMC")[var2]);
 	}
-	function getEffectFromKeyname(_loc2_)
+	function getEffectFromKeyname(var2)
 	{
-		return Number(this.getValueFromSOXtra("AUEC")[_loc2_]);
+		return Number(this.getValueFromSOXtra("AUEC")[var2]);
 	}
-	function getEnvironmentFromKeyname(_loc2_)
+	function getEnvironmentFromKeyname(var2)
 	{
-		return Number(this.getValueFromSOXtra("AUAC")[_loc2_]);
+		return Number(this.getValueFromSOXtra("AUAC")[var2]);
 	}
-	function getMusic(_loc2_)
+	function getMusic(var2)
 	{
-		return this.getValueFromSOXtra("AUM")[_loc2_];
+		return this.getValueFromSOXtra("AUM")[var2];
 	}
-	function getEffect(_loc2_)
+	function getEffect(var2)
 	{
-		return this.getValueFromSOXtra("AUE")[_loc2_];
+		return this.getValueFromSOXtra("AUE")[var2];
 	}
-	function getEnvironment(_loc2_)
+	function getEnvironment(var2)
 	{
-		return this.getValueFromSOXtra("AUA")[_loc2_];
+		return this.getValueFromSOXtra("AUA")[var2];
 	}
-	function getSubtitle(_loc2_, _loc3_)
+	function getSubtitle(var2, var3)
 	{
-		return this.getValueFromSOXtra("SUB")[_loc2_][_loc3_];
+		return this.getValueFromSOXtra("SUB")[var2][var3];
 	}
-	function getTutorialText(_loc2_)
+	function getTutorialText(var2)
 	{
-		return this.getValueFromSOXtra("SCR")[_loc2_];
+		return this.getValueFromSOXtra("SCR")[var2];
 	}
 	function getCensoredWords()
 	{
@@ -659,103 +663,102 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("SIM");
 	}
-	function getSpeakingItemsText(_loc2_)
+	function getSpeakingItemsText(var2)
 	{
-		return this.getValueFromSOXtra("SIM")[_loc2_];
+		return this.getValueFromSOXtra("SIM")[var2];
 	}
 	function getSpeakingItemsTriggers()
 	{
 		return this.getValueFromSOXtra("SIT");
 	}
-	function getSpeakingItemsTrigger(_loc2_)
+	function getSpeakingItemsTrigger(var2)
 	{
-		return this.getValueFromSOXtra("SIT")[_loc2_];
+		return this.getValueFromSOXtra("SIT")[var2];
 	}
-	function getFightChallenge(_loc2_)
+	function getFightChallenge(var2)
 	{
-		return this.getValueFromSOXtra("FC")[_loc2_];
+		return this.getValueFromSOXtra("FC")[var2];
 	}
-	function getTitle(_loc2_)
+	function getTitle(var2)
 	{
-		return this.getValueFromSOXtra("PT")[_loc2_];
+		return this.getValueFromSOXtra("PT")[var2];
 	}
-	function getLangFileSize(_loc2_)
+	function getLangFileSize(var2)
 	{
-		var _loc3_ = new String();
-		if(_loc2_.toUpperCase() == "LANG")
+		var var3 = new String();
+		if(var2.toUpperCase() == "LANG")
 		{
-			_loc3_ = dofus.Constants.GLOBAL_SO_LANG_NAME;
+			var3 = dofus.Constants.GLOBAL_SO_LANG_NAME;
 		}
 		else
 		{
-			if(_loc2_.toUpperCase() == "TOTAL")
+			if(var2.toUpperCase() == "TOTAL")
 			{
-				var _loc4_ = this.getLangFileSize("lang");
-				var _loc5_ = _global.API.lang.getConfigText("XTRA_FILE");
-				var _loc6_ = 0;
-				while(_loc6_ < _loc5_.length)
+				var var4 = this.getLangFileSize("lang");
+				var var5 = _global.API.lang.getConfigText("XTRA_FILE");
+				var var6 = 0;
+				while(var6 < var5.length)
 				{
-					_loc4_ = _loc4_ + this.getLangFileSize(_loc5_[_loc6_]);
-					_loc6_ = _loc6_ + 1;
+					var4 = var4 + this.getLangFileSize(var5[var6]);
+					var6 = var6 + 1;
 				}
-				return _loc4_;
+				return var4;
 			}
-			_loc3_ = dofus.Constants.GLOBAL_SO_XTRA_NAME;
+			var3 = dofus.Constants.GLOBAL_SO_XTRA_NAME;
 		}
-		var _loc7_ = _global[_loc3_].data.WEIGHTS[_loc2_.toUpperCase()];
-		if(_loc7_ == undefined || _global.isNaN(_loc7_))
+		var var7 = _global[var3].data.WEIGHTS[var2.toUpperCase()];
+		if(var7 == undefined || _global.isNaN(var7))
 		{
 			return 0;
 		}
-		return _loc7_;
+		return var7;
 	}
-	function fetchString(_loc2_)
+	function fetchString(var2)
 	{
-		var _loc3_ = new ank.utils.(_loc2_);
+		var var3 = new ank.utils.(var2);
 		if(this.fetchIn == undefined || (this.fetchOut == undefined || this._nLastServerID != this.api.datacenter.Basics.aks_current_server.id))
 		{
 			this.fetchIn = new Array();
 			this.fetchOut = new Array();
-			var _loc4_ = this.getServerSpecificTexts();
+			var var4 = this.getServerSpecificTexts();
 			this._nLastServerID = this.api.datacenter.Basics.aks_current_server.id;
-			for(var i in _loc4_)
+			for(var var5 in var4)
 			{
-				var _loc5_ = this.getServerSpecificText(Number(i),this._nLastServerID);
-				if(_loc5_ == undefined)
+				if(var5 == undefined)
 				{
-					_loc5_ = _loc4_[i].d;
+					var5 = var4[i].d;
 				}
-				this.fetchIn.push("`SRVT:" + _loc4_[i].l + "`");
-				this.fetchOut.push(_loc5_);
+				this.fetchIn.push("`SRVT:" + var4[i].l + "`");
+				this.fetchOut.push(var5);
 			}
 		}
-		return _loc3_.replace(this.fetchIn,this.fetchOut);
+		return var3.replace(this.fetchIn,this.fetchOut);
 	}
 	function clearSOXtraCache()
 	{
 		this._aSOXtraCache = new Array();
 	}
-	function getValueFromSOLang(_loc2_)
+	function getValueFromSOLang(var2)
 	{
-		return _global[dofus.Constants.GLOBAL_SO_LANG_NAME].data[_loc2_];
+		return _global[dofus.Constants.GLOBAL_SO_LANG_NAME].data[var2];
 	}
-	function getValueFromSOXtra(_loc2_)
+	function getValueFromSOXtra(var2)
 	{
-		var _loc3_ = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + _loc2_];
-		if(_loc3_ == undefined)
+		var var3 = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2];
+		if(var3 == undefined)
 		{
-			_global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + _loc2_] = ank.utils.Sequencer.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + _loc2_);
-			_loc3_ = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + _loc2_];
+			_global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2] = ank.utils.SharedObjectFix.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2);
+			var3 = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2];
 		}
-		var _loc4_ = _loc3_.data[_loc2_];
-		if(_loc4_ instanceof Array)
+		var var4 = var3.data[var2];
+		if(var4 instanceof Array)
 		{
-			if(this._aSOXtraCache[_loc2_] == undefined)
+			if(this._aSOXtraCache[var2] == undefined)
 			{
-				this._aSOXtraCache[_loc2_] = _loc4_.slice();
+				this._aSOXtraCache[var2] = var4.slice();
 			}
-			return this._aSOXtraCache[_loc2_];
+			return this._aSOXtraCache[var2];
 		}
-		return _loc4_;
+		return var4;
 	}
 }

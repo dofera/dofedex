@@ -1,8 +1,8 @@
 class dofus.aks.Conquest extends dofus.aks.Handler
 {
-	function Conquest(loc3, loc4)
+	function Conquest(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function getAlignedBonus()
 	{
@@ -33,255 +33,249 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 	{
 		this.aks.send("CWV",false);
 	}
-	function switchPlaces(loc2)
+	function switchPlaces(var2)
 	{
-		this.aks.send("CFS" + loc2,true);
+		this.aks.send("CFS" + var2,true);
 	}
 	function requestBalance()
 	{
 		this.aks.send("Cb",true);
 	}
-	function onAreaAlignmentChanged(loc2)
+	function onAreaAlignmentChanged(var2)
 	{
-		var loc3 = String(loc2).split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = this.api.lang.getMapAreaText(loc4).n;
-		var loc7 = this.api.lang.getAlignment(loc5).n;
-		if(loc5 == -1)
+		var var3 = String(var2).split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = this.api.lang.getMapAreaText(var4).n;
+		var var7 = this.api.lang.getAlignment(var5).n;
+		if(var5 == -1)
 		{
-			this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("AREA_ALIGNMENT_PRISM_REMOVED",[loc6]) + "</b>","PVP_CHAT");
+			this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("AREA_ALIGNMENT_PRISM_REMOVED",[var6]) + "</b>","PVP_CHAT");
 		}
 		else
 		{
-			this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("AREA_ALIGNMENT_IS",[loc6,loc7]) + "</b>","PVP_CHAT");
+			this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("AREA_ALIGNMENT_IS",[var6,var7]) + "</b>","PVP_CHAT");
 		}
 	}
-	function onConquestBonus(loc2)
+	function onConquestBonus(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = String(loc3[0]).split(",");
-		var loc5 = new dofus.datacenter.
-();
-		loc5.xp = Number(loc4[0]);
-		loc5.drop = Number(loc4[1]);
-		loc5.recolte = Number(loc4[2]);
-		loc4 = String(loc3[1]).split(",");
-		var loc6 = new dofus.datacenter.
-();
-		loc6.xp = Number(loc4[0]);
-		loc6.drop = Number(loc4[1]);
-		loc6.recolte = Number(loc4[2]);
-		loc4 = String(loc3[2]).split(",");
-		var loc7 = new dofus.datacenter.
-();
-		loc7.xp = Number(loc4[0]);
-		loc7.drop = Number(loc4[1]);
-		loc7.recolte = Number(loc4[2]);
-		this.api.datacenter.Conquest.alignBonus = loc5;
-		this.api.datacenter.Conquest.rankMultiplicator = loc6;
-		this.api.datacenter.Conquest.alignMalus = loc7;
+		var var3 = var2.split(";");
+		var var4 = String(var3[0]).split(",");
+		var var5 = new dofus.datacenter.();
+		var5.xp = Number(var4[0]);
+		var5.drop = Number(var4[1]);
+		var5.recolte = Number(var4[2]);
+		var4 = String(var3[1]).split(",");
+		var var6 = new dofus.datacenter.();
+		var6.xp = Number(var4[0]);
+		var6.drop = Number(var4[1]);
+		var6.recolte = Number(var4[2]);
+		var4 = String(var3[2]).split(",");
+		var var7 = new dofus.datacenter.();
+		var7.xp = Number(var4[0]);
+		var7.drop = Number(var4[1]);
+		var7.recolte = Number(var4[2]);
+		this.api.datacenter.Conquest.alignBonus = var5;
+		this.api.datacenter.Conquest.rankMultiplicator = var6;
+		this.api.datacenter.Conquest.alignMalus = var7;
 	}
-	function onConquestBalance(loc2)
+	function onConquestBalance(var2)
 	{
-		var loc3 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
-		var loc4 = loc2.split(";");
-		loc3.setBalance(Number(loc4[0]),Number(loc4[1]));
+		var var3 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
+		var var4 = var2.split(";");
+		var3.setBalance(Number(var4[0]),Number(var4[1]));
 	}
-	function onWorldData(loc2)
+	function onWorldData(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = new dofus.datacenter.();
-		loc4.ownedAreas = Number(loc3[0]);
-		loc4.totalAreas = Number(loc3[1]);
-		loc4.possibleAreas = Number(loc3[2]);
-		var loc5 = loc3[3];
-		var loc6 = loc5.split(";");
-		loc4.areas = new ank.utils.();
-		for(var loc7 in loc6)
+		var var3 = var2.split("|");
+		var var4 = new dofus.datacenter.();
+		var4.ownedAreas = Number(var3[0]);
+		var4.totalAreas = Number(var3[1]);
+		var4.possibleAreas = Number(var3[2]);
+		var var5 = var3[3];
+		var var6 = var5.split(";");
+		var4.areas = new ank.utils.();
+		for(var var7 in var6)
 		{
-			if(loc7.length >= 5)
+			if(var7.length >= 5)
 			{
-				var loc8 = new dofus.datacenter.(Number(loc7[0]),Number(loc7[1]),Number(loc7[2]) == 1,Number(loc7[3]),Number(loc7[4]) == 1);
-				loc4.areas.push(loc8);
+				var var8 = new dofus.datacenter.(Number(var7[0]),Number(var7[1]),Number(var7[2]) == 1,Number(var7[3]),Number(var7[4]) == 1);
+				var4.areas.push(var8);
 			}
 		}
-		loc4.areas.sortOn("areaName");
-		loc4.ownedVillages = Number(loc3[4]);
-		loc4.totalVillages = Number(loc3[5]);
-		var loc9 = loc3[6];
-		var loc10 = loc9.split(";");
-		loc4.villages = new ank.utils.();
-		for(var loc11 in loc10)
+		var4.areas.sortOn("areaName");
+		var4.ownedVillages = Number(var3[4]);
+		var4.totalVillages = Number(var3[5]);
+		var var9 = var3[6];
+		var var10 = var9.split(";");
+		var4.villages = new ank.utils.();
+		for(var var11 in var10)
 		{
-			if(loc11.length == 4)
+			if(var11.length == 4)
 			{
-				var loc12 = new dofus.datacenter.(Number(loc11[0]),Number(loc11[1]),Number(loc11[2]) == 1,Number(loc11[3]) == 1);
-				loc4.villages.push(loc12);
+				var var12 = new dofus.datacenter.(Number(var11[0]),Number(var11[1]),Number(var11[2]) == 1,Number(var11[3]) == 1);
+				var4.villages.push(var12);
 			}
 		}
-		loc4.villages.sortOn("areaName");
-		this.api.datacenter.Conquest.worldDatas = loc4;
+		var4.villages.sortOn("areaName");
+		this.api.datacenter.Conquest.worldDatas = var4;
 	}
-	function onPrismInfosJoined(loc2)
+	function onPrismInfosJoined(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = Number(loc3[0]);
-		var loc5 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
-		if(loc4 == 0)
+		var var3 = var2.split(";");
+		var var4 = Number(var3[0]);
+		var var5 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
+		if(var4 == 0)
 		{
-			var loc6 = Number(loc3[1]);
-			var loc7 = Number(loc3[2]);
-			var loc8 = Number(loc3[3]);
-			var loc9 = new Object();
-			loc9.error = 0;
-			loc9.timer = loc6;
-			loc9.maxTimer = loc7;
-			loc9.timerReference = getTimer();
-			loc9.maxTeamPositions = loc8;
-			loc5.sharePropertiesWithTab(loc9);
+			var var6 = Number(var3[1]);
+			var var7 = Number(var3[2]);
+			var var8 = Number(var3[3]);
+			var var9 = new Object();
+			var9.error = 0;
+			var9.timer = var6;
+			var9.maxTimer = var7;
+			var9.timerReference = getTimer();
+			var9.maxTeamPositions = var8;
+			var5.sharePropertiesWithTab(var9);
 		}
 		else
 		{
-			var loc10 = new Object();
-			if((var loc0 = loc4) !== -1)
+			var var10 = new Object();
+			switch(var4)
 			{
-				switch(null)
-				{
-					case -2:
-					case -3:
-				}
-				loc5.sharePropertiesWithTab(loc10);
+				case -1:
+				case -2:
+				case -3:
+					var10.error = var4;
 			}
-			loc10.error = loc4;
-			loc5.sharePropertiesWithTab(loc10);
+			var5.sharePropertiesWithTab(var10);
 		}
 	}
-	function onPrismInfosClosing(loc2)
+	function onPrismInfosClosing(var2)
 	{
-		var loc3 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
-		loc3.sharePropertiesWithTab({noUnsubscribe:true});
+		var var3 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
+		var3.sharePropertiesWithTab({noUnsubscribe:true});
 		this.api.ui.unloadUIComponent("Conquest");
 	}
-	function onPrismAttacked(loc2)
+	function onPrismAttacked(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1];
-		var loc6 = loc3[2];
-		var loc7 = "[" + loc5 + ", " + loc6 + "]";
-		var loc8 = Number(this.api.lang.getMapText(loc4).sa);
-		var loc9 = String(this.api.lang.getMapSubAreaText(loc8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(loc8).n:String(this.api.lang.getMapSubAreaText(loc8).n).substr(2);
-		if(loc8 == this.api.datacenter.Basics.gfx_lastSubarea)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1];
+		var var6 = var3[2];
+		var var7 = "[" + var5 + ", " + var6 + "]";
+		var var8 = Number(this.api.lang.getMapText(var4).sa);
+		var var9 = String(this.api.lang.getMapSubAreaText(var8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(var8).n:String(this.api.lang.getMapSubAreaText(var8).n).substr(2);
+		if(var8 == this.api.datacenter.Basics.gfx_lastSubarea)
 		{
-			this.api.kernel.showMessage(undefined,"<img src=\"CautionIcon\" hspace=\'0\' vspace=\'0\' width=\'13\' height=\'13\' />" + this.api.lang.getText("PRISM_ATTACKED",[loc9,loc7]),"PVP_CHAT");
+			this.api.kernel.showMessage(undefined,"<img src=\"CautionIcon\" hspace=\'0\' vspace=\'0\' width=\'13\' height=\'13\' />" + this.api.lang.getText("PRISM_ATTACKED",[var9,var7]),"PVP_CHAT");
 			this.api.sounds.events.onTaxcollectorAttack();
 		}
 		else
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED",[loc9,loc7]),"PVP_CHAT");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED",[var9,var7]),"PVP_CHAT");
 		}
 	}
-	function onPrismSurvived(loc2)
+	function onPrismSurvived(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1];
-		var loc6 = loc3[2];
-		var loc7 = "[" + loc5 + ", " + loc6 + "]";
-		var loc8 = Number(this.api.lang.getMapText(loc4).sa);
-		var loc9 = String(this.api.lang.getMapSubAreaText(loc8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(loc8).n:String(this.api.lang.getMapSubAreaText(loc8).n).substr(2);
-		this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED_SUVIVED",[loc9,loc7]),"PVP_CHAT");
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1];
+		var var6 = var3[2];
+		var var7 = "[" + var5 + ", " + var6 + "]";
+		var var8 = Number(this.api.lang.getMapText(var4).sa);
+		var var9 = String(this.api.lang.getMapSubAreaText(var8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(var8).n:String(this.api.lang.getMapSubAreaText(var8).n).substr(2);
+		this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED_SUVIVED",[var9,var7]),"PVP_CHAT");
 	}
-	function onPrismDead(loc2)
+	function onPrismDead(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1];
-		var loc6 = loc3[2];
-		var loc7 = "[" + loc5 + ", " + loc6 + "]";
-		var loc8 = Number(this.api.lang.getMapText(loc4).sa);
-		var loc9 = String(this.api.lang.getMapSubAreaText(loc8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(loc8).n:String(this.api.lang.getMapSubAreaText(loc8).n).substr(2);
-		this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED_DIED",[loc9,loc7]),"PVP_CHAT");
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1];
+		var var6 = var3[2];
+		var var7 = "[" + var5 + ", " + var6 + "]";
+		var var8 = Number(this.api.lang.getMapText(var4).sa);
+		var var9 = String(this.api.lang.getMapSubAreaText(var8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(var8).n:String(this.api.lang.getMapSubAreaText(var8).n).substr(2);
+		this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED_DIED",[var9,var7]),"PVP_CHAT");
 	}
-	function onPrismFightAddPlayer(loc2)
+	function onPrismFightAddPlayer(var2)
 	{
-		var loc3 = loc2.charAt(0) == "+";
-		var loc4 = loc2.substr(1).split("|");
-		var loc5 = _global.parseInt(loc4[0],36);
-		var loc6 = 1;
-		while(loc6 < loc4.length)
+		var var3 = var2.charAt(0) == "+";
+		var var4 = var2.substr(1).split("|");
+		var var5 = _global.parseInt(var4[0],36);
+		var var6 = 1;
+		while(var6 < var4.length)
 		{
-			var loc7 = loc4[loc6].split(";");
-			if(loc3)
+			var var7 = var4[var6].split(";");
+			if(var3)
 			{
-				var loc8 = new Object();
-				loc8.id = _global.parseInt(loc7[0],36);
-				loc8.name = loc7[1];
-				loc8.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + loc7[2] + ".swf";
-				loc8.level = Number(loc7[3]);
-				loc8.color1 = _global.parseInt(loc7[4],36);
-				loc8.color2 = _global.parseInt(loc7[5],36);
-				loc8.color3 = _global.parseInt(loc7[6],36);
-				loc8.reservist = loc7[7] == "1";
-				var loc9 = this.api.datacenter.Conquest.players.findFirstItem("id",loc8.id);
-				if(loc9.index != -1)
+				var var8 = new Object();
+				var8.id = _global.parseInt(var7[0],36);
+				var8.name = var7[1];
+				var8.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + var7[2] + ".swf";
+				var8.level = Number(var7[3]);
+				var8.color1 = _global.parseInt(var7[4],36);
+				var8.color2 = _global.parseInt(var7[5],36);
+				var8.color3 = _global.parseInt(var7[6],36);
+				var8.reservist = var7[7] == "1";
+				var var9 = this.api.datacenter.Conquest.players.findFirstItem("id",var8.id);
+				if(var9.index != -1)
 				{
-					this.api.datacenter.Conquest.players.updateItem(loc9.index,loc8);
+					this.api.datacenter.Conquest.players.updateItem(var9.index,var8);
 				}
 				else
 				{
-					this.api.datacenter.Conquest.players.push(loc8);
+					this.api.datacenter.Conquest.players.push(var8);
 				}
 			}
 			else
 			{
-				var loc10 = _global.parseInt(loc7[0],36);
-				var loc11 = this.api.datacenter.Conquest.players.findFirstItem("id",loc10);
-				if(loc11.index != -1)
+				var var10 = _global.parseInt(var7[0],36);
+				var var11 = this.api.datacenter.Conquest.players.findFirstItem("id",var10);
+				if(var11.index != -1)
 				{
-					this.api.datacenter.Conquest.players.removeItems(loc11.index,1);
+					this.api.datacenter.Conquest.players.removeItems(var11.index,1);
 				}
 			}
-			loc6 = loc6 + 1;
+			var6 = var6 + 1;
 		}
 	}
-	function onPrismFightAddEnemy(loc2)
+	function onPrismFightAddEnemy(var2)
 	{
-		var loc3 = loc2.charAt(0) == "+";
-		var loc4 = loc2.substr(1).split("|");
-		var loc5 = _global.parseInt(loc4[0],36);
-		var loc6 = this.api.datacenter.Conquest.attackers;
-		var loc7 = 1;
-		while(loc7 < loc4.length)
+		var var3 = var2.charAt(0) == "+";
+		var var4 = var2.substr(1).split("|");
+		var var5 = _global.parseInt(var4[0],36);
+		var var6 = this.api.datacenter.Conquest.attackers;
+		var var7 = 1;
+		while(var7 < var4.length)
 		{
-			var loc8 = loc4[loc7].split(";");
-			if(loc3)
+			var var8 = var4[var7].split(";");
+			if(var3)
 			{
-				var loc9 = new Object();
-				loc9.id = _global.parseInt(loc8[0],36);
-				loc9.name = loc8[1];
-				loc9.level = Number(loc8[2]);
-				var loc10 = loc6.findFirstItem("id",loc9.id);
-				if(loc10.index != -1)
+				var var9 = new Object();
+				var9.id = _global.parseInt(var8[0],36);
+				var9.name = var8[1];
+				var9.level = Number(var8[2]);
+				var var10 = var6.findFirstItem("id",var9.id);
+				if(var10.index != -1)
 				{
-					loc6.updateItem(loc10.index,loc9);
+					var6.updateItem(var10.index,var9);
 				}
 				else
 				{
-					loc6.push(loc9);
+					var6.push(var9);
 				}
 			}
 			else
 			{
-				var loc11 = _global.parseInt(loc8[0],36);
-				var loc12 = loc6.findFirstItem("id",loc11);
-				if(loc12.index != -1)
+				var var11 = _global.parseInt(var8[0],36);
+				var var12 = var6.findFirstItem("id",var11);
+				if(var12.index != -1)
 				{
-					loc6.removeItems(loc12.index,1);
+					var6.removeItems(var12.index,1);
 				}
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
 	}
 }

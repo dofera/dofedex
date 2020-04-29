@@ -4,7 +4,7 @@ class ank.utils.CyclicTimer extends Object
 	static var _nInterval = 40;
 	static var _bPlaying = false;
 	static var _api = _global.API;
-	static var _oCyclicTimer = new ank.utils.();
+	static var _oCyclicTimer = new ank.utils.();
 	function CyclicTimer()
 	{
 		super();
@@ -13,30 +13,30 @@ class ank.utils.CyclicTimer extends Object
 	{
 		return ank.utils.CyclicTimer._nInterval;
 	}
-	static function addFunction(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	static function addFunction(var2, var3, var4, var5, var6, var7, var8)
 	{
-		var loc9 = new Object();
-		loc9.objRef = loc2;
-		loc9.objFn = loc3;
-		loc9.fn = loc4;
-		loc9.params = loc5;
-		loc9.objFnEnd = loc6;
-		loc9.fnEnd = loc7;
-		loc9.paramsEnd = loc8;
-		ank.utils.CyclicTimer._aFunctions.push(loc9);
+		var var9 = new Object();
+		var9.objRef = var2;
+		var9.objFn = var3;
+		var9.fn = var4;
+		var9.params = var5;
+		var9.objFnEnd = var6;
+		var9.fnEnd = var7;
+		var9.paramsEnd = var8;
+		ank.utils.CyclicTimer._aFunctions.push(var9);
 		ank.utils.CyclicTimer.play();
 	}
-	static function removeFunction(loc2)
+	static function removeFunction(var2)
 	{
-		var loc3 = ank.utils.CyclicTimer._aFunctions.length - 1;
-		while(loc3 >= 0)
+		var var3 = ank.utils.CyclicTimer._aFunctions.length - 1;
+		while(var3 >= 0)
 		{
-			var loc4 = ank.utils.CyclicTimer._aFunctions[loc3];
-			if(loc2 == loc4.objRef)
+			var var4 = ank.utils.CyclicTimer._aFunctions[var3];
+			if(var2 == var4.objRef)
 			{
-				ank.utils.CyclicTimer._aFunctions.splice(loc3,1);
+				ank.utils.CyclicTimer._aFunctions.splice(var3,1);
 			}
-			loc3 = loc3 - 1;
+			var3 = var3 - 1;
 		}
 	}
 	static function clear()
@@ -63,15 +63,15 @@ class ank.utils.CyclicTimer extends Object
 	}
 	static function doCycle()
 	{
-		var loc2 = ank.utils.CyclicTimer._aFunctions.length - 1;
-		while(loc2 >= 0)
+		var var2 = ank.utils.CyclicTimer._aFunctions.length - 1;
+		while(var2 >= 0)
 		{
-			var loc3 = ank.utils.CyclicTimer._aFunctions[loc2];
-			if(!loc3.fn.apply(loc3.objFn,loc3.params))
+			var var3 = ank.utils.CyclicTimer._aFunctions[var2];
+			if(!var3.fn.apply(var3.objFn,var3.params))
 			{
-				ank.utils.CyclicTimer.onFunctionEnd(loc2,loc3);
+				ank.utils.CyclicTimer.onFunctionEnd(var2,var3);
 			}
-			loc2 = loc2 - 1;
+			var2 = var2 - 1;
 		}
 		if(ank.utils.CyclicTimer._aFunctions.length != 0)
 		{
@@ -79,27 +79,27 @@ class ank.utils.CyclicTimer extends Object
 			{
 				if(ank.utils.CyclicTimer._api.electron.enabled)
 				{
-					var loc4 = 2;
+					var var4 = 2;
 				}
 				else
 				{
-					loc4 = ank.utils.CyclicTimer._nInterval / 2;
+					var4 = ank.utils.CyclicTimer._nInterval / 2;
 				}
 			}
 			else
 			{
-				loc4 = ank.utils.CyclicTimer._nInterval;
+				var4 = ank.utils.CyclicTimer._nInterval;
 			}
-			ank.utils.Timer.setTimer(ank.utils.CyclicTimer._oCyclicTimer,"cyclicTimer",ank.utils.CyclicTimer,ank.utils.CyclicTimer.doCycle,loc4);
+			ank.utils.Timer.setTimer(ank.utils.CyclicTimer._oCyclicTimer,"cyclicTimer",ank.utils.CyclicTimer,ank.utils.CyclicTimer.doCycle,var4);
 		}
 		else
 		{
 			ank.utils.CyclicTimer.stop();
 		}
 	}
-	static function onFunctionEnd(loc2, loc3)
+	static function onFunctionEnd(var2, var3)
 	{
-		loc3.fnEnd.apply(loc3.objFnEnd,loc3.paramsEnd);
-		ank.utils.CyclicTimer._aFunctions.splice(loc2,1);
+		var3.fnEnd.apply(var3.objFnEnd,var3.paramsEnd);
+		ank.utils.CyclicTimer._aFunctions.splice(var2,1);
 	}
 }

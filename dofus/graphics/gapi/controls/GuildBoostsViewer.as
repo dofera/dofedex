@@ -55,31 +55,31 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 	function updateData()
 	{
 		this.gapi.hideTooltip();
-		var loc2 = this.api.datacenter.Player.guildInfos;
-		this._lblLPValue.text = loc2.taxLp + "";
-		this._lblBonusValue.text = loc2.taxBonus + "";
-		this._lblBoostPodValue.text = loc2.taxPod + "";
-		this._lblBoostPPValue.text = loc2.taxPP + "";
-		this._lblBoostWisdomValue.text = loc2.taxWisdom + "";
-		this._lblBoostPopValue.text = loc2.taxPopulation + "";
-		this._lblTaxCount.text = this.api.lang.getText("GUILD_TAX_COUNT",[loc2.taxCount,loc2.taxCountMax]);
-		this._lblBoostPointsValue.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("POINTS",[loc2.boostPoints]),"m",loc2.boostPoints < 2);
-		this._lstSpells.dataProvider = loc2.taxSpells;
-		var loc3 = loc2.playerRights.canManageBoost && loc2.boostPoints > 0;
-		this._btnBoostPod._visible = loc3 && loc2.canBoost("w");
-		this._btnBoostPP._visible = loc3 && loc2.canBoost("p");
-		this._btnBoostWisdom._visible = loc3 && loc2.canBoost("x");
-		this._btnBoostPop._visible = loc3 && loc2.canBoost("c");
-		this._btnHireTaxCollector.enabled = loc2.playerRights.canHireTaxCollector && (loc2.taxCount < loc2.taxCountMax && !this.api.datacenter.Player.cantInteractWithTaxCollector);
+		var var2 = this.api.datacenter.Player.guildInfos;
+		this._lblLPValue.text = var2.taxLp + "";
+		this._lblBonusValue.text = var2.taxBonus + "";
+		this._lblBoostPodValue.text = var2.taxPod + "";
+		this._lblBoostPPValue.text = var2.taxPP + "";
+		this._lblBoostWisdomValue.text = var2.taxWisdom + "";
+		this._lblBoostPopValue.text = var2.taxPopulation + "";
+		this._lblTaxCount.text = this.api.lang.getText("GUILD_TAX_COUNT",[var2.taxCount,var2.taxCountMax]);
+		this._lblBoostPointsValue.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("POINTS",[var2.boostPoints]),"m",var2.boostPoints < 2);
+		this._lstSpells.dataProvider = var2.taxSpells;
+		var var3 = var2.playerRights.canManageBoost && var2.boostPoints > 0;
+		this._btnBoostPod._visible = var3 && var2.canBoost("w");
+		this._btnBoostPP._visible = var3 && var2.canBoost("p");
+		this._btnBoostWisdom._visible = var3 && var2.canBoost("x");
+		this._btnBoostPop._visible = var3 && var2.canBoost("c");
+		this._btnHireTaxCollector.enabled = var2.playerRights.canHireTaxCollector && (var2.taxCount < var2.taxCountMax && !this.api.datacenter.Player.cantInteractWithTaxCollector);
 		this._btnHireTaxCollector._visible = true;
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		this.gapi.loadUIComponent("SpellInfos","SpellInfos",{spell:loc2.row.item});
+		this.gapi.loadUIComponent("SpellInfos","SpellInfos",{spell:var2.row.item});
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnBoostPod":
 				this.api.sounds.events.onGuildButtonClick();
@@ -101,10 +101,10 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 						this.api.network.Guild.boostCharacteristic("c");
 						break;
 					case "_btnHireTaxCollector":
-						var loc3 = this.api.datacenter.Player;
-						if(loc3.guildInfos.taxcollectorHireCost < loc3.Kama)
+						var var3 = this.api.datacenter.Player;
+						if(var3.guildInfos.taxcollectorHireCost < var3.Kama)
 						{
-							this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_YOU_HIRE_TAXCOLLECTOR",[loc3.guildInfos.taxcollectorHireCost]),"CAUTION_YESNO",{name:"GuildTaxCollector",listener:this});
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_YOU_HIRE_TAXCOLLECTOR",[var3.guildInfos.taxcollectorHireCost]),"CAUTION_YESNO",{name:"GuildTaxCollector",listener:this});
 							break;
 						}
 						this.api.kernel.showMessage("undefined",this.api.lang.getText("NOT_ENOUGTH_RICH_TO_HIRE_TAX"),"ERROR_BOX");
@@ -112,43 +112,43 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnBoostPod":
-				var loc3 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("w");
-				var loc4 = this.api.lang.getGuildBoostsMax("w");
-				this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + loc3.cost + " " + this.api.lang.getText("POUR") + " " + loc3.count + " (max : " + loc4 + ")",loc2.target,-20);
+				var var3 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("w");
+				var var4 = this.api.lang.getGuildBoostsMax("w");
+				this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + var3.cost + " " + this.api.lang.getText("POUR") + " " + var3.count + " (max : " + var4 + ")",var2.target,-20);
 				break;
 			case "_btnBoostPP":
-				var loc5 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("p");
-				var loc6 = this.api.lang.getGuildBoostsMax("p");
-				this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + loc5.cost + " " + this.api.lang.getText("POUR") + " " + loc5.count + " (max : " + loc6 + ")",loc2.target,-20);
+				var var5 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("p");
+				var var6 = this.api.lang.getGuildBoostsMax("p");
+				this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + var5.cost + " " + this.api.lang.getText("POUR") + " " + var5.count + " (max : " + var6 + ")",var2.target,-20);
 				break;
 			case "_btnBoostWisdom":
-				var loc7 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("x");
-				var loc8 = this.api.lang.getGuildBoostsMax("x");
-				this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + loc7.cost + " " + this.api.lang.getText("POUR") + " " + loc7.count + " (max : " + loc8 + ")",loc2.target,-20);
+				var var7 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("x");
+				var var8 = this.api.lang.getGuildBoostsMax("x");
+				this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + var7.cost + " " + this.api.lang.getText("POUR") + " " + var7.count + " (max : " + var8 + ")",var2.target,-20);
 				break;
 			default:
 				switch(null)
 				{
 					case "_btnBoostPop":
-						var loc9 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("c");
-						var loc10 = this.api.lang.getGuildBoostsMax("c");
-						this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + loc9.cost + " " + this.api.lang.getText("POUR") + " " + loc9.count + " (max : " + loc10 + ")",loc2.target,-20);
+						var var9 = this.api.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("c");
+						var var10 = this.api.lang.getGuildBoostsMax("c");
+						this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + var9.cost + " " + this.api.lang.getText("POUR") + " " + var9.count + " (max : " + var10 + ")",var2.target,-20);
 						break;
 					case "_btnHireTaxCollector":
-						this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + this.api.datacenter.Player.guildInfos.taxcollectorHireCost + " " + this.api.lang.getText("KAMAS"),loc2.target,-20);
+						this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + this.api.datacenter.Player.guildInfos.taxcollectorHireCost + " " + this.api.lang.getText("KAMAS"),var2.target,-20);
 				}
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
 		this.api.network.Guild.hireTaxCollector();
 	}

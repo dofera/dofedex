@@ -8,14 +8,14 @@ class dofus.datacenter.Server
 	static var SERVER_129 = 3;
 	static var SERVER_RETRO = 4;
 	static var SERVER_COMMUNITY_INTERNATIONAL = 2;
-	function Server(loc3, loc4, loc5, loc6)
+	function Server(var3, var4, var5, var6)
 	{
-		this.initialize(loc2,loc3,loc4,loc5);
+		this.initialize(var2,var3,var4,var5);
 		this._nCharactersCount = 0;
 	}
-	function __set__id(loc2)
+	function __set__id(var2)
 	{
-		this._nID = loc2;
+		this._nID = var2;
 		return this.__get__id();
 	}
 	function __get__id()
@@ -31,9 +31,9 @@ class dofus.datacenter.Server
 	{
 		return this._nCharactersCount;
 	}
-	function __set__state(loc2)
+	function __set__state(var2)
 	{
-		this._nState = loc2;
+		this._nState = var2;
 		return this.__get__state();
 	}
 	function __get__state()
@@ -42,27 +42,27 @@ class dofus.datacenter.Server
 	}
 	function __get__stateStr()
 	{
-		if((var loc0 = this._nState) !== dofus.datacenter.Server.SERVER_OFFLINE)
+		switch(this._nState)
 		{
-			if(loc0 !== dofus.datacenter.Server.SERVER_ONLINE)
-			{
-				if(loc0 !== dofus.datacenter.Server.SERVER_STARTING)
+			case dofus.datacenter.Server.SERVER_OFFLINE:
+				return this.api.lang.getText("SERVER_OFFLINE");
+			case dofus.datacenter.Server.SERVER_ONLINE:
+				return this.api.lang.getText("SERVER_ONLINE");
+			default:
+				if(var0 !== dofus.datacenter.Server.SERVER_STARTING)
 				{
 					return "";
 				}
 				return this.api.lang.getText("SERVER_STARTING");
-			}
-			return this.api.lang.getText("SERVER_ONLINE");
 		}
-		return this.api.lang.getText("SERVER_OFFLINE");
 	}
 	function __get__stateStrShort()
 	{
-		if((var loc0 = this._nState) !== dofus.datacenter.Server.SERVER_OFFLINE)
+		if((var var0 = this._nState) !== dofus.datacenter.Server.SERVER_OFFLINE)
 		{
-			if(loc0 !== dofus.datacenter.Server.SERVER_ONLINE)
+			if(var0 !== dofus.datacenter.Server.SERVER_ONLINE)
 			{
-				if(loc0 !== dofus.datacenter.Server.SERVER_STARTING)
+				if(var0 !== dofus.datacenter.Server.SERVER_STARTING)
 				{
 					return "";
 				}
@@ -72,9 +72,9 @@ class dofus.datacenter.Server
 		}
 		return this.api.lang.getText("SERVER_OFFLINE_SHORT");
 	}
-	function __set__canLog(loc2)
+	function __set__canLog(var2)
 	{
-		this._bCanLog = loc2;
+		this._bCanLog = var2;
 		return this.__get__canLog();
 	}
 	function __get__canLog()
@@ -111,13 +111,13 @@ class dofus.datacenter.Server
 	}
 	function __get__date()
 	{
-		var loc2 = new Date(Number(this.api.lang.getServerInfos(this._nID).date));
-		return loc2;
+		var var2 = new Date(Number(this.api.lang.getServerInfos(this._nID).date));
+		return var2;
 	}
 	function __get__dateStr()
 	{
-		var loc2 = new Date(Number(this.api.lang.getServerInfos(this._nID).date));
-		return org.utils.SimpleDateFormatter.formatDate(loc2,this.api.lang.getConfigText("LONG_DATE_FORMAT"),this.api.config.language);
+		var var2 = new Date(Number(this.api.lang.getServerInfos(this._nID).date));
+		return org.utils.SimpleDateFormatter.formatDate(var2,this.api.lang.getConfigText("LONG_DATE_FORMAT"),this.api.config.language);
 	}
 	function __get__type()
 	{
@@ -129,27 +129,27 @@ class dofus.datacenter.Server
 	}
 	function getRulesType()
 	{
-		var loc2 = this.typeNum;
-		switch(loc2)
+		var var2 = this.typeNum;
+		switch(var2)
 		{
 			case dofus.datacenter.Server.SERVER_129:
 			case dofus.datacenter.Server.SERVER_RETRO:
 				return dofus.datacenter.Server.SERVER_CLASSIC;
 			default:
-				return loc2;
+				return var2;
 		}
 	}
 	function isHardcore()
 	{
 		return this.typeNum == dofus.datacenter.Server.SERVER_HARDCORE;
 	}
-	function initialize(loc2, loc3, loc4, loc5)
+	function initialize(var2, var3, var4, var5)
 	{
 		this.api = _global.API;
-		this._nID = loc2;
-		this._nState = loc3;
-		this._bCanLog = loc5;
-		this.completion = loc4;
+		this._nID = var2;
+		this._nState = var3;
+		this._bCanLog = var5;
+		this.completion = var4;
 		this.populationWeight = Number(this.api.lang.getServerPopulationWeight(this.population));
 	}
 	function isAllowed()
@@ -158,19 +158,19 @@ class dofus.datacenter.Server
 		{
 			return true;
 		}
-		var loc2 = this.api.lang.getServerInfos(this._nID).rlng;
-		if(loc2 == undefined || (loc2.length == undefined || (loc2.length == 0 || this.api.config.skipLanguageVerification)))
+		var var2 = this.api.lang.getServerInfos(this._nID).rlng;
+		if(var2 == undefined || (var2.length == undefined || (var2.length == 0 || this.api.config.skipLanguageVerification)))
 		{
 			return true;
 		}
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(loc2[loc3].toUpperCase() == this.api.config.language.toUpperCase())
+			if(var2[var3].toUpperCase() == this.api.config.language.toUpperCase())
 			{
 				return true;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return false;
 	}

@@ -5,16 +5,16 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		return this.__get__data();
 	}
-	function setMiddlePrice(loc2, loc3)
+	function setMiddlePrice(var2, var3)
 	{
-		if(this._itvItemViewer.itemData.unicID == loc2 && this._itvItemViewer.itemData != undefined)
+		if(this._itvItemViewer.itemData.unicID == var2 && this._itvItemViewer.itemData != undefined)
 		{
-			this._lblMiddlePrice.text = this.api.lang.getText("BIGSTORE_MIDDLEPRICE",[loc3]);
+			this._lblMiddlePrice.text = this.api.lang.getText("BIGSTORE_MIDDLEPRICE",[var3]);
 		}
 	}
 	function init()
@@ -72,22 +72,22 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		this._winInventory.title = this.api.datacenter.Player.data.name;
 		this._winInventory2.title = this.api.lang.getText("SHOP_STOCK");
 	}
-	function populateComboBox(loc2)
+	function populateComboBox(var2)
 	{
-		var loc3 = new ank.utils.();
-		if(loc2 >= this._oData.quantity1)
+		var var3 = new ank.utils.();
+		if(var2 >= this._oData.quantity1)
 		{
-			loc3.push({label:"x" + this._oData.quantity1,index:1});
+			var3.push({label:"x" + this._oData.quantity1,index:1});
 		}
-		if(loc2 >= this._oData.quantity2)
+		if(var2 >= this._oData.quantity2)
 		{
-			loc3.push({label:"x" + this._oData.quantity2,index:2});
+			var3.push({label:"x" + this._oData.quantity2,index:2});
 		}
-		if(loc2 >= this._oData.quantity3)
+		if(var2 >= this._oData.quantity3)
 		{
-			loc3.push({label:"x" + this._oData.quantity3,index:3});
+			var3.push({label:"x" + this._oData.quantity3,index:3});
 		}
-		this._cbQuantity.dataProvider = loc3;
+		this._cbQuantity.dataProvider = var3;
 	}
 	function initData()
 	{
@@ -96,57 +96,57 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		this._livInventory.kamasProvider = this.api.datacenter.Player;
 		this.modelChanged();
 	}
-	function enableFilter(loc2)
+	function enableFilter(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc3 = new Array();
+			var var3 = new Array();
 			for(var i in this._oData.typesObj)
 			{
-				loc3.push(i);
+				var3.push(i);
 			}
-			this._livInventory.customInventoryFilter = new dofus.graphics.gapi.ui.bigstore.BigStoreSellFilter(Number(this._oData.maxLevel),loc3);
+			this._livInventory.customInventoryFilter = new dofus.graphics.gapi.ui.bigstore.BigStoreSellFilter(Number(this._oData.maxLevel),var3);
 		}
 		else
 		{
 			this._livInventory.customInventoryFilter = null;
 		}
-		this._btnFilterSell.selected = loc2;
-		this.api.kernel.OptionsManager.setOption("BigStoreSellFilter",loc2);
+		this._btnFilterSell.selected = var2;
+		this.api.kernel.OptionsManager.setOption("BigStoreSellFilter",var2);
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._itvItemViewer._visible = !loc2;
-		this._winItemViewer._visible = !loc2;
-		this._mcItemViewerDescriptionBack._visible = !loc2;
-		this._srBottom._visible = !loc2;
-		this._mcPrice._visible = !loc2;
-		this._mcKamaSymbol._visible = !loc2;
-		this._lblQuantity._visible = !loc2;
-		this._lblQuantityValue._visible = !loc2;
-		this._lblPrice._visible = !loc2;
-		this._lblTaxTime._visible = !loc2;
-		this._lblTaxTimeValue._visible = !loc2;
-		this._cbQuantity._visible = !loc2;
-		this._tiPrice._visible = !loc2;
-		this._mcMiddlePrice._visible = !loc2;
-		this._lblMiddlePrice._visible = !loc2;
-		if(loc2)
+		this._itvItemViewer._visible = !var2;
+		this._winItemViewer._visible = !var2;
+		this._mcItemViewerDescriptionBack._visible = !var2;
+		this._srBottom._visible = !var2;
+		this._mcPrice._visible = !var2;
+		this._mcKamaSymbol._visible = !var2;
+		this._lblQuantity._visible = !var2;
+		this._lblQuantityValue._visible = !var2;
+		this._lblPrice._visible = !var2;
+		this._lblTaxTime._visible = !var2;
+		this._lblTaxTimeValue._visible = !var2;
+		this._cbQuantity._visible = !var2;
+		this._tiPrice._visible = !var2;
+		this._mcMiddlePrice._visible = !var2;
+		this._lblMiddlePrice._visible = !var2;
+		if(var2)
 		{
 			this._oSelectedItem = undefined;
 		}
 	}
-	function setAddMode(loc2)
+	function setAddMode(var2)
 	{
-		this._btnAdd._visible = loc2;
-		this._mcSellArrow._visible = loc2;
-		this._mcPrice._visible = loc2;
-		this._cbQuantity._visible = loc2;
+		this._btnAdd._visible = var2;
+		this._mcSellArrow._visible = var2;
+		this._mcPrice._visible = var2;
+		this._cbQuantity._visible = var2;
 		this._lblQuantityValue._visible = false;
 		this._tiPrice.tabIndex = 0;
-		this._tiPrice.enabled = loc2;
+		this._tiPrice.enabled = var2;
 		this._oDefaultButton = this._btnAdd;
-		this._mcKamaSymbol._visible = loc2;
+		this._mcKamaSymbol._visible = var2;
 		this._lblTaxTime.text = this.api.lang.getText("BIGSTORE_TAX") + " :";
 		if(this._lblTaxTimeValue.text != undefined)
 		{
@@ -156,22 +156,22 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		{
 			this._txtBadType.text = "";
 		}
-		this._lblTaxTime._visible = loc2;
-		this._lblQuantity._visible = loc2;
-		this._lblPrice._visible = loc2;
-		this._srBottom._visible = loc2;
-		this._lblTaxTimeValue._visible = loc2;
-		this._tiPrice._visible = loc2;
+		this._lblTaxTime._visible = var2;
+		this._lblQuantity._visible = var2;
+		this._lblPrice._visible = var2;
+		this._srBottom._visible = var2;
+		this._lblTaxTimeValue._visible = var2;
+		this._tiPrice._visible = var2;
 	}
-	function setRemoveMode(loc2)
+	function setRemoveMode(var2)
 	{
-		this._btnRemove._visible = loc2;
-		this._mcBuyArrow._visible = loc2;
+		this._btnRemove._visible = var2;
+		this._mcBuyArrow._visible = var2;
 		this._mcPrice._visible = false;
 		this._cbQuantity._visible = false;
-		this._lblQuantityValue._visible = loc2;
+		this._lblQuantityValue._visible = var2;
 		this._tiPrice.tabIndex = 0;
-		this._tiPrice.enabled = !loc2;
+		this._tiPrice.enabled = !var2;
 		this._oDefaultButton = this._btnRemove;
 		this._mcKamaSymbol._visible = false;
 		this._lblTaxTime.text = this.api.lang.getText("BIGSTORE_TIME") + " :";
@@ -183,14 +183,14 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		{
 			this._txtBadType.text = "";
 		}
-		this._lblTaxTime._visible = loc2;
-		this._lblQuantity._visible = loc2;
-		this._lblPrice._visible = loc2;
-		this._srBottom._visible = loc2;
-		this._lblTaxTimeValue._visible = loc2;
-		this._tiPrice._visible = loc2;
+		this._lblTaxTime._visible = var2;
+		this._lblQuantity._visible = var2;
+		this._lblPrice._visible = var2;
+		this._srBottom._visible = var2;
+		this._lblTaxTimeValue._visible = var2;
+		this._tiPrice._visible = var2;
 	}
-	function setBadItemMode(loc2)
+	function setBadItemMode(var2)
 	{
 		this._btnRemove._visible = false;
 		this._mcBuyArrow._visible = false;
@@ -201,7 +201,7 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		this._tiPrice.enabled = false;
 		this._oDefaultButton = undefined;
 		this._mcKamaSymbol._visible = false;
-		this._txtBadType.text = loc2;
+		this._txtBadType.text = var2;
 		this._lblTaxTime._visible = false;
 		this._lblQuantity._visible = false;
 		this._lblPrice._visible = false;
@@ -209,9 +209,9 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		this._lblTaxTimeValue._visible = false;
 		this._tiPrice._visible = false;
 	}
-	function remove(loc2)
+	function remove(var2)
 	{
-		this.api.network.Exchange.movementItem(false,loc2.ID,loc2.Quantity);
+		this.api.network.Exchange.movementItem(false,var2.ID,var2.Quantity);
 	}
 	function calculateTax()
 	{
@@ -220,32 +220,32 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 			this._lblTaxTimeValue.text = "0";
 			return undefined;
 		}
-		var loc2 = Number(this._tiPrice.text);
-		var loc3 = Math.max(1,Math.round(loc2 * this._oData.tax / 100));
-		this._lblTaxTimeValue.text = String(!_global.isNaN(loc3)?loc3:0);
+		var var2 = Number(this._tiPrice.text);
+		var var3 = Math.max(1,Math.round(var2 * this._oData.tax / 100));
+		this._lblTaxTimeValue.text = String(!_global.isNaN(var3)?var3:0);
 	}
 	function updateItemCount()
 	{
 		this._winInventory2.title = this.api.lang.getText("SHOP_STOCK") + " (" + this._oData.inventory.length + "/" + this._oData.maxItemCount + ")";
 	}
-	function askSell(loc2, loc3, loc4)
+	function askSell(var2, var3, var4)
 	{
-		var loc5 = this._oData["quantity" + loc3];
-		var loc6 = this.gapi.loadUIComponent("AskYesNo","AskYesNoSell",{title:this.api.lang.getText("BIGSTORE"),text:this.api.lang.getText("DO_U_SELL_ITEM_BIGSTORE",["x" + loc5 + " " + loc2.name,loc4]),params:{itemID:loc2.ID,itemQuantity:loc2.Quantity,quantity:loc5,quantityIndex:loc3,price:loc4}});
-		loc6.addEventListener("yes",this);
+		var var5 = this._oData["quantity" + var3];
+		var var6 = this.gapi.loadUIComponent("AskYesNo","AskYesNoSell",{title:this.api.lang.getText("BIGSTORE"),text:this.api.lang.getText("DO_U_SELL_ITEM_BIGSTORE",["x" + var5 + " " + var2.name,var4]),params:{itemID:var2.ID,itemQuantity:var2.Quantity,quantity:var5,quantityIndex:var3,price:var4}});
+		var6.addEventListener("yes",this);
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG" && this._oSelectedItem != undefined)
+		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._oSelectedItem != undefined)
 		{
 			this.click({target:this._oDefaultButton});
 			return false;
 		}
 		return true;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnRemove":
 				this.remove(this._oSelectedItem);
@@ -253,19 +253,19 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 				this.setRemoveMode(false);
 				break;
 			case "_btnAdd":
-				var loc3 = Number(this._tiPrice.text);
-				var loc4 = Number(this._cbQuantity.selectedItem.index);
-				if(_global.isNaN(loc3) || loc3 == 0)
+				var var3 = Number(this._tiPrice.text);
+				var var4 = Number(this._cbQuantity.selectedItem.index);
+				if(_global.isNaN(var3) || var3 == 0)
 				{
 					this.gapi.loadUIComponent("AskOk","AksOkBadPrice",{title:this.api.lang.getText("ERROR_WORD"),text:this.api.lang.getText("ERROR_INVALID_PRICE")});
 				}
-				else if(_global.isNaN(loc4) || loc4 == 0)
+				else if(_global.isNaN(var4) || var4 == 0)
 				{
 					this.gapi.loadUIComponent("AskOk","AksOkBadQuantity",{title:this.api.lang.getText("ERROR_WORD"),text:this.api.lang.getText("ERROR_INVALID_QUANTITY")});
 				}
 				else
 				{
-					this.askSell(this._oSelectedItem,loc4,loc3);
+					this.askSell(this._oSelectedItem,var4,var3);
 				}
 				break;
 			case "_btnClose":
@@ -282,34 +282,34 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnTypes:
-				var loc3 = this.api.lang.getText("BIGSTORE_MAX_LEVEL") + " : " + this._oData.maxLevel;
-				loc3 = loc3 + ("\n" + this.api.lang.getText("BIGSTORE_TAX") + " : " + this._oData.tax + "%");
-				loc3 = loc3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_ITEM_PER_ACCOUNT") + " : " + this._oData.maxItemCount);
-				loc3 = loc3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_SELL_TIME") + " : " + this._oData.maxSellTime + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",this._oData.maxSellTime < 2));
-				loc3 = loc3 + ("\n\n" + this.api.lang.getText("BIGSTORE_TYPES") + " :");
-				var loc4 = this._oData.types;
-				for(var k in loc4)
+				var var3 = this.api.lang.getText("BIGSTORE_MAX_LEVEL") + " : " + this._oData.maxLevel;
+				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_TAX") + " : " + this._oData.tax + "%");
+				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_ITEM_PER_ACCOUNT") + " : " + this._oData.maxItemCount);
+				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_SELL_TIME") + " : " + this._oData.maxSellTime + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",this._oData.maxSellTime < 2));
+				var3 = var3 + ("\n\n" + this.api.lang.getText("BIGSTORE_TYPES") + " :");
+				var var4 = this._oData.types;
+				for(var k in var4)
 				{
-					loc3 = loc3 + ("\n - " + this.api.lang.getItemTypeText(loc4[k]).n);
+					var3 = var3 + ("\n - " + this.api.lang.getItemTypeText(var4[k]).n);
 				}
-				this.gapi.showTooltip(loc3,loc2.target,20);
+				this.gapi.showTooltip(var3,var2.target,20);
 				break;
 			case this._btnFilterSell:
-				this.gapi.showTooltip(this.api.lang.getText("BIGSTORE_SELL_FILTER_OVER"),loc2.target,20);
+				this.gapi.showTooltip(this.api.lang.getText("BIGSTORE_SELL_FILTER_OVER"),var2.target,20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function selectedItem(loc2)
+	function selectedItem(var2)
 	{
-		if(loc2.item == undefined)
+		if(var2.item == undefined)
 		{
 			this.hideItemViewer(true);
 			this.setAddMode(false);
@@ -317,22 +317,22 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 		}
 		else
 		{
-			this._oSelectedItem = loc2.item;
+			this._oSelectedItem = var2.item;
 			this.hideItemViewer(false);
-			this._itvItemViewer.itemData = loc2.item;
-			this.populateComboBox(loc2.item.Quantity);
-			var loc3 = loc2.item.type;
+			this._itvItemViewer.itemData = var2.item;
+			this.populateComboBox(var2.item.Quantity);
+			var var3 = var2.item.type;
 			if(this._lblMiddlePrice.text != undefined)
 			{
 				this._lblMiddlePrice.text = "";
 			}
-			if(!this._oData.typesObj[loc3])
+			if(!this._oData.typesObj[var3])
 			{
 				this.setAddMode(false);
 				this.setRemoveMode(false);
 				this.setBadItemMode(this.api.lang.getText("BIGSTORE_BAD_TYPE"));
 			}
-			else if(loc2.item.level > this._oData.maxLevel)
+			else if(var2.item.level > this._oData.maxLevel)
 			{
 				this.setAddMode(false);
 				this.setRemoveMode(false);
@@ -340,7 +340,7 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 			}
 			else
 			{
-				switch(loc2.target._name)
+				switch(var2.target._name)
 				{
 					case "_livInventory":
 						if(this._nQuantityIndex != undefined && this._cbQuantity.dataProvider.length >= this._nQuantityIndex)
@@ -369,23 +369,23 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 						this._tiPrice.setFocus();
 						break;
 					case "_livInventory2":
-						this._lblQuantityValue.text = "x" + String(loc2.item.Quantity);
+						this._lblQuantityValue.text = "x" + String(var2.item.Quantity);
 						this.setAddMode(false);
 						this.setRemoveMode(true);
-						this._tiPrice.text = loc2.item.price;
+						this._tiPrice.text = var2.item.price;
 						this._livInventory.setFilter(this._livInventory2.currentFilterID);
-						this._lblTaxTimeValue.text = loc2.item.remainingHours + "h";
+						this._lblTaxTimeValue.text = var2.item.remainingHours + "h";
 				}
-				this.api.network.Exchange.getItemMiddlePriceInBigStore(loc2.item.unicID);
+				this.api.network.Exchange.getItemMiddlePriceInBigStore(var2.item.unicID);
 			}
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		this._livInventory2.dataProvider = this._oData.inventory;
 		this.updateItemCount();
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		if(this._btnAdd._visible)
 		{
@@ -393,18 +393,18 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 			this.calculateTax();
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		this._nQuantityIndex = loc2.target.params.quantityIndex;
-		this.api.network.Exchange.movementItem(true,loc2.target.params.itemID,loc2.target.params.quantityIndex,loc2.target.params.price);
-		if(loc2.target.params.itemQuantity - loc2.target.params.quantity < loc2.target.params.quantity)
+		this._nQuantityIndex = var2.target.params.quantityIndex;
+		this.api.network.Exchange.movementItem(true,var2.target.params.itemID,var2.target.params.quantityIndex,var2.target.params.price);
+		if(var2.target.params.itemQuantity - var2.target.params.quantity < var2.target.params.quantity)
 		{
 			this.setAddMode(false);
 			this.hideItemViewer(true);
 		}
 		else
 		{
-			this.populateComboBox(loc2.target.params.itemQuantity - loc2.target.params.quantity);
+			this.populateComboBox(var2.target.params.itemQuantity - var2.target.params.quantity);
 		}
 	}
 }

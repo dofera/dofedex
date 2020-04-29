@@ -14,49 +14,49 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	static var FIGHT_TYPE_PvT = 5;
 	static var FIGHT_TYPE_PvMU = 6;
 	var _nFightTurnInactivity = 0;
-	function GameManager(loc3)
+	function GameManager(var3)
 	{
 		super();
 		dofus.managers.GameManager._sSelf = this;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	function __get__isFullScreen()
 	{
 		return this._bIsFullScreen;
 	}
-	function __set__isFullScreen(loc2)
+	function __set__isFullScreen(var2)
 	{
-		this._bIsFullScreen = loc2;
+		this._bIsFullScreen = var2;
 		return this.__get__isFullScreen();
 	}
 	function __get__isAllowingScale()
 	{
 		return this._bIsAllowingScale;
 	}
-	function __set__isAllowingScale(loc2)
+	function __set__isAllowingScale(var2)
 	{
-		this._bIsAllowingScale = loc2;
+		this._bIsAllowingScale = var2;
 		return this.__get__isAllowingScale();
 	}
-	function __set__lastSpellLaunch(loc2)
+	function __set__lastSpellLaunch(var2)
 	{
-		this._nLastSpellLaunch = loc2;
+		this._nLastSpellLaunch = var2;
 		return this.__get__lastSpellLaunch();
 	}
 	static function getInstance()
 	{
 		return dofus.managers.GameManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 		this.api.ui.addEventListener("removeCursor",this);
 	}
-	function askPrivateMessage(loc2)
+	function askPrivateMessage(var2)
 	{
-		var loc3 = this.api.ui.loadUIComponent("AskPrivateChat","AskPrivateChat",{title:this.api.lang.getText("WISPER_MESSAGE") + " " + this.api.lang.getText("TO_DESTINATION") + " " + loc2,params:{playerName:loc2}});
-		loc3.addEventListener("send",this);
-		loc3.addEventListener("addfriend",this);
+		var var3 = this.api.ui.loadUIComponent("AskPrivateChat","AskPrivateChat",{title:this.api.lang.getText("WISPER_MESSAGE") + " " + this.api.lang.getText("TO_DESTINATION") + " " + var2,params:{playerName:var2}});
+		var3.addEventListener("send",this);
+		var3.addEventListener("addfriend",this);
 	}
 	function giveUpGame()
 	{
@@ -73,105 +73,113 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	{
 		this.api.network.Exchange.askOfflineExchange();
 	}
-	function askOfflineExchange(loc2, loc3, loc4)
+	function askOfflineExchange(var2, var3, var4)
 	{
-		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_OFFLINEEXCHANGE",[loc2,tax,loc4]),"CAUTION_YESNO",{name:"OfflineExchange",listener:this,price:loc4});
+		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_OFFLINEEXCHANGE",[var2,tax,var4]),"CAUTION_YESNO",{name:"OfflineExchange",listener:this,price:var4});
 	}
-	function startExchange(loc2, loc3, loc4)
+	function startExchange(var2, var3, var4)
 	{
-		var loc5 = this.api.datacenter.Player.data;
-		if(loc5.isInMove)
+		var var5 = this.api.datacenter.Player.data;
+		if(var5.isInMove)
 		{
-			loc5.isInMove = false;
-			loc5.GameActionsManager.cancel(loc5.cellNum,true);
+			var5.isInMove = false;
+			var5.GameActionsManager.cancel(var5.cellNum,true);
 		}
-		this.api.network.Exchange.request(loc2,Number(loc3),loc4);
+		this.api.network.Exchange.request(var2,Number(var3),var4);
 	}
-	function startDialog(loc2)
+	function startDialog(var2)
 	{
-		var loc3 = this.api.datacenter.Player.data;
-		if(loc3.isInMove)
+		var var3 = this.api.datacenter.Player.data;
+		if(var3.isInMove)
 		{
-			loc3.isInMove = false;
-			loc3.GameActionsManager.cancel(loc3.cellNum,true);
+			var3.isInMove = false;
+			var3.GameActionsManager.cancel(var3.cellNum,true);
 		}
-		this.api.network.Dialog.create(loc2);
+		this.api.network.Dialog.create(var2);
 	}
-	function askAttack(loc2)
+	function askAttack(var2)
 	{
-		var loc3 = this.api.datacenter.Sprites.getItemAt(loc2);
-		var loc4 = "";
+		var var3 = this.api.datacenter.Sprites.getItemAt(var2);
+		var var4 = "";
 		if(!this.api.datacenter.Player.rank.enable)
 		{
-			loc4 = loc4 + this.api.lang.getText("DO_U_ATTACK_WHEN_PVP_DISABLED");
+			var4 = var4 + this.api.lang.getText("DO_U_ATTACK_WHEN_PVP_DISABLED");
 		}
-		if(loc3.rank.value == 0)
+		if(var3.rank.value == 0)
 		{
-			if(loc4 != "")
+			if(var4 != "")
 			{
-				loc4 = loc4 + "\n\n";
+				var4 = var4 + "\n\n";
 			}
-			loc4 = loc4 + this.api.lang.getText("DO_U_ATTACK_NEUTRAL");
+			var4 = var4 + this.api.lang.getText("DO_U_ATTACK_NEUTRAL");
 		}
-		if(loc4 != "")
+		if(var4 != "")
 		{
-			loc4 = loc4 + "\n\n";
+			var4 = var4 + "\n\n";
 		}
 		if(!this.api.lang.getConfigText("SHOW_PVP_GAIN_WARNING_POPUP"))
 		{
-			loc3.pvpGain = 0;
+			var3.pvpGain = 0;
 		}
-		switch(loc3.pvpGain)
+		switch(var3.pvpGain)
 		{
 			case -1:
-				loc4 = loc4 + this.api.lang.getText("DO_U_ATTACK_NO_GAIN",[loc3.name]);
+				var4 = var4 + this.api.lang.getText("DO_U_ATTACK_NO_GAIN",[var3.name]);
 				break;
 			case 1:
-				loc4 = loc4 + this.api.lang.getText("DO_U_ATTACK_BONUS_GAIN",[loc3.name]);
+				var4 = var4 + this.api.lang.getText("DO_U_ATTACK_BONUS_GAIN",[var3.name]);
 				break;
 			default:
-				loc4 = loc4 + this.api.lang.getText("DO_U_ATTACK",[loc3.name]);
+				var4 = var4 + this.api.lang.getText("DO_U_ATTACK",[var3.name]);
 		}
-		this.api.kernel.showMessage(undefined,loc4,"CAUTION_YESNO",{name:"Punish",listener:this,params:{spriteID:loc2}});
+		this.api.kernel.showMessage(undefined,var4,"CAUTION_YESNO",{name:"Punish",listener:this,params:{spriteID:var2}});
 	}
-	function askRemoveTaxCollector(loc2)
+	function askRemoveTaxCollector(var2)
 	{
-		var loc3 = this.api.datacenter.Sprites.getItemAt(loc2).name;
-		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_REMOVE_TAXCOLLECTOR",[loc3]),"CAUTION_YESNO",{name:"RemoveTaxCollector",listener:this,params:{spriteID:loc2}});
+		var var3 = this.api.datacenter.Sprites.getItemAt(var2).name;
+		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_REMOVE_TAXCOLLECTOR",[var3]),"CAUTION_YESNO",{name:"RemoveTaxCollector",listener:this,params:{spriteID:var2}});
 	}
-	function useRessource(loc2, loc3, loc4)
+	function useRessource(var2, var3, var4)
 	{
-		if(this.api.gfx.onCellRelease(loc2))
+		if(this.api.gfx.onCellRelease(var2))
 		{
-			this.api.network.GameActions.sendActions(500,[loc3,loc4]);
+			this.api.network.GameActions.sendActions(500,[var3,var4]);
 		}
 	}
-	function useSkill(loc2)
+	function useSkill(var2)
 	{
-		this.api.network.GameActions.sendActions(507,[loc2]);
+		this.api.network.GameActions.sendActions(507,[var2]);
 	}
-	function setEnabledInteractionIfICan(loc2)
+	function setEnabledInteractionIfICan(var2)
 	{
 		if(this.api.datacenter.Player.isCurrentPlayer)
 		{
-			this.api.gfx.setInteraction(loc2);
+			this.api.gfx.setInteraction(var2);
 		}
 	}
-	function cleanPlayer(loc2)
+	function cleanPlayer(var2)
 	{
-		if(loc2 != this.api.datacenter.Game.currentPlayerID)
+		if(var2 != this.api.datacenter.Game.currentPlayerID)
 		{
-			var loc3 = this.api.datacenter.Sprites.getItemAt(loc2);
-			loc3.EffectsManager.nextTurn();
-			loc3.CharacteristicsManager.nextTurn();
-			loc3.GameActionsManager.clear();
+			var var3 = this.api.datacenter.Sprites.getItemAt(var2);
+			var3.EffectsManager.nextTurn();
+			var3.CharacteristicsManager.nextTurn();
+			var3.GameActionsManager.clear();
 		}
 	}
-	function cleanUpGameArea(loc2)
+	function cleanUpGameArea(var2)
 	{
-		if(loc2)
+		if(var2 && this.api.datacenter.Game.isRunning)
 		{
-			this.api.gfx.unSelect(true);
+			if(this.api.datacenter.Game.interactionType == dofus.datacenter.Game.INTERACTION_TYPE_SPELL)
+			{
+				var var3 = this.api.datacenter.Player.currentUseObject;
+				if(var3 != null)
+				{
+					this.switchToSpellLaunch(var3,true);
+					return undefined;
+				}
+			}
 		}
 		this.api.ui.removeCursor();
 		this.api.ui.getUIComponent("Banner").hideRightPanel();
@@ -201,7 +209,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.gfx.cleanMap();
 		this.api.network.Game.onLeave();
 	}
-	function switchToItemTarget(loc2)
+	function switchToItemTarget(var2)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
@@ -210,10 +218,10 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.gfx.unSelect(true);
 		this.api.gfx.clearPointer();
 		this.api.gfx.addPointerShape("C",0,dofus.Constants.CELL_SPELL_EFFECT_COLOR,this.api.datacenter.Player.data.cellNum);
-		this.api.datacenter.Player.currentUseObject = loc2;
+		this.api.datacenter.Player.currentUseObject = var2;
 		this.api.datacenter.Game.setInteractionType("target");
 		this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT);
-		this.api.ui.setCursor(loc2,{width:25,height:25,x:15,y:15});
+		this.api.ui.setCursor(var2,{width:25,height:25,x:15,y:15});
 		this.api.datacenter.Basics.gfx_canLaunch = false;
 		dofus.DofusCore.getInstance().forceMouseOver();
 	}
@@ -232,15 +240,11 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.datacenter.Basics.gfx_canLaunch = false;
 		dofus.DofusCore.getInstance().forceMouseOver();
 	}
-	function switchToSpellLaunch(loc2, loc3, loc4)
+	function switchToSpellLaunch(var2, var3, var4)
 	{
-		if(loc4 != true)
+		if(var4 != true)
 		{
 			if(!this.api.datacenter.Game.isRunning)
-			{
-				return undefined;
-			}
-			if(this.api.datacenter.Player.data.sequencer.isPlaying())
 			{
 				return undefined;
 			}
@@ -256,7 +260,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			{
 				return undefined;
 			}
-			if(!this.api.datacenter.Player.SpellsManager.checkCanLaunchSpell(loc2.ID,undefined))
+			if(!this.api.datacenter.Player.SpellsManager.checkCanLaunchSpell(var2.ID,undefined))
 			{
 				if(this.api.datacenter.Basics.spellManager_errorMsg != undefined)
 				{
@@ -266,49 +270,50 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 				return undefined;
 			}
 		}
-		this.api.datacenter.Player.isCurrentSpellForced = loc4;
+		this.api.gfx.mapHandler.resetEmptyCells();
+		this.api.datacenter.Player.isCurrentSpellForced = var4;
 		delete this.api.datacenter.Basics.interactionsManager_path;
 		this.api.gfx.unSelect(true);
-		this.api.datacenter.Player.currentUseObject = loc2;
+		this.api.datacenter.Player.currentUseObject = var2;
 		this.api.gfx.clearZoneLayer("spell");
 		this.api.gfx.clearPointer();
-		var loc5 = this.api.datacenter.Player.data.cellNum;
-		if(loc2.rangeMax != 63)
+		var var5 = this.api.datacenter.Player.data.cellNum;
+		if(var2.rangeMax != 63)
 		{
-			var loc6 = loc2.rangeMax;
-			var loc7 = loc2.rangeMin;
-			if(loc6 != 0)
+			var var6 = var2.rangeMax;
+			var var7 = var2.rangeMin;
+			if(var6 != 0)
 			{
-				var loc8 = !loc2.canBoostRange?0:this.api.datacenter.Player.data.CharacteristicsManager.getModeratorValue(19) + this.api.datacenter.Player.RangeModerator;
-				loc6 = loc6 + loc8;
-				loc6 = Math.max(loc7,loc6);
+				var var8 = !var2.canBoostRange?0:this.api.datacenter.Player.data.CharacteristicsManager.getModeratorValue(19) + this.api.datacenter.Player.RangeModerator;
+				var6 = var6 + var8;
+				var6 = Math.max(var7,var6);
 			}
-			if(loc2.lineOnly)
+			if(var2.lineOnly)
 			{
-				this.api.gfx.drawZone(loc5,loc7,loc6,"spell",dofus.Constants.CELL_SPELL_RANGE_COLOR,"X");
-				this.drawAllowedZone(true,loc5,loc7,loc6);
+				this.api.gfx.drawZone(var5,var7,var6,"spell",dofus.Constants.CELL_SPELL_RANGE_COLOR,"X");
+				this.drawAllowedZone(true,var5,var7,var6);
 			}
 			else
 			{
-				this.api.gfx.drawZone(loc5,loc7,loc6,"spell",dofus.Constants.CELL_SPELL_RANGE_COLOR,"C");
-				this.drawAllowedZone(false,loc5,loc7,loc6);
+				this.api.gfx.drawZone(var5,var7,var6,"spell",dofus.Constants.CELL_SPELL_RANGE_COLOR,"C");
+				this.drawAllowedZone(false,var5,var7,var6);
 			}
 		}
 		else
 		{
 			this.api.gfx.drawZone(0,0,100,"spell",dofus.Constants.CELL_SPELL_RANGE_COLOR,"C");
 		}
-		var loc9 = loc2.effectZones;
-		var loc10 = 0;
-		while(loc10 < loc9.length)
+		var var9 = var2.effectZones;
+		var var10 = 0;
+		while(var10 < var9.length)
 		{
-			if(loc9[loc10].size < 63)
+			if(var9[var10].size < 63)
 			{
-				this.api.gfx.addPointerShape(loc9[loc10].shape,loc9[loc10].size,dofus.Constants.CELL_SPELL_EFFECT_COLOR,loc5);
+				this.api.gfx.addPointerShape(var9[var10].shape,var9[var10].size,dofus.Constants.CELL_SPELL_EFFECT_COLOR,var5);
 			}
-			loc10 = loc10 + 1;
+			var10 = var10 + 1;
 		}
-		if(loc3)
+		if(var3)
 		{
 			this.api.datacenter.Game.setInteractionType("spell");
 		}
@@ -316,158 +321,155 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		{
 			this.api.datacenter.Game.setInteractionType("cc");
 		}
-		this.api.ui.setCursor(loc2,{width:25,height:25,x:15,y:15});
+		this.api.ui.setCursor(var2,{width:25,height:25,x:15,y:15});
 		this.api.ui.setCursorForbidden(true,dofus.Constants.FORBIDDEN_FILE);
 		this.api.datacenter.Basics.gfx_canLaunch = false;
 		dofus.DofusCore.getInstance().forceMouseOver();
 	}
-	function drawAllowedZone(lineOnly, §\x1e\x19\x12§, §\r\x14§, §\x1e\x18\x1b§)
+	function drawAllowedZone(lineOnly, §\x1e\x19\x10§, §\r\x12§, §\x1e\x18\x19§)
 	{
 		if(!this.api.kernel.OptionsManager.getOption("AdvancedLineOfSight"))
 		{
 			return undefined;
 		}
-		var loc6 = this.api.gfx.mapHandler.getCellCount();
-		var loc7 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(this.api.gfx.mapHandler,loc3);
-		var loc8 = !this.api.datacenter.Player.currentUseObject.canBoostRange?0:this.api.datacenter.Player.data.CharacteristicsManager.getModeratorValue(19) + this.api.datacenter.Player.RangeModerator;
-		var loc9 = 0;
-		for(; loc9 < loc6; loc9 = loc9 + 1)
+		var var6 = this.api.gfx.mapHandler.getCellCount();
+		var var7 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(this.api.gfx.mapHandler,var3);
+		var var8 = !this.api.datacenter.Player.currentUseObject.canBoostRange?0:this.api.datacenter.Player.data.CharacteristicsManager.getModeratorValue(19) + this.api.datacenter.Player.RangeModerator;
+		var var9 = 0;
+		for(; var9 < var6; var9 = var9 + 1)
 		{
-			var loc10 = ank.battlefield.utils.Pathfinding.goalDistance(this.api.gfx.mapHandler,loc3,loc9);
-			if(loc10 >= loc4 && loc10 <= loc5)
+			var var10 = ank.battlefield.utils.Pathfinding.goalDistance(this.api.gfx.mapHandler,var3,var9);
+			if(var10 >= var4 && var10 <= var5)
 			{
 				if(lineOnly)
 				{
-					var loc11 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(this.api.gfx.mapHandler,loc9);
-					if(loc11.x != loc7.x && loc11.y != loc7.y)
+					var var11 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(this.api.gfx.mapHandler,var9);
+					if(var11.x != var7.x && var11.y != var7.y)
 					{
 						continue;
 					}
 				}
-				if(this.api.datacenter.Player.SpellsManager.checkCanLaunchSpellOnCell(this.api.gfx.mapHandler,this.api.datacenter.Player.currentUseObject,this.api.gfx.mapHandler.getCellData(loc9),loc8))
+				if(this.api.datacenter.Player.SpellsManager.checkCanLaunchSpellOnCell(this.api.gfx.mapHandler,this.api.datacenter.Player.currentUseObject,this.api.gfx.mapHandler.getCellData(var9),var8))
 				{
-					this.api.gfx.select(loc9,26316,"spell",50);
+					this.api.gfx.select(var9,26316,"spell",50);
 				}
 			}
 		}
 	}
 	function showDisgraceSanction()
 	{
-		var loc2 = this.api.datacenter.Player.rank.disgrace;
-		if(loc2 > 0)
+		var var2 = this.api.datacenter.Player.rank.disgrace;
+		if(var2 > 0)
 		{
-			var loc3 = "";
-			var loc4 = 1;
-			while(loc4 <= loc2)
+			var var3 = "";
+			var var4 = 1;
+			while(var4 <= var2)
 			{
-				var loc5 = this.api.lang.getText("DISGRACE_SANCTION_" + loc4);
-				if(loc5 != undefined && (loc5 != "undefined" && loc5.charAt(0) != "!"))
+				var var5 = this.api.lang.getText("DISGRACE_SANCTION_" + var4);
+				if(var5 != undefined && (var5 != "undefined" && var5.charAt(0) != "!"))
 				{
-					loc3 = loc3 + ("\n\n" + loc5);
+					var3 = var3 + ("\n\n" + var5);
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
-			if(loc3 != "")
+			if(var3 != "")
 			{
-				loc3 = this.api.lang.getText("DISGRACE_SANCTION",[ank.utils.PatternDecoder.combine(this.api.lang.getText("POINTS",[loc2]),"m",loc2 < 2)]) + loc3;
-				this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),loc3,"ERROR_BOX");
+				var3 = this.api.lang.getText("DISGRACE_SANCTION",[ank.utils.PatternDecoder.combine(this.api.lang.getText("POINTS",[var2]),"m",var2 < 2)]) + var3;
+				this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),var3,"ERROR_BOX");
 			}
 		}
 	}
-	function getSpellDescriptionWithEffects(loc2, loc3, loc4)
+	function getSpellDescriptionWithEffects(var2, var3, var4)
 	{
-		var loc5 = new Array();
-		var loc6 = loc2.length;
-		if(typeof loc2 == "object")
+		var var5 = new Array();
+		var var6 = var2.length;
+		if(typeof var2 == "object")
 		{
-			var loc7 = 0;
-			while(loc7 < loc6)
+			var var7 = 0;
+			while(var7 < var6)
 			{
-				var loc8 = loc2[loc7];
-				var loc9 = loc8[0];
-				var loc10 = !(loc4 > 0 && this.api.kernel.SpellsBoostsManager.isBoostedHealingOrDamagingEffect(loc9))?-1:this.api.kernel.SpellsBoostsManager.getSpellModificator(loc9,loc4);
-				var loc11 = new dofus.datacenter.(loc9,loc8[1],loc8[2],loc8[3],undefined,loc8[4],undefined,loc10);
-				if(loc3 == true)
+				var var8 = var2[var7];
+				var var9 = var8[0];
+				var var10 = !(var4 > 0 && this.api.kernel.SpellsBoostsManager.isBoostedHealingOrDamagingEffect(var9))?-1:this.api.kernel.SpellsBoostsManager.getSpellModificator(var9,var4);
+				var var11 = new dofus.datacenter.(var9,var8[1],var8[2],var8[3],undefined,var8[4],undefined,var10);
+				if(var3 == true)
 				{
-					if(loc11.showInTooltip)
+					if(var11.showInTooltip)
 					{
-						loc5.push(loc11.description);
+						var5.push(var11.description);
 					}
 				}
 				else
 				{
-					loc5.push(loc11.description);
+					var5.push(var11.description);
 				}
-				loc7 = loc7 + 1;
+				var7 = var7 + 1;
 			}
-			return loc5.join(", ");
+			return var5.join(", ");
 		}
 		return null;
 	}
-	function getSpellEffects(loc2, loc3)
+	function getSpellEffects(var2, var3)
 	{
-		var loc4 = new Array();
-		var loc5 = loc2.length;
-		if(typeof loc2 == "object")
+		var var4 = new Array();
+		var var5 = var2.length;
+		if(typeof var2 == "object")
 		{
-			var loc6 = 0;
-			while(loc6 < loc5)
+			var var6 = 0;
+			while(var6 < var5)
 			{
-				var loc7 = loc2[loc6];
-				var loc8 = loc7[0];
-				var loc9 = -1;
-				if(loc3 > 0)
+				var var7 = var2[var6];
+				var var8 = var7[0];
+				var var9 = -1;
+				if(var3 > 0)
 				{
-					if(this.api.kernel.SpellsBoostsManager.isBoostedHealingEffect(loc8))
+					if(this.api.kernel.SpellsBoostsManager.isBoostedHealingEffect(var8))
 					{
-						loc9 = this.api.kernel.SpellsBoostsManager.getSpellModificator(dofus.managers.SpellsBoostsManager.ACTION_BOOST_SPELL_HEAL,loc3);
+						var9 = this.api.kernel.SpellsBoostsManager.getSpellModificator(dofus.managers.SpellsBoostsManager.ACTION_BOOST_SPELL_HEAL,var3);
 					}
-					else if(this.api.kernel.SpellsBoostsManager.isBoostedDamagingEffect(loc8))
+					else if(this.api.kernel.SpellsBoostsManager.isBoostedDamagingEffect(var8))
 					{
-						loc9 = this.api.kernel.SpellsBoostsManager.getSpellModificator(dofus.managers.SpellsBoostsManager.ACTION_BOOST_SPELL_DMG,loc3);
+						var9 = this.api.kernel.SpellsBoostsManager.getSpellModificator(dofus.managers.SpellsBoostsManager.ACTION_BOOST_SPELL_DMG,var3);
 					}
 				}
-				var loc10 = new dofus.datacenter.(loc8,loc7[1],loc7[2],loc7[3],loc7[6],loc7[4],undefined,loc9);
-				loc10.probability = loc7[5];
-				loc4.push(loc10);
-				loc6 = loc6 + 1;
+				var var10 = new dofus.datacenter.(var8,var7[1],var7[2],var7[3],var7[6],var7[4],undefined,var9);
+				var10.probability = var7[5];
+				var4.push(var10);
+				var6 = var6 + 1;
 			}
-			return loc4;
+			return var4;
 		}
 		return null;
 	}
-	function removeCursor(loc2)
+	function removeCursor(var2)
 	{
-		switch(this.api.datacenter.Game.interactionType)
+		if((var var0 = this.api.datacenter.Game.interactionType) !== 2)
 		{
-			case 2:
-			case 3:
-				if(!this.api.datacenter.Basics.gfx_canLaunch)
-				{
-					this.api.datacenter.Game.setInteractionType("move");
-				}
-				this.api.gfx.clearZoneLayer("spell");
-				this.api.gfx.clearPointer();
-				this.api.gfx.unSelect(true);
-				break;
-			default:
-				if(loc0 !== 5)
-				{
+			switch(null)
+			{
+				case 3:
 					break;
-				}
-				if(!this.api.datacenter.Basics.gfx_canLaunch)
-				{
-					this.api.datacenter.Game.setInteractionType("move");
-				}
-				this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_RELEASE);
-				this.api.gfx.clearPointer();
-				this.api.gfx.unSelectAllButOne("startPosition");
-				break;
+				case 5:
+					if(!this.api.datacenter.Basics.gfx_canLaunch)
+					{
+						this.api.datacenter.Game.setInteractionType("move");
+					}
+					this.api.gfx.setInteraction(ank.battlefield.Constants.INTERACTION_CELL_RELEASE);
+					this.api.gfx.clearPointer();
+					this.api.gfx.unSelectAllButOne("startPosition");
+			}
 		}
+		if(!this.api.datacenter.Basics.gfx_canLaunch)
+		{
+			this.api.datacenter.Game.setInteractionType("move");
+		}
+		this.api.gfx.clearZoneLayer("spell");
+		this.api.gfx.clearPointer();
+		this.api.gfx.unSelect(true);
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesNoGiveUp":
 				this.api.network.Game.leave();
@@ -475,382 +477,387 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			case "AskYesNoOfflineExchange":
 				this.api.network.Exchange.offlineExchange();
 				break;
-			case "AskYesNoPunish":
-				this.api.network.GameActions.attack(loc2.params.spriteID);
-				break;
 			default:
 				switch(null)
 				{
+					case "AskYesNoPunish":
+						this.api.network.GameActions.attack(var2.params.spriteID);
+						break;
 					case "AskYesNoAttack":
-						this.api.network.GameActions.attack(loc2.params.spriteID);
+						this.api.network.GameActions.attack(var2.params.spriteID);
 						break;
 					case "AskYesNoRemoveTaxCollector":
-						this.api.network.Guild.removeTaxCollector(loc2.params.spriteID);
+						this.api.network.Guild.removeTaxCollector(var2.params.spriteID);
 				}
 		}
 	}
-	function send(loc2)
+	function send(var2)
 	{
-		if(loc2.message.length != 0)
+		if(var2.message.length != 0)
 		{
-			this.api.kernel.Console.process("/w " + loc2.params.playerName + " " + loc2.message);
+			this.api.kernel.Console.process("/w " + var2.params.playerName + " " + var2.message);
 		}
 	}
-	function addfriend(loc2)
+	function addfriend(var2)
 	{
-		this.api.network.Friends.addFriend(loc2.params.playerName);
+		this.api.network.Friends.addFriend(var2.params.playerName);
 	}
-	function updateCompass(loc2, loc3, loc4)
+	function updateCompass(var2, var3, var4)
 	{
-		var loc5 = this.api.ui.getUIComponent("Banner");
-		if(!loc4 && (this.api.datacenter.Basics.banner_targetCoords[0] == loc2 && this.api.datacenter.Basics.banner_targetCoords[1] == loc3) || (_global.isNaN(loc2) || _global.isNaN(loc3)))
+		var var5 = this.api.ui.getUIComponent("Banner");
+		if(!var4 && (this.api.datacenter.Basics.banner_targetCoords[0] == var2 && this.api.datacenter.Basics.banner_targetCoords[1] == var3) || (_global.isNaN(var2) || _global.isNaN(var3)))
 		{
 			this.api.datacenter.Basics.banner_targetCoords = undefined;
 			delete this.api.datacenter.Basics.banner_targetCoords;
-			if(loc5.illustrationType != "map")
+			if(var5.illustrationType != "map")
 			{
-				loc5.showCircleXtra("artwork",true,{bMask:true});
+				var5.showCircleXtra("artwork",true,{bMask:true});
 			}
 			return false;
 		}
-		var loc6 = this.api.datacenter.Map;
-		if(loc5.illustrationType != "map")
+		var var6 = this.api.datacenter.Map;
+		if(var5.illustrationType != "map")
 		{
-			loc5.showCircleXtra("compass",true,undefined,{updateOnLoad:false});
+			var5.showCircleXtra("compass",true,undefined,{updateOnLoad:false});
 		}
-		loc5.setCircleXtraParams({allCoords:{targetCoords:[loc2,loc3],currentCoords:[loc6.x,loc6.y]}});
-		this.api.datacenter.Basics.banner_targetCoords = [loc2,loc3];
+		var5.setCircleXtraParams({allCoords:{targetCoords:[var2,var3],currentCoords:[var6.x,var6.y]}});
+		this.api.datacenter.Basics.banner_targetCoords = [var2,var3];
 		return true;
 	}
-	function isItemUseful(loc2, loc3, loc4)
+	function isItemUseful(var2, var3, var4)
 	{
-		var loc5 = this.api.lang.getSkillText(loc3).cl;
-		var loc6 = 0;
-		while(loc6 < loc5.length)
+		var var5 = this.api.lang.getSkillText(var3).cl;
+		var var6 = 0;
+		while(var6 < var5.length)
 		{
-			var loc7 = loc5[loc6];
-			var loc8 = this.api.lang.getCraftText(loc7);
-			if(loc8.length <= loc4)
+			var var7 = var5[var6];
+			var var8 = this.api.lang.getCraftText(var7);
+			if(var8.length <= var4)
 			{
-				var loc9 = 0;
-				while(loc9 < loc8.length)
+				var var9 = 0;
+				while(var9 < var8.length)
 				{
-					if(loc8[loc9][0] == loc2)
+					if(var8[var9][0] == var2)
 					{
 						return true;
 					}
-					loc9 = loc9 + 1;
+					var9 = var9 + 1;
 				}
 			}
-			loc6 = loc6 + 1;
+			var6 = var6 + 1;
 		}
 		return false;
 	}
-	function analyseReceipts(loc2, loc3, loc4)
+	function analyseReceipts(var2, var3, var4)
 	{
-		var loc5 = this.api.lang.getSkillText(loc3).cl;
-		var loc6 = 0;
-		while(loc6 < loc5.length)
+		var var5 = this.api.lang.getSkillText(var3).cl;
+		var var6 = 0;
+		while(true)
 		{
-			var loc7 = loc5[loc6];
-			var loc8 = this.api.lang.getCraftText(loc7);
-			if(loc8.length <= loc4)
+			if(var6 < var5.length)
 			{
-				var loc9 = 0;
-				var loc10 = 0;
-				while(loc10 < loc8.length)
+				var var7 = var5[var6];
+				var var8 = this.api.lang.getCraftText(var7);
+				if(var8.length <= var4)
 				{
-					var loc11 = loc8[loc10];
-					var loc12 = loc11[0];
-					var loc13 = loc11[1];
-					var loc14 = loc2.findFirstItem("unicID",loc12);
-					if(loc14.index != -1 && loc14.item.Quantity == loc13)
+					var var9 = 0;
+					var var10 = 0;
+					while(var10 < var8.length)
 					{
-						loc9 = loc9 + 1;
-						loc10 = loc10 + 1;
-						continue;
-					}
-					break;
-				}
-				if(loc9 == loc8.length)
-				{
-					if(loc2.length == loc8.length)
-					{
-						return loc7;
-					}
-					if(loc2.length == loc8.length + 1)
-					{
-						if(loc2.findFirstItem("unicID",7508).index != -1)
+						var var11 = var8[var10];
+						var var12 = var11[0];
+						var var13 = var11[1];
+						var var14 = var2.findFirstItem("unicID",var12);
+						if(var14.index != -1 && var14.item.Quantity == var13)
 						{
-							return loc7;
+							var9 = var9 + 1;
+							var10 = var10 + 1;
+							continue;
+						}
+						break;
+					}
+					if(var9 == var8.length)
+					{
+						if(var2.length == var8.length)
+						{
+							break;
+						}
+						if(var2.length == var8.length + 1)
+						{
+							if(var2.findFirstItem("unicID",7508).index != -1)
+							{
+								return var7;
+							}
 						}
 					}
 				}
+				var6 = var6 + 1;
+				continue;
 			}
-			loc6 = loc6 + 1;
+			return undefined;
 		}
-		return undefined;
+		return var7;
 	}
-	function mergeTwoInventory(loc2, loc3)
+	function mergeTwoInventory(var2, var3)
 	{
-		var loc4 = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < loc2.length)
+		var var4 = new ank.utils.();
+		var var5 = 0;
+		while(var5 < var2.length)
 		{
-			loc4.push(loc2[loc5]);
-			loc5 = loc5 + 1;
+			var4.push(var2[var5]);
+			var5 = var5 + 1;
 		}
-		var loc6 = 0;
-		while(loc6 < loc3.length)
+		var var6 = 0;
+		while(var6 < var3.length)
 		{
-			loc4.push(loc3[loc6]);
-			loc6 = loc6 + 1;
+			var4.push(var3[var6]);
+			var6 = var6 + 1;
 		}
-		return loc4;
+		return var4;
 	}
 	function mergeUnicItemInInventory(inventory)
 	{
-		var loc3 = new ank.utils.();
-		var loc4 = new Object();
-		var loc5 = 0;
-		while(loc5 < inventory.length)
+		var var3 = new ank.utils.();
+		var var4 = new Object();
+		var var5 = 0;
+		while(var5 < inventory.length)
 		{
-			var loc6 = inventory[loc5];
-			if(loc4[loc6.unicID] == undefined)
+			var var6 = inventory[var5];
+			if(var4[var6.unicID] == undefined)
 			{
-				loc4[loc6.unicID] = loc6.clone();
+				var4[var6.unicID] = var6.clone();
 			}
 			else
 			{
-				loc4[loc6.unicID].Quantity = loc4[loc6.unicID].Quantity + loc6.Quantity;
+				var4[var6.unicID].Quantity = var4[var6.unicID].Quantity + var6.Quantity;
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		for(var a in loc4)
+		for(var a in var4)
 		{
-			loc3.push(loc4[a]);
+			var3.push(var4[a]);
 		}
-		return loc3;
+		return var3;
 	}
-	function getRemainingString(loc2)
+	function getRemainingString(var2)
 	{
-		if(loc2 == -1)
+		if(var2 == -1)
 		{
 			return this.api.lang.getText("OPEN_BETA_ACCOUNT");
 		}
-		if(loc2 == 0)
+		if(var2 == 0)
 		{
 			return this.api.lang.getText("SUBSCRIPTION_OUT");
 		}
-		var loc3 = new Date();
-		loc3.setTime(loc2);
-		var loc4 = loc3.getUTCFullYear() - 1970;
-		var loc5 = loc3.getUTCMonth();
-		var loc6 = loc3.getUTCDate() - 1;
-		var loc7 = loc3.getUTCHours();
-		var loc8 = loc3.getUTCMinutes();
-		var loc9 = " " + this.api.lang.getText("AND") + " ";
-		var loc10 = this.api.lang.getText("REMAINING_TIME") + " ";
-		if(loc4 != 0 && loc5 == 0)
+		var var3 = new Date();
+		var3.setTime(var2);
+		var var4 = var3.getUTCFullYear() - 1970;
+		var var5 = var3.getUTCMonth();
+		var var6 = var3.getUTCDate() - 1;
+		var var7 = var3.getUTCHours();
+		var var8 = var3.getUTCMinutes();
+		var var9 = " " + this.api.lang.getText("AND") + " ";
+		var var10 = this.api.lang.getText("REMAINING_TIME") + " ";
+		if(var4 != 0 && var5 == 0)
 		{
-			var loc11 = ank.utils.PatternDecoder.combine(this.api.lang.getText("YEARS"),"m",loc4 == 1);
-			loc10 = loc10 + (loc4 + " " + loc11);
+			var var11 = ank.utils.PatternDecoder.combine(this.api.lang.getText("YEARS"),"m",var4 == 1);
+			var10 = var10 + (var4 + " " + var11);
 		}
-		else if(loc4 != 0 && loc5 != 0)
+		else if(var4 != 0 && var5 != 0)
 		{
-			var loc12 = ank.utils.PatternDecoder.combine(this.api.lang.getText("YEARS"),"m",loc4 == 1);
-			var loc13 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",loc5 == 1);
-			loc10 = loc10 + (loc4 + " " + loc12 + loc9 + loc5 + " " + loc13);
+			var var12 = ank.utils.PatternDecoder.combine(this.api.lang.getText("YEARS"),"m",var4 == 1);
+			var var13 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
+			var10 = var10 + (var4 + " " + var12 + var9 + var5 + " " + var13);
 		}
-		else if(loc5 != 0 && loc6 == 0)
+		else if(var5 != 0 && var6 == 0)
 		{
-			var loc14 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",loc5 == 1);
-			loc10 = loc10 + (loc5 + " " + loc14);
+			var var14 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
+			var10 = var10 + (var5 + " " + var14);
 		}
-		else if(loc5 != 0 && loc6 != 0)
+		else if(var5 != 0 && var6 != 0)
 		{
-			var loc15 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",loc5 == 1);
-			var loc16 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",loc6 == 1);
-			loc10 = loc10 + (loc5 + " " + loc15 + loc9 + loc6 + " " + loc16);
+			var var15 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
+			var var16 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
+			var10 = var10 + (var5 + " " + var15 + var9 + var6 + " " + var16);
 		}
-		else if(loc6 != 0 && loc7 == 0)
+		else if(var6 != 0 && var7 == 0)
 		{
-			var loc17 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",loc6 == 1);
-			loc10 = loc10 + (loc6 + " " + loc17);
+			var var17 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
+			var10 = var10 + (var6 + " " + var17);
 		}
-		else if(loc6 != 0 && loc7 != 0)
+		else if(var6 != 0 && var7 != 0)
 		{
-			var loc18 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",loc6 == 1);
-			var loc19 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",loc7 == 1);
-			loc10 = loc10 + (loc6 + " " + loc18 + loc9 + loc7 + " " + loc19);
+			var var18 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
+			var var19 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
+			var10 = var10 + (var6 + " " + var18 + var9 + var7 + " " + var19);
 		}
-		else if(loc7 != 0 && loc8 == 0)
+		else if(var7 != 0 && var8 == 0)
 		{
-			var loc20 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",loc7 == 1);
-			loc10 = loc10 + (loc7 + " " + loc20);
+			var var20 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
+			var10 = var10 + (var7 + " " + var20);
 		}
-		else if(loc7 != 0 && loc8 != 0)
+		else if(var7 != 0 && var8 != 0)
 		{
-			var loc21 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",loc7 == 1);
-			var loc22 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",loc8 == 1);
-			loc10 = loc10 + (loc7 + " " + loc21 + loc9 + loc8 + " " + loc22);
+			var var21 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
+			var var22 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var8 == 1);
+			var10 = var10 + (var7 + " " + var21 + var9 + var8 + " " + var22);
 		}
-		else if(loc8 != 0)
+		else if(var8 != 0)
 		{
-			var loc23 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",loc8 == 1);
-			loc10 = loc10 + (loc8 + " " + loc23);
+			var var23 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var8 == 1);
+			var10 = var10 + (var8 + " " + var23);
 		}
-		return loc10;
+		return var10;
 	}
-	function zoomGfx(loc2, loc3, loc4, loc5, loc6)
+	function zoomGfx(var2, var3, var4, var5, var6)
 	{
-		var loc7 = this.api.gfx.container;
-		var loc8 = ank.battlefield.Constants.CELL_WIDTH;
-		var loc9 = ank.battlefield.Constants.CELL_HEIGHT;
-		if(loc2 != undefined)
+		var var7 = this.api.gfx.container;
+		var var8 = ank.battlefield.Constants.CELL_WIDTH;
+		var var9 = ank.battlefield.Constants.CELL_HEIGHT;
+		if(var2 != undefined)
 		{
-			var loc10 = this.api.gfx.screenWidth;
-			var loc11 = this.api.gfx.screenHeight;
-			if(loc3 == undefined)
+			var var10 = this.api.gfx.screenWidth;
+			var var11 = this.api.gfx.screenHeight;
+			if(var3 == undefined)
 			{
-				loc3 = loc10 / 2;
+				var3 = var10 / 2;
 			}
-			if(loc4 == undefined)
+			if(var4 == undefined)
 			{
-				loc3 = loc11 / 2;
+				var3 = var11 / 2;
 			}
-			if(loc5 == undefined)
+			if(var5 == undefined)
 			{
-				loc5 = loc10 / 2;
+				var5 = var10 / 2;
 			}
-			if(loc6 == undefined)
+			if(var6 == undefined)
 			{
-				loc6 = loc11 / 2;
+				var6 = var11 / 2;
 			}
-			var loc12 = loc3 * loc2 / 100;
-			var loc13 = loc4 * loc2 / 100;
-			var loc14 = loc5 - loc12;
-			var loc15 = loc6 - loc13;
-			var loc16 = (this.api.datacenter.Map.width - 1) * loc8 * loc2 / 100;
-			var loc17 = (this.api.datacenter.Map.height - 1) * loc9 * loc2 / 100;
-			if(loc14 > 0)
+			var var12 = var3 * var2 / 100;
+			var var13 = var4 * var2 / 100;
+			var var14 = var5 - var12;
+			var var15 = var6 - var13;
+			var var16 = (this.api.datacenter.Map.width - 1) * var8 * var2 / 100;
+			var var17 = (this.api.datacenter.Map.height - 1) * var9 * var2 / 100;
+			if(var14 > 0)
 			{
-				loc14 = 0;
+				var14 = 0;
 			}
-			if(loc14 + loc16 < loc10)
+			if(var14 + var16 < var10)
 			{
-				loc14 = loc10 - loc16;
+				var14 = var10 - var16;
 			}
-			if(loc15 > 0)
+			if(var15 > 0)
 			{
-				loc15 = 0;
+				var15 = 0;
 			}
-			if(loc15 + loc17 < loc11)
+			if(var15 + var17 < var11)
 			{
-				loc15 = loc11 - loc17;
+				var15 = var11 - var17;
 			}
-			loc7.zoom(loc2);
-			loc7.setXY(loc14,loc15);
+			var7.zoom(var2);
+			var7.setXY(var14,var15);
 		}
 		else
 		{
-			if(!loc7.zoomMap())
+			if(!var7.zoomMap())
 			{
-				loc7.zoom(100);
+				var7.zoom(100);
 			}
-			loc7.center();
+			var7.center();
 		}
 	}
-	function showMonsterPopupMenu(loc2)
+	function showMonsterPopupMenu(var2)
 	{
-		var loc3 = loc2;
-		if(loc3 == null)
+		var var3 = var2;
+		if(var3 == null)
 		{
 			return undefined;
 		}
-		var loc4 = this.api.datacenter.Game.isFight;
-		var loc5 = loc3.id;
-		var loc6 = loc3.name;
-		var loc7 = this.api.ui.createPopupMenu();
-		loc7.addStaticItem(loc6);
-		if(loc4 && (!this.api.datacenter.Game.isRunning && (loc3.kickable || this.api.datacenter.Player.isAuthorized)))
+		var var4 = this.api.datacenter.Game.isFight;
+		var var5 = var3.id;
+		var var6 = var3.name;
+		var var7 = this.api.ui.createPopupMenu();
+		var7.addStaticItem(var6);
+		if(var4 && (!this.api.datacenter.Game.isRunning && (var3.kickable || this.api.datacenter.Player.isAuthorized)))
 		{
-			loc7.addItem(this.api.lang.getText("KICK"),this.api.network.Game,this.api.network.Game.leave,[loc5]);
+			var7.addItem(this.api.lang.getText("KICK"),this.api.network.Game,this.api.network.Game.leave,[var5]);
 		}
-		if(loc7.items.length > 1)
+		if(var7.items.length > 1)
 		{
-			loc7.show(_root._xmouse,_root._ymouse,true);
+			var7.show(_root._xmouse,_root._ymouse,true);
 		}
 	}
 	function applyCreatureMode()
 	{
 		if(!this.api.datacenter.Game.isFight && this.api.gfx.isContainerVisible)
 		{
-			var loc2 = this.api.datacenter.Game.playerCount;
-			var loc3 = this.api.kernel.OptionsManager.getOption("CreaturesMode");
-			if(loc2 >= loc3)
+			var var2 = this.api.datacenter.Game.playerCount;
+			var var3 = this.api.kernel.OptionsManager.getOption("CreaturesMode");
+			if(var2 >= var3)
 			{
 				this.api.gfx.spriteHandler.setCreatureMode(true);
 			}
-			else if(loc2 < loc3 - 2)
+			else if(var2 < var3 - 2)
 			{
 				this.api.gfx.spriteHandler.setCreatureMode(false);
 			}
 		}
 	}
-	function showCellPlayersPopupMenu(loc2)
+	function showCellPlayersPopupMenu(var2)
 	{
-		var loc3 = false;
-		var loc4 = this.api.ui.createPopupMenu();
-		for(var k in loc2)
+		var var3 = false;
+		var var4 = this.api.ui.createPopupMenu();
+		for(var k in var2)
 		{
-			var loc5 = this.api.gfx.getSprite(k);
-			if(loc5 instanceof dofus.datacenter.Character || loc5 instanceof dofus.datacenter.Mutant && loc5.showIsPlayer)
+			var var5 = this.api.gfx.getSprite(k);
+			if(var5 instanceof dofus.datacenter.Character || var5 instanceof dofus.datacenter.Mutant && var5.showIsPlayer)
 			{
-				if(loc5.gfxID != "999")
+				if(var5.gfxID != "999")
 				{
-					loc3 = true;
-					var loc6 = loc5.name + " >>";
-					loc4.addItem(loc6,this,this.showPlayerPopupMenu,[loc5,undefined]);
+					var3 = true;
+					var var6 = var5.name + " >>";
+					var4.addItem(var6,this,this.showPlayerPopupMenu,[var5,undefined]);
 				}
 			}
 		}
-		if(loc3)
+		if(var3)
 		{
-			loc4.show(_root._xmouse,_root._ymouse,true);
+			var4.show(_root._xmouse,_root._ymouse,true);
 		}
 	}
-	function showMessagePopupMenu(loc2, loc3, loc4)
+	function showMessagePopupMenu(var2, var3, var4)
 	{
 		if(this.api.kernel.OptionsManager.getOption("TimestampInChat"))
 		{
-			loc3 = this.api.kernel.DebugManager.getTimestamp() + " " + loc3;
+			var3 = this.api.kernel.DebugManager.getTimestamp() + " " + var3;
 		}
-		var loc5 = this.api.ui.createPopupMenu();
-		loc5.addItem(loc2 + " >>",this.api.kernel.GameManager,this.api.kernel.GameManager.showPlayerPopupMenu,[undefined,loc2,null,null,null,loc4,this.api.datacenter.Player.isAuthorized],true);
-		loc5.addItem(this.api.lang.getText("COPY"),System,System.setClipboard,[loc3],true);
-		loc5.show(_root._xmouse,_root._ymouse,true);
+		var var5 = this.api.ui.createPopupMenu();
+		var5.addItem(var2 + " >>",this.api.kernel.GameManager,this.api.kernel.GameManager.showPlayerPopupMenu,[undefined,var2,null,null,null,var4,this.api.datacenter.Player.isAuthorized],true);
+		var5.addItem(this.api.lang.getText("COPY"),System,System.setClipboard,[var3],true);
+		var5.show(_root._xmouse,_root._ymouse,true);
 	}
-	function showPlayerPopupMenu(loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9)
+	function showPlayerPopupMenu(var2, var3, var4, var5, var6, var7, var8, var9)
 	{
-		if(loc9 == undefined)
+		if(var9 == undefined)
 		{
-			loc9 = false;
+			var9 = false;
 		}
-		var loc10 = null;
-		if(loc2 != undefined)
+		var var10 = null;
+		if(var2 != undefined)
 		{
-			loc10 = loc2;
+			var10 = var2;
 		}
-		else if(loc3 != undefined)
+		else if(var3 != undefined)
 		{
-			var loc11 = this.api.datacenter.Sprites.getItems();
-			for(var a in loc11)
+			var var11 = this.api.datacenter.Sprites.getItems();
+			for(var a in var11)
 			{
-				var loc12 = loc11[a];
-				if(loc12.name.toUpperCase() == loc3.toUpperCase())
+				var var12 = var11[a];
+				if(var12.name.toUpperCase() == var3.toUpperCase())
 				{
-					loc10 = loc12;
+					var10 = var12;
 					break;
 				}
 			}
@@ -859,63 +866,63 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		var loc13 = this.api.datacenter.Game.isFight;
-		var loc14 = loc10.id;
-		var loc15 = loc3 != undefined?loc3:loc10.name;
-		if(Key.isDown(Key.SHIFT) && loc15 != this.api.datacenter.Player.Name)
+		var var13 = this.api.datacenter.Game.isFight;
+		var var14 = var10.id;
+		var var15 = var3 != undefined?var3:var10.name;
+		if(Key.isDown(Key.SHIFT) && var15 != this.api.datacenter.Player.Name)
 		{
-			var loc16 = this.api.ui.getUIComponent("Banner");
-			loc16.txtConsole = "/w " + loc15 + " ";
-			loc16.placeCursorAtTheEnd();
+			var var16 = this.api.ui.getUIComponent("Banner");
+			var16.txtConsole = "/w " + var15 + " ";
+			var16.placeCursorAtTheEnd();
 		}
 		else
 		{
-			if(this.api.datacenter.Player.isAuthorized && !loc9)
+			if(this.api.datacenter.Player.isAuthorized && !var9)
 			{
-				var loc17 = this.api.kernel.AdminManager.getAdminPopupMenu(loc15);
-				loc17.addItem(loc15 + " >>",this,this.showPlayerPopupMenu,[loc2,loc3,loc4,loc5,loc6,loc7,loc8,true],true);
-				loc17.items.unshift(loc17.items.pop());
+				var var17 = this.api.kernel.AdminManager.getAdminPopupMenu(var15);
+				var17.addItem(var15 + " >>",this,this.showPlayerPopupMenu,[var2,var3,var4,var5,var6,var7,var8,true],true);
+				var17.items.unshift(var17.items.pop());
 			}
 			else
 			{
-				loc17 = this.getPlayerPopupMenu(loc10,loc3,loc4,loc5,loc6,loc7,loc8);
+				var17 = this.getPlayerPopupMenu(var10,var3,var4,var5,var6,var7,var8);
 			}
-			if(loc17.items.length > 0)
+			if(var17.items.length > 0)
 			{
-				loc17.show(_root._xmouse,_root._ymouse,true);
+				var17.show(_root._xmouse,_root._ymouse,true);
 			}
 		}
 	}
-	function showTeamAdminPopupMenu(loc2)
+	function showTeamAdminPopupMenu(var2)
 	{
-		var loc3 = this.api.kernel.AdminManager.getAdminPopupMenu(loc2);
-		loc3.show(_root._xmouse,_root._ymouse,true);
+		var var3 = this.api.kernel.AdminManager.getAdminPopupMenu(var2);
+		var3.show(_root._xmouse,_root._ymouse,true);
 	}
-	function getDurationString(loc2, loc3)
+	function getDurationString(var2, var3)
 	{
-		if(loc2 <= 0)
+		if(var2 <= 0)
 		{
 			return "-";
 		}
-		var loc4 = new Date();
-		loc4.setTime(loc2);
-		var loc5 = loc4.getUTCHours();
-		var loc6 = loc4.getUTCMinutes();
-		if(loc3 != true)
+		var var4 = new Date();
+		var4.setTime(var2);
+		var var5 = var4.getUTCHours();
+		var var6 = var4.getUTCMinutes();
+		if(var3 != true)
 		{
-			return (loc5 == 0?"":loc5 + " " + this.api.lang.getText("HOURS_SMALL") + " ") + loc6 + " " + this.api.lang.getText("MINUTES_SMALL");
+			return (var5 == 0?"":var5 + " " + this.api.lang.getText("HOURS_SMALL") + " ") + var6 + " " + this.api.lang.getText("MINUTES_SMALL");
 		}
-		return (loc5 == 0?"":loc5 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",loc5 < 2) + " ") + loc6 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",loc6 < 2);
+		return (var5 == 0?"":var5 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var5 < 2) + " ") + var6 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var6 < 2);
 	}
-	function insertItemInChat(loc2, loc3, loc4)
+	function insertItemInChat(var2, var3, var4)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = "";
+			var3 = "";
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = "";
+			var4 = "";
 		}
 		if(this.api.datacenter.Basics.chatParams.items == undefined)
 		{
@@ -923,82 +930,82 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		if(this.api.lang.getConfigText("CHAT_MAXIMUM_LINKS") == undefined || this.api.datacenter.Basics.chatParams.items.length < this.api.lang.getConfigText("CHAT_MAXIMUM_LINKS"))
 		{
-			this.api.datacenter.Basics.chatParams.items.push(loc2);
-			this.api.ui.getUIComponent("Banner").insertChat(loc3 + "[" + loc2.name + "]" + loc4);
+			this.api.datacenter.Basics.chatParams.items.push(var2);
+			this.api.ui.getUIComponent("Banner").insertChat(var3 + "[" + var2.name + "]" + var4);
 		}
 		else
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("TOO_MANY_ITEM_LINK"),"ERROR_CHAT");
 		}
 	}
-	function getLastModified(loc2)
+	function getLastModified(var2)
 	{
-		var loc3 = this._aLastModified[loc2];
-		if(loc3 == undefined || _global.isNaN(loc3))
+		var var3 = this._aLastModified[var2];
+		if(var3 == undefined || _global.isNaN(var3))
 		{
 			return 0;
 		}
-		return loc3;
+		return var3;
 	}
-	function setAsModified(loc2)
+	function setAsModified(var2)
 	{
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
 			return undefined;
 		}
-		this._aLastModified[loc2] = getTimer();
+		this._aLastModified[var2] = getTimer();
 	}
-	function getCriticalHitChance(loc2)
+	function getCriticalHitChance(var2)
 	{
-		if(loc2 == 0)
+		if(var2 == 0)
 		{
 			return 0;
 		}
-		var loc3 = Math.max(0,this.api.datacenter.Player.CriticalHitBonus);
-		var loc4 = Math.max(0,this.api.datacenter.Player.AgilityTotal);
-		loc2 = loc2 - loc3;
-		if(loc4 != 0)
+		var var3 = Math.max(0,this.api.datacenter.Player.CriticalHitBonus);
+		var var4 = Math.max(0,this.api.datacenter.Player.AgilityTotal);
+		var2 = var2 - var3;
+		if(var4 != 0)
 		{
-			loc2 = Math.min(loc2,Number(loc2 * (Math.E * 1.1 / Math.log(loc4 + 12))));
+			var2 = Math.min(var2,Number(var2 * (Math.E * 1.1 / Math.log(var4 + 12))));
 		}
-		return Math.floor(Math.max(loc2,2));
+		return Math.floor(Math.max(var2,2));
 	}
-	function reportSentance(loc2, loc3, loc4, loc5)
+	function reportSentance(var2, var3, var4, var5)
 	{
-		if(loc4 != undefined && (loc4.length > 0 && loc4 != ""))
+		if(var4 != undefined && (var4.length > 0 && var4 != ""))
 		{
-			this.api.ui.loadUIComponent("AskReportMessage","AskReportMessage" + loc4,{message:this.api.kernel.ChatManager.getMessageFromId(loc4),messageId:loc4,authorId:sID,authorName:loc2});
+			this.api.ui.loadUIComponent("AskReportMessage","AskReportMessage" + var4,{message:this.api.kernel.ChatManager.getMessageFromId(var4),messageId:var4,authorId:sID,authorName:var2});
 		}
 		else
 		{
-			this.api.kernel.ChatManager.addToBlacklist(loc2,loc5.gfxID);
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("TEMPORARY_BLACKLISTED",[loc2]),"INFO_CHAT");
+			this.api.kernel.ChatManager.addToBlacklist(var2,var5.gfxID);
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("TEMPORARY_BLACKLISTED",[var2]),"INFO_CHAT");
 		}
 	}
-	function isInMyTeam(loc2)
+	function isInMyTeam(var2)
 	{
 		if(this.api.datacenter.Basics.aks_current_team == 0)
 		{
-			var loc3 = 0;
-			while(loc3 < this.api.datacenter.Basics.aks_team1_starts.length)
+			var var3 = 0;
+			while(var3 < this.api.datacenter.Basics.aks_team1_starts.length)
 			{
-				if(this.api.datacenter.Basics.aks_team1_starts[loc3] == loc2.cellNum)
+				if(this.api.datacenter.Basics.aks_team1_starts[var3] == var2.cellNum)
 				{
 					return true;
 				}
-				loc3 = loc3 + 1;
+				var3 = var3 + 1;
 			}
 		}
 		else if(this.api.datacenter.Basics.aks_current_team == 1)
 		{
-			var loc4 = 0;
-			while(loc4 < this.api.datacenter.Basics.aks_team2_starts.length)
+			var var4 = 0;
+			while(var4 < this.api.datacenter.Basics.aks_team2_starts.length)
 			{
-				if(this.api.datacenter.Basics.aks_team2_starts[loc4] == loc2.cellNum)
+				if(this.api.datacenter.Basics.aks_team2_starts[var4] == var2.cellNum)
 				{
 					return true;
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
 		}
 		return false;
@@ -1023,177 +1030,177 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		this._nLastActivity = undefined;
 	}
-	function getPlayerPopupMenu(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	function getPlayerPopupMenu(var2, var3, var4, var5, var6, var7, var8)
 	{
-		var loc9 = this.api.datacenter.Game.isFight;
-		var loc10 = loc2.id;
-		var loc11 = loc3 != undefined?loc3:loc2.name;
-		var loc12 = this.api.ui.createPopupMenu();
-		loc12.addStaticItem(loc11);
-		var loc13 = this.api.kernel.ChatManager.isBlacklisted(loc11);
-		if(loc13)
+		var var9 = this.api.datacenter.Game.isFight;
+		var var10 = var2.id;
+		var var11 = var3 != undefined?var3:var2.name;
+		var var12 = this.api.ui.createPopupMenu();
+		var12.addStaticItem(var11);
+		var var13 = this.api.kernel.ChatManager.isBlacklisted(var11);
+		if(var13)
 		{
-			loc12.addStaticItem("(" + this.api.lang.getText("IGNORED_WORD") + ")");
+			var12.addStaticItem("(" + this.api.lang.getText("IGNORED_WORD") + ")");
 		}
-		if(loc9)
+		if(var9)
 		{
 			if(!this.api.datacenter.Game.isRunning && (!this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant))
 			{
-				if(loc2 != null && loc10 != this.api.datacenter.Player.ID)
+				if(var2 != null && var10 != this.api.datacenter.Player.ID)
 				{
-					loc12.addItem(this.api.lang.getText("KICK"),this.api.network.Game,this.api.network.Game.leave,[loc10]);
+					var12.addItem(this.api.lang.getText("KICK"),this.api.network.Game,this.api.network.Game.leave,[var10]);
 				}
 			}
 		}
-		if(loc10 == this.api.datacenter.Player.ID)
+		if(var10 == this.api.datacenter.Player.ID)
 		{
-			loc12.addItem(this.api.lang.getText("HIT_HIMSELF"),this.api.network.Chat,this.api.network.Chat.send,[this.api.lang.getText("SLAP_SENTENCE"),"*"]);
-			if(!loc9 && this.api.datacenter.Player.canBeMerchant)
+			var12.addItem(this.api.lang.getText("HIT_HIMSELF"),this.api.network.Chat,this.api.network.Chat.send,[this.api.lang.getText("SLAP_SENTENCE"),"*"]);
+			if(!var9 && this.api.datacenter.Player.canBeMerchant)
 			{
-				loc12.addItem(this.api.lang.getText("ORGANIZE_SHOP"),this.api.kernel.GameManager,this.api.kernel.GameManager.startExchange,[6]);
-				loc12.addItem(this.api.lang.getText("MERCHANT_MODE"),this.api.kernel.GameManager,this.api.kernel.GameManager.offlineExchange);
+				var12.addItem(this.api.lang.getText("ORGANIZE_SHOP"),this.api.kernel.GameManager,this.api.kernel.GameManager.startExchange,[6]);
+				var12.addItem(this.api.lang.getText("MERCHANT_MODE"),this.api.kernel.GameManager,this.api.kernel.GameManager.offlineExchange);
 			}
 			if(this.api.datacenter.Player.data.isTomb)
 			{
-				loc12.addItem(this.api.lang.getText("FREE_MY_SOUL"),this.api.network.Game,this.api.network.Game.freeMySoul);
+				var12.addItem(this.api.lang.getText("FREE_MY_SOUL"),this.api.network.Game,this.api.network.Game.freeMySoul);
 			}
-			else if(!loc9)
+			else if(!var9)
 			{
-				var loc14 = loc2.animation == "static";
-				loc12.addItem(this.api.lang.getText("CHANGE_DIRECTION"),this.api.ui,this.api.ui.loadUIComponent,["DirectionChooser","DirectionChooser",{allDirections:this.api.datacenter.Player.canMoveInAllDirections,target:this.api.datacenter.Player.data.mc}]);
+				var var14 = var2.animation == "static";
+				var12.addItem(this.api.lang.getText("CHANGE_DIRECTION"),this.api.ui,this.api.ui.loadUIComponent,["DirectionChooser","DirectionChooser",{allDirections:this.api.datacenter.Player.canMoveInAllDirections,target:this.api.datacenter.Player.data.mc}]);
 			}
 		}
 		else
 		{
-			if(loc7 != undefined && (loc7.length > 0 && (loc7 != "" && !loc13)))
+			if(var7 != undefined && (var7.length > 0 && (var7 != "" && !var13)))
 			{
-				var loc15 = false;
-				var loc16 = 0;
-				while(loc16 < this.api.lang.getConfigText("ENABLED_SERVER_REPORT_LIST").length)
+				var var15 = false;
+				var var16 = 0;
+				while(var16 < this.api.lang.getConfigText("ENABLED_SERVER_REPORT_LIST").length)
 				{
-					if(this.api.lang.getConfigText("ENABLED_SERVER_REPORT_LIST")[loc16] == this.api.datacenter.Basics.aks_current_server.id)
+					if(this.api.lang.getConfigText("ENABLED_SERVER_REPORT_LIST")[var16] == this.api.datacenter.Basics.aks_current_server.id)
 					{
-						loc15 = true;
+						var15 = true;
 						break;
 					}
-					loc16 = loc16 + 1;
+					var16 = var16 + 1;
 				}
-				if(loc15)
+				if(var15)
 				{
-					loc12.addItem(this.api.lang.getText("REPORT_SENTANCE"),this.api.kernel.GameManager,this.api.kernel.GameManager.reportSentance,[loc11,loc10,loc7,loc2]);
+					var12.addItem(this.api.lang.getText("REPORT_SENTANCE"),this.api.kernel.GameManager,this.api.kernel.GameManager.reportSentance,[var11,var10,var7,var2]);
 				}
 			}
-			if(!this.api.kernel.ChatManager.isBlacklisted(loc11))
+			if(!this.api.kernel.ChatManager.isBlacklisted(var11))
 			{
-				loc12.addItem(this.api.lang.getText("BLACKLIST_TEMPORARLY"),this.api.kernel.GameManager,this.api.kernel.GameManager.reportSentance,[loc11,loc10,undefined,loc2]);
+				var12.addItem(this.api.lang.getText("BLACKLIST_TEMPORARLY"),this.api.kernel.GameManager,this.api.kernel.GameManager.reportSentance,[var11,var10,undefined,var2]);
 			}
 			else
 			{
-				loc12.addItem(this.api.lang.getText("BLACKLIST_REMOVE"),this.api.kernel.ChatManager,this.api.kernel.ChatManager.removeToBlacklist,[loc11]);
+				var12.addItem(this.api.lang.getText("BLACKLIST_REMOVE"),this.api.kernel.ChatManager,this.api.kernel.ChatManager.removeToBlacklist,[var11]);
 			}
-			if(!loc9 || loc9 && loc3 != undefined)
+			if(!var9 || var9 && var3 != undefined)
 			{
-				loc12.addItem(this.api.lang.getText("WHOIS"),this.api.network.Basics,this.api.network.Basics.whoIs,[loc11]);
-				if(loc5 != true)
+				var12.addItem(this.api.lang.getText("WHOIS"),this.api.network.Basics,this.api.network.Basics.whoIs,[var11]);
+				if(var5 != true)
 				{
-					loc12.addItem(this.api.lang.getText("ADD_TO_FRIENDS"),this.api.network.Friends,this.api.network.Friends.addFriend,[loc11]);
+					var12.addItem(this.api.lang.getText("ADD_TO_FRIENDS"),this.api.network.Friends,this.api.network.Friends.addFriend,[var11]);
 				}
-				if(loc5 != true)
+				if(var5 != true)
 				{
-					loc12.addItem(this.api.lang.getText("ADD_TO_ENEMY"),this.api.network.Enemies,this.api.network.Enemies.addEnemy,[loc11]);
+					var12.addItem(this.api.lang.getText("ADD_TO_ENEMY"),this.api.network.Enemies,this.api.network.Enemies.addEnemy,[var11]);
 				}
-				loc12.addItem(this.api.lang.getText("WISPER_MESSAGE"),this.api.kernel.GameManager,this.api.kernel.GameManager.askPrivateMessage,[loc11]);
-				if(loc4 == undefined)
+				var12.addItem(this.api.lang.getText("WISPER_MESSAGE"),this.api.kernel.GameManager,this.api.kernel.GameManager.askPrivateMessage,[var11]);
+				if(var4 == undefined)
 				{
-					loc12.addItem(this.api.lang.getText("ADD_TO_PARTY"),this.api.network.Party,this.api.network.Party.invite,[loc11]);
+					var12.addItem(this.api.lang.getText("ADD_TO_PARTY"),this.api.network.Party,this.api.network.Party.invite,[var11]);
 				}
 				if(this.api.datacenter.Player.guildInfos != undefined)
 				{
-					if(loc6 != true)
+					if(var6 != true)
 					{
-						if(loc2 == null || (loc2 != null && loc2.guildName == undefined || loc2.guildName.length == 0))
+						if(var2 == null || (var2 != null && var2.guildName == undefined || var2.guildName.length == 0))
 						{
 							if(this.api.datacenter.Player.guildInfos.playerRights.canInvite)
 							{
-								loc12.addItem(this.api.lang.getText("INVITE_IN_GUILD"),this.api.network.Guild,this.api.network.Guild.invite,[loc11]);
+								var12.addItem(this.api.lang.getText("INVITE_IN_GUILD"),this.api.network.Guild,this.api.network.Guild.invite,[var11]);
 							}
 						}
 					}
 				}
-				if(loc8)
+				if(var8)
 				{
 					if(this.api.datacenter.Player.isAuthorized)
 					{
-						loc12.addItem(this.api.lang.getText("JOIN_SMALL"),this.api.kernel.AdminManager,this.api.kernel.AdminManager.sendCommand,["join " + loc11]);
+						var12.addItem(this.api.lang.getText("JOIN_SMALL"),this.api.kernel.AdminManager,this.api.kernel.AdminManager.sendCommand,["join " + var11]);
 					}
 					else if(this.api.datacenter.Map.superarea == 3)
 					{
-						loc12.addItem(this.api.lang.getText("JOIN_SMALL"),this.api.network.Friends,this.api.network.Friends.joinFriend,[loc11]);
+						var12.addItem(this.api.lang.getText("JOIN_SMALL"),this.api.network.Friends,this.api.network.Friends.joinFriend,[var11]);
 					}
 				}
 			}
-			if(!loc9 && (loc2 != null && (loc2.gfxID != "999" && !loc5)))
+			if(!var9 && (var2 != null && (var2.gfxID != "999" && !var5)))
 			{
 				if(this.api.datacenter.Player.isAtHome(this.api.datacenter.Map.id))
 				{
-					loc12.addItem(this.api.lang.getText("KICKOFF"),this.api.network.Houses,this.api.network.Houses.kick,[loc10]);
+					var12.addItem(this.api.lang.getText("KICKOFF"),this.api.network.Houses,this.api.network.Houses.kick,[var10]);
 				}
-				if(this.api.datacenter.Player.canExchange && loc2.canExchange)
+				if(this.api.datacenter.Player.canExchange && var2.canExchange)
 				{
-					loc12.addItem(this.api.lang.getText("EXCHANGE"),this.api.kernel.GameManager,this.api.kernel.GameManager.startExchange,[1,loc10]);
+					var12.addItem(this.api.lang.getText("EXCHANGE"),this.api.kernel.GameManager,this.api.kernel.GameManager.startExchange,[1,var10]);
 				}
-				if(this.api.datacenter.Player.canChallenge && loc2.canBeChallenge)
+				if(this.api.datacenter.Player.canChallenge && var2.canBeChallenge)
 				{
-					loc12.addItem(this.api.lang.getText("CHALLENGE"),this.api.network.GameActions,this.api.network.GameActions.challenge,[loc10],this.api.datacenter.Map.bCanChallenge);
+					var12.addItem(this.api.lang.getText("CHALLENGE"),this.api.network.GameActions,this.api.network.GameActions.challenge,[var10],this.api.datacenter.Map.bCanChallenge);
 				}
-				if(this.api.datacenter.Player.canAssault && !loc2.showIsPlayer)
+				if(this.api.datacenter.Player.canAssault && !var2.showIsPlayer)
 				{
-					var loc17 = this.api.datacenter.Player.data.alignment.index;
-					if(this.api.lang.getAlignmentCanAttack(loc17,loc2.alignment.index))
+					var var17 = this.api.datacenter.Player.data.alignment.index;
+					if(this.api.lang.getAlignmentCanAttack(var17,var2.alignment.index))
 					{
-						loc12.addItem(this.api.lang.getText("ASSAULT"),this.api.kernel.GameManager,this.api.kernel.GameManager.askAttack,[[loc10]],this.api.datacenter.Map.bCanAttack);
+						var12.addItem(this.api.lang.getText("ASSAULT"),this.api.kernel.GameManager,this.api.kernel.GameManager.askAttack,[[var10]],this.api.datacenter.Map.bCanAttack);
 					}
 				}
-				if(this.api.datacenter.Player.canAttack && (loc2.canBeAttack && !loc2.showIsPlayer))
+				if(this.api.datacenter.Player.canAttack && (var2.canBeAttack && !var2.showIsPlayer))
 				{
-					loc12.addItem(this.api.lang.getText("ATTACK"),this.api.network.GameActions,this.api.network.GameActions.mutantAttack,[loc2.id]);
+					var12.addItem(this.api.lang.getText("ATTACK"),this.api.network.GameActions,this.api.network.GameActions.mutantAttack,[var2.id]);
 				}
-				var loc18 = loc2.multiCraftSkillsID;
-				if(loc18 != undefined && loc18.length > 0)
+				var var18 = var2.multiCraftSkillsID;
+				if(var18 != undefined && var18.length > 0)
 				{
-					var loc19 = 0;
-					while(loc19 < loc18.length)
+					var var19 = 0;
+					while(var19 < var18.length)
 					{
-						var loc20 = Number(loc18[loc19]);
-						loc12.addItem(this.api.lang.getText("ASK_TO") + " " + this.api.lang.getSkillText(loc20).d,this.api.network.Exchange,this.api.network.Exchange.request,[13,loc2.id,loc20]);
-						loc19 = loc19 + 1;
+						var var20 = Number(var18[var19]);
+						var12.addItem(this.api.lang.getText("ASK_TO") + " " + this.api.lang.getSkillText(var20).d,this.api.network.Exchange,this.api.network.Exchange.request,[13,var2.id,var20]);
+						var19 = var19 + 1;
 					}
 				}
 				else
 				{
-					loc18 = this.api.datacenter.Player.data.multiCraftSkillsID;
-					if(loc18 != undefined && loc18.length > 0)
+					var18 = this.api.datacenter.Player.data.multiCraftSkillsID;
+					if(var18 != undefined && var18.length > 0)
 					{
-						var loc21 = 0;
-						while(loc21 < loc18.length)
+						var var21 = 0;
+						while(var21 < var18.length)
 						{
-							var loc22 = Number(loc18[loc21]);
-							loc12.addItem(this.api.lang.getText("INVITE_TO") + " " + this.api.lang.getSkillText(loc22).d,this.api.network.Exchange,this.api.network.Exchange.request,[12,loc2.id,loc22]);
-							loc21 = loc21 + 1;
+							var var22 = Number(var18[var21]);
+							var12.addItem(this.api.lang.getText("INVITE_TO") + " " + this.api.lang.getSkillText(var22).d,this.api.network.Exchange,this.api.network.Exchange.request,[12,var2.id,var22]);
+							var21 = var21 + 1;
 						}
 					}
 				}
 			}
 		}
-		if(loc4 != undefined)
+		if(var4 != undefined)
 		{
-			loc4.addPartyMenuItems(loc12);
+			var4.addPartyMenuItems(var12);
 		}
-		if(loc2 != null && (loc2.gfxID != "999" && (loc2.isVisible && (this.api.ui.getUIComponent("Zoom") == undefined && !loc9))))
+		if(var2 != null && (var2.gfxID != "999" && (var2.isVisible && (this.api.ui.getUIComponent("Zoom") == undefined && !var9))))
 		{
-			loc12.addItem(this.api.lang.getText("ZOOM"),this.api.ui,this.api.ui.loadUIAutoHideComponent,["Zoom","Zoom",{sprite:loc2}]);
+			var12.addItem(this.api.lang.getText("ZOOM"),this.api.ui,this.api.ui.loadUIAutoHideComponent,["Zoom","Zoom",{sprite:var2}]);
 		}
-		return loc12;
+		return var12;
 	}
 	function inactivityCheck()
 	{
@@ -1201,21 +1208,21 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		var loc2 = this.api.lang.getConfigText("INACTIVITY_DISPLAY_COUNT");
-		if(_global.isNaN(loc2) || loc2 == undefined)
+		var var2 = this.api.lang.getConfigText("INACTIVITY_DISPLAY_COUNT");
+		if(_global.isNaN(var2) || var2 == undefined)
 		{
-			loc2 = 5;
+			var2 = 5;
 		}
-		if(this.api.datacenter.Basics.inactivity_signaled > loc2)
+		if(this.api.datacenter.Basics.inactivity_signaled > var2)
 		{
 			return undefined;
 		}
-		var loc3 = this.api.lang.getConfigText("INACTIVITY_TIMING");
-		if(_global.isNaN(loc3) || (loc3 == undefined || loc3 < 1000))
+		var var3 = this.api.lang.getConfigText("INACTIVITY_TIMING");
+		if(_global.isNaN(var3) || (var3 == undefined || var3 < 1000))
 		{
-			loc3 = 11000;
+			var3 = 11000;
 		}
-		if(this._nLastActivity + loc3 < getTimer())
+		if(this._nLastActivity + var3 < getTimer())
 		{
 			if(this.api.datacenter.Game.isFight && (this.api.datacenter.Game.isRunning && this.api.datacenter.Player.isCurrentPlayer))
 			{
@@ -1233,16 +1240,16 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	}
 	function __get__livingPlayerInCurrentTeam()
 	{
-		var loc2 = this.api.datacenter.Basics.team(this.api.datacenter.Sprites.getItemAt(this.api.datacenter.Player.ID).Team);
-		var loc3 = 0;
-		for(var i in loc2)
+		var var2 = this.api.datacenter.Basics.team(this.api.datacenter.Sprites.getItemAt(this.api.datacenter.Player.ID).Team);
+		var var3 = 0;
+		for(var i in var2)
 		{
-			if(loc2[i].LP > 0)
+			if(var2[i].LP > 0)
 			{
-				loc3 = loc3 + 1;
+				var3 = var3 + 1;
 			}
 		}
-		return loc3;
+		return var3;
 	}
 	function __get__autoSkip()
 	{

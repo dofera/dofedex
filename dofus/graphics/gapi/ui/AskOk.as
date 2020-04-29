@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.AskOk extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		return this.__get__text();
 	}
 	function __get__text()
@@ -16,28 +16,28 @@ class dofus.graphics.gapi.ui.AskOk extends ank.gapi.ui.FlyWindow
 	}
 	function initWindowContent()
 	{
-		var loc2 = this._winBackground.content;
-		loc2._btnOk.addEventListener("click",this);
-		loc2._txtText.addEventListener("change",this);
-		loc2._txtText.text = this._sText;
-		loc2._btnOk.label = this.api.lang.getText("OK");
+		var var2 = this._winBackground.content;
+		var2._btnOk.addEventListener("click",this);
+		var2._txtText.addEventListener("change",this);
+		var2._txtText.text = this._sText;
+		var2._btnOk.label = this.api.lang.getText("OK");
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.api.kernel.KeyManager.removeShortcutsListener(this);
 		this.dispatchEvent({type:"ok"});
 		this.unloadThis();
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		var loc3 = this._winBackground.content;
-		loc3._btnOk._y = loc3._txtText._y + loc3._txtText.height + 20;
+		var var3 = this._winBackground.content;
+		var3._btnOk._y = var3._txtText._y + var3._txtText.height + 20;
 		this._winBackground.setPreferedSize();
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG")
+		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
 			Selection.setFocus();
 			this.click();

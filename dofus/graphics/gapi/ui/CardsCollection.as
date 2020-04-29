@@ -30,14 +30,14 @@ class dofus.graphics.gapi.ui.CardsCollection extends dofus.graphics.gapi.core.Do
 	function addListeners()
 	{
 		this._btnClose.addEventListener("click",this);
-		var loc2 = 1;
-		while(loc2 <= 9)
+		var var2 = 1;
+		while(var2 <= 9)
 		{
-			var loc3 = this["_ctr" + loc2];
-			loc3.addEventListener("click",this);
-			loc3.addEventListener("over",this);
-			loc3.addEventListener("out",this);
-			loc2 = loc2 + 1;
+			var var3 = this["_ctr" + var2];
+			var3.addEventListener("click",this);
+			var3.addEventListener("over",this);
+			var3.addEventListener("out",this);
+			var2 = var2 + 1;
 		}
 	}
 	function initData()
@@ -49,10 +49,9 @@ class dofus.graphics.gapi.ui.CardsCollection extends dofus.graphics.gapi.core.Do
 		this._ctr5.contentData = {iconFile:"Card",params:{name:"Gross",background:4,gfxFile:dofus.Constants.ARTWORKS_BIG_PATH + (random(150) + 1000) + ".swf"}};
 		this._ctr6.contentData = {iconFile:"Card",params:{name:Monster,background:5,gfxFile:dofus.Constants.ARTWORKS_BIG_PATH + (random(150) + 1000) + ".swf"}};
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		loop0:
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 				this.callClose();
@@ -60,26 +59,22 @@ class dofus.graphics.gapi.ui.CardsCollection extends dofus.graphics.gapi.core.Do
 			default:
 				switch(null)
 				{
-					default:
-						switch(null)
-						{
-							case "_ctr8":
-							case "_ctr9":
-						}
-						break loop0;
 					case "_ctr3":
 					case "_ctr4":
 					case "_ctr5":
 					case "_ctr6":
 					case "_ctr7":
+					case "_ctr8":
+					case "_ctr9":
 				}
+				break;
 			case "_ctr1":
 			case "_ctr2":
-				var loc3 = loc2.target.contentData;
-				if(loc3 != undefined)
+				var var3 = var2.target.contentData;
+				if(var3 != undefined)
 				{
 					this._ctrMain.forceNextLoad();
-					this._ctrMain.contentData = loc3;
+					this._ctrMain.contentData = var3;
 					break;
 				}
 		}

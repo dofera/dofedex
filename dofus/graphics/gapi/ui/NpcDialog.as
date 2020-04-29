@@ -6,29 +6,29 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__id(loc2)
+	function __set__id(var2)
 	{
-		this._nNpcID = loc2;
+		this._nNpcID = var2;
 		return this.__get__id();
 	}
-	function __set__name(loc2)
+	function __set__name(var2)
 	{
-		this._sName = loc2;
+		this._sName = var2;
 		return this.__get__name();
 	}
-	function __set__gfx(loc2)
+	function __set__gfx(var2)
 	{
-		this._sGfx = loc2;
+		this._sGfx = var2;
 		return this.__get__gfx();
 	}
-	function __set__customArtwork(loc2)
+	function __set__customArtwork(var2)
 	{
-		this._nCustomArtwork = loc2;
+		this._nCustomArtwork = var2;
 		return this.__get__customArtwork();
 	}
-	function __set__colors(loc2)
+	function __set__colors(var2)
 	{
-		this._aColors = loc2;
+		this._aColors = var2;
 		return this.__get__colors();
 	}
 	function init()
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 	}
 	function setNpcCharacteristics()
 	{
@@ -68,75 +68,74 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 	{
 		this.showElements(false);
 	}
-	function showElements(loc2)
+	function showElements(var2)
 	{
-		this._ldrArtwork._visible = loc2;
-		this._mcPic._visible = loc2;
-		this._winBackground._visible = loc2;
-		this._winBackgroundUp._visible = loc2;
-		this._qvQuestionViewer._visible = loc2;
+		this._ldrArtwork._visible = var2;
+		this._mcPic._visible = var2;
+		this._winBackground._visible = var2;
+		this._winBackgroundUp._visible = var2;
+		this._qvQuestionViewer._visible = var2;
 	}
-	function setQuestion(loc2)
+	function setQuestion(var2)
 	{
-		this._oQuestion = loc2;
+		this._oQuestion = var2;
 		if(this._qvQuestionViewer == undefined)
 		{
-			this.attachMovie("QuestionViewer","_qvQuestionViewer",10,{_x:this._mcQuestionViewer._x,_y:this._mcQuestionViewer._y,question:loc2,isFirstQuestion:this._bFirstQuestion});
+			this.attachMovie("QuestionViewer","_qvQuestionViewer",10,{_x:this._mcQuestionViewer._x,_y:this._mcQuestionViewer._y,question:var2,isFirstQuestion:this._bFirstQuestion});
 			this._qvQuestionViewer.addEventListener("response",this);
 			this._qvQuestionViewer.addEventListener("resize",this);
 		}
 		else
 		{
 			this._qvQuestionViewer.isFirstQuestion = this._bFirstQuestion;
-			this._qvQuestionViewer.question = loc2;
+			this._qvQuestionViewer.question = var2;
 		}
 		this.showElements(true);
 	}
-	function applyColor(loc2, loc3)
+	function applyColor(var2, var3)
 	{
-		var loc4 = this._aColors[loc3];
-		if(loc4 == -1 || loc4 == undefined)
+		var var4 = this._aColors[var3];
+		if(var4 == -1 || var4 == undefined)
 		{
 			return undefined;
 		}
-		var loc5 = (loc4 & 16711680) >> 16;
-		var loc6 = (loc4 & 65280) >> 8;
-		var loc7 = loc4 & 255;
-		var loc8 = new Color(loc2);
-		var loc9 = new Object();
-		loc9 = {ra:0,ga:0,ba:0,rb:loc5,gb:loc6,bb:loc7};
-		loc8.setTransform(loc9);
+		var var5 = (var4 & 16711680) >> 16;
+		var var6 = (var4 & 65280) >> 8;
+		var var7 = var4 & 255;
+		var var8 = new Color(var2);
+		var var9 = new Object();
+		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
+		var8.setTransform(var9);
 	}
 	function closeDialog()
 	{
 		this.callClose();
 	}
-	function response(loc2)
+	function response(var2)
 	{
-		if(loc2.response.id == -1)
+		if(var2.response.id == -1)
 		{
 			this.api.network.Dialog.leave();
 		}
 		else
 		{
-			this.api.network.Dialog.response(this._oQuestion.id,loc2.response.id);
+			this.api.network.Dialog.response(this._oQuestion.id,var2.response.id);
 			this._bFirstQuestion = false;
 		}
 	}
-	function complete(loc2)
+	function complete(var2)
 	{
-		var ref = this;
-		this._ldrArtwork.content.stringCourseColor = function(loc2, loc3)
+		this._ldrArtwork.content.stringCourseColor = function(var2, var3)
 		{
-			ref.applyColor(loc2,loc3);
+			ref.applyColor(var2,var3);
 		};
 	}
-	function resize(loc2)
+	function resize(var2)
 	{
-		this._winBackground.setSize(undefined,loc2.target.height + (loc2.target._y - this._winBackground._y) + 12);
-		this._winBackgroundUp.setSize(undefined,loc2.target.height + (loc2.target._y - this._winBackground._y) + 10);
+		this._winBackground.setSize(undefined,var2.target.height + (var2.target._y - this._winBackground._y) + 12);
+		this._winBackgroundUp.setSize(undefined,var2.target.height + (var2.target._y - this._winBackground._y) + 10);
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
 		this._mcPic._visible = true;
 	}

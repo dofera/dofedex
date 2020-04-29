@@ -5,16 +5,16 @@ class dofus.graphics.gapi.ui.Waypoints extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this.addToQueue({object:this,method:function(loc2)
+		this.addToQueue({object:this,method:function(var2)
 		{
-			this._eaData = loc2;
+			this._eaData = var2;
 			if(this.initialized)
 			{
 				this.initData();
 			}
-		},params:[loc2]});
+		},params:[var2]});
 		return this.__get__data();
 	}
 	function init()
@@ -56,34 +56,34 @@ class dofus.graphics.gapi.ui.Waypoints extends dofus.graphics.gapi.core.DofusAdv
 			this._lstWaypoints.dataProvider = this._eaData;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnClose2":
 				this.callClose();
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		var loc3 = loc2.row.item;
-		if(loc3.isCurrent)
+		var var3 = var2.row.item;
+		if(var3.isCurrent)
 		{
 			return undefined;
 		}
-		var loc4 = loc3.cost;
-		if(this.api.datacenter.Player.Kama >= loc4)
+		var var4 = var3.cost;
+		if(this.api.datacenter.Player.Kama >= var4)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_USE_WAYPOINT",[loc3.name,loc3.coordinates,loc4]),"CAUTION_YESNO",{name:Waypoint,listener:this,params:{waypointID:loc3.id}});
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_USE_WAYPOINT",[var3.name,var3.coordinates,var4]),"CAUTION_YESNO",{name:Waypoint,listener:this,params:{waypointID:var3.id}});
 		}
 		else
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGH_RICH"),"ERROR_BOX");
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		this.api.network.Waypoints.use(loc2.target.params.waypointID);
+		this.api.network.Waypoints.use(var2.target.params.waypointID);
 	}
 }

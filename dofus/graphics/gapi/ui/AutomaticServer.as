@@ -5,14 +5,14 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__servers(loc2)
+	function __set__servers(var2)
 	{
-		this._eaServers = loc2;
+		this._eaServers = var2;
 		return this.__get__servers();
 	}
-	function __set__remainingTime(loc2)
+	function __set__remainingTime(var2)
 	{
-		this._nRemainingTime = loc2;
+		this._nRemainingTime = var2;
 		return this.__get__remainingTime();
 	}
 	function init()
@@ -51,76 +51,76 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 		this._lblAutomaticSelect.text = this.api.lang.getText("AUTOMATIC_SERVER_SELECTION");
 		this._lblManualSelect.text = this.api.lang.getText("MANUAL_SERVER_SELECT");
 	}
-	function getLessPopulatedServer(loc2)
+	function getLessPopulatedServer(var2)
 	{
-		if(loc2.length == 1)
+		if(var2.length == 1)
 		{
-			return loc2[0].id;
+			return var2[0].id;
 		}
-		loc2.sortOn("populationWeight",Array.NUMERIC | Array.ASCENDING);
-		var loc3 = loc2[0].populationWeight;
-		var loc4 = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < loc2.length)
+		var2.sortOn("populationWeight",Array.NUMERIC | Array.ASCENDING);
+		var var3 = var2[0].populationWeight;
+		var var4 = new ank.utils.();
+		var var5 = 0;
+		while(var5 < var2.length)
 		{
-			if(loc2[loc5].populationWeight == loc3)
+			if(var2[var5].populationWeight == var3)
 			{
-				loc4.push(loc2[loc5]);
+				var4.push(var2[var5]);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		loc4.sortOn("completion",Array.NUMERIC | Array.ASCENDING);
-		var loc6 = loc4[0].completion;
-		var loc7 = new ank.utils.();
-		var loc8 = 0;
-		while(loc8 < loc4.length)
+		var4.sortOn("completion",Array.NUMERIC | Array.ASCENDING);
+		var var6 = var4[0].completion;
+		var var7 = new ank.utils.();
+		var var8 = 0;
+		while(var8 < var4.length)
 		{
-			if(loc4[loc8].completion == loc6)
+			if(var4[var8].completion == var6)
 			{
-				loc7.push(loc4[loc8]);
+				var7.push(var4[var8]);
 			}
-			loc8 = loc8 + 1;
+			var8 = var8 + 1;
 		}
-		return loc7[Math.round(Math.random() * (loc7.length - 1))].id;
+		return var7[Math.round(Math.random() * (var7.length - 1))].id;
 	}
-	function selectServer(loc2)
+	function selectServer(var2)
 	{
-		this.gapi.loadUIComponent("ServerInformations","ServerInformations",{server:loc2});
+		this.gapi.loadUIComponent("ServerInformations","ServerInformations",{server:var2});
 		this.gapi.getUIComponent("ServerInformations").addEventListener("serverSelected",this);
 		this.gapi.getUIComponent("ServerInformations").addEventListener("canceled",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_mcAutomaticSelect":
-				var loc3 = new ank.utils.();
-				var loc4 = 0;
-				while(loc4 < this._eaServers.length)
+				var var3 = new ank.utils.();
+				var var4 = 0;
+				while(var4 < this._eaServers.length)
 				{
-					if(this._eaServers[loc4].state == dofus.datacenter.Server.SERVER_ONLINE && this._eaServers[loc4].isAllowed())
+					if(this._eaServers[var4].state == dofus.datacenter.Server.SERVER_ONLINE && this._eaServers[var4].isAllowed())
 					{
-						loc3.push(this._eaServers[loc4]);
+						var3.push(this._eaServers[var4]);
 					}
-					loc4 = loc4 + 1;
+					var4 = var4 + 1;
 				}
-				if(loc3.length <= 0)
+				if(var3.length <= 0)
 				{
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("ALL_SERVERS_ARE_DOWN"),"ERROR_BOX");
 					break;
 				}
-				var loc5 = new ank.utils.();
-				var loc6 = 0;
-				while(loc6 < loc3.length)
+				var var5 = new ank.utils.();
+				var var6 = 0;
+				while(var6 < var3.length)
 				{
-					if(loc3[loc6].canLog && (loc3[loc6].typeNum == dofus.datacenter.Server.SERVER_CLASSIC || loc3[loc6].typeNum == dofus.datacenter.Server.SERVER_RETRO))
+					if(var3[var6].canLog && (var3[var6].typeNum == dofus.datacenter.Server.SERVER_CLASSIC || var3[var6].typeNum == dofus.datacenter.Server.SERVER_RETRO))
 					{
-						loc5.push(loc3[loc6]);
+						var5.push(var3[var6]);
 					}
-					loc6 = loc6 + 1;
+					var6 = var6 + 1;
 				}
-				loc3 = loc5;
-				if(loc3.length <= 0)
+				var3 = var5;
+				if(var3.length <= 0)
 				{
 					if(this._nRemainingTime <= 0)
 					{
@@ -132,19 +132,19 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 					}
 					break;
 				}
-				this._eaPreselectedServers = loc3;
-				loc5 = new ank.utils.();
-				var loc7 = 0;
-				while(loc7 < loc3.length)
+				this._eaPreselectedServers = var3;
+				var5 = new ank.utils.();
+				var var7 = 0;
+				while(var7 < var3.length)
 				{
-					if(loc3[loc7].community == this.api.datacenter.Basics.communityId || loc3[loc7].community == dofus.datacenter.Server.SERVER_COMMUNITY_INTERNATIONAL)
+					if(var3[var7].community == this.api.datacenter.Basics.communityId || var3[var7].community == dofus.datacenter.Server.SERVER_COMMUNITY_INTERNATIONAL)
 					{
-						loc5.push(loc3[loc7]);
+						var5.push(var3[var7]);
 					}
-					loc7 = loc7 + 1;
+					var7 = var7 + 1;
 				}
-				loc3 = loc5;
-				if(loc3.length <= 0)
+				var3 = var5;
+				if(var3.length <= 0)
 				{
 					if(this._nRemainingTime <= 0)
 					{
@@ -156,50 +156,50 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 					}
 					break;
 				}
-				this.selectServer(this.getLessPopulatedServer(loc3));
+				this.selectServer(this.getLessPopulatedServer(var3));
 				break;
 			case "_mcManualSelect":
 				this.api.datacenter.Basics.forceManualServerSelection = true;
 				this.api.network.Account.getServersList();
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		var loc3 = new ank.utils.();
-		var loc4 = 0;
-		while(loc4 < this._eaPreselectedServers.length)
+		var var3 = new ank.utils.();
+		var var4 = 0;
+		while(var4 < this._eaPreselectedServers.length)
 		{
-			if(this._eaPreselectedServers[loc4].community == dofus.datacenter.Server.SERVER_COMMUNITY_INTERNATIONAL)
+			if(this._eaPreselectedServers[var4].community == dofus.datacenter.Server.SERVER_COMMUNITY_INTERNATIONAL)
 			{
-				loc3.push(this._eaPreselectedServers[loc4]);
+				var3.push(this._eaPreselectedServers[var4]);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		if(loc3.length > 0)
+		if(var3.length > 0)
 		{
-			this.selectServer(this.getLessPopulatedServer(loc3));
+			this.selectServer(this.getLessPopulatedServer(var3));
 		}
 		else
 		{
 			this.selectServer(this.getLessPopulatedServer(this._eaPreselectedServers));
 		}
 	}
-	function serverSelected(loc2)
+	function serverSelected(var2)
 	{
 		this.gapi.unloadUIComponent("ServerInformations");
-		var loc3 = new dofus.datacenter.(loc2.value,1,0);
-		if(loc3.isAllowed())
+		var var3 = new dofus.datacenter.	(var2.value,1,0);
+		if(var3.isAllowed())
 		{
-			this.api.datacenter.Basics.aks_current_server = loc3;
+			this.api.datacenter.Basics.aks_current_server = var3;
 			this.api.datacenter.Basics.createCharacter = true;
-			this.api.network.Account.setServer(loc2.value);
+			this.api.network.Account.setServer(var2.value);
 		}
 		else
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("SERVER_NOT_ALLOWED_IN_YOUR_LANGUAGE"),"ERROR_BOX");
 		}
 	}
-	function canceled(loc2)
+	function canceled(var2)
 	{
 		this.gapi.unloadUIComponent("ServerInformations");
 	}

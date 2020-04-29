@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.AskOkWait extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		return this.__get__text();
 	}
 	function __get__text()
@@ -17,31 +17,31 @@ class dofus.graphics.gapi.ui.AskOkWait extends ank.gapi.ui.FlyWindow
 	function initWindowContent()
 	{
 		this._nWaitClosureDuration = 5;
-		var loc2 = this._winBackground.content;
-		var loc3 = loc2._btnOk;
-		loc3.enabled = false;
-		loc3.label = this.api.lang.getText("OK") + " (" + this._nWaitClosureDuration + ")";
-		loc3.addEventListener("click",this);
-		loc2._txtText.addEventListener("change",this);
-		loc2._txtText.text = this._sText;
+		var var2 = this._winBackground.content;
+		var var3 = var2._btnOk;
+		var3.enabled = false;
+		var3.label = this.api.lang.getText("OK") + " (" + this._nWaitClosureDuration + ")";
+		var3.addEventListener("click",this);
+		var2._txtText.addEventListener("change",this);
+		var2._txtText.text = this._sText;
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		this.startTimer();
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.api.kernel.KeyManager.removeShortcutsListener(this);
 		this.dispatchEvent({type:"ok"});
 		this.unloadThis();
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		var loc3 = this._winBackground.content;
-		loc3._btnOk._y = loc3._txtText._y + loc3._txtText.height + 20;
+		var var3 = this._winBackground.content;
+		var3._btnOk._y = var3._txtText._y + var3._txtText.height + 20;
 		this._winBackground.setPreferedSize();
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG" && this._winBackground.content._btnOk.enabled)
+		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._winBackground.content._btnOk.enabled)
 		{
 			Selection.setFocus();
 			this.click();
@@ -60,12 +60,12 @@ class dofus.graphics.gapi.ui.AskOkWait extends ank.gapi.ui.FlyWindow
 	function updateTimer()
 	{
 		this._nWaitClosureDuration = this._nWaitClosureDuration - 1;
-		var loc2 = this._winBackground.content._btnOk;
-		loc2.label = this.api.lang.getText("OK") + " (" + this._nWaitClosureDuration + ")";
+		var var2 = this._winBackground.content._btnOk;
+		var2.label = this.api.lang.getText("OK") + " (" + this._nWaitClosureDuration + ")";
 		if(this._nWaitClosureDuration == 0)
 		{
-			loc2.label = this.api.lang.getText("OK");
-			loc2.enabled = true;
+			var2.label = this.api.lang.getText("OK");
+			var2.enabled = true;
 			this.stopTimer();
 		}
 	}

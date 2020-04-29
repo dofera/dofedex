@@ -16,14 +16,14 @@ class dofus.sounds.AudioEvents
 	{
 		return dofus.sounds.AudioManager.getInstance();
 	}
-	function onGameStart(loc2)
+	function onGameStart(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		var loc3 = Math.floor(Math.random() * loc2.length);
-		this.getAudioManager().playMusic(loc2[loc3],false,true);
+		var var3 = Math.floor(Math.random() * var2.length);
+		this.getAudioManager().playMusic(var2[var3],false,true);
 	}
 	function onGameEnd()
 	{

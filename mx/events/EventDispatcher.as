@@ -4,86 +4,86 @@ class mx.events.EventDispatcher
 	function EventDispatcher()
 	{
 	}
-	static function _removeEventListener(queue, §\x10\x04§, §\x0e\n§)
+	static function _removeEventListener(queue, §\x10\x02§, §\x0e\b§)
 	{
 		if(queue != undefined)
 		{
-			var loc5 = queue.length;
-			var loc6 = 0;
-			while(loc6 < loc5)
+			var var5 = queue.length;
+			var var6 = 0;
+			while(var6 < var5)
 			{
-				var loc7 = queue[loc6];
-				if(loc7 == loc4)
+				var var7 = queue[var6];
+				if(var7 == var4)
 				{
-					queue.splice(loc6,1);
+					queue.splice(var6,1);
 					return undefined;
 				}
-				loc6 = loc6 + 1;
+				var6 = var6 + 1;
 			}
 		}
 	}
-	static function initialize(loc2)
+	static function initialize(var2)
 	{
 		if(mx.events.EventDispatcher._fEventDispatcher == undefined)
 		{
-			mx.events.EventDispatcher._fEventDispatcher = new mx.events.();
+			mx.events.EventDispatcher._fEventDispatcher = new mx.events.();
 		}
-		loc2.__proto__.addEventListener = mx.events.EventDispatcher._fEventDispatcher.addEventListener;
-		loc2.__proto__.removeEventListener = mx.events.EventDispatcher._fEventDispatcher.removeEventListener;
-		loc2.__proto__.dispatchEvent = mx.events.EventDispatcher._fEventDispatcher.dispatchEvent;
-		loc2.__proto__.dispatchQueue = mx.events.EventDispatcher._fEventDispatcher.dispatchQueue;
+		var2.__proto__.addEventListener = mx.events.EventDispatcher._fEventDispatcher.addEventListener;
+		var2.__proto__.removeEventListener = mx.events.EventDispatcher._fEventDispatcher.removeEventListener;
+		var2.__proto__.dispatchEvent = mx.events.EventDispatcher._fEventDispatcher.dispatchEvent;
+		var2.__proto__.dispatchQueue = mx.events.EventDispatcher._fEventDispatcher.dispatchQueue;
 	}
-	function dispatchQueue(loc2, loc3)
+	function dispatchQueue(var2, var3)
 	{
-		var loc4 = "__q_" + loc3.type;
-		var loc5 = loc2[loc4];
-		if(loc5 != undefined)
+		var var4 = "__q_" + var3.type;
+		var var5 = var2[var4];
+		if(var5 != undefined)
 		{
-			for(var loc6 in loc5)
+			for(var var6 in var5)
 			{
-				var loc7 = loc5[loc6];
-				var loc8 = typeof loc7;
-				if(loc8 == "object" || loc8 == "movieclip")
+				var var7 = var5[var6];
+				var var8 = typeof var7;
+				if(var8 == "object" || var8 == "movieclip")
 				{
-					if(loc7.handleEvent == undefined)
+					if(var7.handleEvent == undefined)
 					{
-						loc7[loc3.type](loc3);
+						var7[var3.type](var3);
 					}
 					else
 					{
-						loc7.handleEvent(loc3);
+						var7.handleEvent(var3);
 					}
 				}
 				else
 				{
-					loc7.apply(loc2,[loc3]);
+					var7.apply(var2,[var3]);
 				}
 			}
 		}
 	}
-	function dispatchEvent(loc2)
+	function dispatchEvent(var2)
 	{
-		if(loc2.target == undefined)
+		if(var2.target == undefined)
 		{
-			loc2.target = this;
+			var2.target = this;
 		}
-		this[loc2.type + "Handler"](loc2);
-		this.dispatchQueue(this,loc2);
+		this[var2.type + "Handler"](var2);
+		this.dispatchQueue(this,var2);
 	}
-	function addEventListener(loc2, loc3)
+	function addEventListener(var2, var3)
 	{
-		var loc4 = "__q_" + loc2;
-		if(this[loc4] == undefined)
+		var var4 = "__q_" + var2;
+		if(this[var4] == undefined)
 		{
-			this[loc4] = new Array();
+			this[var4] = new Array();
 		}
-		_global.ASSetPropFlags(this,loc4,1);
-		mx.events.EventDispatcher._removeEventListener(this[loc4],loc2,loc3);
-		this[loc4].push(loc3);
+		_global.ASSetPropFlags(this,var4,1);
+		mx.events.EventDispatcher._removeEventListener(this[var4],var2,var3);
+		this[var4].push(var3);
 	}
-	function removeEventListener(loc2, loc3)
+	function removeEventListener(var2, var3)
 	{
-		var loc4 = "__q_" + loc2;
-		mx.events.EventDispatcher._removeEventListener(this[loc4],loc2,loc3);
+		var var4 = "__q_" + var2;
+		mx.events.EventDispatcher._removeEventListener(this[var4],var2,var3);
 	}
 }

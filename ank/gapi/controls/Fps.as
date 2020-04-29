@@ -7,9 +7,9 @@ class ank.gapi.controls.Fps extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__averageOffset(loc2)
+	function __set__averageOffset(var2)
 	{
-		this._nAverageOffset = loc2;
+		this._nAverageOffset = var2;
 		return this.__get__averageOffset();
 	}
 	function init()
@@ -35,17 +35,17 @@ class ank.gapi.controls.Fps extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		if(loc2.backcolor != undefined)
+		var var2 = this.getStyle();
+		if(var2.backcolor != undefined)
 		{
-			this.setMovieClipColor(this._mcBack,loc2.backcolor);
+			this.setMovieClipColor(this._mcBack,var2.backcolor);
 		}
-		this._mcBack._alpha = loc2.backalpha;
-		this._lblText.styleName = loc2.labelstyle;
+		this._mcBack._alpha = var2.backalpha;
+		this._lblText.styleName = var2.labelstyle;
 	}
-	function pushValue(loc2)
+	function pushValue(var2)
 	{
-		this._aValues.push(loc2);
+		this._aValues.push(var2);
 		if(this._aValues.length > this._nAverageOffset)
 		{
 			this._aValues.shift();
@@ -53,19 +53,19 @@ class ank.gapi.controls.Fps extends ank.gapi.core.UIBasicComponent
 	}
 	function getAverage()
 	{
-		var loc2 = 0;
+		var var2 = 0;
 		for(var k in this._aValues)
 		{
-			loc2 = loc2 + Number(this._aValues[k]);
+			var2 = var2 + Number(this._aValues[k]);
 		}
-		return Math.round(loc2 / this._aValues.length);
+		return Math.round(var2 / this._aValues.length);
 	}
 	function onEnterFrame()
 	{
-		var loc2 = getTimer();
-		var loc3 = loc2 - this._nSaveTime;
-		this.pushValue(1 / (loc3 / 1000));
+		var var2 = getTimer();
+		var var3 = var2 - this._nSaveTime;
+		this.pushValue(1 / (var3 / 1000));
 		this._lblText.text = String(this.getAverage());
-		this._nSaveTime = loc2;
+		this._nSaveTime = var2;
 	}
 }

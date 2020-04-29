@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__house(loc2)
+	function __set__house(var2)
 	{
-		this._oHouse = loc2;
+		this._oHouse = var2;
 		return this.__get__house();
 	}
 	function init()
@@ -79,18 +79,18 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 			this._btnValidate.label = this.api.lang.getText("BUY");
 		}
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG" && eval(Selection.getFocus())._name == "_txtPrice")
+		if(var2 == "ACCEPT_CURRENT_DIALOG" && eval(Selection.getFocus())._name == "_txtPrice")
 		{
 			this.click({target:this._btnValidate});
 			return false;
 		}
 		return true;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnCancel":
 				if(this._oHouse.localOwner)
@@ -115,13 +115,13 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 					}
 					else
 					{
-						var loc3 = this.gapi.loadUIComponent("AskYesNo","AskYesNoBuy",{title:this.api.lang.getText("HOUSE_PURCHASE"),text:this.api.lang.getText("DO_U_BUY_HOUSE",[this._oHouse.name,this._oHouse.price])});
-						loc3.addEventListener("yes",this);
+						var var3 = this.gapi.loadUIComponent("AskYesNo","AskYesNoBuy",{title:this.api.lang.getText("HOUSE_PURCHASE"),text:this.api.lang.getText("DO_U_BUY_HOUSE",[this._oHouse.name,this._oHouse.price])});
+						var3.addEventListener("yes",this);
 					}
 				}
 				break;
 			default:
-				if(loc0 !== "_btnClose")
+				if(var0 !== "_btnClose")
 				{
 					break;
 				}

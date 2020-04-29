@@ -16,36 +16,36 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 		}
 		return dofus.managers.StreamingDisplayManager._self;
 	}
-	function displayAdvice(loc2)
+	function displayAdvice(var2)
 	{
-		getURL("FSCommand:" add "display",loc2);
-		var loc3 = this.getDisplaysSharedObject();
-		if(loc3.data["display" + loc2] == undefined)
+		getURL("FSCommand:" add "display",var2);
+		var var3 = this.getDisplaysSharedObject();
+		if(var3.data["display" + var2] == undefined)
 		{
-			loc3.data["display" + loc2] = 1;
+			var3.data["display" + var2] = 1;
 		}
 		else
 		{
-			loc3.data["display" + loc2] = loc3.data["display" + loc2] + 1;
+			var3.data["display" + var2] = var3.data["display" + var2] + 1;
 		}
-		loc3.flush();
+		var3.flush();
 	}
-	function displayAdviceMax(loc2, loc3)
+	function displayAdviceMax(var2, var3)
 	{
-		if(this.getDisplaysSharedObject().data["display" + loc2] == undefined || this.getDisplaysSharedObject().data["display" + loc2] < loc3)
+		if(this.getDisplaysSharedObject().data["display" + var2] == undefined || this.getDisplaysSharedObject().data["display" + var2] < var3)
 		{
-			this.displayAdvice(loc2);
+			this.displayAdvice(var2);
 		}
 	}
-	function getMapDisplay(loc2)
+	function getMapDisplay(var2)
 	{
-		if(dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[loc2] != undefined)
+		if(dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[var2] != undefined)
 		{
-			if(this.getDisplaysSharedObject().data["display" + dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[loc2]] == 1)
+			if(this.getDisplaysSharedObject().data["display" + dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[var2]] == 1)
 			{
 				return this.getDefaultDisplay(this.getPlayTime());
 			}
-			return dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[loc2];
+			return dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[var2];
 		}
 		return this.getDefaultDisplay(this.getPlayTime());
 	}
@@ -53,13 +53,13 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 	{
 		return getTimer() / 1000;
 	}
-	function getDefaultDisplay(loc2)
+	function getDefaultDisplay(var2)
 	{
-		if(loc2 < 1200)
+		if(var2 < 1200)
 		{
 			return dofus.managers.StreamingDisplayManager.DEFAULT_DISPLAY;
 		}
-		return dofus.managers.StreamingDisplayManager.DOWNLOAD_DISPLAY[Math.floor((loc2 - 1200) / 300) % dofus.managers.StreamingDisplayManager.DOWNLOAD_DISPLAY.length];
+		return dofus.managers.StreamingDisplayManager.DOWNLOAD_DISPLAY[Math.floor((var2 - 1200) / 300) % dofus.managers.StreamingDisplayManager.DOWNLOAD_DISPLAY.length];
 	}
 	function initConfiguration()
 	{
@@ -142,15 +142,15 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 			this.displayAdvice(this.getMapDisplay(this._nCurrentMap));
 		}
 	}
-	function onNewInterface(loc2)
+	function onNewInterface(var2)
 	{
 		_global.clearInterval(this._nNewInterfaceTimer);
-		this._nNewInterfaceTimer = _global.setInterval(this,"newInterface",200,loc2);
+		this._nNewInterfaceTimer = _global.setInterval(this,"newInterface",200,var2);
 	}
-	function newInterface(loc2)
+	function newInterface(var2)
 	{
 		_global.clearInterval(this._nNewInterfaceTimer);
-		switch(loc2)
+		switch(var2)
 		{
 			case "Inventory":
 				this.displayAdviceMax(9,2);
@@ -177,9 +177,9 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 	{
 		this.displayAdviceMax(13,2);
 	}
-	function onNewMap(loc2)
+	function onNewMap(var2)
 	{
-		this._nCurrentMap = loc2;
-		this.displayAdvice(this.getMapDisplay(loc2));
+		this._nCurrentMap = var2;
+		this.displayAdvice(this.getMapDisplay(var2));
 	}
 }

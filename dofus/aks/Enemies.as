@@ -1,43 +1,43 @@
 class dofus.aks.Enemies extends dofus.aks.Handler
 {
-	function Enemies(loc3, loc4)
+	function Enemies(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function getEnemiesList()
 	{
 		this.aks.send("iL",true);
 	}
-	function addEnemy(loc2)
+	function addEnemy(var2)
 	{
-		if(loc2 == undefined || (loc2.length == 0 || loc2 == "*"))
+		if(var2 == undefined || (var2.length == 0 || var2 == "*"))
 		{
 			return undefined;
 		}
-		this.aks.send("iA" + loc2);
+		this.aks.send("iA" + var2);
 	}
-	function removeEnemy(loc2)
+	function removeEnemy(var2)
 	{
-		if(loc2 == undefined || (loc2.length == 0 || loc2 == "*"))
+		if(var2 == undefined || (var2.length == 0 || var2 == "*"))
 		{
 			return undefined;
 		}
-		this.aks.send("iD" + loc2);
+		this.aks.send("iD" + var2);
 	}
-	function onAddEnemy(loc2, loc3)
+	function onAddEnemy(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc4 = this.getEnemyObjectFromData(loc3);
-			if(loc4 != undefined)
+			var var4 = this.getEnemyObjectFromData(var3);
+			if(var4 != undefined)
 			{
-				this.api.datacenter.Player.Enemies.push(loc4);
+				this.api.datacenter.Player.Enemies.push(var4);
 			}
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("ADD_TO_ENEMY_LIST",[loc4.name]),"INFO_CHAT");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("ADD_TO_ENEMY_LIST",[var4.name]),"INFO_CHAT");
 		}
 		else
 		{
-			switch(loc3)
+			switch(var3)
 			{
 				case "f":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
@@ -45,66 +45,67 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 				case "y":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_YOU_AS_ENEMY"),"ERROR_CHAT");
 					break;
+				case "a":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("ALREADY_YOUR_ENEMY"),"ERROR_CHAT");
+					break;
 				default:
-					switch(null)
+					if(var0 !== "m")
 					{
-						case "a":
-							this.api.kernel.showMessage(undefined,this.api.lang.getText("ALREADY_YOUR_ENEMY"),"ERROR_CHAT");
-							break;
-						case "m":
-							this.api.kernel.showMessage(this.api.lang.getText("ENEMIES"),this.api.lang.getText("ENEMIES_LIST_FULL"),"ERROR_BOX",{name:"EnemiesListFull"});
+						break;
 					}
+					this.api.kernel.showMessage(this.api.lang.getText("ENEMIES"),this.api.lang.getText("ENEMIES_LIST_FULL"),"ERROR_BOX",{name:"EnemiesListFull"});
+					break;
 			}
 		}
 	}
-	function onRemoveEnemy(loc2, loc3)
+	function onRemoveEnemy(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("REMOVE_ENEMY_OK"),"INFO_CHAT");
 			this.getEnemiesList();
 		}
-		else if((var loc0 = loc3) === "f")
+		else if((var var0 = var3) === "f")
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
 		}
 	}
-	function onEnemiesList(loc2)
+	function onEnemiesList(var2)
 	{
-		var loc3 = loc2.split("|");
+		var var3 = var2.split("|");
 		this.api.datacenter.Player.Enemies = new Array();
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var loc5 = this.getEnemyObjectFromData(loc3[loc4]);
-			if(loc5 != undefined)
+			var var5 = this.getEnemyObjectFromData(var3[var4]);
+			if(var5 != undefined)
 			{
-				this.api.datacenter.Player.Enemies.push(loc5);
+				this.api.datacenter.Player.Enemies.push(var5);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		var loc6 = this.api.ui.getUIComponent("Friends");
-		var loc7 = this.api.datacenter.Player.Enemies;
-		if(loc6 != undefined)
+		var var6 = this.api.ui.getUIComponent("Friends");
+		var var7 = this.api.datacenter.Player.Enemies;
+		if(var6 != undefined)
 		{
-			loc6.enemiesList = loc7;
+			var6.enemiesList = var7;
 		}
 		else
 		{
-			var loc8 = new String();
-			if(loc7.length != 0)
+			var var8 = new String();
+			if(var7.length != 0)
 			{
 				this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("YOUR_ENEMY_LIST") + " :</b>","INFO_CHAT");
-				var loc9 = 0;
-				while(loc9 < loc7.length)
+				var var9 = 0;
+				while(var9 < var7.length)
 				{
-					loc8 = " - " + loc7[loc9].account;
-					if(loc7[loc9].state != "DISCONNECT")
+					var8 = " - " + var7[var9].account;
+					if(var7[var9].state != "DISCONNECT")
 					{
-						loc8 = loc8 + (" (" + loc7[loc9].name + ") " + this.api.lang.getText("LEVEL") + ":" + loc7[loc9].level + ", " + this.api.lang.getText(loc7[loc9].state));
+						var8 = var8 + (" (" + var7[var9].name + ") " + this.api.lang.getText("LEVEL") + ":" + var7[var9].level + ", " + this.api.lang.getText(var7[var9].state));
 					}
-					this.api.kernel.showMessage(undefined,loc8,"INFO_CHAT");
-					loc9 = loc9 + 1;
+					this.api.kernel.showMessage(undefined,var8,"INFO_CHAT");
+					var9 = var9 + 1;
 				}
 			}
 			else
@@ -113,41 +114,41 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 			}
 		}
 	}
-	function getEnemyObjectFromData(loc2)
+	function getEnemyObjectFromData(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = new Object();
-		loc4.account = String(loc3[0]);
-		if(loc3[1] != undefined)
+		var var3 = var2.split(";");
+		var var4 = new Object();
+		var4.account = String(var3[0]);
+		if(var3[1] != undefined)
 		{
-			if((var loc0 = loc3[1]) !== "1")
+			if((var var0 = var3[1]) !== "1")
 			{
 				switch(null)
 				{
 					case "2":
-						loc4.state = "IN_MULTI";
+						var4.state = "IN_MULTI";
 						break;
 					case "?":
-						loc4.state = "IN_UNKNOW";
+						var4.state = "IN_UNKNOW";
 				}
 			}
 			else
 			{
-				loc4.state = "IN_SOLO";
+				var4.state = "IN_SOLO";
 			}
-			loc4.name = loc3[2];
-			loc4.level = loc3[3];
-			loc4.sortLevel = loc4.level != "?"?Number(loc4.level):-1;
-			loc4.alignement = Number(loc3[4]);
-			loc4.guild = loc3[5];
-			loc4.sex = loc3[6];
-			loc4.gfxID = loc3[7];
+			var4.name = var3[2];
+			var4.level = var3[3];
+			var4.sortLevel = var4.level != "?"?Number(var4.level):-1;
+			var4.alignement = Number(var3[4]);
+			var4.guild = var3[5];
+			var4.sex = var3[6];
+			var4.gfxID = var3[7];
 		}
 		else
 		{
-			loc4.name = loc4.account;
-			loc4.state = "DISCONNECT";
+			var4.name = var4.account;
+			var4.state = "DISCONNECT";
 		}
-		return loc4.account.length == 0?undefined:loc4;
+		return var4.account.length == 0?undefined:var4;
 	}
 }

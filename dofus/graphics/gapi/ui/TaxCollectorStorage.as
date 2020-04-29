@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		return this.__get__data();
 	}
 	function init()
@@ -59,47 +59,47 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 		this._ldrArtwork.contentPath = dofus.Constants.ARTWORKS_BIG_PATH + this._oData.gfx + ".swf";
 		this.modelChanged();
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._itvItemViewer._visible = !loc2;
-		this._winItemViewer._visible = !loc2;
-		if(loc2)
+		this._itvItemViewer._visible = !var2;
+		this._winItemViewer._visible = !var2;
+		if(var2)
 		{
 			this._oSelectedItem = undefined;
 		}
 	}
-	function setGetItemMode(loc2)
+	function setGetItemMode(var2)
 	{
-		var loc3 = false;
-		var loc4 = this.api.datacenter.Player.guildInfos.playerRights;
-		loc3 = loc4.canCollect;
-		this._btnGetItem._visible = loc2 && loc3;
-		this._mcBuyArrow._visible = loc2;
+		var var3 = false;
+		var var4 = this.api.datacenter.Player.guildInfos.playerRights;
+		var3 = var4.canCollect;
+		this._btnGetItem._visible = var2 && var3;
+		this._mcBuyArrow._visible = var2;
 	}
-	function askQuantity(loc2, loc3)
+	function askQuantity(var2, var3)
 	{
-		var loc4 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:loc2,max:loc2,params:loc3});
-		loc4.addEventListener("validate",this);
+		var var4 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:var2,max:var2,params:var3});
+		var4.addEventListener("validate",this);
 	}
-	function validateGetItem(loc2)
+	function validateGetItem(var2)
 	{
-		if(loc2 <= 0)
+		if(var2 <= 0)
 		{
 			return undefined;
 		}
-		loc2 = Math.min(this._oSelectedItem.Quantity,loc2);
-		this.api.network.Exchange.movementItem(false,this._oSelectedItem.ID,loc2);
+		var2 = Math.min(this._oSelectedItem.Quantity,var2);
+		this.api.network.Exchange.movementItem(false,this._oSelectedItem.ID,var2);
 		this.hideItemViewer(true);
 		this.setGetItemMode(false);
 	}
-	function validateKamas(loc2)
+	function validateKamas(var2)
 	{
-		if(loc2 <= 0)
+		if(var2 <= 0)
 		{
 			return undefined;
 		}
-		loc2 = Math.min(this._oData.Kama,loc2);
-		this.api.network.Exchange.movementKama(- loc2);
+		var2 = Math.min(this._oData.Kama,var2);
+		this.api.network.Exchange.movementKama(- var2);
 		this.hideItemViewer(true);
 		this.setGetItemMode(false);
 	}
@@ -114,13 +114,13 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 			this.validateGetItem(1);
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		this._livInventory2.dataProvider = this._oData.inventory;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnGetItem":
 				if(this._oSelectedItem.Quantity > 1)
@@ -141,11 +141,16 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 					}
 				}
 				break;
-			case "_btnClose":
+			default:
+				if(var0 !== "_btnClose")
+				{
+					break;
+				}
 				this.callClose();
+				break;
 		}
 	}
-	function itemdblClick(loc2)
+	function itemdblClick(var2)
 	{
 		if(!Key.isDown(Key.CONTROL))
 		{
@@ -163,39 +168,42 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 			this.validateGetItem(this._oSelectedItem.Quantity);
 		}
 	}
-	function selectedItem(loc2)
+	function selectedItem(var2)
 	{
-		if(loc2.item == undefined)
+		if(var2.item == undefined)
 		{
 			this.hideItemViewer(true);
 			this.setGetItemMode(false);
 		}
 		else
 		{
-			this._oSelectedItem = loc2.item;
+			this._oSelectedItem = var2.item;
 			this.hideItemViewer(false);
-			this._itvItemViewer.itemData = loc2.item;
-			switch(loc2.target._name)
+			this._itvItemViewer.itemData = var2.item;
+			if((var var0 = var2.target._name) !== "_livInventory")
 			{
-				case "_livInventory":
-					this.setGetItemMode(false);
-					this._livInventory2.setFilter(this._livInventory.currentFilterID);
-					break;
-				case "_livInventory2":
+				if(var0 === "_livInventory2")
+				{
 					this.setGetItemMode(true);
 					this._livInventory.setFilter(this._livInventory2.currentFilterID);
+				}
+			}
+			else
+			{
+				this.setGetItemMode(false);
+				this._livInventory2.setFilter(this._livInventory.currentFilterID);
 			}
 		}
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		switch(loc2.target.params.type)
+		switch(var2.target.params.type)
 		{
 			case "item":
-				this.validateGetItem(loc2.value);
+				this.validateGetItem(var2.value);
 				break;
 			case "kamas":
-				this.validateKamas(loc2.value);
+				this.validateKamas(var2.value);
 		}
 	}
 }

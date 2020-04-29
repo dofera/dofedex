@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.DirectionChooser extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__target(loc2)
+	function __set__target(var2)
 	{
-		this._mcSprite = loc2;
+		this._mcSprite = var2;
 		return this.__get__target();
 	}
 	function init()
@@ -16,12 +16,12 @@ class dofus.graphics.gapi.ui.DirectionChooser extends dofus.graphics.gapi.core.D
 	}
 	function createChildren()
 	{
-		var loc2 = this.api.gfx.getZoom();
-		var loc3 = {x:this._mcSprite._x,y:this._mcSprite._y};
-		this._mcSprite._parent.localToGlobal(loc3);
-		this._mcArrows._x = loc3.x;
-		this._mcArrows._y = loc3.y;
-		this._mcArrows._xscale = this._mcArrows._yscale = loc2;
+		var var2 = this.api.gfx.getZoom();
+		var var3 = {x:this._mcSprite._x,y:this._mcSprite._y};
+		this._mcSprite._parent.localToGlobal(var3);
+		this._mcArrows._x = var3.x;
+		this._mcArrows._y = var3.y;
+		this._mcArrows._xscale = this._mcArrows._yscale = var2;
 		this._btnTL = this._mcArrows._btnTL;
 		this._btnTR = this._mcArrows._btnTR;
 		this._btnBL = this._mcArrows._btnBL;
@@ -71,57 +71,52 @@ class dofus.graphics.gapi.ui.DirectionChooser extends dofus.graphics.gapi.core.D
 		this._btnR.addEventListener("out",this);
 		this._btnB.addEventListener("out",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = 0;
-		if((var loc0 = loc2.target) !== this._btnR)
+		var var3 = 0;
+		switch(var2.target)
 		{
-			switch(null)
-			{
-				case this._btnBR:
-					loc3 = 1;
-					break;
-				case this._btnB:
-					loc3 = 2;
-					break;
-				case this._btnBL:
-					loc3 = 3;
-					break;
-				case this._btnL:
-					loc3 = 4;
-					break;
-				case this._btnTL:
-					loc3 = 5;
-					break;
-				case this._btnT:
-					loc3 = 6;
-					break;
-				default:
-					if(loc0 !== this._btnTR)
-					{
+			case this._btnR:
+				var3 = 0;
+				break;
+			case this._btnBR:
+				var3 = 1;
+				break;
+			default:
+				switch(null)
+				{
+					case this._btnB:
+						var3 = 2;
 						break;
-					}
-					loc3 = 7;
-					break;
-			}
+					case this._btnBL:
+						var3 = 3;
+						break;
+					case this._btnL:
+						var3 = 4;
+						break;
+					case this._btnTL:
+						var3 = 5;
+						break;
+					case this._btnT:
+						var3 = 6;
+						break;
+					case this._btnTR:
+						var3 = 7;
+				}
 		}
-		else
-		{
-			loc3 = 0;
-		}
-		this.api.network.Emotes.setDirection(loc3);
+		this.api.network.Emotes.setDirection(var3);
 		this.unloadThis();
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		loc2.target._alpha = 80;
+		var2.target._alpha = 80;
 		this.onMouseUp = undefined;
 	}
-	function out(loc2)
+	function out(var2)
 	{
-		if((var loc0 = loc2.target) !== this._btnT)
+		if((var var0 = var2.target) !== this._btnT)
 		{
-			loc2.target._alpha = 100;
+			var2.target._alpha = 100;
 		}
 		else
 		{

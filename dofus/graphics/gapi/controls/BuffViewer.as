@@ -5,10 +5,10 @@ class dofus.graphics.gapi.controls.BuffViewer extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__itemData(loc2)
+	function __set__itemData(var2)
 	{
-		this._oItem = loc2;
-		this.addToQueue({object:this,method:this.showItemData,params:[loc2]});
+		this._oItem = var2;
+		this.addToQueue({object:this,method:this.showItemData,params:[var2]});
 		return this.__get__itemData();
 	}
 	function init()
@@ -18,14 +18,14 @@ class dofus.graphics.gapi.controls.BuffViewer extends dofus.graphics.gapi.core.D
 	function createChildren()
 	{
 	}
-	function showItemData(loc2)
+	function showItemData(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._lblName.text = loc2.name;
-			this._txtDescription.text = loc2.description;
-			this._ldrIcon.contentPath = loc2.iconFile;
-			this._lstInfos.dataProvider = loc2.effects;
+			this._lblName.text = var2.name;
+			this._txtDescription.text = var2.description;
+			this._ldrIcon.contentPath = var2.iconFile;
+			this._lstInfos.dataProvider = var2.effects;
 		}
 		else if(this._lblName.text != undefined)
 		{

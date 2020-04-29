@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__item(loc2)
+	function __set__item(var2)
 	{
-		this._oItem = loc2;
+		this._oItem = var2;
 		if(this.initialized)
 		{
-			this.search(loc2);
+			this.search(var2);
 		}
 		return this.__get__item();
 	}
@@ -52,52 +52,52 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 			this.search(this._oItem);
 		}
 	}
-	function search(loc2)
+	function search(var2)
 	{
-		this._eaReceipts = new ank.utils.();
-		var loc3 = this.api.lang.getAllCrafts();
-		var loc4 = new Array();
-		for(var a in loc3)
+		this._eaReceipts = new ank.utils.();
+		var var3 = this.api.lang.getAllCrafts();
+		var var4 = new Array();
+		for(var a in var3)
 		{
-			if(a == loc2.unicID)
+			if(a == var2.unicID)
 			{
-				var loc5 = new ank.utils.();
-				loc5.push(this.createCraftObject(Number(a),loc3));
-				this._lstReceipt.dataProvider = loc5;
+				var var5 = new ank.utils.();
+				var5.push(this.createCraftObject(Number(a),var3));
+				this._lstReceipt.dataProvider = var5;
 			}
 			else
 			{
-				var loc6 = loc3[a];
-				var loc7 = 0;
-				while(loc7 < loc6.length)
+				var var6 = var3[a];
+				var var7 = 0;
+				while(var7 < var6.length)
 				{
-					if(loc6[loc7][0] == loc2.unicID)
+					if(var6[var7][0] == var2.unicID)
 					{
-						loc4.push(a);
+						var4.push(a);
 					}
-					loc7 = loc7 + 1;
+					var7 = var7 + 1;
 				}
 			}
 		}
-		var loc8 = new ank.utils.();
-		loc8.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
-		var loc9 = new Object();
-		if(loc4.length > 0)
+		var var8 = new ank.utils.();
+		var8.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
+		var var9 = new Object();
+		if(var4.length > 0)
 		{
-			var loc10 = 0;
-			while(loc10 < loc4.length)
+			var var10 = 0;
+			while(var10 < var4.length)
 			{
-				var loc11 = this.createCraftObject(loc4[loc10],loc3);
-				var loc12 = loc11.craftItem.type;
-				if(!loc9[loc12])
+				var var11 = this.createCraftObject(var4[var10],var3);
+				var var12 = var11.craftItem.type;
+				if(!var9[var12])
 				{
-					loc8.push({label:this.api.lang.getItemTypeText(loc12).n,id:loc12});
-					loc9[loc12] = true;
+					var8.push({label:this.api.lang.getItemTypeText(var12).n,id:var12});
+					var9[var12] = true;
 				}
-				this._eaReceipts.push(loc11);
-				loc10 = loc10 + 1;
+				this._eaReceipts.push(var11);
+				var10 = var10 + 1;
 			}
-			this._cbReceiptTypes.dataProvider = loc8;
+			this._cbReceiptTypes.dataProvider = var8;
 			this._cbReceiptTypes.selectedIndex = 0;
 			this._lstCrafts.dataProvider = this._eaReceipts;
 			this.hideCraftsViewer(false);
@@ -108,78 +108,78 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 		}
 		this.hideReceiptViewer(this._lstReceipt.dataProvider.length != 1);
 	}
-	function createCraftObject(loc2, loc3)
+	function createCraftObject(var2, var3)
 	{
-		var loc4 = loc3[loc2];
-		var loc5 = new Object();
-		loc5.craftItem = new dofus.datacenter.(0,loc2,1);
-		loc5.items = new Array();
-		var loc6 = 0;
-		while(loc6 < loc4.length)
+		var var4 = var3[var2];
+		var var5 = new Object();
+		var5.craftItem = new dofus.datacenter.(0,var2,1);
+		var5.items = new Array();
+		var var6 = 0;
+		while(var6 < var4.length)
 		{
-			var loc7 = loc4[loc6][0];
-			var loc8 = loc4[loc6][1];
-			var loc9 = new dofus.datacenter.(0,loc7,loc8);
-			loc5.items.push(loc9);
-			loc6 = loc6 + 1;
+			var var7 = var4[var6][0];
+			var var8 = var4[var6][1];
+			var var9 = new dofus.datacenter.(0,var7,var8);
+			var5.items.push(var9);
+			var6 = var6 + 1;
 		}
-		return loc5;
+		return var5;
 	}
-	function hideReceiptViewer(loc2)
+	function hideReceiptViewer(var2)
 	{
-		this._lstReceipt._visible = !loc2;
-		this._lblNoReceipt._visible = loc2;
+		this._lstReceipt._visible = !var2;
+		this._lblNoReceipt._visible = var2;
 	}
-	function hideCraftsViewer(loc2)
+	function hideCraftsViewer(var2)
 	{
-		this._lstCrafts._visible = !loc2;
-		this._cbReceiptTypes.enabled = !loc2;
-		this._lblNoCrafts._visible = loc2;
+		this._lstCrafts._visible = !var2;
+		this._cbReceiptTypes.enabled = !var2;
+		this._lblNoCrafts._visible = var2;
 	}
-	function setReceiptType(loc2)
+	function setReceiptType(var2)
 	{
-		var loc3 = new ank.utils.();
-		if(loc2 == 0)
+		var var3 = new ank.utils.();
+		if(var2 == 0)
 		{
-			loc3 = this._eaReceipts;
+			var3 = this._eaReceipts;
 		}
 		else
 		{
-			var loc4 = 0;
-			while(loc4 < this._eaReceipts.length)
+			var var4 = 0;
+			while(var4 < this._eaReceipts.length)
 			{
-				var loc5 = this._eaReceipts[loc4];
-				if(loc5.craftItem.type == loc2)
+				var var5 = this._eaReceipts[var4];
+				if(var5.craftItem.type == var2)
 				{
-					loc3.push(loc5);
+					var3.push(var5);
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
 		}
-		this._lstCrafts.dataProvider = loc3;
-		var loc6 = this._cbReceiptTypes.dataProvider;
-		var loc7 = 0;
-		while(loc7 < loc6.length)
+		this._lstCrafts.dataProvider = var3;
+		var var6 = this._cbReceiptTypes.dataProvider;
+		var var7 = 0;
+		while(var7 < var6.length)
 		{
-			if(loc6[loc7].id == loc2)
+			if(var6[var7].id == var2)
 			{
-				this._cbReceiptTypes.selectedIndex = loc7;
+				this._cbReceiptTypes.selectedIndex = var7;
 				return undefined;
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if(loc2.target == this._btnClose)
+		if(var2.target == this._btnClose)
 		{
 			this.callClose();
 			return undefined;
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_cbReceiptTypes")
+		if((var var0 = var2.target._name) === "_cbReceiptTypes")
 		{
 			this.setReceiptType(this._cbReceiptTypes.selectedItem.id);
 		}

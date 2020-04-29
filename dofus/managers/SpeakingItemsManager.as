@@ -29,19 +29,19 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	static var SPEAK_TRIGGER_ASSOCIATE = "SPEAK_TRIGGER_ASSOCIATE";
 	static var SPEAK_TRIGGER_DISSOCIATE = "SPEAK_TRIGGER_DISSOCIATE";
 	static var SPEAK_TRIGGER_CHANGE_SKIN = "SPEAK_TRIGGER_CHANGE_SKIN";
-	function SpeakingItemsManager(loc3)
+	function SpeakingItemsManager(var3)
 	{
 		super();
 		dofus.managers.SpeakingItemsManager._sSelf = this;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.SpeakingItemsManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 		mx.events.EventDispatcher.initialize(this);
 		this.generateNextMsgCount(true);
 	}
@@ -49,13 +49,13 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	{
 		return this._nNextMessageCount;
 	}
-	function triggerPrivateEvent(loc2)
+	function triggerPrivateEvent(var2)
 	{
-		this.api.kernel.AudioManager.playSound(loc2);
+		this.api.kernel.AudioManager.playSound(var2);
 	}
-	function triggerEvent(loc2)
+	function triggerEvent(var2)
 	{
-		if(loc2 == dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_ON_CONNECT)
+		if(var2 == dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_ON_CONNECT)
 		{
 			ank.utils.Timer.removeTimer(this,"SpeakingItemsManager",dofus.managers.SpeakingItemsManager._nTimer);
 			ank.utils.Timer.setTimer(this,"SpeakingItemsManager",this,this.triggerEvent,dofus.managers.SpeakingItemsManager.MINUTE_DELAY,[dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_MINUTE],true);
@@ -67,90 +67,90 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 		this.updateEquipedSpeakingItems();
 		if(this._eaItems.length)
 		{
-			var loc3 = this._eaItems[Math.floor(Math.random() * this._eaItems.length)];
+			var var3 = this._eaItems[Math.floor(Math.random() * this._eaItems.length)];
 			this._nNextMessageCount--;
 			this._nNextMessageCount = this._nNextMessageCount - (this._eaItems.length - 1) / 4;
 			if(this._nNextMessageCount <= 0)
 			{
-				var loc4 = this.api.lang.getSpeakingItemsTrigger(loc2)[loc3.mood];
-				if(loc4)
+				var var4 = this.api.lang.getSpeakingItemsTrigger(var2)[var3.mood];
+				if(var4)
 				{
-					var loc6 = new Array();
-					var loc7 = 0;
-					for(; loc7 < loc4.length; loc7 = loc7 + 1)
+					var var6 = new Array();
+					var var7 = 0;
+					for(; var7 < var4.length; var7 = var7 + 1)
 					{
-						var loc5 = this.api.lang.getSpeakingItemsText(loc4[loc7]);
-						if(loc5.l <= loc3.maxSkin)
+						var var5 = this.api.lang.getSpeakingItemsText(var4[var7]);
+						if(var5.l <= var3.maxSkin)
 						{
-							if(loc5.r != undefined && loc5.r != "")
+							if(var5.r != undefined && var5.r != "")
 							{
-								var loc8 = loc5.r.split(",");
-								var loc9 = false;
-								var loc10 = 0;
-								while(loc10 < loc8.length)
+								var var8 = var5.r.split(",");
+								var var9 = false;
+								var var10 = 0;
+								while(var10 < var8.length)
 								{
-									if(loc8[loc10] == loc3.realUnicId)
+									if(var8[var10] == var3.realUnicId)
 									{
-										loc9 = true;
+										var9 = true;
 										break;
 									}
-									loc10 = loc10 + 1;
+									var10 = var10 + 1;
 								}
-								if(!loc9)
+								if(!var9)
 								{
 									continue;
 								}
 							}
-							if(loc5.m != undefined)
+							if(var5.m != undefined)
 							{
-								if(loc5.p != undefined)
+								if(var5.p != undefined)
 								{
-									loc6.push(loc4[loc7]);
+									var6.push(var4[var7]);
 								}
 							}
 						}
 					}
-					var loc11 = false;
-					var loc13 = 10;
-					var loc14 = this.api.lang.getConfigText("SPEAKING_ITEMS_MAX_TEXT_ID");
-					while(!loc11 && ((loc13 = loc13 - 1) && loc6.length))
+					var var11 = false;
+					var var13 = 10;
+					var var14 = this.api.lang.getConfigText("SPEAKING_ITEMS_MAX_TEXT_ID");
+					while(!var11 && ((var13 = var13 - 1) && var6.length))
 					{
-						var loc12 = loc6[Math.floor(Math.random() * loc6.length)];
-						if(!(loc14 != -1 && loc12 > loc14))
+						var var12 = var6[Math.floor(Math.random() * var6.length)];
+						if(!(var14 != -1 && var12 > var14))
 						{
-							loc5 = this.api.lang.getSpeakingItemsText(loc12);
-							if(Math.random() < loc5.p)
+							var5 = this.api.lang.getSpeakingItemsText(var12);
+							if(Math.random() < var5.p)
 							{
-								loc11 = true;
+								var11 = true;
 							}
 						}
 					}
-					if(!loc11)
+					if(!var11)
 					{
 						return undefined;
 					}
-					if(loc5.s != -1 && !_global.isNaN(loc5.s))
+					if(var5.s != -1 && !_global.isNaN(var5.s))
 					{
-						var loc15 = Math.floor(Math.random() * 3);
+						var var15 = Math.floor(Math.random() * 3);
 					}
 					else
 					{
-						loc15 = 1;
+						var15 = 1;
 					}
-					if((loc15 == 0 || loc15 == 2) && this.api.lang.getConfigText("SPEAKING_ITEMS_USE_SOUND"))
+					if((var15 == 0 || var15 == 2) && this.api.lang.getConfigText("SPEAKING_ITEMS_USE_SOUND"))
 					{
-						this.api.kernel.AudioManager.playSound("SPEAKING_ITEMS_" + loc5.s);
+						this.api.kernel.AudioManager.playSound("SPEAKING_ITEMS_" + var5.s);
 					}
-					if(loc15 == 1 || loc15 == 2)
+					if(var15 == 1 || var15 == 2)
 					{
-						var loc16 = this.api.lang.getConfigText("SPEAKING_ITEMS_CHAT_PROBA");
-						if(Math.random() * loc16 <= 1 && this.api.datacenter.Player.canChatToAll)
+						var var16 = this.api.lang.getConfigText("SPEAKING_ITEMS_CHAT_PROBA");
+						if(Math.random() * var16 <= 1 && this.api.datacenter.Player.canChatToAll)
 						{
-							this.api.network.Chat.send("**" + (loc12 + this.api.datacenter.Player.ID) + "**","*");
+							this.api.network.Chat.send("**" + (var12 + this.api.datacenter.Player.ID) + "**","*");
 						}
 						else
 						{
-							this.api.kernel.showMessage(undefined,loc3.name + " : " + loc5.m,"WHISP_CHAT");
+							this.api.kernel.showMessage(undefined,var3.name + " : " + var5.m,"WHISP_CHAT");
 						}
 					}
 					this.generateNextMsgCount();
@@ -159,32 +159,32 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 		}
 		return undefined;
 	}
-	function generateNextMsgCount(loc2)
+	function generateNextMsgCount(var2)
 	{
-		var loc3 = this.api.lang.getConfigText("SPEAKING_ITEMS_MSG_COUNT");
-		var loc4 = loc3 * this.api.lang.getConfigText("SPEAKING_ITEMS_MSG_COUNT_DELTA");
-		if(loc2)
+		var var3 = this.api.lang.getConfigText("SPEAKING_ITEMS_MSG_COUNT");
+		var var4 = var3 * this.api.lang.getConfigText("SPEAKING_ITEMS_MSG_COUNT_DELTA");
+		if(var2)
 		{
-			this._nNextMessageCount = Math.floor(loc3 * Math.random());
+			this._nNextMessageCount = Math.floor(var3 * Math.random());
 		}
 		else
 		{
-			this._nNextMessageCount = loc3 + Math.floor(2 * loc4 * Math.random() - loc4 / 2);
+			this._nNextMessageCount = var3 + Math.floor(2 * var4 * Math.random() - var4 / 2);
 		}
 	}
 	function updateEquipedSpeakingItems()
 	{
-		var loc2 = this.api.datacenter.Player.Inventory;
-		var loc3 = new ank.utils.();
-		var loc4 = 0;
-		while(loc4 < loc2.length)
+		var var2 = this.api.datacenter.Player.Inventory;
+		var var3 = new ank.utils.();
+		var var4 = 0;
+		while(var4 < var2.length)
 		{
-			if(loc2[loc4].isSpeakingItem && loc2[loc4].position != -1)
+			if(var2[var4].isSpeakingItem && var2[var4].position != -1)
 			{
-				loc3.push(loc2[loc4]);
+				var3.push(var2[var4]);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		this._eaItems = loc3;
+		this._eaItems = var3;
 	}
 }

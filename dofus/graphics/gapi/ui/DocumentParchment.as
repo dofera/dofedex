@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.DocumentParchment extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__document(loc2)
+	function __set__document(var2)
 	{
-		this._oDoc = loc2;
+		this._oDoc = var2;
 		return this.__get__document();
 	}
 	function init()
@@ -48,38 +48,38 @@ class dofus.graphics.gapi.ui.DocumentParchment extends dofus.graphics.gapi.core.
 			this._lblTitle.text = this._oDoc.title;
 		}
 	}
-	function setCssStyle(loc2)
+	function setCssStyle(var2)
 	{
-		var loc3 = new TextField.StyleSheet();
-		loc3.owner = this;
-		loc3.onLoad = function()
+		var var3 = new TextField.StyleSheet();
+		var3.owner = this;
+		var3.onLoad = function()
 		{
 			this.owner.layoutContent(this);
 		};
-		loc3.load(loc2);
+		var3.load(var2);
 	}
-	function layoutContent(loc2)
+	function layoutContent(var2)
 	{
-		this._txtCore.styleSheet = loc2;
+		this._txtCore.styleSheet = var2;
 		this._txtCore.htmlText = this._oDoc.getPage(0).text;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_bgHidder":
 			case "_btnClose":
 				this.callClose();
 		}
 	}
-	function onHref(loc2)
+	function onHref(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1].split(";");
-		if(!_global.isNaN(loc4))
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1].split(";");
+		if(!_global.isNaN(var4))
 		{
-			this.api.network.GameActions.sendActions(loc4,loc5);
+			this.api.network.GameActions.sendActions(var4,var5);
 			this.api.network.Documents.leave();
 		}
 	}

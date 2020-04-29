@@ -77,10 +77,10 @@ class dofus.graphics.gapi.ui.FightOptionButtons extends dofus.graphics.gapi.core
 		this._btnToggleSprites._visible = true;
 		this._btnTactic._x = 662;
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		loop0:
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnTactic:
 				this.api.datacenter.Game.isTacticMode = !this.api.datacenter.Game.isTacticMode;
@@ -88,41 +88,41 @@ class dofus.graphics.gapi.ui.FightOptionButtons extends dofus.graphics.gapi.core
 			case this._btnFlag:
 				this.api.kernel.GameManager.switchToFlagSet();
 				break;
-			case this._btnBlockJoinerExceptParty:
-				this.api.network.Fights.blockJoinerExceptParty();
-				break;
 			default:
 				switch(null)
 				{
+					case this._btnBlockJoinerExceptParty:
+						this.api.network.Fights.blockJoinerExceptParty();
+						break loop0;
 					case this._btnBlockJoiner:
 						this.api.network.Fights.blockJoiner();
 						break loop0;
 					case this._btnHelp:
 						this.api.network.Fights.needHelp();
 						break loop0;
-					case this._btnBlockSpectators:
-						this.api.network.Fights.blockSpectators();
-						break loop0;
 					default:
-						if(loc0 !== this._btnToggleSprites)
+						switch(null)
 						{
-							break loop0;
+							case this._btnBlockSpectators:
+								this.api.network.Fights.blockSpectators();
+								break;
+							case this._btnToggleSprites:
+								this.api.datacenter.Basics.gfx_isSpritesHidden = !this.api.datacenter.Basics.gfx_isSpritesHidden;
+								if(this.api.datacenter.Basics.gfx_isSpritesHidden)
+								{
+									this.api.gfx.spriteHandler.maskAllSprites();
+									break;
+								}
+								this.api.gfx.spriteHandler.unmaskAllSprites();
+								break;
 						}
-						this.api.datacenter.Basics.gfx_isSpritesHidden = !this.api.datacenter.Basics.gfx_isSpritesHidden;
-						if(this.api.datacenter.Basics.gfx_isSpritesHidden)
-						{
-							this.api.gfx.spriteHandler.maskAllSprites();
-							break loop0;
-						}
-						this.api.gfx.spriteHandler.unmaskAllSprites();
-						break loop0;
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
 		loop0:
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnTactic:
 				this.gapi.showTooltip(this.api.lang.getText("TACTIC_MODE"),this._btnFlag,-30);
@@ -154,18 +154,18 @@ class dofus.graphics.gapi.ui.FightOptionButtons extends dofus.graphics.gapi.core
 				}
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function moveButtons(loc2)
+	function moveButtons(var2)
 	{
-		this._btnTactic._y = this._btnTactic._y + loc2;
-		this._btnFlag._y = this._btnFlag._y + loc2;
-		this._btnBlockJoinerExceptParty._y = this._btnBlockJoinerExceptParty._y + loc2;
-		this._btnBlockJoiner._y = this._btnBlockJoiner._y + loc2;
-		this._btnHelp._y = this._btnHelp._y + loc2;
-		this._btnBlockSpectators._y = this._btnBlockSpectators._y + loc2;
-		this._btnToggleSprites._y = this._btnToggleSprites._y + loc2;
+		this._btnTactic._y = this._btnTactic._y + var2;
+		this._btnFlag._y = this._btnFlag._y + var2;
+		this._btnBlockJoinerExceptParty._y = this._btnBlockJoinerExceptParty._y + var2;
+		this._btnBlockJoiner._y = this._btnBlockJoiner._y + var2;
+		this._btnHelp._y = this._btnHelp._y + var2;
+		this._btnBlockSpectators._y = this._btnBlockSpectators._y + var2;
+		this._btnToggleSprites._y = this._btnToggleSprites._y + var2;
 	}
 }

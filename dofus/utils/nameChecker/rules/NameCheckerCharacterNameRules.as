@@ -62,22 +62,22 @@ class dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules extends dofus.
 	}
 	function getContainingProhibedWords()
 	{
-		var loc2 = new Array();
-		var loc3 = 0;
-		while(loc3 < dofus.Constants.GUILD_ORDER.length)
+		var var2 = new Array();
+		var var3 = 0;
+		while(var3 < dofus.Constants.GUILD_ORDER.length)
 		{
-			var loc4 = new ank.utils.(this.api.lang.getClassText(dofus.Constants.GUILD_ORDER[loc3]).sn);
-			var loc5 = loc4.replace(["é","à","â"],["e","a","a"]).toUpperCase();
-			if(loc5 == undefined)
+			var var4 = new ank.utils.(this.api.lang.getClassText(dofus.Constants.GUILD_ORDER[var3]).sn);
+			var var5 = var4.replace(["é","à","â"],["e","a","a"]).toUpperCase();
+			if(var5 == undefined)
 			{
 				return this.PROHIBED_WORDS_INSIDE;
 			}
-			loc2.push(loc5);
-			loc3 = loc3 + 1;
+			var2.push(var5);
+			var3 = var3 + 1;
 		}
-		loc2.push("MULE");
-		loc2.push("DROP");
-		return loc2;
+		var2.push("MULE");
+		var2.push("DROP");
+		return var2;
 	}
 	function getBeginningProhibedWords()
 	{

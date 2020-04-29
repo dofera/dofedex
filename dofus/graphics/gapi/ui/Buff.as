@@ -17,77 +17,77 @@ class dofus.graphics.gapi.ui.Buff extends dofus.graphics.gapi.core.DofusAdvanced
 	}
 	function addListeners()
 	{
-		var loc2 = 20;
-		while(loc2 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+		var var2 = 20;
+		while(var2 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
 		{
-			var loc3 = this["_ctr" + loc2];
-			loc3.addEventListener("click",this);
-			loc3.addEventListener("over",this);
-			loc3.addEventListener("out",this);
-			loc2 = loc2 + 1;
+			var var3 = this["_ctr" + var2];
+			var3.addEventListener("click",this);
+			var3.addEventListener("over",this);
+			var3.addEventListener("out",this);
+			var2 = var2 + 1;
 		}
 		this.api.datacenter.Player.Inventory.addEventListener("modelChanged",this);
 	}
 	function updateData()
 	{
-		var loc2 = new Array();
-		var loc3 = 20;
-		while(loc3 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+		var var2 = new Array();
+		var var3 = 20;
+		while(var3 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
 		{
-			loc2[loc3] = true;
-			loc3 = loc3 + 1;
+			var2[var3] = true;
+			var3 = var3 + 1;
 		}
-		var loc4 = this.api.datacenter.Player.Inventory;
-		for(var k in loc4)
+		var var4 = this.api.datacenter.Player.Inventory;
+		for(var k in var4)
 		{
-			var loc5 = loc4[k];
-			if(!_global.isNaN(loc5.position))
+			var var5 = var4[k];
+			if(!_global.isNaN(var5.position))
 			{
-				var loc6 = loc5.position;
-				if(loc6 < 20 || loc6 > dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+				var var6 = var5.position;
+				if(var6 < 20 || var6 > dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
 				{
 					continue;
 				}
-				var loc7 = this["_ctr" + loc6];
-				loc7.contentData = loc5;
-				loc7.enabled = true;
-				loc2[loc6] = false;
+				var var7 = this["_ctr" + var6];
+				var7.contentData = var5;
+				var7.enabled = true;
+				var2[var6] = false;
 			}
 		}
-		var loc8 = 20;
-		while(loc8 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
+		var var8 = 20;
+		while(var8 <= dofus.graphics.gapi.ui.Buff.LAST_CONTAINER)
 		{
-			if(loc2[loc8])
+			if(var2[var8])
 			{
-				var loc9 = this["_ctr" + loc8];
-				loc9.contentData = undefined;
-				loc9.enabled = false;
+				var var9 = this["_ctr" + var8];
+				var9.contentData = undefined;
+				var9.enabled = false;
 			}
-			loc8 = loc8 + 1;
+			var8 = var8 + 1;
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
-		switch(loc2.eventName)
+		switch(var2.eventName)
 		{
 			case "updateOne":
 			case "updateAll":
 		}
 		this.updateData();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		this.gapi.loadUIComponent("BuffInfos","BuffInfos",{data:loc2.target.contentData},{bStayIfPresent:true});
+		this.gapi.loadUIComponent("BuffInfos","BuffInfos",{data:var2.target.contentData},{bStayIfPresent:true});
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(loc3 != undefined)
+		var var3 = var2.target.contentData;
+		if(var3 != undefined)
 		{
-			this.gapi.showTooltip(loc3.name + "\n" + loc3.visibleEffects,loc2.target,30);
+			this.gapi.showTooltip(var3.name + "\n" + var3.visibleEffects,var2.target,30);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

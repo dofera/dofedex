@@ -1,9 +1,9 @@
 class dofus.datacenter.ItemSet extends Object
 {
-	function ItemSet(loc3, loc4, loc5)
+	function ItemSet(var3, var4, var5)
 	{
 		super();
-		this.initialize(loc3,loc4,loc5);
+		this.initialize(var3,var4,var5);
 	}
 	function __get__id()
 	{
@@ -29,58 +29,57 @@ class dofus.datacenter.ItemSet extends Object
 	{
 		return dofus.datacenter.Item.getItemDescriptionEffects(this._aEffects);
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = "";
+			var3 = "";
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = [];
+			var4 = [];
 		}
 		this.api = _global.API;
-		this._nID = loc2;
-		this.setEffects(loc3);
-		this.setItems(loc4);
+		this._nID = var2;
+		this.setEffects(var3);
+		this.setItems(var4);
 	}
-	function setEffects(loc2)
+	function setEffects(var2)
 	{
-		this._sEffects = loc2;
+		this._sEffects = var2;
 		this._aEffects = new Array();
-		var loc3 = loc2.split(",");
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var3 = var2.split(",");
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var loc5 = loc3[loc4].split("#");
-			loc5[0] = _global.parseInt(loc5[0],16);
-			loc5[1] = loc5[1] != "0"?_global.parseInt(loc5[1],16):undefined;
-			loc5[2] = loc5[2] != "0"?_global.parseInt(loc5[2],16):undefined;
-			loc5[3] = loc5[3] != "0"?_global.parseInt(loc5[3],16):undefined;
-			this._aEffects.push(loc5);
-			loc4 = loc4 + 1;
+			var var5 = var3[var4].split("#");
+			var5[0] = _global.parseInt(var5[0],16);
+			var5[1] = var5[1] != "0"?_global.parseInt(var5[1],16):undefined;
+			var5[2] = var5[2] != "0"?_global.parseInt(var5[2],16):undefined;
+			var5[3] = var5[3] != "0"?_global.parseInt(var5[3],16):undefined;
+			this._aEffects.push(var5);
+			var4 = var4 + 1;
 		}
 	}
-	function setItems(loc2)
+	function setItems(var2)
 	{
-		var loc3 = this.api.lang.getItemSetText(this._nID).i;
+		var var3 = this.api.lang.getItemSetText(this._nID).i;
 		this._aItems = new Array();
-		var loc4 = new Object();
-		for(var k in loc2)
+		var var4 = new Object();
+		for(var4[var2[k]] in var2)
 		{
-			loc4[loc2[k]] = true;
 		}
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = Number(loc3[loc5]);
-			if(!_global.isNaN(loc6))
+			var var6 = Number(var3[var5]);
+			if(!_global.isNaN(var6))
 			{
-				var loc7 = new dofus.datacenter.(0,loc6,1);
-				var loc8 = loc4[loc6] == true;
-				this._aItems.push({isEquiped:loc8,item:loc7});
+				var var7 = new dofus.datacenter.(0,var6,1);
+				var var8 = var4[var6] == true;
+				this._aItems.push({isEquiped:var8,item:var7});
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
 	}
 }

@@ -1,82 +1,82 @@
 class dofus.aks.Subway extends dofus.aks.Handler
 {
-	function Subway(loc3, loc4)
+	function Subway(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function leave()
 	{
 		this.aks.send("Wv");
 	}
-	function use(loc2)
+	function use(var2)
 	{
-		this.aks.send("Wu" + loc2);
+		this.aks.send("Wu" + var2);
 	}
 	function prismLeave()
 	{
 		this.aks.send("Ww");
 	}
-	function prismUse(loc2)
+	function prismUse(var2)
 	{
-		this.aks.send("Wp" + loc2);
+		this.aks.send("Wp" + var2);
 	}
-	function onCreate(loc2)
+	function onCreate(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = new ank.utils.();
-		var loc6 = 1;
-		while(loc6 < loc3.length)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = new ank.utils.();
+		var var6 = 1;
+		while(var6 < var3.length)
 		{
-			var loc7 = loc3[loc6].split(";");
-			var loc8 = Number(loc7[0]);
-			var loc9 = Number(loc7[1]);
-			var loc10 = this.api.lang.getHintsByMapID(loc8);
-			var loc11 = 0;
-			while(loc11 < loc10.length)
+			var var7 = var3[var6].split(";");
+			var var8 = Number(var7[0]);
+			var var9 = Number(var7[1]);
+			var var10 = this.api.lang.getHintsByMapID(var8);
+			var var11 = 0;
+			while(var11 < var10.length)
 			{
-				var loc12 = new dofus.datacenter.Subway(loc10[loc11],loc9);
-				if(loc5[loc12.categoryID] == undefined)
+				var var12 = new dofus.datacenter.Subway(var10[var11],var9);
+				if(var5[var12.categoryID] == undefined)
 				{
-					loc5[loc12.categoryID] = new ank.utils.();
+					var5[var12.categoryID] = new ank.utils.();
 				}
-				loc5[loc12.categoryID].push(loc12);
-				loc11 = loc11 + 1;
+				var5[var12.categoryID].push(var12);
+				var11 = var11 + 1;
 			}
-			loc6 = loc6 + 1;
+			var6 = var6 + 1;
 		}
-		this.api.ui.loadUIComponent("Subway","Subway",{data:loc5});
+		this.api.ui.loadUIComponent("Subway","Subway",{data:var5});
 	}
 	function onLeave()
 	{
 		this.api.ui.unloadUIComponent("Subway");
 	}
-	function onPrismCreate(loc2)
+	function onPrismCreate(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = new ank.utils.();
-		var loc6 = 1;
-		while(loc6 < loc3.length)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = new ank.utils.();
+		var var6 = 1;
+		while(var6 < var3.length)
 		{
-			var loc7 = loc3[loc6].split(";");
-			var loc8 = Number(loc7[0]);
-			var loc9 = false;
-			var loc10 = -1;
-			var loc11 = loc7[1];
-			if(loc11.charAt(loc11.length - 1) == "*")
+			var var7 = var3[var6].split(";");
+			var var8 = Number(var7[0]);
+			var var9 = false;
+			var var10 = -1;
+			var var11 = var7[1];
+			if(var11.charAt(var11.length - 1) == "*")
 			{
-				loc9 = true;
-				loc10 = Number(loc11.substr(0,loc11.length - 1));
+				var9 = true;
+				var10 = Number(var11.substr(0,var11.length - 1));
 			}
 			else
 			{
-				loc10 = Number(loc11);
+				var10 = Number(var11);
 			}
-			loc5.push(new dofus.datacenter.(loc8,loc10,loc9));
-			loc6 = loc6 + 1;
+			var5.push(new dofus.datacenter.(var8,var10,var9));
+			var6 = var6 + 1;
 		}
-		this.api.ui.loadUIComponent("Subway","Subway",{data:loc5,type:dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM});
+		this.api.ui.loadUIComponent("Subway","Subway",{data:var5,type:dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM});
 	}
 	function onPrismLeave()
 	{

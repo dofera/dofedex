@@ -1,22 +1,22 @@
 class ank.battlefield.mc.Points extends MovieClip
 {
 	var _bFinished = false;
-	function Points(pointsHandler, §\x06\x02§, §\x01\x1d§, §\x1e\x0e\x04§, §\b\t§)
+	function Points(pointsHandler, §\x05\x1d§, §\x01\x1b§, §\x1e\x0e\x02§, §\b\x07§)
 	{
 		super();
-		this.initialize(pointsHandler,loc4,loc5,loc6,loc7);
+		this.initialize(pointsHandler,var4,var5,var6,var7);
 	}
-	function initialize(pointsHandler, §\x06\x02§, §\x01\x1d§, §\x1e\x0e\x04§, §\b\t§)
+	function initialize(pointsHandler, §\x05\x1d§, §\x01\x1b§, §\x1e\x0e\x02§, §\b\x07§)
 	{
 		this._pointsHandler = pointsHandler;
-		this._nRefY = loc4;
-		this._nID = loc3;
+		this._nRefY = var4;
+		this._nID = var3;
 		this.createTextField("_tf",10,0,0,150,100);
 		this._tf.autoSize = "left";
 		this._tf.embedFonts = true;
 		this._tf.selectable = false;
-		this._tf.textColor = loc6;
-		this._tf.text = loc5;
+		this._tf.textColor = var6;
+		this._tf.text = var5;
 		this._tf.setTextFormat(ank.battlefield.Constants.SPRITE_POINTS_TEXTFORMAT);
 		this._tf._x = - this._tf.textWidth / 2;
 		this._tf._y = - this._tf.textHeight / 2;
@@ -33,7 +33,7 @@ class ank.battlefield.mc.Points extends MovieClip
 			this._nSz = 100;
 			this._nVy = -20;
 		}
-		this._nY = loc4;
+		this._nY = var4;
 	}
 	function animate()
 	{
@@ -51,8 +51,8 @@ class ank.battlefield.mc.Points extends MovieClip
 				this._nSz = this._nSz * 0.95;
 				this._nY = this._nY + (this._nVy = this._nVy * 0.7);
 				this._y = this._nY;
-				var loc2 = this._nRefY - this._nY;
-				if(loc2 > ank.battlefield.Constants.SPRITE_POINTS_OFFSET)
+				var var2 = this._nRefY - this._nY;
+				if(var2 > ank.battlefield.Constants.SPRITE_POINTS_OFFSET)
 				{
 					this._nOpacity = this._nOpacity - 0;
 				}
@@ -72,14 +72,14 @@ class ank.battlefield.mc.Points extends MovieClip
 				this._nSz = this._nSz * 0.85;
 				this._nY = this._nY + (this._nVy = this._nVy * 0.7);
 				this._y = this._nY;
-				var loc3 = this._nRefY - this._nY;
-				if(loc3 > ank.battlefield.Constants.SPRITE_POINTS_OFFSET)
+				var var3 = this._nRefY - this._nY;
+				if(var3 > ank.battlefield.Constants.SPRITE_POINTS_OFFSET)
 				{
 					this.remove();
 				}
 				if(!this._bFinished)
 				{
-					if(loc3 > ank.battlefield.Constants.SPRITE_POINTS_OFFSET - 2)
+					if(var3 > ank.battlefield.Constants.SPRITE_POINTS_OFFSET - 2)
 					{
 						this._bFinished = true;
 						this._pointsHandler.onAnimateFinished(this._nID);

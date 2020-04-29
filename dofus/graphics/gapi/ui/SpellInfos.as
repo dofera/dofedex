@@ -5,20 +5,20 @@ class dofus.graphics.gapi.ui.SpellInfos extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__spell(loc2)
+	function __set__spell(var2)
 	{
-		if(loc2 == this._oSpell)
+		if(var2 == this._oSpell)
 		{
 			return undefined;
 		}
-		this.addToQueue({object:this,method:function(loc2)
+		this.addToQueue({object:this,method:function(var2)
 		{
-			this._oSpell = loc2;
+			this._oSpell = var2;
 			if(this.initialized)
 			{
 				this.initData();
 			}
-		},params:[loc2]});
+		},params:[var2]});
 		return this.__get__spell();
 	}
 	function init()
@@ -47,11 +47,11 @@ class dofus.graphics.gapi.ui.SpellInfos extends dofus.graphics.gapi.core.DofusAd
 			this._sfivSpellFullInfosViewer.spell = this._oSpell;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.unloadThis();
 	}
-	function close(loc2)
+	function close(var2)
 	{
 		this.unloadThis();
 	}

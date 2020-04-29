@@ -6,23 +6,23 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 	{
 		super();
 	}
-	function __set__spell(loc2)
+	function __set__spell(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		if(loc2 == this._oSpell)
+		if(var2 == this._oSpell)
 		{
 			return undefined;
 		}
-		if(!loc2.isValid)
+		if(!var2.isValid)
 		{
-			this._oSpell = new dofus.datacenter.(loc2.ID,1);
+			this._oSpell = new dofus.datacenter.(var2.ID,1);
 		}
 		else
 		{
-			this._oSpell = loc2;
+			this._oSpell = var2;
 		}
 		if(this.initialized)
 		{
@@ -132,8 +132,8 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 			{
 				this.updateCurrentTabInformations();
 			}
-			var loc2 = this.api.kernel.GameManager.getCriticalHitChance(this._oSpell.criticalHit);
-			this._lblRealCritValue.text = loc2 != 0?"1/" + loc2:"-";
+			var var2 = this.api.kernel.GameManager.getCriticalHitChance(this._oSpell.criticalHit);
+			this._lblRealCritValue.text = var2 != 0?"1/" + var2:"-";
 			this._lblCriticalHitValue.text = this._oSpell.criticalHit != 0?"1/" + this._oSpell.criticalHit:"-";
 			this._lblCriticalMissValue.text = this._oSpell.criticalFailure != 0?"1/" + this._oSpell.criticalFailure:"-";
 			this._lblCountByTurnValue.text = this._oSpell.launchCountByTurn != 0?String(this._oSpell.launchCountByTurn):"-";
@@ -151,35 +151,35 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 			this._mcCheckFailureEndsTheTurn._visible = this._oSpell.criticalFailureEndsTheTurn;
 			if(this._oSpell.level != undefined)
 			{
-				var loc3 = 1;
-				while(loc3 <= 6)
+				var var3 = 1;
+				while(var3 <= 6)
 				{
-					var loc4 = this["_btnLevel" + loc3];
-					var loc5 = loc3 == this._oSpell.level;
-					loc4.selected = loc5;
-					loc4.enabled = !loc5;
-					if(loc3 <= this._oSpell.maxLevel)
+					var var4 = this["_btnLevel" + var3];
+					var var5 = var3 == this._oSpell.level;
+					var4.selected = var5;
+					var4.enabled = !var5;
+					if(var3 <= this._oSpell.maxLevel)
 					{
-						loc4._alpha = 100;
+						var4._alpha = 100;
 					}
 					else
 					{
-						loc4.enabled = false;
-						loc4._alpha = 20;
+						var4.enabled = false;
+						var4._alpha = 20;
 					}
-					loc3 = loc3 + 1;
+					var3 = var3 + 1;
 				}
 			}
 			else
 			{
-				var loc6 = 1;
-				while(loc6 <= 6)
+				var var6 = 1;
+				while(var6 <= 6)
 				{
-					var loc7 = this["_btnLevel" + loc6];
-					loc7.selected = false;
-					loc7.enabled = false;
-					loc7._alpha = 20;
-					loc6 = loc6 + 1;
+					var var7 = this["_btnLevel" + var6];
+					var7.selected = false;
+					var7.enabled = false;
+					var7._alpha = 20;
+					var6 = var6 + 1;
 				}
 			}
 		}
@@ -211,85 +211,85 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 				this._lstEffects.dataProvider = this._oSpell.effectsCriticalHitWithArea;
 				break;
 			case "Creature":
-				var loc2 = this._oSpell.effectsNormalHit;
-				var loc4 = 0;
-				while(loc4 < loc2.length)
+				var var2 = this._oSpell.effectsNormalHit;
+				var var4 = 0;
+				while(var4 < var2.length)
 				{
-					var loc3 = loc2[loc4];
-					if(loc3.type == 181)
+					var var3 = var2[var4];
+					if(var3.type == 181)
 					{
 						break;
 					}
-					loc3.type = loc0 = 180;
-					if(loc0)
+					var3.type = var0 = 180;
+					if(var0)
 					{
-						var loc5 = new ank.utils.();
-						var loc6 = this.api.datacenter.Player.data;
-						loc5.push(loc6.name + " (" + this.api.lang.getText("LEVEL") + " " + this.api.datacenter.Player.Level + ")");
-						loc5.push(this.api.lang.getText("LP") + " : " + this.api.datacenter.Player.LP);
-						loc5.push(this.api.lang.getText("AP") + " : " + loc6.AP);
-						loc5.push(this.api.lang.getText("MP") + " : " + loc6.MP);
-						this._lstEffects.dataProvider = loc5;
+						var var5 = new ank.utils.();
+						var var6 = this.api.datacenter.Player.data;
+						var5.push(var6.name + " (" + this.api.lang.getText("LEVEL") + " " + this.api.datacenter.Player.Level + ")");
+						var5.push(this.api.lang.getText("LP") + " : " + this.api.datacenter.Player.LP);
+						var5.push(this.api.lang.getText("AP") + " : " + var6.AP);
+						var5.push(this.api.lang.getText("MP") + " : " + var6.MP);
+						this._lstEffects.dataProvider = var5;
 						return undefined;
 					}
-					loc4 = loc4 + 1;
+					var4 = var4 + 1;
 				}
-				var loc7 = new ank.utils.();
-				if(loc3 != undefined)
+				var var7 = new ank.utils.();
+				if(var3 != undefined)
 				{
-					var loc8 = loc3.param1;
-					var loc9 = loc3.param2;
-					var loc10 = this.api.lang.getMonstersText(loc8);
-					var loc11 = loc10["g" + loc9];
-					loc7.push(loc10.n + " (" + this.api.lang.getText("LEVEL") + " " + loc11.l + ")");
-					loc7.push(this.api.lang.getText("LP") + " : " + loc11.lp);
-					loc7.push(this.api.lang.getText("AP") + " : " + loc11.ap);
-					loc7.push(this.api.lang.getText("MP") + " : " + loc11.mp);
+					var var8 = var3.param1;
+					var var9 = var3.param2;
+					var var10 = this.api.lang.getMonstersText(var8);
+					var var11 = var10["g" + var9];
+					var7.push(var10.n + " (" + this.api.lang.getText("LEVEL") + " " + var11.l + ")");
+					var7.push(this.api.lang.getText("LP") + " : " + var11.lp);
+					var7.push(this.api.lang.getText("AP") + " : " + var11.ap);
+					var7.push(this.api.lang.getText("MP") + " : " + var11.mp);
 				}
-				this._lstEffects.dataProvider = loc7;
+				this._lstEffects.dataProvider = var7;
 				break;
 			default:
-				switch(null)
+				if(var0 !== "Trap")
 				{
-					case "Glyph":
-					case "Trap":
-						var loc12 = 400;
-						if(this._sCurrentTab == "Glyph")
-						{
-							loc12 = 401;
-						}
-						var loc13 = this._oSpell.effectsNormalHit;
-						var loc15 = 0;
-						while(loc15 < loc13.length)
-						{
-							var loc14 = loc13[loc15];
-							if(loc14.type == loc12)
-							{
-								break;
-							}
-							loc15 = loc15 + 1;
-						}
-						var loc16 = new ank.utils.();
-						if(loc14 != undefined)
-						{
-							var loc17 = loc14.param1;
-							var loc18 = loc14.param2;
-							var loc19 = this.api.kernel.CharactersManager.getSpellObjectFromData(loc17 + "~" + loc18 + "~");
-							loc16 = loc19.effectsNormalHit;
-						}
-						this._lstEffects.dataProvider = loc16;
+					break;
 				}
+			case "Glyph":
+				var var12 = 400;
+				if(this._sCurrentTab == "Glyph")
+				{
+					var12 = 401;
+				}
+				var var13 = this._oSpell.effectsNormalHit;
+				var var15 = 0;
+				while(var15 < var13.length)
+				{
+					var var14 = var13[var15];
+					if(var14.type == var12)
+					{
+						break;
+					}
+					var15 = var15 + 1;
+				}
+				var var16 = new ank.utils.();
+				if(var14 != undefined)
+				{
+					var var17 = var14.param1;
+					var var18 = var14.param2;
+					var var19 = this.api.kernel.CharactersManager.getSpellObjectFromData(var17 + "~" + var18 + "~");
+					var16 = var19.effectsNormalHit;
+				}
+				this._lstEffects.dataProvider = var16;
 		}
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
-		var loc3 = this["_btnTab" + this._sCurrentTab];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
-		this._sCurrentTab = loc2;
+		var var3 = this["_btnTab" + this._sCurrentTab];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
+		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
 	function hideAllCheck()
@@ -303,22 +303,22 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 		this._mcCrossFreeCell._visible = true;
 		this._mcCheckFreeCell._visible = false;
 	}
-	function setLevel(loc2)
+	function setLevel(var2)
 	{
-		var loc3 = this.api.kernel.CharactersManager.getSpellObjectFromData(this._oSpell.ID + "~" + loc2);
-		if(loc3.isValid)
+		var var3 = this.api.kernel.CharactersManager.getSpellObjectFromData(this._oSpell.ID + "~" + var2);
+		if(var3.isValid)
 		{
-			this.spell = loc3;
+			this.spell = var3;
 		}
 		else
 		{
-			this["_btnLevel" + loc2].selected = false;
+			this["_btnLevel" + var2].selected = false;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		loop0:
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnTabNormal":
 				this.setCurrentTab("Normal");
@@ -339,27 +339,25 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 						this.setCurrentTab("Trap");
 						break loop0;
 					default:
-						loop2:
 						switch(null)
 						{
-							default:
-								switch(null)
-								{
-									case "_btnLevel6":
-										break loop2;
-									case "_btnClose":
-										this.dispatchEvent({type:"close"});
-										this.unloadThis();
-								}
-								break loop0;
-							case "_btnLevel2":
 							case "_btnLevel3":
 							case "_btnLevel4":
 							case "_btnLevel5":
+							case "_btnLevel6":
+							default:
+								if(var0 !== "_btnClose")
+								{
+									break loop0;
+								}
+								this.dispatchEvent({type:"close"});
+								this.unloadThis();
+								break loop0;
 						}
 					case "_btnLevel1":
-						var loc3 = loc2.target._name.substr(9);
-						this.setLevel(Number(loc3));
+					case "_btnLevel2":
+						var var3 = var2.target._name.substr(9);
+						this.setLevel(Number(var3));
 				}
 		}
 	}

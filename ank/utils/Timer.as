@@ -2,43 +2,42 @@ class ank.utils.Timer extends Object
 {
 	static var _nTimerIndex = 0;
 	static var _oIDs = new Object();
-	static var _tTimer = new ank.utils.();
+	static var _tTimer = new ank.utils.	();
 	function Timer()
 	{
 		super();
 	}
-	static function setTimer(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	static function setTimer(var2, var3, var4, var5, var6, var7, var8)
 	{
 		ank.utils.Timer.garbageCollector();
-		var loc9 = ank.utils.Timer.getNextTimerIndex();
-		var loc10 = _global.setInterval(ank.utils.Timer.getInstance(),"onTimer",loc6,loc9,loc2,loc3,loc4,loc5,loc7);
-		loc2.__ANKTIMERID__ = loc10;
-		loc2.__ANKTIMERREPEAT__ = loc8;
-		if(ank.utils.Timer._oIDs[loc3] == undefined)
+		var var9 = ank.utils.Timer.getNextTimerIndex();
+		var var10 = _global.setInterval(ank.utils.Timer.getInstance(),"onTimer",var6,var9,var2,var3,var4,var5,var7);
+		var2.__ANKTIMERID__ = var10;
+		var2.__ANKTIMERREPEAT__ = var8;
+		if(ank.utils.Timer._oIDs[var3] == undefined)
 		{
-			ank.utils.Timer._oIDs[loc3] = new Object();
+			ank.utils.Timer._oIDs[var3] = new Object();
 		}
-		ank.utils.Timer._oIDs[loc3][loc9] = new Array(loc2,loc10,loc3);
+		ank.utils.Timer._oIDs[var3][var9] = new Array(var2,var10,var3);
 	}
-	static function clear(loc2)
+	static function clear(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			var loc3 = ank.utils.Timer._oIDs[loc2];
-			§§enumerate(loc3);
-			while((var loc0 = §§enumeration()) != null)
+			var var3 = ank.utils.Timer._oIDs[var2];
+			for(var k in var3)
 			{
-				ank.utils.Timer.removeTimer(loc3[k][0],loc2,loc3[k][1]);
+				ank.utils.Timer.removeTimer(var3[k][0],var2,var3[k][1]);
 			}
 		}
 		else
 		{
-			for(var loc4 in ank.utils.Timer._oIDs)
+			for(var k in ank.utils.Timer._oIDs)
 			{
-				§§enumerate(loc4);
-				while((var loc0 = §§enumeration()) != null)
+				var var4 = ank.utils.Timer._oIDs[k];
+				for(var kk in var4)
 				{
-					ank.utils.Timer.removeTimer(loc4[kk][0],loc4[kk][2],loc4[kk][1]);
+					ank.utils.Timer.removeTimer(var4[kk][0],var4[kk][2],var4[kk][1]);
 				}
 			}
 		}
@@ -48,27 +47,27 @@ class ank.utils.Timer extends Object
 	{
 		ank.utils.Timer.garbageCollector();
 	}
-	static function removeTimer(loc2, loc3, loc4)
+	static function removeTimer(var2, var3, var4)
 	{
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			if(loc2 == undefined)
+			if(var2 == undefined)
 			{
 				return undefined;
 			}
-			if(loc2.__ANKTIMERID__ == undefined)
+			if(var2.__ANKTIMERID__ == undefined)
 			{
 				return undefined;
 			}
-			var loc5 = loc2.__ANKTIMERID__;
+			var var5 = var2.__ANKTIMERID__;
 		}
 		else
 		{
-			loc5 = ank.utils.Timer._oIDs[loc3][loc4][1];
+			var5 = ank.utils.Timer._oIDs[var3][var4][1];
 		}
-		_global.clearInterval(loc5);
+		_global.clearInterval(var5);
 		delete register2.__ANKTIMERID__;
-		delete ank.utils.Timer._oIDs[loc3].register4;
+		delete ank.utils.Timer._oIDs[var3].register4;
 	}
 	static function getInstance()
 	{
@@ -78,13 +77,13 @@ class ank.utils.Timer extends Object
 	{
 		for(var k in ank.utils.Timer._oIDs)
 		{
-			var loc2 = ank.utils.Timer._oIDs[k];
-			for(var kk in loc2)
+			var var2 = ank.utils.Timer._oIDs[k];
+			for(var kk in var2)
 			{
-				var loc3 = loc2[kk];
-				if(loc3[0] == undefined || (typeof loc3[0] == "movieclip" && loc3[0]._name == undefined || loc3[0].__ANKTIMERID__ != loc3[1]))
+				var var3 = var2[kk];
+				if(var3[0] == undefined || (typeof var3[0] == "movieclip" && var3[0]._name == undefined || var3[0].__ANKTIMERID__ != var3[1]))
 				{
-					_global.clearInterval(loc3[1]);
+					_global.clearInterval(var3[1]);
 					delete register2.kk;
 				}
 			}
@@ -92,39 +91,39 @@ class ank.utils.Timer extends Object
 	}
 	static function getTimersCount()
 	{
-		var loc2 = 0;
+		var var2 = 0;
 		for(var k in ank.utils.Timer._oIDs)
 		{
-			var loc3 = ank.utils.Timer._oIDs[k];
-			for(var kk in loc3)
+			var var3 = ank.utils.Timer._oIDs[k];
+			for(var kk in var3)
 			{
-				loc2 = loc2 + 1;
+				var2 = var2 + 1;
 			}
 		}
-		return loc2;
+		return var2;
 	}
 	static function getNextTimerIndex()
 	{
 		return ank.utils.Timer._nTimerIndex++;
 	}
-	function onTimer(loc2, loc3, loc4, loc5, loc6, loc7)
+	function onTimer(var2, var3, var4, var5, var6, var7)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			ank.utils.Timer.removeTimer(undefined,loc4,loc2);
+			ank.utils.Timer.removeTimer(undefined,var4,var2);
 			return undefined;
 		}
-		if(loc3.__ANKTIMERID__ == undefined)
+		if(var3.__ANKTIMERID__ == undefined)
 		{
-			ank.utils.Timer.removeTimer(undefined,loc4,loc2);
+			ank.utils.Timer.removeTimer(undefined,var4,var2);
 			return undefined;
 		}
-		if(!loc3.__ANKTIMERREPEAT__)
+		if(!var3.__ANKTIMERREPEAT__)
 		{
-			ank.utils.Timer.removeTimer(loc3,loc4,loc2);
+			ank.utils.Timer.removeTimer(var3,var4,var2);
 			delete register3.__ANKTIMERID__;
 		}
-		loc6.apply(loc5,loc7);
+		var6.apply(var5,var7);
 		ank.utils.Timer.garbageCollector();
 	}
 }

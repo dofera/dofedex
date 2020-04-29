@@ -45,11 +45,11 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 	}
 	function initData()
 	{
-		var loc2 = SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
-		loc2._parentRef = this;
-		loc2.onStatus = function(loc2)
+		var var2 = SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
+		var2._parentRef = this;
+		var2.onStatus = function(var2)
 		{
-			if(loc2.level == "status" && loc2.code == "SharedObject.Flush.Success")
+			if(var2.level == "status" && var2.code == "SharedObject.Flush.Success")
 			{
 				this._parentRef._btnTipsOnStart._visible = true;
 				this._parentRef._lblTipsOnStart._visible = true;
@@ -70,46 +70,46 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 			this._btnTipsOnStart.selected = this.api.kernel.OptionsManager.getOption("TipsOnStart");
 		}
 	}
-	function showTip(loc2)
+	function showTip(var2)
 	{
-		var loc3 = this.api.lang.getTips().length - 1;
-		if(loc2 == undefined)
+		var var3 = this.api.lang.getTips().length - 1;
+		if(var2 == undefined)
 		{
-			loc2 = random(loc3);
+			var2 = random(var3);
 		}
-		if(loc2 > loc3)
+		if(var2 > var3)
 		{
-			loc2 = 0;
+			var2 = 0;
 		}
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
-			loc2 = loc3;
+			var2 = var3;
 		}
-		this._nCurrentID = loc2;
-		var loc4 = this.api.lang.getTip(loc2);
-		if(loc4 != undefined)
+		this._nCurrentID = var2;
+		var var4 = this.api.lang.getTip(var2);
+		if(var4 != undefined)
 		{
-			this._txtTip.text = loc4;
+			this._txtTip.text = var4;
 		}
 		else
 		{
 			this.unloadThis();
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnClose2":
 				this.callClose();
 				break;
+			case "_btnTipsOnStart":
+				this.api.kernel.OptionsManager.setOption("TipsOnStart",var2.target.selected);
+				break;
 			default:
 				switch(null)
 				{
-					case "_btnTipsOnStart":
-						this.api.kernel.OptionsManager.setOption("TipsOnStart",loc2.target.selected);
-						break;
 					case "_btnPrevious":
 						this.showTip(this._nCurrentID - 1);
 						break;
@@ -118,14 +118,14 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
 		if(this._bSOEnabled == false)
 		{
 			this.gapi.showTooltip("Les cookies flash doivent être activés pour accèder à cette fonctionnalité.",this._btnTipsOnStart,-30);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

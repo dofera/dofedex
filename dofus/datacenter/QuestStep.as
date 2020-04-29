@@ -1,9 +1,9 @@
 class dofus.datacenter.QuestStep extends Object
 {
-	function QuestStep(loc3, loc4, loc5, loc6, loc7, loc8, loc9)
+	function QuestStep(var3, var4, var5, var6, var7, var8, var9)
 	{
 		super();
-		this.initialize(loc3,loc4,loc5,loc6,loc7,loc8,loc9);
+		this.initialize(var3,var4,var5,var6,var7,var8,var9);
 	}
 	function __get__id()
 	{
@@ -11,7 +11,12 @@ class dofus.datacenter.QuestStep extends Object
 	}
 	function __get__name()
 	{
-		return this.api.lang.getQuestStepText(this._nID).n;
+		var var2 = this.api.lang.getQuestStepText(this._nID).n;
+		if(var2 != null && dofus.Constants.DEBUG)
+		{
+			var2 = var2 + " (" + this._nID + ")";
+		}
+		return var2;
 	}
 	function __get__description()
 	{
@@ -23,83 +28,83 @@ class dofus.datacenter.QuestStep extends Object
 	}
 	function __get__allSteps()
 	{
-		var loc2 = new ank.utils.();
-		var loc3 = 0;
-		while(loc3 < this._aPreviousSteps.length)
+		var var2 = new ank.utils.();
+		var var3 = 0;
+		while(var3 < this._aPreviousSteps.length)
 		{
-			loc2.push(new dofus.datacenter.(this._aPreviousSteps[loc3],2));
-			loc3 = loc3 + 1;
+			var2.push(new dofus.datacenter.(this._aPreviousSteps[var3],2));
+			var3 = var3 + 1;
 		}
-		loc2.push(this);
-		var loc4 = 0;
-		while(loc4 < this._aNextSteps.length)
+		var2.push(this);
+		var var4 = 0;
+		while(var4 < this._aNextSteps.length)
 		{
-			loc2.push(new dofus.datacenter.(this._aNextSteps[loc4],0));
-			loc4 = loc4 + 1;
+			var2.push(new dofus.datacenter.(this._aNextSteps[var4],0));
+			var4 = var4 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__rewards()
 	{
-		var loc2 = new ank.utils.();
-		var loc3 = this.api.lang.getQuestStepText(this._nID).r;
-		if(loc3[0] != undefined)
+		var var2 = new ank.utils.();
+		var var3 = this.api.lang.getQuestStepText(this._nID).r;
+		if(var3[0] != undefined)
 		{
-			loc2.push({iconFile:"UI_QuestXP",label:loc3[0]});
+			var2.push({iconFile:"UI_QuestXP",label:var3[0]});
 		}
-		if(loc3[1] != undefined)
+		if(var3[1] != undefined)
 		{
-			loc2.push({iconFile:"UI_QuestKamaSymbol",label:loc3[1]});
+			var2.push({iconFile:"UI_QuestKamaSymbol",label:var3[1]});
 		}
-		if(loc3[2] != undefined)
+		if(var3[2] != undefined)
 		{
-			var loc4 = loc3[2];
-			var loc5 = 0;
-			while(loc5 < loc4.length)
+			var var4 = var3[2];
+			var var5 = 0;
+			while(var5 < var4.length)
 			{
-				var loc6 = Number(loc4[loc5][0]);
-				var loc7 = loc4[loc5][1];
-				var loc8 = new dofus.datacenter.(0,loc6,loc7);
-				loc2.push({iconFile:loc8.iconFile,label:(loc7 == 0?"":"x" + loc7 + " ") + loc8.name});
-				loc5 = loc5 + 1;
+				var var6 = Number(var4[var5][0]);
+				var var7 = var4[var5][1];
+				var var8 = new dofus.datacenter.(0,var6,var7);
+				var2.push({iconFile:var8.iconFile,label:(var7 == 0?"":"x" + var7 + " ") + var8.name});
+				var5 = var5 + 1;
 			}
 		}
-		if(loc3[3] != undefined)
+		if(var3[3] != undefined)
 		{
-			var loc9 = loc3[3];
-			var loc10 = 0;
-			while(loc10 < loc9.length)
+			var var9 = var3[3];
+			var var10 = 0;
+			while(var10 < var9.length)
 			{
-				var loc11 = Number(loc9[loc10]);
-				loc2.push({iconFile:dofus.Constants.EMOTES_ICONS_PATH + loc11 + ".swf",label:this.api.lang.getEmoteText(loc11).n});
-				loc10 = loc10 + 1;
+				var var11 = Number(var9[var10]);
+				var2.push({iconFile:dofus.Constants.EMOTES_ICONS_PATH + var11 + ".swf",label:this.api.lang.getEmoteText(var11).n});
+				var10 = var10 + 1;
 			}
 		}
-		if(loc3[4] != undefined)
+		if(var3[4] != undefined)
 		{
-			var loc12 = loc3[4];
-			var loc13 = 0;
-			while(loc13 < loc12.length)
+			var var12 = var3[4];
+			var var13 = 0;
+			while(var13 < var12.length)
 			{
-				var loc14 = Number(loc12[loc13]);
-				var loc15 = new dofus.datacenter.Job(loc14);
-				loc2.push({iconFile:loc15.iconFile,label:loc15.name});
-				loc13 = loc13 + 1;
+				var var14 = Number(var12[var13]);
+				var var15 = new dofus.datacenter.Job(var14);
+				var2.push({iconFile:var15.iconFile,label:var15.name});
+				var13 = var13 + 1;
 			}
 		}
-		if(loc3[5] != undefined)
+		if(var3[5] != undefined)
 		{
-			var loc16 = loc3[5];
-			var loc17 = 0;
-			while(loc17 < loc16.length)
+			var var16 = var3[5];
+			var var17 = 0;
+			while(var17 < var16.length)
 			{
-				var loc18 = Number(loc16[loc17]);
-				var loc19 = new dofus.datacenter.(loc18,1);
-				loc2.push({iconFile:loc19.iconFile,label:loc19.name});
-				loc17 = loc17 + 1;
+				var var18 = Number(var16[var17]);
+				var var19 = new dofus.datacenter.(var18,1);
+				var2.push({iconFile:var19.iconFile,label:var19.name});
+				var17 = var17 + 1;
 			}
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__dialogID()
 	{
@@ -129,15 +134,15 @@ class dofus.datacenter.QuestStep extends Object
 	{
 		return true;
 	}
-	function initialize(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	function initialize(var2, var3, var4, var5, var6, var7, var8)
 	{
 		this.api = _global.API;
-		this._nID = loc2;
-		this._nState = loc3;
-		this._eaObjectives = loc4;
-		this._aPreviousSteps = loc5;
-		this._aNextSteps = loc6;
-		this._nDialogID = loc7;
-		this._aDialogParams = loc8;
+		this._nID = var2;
+		this._nState = var3;
+		this._eaObjectives = var4;
+		this._aPreviousSteps = var5;
+		this._aNextSteps = var6;
+		this._nDialogID = var7;
+		this._aDialogParams = var8;
 	}
 }

@@ -3,153 +3,147 @@ class ank.utils.PatternDecoder
 	function PatternDecoder()
 	{
 	}
-	static function getDescription(loc2, loc3)
+	static function getDescription(var2, var3)
 	{
 		ank.utils.Extensions.addExtensions();
-		var loc4 = loc2.split("");
-		var loc5 = ank.utils.PatternDecoder.decodeDescription(loc4,loc3).join("");
-		return loc5;
+		var var4 = var2.split("");
+		var var5 = ank.utils.PatternDecoder.decodeDescription(var4,var3).join("");
+		return var5;
 	}
-	static function combine(loc2, loc3, loc4)
+	static function combine(var2, var3, var4)
 	{
 		ank.utils.Extensions.addExtensions();
-		var loc5 = loc2.split("");
-		var loc6 = new Object();
-		loc6.m = loc3 == "m";
-		loc6.f = loc3 == "f";
-		loc6.n = loc3 == "n";
-		loc6.p = !loc4;
-		loc6.s = loc4;
-		var loc7 = ank.utils.PatternDecoder.decodeCombine(loc5,loc6).join("");
-		return loc7;
+		var var5 = var2.split("");
+		var var6 = new Object();
+		var6.m = var3 == "m";
+		var6.f = var3 == "f";
+		var6.n = var3 == "n";
+		var6.p = !var4;
+		var6.s = var4;
+		var var7 = ank.utils.PatternDecoder.decodeCombine(var5,var6).join("");
+		return var7;
 	}
-	static function replace(loc2, loc3)
+	static function replace(var2, var3)
 	{
-		var loc4 = loc2.split("##");
-		var loc5 = 1;
-		while(loc5 < loc4.length)
+		var var4 = var2.split("##");
+		var var5 = 1;
+		while(var5 < var4.length)
 		{
-			var loc6 = loc4[loc5].split(",");
-			loc4[loc5] = ank.utils.PatternDecoder.getDescription(loc3,loc6);
-			loc5 = loc5 + 2;
+			var var6 = var4[var5].split(",");
+			var4[var5] = ank.utils.PatternDecoder.getDescription(var3,var6);
+			var5 = var5 + 2;
 		}
-		return loc4.join("");
+		return var4.join("");
 	}
-	static function replaceStr(loc2, loc3, loc4)
+	static function replaceStr(var2, var3, var4)
 	{
-		var loc5 = loc2.split(loc3);
-		return loc5.join(loc4);
+		var var5 = var2.split(var3);
+		return var5.join(var4);
 	}
-	static function decodeDescription(loc2, loc3)
+	static function decodeDescription(var2, var3)
 	{
-		var loc4 = 0;
-		var loc5 = new String();
-		var loc6 = loc2.length;
-		while(loc4 < loc6)
+		var var4 = 0;
+		var var5 = new String();
+		var var6 = var2.length;
+		while(var4 < var6)
 		{
-			loc5 = loc2[loc4];
-			switch(loc5)
+			var5 = var2[var4];
+			switch(var5)
 			{
 				case "#":
-					var loc7 = loc2[loc4 + 1];
-					if(!_global.isNaN(loc7))
+					var var7 = var2[var4 + 1];
+					if(!_global.isNaN(var7))
 					{
-						if(loc3[loc7 - 1] != undefined)
+						if(var3[var7 - 1] != undefined)
 						{
-							loc2.splice(loc4,2,loc3[loc7 - 1]);
-							loc4 = loc4 - 1;
+							var2.splice(var4,2,var3[var7 - 1]);
+							var4 = var4 - 1;
 						}
 						else
 						{
-							loc2.splice(loc4,2);
-							loc4 = loc4 - 2;
+							var2.splice(var4,2);
+							var4 = var4 - 2;
 						}
 					}
 					break;
 				case "~":
-					var loc8 = loc2[loc4 + 1];
-					if(!_global.isNaN(loc8))
+					var var8 = var2[var4 + 1];
+					if(!_global.isNaN(var8))
 					{
-						if(loc3[loc8 - 1] != undefined)
+						if(var3[var8 - 1] != undefined)
 						{
-							loc2.splice(loc4,2);
-							loc4 = loc4 - 2;
+							var2.splice(var4,2);
+							var4 = var4 - 2;
 						}
 						else
 						{
-							return loc2.slice(0,loc4);
+							return var2.slice(0,var4);
 						}
 					}
 					break;
-				case "{":
-					var loc9 = ank.utils.PatternDecoder.find(loc2.slice(loc4),"}");
-					var loc10 = ank.utils.PatternDecoder.decodeDescription(loc2.slice(loc4 + 1,loc4 + loc9),loc3).join("");
-					loc2.splice(loc4,loc9 + 1,loc10);
-					break;
 				default:
-					if(loc0 !== "[")
+					switch(null)
 					{
+						case "{":
+							var var9 = ank.utils.PatternDecoder.find(var2.slice(var4),"}");
+							var var10 = ank.utils.PatternDecoder.decodeDescription(var2.slice(var4 + 1,var4 + var9),var3).join("");
+							var2.splice(var4,var9 + 1,var10);
+							break;
+						case "[":
+							var var11 = ank.utils.PatternDecoder.find(var2.slice(var4),"]");
+							var var12 = Number(var2.slice(var4 + 1,var4 + var11).join(""));
+							if(!_global.isNaN(var12))
+							{
+								var2.splice(var4,var11 + 1,var3[var12] + " ");
+								var4 = var4 - var11;
+								break;
+							}
+					}
+			}
+			var4 = var4 + 1;
+		}
+		return var2;
+	}
+	static function decodeCombine(var2, var3)
+	{
+		var var4 = 0;
+		var var5 = new String();
+		var var6 = var2.length;
+		while(var4 < var6)
+		{
+			var5 = var2[var4];
+			switch(var5)
+			{
+				case "~":
+					var var7 = var2[var4 + 1];
+					if(var3[var7])
+					{
+						var2.splice(var4,2);
+						var4 = var4 - 2;
 						break;
 					}
-					var loc11 = ank.utils.PatternDecoder.find(loc2.slice(loc4),"]");
-					var loc12 = Number(loc2.slice(loc4 + 1,loc4 + loc11).join(""));
-					if(!_global.isNaN(loc12))
-					{
-						loc2.splice(loc4,loc11 + 1,loc3[loc12] + " ");
-						loc4 = loc4 - loc11;
-						break;
-					}
+					return var2.slice(0,var4);
 					break;
+				case "{":
+					var var8 = ank.utils.PatternDecoder.find(var2.slice(var4),"}");
+					var var9 = ank.utils.PatternDecoder.decodeCombine(var2.slice(var4 + 1,var4 + var8),var3).join("");
+					var2.splice(var4,var8 + 1,var9);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		return loc2;
+		return var2;
 	}
-	static function decodeCombine(loc2, loc3)
+	static function find(var2, var3)
 	{
-		var loc4 = 0;
-		var loc5 = new String();
-		var loc6 = loc2.length;
-		while(loc4 < loc6)
+		var var4 = var2.length;
+		var var5 = 0;
+		while(var5 < var4)
 		{
-			loc5 = loc2[loc4];
-			if((var loc0 = loc5) !== "~")
+			if(var2[var5] == var3)
 			{
-				if(loc0 === "{")
-				{
-					var loc8 = ank.utils.PatternDecoder.find(loc2.slice(loc4),"}");
-					var loc9 = ank.utils.PatternDecoder.decodeCombine(loc2.slice(loc4 + 1,loc4 + loc8),loc3).join("");
-					loc2.splice(loc4,loc8 + 1,loc9);
-				}
+				return var5;
 			}
-			else
-			{
-				var loc7 = loc2[loc4 + 1];
-				if(loc3[loc7])
-				{
-					loc2.splice(loc4,2);
-					loc4 = loc4 - 2;
-				}
-				else
-				{
-					return loc2.slice(0,loc4);
-				}
-			}
-			loc4 = loc4 + 1;
-		}
-		return loc2;
-	}
-	static function find(loc2, loc3)
-	{
-		var loc4 = loc2.length;
-		var loc5 = 0;
-		while(loc5 < loc4)
-		{
-			if(loc2[loc5] == loc3)
-			{
-				return loc5;
-			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
 		return -1;
 	}

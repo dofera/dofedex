@@ -1,17 +1,17 @@
 class dofus.datacenter.GuildRights extends Object
 {
-	function GuildRights(loc3)
+	function GuildRights(var3)
 	{
 		super();
-		this._nRights = loc3;
+		this._nRights = var3;
 	}
 	function __get__value()
 	{
 		return this._nRights;
 	}
-	function __set__value(loc2)
+	function __set__value(var2)
 	{
-		this._nRights = loc2;
+		this._nRights = var2;
 		return this.__get__value();
 	}
 	function __get__isBoss()

@@ -23,19 +23,19 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 	}
 	function createChildren()
 	{
-		this._eaBacks = new ank.utils.();
-		var loc2 = 1;
-		while(loc2 <= dofus.Constants.EMBLEM_BACKS_COUNT)
+		this._eaBacks = new ank.utils.();
+		var var2 = 1;
+		while(var2 <= dofus.Constants.EMBLEM_BACKS_COUNT)
 		{
-			this._eaBacks.push({iconFile:dofus.Constants.EMBLEMS_BACK_PATH + loc2 + ".swf"});
-			loc2 = loc2 + 1;
+			this._eaBacks.push({iconFile:dofus.Constants.EMBLEMS_BACK_PATH + var2 + ".swf"});
+			var2 = var2 + 1;
 		}
-		this._eaUps = new ank.utils.();
-		var loc3 = 1;
-		while(loc3 <= dofus.Constants.EMBLEM_UPS_COUNT)
+		this._eaUps = new ank.utils.();
+		var var3 = 1;
+		while(var3 <= dofus.Constants.EMBLEM_UPS_COUNT)
 		{
-			this._eaUps.push({iconFile:dofus.Constants.EMBLEMS_UP_PATH + loc3 + ".swf"});
-			loc3 = loc3 + 1;
+			this._eaUps.push({iconFile:dofus.Constants.EMBLEMS_UP_PATH + var3 + ".swf"});
+			var3 = var3 + 1;
 		}
 		this._nBackID = 1;
 		this._nUpID = 1;
@@ -86,15 +86,15 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 				this._cgGrid.selectedIndex = this._nUpID - 1;
 		}
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
-		var loc3 = this["_btnTab" + this._sCurrentTab];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
-		this._sCurrentTab = loc2;
+		var var3 = this["_btnTab" + this._sCurrentTab];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
+		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
 	function updateBack()
@@ -107,15 +107,15 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 		this._eEmblem.upID = this._nUpID;
 		this._eEmblem.upColor = this._nUpColor;
 	}
-	function setEnabled(loc2)
+	function setEnabled(var2)
 	{
 		this._btnCancel.enabled = this._bEnabled;
 		this._btnClose.enabled = this._bEnabled;
 		this._btnCreate.enabled = this._bEnabled;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnCancel":
@@ -125,8 +125,8 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 				switch(null)
 				{
 					case "_btnCreate":
-						var loc3 = this._itName.text;
-						if(loc3 == undefined || loc3.length < 3)
+						var var3 = this._itName.text;
+						if(var3 == undefined || var3.length < 3)
 						{
 							this.api.kernel.showMessage(undefined,this.api.lang.getText("BAD_GUILD_NAME"),"ERROR_BOX");
 							return undefined;
@@ -137,18 +137,17 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 						}
 						if(this.api.lang.getConfigText("GUILD_NAME_FILTER"))
 						{
-							var loc4 = new dofus.utils.nameChecker.
-(loc3);
-							var loc5 = new dofus.utils.nameChecker.rules.	();
-							var loc6 = loc4.isValidAgainstWithDetails(loc5);
-							if(!loc6.IS_SUCCESS)
+							var var4 = new dofus.utils.nameChecker.	(var3);
+							var var5 = new dofus.utils.nameChecker.rules.	();
+							var var6 = var4.isValidAgainstWithDetails(var5);
+							if(!var6.IS_SUCCESS)
 							{
-								this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_GUILD_NAME") + "\r\n" + loc6.toString("\r\n"),"ERROR_BOX");
+								this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_GUILD_NAME") + "\r\n" + var6.toString("\r\n"),"ERROR_BOX");
 								return undefined;
 							}
 						}
 						this.enabled = false;
-						this.api.network.Guild.create(this._nBackID,this._nBackColor,this._nUpID,this._nUpColor,loc3);
+						this.api.network.Guild.create(this._nBackID,this._nBackColor,this._nUpID,this._nUpColor,var3);
 						break;
 					case "_btnTabBack":
 						this.setCurrentTab("Back");
@@ -158,29 +157,29 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 				}
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		switch(this._sCurrentTab)
 		{
 			case "Back":
-				this._nBackColor = loc2.value;
+				this._nBackColor = var2.value;
 				this.updateBack();
 				break;
 			case "Up":
-				this._nUpColor = loc2.value;
+				this._nUpColor = var2.value;
 				this.updateUp();
 		}
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
 		switch(this._sCurrentTab)
 		{
 			case "Back":
-				this._nBackID = loc2.owner.selectedIndex + 1;
+				this._nBackID = var2.owner.selectedIndex + 1;
 				this.updateBack();
 				break;
 			case "Up":
-				this._nUpID = loc2.owner.selectedIndex + 1;
+				this._nUpID = var2.owner.selectedIndex + 1;
 				this.updateUp();
 		}
 	}

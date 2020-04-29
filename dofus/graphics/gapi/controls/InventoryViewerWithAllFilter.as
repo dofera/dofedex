@@ -7,20 +7,20 @@ class dofus.graphics.gapi.controls.InventoryViewerWithAllFilter extends dofus.gr
 	{
 		super();
 	}
-	function setFilter(loc2)
+	function setFilter(var2)
 	{
-		if(loc3 == this._nCurrentFilterID)
+		if(var3 == this._nCurrentFilterID)
 		{
 			return undefined;
 		}
-		if(loc3 == dofus.graphics.gapi.controls.InventoryViewerWithAllFilter.FILTER_ID_ALL)
+		if(var3 == dofus.graphics.gapi.controls.InventoryViewerWithAllFilter.FILTER_ID_ALL)
 		{
 			this.click({target:this._btnFilterAll});
 			this._btnFilterAll.selected = true;
 		}
 		else
 		{
-			super.setFilter(loc3);
+			super.setFilter(var3);
 		}
 	}
 	function createChildren()
@@ -42,14 +42,14 @@ class dofus.graphics.gapi.controls.InventoryViewerWithAllFilter extends dofus.gr
 	{
 		this.setFilter(this.getDefaultFilter());
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if(loc3.target == this._btnFilterAll)
+		if(var3.target == this._btnFilterAll)
 		{
-			if(loc3.target != this._btnSelectedFilterButton)
+			if(var3.target != this._btnSelectedFilterButton)
 			{
 				this._btnSelectedFilterButton.selected = false;
-				this._btnSelectedFilterButton = loc3.target;
+				this._btnSelectedFilterButton = var3.target;
 				this._aSelectedSuperTypes = dofus.graphics.gapi.controls.InventoryViewerWithAllFilter.FILTER_ALL;
 				this._lblFilter.text = this.api.lang.getText("ALL");
 				this._nCurrentFilterID = dofus.graphics.gapi.controls.InventoryViewerWithAllFilter.FILTER_ID_ALL;
@@ -57,23 +57,23 @@ class dofus.graphics.gapi.controls.InventoryViewerWithAllFilter extends dofus.gr
 			}
 			else
 			{
-				loc3.target.selected = true;
+				var3.target.selected = true;
 			}
 		}
 		else
 		{
-			super.click(loc3);
+			super.click(var3);
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if(loc3.target == this._btnFilterAll)
+		if(var3.target == this._btnFilterAll)
 		{
-			this.api.ui.showTooltip(this.api.lang.getText("ALL"),loc3.target,-20);
+			this.api.ui.showTooltip(this.api.lang.getText("ALL"),var3.target,-20);
 		}
 		else
 		{
-			super.over(loc3);
+			super.over(var3);
 		}
 	}
 }

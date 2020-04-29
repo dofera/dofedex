@@ -1,14 +1,14 @@
 class dofus.datacenter.MountPark extends Object
 {
-	function MountPark(nOwner, §\x02\x18§, §\x01\x01§, nItems, §\x1e\x13\x13§, §\x1e\x1a\x18§)
+	function MountPark(nOwner, §\x02\x16§, §\x1e\x1e\x1c§, nItems, §\x1e\x13\x11§, §\x1e\x1a\x16§)
 	{
 		super();
 		this.owner = nOwner;
-		this.price = loc4;
-		this.size = loc5;
+		this.price = var4;
+		this.size = var5;
 		this.items = nItems;
-		this.guildName = loc7;
-		this.guildEmblem = loc8;
+		this.guildName = var7;
+		this.guildEmblem = var8;
 	}
 	function __get__isPublic()
 	{
@@ -18,8 +18,8 @@ class dofus.datacenter.MountPark extends Object
 	{
 		return this.owner == 0;
 	}
-	function isMine(loc2)
+	function isMine(var2)
 	{
-		return this.guildName == loc2.datacenter.Player.guildInfos.name;
+		return this.guildName == var2.datacenter.Player.guildInfos.name;
 	}
 }

@@ -9,9 +9,9 @@ class dofus.graphics.gapi.ui.HistoryViewerOnCreate extends dofus.graphics.gapi.c
 	{
 		return this._nBreed;
 	}
-	function __set__breed(loc2)
+	function __set__breed(var2)
 	{
-		this._nBreed = loc2;
+		this._nBreed = var2;
 		return this.__get__breed();
 	}
 	function init()
@@ -42,20 +42,20 @@ class dofus.graphics.gapi.ui.HistoryViewerOnCreate extends dofus.graphics.gapi.c
 		};
 		this._mcWindowBg.useHandCursor = false;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._bhClose:
 			case this._btnClose:
 				this.unloadThis();
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnClose)
+		if((var var0 = var2.target) === this._btnClose)
 		{
-			this.gapi.showTooltip(this.api.lang.getText("CLOSE"),loc2.target,-20);
+			this.gapi.showTooltip(this.api.lang.getText("CLOSE"),var2.target,-20);
 		}
 	}
 }

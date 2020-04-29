@@ -15,10 +15,10 @@ class ank.utils.rss.RSSLoader extends XML
 	{
 		return this._aChannels;
 	}
-	function load(loc2, loc3)
+	function load(var2, var3)
 	{
-		super.load(loc3);
-		this._oData = loc4;
+		super.load(var3);
+		this._oData = var4;
 	}
 	function initialize()
 	{
@@ -31,29 +31,29 @@ class ank.utils.rss.RSSLoader extends XML
 		{
 			return false;
 		}
-		var loc2 = this.firstChild;
-		if(loc2.nodeName.toLowerCase() != "rss")
+		var var2 = this.firstChild;
+		if(var2.nodeName.toLowerCase() != "rss")
 		{
 			return false;
 		}
-		var loc3 = loc2.firstChild;
-		while(loc3 != null)
+		var var3 = var2.firstChild;
+		while(var3 != null)
 		{
-			if(loc3.nodeName.toLowerCase() == "channel")
+			if(var3.nodeName.toLowerCase() == "channel")
 			{
-				var loc4 = new ank.utils.rss.();
-				if(loc4.parse(loc3))
+				var var4 = new ank.utils.rss.();
+				if(var4.parse(var3))
 				{
-					this._aChannels.push(loc4);
+					this._aChannels.push(var4);
 				}
 			}
-			loc3 = loc3.nextSibling;
+			var3 = var3.nextSibling;
 		}
 		return true;
 	}
-	function onLoad(loc2)
+	function onLoad(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
 			if(this.parse())
 			{

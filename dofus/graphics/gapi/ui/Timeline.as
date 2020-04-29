@@ -17,25 +17,25 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 	{
 		this._tl.update();
 	}
-	function nextTurn(loc2, loc3)
+	function nextTurn(var2, var3)
 	{
-		this._tl.nextTurn(loc2,loc3);
+		this._tl.nextTurn(var2,var3);
 	}
 	function __get__timelineControl()
 	{
 		return this._tl;
 	}
-	function hideItem(loc2)
+	function hideItem(var2)
 	{
-		this._tl.hideItem(loc2);
+		this._tl.hideItem(var2);
 	}
-	function showItem(loc2)
+	function showItem(var2)
 	{
-		this._tl.showItem(loc2);
+		this._tl.showItem(var2);
 	}
-	function startChrono(loc2)
+	function startChrono(var2)
 	{
-		this._tl.startChrono(loc2);
+		this._tl.startChrono(var2);
 	}
 	function stopChrono()
 	{
@@ -51,15 +51,15 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 		if(dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition)
 		{
 			this.moveTimeline(- dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
-			var loc2 = this.api.ui.getUIComponent("FightOptionButtons");
-			if(loc2 != undefined && loc2._btnFlag._y == 370)
+			var var2 = this.api.ui.getUIComponent("FightOptionButtons");
+			if(var2 != undefined && var2._btnFlag._y == 370)
 			{
-				loc2.moveButtons(dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
+				var2.moveButtons(dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
 			}
-			var loc3 = this.api.ui.getUIComponent("Party");
-			if(loc3 != undefined && loc3._btnBlockJoinerExceptParty._y == 41)
+			var var3 = this.api.ui.getUIComponent("Party");
+			if(var3 != undefined && var3._btnBlockJoinerExceptParty._y == 41)
 			{
-				loc3.moveUI(dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
+				var3.moveUI(dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
 			}
 			this._btnUp._visible = false;
 		}
@@ -73,48 +73,51 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 		this._btnUp.addEventListener("click",this);
 		this._btnDown.addEventListener("click",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = loc2.target._name;
-		switch(loc3)
+		var var3 = var2.target._name;
+		if((var var0 = var3) !== "_btnUp")
 		{
-			case "_btnUp":
-				dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition = true;
-				this._btnUp._visible = false;
-				this._btnDown._visible = true;
-				this.moveTimeline(- dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
-				this.api.ui.getUIComponent("FightOptionButtons").moveButtons(dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
-				this.api.ui.getUIComponent("Party").moveUI(dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
-				break;
-			case "_btnDown":
+			if(var0 === "_btnDown")
+			{
 				dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition = false;
 				this._btnUp._visible = true;
 				this._btnDown._visible = false;
 				this.moveTimeline(dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
 				this.api.ui.getUIComponent("FightOptionButtons").moveButtons(- dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
 				this.api.ui.getUIComponent("Party").moveUI(- dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
+			}
+		}
+		else
+		{
+			dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition = true;
+			this._btnUp._visible = false;
+			this._btnDown._visible = true;
+			this.moveTimeline(- dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
+			this.api.ui.getUIComponent("FightOptionButtons").moveButtons(dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
+			this.api.ui.getUIComponent("Party").moveUI(dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
 		}
 	}
 	function destroy()
 	{
 		if(dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition)
 		{
-			var loc2 = this.api.ui.getUIComponent("FightOptionButtons");
-			if(loc2 != undefined && loc2._btnFlag._y == 370 + dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE)
+			var var2 = this.api.ui.getUIComponent("FightOptionButtons");
+			if(var2 != undefined && var2._btnFlag._y == 370 + dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE)
 			{
-				loc2.moveButtons(- dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
+				var2.moveButtons(- dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
 			}
-			var loc3 = this.api.ui.getUIComponent("Party");
-			if(loc3 != undefined && loc3._btnBlockJoinerExceptParty._y == 41 + dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE)
+			var var3 = this.api.ui.getUIComponent("Party");
+			if(var3 != undefined && var3._btnBlockJoinerExceptParty._y == 41 + dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE)
 			{
-				loc3.moveUI(- dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
+				var3.moveUI(- dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
 			}
 		}
 	}
-	function moveTimeline(loc2)
+	function moveTimeline(var2)
 	{
-		this._tl._y = this._tl._y + loc2;
-		this._btnUp._y = this._btnUp._y + loc2;
-		this._btnDown._y = this._btnDown._y + loc2;
+		this._tl._y = this._tl._y + var2;
+		this._btnUp._y = this._btnUp._y + var2;
+		this._btnDown._y = this._btnDown._y + var2;
 	}
 }

@@ -15,9 +15,9 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 		this.size();
 		this._bInitialized = true;
 	}
-	function __set__gapi(loc2)
+	function __set__gapi(var2)
 	{
-		this._mcGAPI = loc2;
+		this._mcGAPI = var2;
 		return this.__get__gapi();
 	}
 	function __get__gapi()
@@ -32,9 +32,9 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._sClassName;
 	}
-	function __set__enabled(loc2)
+	function __set__enabled(var2)
 	{
-		this._bEnabled = loc2;
+		this._bEnabled = var2;
 		this.addToQueue({object:this,method:this.setEnabled});
 		return this.__get__enabled();
 	}
@@ -42,10 +42,10 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._bEnabled;
 	}
-	function __set__styleName(loc2)
+	function __set__styleName(var2)
 	{
-		this._sStyleName = loc2;
-		if(this._bInitialized && (loc2 != "none" && loc2 != undefined))
+		this._sStyleName = var2;
+		if(this._bInitialized && (var2 != "none" && var2 != undefined))
 		{
 			this.draw();
 		}
@@ -53,43 +53,43 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	}
 	function __get__styleName()
 	{
-		var loc2 = this._sStyleName;
-		if(loc2.length == 0 || (loc2 == undefined || loc2 == "default"))
+		var var2 = this._sStyleName;
+		if(var2.length == 0 || (var2 == undefined || var2 == "default"))
 		{
-			var loc3 = this._parent;
-			while(!(loc3 instanceof ank.gapi.core.UIBasicComponent) && loc3 != undefined)
+			var var3 = this._parent;
+			while(!(var3 instanceof ank.gapi.core.UIBasicComponent) && var3 != undefined)
 			{
-				loc3 = loc3._parent;
+				var3 = var3._parent;
 			}
-			loc2 = loc3.styleName;
+			var2 = var3.styleName;
 		}
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._sClassName;
+			var2 = this._sClassName;
 		}
-		return loc2;
+		return var2;
 	}
-	function __set__width(loc2)
+	function __set__width(var2)
 	{
-		this.setSize(loc2,null);
+		this.setSize(var2,null);
 		return this.__get__width();
 	}
 	function __get__width()
 	{
 		return this.__width;
 	}
-	function __set__height(loc2)
+	function __set__height(var2)
 	{
-		this.setSize(null,loc2);
+		this.setSize(null,var2);
 		return this.__get__height();
 	}
 	function __get__height()
 	{
 		return this.__height;
 	}
-	function __set__params(loc2)
+	function __set__params(var2)
 	{
-		this._oParams = loc2;
+		this._oParams = var2;
 		return this.__get__params();
 	}
 	function __get__params()
@@ -100,38 +100,38 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._bInitialized;
 	}
-	function setSize(loc2, loc3)
+	function setSize(var2, var3)
 	{
 		if(Math.abs(this._rotation) == 90)
 		{
-			var loc4 = loc2;
-			loc2 = loc3;
-			loc3 = loc4;
+			var var4 = var2;
+			var2 = var3;
+			var3 = var4;
 		}
-		if(loc2 != undefined && loc2 != null)
+		if(var2 != undefined && var2 != null)
 		{
-			this.__width = loc2;
+			this.__width = var2;
 		}
-		if(loc3 != undefined && loc3 != null)
+		if(var3 != undefined && var3 != null)
 		{
-			this.__height = loc3;
+			this.__height = var3;
 		}
 		this.size();
 	}
-	function move(loc2, loc3)
+	function move(var2, var3)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._x = loc2;
+			this._x = var2;
 		}
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._y = loc3;
+			this._y = var3;
 		}
 	}
-	function init(loc2, loc3)
+	function init(var2, var3)
 	{
-		this._sClassName = loc3;
+		this._sClassName = var3;
 		if(Math.ceil(this._rotation % 180) > 45)
 		{
 			this.__width = this._height;
@@ -142,7 +142,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 			this.__width = this._width;
 			this.__height = this._height;
 		}
-		if(!loc2)
+		if(!var2)
 		{
 			this.boundingBox_mc._visible = false;
 			this.boundingBox_mc._width = this.boundingBox_mc._height = 0;
@@ -186,139 +186,139 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 		this.border_mc.lineStyle(ank.gapi.core.UIBasicComponent.BORDER_TICKNESS,14015965,ank.gapi.core.UIBasicComponent.BORDER_ALPHA);
 		this.border_mc.lineTo(1,1);
 	}
-	function drawRoundRect(loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12)
+	function drawRoundRect(var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12)
 	{
-		if(typeof loc7 == "object")
+		if(typeof var7 == "object")
 		{
-			var loc13 = loc7.br;
-			var loc14 = loc7.bl;
-			var loc15 = loc7.tl;
-			var loc16 = loc7.tr;
+			var var13 = var7.br;
+			var var14 = var7.bl;
+			var var15 = var7.tl;
+			var var16 = var7.tr;
 		}
 		else
 		{
-			loc13 = loc14 = loc15 = loc16 = loc7;
+			var13 = var14 = var15 = var16 = var7;
 		}
-		if(loc9 == undefined)
+		if(var9 == undefined)
 		{
-			loc9 = 100;
+			var9 = 100;
 		}
-		if(typeof loc8 == "object")
+		if(typeof var8 == "object")
 		{
-			if(typeof loc9 != "object")
+			if(typeof var9 != "object")
 			{
-				var loc17 = [loc9,loc9];
+				var var17 = [var9,var9];
 			}
 			else
 			{
-				loc17 = loc9;
+				var17 = var9;
 			}
-			if(loc12 == undefined)
+			if(var12 == undefined)
 			{
-				loc12 = [0,255];
+				var12 = [0,255];
 			}
-			var loc18 = loc6 * 0.7;
+			var var18 = var6 * 0.7;
 			if(typeof rot != "object")
 			{
-				var loc19 = {matrixType:"box",x:- loc18,y:loc18,w:loc5 * 2,h:loc6 * 4,r:rot * 0.0174532925199433};
+				var var19 = {matrixType:"box",x:- var18,y:var18,w:var5 * 2,h:var6 * 4,r:rot * 0.0174532925199433};
 			}
 			else
 			{
-				loc19 = rot;
-				if(loc19.w == undefined)
+				var19 = rot;
+				if(var19.w == undefined)
 				{
-					loc19.w = loc5;
+					var19.w = var5;
 				}
-				if(loc19.h == undefined)
+				if(var19.h == undefined)
 				{
-					loc19.h = loc6;
+					var19.h = var6;
 				}
 			}
-			if(loc11 == "radial")
+			if(var11 == "radial")
 			{
-				loc2.beginGradientFill("radial",loc8,loc17,loc12,loc19);
+				var2.beginGradientFill("radial",var8,var17,var12,var19);
 			}
 			else
 			{
-				loc2.beginGradientFill("linear",loc8,loc17,loc12,loc19);
+				var2.beginGradientFill("linear",var8,var17,var12,var19);
 			}
 		}
-		else if(loc8 != undefined)
+		else if(var8 != undefined)
 		{
-			loc2.beginFill(loc8,loc9);
+			var2.beginFill(var8,var9);
 		}
-		loc7 = loc13;
-		if(loc7 != 0)
+		var7 = var13;
+		if(var7 != 0)
 		{
-			var loc20 = loc7 - loc7 * 0.707106781186547;
-			var loc21 = loc7 - loc7 * 0.414213562373095;
-			loc2.moveTo(loc3 + loc5,loc4 + loc6 - loc7);
-			loc2.lineTo(loc3 + loc5,loc4 + loc6 - loc7);
-			loc2.curveTo(loc3 + loc5,loc4 + loc6 - loc21,loc3 + loc5 - loc20,loc4 + loc6 - loc20);
-			loc2.curveTo(loc3 + loc5 - loc21,loc4 + loc6,loc3 + loc5 - loc7,loc4 + loc6);
-		}
-		else
-		{
-			loc2.moveTo(loc3 + loc5,loc4 + loc6);
-		}
-		loc7 = loc14;
-		if(loc7 != 0)
-		{
-			var loc22 = loc7 - loc7 * 0.707106781186547;
-			var loc23 = loc7 - loc7 * 0.414213562373095;
-			loc2.lineTo(loc3 + loc7,loc4 + loc6);
-			loc2.curveTo(loc3 + loc23,loc4 + loc6,loc3 + loc22,loc4 + loc6 - loc22);
-			loc2.curveTo(loc3,loc4 + loc6 - loc23,loc3,loc4 + loc6 - loc7);
+			var var20 = var7 - var7 * 0.707106781186547;
+			var var21 = var7 - var7 * 0.414213562373095;
+			var2.moveTo(var3 + var5,var4 + var6 - var7);
+			var2.lineTo(var3 + var5,var4 + var6 - var7);
+			var2.curveTo(var3 + var5,var4 + var6 - var21,var3 + var5 - var20,var4 + var6 - var20);
+			var2.curveTo(var3 + var5 - var21,var4 + var6,var3 + var5 - var7,var4 + var6);
 		}
 		else
 		{
-			loc2.lineTo(loc3,loc4 + loc6);
+			var2.moveTo(var3 + var5,var4 + var6);
 		}
-		loc7 = loc15;
-		if(loc7 != 0)
+		var7 = var14;
+		if(var7 != 0)
 		{
-			var loc24 = loc7 - loc7 * 0.707106781186547;
-			var loc25 = loc7 - loc7 * 0.414213562373095;
-			loc2.lineTo(loc3,loc4 + loc7);
-			loc2.curveTo(loc3,loc4 + loc25,loc3 + loc24,loc4 + loc24);
-			loc2.curveTo(loc3 + loc25,loc4,loc3 + loc7,loc4);
-		}
-		else
-		{
-			loc2.lineTo(loc3,loc4);
-		}
-		loc7 = loc16;
-		if(loc7 != 0)
-		{
-			var loc26 = loc7 - loc7 * 0.707106781186547;
-			var loc27 = loc7 - loc7 * 0.414213562373095;
-			loc2.lineTo(loc3 + loc5 - loc7,loc4);
-			loc2.curveTo(loc3 + loc5 - loc27,loc4,loc3 + loc5 - loc26,loc4 + loc26);
-			loc2.curveTo(loc3 + loc5,loc4 + loc27,loc3 + loc5,loc4 + loc7);
-			loc2.lineTo(loc3 + loc5,loc4 + loc6 - loc7);
+			var var22 = var7 - var7 * 0.707106781186547;
+			var var23 = var7 - var7 * 0.414213562373095;
+			var2.lineTo(var3 + var7,var4 + var6);
+			var2.curveTo(var3 + var23,var4 + var6,var3 + var22,var4 + var6 - var22);
+			var2.curveTo(var3,var4 + var6 - var23,var3,var4 + var6 - var7);
 		}
 		else
 		{
-			loc2.lineTo(loc3 + loc5,loc4);
-			loc2.lineTo(loc3 + loc5,loc4 + loc6);
+			var2.lineTo(var3,var4 + var6);
 		}
-		if(loc8 != undefined)
+		var7 = var15;
+		if(var7 != 0)
 		{
-			loc2.endFill();
+			var var24 = var7 - var7 * 0.707106781186547;
+			var var25 = var7 - var7 * 0.414213562373095;
+			var2.lineTo(var3,var4 + var7);
+			var2.curveTo(var3,var4 + var25,var3 + var24,var4 + var24);
+			var2.curveTo(var3 + var25,var4,var3 + var7,var4);
+		}
+		else
+		{
+			var2.lineTo(var3,var4);
+		}
+		var7 = var16;
+		if(var7 != 0)
+		{
+			var var26 = var7 - var7 * 0.707106781186547;
+			var var27 = var7 - var7 * 0.414213562373095;
+			var2.lineTo(var3 + var5 - var7,var4);
+			var2.curveTo(var3 + var5 - var27,var4,var3 + var5 - var26,var4 + var26);
+			var2.curveTo(var3 + var5,var4 + var27,var3 + var5,var4 + var7);
+			var2.lineTo(var3 + var5,var4 + var6 - var7);
+		}
+		else
+		{
+			var2.lineTo(var3 + var5,var4);
+			var2.lineTo(var3 + var5,var4 + var6);
+		}
+		if(var8 != undefined)
+		{
+			var2.endFill();
 		}
 	}
-	function setMovieClipColor(loc2, loc3)
+	function setMovieClipColor(var2, var3)
 	{
-		var loc4 = new Color(loc2);
-		loc4.setRGB(loc3);
-		if(loc3 == -1)
+		var var4 = new Color(var2);
+		var4.setRGB(var3);
+		if(var3 == -1)
 		{
-			loc2._alpha = 0;
+			var2._alpha = 0;
 		}
 	}
-	function setMovieClipTransform(loc2, loc3)
+	function setMovieClipTransform(var2, var3)
 	{
-		var loc4 = new Color(loc2);
-		loc4.setTransform(loc3);
+		var var4 = new Color(var2);
+		var4.setTransform(var3);
 	}
 }

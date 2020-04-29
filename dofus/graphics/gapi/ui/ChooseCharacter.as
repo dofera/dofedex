@@ -5,28 +5,28 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__spriteList(loc2)
+	function __set__spriteList(var2)
 	{
-		this._aSpriteList = loc2;
+		this._aSpriteList = var2;
 		if(this.initialized)
 		{
 			this.initData();
 		}
 		return this.__get__spriteList();
 	}
-	function __set__remainingTime(loc2)
+	function __set__remainingTime(var2)
 	{
-		this._nRemainingTime = loc2;
+		this._nRemainingTime = var2;
 		return this.__get__remainingTime();
 	}
-	function __set__showComboBox(loc2)
+	function __set__showComboBox(var2)
 	{
-		this._bShowComboBox = loc2;
+		this._bShowComboBox = var2;
 		return this.__get__showComboBox();
 	}
-	function __set__characterCount(loc2)
+	function __set__characterCount(var2)
 	{
-		this._nCharacterCount = loc2;
+		this._nCharacterCount = var2;
 		return this.__get__characterCount();
 	}
 	function init()
@@ -69,18 +69,18 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 	}
 	function updateCharactersList()
 	{
-		var loc2 = 0;
-		while(loc2 < 5)
+		var var2 = 0;
+		while(var2 < 5)
 		{
-			var loc3 = this["_cciSprite" + loc2];
-			loc3.showComboBox = this._bShowComboBox;
-			loc3.params = {index:loc2 + this._nCharacterStartIndex};
-			loc3.data = this._aSpriteList[loc2 + this._nCharacterStartIndex];
-			loc3.enabled = this._aSpriteList[loc2 + this._nCharacterStartIndex] != undefined;
-			loc3.isDead = loc3.data.isDead;
-			loc3.death = loc3.data.deathCount;
-			loc3.deathState = loc3.data.deathState;
-			loc2 = loc2 + 1;
+			var var3 = this["_cciSprite" + var2];
+			var3.showComboBox = this._bShowComboBox;
+			var3.params = {index:var2 + this._nCharacterStartIndex};
+			var3.data = this._aSpriteList[var2 + this._nCharacterStartIndex];
+			var3.enabled = this._aSpriteList[var2 + this._nCharacterStartIndex] != undefined;
+			var3.isDead = var3.data.isDead;
+			var3.death = var3.data.deathCount;
+			var3.deathState = var3.data.deathState;
+			var2 = var2 + 1;
 		}
 	}
 	function initData()
@@ -135,10 +135,10 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 			};
 			this._lblLogin.onRelease = function()
 			{
-				var loc2 = this._parent.api.lang.getText("PSEUDO_DOFUS_LINK");
-				if(loc2 != undefined && loc2 != "")
+				var var2 = this._parent.api.lang.getText("PSEUDO_DOFUS_LINK");
+				if(var2 != undefined && var2 != "")
 				{
-					this.getURL(loc2,"_blank");
+					this.getURL(var2,"_blank");
 				}
 			};
 		}
@@ -164,47 +164,47 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 		}
 		this._lblServer.text = this.api.lang.getText("CURRENT_SERVER",[this.api.datacenter.Basics.aks_current_server.label]);
 	}
-	function select(loc2)
+	function select(var2)
 	{
-		var loc3 = loc2.target.params.index;
+		var var3 = var2.target.params.index;
 		this["_cciSprite" + this._nSelectedIndex].selected = false;
-		if(this._nSelectedIndex == loc3)
+		if(this._nSelectedIndex == var3)
 		{
 			delete this._nSelectedIndex;
 		}
 		else
 		{
-			this._nSelectedIndex = loc3;
+			this._nSelectedIndex = var3;
 		}
 		if(getTimer() - this._nSaveLastClick < ank.gapi.Gapi.DBLCLICK_DELAY)
 		{
-			this._nSelectedIndex = loc3;
+			this._nSelectedIndex = var3;
 			this.click({target:this._btnPlay});
 			return undefined;
 		}
 		this._nSaveLastClick = getTimer();
 	}
-	function remove(loc2)
+	function remove(var2)
 	{
-		var loc3 = loc2.target.params.index;
-		if(this.api.lang.getConfigText("SECRET_ANSWER_ON_DELETE") && (this._aSpriteList[loc3].Level >= this.api.lang.getConfigText("SECRET_ANSWER_SINCE_LEVEL") && (this.api.datacenter.Basics.aks_secret_question != undefined && this.api.datacenter.Basics.aks_secret_question.length > 0)))
+		var var3 = var2.target.params.index;
+		if(this.api.lang.getConfigText("SECRET_ANSWER_ON_DELETE") && (this._aSpriteList[var3].Level >= this.api.lang.getConfigText("SECRET_ANSWER_SINCE_LEVEL") && (this.api.datacenter.Basics.aks_secret_question != undefined && this.api.datacenter.Basics.aks_secret_question.length > 0)))
 		{
-			this.gapi.loadUIComponent("AskSecretAnswer","AskSecretAnswer",{title:this.api.lang.getText("DELETE_WORD"),charToDelete:this._aSpriteList[loc3]});
+			this.gapi.loadUIComponent("AskSecretAnswer","AskSecretAnswer",{title:this.api.lang.getText("DELETE_WORD"),charToDelete:this._aSpriteList[var3]});
 		}
 		else
 		{
-			this.api.kernel.showMessage(this.api.lang.getText("DELETE_WORD"),this.api.lang.getText("DO_U_DELETE_A",[this._aSpriteList[loc3].name]),"CAUTION_YESNO",{name:"Delete",listener:this,params:{index:loc3}});
+			this.api.kernel.showMessage(this.api.lang.getText("DELETE_WORD"),this.api.lang.getText("DO_U_DELETE_A",[this._aSpriteList[var3].name]),"CAUTION_YESNO",{name:"Delete",listener:this,params:{index:var3}});
 		}
 	}
-	function reset(loc2)
+	function reset(var2)
 	{
-		var loc3 = this._aSpriteList[loc2.target.params.index].id;
-		var loc4 = this.gapi.loadUIComponent("AskYesNo","AskYesReset",{title:this.api.lang.getText("RESET_SHORTCUT"),text:this.api.lang.getText("DO_U_RESET_CHARACTER"),params:{index:loc3}});
-		loc4.addEventListener("yes",this);
+		var var3 = this._aSpriteList[var2.target.params.index].id;
+		var var4 = this.gapi.loadUIComponent("AskYesNo","AskYesReset",{title:this.api.lang.getText("RESET_SHORTCUT"),text:this.api.lang.getText("DO_U_RESET_CHARACTER"),params:{index:var3}});
+		var4.addEventListener("yes",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnPlay":
 				if(this._nSelectedIndex == undefined)
@@ -240,15 +240,15 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 				}
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesReset":
-				this.api.network.Account.resetCharacter(loc2.params.index);
+				this.api.network.Account.resetCharacter(var2.params.index);
 				break;
 			case "AskYesNoDelete":
-				this.api.network.Account.deleteCharacter(this._aSpriteList[loc2.params.index].id);
+				this.api.network.Account.deleteCharacter(this._aSpriteList[var2.params.index].id);
 		}
 	}
 }

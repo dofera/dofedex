@@ -6,9 +6,9 @@ class dofus.graphics.gapi.controls.DeathCounter extends dofus.graphics.gapi.core
 	{
 		super();
 	}
-	function __set__death(loc2)
+	function __set__death(var2)
 	{
-		this._nDeath = loc2;
+		this._nDeath = var2;
 		this.draw();
 		return this.__get__death();
 	}
@@ -26,32 +26,32 @@ class dofus.graphics.gapi.controls.DeathCounter extends dofus.graphics.gapi.core
 		{
 			return undefined;
 		}
-		var loc2 = this._nDeath <= dofus.graphics.gapi.controls.DeathCounter.MAX_HEAD?this._nDeath:dofus.graphics.gapi.controls.DeathCounter.MAX_HEAD;
-		var loc3 = Math.PI / loc2;
-		var loc4 = (- loc3) / 2;
-		var loc5 = this._mcPlacer._width / 2;
-		var loc6 = this._mcPlacer._height;
-		var loc7 = this._mcPlacer._width / 2;
-		var loc8 = this._mcPlacer._height;
-		var loc9 = this.createEmptyMovieClip("_mcHeads",100);
-		loc9._x = this._mcPlacer._x;
-		loc9._y = this._mcPlacer._y;
-		var loc10 = 0;
-		while(loc10 < loc2)
+		var var2 = this._nDeath <= dofus.graphics.gapi.controls.DeathCounter.MAX_HEAD?this._nDeath:dofus.graphics.gapi.controls.DeathCounter.MAX_HEAD;
+		var var3 = Math.PI / var2;
+		var var4 = (- var3) / 2;
+		var var5 = this._mcPlacer._width / 2;
+		var var6 = this._mcPlacer._height;
+		var var7 = this._mcPlacer._width / 2;
+		var var8 = this._mcPlacer._height;
+		var var9 = this.createEmptyMovieClip("_mcHeads",100);
+		var9._x = this._mcPlacer._x;
+		var9._y = this._mcPlacer._y;
+		var var10 = 0;
+		while(var10 < var2)
 		{
-			var loc11 = loc4 - loc10 * loc3;
-			var loc12 = Math.cos(loc11) * loc5 + loc7;
-			var loc13 = Math.sin(loc11) * loc6 + loc8;
-			if(loc10 == 0 && this._nDeath > dofus.graphics.gapi.controls.DeathCounter.MAX_HEAD)
+			var var11 = var4 - var10 * var3;
+			var var12 = Math.cos(var11) * var5 + var7;
+			var var13 = Math.sin(var11) * var6 + var8;
+			if(var10 == 0 && this._nDeath > dofus.graphics.gapi.controls.DeathCounter.MAX_HEAD)
 			{
-				var loc14 = "_mcDeathCounterHeadMore";
+				var var14 = "_mcDeathCounterHeadMore";
 			}
 			else
 			{
-				loc14 = "_mcDeathCounterHead";
+				var14 = "_mcDeathCounterHead";
 			}
-			loc9.attachMovie(loc14,"head" + loc10,loc10,{_x:loc12,_y:loc13,_rotation:loc11 * 180 / Math.PI});
-			loc10 = loc10 + 1;
+			var9.attachMovie(var14,"head" + var10,var10,{_x:var12,_y:var13,_rotation:var11 * 180 / Math.PI});
+			var10 = var10 + 1;
 		}
 	}
 }

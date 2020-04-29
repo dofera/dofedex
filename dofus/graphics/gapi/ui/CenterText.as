@@ -8,19 +8,19 @@ class dofus.graphics.gapi.ui.CenterText extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		return this.__get__text();
 	}
-	function __set__background(loc2)
+	function __set__background(var2)
 	{
-		this._bBackground = loc2;
+		this._bBackground = var2;
 		return this.__get__background();
 	}
-	function __set__timer(loc2)
+	function __set__timer(var2)
 	{
-		this._nTimer = loc2;
+		this._nTimer = var2;
 		return this.__get__timer();
 	}
 	function init()
@@ -44,20 +44,20 @@ class dofus.graphics.gapi.ui.CenterText extends dofus.graphics.gapi.core.DofusAd
 	function initText()
 	{
 		this._lblWhite.text = this._lblBlackTL.text = this._lblBlackTR.text = this._lblBlackBL.text = this._lblBlackBR.text = this._sText;
-		var loc2 = this._lblWhite.textHeight;
+		var var2 = this._lblWhite.textHeight;
 		this._mcBackground._visible = this._bBackground;
-		this._mcBackground._height = loc2 + 2.5 * (this._lblWhite._y - this._mcBackground._y);
+		this._mcBackground._height = var2 + 2.5 * (this._lblWhite._y - this._mcBackground._y);
 	}
-	function updateProgressBar(loc2, loc3, loc4)
+	function updateProgressBar(var2, var3, var4)
 	{
-		var loc5 = Math.floor(loc3 / loc4 * 100);
-		if(_global.isNaN(loc5))
+		var var5 = Math.floor(var3 / var4 * 100);
+		if(_global.isNaN(var5))
 		{
-			loc5 = 0;
+			var5 = 0;
 		}
 		this._prgbGfxLoad._visible = true;
-		this._prgbGfxLoad["\x1e\f\x1a"].text = loc2;
-		this._prgbGfxLoad["\x1e\f\x19"].text = loc5 + "%";
-		this._prgbGfxLoad["\x0b\x17"]._width = loc5;
+		this._prgbGfxLoad["\x1e\f\x18"].text = var2;
+		this._prgbGfxLoad["\x1e\f\x17"].text = var5 + "%";
+		this._prgbGfxLoad["\x0b\x15"]._width = var5;
 	}
 }

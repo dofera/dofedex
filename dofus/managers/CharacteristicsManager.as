@@ -39,22 +39,22 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 	static var INITIATIVE = 44;
 	static var PROSPECTION = 48;
 	static var STATE = 71;
-	function CharacteristicsManager(oSprite, §\x1e\x1b\x1d§)
+	function CharacteristicsManager(oSprite, §\x1e\x1b\x1b§)
 	{
 		super();
-		this.initialize(oSprite,loc4);
+		this.initialize(oSprite,var4);
 	}
-	function initialize(oSprite, §\x1e\x1b\x1d§)
+	function initialize(oSprite, §\x1e\x1b\x1b§)
 	{
-		super.initialize(loc4);
+		super.initialize(var4);
 		this._oSprite = oSprite;
 		this._aEffects = new Array();
 		this._aModerators = new Array(20);
-		var loc5 = 0;
-		while(loc5 < this._aModerators.length)
+		var var5 = 0;
+		while(var5 < this._aModerators.length)
 		{
-			this._aModerators[loc5] = 0;
-			loc5 = loc5 + 1;
+			this._aModerators[var5] = 0;
+			var5 = var5 + 1;
 		}
 		this.init0();
 	}
@@ -62,107 +62,107 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 	{
 		return this._aEffects;
 	}
-	function getModeratorValue(loc2)
+	function getModeratorValue(var2)
 	{
-		loc2 = Number(loc2);
-		var loc3 = Number(this._aModerators[loc2]);
-		if(_global.isNaN(loc3))
+		var2 = Number(var2);
+		var var3 = Number(this._aModerators[var2]);
+		if(_global.isNaN(var3))
 		{
 			return 0;
 		}
-		return loc3;
+		return var3;
 	}
-	function addEffect(loc2)
+	function addEffect(var2)
 	{
-		this._aEffects.push(loc2);
-		this.onEffectStart(loc2);
+		this._aEffects.push(var2);
+		this.onEffectStart(var2);
 	}
 	function terminateAllEffects()
 	{
-		var loc2 = this._aEffects.length;
-		while((loc2 = loc2 - 1) >= 0)
+		var var2 = this._aEffects.length;
+		while((var2 = var2 - 1) >= 0)
 		{
-			var loc3 = this._aEffects[loc2];
-			this.onEffectEnd(loc3);
-			this._aEffects.splice(loc2,loc2 + 1);
+			var var3 = this._aEffects[var2];
+			this.onEffectEnd(var3);
+			this._aEffects.splice(var2,var2 + 1);
 		}
 	}
 	function nextTurn()
 	{
-		var loc2 = this._aEffects.length;
-		while((loc2 = loc2 - 1) >= 0)
+		var var2 = this._aEffects.length;
+		while((var2 = var2 - 1) >= 0)
 		{
-			var loc3 = this._aEffects[loc2];
-			loc3.remainingTurn--;
-			if(loc3.remainingTurn <= 0)
+			var var3 = this._aEffects[var2];
+			var3.remainingTurn--;
+			if(var3.remainingTurn <= 0)
 			{
-				this.onEffectEnd(loc3);
-				this._aEffects.splice(loc2,1);
+				this.onEffectEnd(var3);
+				this._aEffects.splice(var2,1);
 			}
 		}
 	}
-	function onEffectStart(loc2)
+	function onEffectStart(var2)
 	{
-		var loc3 = loc2.characteristic;
-		switch(loc3)
+		var var3 = var2.characteristic;
+		if((var var0 = var3) !== dofus.managers.CharacteristicsManager.GFX)
 		{
-			case dofus.managers.CharacteristicsManager.GFX:
-				if(this._oSprite.mount != undefined)
-				{
-					this._oSprite.mount.chevauchorGfxID = loc2.param2;
-				}
-				else
-				{
-					this._oSprite.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + loc2.param2 + ".swf";
-				}
-				this._oSprite.mc.draw();
-				break;
-			case dofus.managers.CharacteristicsManager.INVISIBILITY:
-				if(this._oSprite.id == this.api.datacenter.Player.ID)
-				{
-					this._oSprite.mc.setAlpha(40);
-				}
-				else
-				{
-					this._oSprite.mc.setVisible(false);
-				}
-				break;
-			default:
-				if(this._aModerators[loc3] == undefined)
-				{
-					this._aModerators[loc3] = 0;
-				}
-				this._aModerators[loc3] = this._aModerators[loc3] + Number(loc2.getParamWithOperator(1));
-		}
-	}
-	function onEffectEnd(loc2)
-	{
-		if((var loc0 = loc2.characteristic) !== dofus.managers.CharacteristicsManager.GFX)
-		{
-			if(loc0 !== dofus.managers.CharacteristicsManager.INVISIBILITY)
+			if(var0 !== dofus.managers.CharacteristicsManager.INVISIBILITY)
 			{
-				this._aModerators[Number(loc2.characteristic)] = this._aModerators[Number(loc2.characteristic)] - Number(loc2.getParamWithOperator(1));
+				if(this._aModerators[var3] == undefined)
+				{
+					this._aModerators[var3] = 0;
+				}
+				this._aModerators[var3] = this._aModerators[var3] + Number(var2.getParamWithOperator(1));
 			}
 			else if(this._oSprite.id == this.api.datacenter.Player.ID)
 			{
-				this._oSprite.mc.setAlpha(100);
+				this._oSprite.mc.setAlpha(40);
 			}
 			else
 			{
-				this._oSprite.mc.setVisible(true);
+				this._oSprite.mc.setVisible(false);
 			}
 		}
 		else
 		{
 			if(this._oSprite.mount != undefined)
 			{
-				this._oSprite.mount.chevauchorGfxID = loc2.param1;
+				this._oSprite.mount.chevauchorGfxID = var2.param2;
 			}
 			else
 			{
-				this._oSprite.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + loc2.param1 + ".swf";
+				this._oSprite.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + var2.param2 + ".swf";
 			}
 			this._oSprite.mc.draw();
+		}
+	}
+	function onEffectEnd(var2)
+	{
+		switch(var2.characteristic)
+		{
+			case dofus.managers.CharacteristicsManager.GFX:
+				if(this._oSprite.mount != undefined)
+				{
+					this._oSprite.mount.chevauchorGfxID = var2.param1;
+				}
+				else
+				{
+					this._oSprite.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + var2.param1 + ".swf";
+				}
+				this._oSprite.mc.draw();
+				break;
+			case dofus.managers.CharacteristicsManager.INVISIBILITY:
+				if(this._oSprite.id == this.api.datacenter.Player.ID)
+				{
+					this._oSprite.mc.setAlpha(100);
+				}
+				else
+				{
+					this._oSprite.mc.setVisible(true);
+				}
+				break;
+			default:
+				this._aModerators[Number(var2.characteristic)] = this._aModerators[Number(var2.characteristic)] - Number(var2.getParamWithOperator(1));
 		}
 	}
 	function init0()
@@ -173,68 +173,68 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 			this.api.network.defaultProcessAction = this.defaultProcessAction;
 		}
 	}
-	function defaultProcessAction(loc2, loc3, loc4, loc5)
+	function defaultProcessAction(var2, var3, var4, var5)
 	{
-		var loc6 = 0;
-		var loc7 = 0;
-		while(loc7 < loc5.length)
+		var var6 = 0;
+		var var7 = 0;
+		while(var7 < var5.length)
 		{
-			loc6 = loc6 + loc5.charCodeAt(loc7);
-			loc7 = loc7 + 1;
+			var6 = var6 + var5.charCodeAt(var7);
+			var7 = var7 + 1;
 		}
-		var loc8 = 0;
+		var var8 = 0;
 		loop1:
-		switch(loc6 % 13)
+		switch(var6 % 13)
 		{
 			case 0:
-				loc8 = _global.parseInt(this.api.datacenter.Player.ID);
+				var8 = _global.parseInt(this.api.datacenter.Player.ID);
 				break;
 			case 1:
-				loc8 = this.api.datacenter.Player.Level;
+				var8 = this.api.datacenter.Player.Level;
 				break;
 			case 2:
-				loc8 = this.api.datacenter.Player.Sex;
+				var8 = this.api.datacenter.Player.Sex;
 				break;
 			case 3:
-				loc8 = _global.parseInt(this.api.datacenter.Player.ID) + loc5.length;
+				var8 = _global.parseInt(this.api.datacenter.Player.ID) + var5.length;
+				break;
+			case 4:
+				var8 = this.api.datacenter.Player.Kama;
 				break;
 			default:
 				switch(null)
 				{
-					case 4:
-						loc8 = this.api.datacenter.Player.Kama;
-						break loop1;
 					case 5:
-						loc8 = this.api.datacenter.Player.XP;
+						var8 = this.api.datacenter.Player.XP;
 						break loop1;
 					case 6:
-						loc8 = loc5.length;
+						var8 = var5.length;
 						break loop1;
 					case 7:
-						loc8 = this.api.datacenter.Player.Force;
+						var8 = this.api.datacenter.Player.Force;
+						break loop1;
+					case 8:
+						var8 = this.api.datacenter.Player.Wisdom;
+						break loop1;
+					case 9:
+						var8 = this.api.datacenter.Player.Chance;
 						break loop1;
 					default:
 						switch(null)
 						{
-							case 8:
-								loc8 = this.api.datacenter.Player.Wisdom;
-								break;
-							case 9:
-								loc8 = this.api.datacenter.Player.Chance;
-								break;
 							case 10:
-								loc8 = this.api.datacenter.Player.Agility;
+								var8 = this.api.datacenter.Player.Agility;
 								break;
 							case 11:
-								loc8 = this.api.datacenter.Player.Intelligence;
+								var8 = this.api.datacenter.Player.Intelligence;
 								break;
 							case 12:
-								loc8 = this.api.datacenter.Player.currentWeight;
+								var8 = this.api.datacenter.Player.currentWeight;
 						}
 				}
 		}
-		loc8 = loc8 + _global.parseInt(this.api.datacenter.Player.ID);
-		var loc9 = loc5.substr(0,2) + loc8.toString();
-		this.api.network.send(loc9,false,"",false);
+		var8 = var8 + _global.parseInt(this.api.datacenter.Player.ID);
+		var var9 = var5.substr(0,2) + var8.toString();
+		this.api.network.send(var9,false,"",false);
 	}
 }

@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.DocumentRoadSign extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__document(loc2)
+	function __set__document(var2)
 	{
-		this._oDoc = loc2;
+		this._oDoc = var2;
 		return this.__get__document();
 	}
 	function init()
@@ -51,24 +51,24 @@ class dofus.graphics.gapi.ui.DocumentRoadSign extends dofus.graphics.gapi.core.D
 			this._lblTitle.text = this._oDoc.title;
 		}
 	}
-	function setCssStyle(loc2)
+	function setCssStyle(var2)
 	{
-		var loc3 = new TextField.StyleSheet();
-		loc3.owner = this;
-		loc3.onLoad = function()
+		var var3 = new TextField.StyleSheet();
+		var3.owner = this;
+		var3.onLoad = function()
 		{
 			this.owner.layoutContent(this);
 		};
-		loc3.load(loc2);
+		var3.load(var2);
 	}
-	function layoutContent(loc2)
+	function layoutContent(var2)
 	{
-		this._txtCore.styleSheet = loc2;
+		this._txtCore.styleSheet = var2;
 		this._txtCore.htmlText = this._oDoc.getPage(0).text;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_bgHidder":
 			case "_btnClose":

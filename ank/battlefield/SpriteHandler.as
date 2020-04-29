@@ -3,9 +3,9 @@ class ank.battlefield.SpriteHandler
 	static var DEFAULT_RUNLINIT = 6;
 	static var _bPlayerSpritesHidden = false;
 	static var _bShowMonstersTooltip = false;
-	function SpriteHandler(loc3, loc4, loc5)
+	function SpriteHandler(var3, var4, var5)
 	{
-		this.initialize(loc2,loc3,loc4);
+		this.initialize(var2,var3,var4);
 	}
 	function __get__isShowingMonstersTooltip()
 	{
@@ -15,19 +15,19 @@ class ank.battlefield.SpriteHandler
 	{
 		return ank.battlefield.SpriteHandler._bPlayerSpritesHidden;
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
-		this._mcBattlefield = loc2;
-		this._oSprites = loc4;
-		this._mcContainer = loc3;
+		this._mcBattlefield = var2;
+		this._oSprites = var4;
+		this._mcContainer = var3;
 		this.api = _global.API;
 	}
-	function clear(loc2)
+	function clear(var2)
 	{
-		var loc3 = this._oSprites.getItems();
-		for(var k in loc3)
+		var var3 = this._oSprites.getItems();
+		for(var k in var3)
 		{
-			this.removeSprite(k,loc2);
+			this.removeSprite(k,var2);
 		}
 	}
 	function getSprites()
@@ -40,10 +40,10 @@ class ank.battlefield.SpriteHandler
 	}
 	function addSprite(sID, oSprite)
 	{
-		var loc4 = true;
+		var var4 = true;
 		if(oSprite == undefined)
 		{
-			loc4 = false;
+			var4 = false;
 			oSprite = this._oSprites.getItemAt(sID);
 		}
 		if(oSprite == undefined)
@@ -51,32 +51,32 @@ class ank.battlefield.SpriteHandler
 			ank.utils.Logger.err("[addSprite] pas de spriteData");
 			return undefined;
 		}
-		if(loc4)
+		if(var4)
 		{
 			this._oSprites.addItemAt(sID,oSprite);
 		}
 		this._mcContainer["sprite" + sID].removeMovieClip();
-		var loc5 = ank.battlefield.utils.SpriteDepthFinder.getFreeDepthOnCell(this._mcBattlefield.mapHandler,this._oSprites,oSprite.cellNum,oSprite.allowGhostMode && this._mcBattlefield.bGhostView);
-		var loc6 = this._mcContainer.getInstanceAtDepth(loc5);
-		oSprite.mc = this._mcContainer.attachClassMovie(oSprite.clipClass,"sprite" + sID,loc5,[this._mcBattlefield,this._oSprites,oSprite]);
+		var var5 = ank.battlefield.utils.SpriteDepthFinder.getFreeDepthOnCell(this._mcBattlefield.mapHandler,this._oSprites,oSprite.cellNum,oSprite.allowGhostMode && this._mcBattlefield.bGhostView);
+		var var6 = this._mcContainer.getInstanceAtDepth(var5);
+		oSprite.mc = this._mcContainer.attachClassMovie(oSprite.clipClass,"sprite" + sID,var5,[this._mcBattlefield,this._oSprites,oSprite]);
 		oSprite.isHidden = this._bAllSpritesMasked;
 		if(oSprite.allowGhostMode && this._mcBattlefield.bGhostView)
 		{
 			oSprite.mc.setAlpha(ank.battlefield.Constants.GHOSTVIEW_SPRITE_ALPHA);
 		}
 	}
-	function addLinkedSprite(sID, §\x1e\x11\x04§, §\b\f§, oSprite)
+	function addLinkedSprite(sID, §\x1e\x11\x02§, §\b\n§, oSprite)
 	{
-		var loc6 = true;
-		var loc7 = this._oSprites.getItemAt(loc3);
-		if(loc7 == undefined)
+		var var6 = true;
+		var var7 = this._oSprites.getItemAt(var3);
+		if(var7 == undefined)
 		{
 			ank.utils.Logger.err("[addLinkedSprite] pas de spriteData parent");
 			return undefined;
 		}
 		if(oSprite == undefined)
 		{
-			loc6 = false;
+			var6 = false;
 			oSprite = this._oSprites.getItemAt(sID);
 		}
 		if(oSprite == undefined)
@@ -84,57 +84,57 @@ class ank.battlefield.SpriteHandler
 			ank.utils.Logger.err("[addLinkedSprite] pas de spriteData");
 			return undefined;
 		}
-		if(loc6)
+		if(var6)
 		{
 			this._oSprites.addItemAt(sID,oSprite);
 		}
-		var loc8 = ank.battlefield.utils.Pathfinding.getArroundCellNum(this._mcBattlefield.mapHandler,loc7.cellNum,loc7.direction,loc4);
-		var loc9 = this._mcBattlefield.mapHandler.getCellData(loc8);
-		if(loc9.movement > 0 && loc9.active)
+		var var8 = ank.battlefield.utils.Pathfinding.getArroundCellNum(this._mcBattlefield.mapHandler,var7.cellNum,var7.direction,var4);
+		var var9 = this._mcBattlefield.mapHandler.getCellData(var8);
+		if(var9.movement > 0 && var9.active)
 		{
-			oSprite.cellNum = loc8;
+			oSprite.cellNum = var8;
 		}
 		else
 		{
-			oSprite.cellNum = loc7.cellNum;
+			oSprite.cellNum = var7.cellNum;
 		}
-		oSprite.linkedParent = loc7;
-		oSprite.childIndex = loc4;
-		loc7.linkedChilds.addItemAt(sID,oSprite);
+		oSprite.linkedParent = var7;
+		oSprite.childIndex = var4;
+		var7.linkedChilds.addItemAt(sID,oSprite);
 		this.addSprite(sID);
 	}
-	function carriedSprite(sID, §\x1e\x11\x04§)
+	function carriedSprite(sID, §\x1e\x11\x02§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[carriedSprite] pas de spriteData");
 			return undefined;
 		}
-		var loc5 = this._oSprites.getItemAt(loc3);
-		if(loc5 == undefined)
+		var var5 = this._oSprites.getItemAt(var3);
+		if(var5 == undefined)
 		{
 			ank.utils.Logger.err("[carriedSprite] pas de spriteData parent");
 			return undefined;
 		}
-		if(!loc5.hasCarriedChild())
+		if(!var5.hasCarriedChild())
 		{
-			this.autoCalculateSpriteDirection(loc3,loc4.cellNum);
-			loc4.direction = loc5.direction;
-			loc4.carriedParent = loc5;
-			loc5.carriedChild = loc4;
-			var loc6 = loc5.mc;
-			loc6.setAnim("carring",false,false);
-			loc6.onEnterFrame = function()
+			this.autoCalculateSpriteDirection(var3,var4.cellNum);
+			var4.direction = var5.direction;
+			var4.carriedParent = var5;
+			var5.carriedChild = var4;
+			var var6 = var5.mc;
+			var6.setAnim("carring",false,false);
+			var6.onEnterFrame = function()
 			{
 				this.updateCarriedPosition();
 				delete this.onEnterFrame;
 			};
-			loc4.mc.updateMap(loc5.cellNum,loc4.isVisible);
-			loc4.mc.setNewCellNum(loc5.cellNum);
+			var4.mc.updateMap(var5.cellNum,var4.isVisible);
+			var4.mc.setNewCellNum(var5.cellNum);
 		}
 	}
-	function uncarriedSprite(sID, §\b\x1a§, §\x14\x12§, §\x1e\x19\x11§)
+	function uncarriedSprite(sID, §\b\x18§, §\x14\x11§, §\x1e\x19\x0f§)
 	{
 		var oSprite = this._oSprites.getItemAt(sID);
 		if(oSprite == undefined)
@@ -144,727 +144,726 @@ class ank.battlefield.SpriteHandler
 		}
 		if(oSprite.hasCarriedParent())
 		{
-			var loc6 = oSprite.carriedParent;
-			var loc7 = loc6.mc;
-			var loc8 = loc6.sequencer;
-			if(loc5 == undefined)
+			var var6 = oSprite.carriedParent;
+			var var7 = var6.mc;
+			var var8 = var6.sequencer;
+			if(var5 == undefined)
 			{
-				loc5 = loc8;
+				var5 = var8;
 			}
-			else if(loc4)
+			else if(var4)
 			{
-				loc5.addAction(false,this,function(loc2, loc3)
+				var5.addAction(false,this,function(var2, var3)
 				{
-					loc2.sequencer = loc3;
+					var2.sequencer = var3;
 				}
-				,[loc6,loc5]);
+				,[var6,var5]);
 			}
-			if(loc4)
+			if(var4)
 			{
-				loc5.addAction(false,this,this.autoCalculateSpriteDirection,[loc6.id,loc3]);
-				loc5.addAction(true,loc7,loc7.setAnim,["carringEnd",false,false]);
-				loc7.onEnterFrame = function()
+				var5.addAction(false,this,this.autoCalculateSpriteDirection,[var6.id,var3]);
+				var5.addAction(true,var7,var7.setAnim,["carringEnd",false,false]);
+				var7.onEnterFrame = function()
 				{
 					this.updateCarriedPosition();
 					delete this.onEnterFrame;
 				};
 			}
-			loc5.addAction(false,this,function(loc2, loc3)
+			var5.addAction(false,this,function(var2, var3)
 			{
 				oSprite.carriedParent = undefined;
-				loc3.carriedChild = undefined;
+				var3.carriedChild = undefined;
 			}
-			,[oSprite,loc6]);
-			loc5.addAction(false,this,this.setSpritePosition,[oSprite.id,loc3]);
-			if(loc4)
+			,[oSprite,var6]);
+			var5.addAction(false,this,this.setSpritePosition,[oSprite.id,var3]);
+			if(var4)
 			{
-				loc5.addAction(false,loc7,loc7.setAnim,["static",false,false]);
-				loc5.addAction(false,this,function(loc2, loc3)
+				var5.addAction(false,var7,var7.setAnim,["static",false,false]);
+				var5.addAction(false,this,function(var2, var3)
 				{
-					loc2.sequencer = loc3;
+					var2.sequencer = var3;
 				}
-				,[loc6,loc8]);
+				,[var6,var8]);
 			}
-			loc5.execute();
+			var5.execute();
 		}
 	}
-	function mountSprite(sID, §\x1e\x1a\t§)
+	function mountSprite(sID, §\x1e\x1a\x07§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[mountSprite] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc3 != loc4.mount)
+		if(var3 != var4.mount)
 		{
-			loc4.mount = loc3;
-			loc4.mc.draw();
+			var4.mount = var3;
+			var4.mc.draw();
 		}
 	}
 	function unmountSprite(sID)
 	{
-		var loc3 = this._oSprites.getItemAt(sID);
-		if(loc3 == undefined)
+		var var3 = this._oSprites.getItemAt(sID);
+		if(var3 == undefined)
 		{
 			ank.utils.Logger.err("[unmountSprite] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc3.mount != undefined)
+		if(var3.mount != undefined)
 		{
-			loc3.mount = undefined;
-			loc3.mc.draw();
+			var3.mount = undefined;
+			var3.mc.draw();
 		}
 	}
-	function removeSprite(sID, §\x18\x14§)
+	function removeSprite(sID, §\x18\x13§)
 	{
 		this._mcBattlefield.removeSpriteBubble(sID);
 		this._mcBattlefield.hideSpriteOverHead(sID);
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = false;
+			var3 = false;
 		}
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4.hasChilds)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4.hasChilds)
 		{
-			var loc5 = loc4.linkedChilds.getItems();
-			for(var k in loc5)
+			var var5 = var4.linkedChilds.getItems();
+			for(var k in var5)
 			{
-				this.removeSprite(loc5[k].id,loc3);
+				this.removeSprite(var5[k].id,var3);
 			}
 		}
-		if(loc4.hasParent && !loc3)
+		if(var4.hasParent && !var3)
 		{
-			loc4.linkedParent.linkedChilds.removeItemAt(sID);
+			var4.linkedParent.linkedChilds.removeItemAt(sID);
 		}
-		if(loc4.hasCarriedChild())
+		if(var4.hasCarriedChild())
 		{
-			loc4.carriedChild.carriedParent = undefined;
-			loc4.carriedChild.mc.setPosition();
+			var4.carriedChild.carriedParent = undefined;
+			var4.carriedChild.mc.setPosition();
 		}
-		if(loc4.hasCarriedParent())
+		if(var4.hasCarriedParent())
 		{
-			var loc6 = loc4.carriedParent;
-			loc4.carriedParent.carriedChild = undefined;
-			loc6.mc.setAnim("static",false,false);
+			var var6 = var4.carriedParent;
+			var4.carriedParent.carriedChild = undefined;
+			var6.mc.setAnim("static",false,false);
 		}
 		this._mcContainer["sprite" + sID].__proto__ = MovieClip.prototype;
 		this._mcContainer["sprite" + sID].removeMovieClip();
-		this._mcBattlefield.mapHandler.getCellData(loc4.cellNum).removeSpriteOnID(loc4.id);
-		if(!loc3)
+		this._mcBattlefield.mapHandler.getCellData(var4.cellNum).removeSpriteOnID(var4.id);
+		if(!var3)
 		{
 			this._oSprites.removeItemAt(sID);
 		}
 	}
-	function hideSprite(sID, §\x19\x15§)
+	function hideSprite(sID, §\x19\x14§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4.hasChilds)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4.hasChilds)
 		{
-			var loc5 = loc4.linkedChilds.getItems();
-			for(var k in loc5)
+			var var5 = var4.linkedChilds.getItems();
+			for(var k in var5)
 			{
-				this.hideSprite(loc5[k].id,loc3);
+				this.hideSprite(var5[k].id,var3);
 			}
 		}
-		loc4.mc.setVisible(!loc3);
+		var4.mc.setVisible(!var3);
 	}
 	function unmaskAllSprites()
 	{
 		this._bAllSpritesMasked = false;
-		var loc2 = this._oSprites.getItems();
-		for(var k in loc2)
+		var var2 = this._oSprites.getItems();
+		for(var k in var2)
 		{
-			loc2[k].isHidden = false;
+			var2[k].isHidden = false;
 		}
 	}
 	function maskAllSprites()
 	{
 		this._bAllSpritesMasked = true;
-		var loc2 = this._oSprites.getItems();
-		for(var k in loc2)
+		var var2 = this._oSprites.getItems();
+		for(var k in var2)
 		{
-			loc2[k].isHidden = true;
+			var2[k].isHidden = true;
 		}
 	}
-	function setSpriteDirection(sID, §\x07\x12§)
+	function setSpriteDirection(sID, §\x07\x10§)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[setSpriteDirection] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc4.hasChilds)
+		if(var4.hasChilds)
 		{
-			var loc5 = loc4.linkedChilds.getItems();
-			for(var k in loc5)
+			var var5 = var4.linkedChilds.getItems();
+			for(var k in var5)
 			{
-				this.setSpriteDirection(loc5[k].id,loc3);
+				this.setSpriteDirection(var5[k].id,var3);
 			}
 		}
-		if(loc4.hasCarriedChild())
+		if(var4.hasCarriedChild())
 		{
-			loc4.carriedChild.mc.setDirection(loc3);
+			var4.carriedChild.mc.setDirection(var3);
 		}
-		var loc6 = loc4.mc;
-		loc6.setDirection(loc3);
+		var var6 = var4.mc;
+		var6.setDirection(var3);
 	}
-	function setSpritePosition(sID, §\b\x1a§, §\x07\x12§)
+	function setSpritePosition(sID, §\b\x18§, §\x07\x10§)
 	{
-		var loc5 = this._oSprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this._oSprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
 			ank.utils.Logger.err("[setSpritePosition] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(_global.isNaN(Number(loc3)))
+		if(_global.isNaN(Number(var3)))
 		{
 			ank.utils.Logger.err("[setSpritePosition] cellNum n\'est pas un nombre");
 			return undefined;
 		}
-		if(Number(loc3) < 0 || Number(loc3) > this._mcBattlefield.mapHandler.getCellCount())
+		if(Number(var3) < 0 || Number(var3) > this._mcBattlefield.mapHandler.getCellCount())
 		{
 			ank.utils.Logger.err("[setSpritePosition] cellNum invalide");
 			return undefined;
 		}
-		if(loc5.hasChilds)
+		if(var5.hasChilds)
 		{
-			var loc6 = loc5.linkedChilds.getItems();
-			for(var k in loc6)
+			var var6 = var5.linkedChilds.getItems();
+			for(var k in var6)
 			{
-				var loc7 = ank.battlefield.utils.Pathfinding.getArroundCellNum(this._mcBattlefield.mapHandler,loc3,loc4,loc6[k].childIndex);
-				this.setSpriteDirection(loc6[k].id,loc7,loc4);
+				var var7 = ank.battlefield.utils.Pathfinding.getArroundCellNum(this._mcBattlefield.mapHandler,var3,var4,var6[k].childIndex);
+				this.setSpriteDirection(var6[k].id,var7,var4);
 			}
 		}
 		this._mcBattlefield.removeSpriteBubble(sID);
 		this._mcBattlefield.hideSpriteOverHead(sID);
-		if(loc4 != undefined)
+		if(var4 != undefined)
 		{
-			loc5.direction = loc4;
+			var5.direction = var4;
 		}
-		var loc8 = loc5.mc;
-		loc8.setPosition(loc3);
+		var var8 = var5.mc;
+		var8.setPosition(var3);
 	}
-	function stopSpriteMove(sID, §\x1e\x19\x11§, §\b\x1a§)
+	function stopSpriteMove(sID, §\x1e\x19\x0f§, §\b\x18§)
 	{
-		loc3.clearAllNextActions();
-		var loc5 = this._oSprites.getItemAt(sID);
-		var loc6 = loc5.mc;
-		loc5.isInMove = false;
-		loc3.addAction(false,loc6,loc6.setPosition,[loc4]);
-		loc3.addAction(false,loc6,loc6.setAnim,["static"]);
+		var3.clearAllNextActions();
+		var var5 = this._oSprites.getItemAt(sID);
+		var var6 = var5.mc;
+		var5.isInMove = false;
+		var3.addAction(false,var6,var6.setPosition,[var4]);
+		var3.addAction(false,var6,var6.setAnim,["static"]);
 	}
-	function slideSprite(sID, cellNum, §\x1e\x14\x0e§, §\x1e\x16\r§)
+	function slideSprite(sID, cellNum, §\x1e\x14\f§, §\x1e\x16\x0b§)
 	{
-		if(loc5 == undefined)
+		if(var5 == undefined)
 		{
-			loc5 = "static";
+			var5 = "static";
 		}
-		var loc6 = this._oSprites.getItemAt(sID);
-		var loc7 = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(this._mcBattlefield.mapHandler.getCellData(loc6.cellNum).x,this._mcBattlefield.mapHandler.getCellData(loc6.cellNum).rootY,this._mcBattlefield.mapHandler.getCellData(cellNum).x,this._mcBattlefield.mapHandler.getCellData(cellNum).rootY,false);
-		var loc8 = ank.battlefield.utils.Compressor.makeFullPath(this._mcBattlefield.mapHandler,[{num:loc6.cellNum},{num:cellNum,dir:loc7}]);
-		if(loc8 != undefined)
+		var var6 = this._oSprites.getItemAt(sID);
+		var var7 = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(this._mcBattlefield.mapHandler.getCellData(var6.cellNum).x,this._mcBattlefield.mapHandler.getCellData(var6.cellNum).rootY,this._mcBattlefield.mapHandler.getCellData(cellNum).x,this._mcBattlefield.mapHandler.getCellData(cellNum).rootY,false);
+		var var8 = ank.battlefield.utils.Compressor.makeFullPath(this._mcBattlefield.mapHandler,[{num:var6.cellNum},{num:cellNum,dir:var7}]);
+		if(var8 != undefined)
 		{
-			this.moveSprite(sID,loc8,loc4,false,loc5);
+			this.moveSprite(sID,var8,var4,false,var5);
 		}
 	}
-	function moveSprite(sID, §\x1e\x18\x10§, §\x1e\x14\x0e§, §\x1b\x17§, §\x1e\x16\r§, §\x1a\x05§, §\x1a\x04§, §\x1e\x16\x14§)
+	function moveSprite(sID, §\x1e\x18\x0e§, §\x1e\x14\f§, §\x1b\x17§, §\x1e\x16\x0b§, §\x1a\x04§, §\x1a\x03§, §\x1e\x16\x12§)
 	{
 		this._mcBattlefield.removeSpriteBubble(sID);
 		this._mcBattlefield.hideSpriteOverHead(sID);
-		var loc10 = loc6 != undefined;
-		if(loc9 == undefined)
+		var var10 = var6 != undefined;
+		if(var9 == undefined)
 		{
-			loc9 = ank.battlefield.SpriteHandler.DEFAULT_RUNLINIT;
+			var9 = ank.battlefield.SpriteHandler.DEFAULT_RUNLINIT;
 		}
-		if(loc7 == undefined)
+		if(var7 == undefined)
 		{
-			loc7 = false;
+			var7 = false;
 		}
-		if(loc8 == undefined)
+		if(var8 == undefined)
 		{
-			loc8 = false;
+			var8 = false;
 		}
-		var loc11 = !loc10?"walk":"slide";
-		if(loc8)
+		var var11 = !var10?"walk":"slide";
+		if(var8)
 		{
-			loc11 = "walk";
+			var11 = "walk";
 		}
-		else if(loc7)
+		else if(var7)
 		{
-			loc11 = "run";
+			var11 = "run";
 		}
-		else if(!loc7 && (!loc8 && !loc10))
+		else if(!var7 && (!var8 && !var10))
 		{
-			if(loc3.length > loc9)
+			if(var3.length > var9)
 			{
-				loc11 = "run";
+				var11 = "run";
 			}
 		}
-		var loc12 = this._oSprites.getItemAt(sID);
-		if(loc12 == undefined)
+		var var12 = this._oSprites.getItemAt(sID);
+		if(var12 == undefined)
 		{
 			ank.utils.Logger.err("[moveSprite] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = loc12.sequencer;
+			var4 = var12.sequencer;
 		}
-		if(loc12.hasChilds)
+		if(var12.hasChilds)
 		{
-			var loc13 = Number(loc3[loc3.length - 1]);
-			if(loc3.length > 1)
+			var var13 = Number(var3[var3.length - 1]);
+			if(var3.length > 1)
 			{
-				var loc14 = ank.battlefield.utils.Pathfinding.getDirection(this._mcBattlefield.mapHandler,Number(loc3[loc3.length - 2]),loc13);
+				var var14 = ank.battlefield.utils.Pathfinding.getDirection(this._mcBattlefield.mapHandler,Number(var3[var3.length - 2]),var13);
 			}
 			else
 			{
-				loc14 = loc12.direction;
+				var14 = var12.direction;
 			}
-			var loc15 = loc12.linkedChilds.getItems();
-			for(var k in loc15)
+			var var15 = var12.linkedChilds.getItems();
+			for(var k in var15)
 			{
-				var loc16 = loc15[k];
-				var loc17 = ank.battlefield.utils.Pathfinding.getArroundCellNum(this._mcBattlefield.mapHandler,loc13,loc14,loc16.childIndex);
-				var loc18 = ank.battlefield.utils.Pathfinding.pathFind(this._mcBattlefield.mapHandler,loc16.cellNum,loc17,{bAllDirections:loc16.allDirections,bIgnoreSprites:true,bCellNumOnly:true,bWithBeginCellNum:true});
-				if(loc18 != null)
+				var var16 = var15[k];
+				var var17 = ank.battlefield.utils.Pathfinding.getArroundCellNum(this._mcBattlefield.mapHandler,var13,var14,var16.childIndex);
+				var var18 = ank.battlefield.utils.Pathfinding.pathFind(this._mcBattlefield.mapHandler,var16.cellNum,var17,{bAllDirections:var16.allDirections,bIgnoreSprites:true,bCellNumOnly:true,bWithBeginCellNum:true});
+				if(var18 != null)
 				{
-					ank.utils.Timer.setTimer(loc16,"battlefield",this,this.moveSprite,200 + (loc12.cellNum != loc16.cellNum?0:200),[loc16.id,loc18,loc16.sequencer,loc5,loc6,loc16.forceRun || loc7,loc16.forceWalk || loc8,loc9]);
+					ank.utils.Timer.setTimer(var16,"battlefield",this,this.moveSprite,200 + (var12.cellNum != var16.cellNum?0:200),[var16.id,var18,var16.sequencer,var5,var6,var16.forceRun || var7,var16.forceWalk || var8,var9]);
 				}
 			}
 		}
-		var loc19 = loc12.mc;
-		if(loc5)
+		var var19 = var12.mc;
+		if(var5)
 		{
-			if(!loc10)
+			if(!var10)
 			{
-				loc4.clearAllNextActions();
+				var4.clearAllNextActions();
 			}
 		}
-		loc4.addAction(false,loc19,loc19.setPosition,[loc3[0]]);
-		var loc20 = loc3.length;
-		var loc21 = loc20 - 1;
-		var loc22 = 0;
-		while(loc22 < loc20)
+		var4.addAction(false,var19,var19.setPosition,[var3[0]]);
+		var var20 = var3.length;
+		var var21 = var20 - 1;
+		var var22 = 0;
+		while(var22 < var20)
 		{
-			var loc23 = loc6;
-			var loc24 = loc11;
-			var loc25 = false;
-			if(loc22 != 0)
+			var var23 = var6;
+			var var24 = var11;
+			var var25 = false;
+			if(var22 != 0)
 			{
-				var loc26 = this._mcBattlefield.mapHandler.getCellHeight(loc3[loc22 - 1]);
-				var loc27 = this._mcBattlefield.mapHandler.getCellHeight(loc3[loc22]);
-				if(Math.abs(loc26 - loc27) > 0.5 && this._mcBattlefield.isJumpActivate)
+				var var26 = this._mcBattlefield.mapHandler.getCellHeight(var3[var22 - 1]);
+				var var27 = this._mcBattlefield.mapHandler.getCellHeight(var3[var22]);
+				if(Math.abs(var26 - var27) > 0.5 && this._mcBattlefield.isJumpActivate)
 				{
-					loc23 = "jump";
-					loc24 = "run";
-					loc25 = true;
+					var23 = "jump";
+					var24 = "run";
+					var25 = true;
 				}
 			}
-			loc4.addAction(true,loc19,loc19.moveToCell,[loc4,loc3[loc22],loc22 == loc21,loc24,loc23,loc25]);
-			loc22 = loc22 + 1;
+			var4.addAction(true,var19,var19.moveToCell,[var4,var3[var22],var22 == var21,var24,var23,var25]);
+			var22 = var22 + 1;
 		}
-		loc4.execute();
+		var4.execute();
 	}
-	function setCreatureMode(loc2)
+	function setCreatureMode(var2)
 	{
-		var loc3 = this.api.datacenter.Sprites.getItems();
-		for(var k in loc3)
+		var var3 = this.api.datacenter.Sprites.getItems();
+		for(var k in var3)
 		{
-			var loc4 = loc3[k];
-			if(loc4 instanceof dofus.datacenter.Character)
+			var var4 = var3[k];
+			if(var4 instanceof dofus.datacenter.Character)
 			{
-				if(loc4.canSwitchInCreaturesMode)
+				if(var4.canSwitchInCreaturesMode)
 				{
-					if(!(loc4 instanceof dofus.datacenter.Mutant))
+					if(!(var4 instanceof dofus.datacenter.Mutant))
 					{
-						if(loc2)
+						if(var2)
 						{
-							if(!loc4.bInCreaturesMode)
+							if(!var4.bInCreaturesMode)
 							{
-								loc4.tmpGfxFile = loc4.gfxFile;
-								loc4.tmpMount = loc4.mount;
-								loc4.mount = undefined;
-								var loc5 = dofus.Constants.CLIPS_PERSOS_PATH + loc4.Guild + "2.swf";
-								this.api.gfx.setSpriteGfx(loc4.id,loc5);
-								loc4.bInCreaturesMode = true;
+								var4.tmpGfxFile = var4.gfxFile;
+								var4.tmpMount = var4.mount;
+								var4.mount = undefined;
+								var var5 = dofus.Constants.CLIPS_PERSOS_PATH + var4.Guild + "2.swf";
+								this.api.gfx.setSpriteGfx(var4.id,var5);
+								var4.bInCreaturesMode = true;
 							}
 						}
-						else if(loc4.bInCreaturesMode)
+						else if(var4.bInCreaturesMode)
 						{
-							loc4.mount = loc4.tmpMount;
+							var4.mount = var4.tmpMount;
 							delete register4.tmpMount;
-							var loc6 = loc4.tmpGfxFile != undefined?loc4.tmpGfxFile:loc4.gfxFile;
+							var var6 = var4.tmpGfxFile != undefined?var4.tmpGfxFile:var4.gfxFile;
 							delete register4.tmpGfxFile;
-							this.api.gfx.setSpriteGfx(loc4.id,loc6);
-							loc4.bInCreaturesMode = false;
+							this.api.gfx.setSpriteGfx(var4.id,var6);
+							var4.bInCreaturesMode = false;
 						}
 					}
 				}
 			}
 		}
 	}
-	function hidePlayerSprites(loc2)
+	function hidePlayerSprites(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = true;
+			var2 = true;
 		}
 		else
 		{
-			ank.battlefield.SpriteHandler._bPlayerSpritesHidden = loc2;
+			ank.battlefield.SpriteHandler._bPlayerSpritesHidden = var2;
 		}
 		if(!this.api.datacenter.Game.isFight)
 		{
-			var loc3 = this.getSprites().getItems();
-			for(var sID in loc3)
+			var var3 = this.getSprites().getItems();
+			for(var sID in var3)
 			{
 				if(sID != this.api.datacenter.Player.ID)
 				{
-					var loc4 = loc3[sID];
-					var loc5 = loc4.mc;
-					var loc6 = loc5.data;
-					if(loc6 instanceof dofus.datacenter.Character || (loc6 instanceof dofus.datacenter.OfflineCharacter || loc6 instanceof dofus.datacenter.MonsterGroup))
+					var var4 = var3[sID];
+					var var5 = var4.mc;
+					var var6 = var5.data;
+					if(var6 instanceof dofus.datacenter.Character || (var6 instanceof dofus.datacenter.OfflineCharacter || var6 instanceof dofus.datacenter.MonsterGroup))
 					{
-						loc4.isHidden = loc2;
-						var loc7 = loc4.linkedChilds.getItems();
-						for(var sChildID in loc7)
+						var4.isHidden = var2;
+						var var7 = var4.linkedChilds.getItems();
+						for(var sChildID in var7)
 						{
-							var loc8 = loc7[sChildID];
-							loc8.isHidden = loc2;
+							var var8 = var7[sChildID];
+							var8.isHidden = var2;
 						}
 					}
 				}
 			}
 		}
 	}
-	function showMonstersTooltip(loc2)
+	function showMonstersTooltip(var2)
 	{
-		ank.battlefield.SpriteHandler._bShowMonstersTooltip = loc2;
-		var loc3 = this.api.gfx.spriteHandler.getSprites().getItems();
-		for(var sID in loc3)
+		ank.battlefield.SpriteHandler._bShowMonstersTooltip = var2;
+		var var3 = this.api.gfx.spriteHandler.getSprites().getItems();
+		for(var sID in var3)
 		{
-			var loc4 = loc3[sID].mc;
-			var loc5 = loc4.data;
-			if(loc5 instanceof dofus.datacenter.MonsterGroup)
+			var var4 = var3[sID].mc;
+			var var5 = var4.data;
+			if(var5 instanceof dofus.datacenter.MonsterGroup)
 			{
-				if(loc2)
+				if(var2)
 				{
-					loc4._rollOver();
+					var4._rollOver();
 				}
 				else
 				{
-					loc4._rollOut();
+					var4._rollOut();
 				}
 			}
 		}
 	}
-	function launchVisualEffect(sID, §\x1e\x1b\x06§, §\b\x1a§, §\x07\r§, §\n\x12§, §\x1e\x0f\x02§, §\x1e\x19\b§, §\x19\x19§, §\x1c\b§)
+	function launchVisualEffect(sID, §\x1e\x1b\x04§, §\b\x18§, §\x07\x0b§, §\n\x10§, §\x1e\x0e\x1d§, §\x1e\x19\x06§, §\x19\x18§, §\x1c\b§)
 	{
-		if(loc10 == undefined)
+		if(var10 == undefined)
 		{
-			loc10 = true;
+			var10 = true;
 		}
-		var loc11 = this._oSprites.getItemAt(sID);
-		if(loc11 == undefined)
+		var var11 = this._oSprites.getItemAt(sID);
+		if(var11 == undefined)
 		{
 			ank.utils.Logger.err("[launchVisualEffect] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		var loc12 = this._oSprites.getItemAt(loc7);
-		if(!loc10)
+		var var12 = this._oSprites.getItemAt(var7);
+		if(!var10)
 		{
-			this._mcBattlefield.visualEffectHandler.addEffect(loc11,loc3,loc4,loc5,loc12,!loc9?loc11.isVisible:true);
+			this._mcBattlefield.visualEffectHandler.addEffect(var11,var3,var4,var5,var12,!var9?var11.isVisible:true);
 			return undefined;
 		}
-		var loc13 = loc11.mc;
-		var loc14 = loc11.sequencer;
-		var loc15 = true;
+		var var13 = var11.mc;
+		var var14 = var11.sequencer;
+		var var15 = true;
 		loop0:
-		switch(loc5)
+		switch(var5)
 		{
 			case 0:
-				var loc16 = false;
-				loc15 = false;
-				break;
-			case 10:
-			case 11:
-				loc16 = false;
-				break;
-			case 12:
-				loc16 = true;
+				var var16 = false;
+				var15 = false;
 				break;
 			default:
 				switch(null)
 				{
+					case 11:
+					case 12:
+						var16 = true;
+						break loop0;
 					case 20:
 					case 21:
-						loc16 = false;
-						break loop0;
-					case 30:
-					case 31:
-						loc16 = true;
+						var16 = false;
 						break loop0;
 					default:
 						switch(null)
 						{
+							case 31:
 							case 40:
 							case 41:
-								loc16 = true;
+								var16 = true;
 								break loop0;
 							case 50:
-								loc16 = false;
+								var16 = false;
 								break loop0;
 							case 51:
-								loc16 = true;
+								var16 = true;
 								break loop0;
 							default:
-								loc16 = false;
-								loc15 = false;
+								var16 = false;
+								var15 = false;
 						}
+					case 30:
+						var16 = true;
 				}
+			case 10:
+				var16 = false;
 		}
-		loc13._ACTION = loc11;
-		loc13._OBJECT = loc13;
-		loc14.addAction(false,this,this.autoCalculateSpriteDirection,[sID,loc4]);
-		if(loc6 != undefined)
+		var13._ACTION = var11;
+		var13._OBJECT = var13;
+		var14.addAction(false,this,this.autoCalculateSpriteDirection,[sID,var4]);
+		if(var6 != undefined)
 		{
-			var loc17 = typeof loc6;
-			if(loc17 == "object")
+			var var17 = typeof var6;
+			if(var17 == "object")
 			{
-				if(loc6.length < 3)
+				if(var6.length < 3)
 				{
-					ank.utils.Logger.err("[launchVisualEffect] l\'anim " + loc6 + " est invalide");
+					ank.utils.Logger.err("[launchVisualEffect] l\'anim " + var6 + " est invalide");
 					return undefined;
 				}
-				var loc18 = loc11.cellNum;
-				var loc19 = this._mcBattlefield.mapHandler.getCellData(loc18);
-				var loc20 = this._mcBattlefield.mapHandler.getCellData(loc4);
-				var loc21 = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(loc19.x,loc19.y,loc20.x,loc20.y,false);
-				var loc22 = ank.battlefield.utils.Compressor.makeFullPath(this._mcBattlefield.mapHandler,ank.battlefield.utils.Pathfinding.pathFind(this._mcBattlefield.mapHandler,loc18,loc4,{bIgnoreSprites:true,bWithBeginCellNum:true}));
-				loc22.pop();
-				var loc23 = loc22[loc22.length - 1];
-				this.moveSprite(sID,loc22,loc14,false,loc6[0],false,true);
-				loc14.addAction(false,loc13,loc13.setDirection,[ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(loc21)]);
-				loc14.addAction(true,loc13,loc13.setAnim,[loc6[1]]);
-				if(loc15)
+				var var18 = var11.cellNum;
+				var var19 = this._mcBattlefield.mapHandler.getCellData(var18);
+				var var20 = this._mcBattlefield.mapHandler.getCellData(var4);
+				var var21 = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(var19.x,var19.y,var20.x,var20.y,false);
+				var var22 = ank.battlefield.utils.Compressor.makeFullPath(this._mcBattlefield.mapHandler,ank.battlefield.utils.Pathfinding.pathFind(this._mcBattlefield.mapHandler,var18,var4,{bIgnoreSprites:true,bWithBeginCellNum:true}));
+				var22.pop();
+				var var23 = var22[var22.length - 1];
+				this.moveSprite(sID,var22,var14,false,var6[0],false,true);
+				var14.addAction(false,var13,var13.setDirection,[ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(var21)]);
+				var14.addAction(true,var13,var13.setAnim,[var6[1]]);
+				if(var15)
 				{
-					loc14.addAction(loc16,this._mcBattlefield.visualEffectHandler,this._mcBattlefield.visualEffectHandler.addEffect,[loc11,loc3,loc4,loc5,loc12,!loc9?loc11.isVisible:true]);
+					var14.addAction(var16,this._mcBattlefield.visualEffectHandler,this._mcBattlefield.visualEffectHandler.addEffect,[var11,var3,var4,var5,var12,!var9?var11.isVisible:true]);
 				}
-				var loc24 = ank.battlefield.utils.Compressor.makeFullPath(this._mcBattlefield.mapHandler,ank.battlefield.utils.Pathfinding.pathFind(this._mcBattlefield.mapHandler,loc23,loc18,{bIgnoreSprites:true,bWithBeginCellNum:true}));
-				this.moveSprite(sID,loc24,loc14,false,loc6[2],false,true);
-				loc14.addAction(false,loc13,loc13.setDirection,[loc21]);
-				if(loc6[3] != undefined)
+				var var24 = ank.battlefield.utils.Compressor.makeFullPath(this._mcBattlefield.mapHandler,ank.battlefield.utils.Pathfinding.pathFind(this._mcBattlefield.mapHandler,var23,var18,{bIgnoreSprites:true,bWithBeginCellNum:true}));
+				this.moveSprite(sID,var24,var14,false,var6[2],false,true);
+				var14.addAction(false,var13,var13.setDirection,[var21]);
+				if(var6[3] != undefined)
 				{
-					loc14.addAction(false,loc13,loc13.setAnim,[loc6[3]]);
+					var14.addAction(false,var13,var13.setAnim,[var6[3]]);
 				}
-				loc14.execute();
+				var14.execute();
 				return undefined;
 			}
-			if(loc17 == "string")
+			if(var17 == "string")
 			{
-				loc14.addAction(true,loc13,loc13.setAnim,[loc6,false,true]);
+				var14.addAction(true,var13,var13.setAnim,[var6,false,true]);
 			}
 		}
-		if(loc8 != undefined)
+		if(var8 != undefined)
 		{
-			loc14.addAction(false,this,this.hideSprite,[loc8.id,true]);
+			var14.addAction(false,this,this.hideSprite,[var8.id,true]);
 		}
-		if(loc15)
+		if(var15)
 		{
-			loc14.addAction(loc16,this._mcBattlefield.visualEffectHandler,this._mcBattlefield.visualEffectHandler.addEffect,[loc11,loc3,loc4,loc5,loc12,!loc9?loc11.isVisible:true]);
+			var14.addAction(var16,this._mcBattlefield.visualEffectHandler,this._mcBattlefield.visualEffectHandler.addEffect,[var11,var3,var4,var5,var12,!var9?var11.isVisible:true]);
 		}
-		if(loc8 != undefined)
+		if(var8 != undefined)
 		{
-			loc14.addAction(false,this,this.hideSprite,[loc8.id,false]);
+			var14.addAction(false,this,this.hideSprite,[var8.id,false]);
 		}
-		loc14.execute();
+		var14.execute();
 	}
-	function launchCarriedSprite(sID, §\x1e\x1b\x06§, §\b\x1a§, §\x07\r§)
+	function launchCarriedSprite(sID, §\x1e\x1b\x04§, §\b\x18§, §\x07\x0b§)
 	{
-		var loc6 = this._oSprites.getItemAt(sID);
-		var loc7 = loc6.sequencer;
-		if(loc6 == undefined)
+		var var6 = this._oSprites.getItemAt(sID);
+		var var7 = var6.sequencer;
+		if(var6 == undefined)
 		{
 			ank.utils.Logger.err("[launchCarriedSprite] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		var loc8 = loc6.carriedChild;
-		this.launchVisualEffect(sID,loc3,loc4,loc5,"carringThrow",undefined,loc8);
-		loc7.addAction(false,this,this.setSpritePosition,[loc8.id,loc4]);
-		this.uncarriedSprite(loc8.id,loc4,false,loc7);
-		loc7.addAction(false,this,this.setSpriteAnim,[sID,"static"]);
-		loc7.execute();
+		var var8 = var6.carriedChild;
+		this.launchVisualEffect(sID,var3,var4,var5,"carringThrow",undefined,var8);
+		var7.addAction(false,this,this.setSpritePosition,[var8.id,var4]);
+		this.uncarriedSprite(var8.id,var4,false,var7);
+		var7.addAction(false,this,this.setSpriteAnim,[sID,"static"]);
+		var7.execute();
 	}
-	function autoCalculateSpriteDirection(sID, §\b\x1a§)
+	function autoCalculateSpriteDirection(sID, §\b\x18§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[launchVisualEffect] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc4.cellNum != loc3)
+		if(var4.cellNum != var3)
 		{
-			var loc5 = loc4.mc;
-			var loc6 = this._mcBattlefield.mapHandler.getCellData(loc4.cellNum);
-			var loc7 = this._mcBattlefield.mapHandler.getCellData(loc3);
-			var loc8 = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(loc6.x,loc6.rootY,loc7.x,loc7.rootY,false);
-			loc5.setDirection(loc8);
+			var var5 = var4.mc;
+			var var6 = this._mcBattlefield.mapHandler.getCellData(var4.cellNum);
+			var var7 = this._mcBattlefield.mapHandler.getCellData(var3);
+			var var8 = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(var6.x,var6.rootY,var7.x,var7.rootY,false);
+			var5.setDirection(var8);
 		}
 	}
 	function convertHeightToFourSpriteDirection(sID)
 	{
-		var loc3 = this._oSprites.getItemAt(sID);
-		if(loc3 == undefined)
+		var var3 = this._oSprites.getItemAt(sID);
+		if(var3 == undefined)
 		{
 			ank.utils.Logger.err("[convertHeightToFourSpriteDirection] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		this.setSpriteDirection(sID,ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(loc3.direction));
+		this.setSpriteDirection(sID,ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(var3.direction));
 	}
-	function setSpriteAnim(sID, §\x1e\x03§, §\x1a\x07§)
+	function setSpriteAnim(sID, §\x1e\x03§, §\x1a\x06§)
 	{
-		var loc5 = this._oSprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this._oSprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			ank.utils.Logger.err("[setSpriteAnim(" + loc3 + ")] Sprite " + sID + " inexistant");
+			ank.utils.Logger.err("[setSpriteAnim(" + var3 + ")] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		ank.utils.Timer.removeTimer(loc5.mc,"battlefield");
-		loc5.mc.setAnim(loc3,false,loc4);
+		ank.utils.Timer.removeTimer(var5.mc,"battlefield");
+		var5.mc.setAnim(var3,false,var4);
 	}
-	function setSpriteLoopAnim(sID, §\x1e\x03§, §\x1e\x1d\x0f§)
+	function setSpriteLoopAnim(sID, §\x1e\x03§, §\x1e\x1d\r§)
 	{
-		var loc5 = this._oSprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this._oSprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
 			ank.utils.Logger.err("[setSpriteLoopAnim] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		ank.utils.Timer.removeTimer(loc5.mc,"battlefield");
-		loc5.mc.setAnim(loc3,true);
-		ank.utils.Timer.setTimer(loc5.mc,"battlefield",loc5.mc,loc5.mc.setAnim,loc4,["static"]);
+		ank.utils.Timer.removeTimer(var5.mc,"battlefield");
+		var5.mc.setAnim(var3,true);
+		ank.utils.Timer.setTimer(var5.mc,"battlefield",var5.mc,var5.mc.setAnim,var4,["static"]);
 	}
-	function setSpriteTimerAnim(sID, §\x1e\x03§, §\x1a\x07§, §\x1e\x1d\x0f§)
+	function setSpriteTimerAnim(sID, §\x1e\x03§, §\x1a\x06§, §\x1e\x1d\r§)
 	{
-		var loc6 = this._oSprites.getItemAt(sID);
-		if(loc6 == undefined)
+		var var6 = this._oSprites.getItemAt(sID);
+		if(var6 == undefined)
 		{
 			ank.utils.Logger.err("[setSpriteTimerAnim] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		ank.utils.Timer.removeTimer(loc6.mc,"battlefield");
-		loc6.mc.setAnimTimer(loc3,false,loc4,loc5);
+		ank.utils.Timer.removeTimer(var6.mc,"battlefield");
+		var6.mc.setAnimTimer(var3,false,var4,var5);
 	}
-	function setSpriteGfx(sID, §\x1e\x14\x04§)
+	function setSpriteGfx(sID, §\x1e\x14\x02§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[setSpriteGfx] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc3 != loc4.gfxFile)
+		if(var3 != var4.gfxFile)
 		{
-			loc4.gfxFile = loc3;
-			loc4.mc.draw();
-			if(loc4.allowGhostMode && this._mcBattlefield.bGhostView)
+			var4.gfxFile = var3;
+			var4.mc.draw();
+			if(var4.allowGhostMode && this._mcBattlefield.bGhostView)
 			{
-				loc4.mc.setAlpha(ank.battlefield.Constants.GHOSTVIEW_SPRITE_ALPHA);
+				var4.mc.setAlpha(ank.battlefield.Constants.GHOSTVIEW_SPRITE_ALPHA);
 			}
 		}
 	}
-	function setSpriteColorTransform(sID, §\x1e\r\x1a§)
+	function setSpriteColorTransform(sID, §\x1e\r\x18§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[setSpriteColorTransform] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		loc4.mc.setColorTransform(loc3);
+		var4.mc.setColorTransform(var3);
 	}
-	function setSpriteAlpha(sID, §\n\x03§)
+	function setSpriteAlpha(sID, §\n\x01§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[setSpriteAlpha] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		loc4.mc.setAlpha(loc3);
+		var4.mc.setAlpha(var3);
 	}
-	function addSpriteExtraClip(sID, §\x13\x18§, §\x13\x14§, §\x15\x07§)
+	function addSpriteExtraClip(sID, §\x13\x16§, §\x13\x12§, §\x15\x06§)
 	{
-		var loc6 = this._oSprites.getItemAt(sID);
-		if(loc6 == undefined)
+		var var6 = this._oSprites.getItemAt(sID);
+		if(var6 == undefined)
 		{
 			ank.utils.Logger.err("[addSpriteExtraClip] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		loc6.mc.addExtraClip(loc3,loc4,loc5);
+		var6.mc.addExtraClip(var3,var4,var5);
 	}
-	function removeSpriteExtraClip(sID, §\x15\x07§)
+	function removeSpriteExtraClip(sID, §\x15\x06§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[removeSpriteExtraClip] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		loc4.mc.removeExtraClip(loc3);
+		var4.mc.removeExtraClip(var3);
 	}
-	function showSpritePoints(sID, §\x1e\f\x0b§, §\x13\x14§)
+	function showSpritePoints(sID, §\x1e\f\t§, §\x13\x12§)
 	{
-		var loc5 = this._oSprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this._oSprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
 			ank.utils.Logger.err("[showSpritePoints] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		loc5.mc.showPoints(loc3,loc4);
+		var5.mc.showPoints(var3,var4);
 	}
-	function setSpriteGhostView(loc2)
+	function setSpriteGhostView(var2)
 	{
-		var loc3 = this._oSprites.getItems();
-		for(var loc4 in loc3)
+		var var3 = this._oSprites.getItems();
+		for(var k in var3)
 		{
-			loc4.mc.setGhostView(loc4.allowGhostMode && loc2);
+			var var4 = this._oSprites.getItemAt(k);
+			var4.mc.setGhostView(var4.allowGhostMode && var2);
 		}
 	}
-	function selectSprite(sID, §\x16\x0e§)
+	function selectSprite(sID, §\x16\r§)
 	{
-		var loc4 = this._oSprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this._oSprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[selectSprite] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		if(loc4.hasChilds)
+		if(var4.hasChilds)
 		{
-			var loc5 = loc4.linkedChilds.getItems();
-			for(var k in loc5)
+			var var5 = var4.linkedChilds.getItems();
+			for(var k in var5)
 			{
-				this.selectSprite(loc5[k].id,loc3);
+				this.selectSprite(var5[k].id,var3);
 			}
 		}
-		loc4.mc.select(loc3);
+		var4.mc.select(var3);
 	}
-	function setSpriteScale(sID, §\x01\r§, §\x01\f§)
+	function setSpriteScale(sID, §\x01\x0b§, §\x01\n§)
 	{
-		var loc5 = this._oSprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this._oSprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
 			ank.utils.Logger.err("[selectSprite] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		loc5.mc.setScale(loc3,loc4);
+		var5.mc.setScale(var3,var4);
 	}
 }

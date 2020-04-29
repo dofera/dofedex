@@ -13,9 +13,9 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 	{
 		return this._ldrSprite;
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		this.updateHealth();
 		return this.__get__data();
 	}
@@ -27,9 +27,9 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 	{
 		this.addToQueue({object:this,method:this.loadSprite,params:[this._oData.gfxFile]});
 	}
-	function loadSprite(loc2)
+	function loadSprite(var2)
 	{
-		this._ldrSprite.contentPath = loc2;
+		this._ldrSprite.contentPath = var2;
 		this._ldrSprite.addEventListener("initialization",this);
 		this.api.colors.addSprite(this._ldrSprite,this._oData);
 		this.setHealthTeamColor();
@@ -37,8 +37,8 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 	}
 	function setHealthTeamColor()
 	{
-		var loc2 = new Color(this._mcHealth);
-		loc2.setRGB(dofus.Constants.TEAMS_COLOR[this._oData._team]);
+		var var2 = new Color(this._mcHealth);
+		var2.setRGB(dofus.Constants.TEAMS_COLOR[this._oData._team]);
 	}
 	function updateHealth()
 	{
@@ -64,18 +64,18 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 		}
 		else
 		{
-			var loc2 = this.gapi.getUIComponent("PlayerInfos");
-			var loc3 = loc2 != undefined && this._oData != loc2.data;
-			this.gapi.loadUIComponent("PlayerInfos","PlayerInfos",{data:this._oData},{bForceLoad:loc3});
+			var var2 = this.gapi.getUIComponent("PlayerInfos");
+			var var3 = var2 != undefined && this._oData != var2.data;
+			this.gapi.loadUIComponent("PlayerInfos","PlayerInfos",{data:this._oData},{bForceLoad:var3});
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.target.content;
-		loc3.attachMovie("staticR","anim",10);
-		loc3._x = 15;
-		loc3._y = 32;
-		loc3._xscale = -80;
-		loc3._yscale = 80;
+		var var3 = var2.target.content;
+		var3.attachMovie("staticR","anim",10);
+		var3._x = 15;
+		var3._y = 32;
+		var3._xscale = -80;
+		var3._yscale = 80;
 	}
 }

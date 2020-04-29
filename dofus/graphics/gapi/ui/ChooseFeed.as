@@ -5,18 +5,18 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__itemsType(loc2)
+	function __set__itemsType(var2)
 	{
-		this._aFiltersType = loc2;
+		this._aFiltersType = var2;
 		if(this._eaDataProvider)
 		{
 			this.updateData();
 		}
 		return this.__get__itemsType();
 	}
-	function __set__item(loc2)
+	function __set__item(var2)
 	{
-		this._oItem = loc2;
+		this._oItem = var2;
 		return this.__get__item();
 	}
 	function init()
@@ -50,24 +50,24 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 		this._eaDataProvider = this.api.datacenter.Player.Inventory;
 		this._itvItemViewer._visible = false;
 		this._mcItvIconBg._visible = false;
-		var loc2 = new ank.utils.();
+		var var2 = new ank.utils.();
 		for(var k in this._eaDataProvider)
 		{
-			var loc3 = this._eaDataProvider[k];
-			var loc4 = 0;
-			while(loc4 < this._aFiltersType.length)
+			var var3 = this._eaDataProvider[k];
+			var var4 = 0;
+			while(var4 < this._aFiltersType.length)
 			{
-				if(loc3.type == this._aFiltersType[loc4] && (!loc3.skineable && (loc3.position == -1 && loc3.canBeExchange)))
+				if(var3.type == this._aFiltersType[var4] && (!var3.skineable && (var3.position == -1 && var3.canBeExchange)))
 				{
-					loc2.push(loc3);
+					var2.push(var3);
 					break;
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
 		}
-		if(loc2.length)
+		if(var2.length)
 		{
-			this._cgGrid.dataProvider = loc2;
+			this._cgGrid.dataProvider = var2;
 		}
 		else
 		{
@@ -80,25 +80,25 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 		this.unloadThis();
 		return true;
 	}
-	function validate(loc2, loc3)
+	function validate(var2, var3)
 	{
-		if(!loc2.ID)
+		if(!var2.ID)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("SELECT_ITEM"),"ERROR_BOX",{name:"noSelection",listener:this});
 			return undefined;
 		}
-		if(!loc3)
+		if(!var3)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_FOOD_LIVING_ITEM"),"CAUTION_YESNO",{name:"Confirm",params:{oItem:loc2},listener:this});
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_FOOD_LIVING_ITEM"),"CAUTION_YESNO",{name:"Confirm",params:{oItem:var2},listener:this});
 			return undefined;
 		}
 		this.api.kernel.SpeakingItemsManager.triggerPrivateEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_FEED);
-		this.api.network.Items.feed(this._oItem.ID,this._oItem.position,loc2.ID);
+		this.api.network.Items.feed(this._oItem.ID,this._oItem.position,var2.ID);
 		this.callClose();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._bgh:
 			case this._btnClose:
@@ -108,30 +108,30 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 				this.validate(this._cgGrid.selectedItem.contentData);
 		}
 	}
-	function dblClickItem(loc2)
+	function dblClickItem(var2)
 	{
-		this.validate(loc2.target.contentData);
+		this.validate(var2.target.contentData);
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		this._itvItemViewer.itemData = loc2.target.contentData;
+		this._itvItemViewer.itemData = var2.target.contentData;
 		this._itvItemViewer._visible = true;
 		this._mcItvIconBg._visible = true;
 		this._lblNoItem._visible = false;
 	}
-	function overItem(loc2)
+	function overItem(var2)
 	{
-		this.gapi.showTooltip(loc2.target.contentData.name,loc2.target,-20,undefined,loc2.target.contentData.style + "ToolTip");
+		this.gapi.showTooltip(var2.target.contentData.name,var2.target,-20,undefined,var2.target.contentData.style + "ToolTip");
 	}
-	function outItem(loc2)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		if((var loc0 = loc2.target._name) === "AskYesNoConfirm")
+		if((var var0 = var2.target._name) === "AskYesNoConfirm")
 		{
-			this.validate(loc2.params.oItem,true);
+			this.validate(var2.params.oItem,true);
 		}
 	}
 }

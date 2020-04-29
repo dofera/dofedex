@@ -11,23 +11,23 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__label(loc2)
+	function __set__label(var2)
 	{
-		this._sLabel = loc2;
+		this._sLabel = var2;
 		this.displayLabel();
 		return this.__get__label();
 	}
-	function __set__selected(loc2)
+	function __set__selected(var2)
 	{
-		if(this._bSelected != loc2)
+		if(this._bSelected != var2)
 		{
-			this._lblLabel._x = this._lblLabel._x + (!loc2?-0.5:0.5);
-			this._lblLabel._y = this._lblLabel._y + (!loc2?-0.5:0.5);
-			this._mcIcon._x = this._mcIcon._x + (!loc2?-0.5:0.5);
-			this._mcIcon._y = this._mcIcon._y + (!loc2?-0.5:0.5);
-			this.dispatchEvent({type:"stateChanged",target:this,value:loc2});
+			this._lblLabel._x = this._lblLabel._x + (!var2?-0.5:0.5);
+			this._lblLabel._y = this._lblLabel._y + (!var2?-0.5:0.5);
+			this._mcIcon._x = this._mcIcon._x + (!var2?-0.5:0.5);
+			this._mcIcon._y = this._mcIcon._y + (!var2?-0.5:0.5);
+			this.dispatchEvent({type:"stateChanged",target:this,value:var2});
 		}
-		this._bSelected = loc2;
+		this._bSelected = var2;
 		this._mcDown._visible = this._bSelected;
 		this._mcUp._visible = !this._bSelected;
 		this.setLabelStyle();
@@ -37,27 +37,27 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelected;
 	}
-	function __set__toggle(loc2)
+	function __set__toggle(var2)
 	{
-		this._bToggle = loc2;
+		this._bToggle = var2;
 		return this.__get__toggle();
 	}
 	function __get__toggle()
 	{
 		return this._bToggle;
 	}
-	function __set__radio(loc2)
+	function __set__radio(var2)
 	{
-		this._bRadio = loc2;
+		this._bRadio = var2;
 		return this.__get__radio();
 	}
 	function __get__radio()
 	{
 		return this._bRadio;
 	}
-	function __set__icon(loc2)
+	function __set__icon(var2)
 	{
-		this._sIcon = loc2;
+		this._sIcon = var2;
 		if(this.initialized)
 		{
 			this.displayIcon();
@@ -72,9 +72,9 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._mcIcon;
 	}
-	function __set__backgroundUp(loc2)
+	function __set__backgroundUp(var2)
 	{
-		this._sBackgroundUp = loc2;
+		this._sBackgroundUp = var2;
 		if(this.initialized)
 		{
 			this.drawBackgrounds();
@@ -85,9 +85,9 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackgroundUp;
 	}
-	function __set__backgroundDown(loc2)
+	function __set__backgroundDown(var2)
 	{
-		this._sBackgroundDown = loc2;
+		this._sBackgroundDown = var2;
 		if(this.initialized)
 		{
 			this.drawBackgrounds();
@@ -98,17 +98,17 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackgroundDown;
 	}
-	function setPreferedSize(loc2)
+	function setPreferedSize(var2)
 	{
 		if(this._sLabel != "")
 		{
-			if(_global.isNaN(Number(loc2)))
+			if(_global.isNaN(Number(var2)))
 			{
 				this._nLabelPadding = 0;
 			}
 			else
 			{
-				this._nLabelPadding = Number(loc2);
+				this._nLabelPadding = Number(var2);
 			}
 			this._lblLabel.setPreferedSize("left");
 			this.setSize(this._lblLabel.width + this._nLabelPadding * 2);
@@ -132,11 +132,11 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 		this.setLabelStyle();
 		this.displayLabel();
-		this._mcUp.setStyleColor(loc2,"color");
-		this._mcDown.setStyleColor(loc2,"downcolor");
+		this._mcUp.setStyleColor(var2,"color");
+		this._mcDown.setStyleColor(var2,"downcolor");
 	}
 	function size()
 	{
@@ -145,10 +145,10 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	}
 	function arrange()
 	{
-		var loc2 = this._mcUp;
-		var loc3 = this._mcDown;
-		loc2.setSize(this.__width,this.__height,true);
-		loc3.setSize(this.__width,this.__height,true);
+		var var2 = this._mcUp;
+		var var3 = this._mcDown;
+		var2.setSize(this.__width,this.__height,true);
+		var3.setSize(this.__width,this.__height,true);
 		this.displayLabel();
 		this.displayIcon();
 	}
@@ -185,17 +185,17 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 			return undefined;
 		}
 		this.attachMovie(this._sIcon,"_mcIcon",40);
-		var loc2 = this._mcIcon.getBounds(this);
-		this._mcIcon._x = (this.__width - this._mcIcon._width) / 2 - loc2.xMin;
-		this._mcIcon._y = (this.__height - this._mcIcon._height) / 2 - loc2.yMin;
+		var var2 = this._mcIcon.getBounds(this);
+		this._mcIcon._x = (this.__width - this._mcIcon._width) / 2 - var2.xMin;
+		this._mcIcon._y = (this.__height - this._mcIcon._height) / 2 - var2.yMin;
 	}
-	function setLabelStyle(loc2)
+	function setLabelStyle(var2)
 	{
 		if(this._bSelected)
 		{
 			this._lblLabel.styleName = this.getStyle().labeldownstyle;
 		}
-		else if(loc2 == true && this.getStyle().labeloverstyle != undefined)
+		else if(var2 == true && this.getStyle().labeloverstyle != undefined)
 		{
 			this._lblLabel.styleName = this.getStyle().labeloverstyle;
 		}
@@ -226,7 +226,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 			this._lblLabel._y = (this.__height - this._lblLabel.textHeight) / 2 - 4;
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		this.placeLabel();
 	}

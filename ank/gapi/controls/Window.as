@@ -65,20 +65,20 @@ class ank.gapi.controls.Window extends ank.gapi.core.UIBasicComponent
 	{
 		return this._ldrContent.content;
 	}
-	function __set__centerScreen(loc2)
+	function __set__centerScreen(var2)
 	{
-		this._bCenterScreen = loc2;
+		this._bCenterScreen = var2;
 		return this.__get__centerScreen();
 	}
 	function __get__centerScreen()
 	{
 		return this._bCenterScreen;
 	}
-	function __set__interceptMouseEvent(loc2)
+	function __set__interceptMouseEvent(var2)
 	{
-		this._bInterceptMouseEvent = loc2;
+		this._bInterceptMouseEvent = var2;
 		this.useHandCursor = false;
-		if(loc2)
+		if(var2)
 		{
 			this.onRelease = function()
 			{
@@ -97,16 +97,16 @@ class ank.gapi.controls.Window extends ank.gapi.core.UIBasicComponent
 	function setPreferedSize()
 	{
 		this._ldrContent._x = this._ldrContent._y = 0;
-		var loc2 = this._ldrContent.content.getBounds(this);
-		var loc3 = loc2.xMax - loc2.xMin;
-		var loc4 = loc2.yMax - loc2.yMin;
-		var loc5 = this.getStyle();
-		var loc6 = loc5.cornerradius;
-		var loc7 = loc5.borderwidth == undefined?0:loc5.borderwidth;
-		var loc8 = loc5.titleheight;
-		this._ldrContent._x = loc7 - loc2.xMin;
-		this._ldrContent._y = loc7 + loc8 - loc2.yMin;
-		this.setSize(2 * loc7 + loc3,2 * loc7 + loc8 + loc4 + (typeof loc6 != "object"?loc6:Math.max(loc6.bl,loc6.br)));
+		var var2 = this._ldrContent.content.getBounds(this);
+		var var3 = var2.xMax - var2.xMin;
+		var var4 = var2.yMax - var2.yMin;
+		var var5 = this.getStyle();
+		var var6 = var5.cornerradius;
+		var var7 = var5.borderwidth == undefined?0:var5.borderwidth;
+		var var8 = var5.titleheight;
+		this._ldrContent._x = var7 - var2.xMin;
+		this._ldrContent._y = var7 + var8 - var2.yMin;
+		this.setSize(2 * var7 + var3,2 * var7 + var8 + var4 + (typeof var6 != "object"?var6:Math.max(var6.bl,var6.br)));
 	}
 	function init()
 	{
@@ -145,43 +145,43 @@ class ank.gapi.controls.Window extends ank.gapi.core.UIBasicComponent
 		{
 			return undefined;
 		}
-		var loc2 = this.getStyle();
-		this._lblTitle.styleName = loc2.titlestyle;
-		var loc3 = loc2.cornerradius;
-		var loc4 = loc2.bordercolor;
-		var loc5 = loc2.borderwidth == undefined?0:loc2.borderwidth;
-		var loc6 = loc2.backgroundcolor;
-		var loc7 = loc2.backgroundalpha == undefined?100:loc2.backgroundalpha;
-		var loc8 = loc2.backgroundrotation == undefined?0:loc2.backgroundrotation;
-		var loc9 = loc2.backgroundradient;
-		var loc10 = loc2.backgroundratio;
-		var loc11 = loc2.displaytitle == undefined?true:loc2.displaytitle;
-		var loc12 = loc2.titlecolor;
-		var loc13 = loc2.titleheight;
-		if(typeof loc3 == "object")
+		var var2 = this.getStyle();
+		this._lblTitle.styleName = var2.titlestyle;
+		var var3 = var2.cornerradius;
+		var var4 = var2.bordercolor;
+		var var5 = var2.borderwidth == undefined?0:var2.borderwidth;
+		var var6 = var2.backgroundcolor;
+		var var7 = var2.backgroundalpha == undefined?100:var2.backgroundalpha;
+		var var8 = var2.backgroundrotation == undefined?0:var2.backgroundrotation;
+		var var9 = var2.backgroundradient;
+		var var10 = var2.backgroundratio;
+		var var11 = var2.displaytitle == undefined?true:var2.displaytitle;
+		var var12 = var2.titlecolor;
+		var var13 = var2.titleheight;
+		if(typeof var3 == "object")
 		{
-			var loc14 = {tl:loc3.tl - loc5,tr:loc3.tr - loc5,br:loc3.bl - loc5,bl:loc3.bl - loc5};
+			var var14 = {tl:var3.tl - var5,tr:var3.tr - var5,br:var3.bl - var5,bl:var3.bl - var5};
 		}
 		else
 		{
-			loc14 = loc3 - loc5;
+			var14 = var3 - var5;
 		}
-		if(typeof loc3 == "object")
+		if(typeof var3 == "object")
 		{
-			var loc15 = {tl:loc3.tl - loc5,tr:loc3.tr - loc5,br:0,bl:0};
+			var var15 = {tl:var3.tl - var5,tr:var3.tr - var5,br:0,bl:0};
 		}
 		else
 		{
-			loc15 = {tl:loc3 - loc5,tr:loc3 - loc5,bl:0,br:0};
+			var15 = {tl:var3 - var5,tr:var3 - var5,bl:0,br:0};
 		}
 		this._mcBorder.clear();
 		this._mcBackground.clear();
 		this._mcTitle.clear();
-		this.drawRoundRect(this._mcBorder,0,0,this.__width,this.__height,loc3,loc4);
-		this.drawRoundRect(this._mcBackground,loc5,loc5,this.__width - 2 * loc5,this.__height - 2 * loc5,loc14,loc6,loc7,loc8,loc9,loc10);
-		if(loc11)
+		this.drawRoundRect(this._mcBorder,0,0,this.__width,this.__height,var3,var4);
+		this.drawRoundRect(this._mcBackground,var5,var5,this.__width - 2 * var5,this.__height - 2 * var5,var14,var6,var7,var8,var9,var10);
+		if(var11)
 		{
-			this.drawRoundRect(this._mcTitle,loc5,loc5,this.__width - 2 * loc5,loc13,loc15,loc12);
+			this.drawRoundRect(this._mcTitle,var5,var5,this.__width - 2 * var5,var13,var15,var12);
 		}
 	}
 	function complete()

@@ -9,44 +9,44 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__renderer(loc2)
+	function __set__renderer(var2)
 	{
 		if(this._bInitialized)
 		{
 			return undefined;
 		}
-		this._sRenderer = loc2;
+		this._sRenderer = var2;
 		return this.__get__renderer();
 	}
-	function __set__minimum(loc2)
+	function __set__minimum(var2)
 	{
-		this._nMinimum = Number(loc2);
+		this._nMinimum = Number(var2);
 		return this.__get__minimum();
 	}
 	function __get__minimum()
 	{
 		return this._nMinimum;
 	}
-	function __set__maximum(loc2)
+	function __set__maximum(var2)
 	{
-		this._nMaximum = Number(loc2);
+		this._nMaximum = Number(var2);
 		return this.__get__maximum();
 	}
 	function __get__maximum()
 	{
 		return this._nMaximum;
 	}
-	function __set__value(loc2)
+	function __set__value(var2)
 	{
-		if(loc2 > this._nMaximum)
+		if(var2 > this._nMaximum)
 		{
-			loc2 = this._nMaximum;
+			var2 = this._nMaximum;
 		}
-		if(loc2 < this._nMinimum)
+		if(var2 < this._nMinimum)
 		{
-			loc2 = this._nMinimum;
+			var2 = this._nMinimum;
 		}
-		this._nValue = Number(loc2);
+		this._nValue = Number(var2);
 		this.addToQueue({object:this,method:this.applyValue});
 		return this.__get__value();
 	}
@@ -70,81 +70,75 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 	function arrange()
 	{
 		this._mcRenderer._mcBgLeft._height = this._mcRenderer._mcBgMiddle._height = this._mcRenderer._mcBgRight._height = this.__height;
-		var loc2 = this._mcRenderer._mcBgLeft._yscale;
-		this._mcRenderer._mcBgLeft._xscale = this._mcRenderer._mcUpLeft._xscale = this._mcRenderer._mcUpLeft._yscale = loc2;
-		this._mcRenderer._mcBgRight._xscale = this._mcRenderer._mcUpRight._xscale = this._mcRenderer._mcUpRight._yscale = loc2;
-		this._mcRenderer._mcUpMiddle._yscale = loc2;
-		var loc3 = this._mcRenderer._mcBgLeft._width;
-		var loc4 = this._mcRenderer._mcBgLeft._width;
+		var var2 = this._mcRenderer._mcBgLeft._yscale;
+		this._mcRenderer._mcBgLeft._xscale = this._mcRenderer._mcUpLeft._xscale = this._mcRenderer._mcUpLeft._yscale = var2;
+		this._mcRenderer._mcBgRight._xscale = this._mcRenderer._mcUpRight._xscale = this._mcRenderer._mcUpRight._yscale = var2;
+		this._mcRenderer._mcUpMiddle._yscale = var2;
+		var var3 = this._mcRenderer._mcBgLeft._width;
+		var var4 = this._mcRenderer._mcBgLeft._width;
 		this._mcRenderer._mcBgLeft._x = this._mcRenderer._mcBgLeft._y = this._mcRenderer._mcBgMiddle._y = this._mcRenderer._mcBgRight._y = 0;
 		this._mcRenderer._mcUpLeft._x = this._mcRenderer._mcUpLeft._y = this._mcRenderer._mcUpMiddle._y = this._mcRenderer._mcUpRight._y = 0;
-		this._mcRenderer._mcBgMiddle._x = this._mcRenderer._mcUpMiddle._x = loc3;
-		this._mcRenderer._mcBgRight._x = this.__width - loc4;
-		this._mcRenderer._mcBgMiddle._width = this.__width - loc3 - loc4;
+		this._mcRenderer._mcBgMiddle._x = this._mcRenderer._mcUpMiddle._x = var3;
+		this._mcRenderer._mcBgRight._x = this.__width - var4;
+		this._mcRenderer._mcBgMiddle._width = this.__width - var3 - var4;
 	}
 	function draw()
 	{
-		var loc3 = this.getStyle();
-		var loc2 = this._mcRenderer._mcBgLeft;
-		for(var k in loc2)
+		var var3 = this.getStyle();
+		var var2 = this._mcRenderer._mcBgLeft;
+		for(var var4 in var2)
 		{
-			var loc4 = k.split("_")[0];
-			this.setMovieClipColor(loc2[k],loc3[loc4 + "color"]);
+			this.setMovieClipColor(var2[k],var3[var4 + "color"]);
 		}
-		loc2 = this._mcRenderer._mcBgMiddle;
-		for(var k in loc2)
+		var2 = this._mcRenderer._mcBgMiddle;
+		for(var var5 in var2)
 		{
-			var loc5 = k.split("_")[0];
-			this.setMovieClipColor(loc2[k],loc3[loc5 + "color"]);
+			this.setMovieClipColor(var2[k],var3[var5 + "color"]);
 		}
-		loc2 = this._mcRenderer._mcBgRight;
-		for(var k in loc2)
+		var2 = this._mcRenderer._mcBgRight;
+		for(var var6 in var2)
 		{
-			var loc6 = k.split("_")[0];
-			this.setMovieClipColor(loc2[k],loc3[loc6 + "color"]);
+			this.setMovieClipColor(var2[k],var3[var6 + "color"]);
 		}
-		loc2 = this._mcRenderer._mcUpLeft;
-		for(var k in loc2)
+		var2 = this._mcRenderer._mcUpLeft;
+		for(var var7 in var2)
 		{
-			var loc7 = k.split("_")[0];
-			this.setMovieClipColor(loc2[k],loc3[loc7 + "color"]);
+			this.setMovieClipColor(var2[k],var3[var7 + "color"]);
 		}
-		loc2 = this._mcRenderer._mcUpMiddle;
-		for(var k in loc2)
+		var2 = this._mcRenderer._mcUpMiddle;
+		for(var var8 in var2)
 		{
-			var loc8 = k.split("_")[0];
-			this.setMovieClipColor(loc2[k],loc3[loc8 + "color"]);
+			this.setMovieClipColor(var2[k],var3[var8 + "color"]);
 		}
-		loc2 = this._mcRenderer._mcUpRight;
-		for(var k in loc2)
+		var2 = this._mcRenderer._mcUpRight;
+		for(var var9 in var2)
 		{
-			var loc9 = k.split("_")[0];
-			this.setMovieClipColor(loc2[k],loc3[loc9 + "color"]);
+			this.setMovieClipColor(var2[k],var3[var9 + "color"]);
 		}
 	}
-	function hideUp(loc2)
+	function hideUp(var2)
 	{
-		this._mcRenderer._mcUpLeft._visible = !loc2;
-		this._mcRenderer._mcUpMiddle._visible = !loc2;
-		this._mcRenderer._mcUpRight._visible = !loc2;
+		this._mcRenderer._mcUpLeft._visible = !var2;
+		this._mcRenderer._mcUpMiddle._visible = !var2;
+		this._mcRenderer._mcUpRight._visible = !var2;
 	}
 	function applyValue()
 	{
-		var loc2 = this._mcRenderer._mcBgLeft._width;
-		var loc3 = this._mcRenderer._mcBgLeft._width;
-		var loc4 = this._nValue - this._nMinimum;
-		if(loc4 == 0)
+		var var2 = this._mcRenderer._mcBgLeft._width;
+		var var3 = this._mcRenderer._mcBgLeft._width;
+		var var4 = this._nValue - this._nMinimum;
+		if(var4 == 0)
 		{
 			this.hideUp(true);
 		}
 		else
 		{
 			this.hideUp(false);
-			var loc5 = this._nMaximum - this._nMinimum;
-			var loc6 = this.__width - loc2 - loc3;
-			var loc7 = Math.floor(loc4 / loc5 * loc6);
-			this._mcRenderer._mcUpMiddle._width = loc7;
-			this._mcRenderer._mcUpRight._x = loc7 + loc2;
+			var var5 = this._nMaximum - this._nMinimum;
+			var var6 = this.__width - var2 - var3;
+			var var7 = Math.floor(var4 / var5 * var6);
+			this._mcRenderer._mcUpMiddle._width = var7;
+			this._mcRenderer._mcUpRight._x = var7 + var2;
 		}
 	}
 	function setEnabled()

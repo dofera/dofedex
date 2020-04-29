@@ -4,13 +4,13 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	static var ONESHOT_SAMPLE = 1;
 	static var UNLIMITED_LENGTH = 0;
 	var _nVolumeBeforeMute = -1;
-	function AudioElement(uniqID, §\x0f\t§, linkedClip, §\x1e\x0e\x11§)
+	function AudioElement(uniqID, §\x0f\x07§, linkedClip, §\x1e\x0e\x0f§)
 	{
 		if(uniqID == undefined)
 		{
 			return undefined;
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
 			return undefined;
 		}
@@ -20,18 +20,18 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 		}
 		this._nUniqID = uniqID;
 		this._mcLinkedClip = linkedClip;
-		this._sFile = loc4;
-		this._bStreaming = loc6 == undefined?false:loc6;
+		this._sFile = var4;
+		this._bStreaming = var6 == undefined?false:var6;
 		super(linkedClip);
 		this._bLoading = true;
 		if(dofus.Constants.USING_PACKED_SOUNDS)
 		{
-			super.attachSound(loc4.substr(3));
+			super.attachSound(var4.substr(3));
 			this.onLoad(true);
 		}
 		else
 		{
-			super.loadSound(loc4,this._bStreaming);
+			super.loadSound(var4,this._bStreaming);
 		}
 	}
 	function __get__uniqID()
@@ -54,20 +54,20 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return super.getVolume();
 	}
-	function __set__volume(loc2)
+	function __set__volume(var2)
 	{
-		if(loc3 < 0 || loc3 > 100)
+		if(var3 < 0 || var3 > 100)
 		{
 			return undefined;
 		}
 		if(!this._bMute && super.setVolume != undefined)
 		{
-			super.setVolume(loc3);
+			super.setVolume(var3);
 		}
 		else if(super.setVolume != undefined)
 		{
 			super.setVolume(0);
-			this._nVolumeBeforeMute = loc3;
+			this._nVolumeBeforeMute = var3;
 		}
 		return this.__get__volume();
 	}
@@ -75,9 +75,9 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this._bMute;
 	}
-	function __set__mute(loc2)
+	function __set__mute(var2)
 	{
-		this._bMute = loc3;
+		this._bMute = var3;
 		if(this._bMute && super.setVolume != undefined)
 		{
 			this._nVolumeBeforeMute = this.volume;
@@ -96,42 +96,42 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this._nLoops;
 	}
-	function __set__loops(loc2)
+	function __set__loops(var2)
 	{
-		if(loc2 < dofus.sounds.AudioElement.ONESHOT_SAMPLE || loc2 > dofus.sounds.AudioElement.INFINITE_LOOP)
+		if(var2 < dofus.sounds.AudioElement.ONESHOT_SAMPLE || var2 > dofus.sounds.AudioElement.INFINITE_LOOP)
 		{
 			return undefined;
 		}
-		this._nLoops = loc2;
+		this._nLoops = var2;
 		return this.__get__loops();
 	}
 	function __get__offset()
 	{
 		return this._nOffset;
 	}
-	function __set__offset(loc2)
+	function __set__offset(var2)
 	{
-		if(loc2 < 0 || this._nMaxLength != null && loc2 > this._nMaxLength)
+		if(var2 < 0 || this._nMaxLength != null && var2 > this._nMaxLength)
 		{
 			return undefined;
 		}
-		this._nOffset = loc2;
+		this._nOffset = var2;
 		return this.__get__offset();
 	}
 	function __get__maxLength()
 	{
 		return this._nMaxLength;
 	}
-	function __set__maxLength(loc2)
+	function __set__maxLength(var2)
 	{
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
 			return undefined;
 		}
-		this._nMaxLength = loc2;
+		this._nMaxLength = var2;
 		return this.__get__maxLength();
 	}
-	function dispose(loc2)
+	function dispose(var2)
 	{
 		this.onKill();
 		this._mcLinkedClip.onEnterFrame = null;
@@ -144,9 +144,9 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this.volume;
 	}
-	function setVolume(loc2)
+	function setVolume(var2)
 	{
-		this.volume = loc2;
+		this.volume = var2;
 	}
 	function startElement()
 	{
@@ -168,11 +168,14 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		super.stop();
 	}
-	function fadeOut(loc2, loc3)
+	function fadeOut(var2, var3)
 	{
 		var volume = this.volume;
-		var t = volume / loc3 / dofus.Constants.AVERAGE_FRAMES_PER_SECOND;
+		var t = volume / var3 / dofus.Constants.AVERAGE_FRAMES_PER_SECOND;
+		var parentElement = this;
+		var parent = super;
 		var myself = this._mcLinkedClip;
+		var destroy = var4;
 		this._mcLinkedClip.onEnterFrame = function()
 		{
 			volume = volume - t;
@@ -191,20 +194,20 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	}
 	function toString()
 	{
-		var loc2 = "[AudioElement = " + this._nUniqID + "]\n";
-		loc2 = loc2 + (" > Linked clip  : " + this._mcLinkedClip + "\n");
-		loc2 = loc2 + (" > File         : " + this._sFile + "\n");
-		loc2 = loc2 + (" > Loops        : " + this._nLoops + "\n");
-		loc2 = loc2 + (" > Start offset : " + this._nOffset + "\n");
-		loc2 = loc2 + (" > Max length   : " + this._nMaxLength + "\n");
-		loc2 = loc2 + (" > Base vol.    : " + this.baseVolume + "\n");
-		loc2 = loc2 + (" > Volume       : " + this.getVolume() + "\n");
-		loc2 = loc2 + (" > Mute         : " + this._bMute + "\n");
-		return loc2;
+		var var2 = "[AudioElement = " + this._nUniqID + "]\n";
+		var2 = var2 + (" > Linked clip  : " + this._mcLinkedClip + "\n");
+		var2 = var2 + (" > File         : " + this._sFile + "\n");
+		var2 = var2 + (" > Loops        : " + this._nLoops + "\n");
+		var2 = var2 + (" > Start offset : " + this._nOffset + "\n");
+		var2 = var2 + (" > Max length   : " + this._nMaxLength + "\n");
+		var2 = var2 + (" > Base vol.    : " + this.baseVolume + "\n");
+		var2 = var2 + (" > Volume       : " + this.getVolume() + "\n");
+		var2 = var2 + (" > Mute         : " + this._bMute + "\n");
+		return var2;
 	}
-	function onLoad(loc2)
+	function onLoad(var2)
 	{
-		if(!loc2)
+		if(!var2)
 		{
 			return undefined;
 		}

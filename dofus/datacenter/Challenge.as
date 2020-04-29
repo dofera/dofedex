@@ -1,20 +1,20 @@
 class dofus.datacenter.Challenge extends Object
 {
-	function Challenge(loc3, loc4)
+	function Challenge(var3, var4)
 	{
 		super();
-		this.initialize(loc3,loc4);
+		this.initialize(var3,var4);
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
-		this._nID = loc2;
-		this._nFightType = loc3;
+		this._nID = var2;
+		this._nFightType = var3;
 		this._teams = new Object();
 	}
-	function addTeam(loc2)
+	function addTeam(var2)
 	{
-		this._teams[loc2.id] = loc2;
-		loc2.setChallenge(this);
+		this._teams[var2.id] = var2;
+		var2.setChallenge(this);
 	}
 	function __get__id()
 	{
@@ -30,11 +30,11 @@ class dofus.datacenter.Challenge extends Object
 	}
 	function __get__count()
 	{
-		var loc2 = 0;
+		var var2 = 0;
 		for(var k in this._teams)
 		{
-			loc2 = loc2 + this._teams[k].count;
+			var2 = var2 + this._teams[k].count;
 		}
-		return loc2;
+		return var2;
 	}
 }

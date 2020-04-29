@@ -1,10 +1,10 @@
 class dofus.aks.Emotes extends dofus.aks.Handler
 {
-	function Emotes(loc3, loc4)
+	function Emotes(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function useEmote(loc2)
+	function useEmote(var2)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
@@ -15,105 +15,105 @@ class dofus.aks.Emotes extends dofus.aks.Handler
 			return undefined;
 		}
 		this.api.datacenter.Basics.aks_emote_lastActionTime = getTimer();
-		this.aks.send("eU" + loc2,true);
+		this.aks.send("eU" + var2,true);
 	}
-	function setDirection(loc2)
+	function setDirection(var2)
 	{
-		this.aks.send("eD" + loc2,true);
+		this.aks.send("eD" + var2,true);
 	}
-	function onUse(loc2, loc3)
+	function onUse(var2, var3)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
 			return undefined;
 		}
-		if(!loc2)
+		if(!var2)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_USE_EMOTE"),"ERROR_CHAT");
 			return undefined;
 		}
-		var loc4 = loc3.split("|");
-		var loc5 = loc4[0];
-		var loc6 = Number(loc4[1]);
-		var loc7 = Number(loc4[2]);
-		var loc8 = !_global.isNaN(loc6)?"emote" + loc6:"static";
-		this.api.gfx.convertHeightToFourSpriteDirection(loc5);
-		if(_global.isNaN(loc7) && _global.isNaN(loc6))
+		var var4 = var3.split("|");
+		var var5 = var4[0];
+		var var6 = Number(var4[1]);
+		var var7 = Number(var4[2]);
+		var var8 = !_global.isNaN(var6)?"emote" + var6:"static";
+		this.api.gfx.convertHeightToFourSpriteDirection(var5);
+		if(_global.isNaN(var7) && _global.isNaN(var6))
 		{
-			this.api.gfx.setForcedSpriteAnim(loc5,loc8);
+			this.api.gfx.setForcedSpriteAnim(var5,var8);
 		}
 		else
 		{
-			this.api.gfx.setSpriteTimerAnim(loc5,loc8,true,loc7);
+			this.api.gfx.setSpriteTimerAnim(var5,var8,true,var7);
 		}
 	}
-	function onList(loc2)
+	function onList(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = this.api.datacenter.Player;
-		loc6.clearEmotes();
-		var loc7 = 0;
-		while(loc7 < 32)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = this.api.datacenter.Player;
+		var6.clearEmotes();
+		var var7 = 0;
+		while(var7 < 32)
 		{
-			if((loc4 >> loc7 & 1) == 1)
+			if((var4 >> var7 & 1) == 1)
 			{
-				if(this.api.lang.getEmoteText(loc7 + 1) != undefined)
+				if(this.api.lang.getEmoteText(var7 + 1) != undefined)
 				{
-					loc6.addEmote(loc7 + 1);
+					var6.addEmote(var7 + 1);
 				}
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		var loc8 = 0;
-		while(loc8 < 32)
+		var var8 = 0;
+		while(var8 < 32)
 		{
-			if((loc5 >> loc8 & 1) == 1)
+			if((var5 >> var8 & 1) == 1)
 			{
-				if(this.api.lang.getEmoteText(loc8 + 1) != undefined)
+				if(this.api.lang.getEmoteText(var8 + 1) != undefined)
 				{
-					loc6.addEmote(loc8 + 1);
+					var6.addEmote(var8 + 1);
 				}
 			}
-			loc8 = loc8 + 1;
+			var8 = var8 + 1;
 		}
 		this.refresh();
 	}
-	function onAdd(loc2)
+	function onAdd(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1] == "0";
-		if(!loc5)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1] == "0";
+		if(!var5)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("NEW_EMOTE",[this.api.lang.getEmoteText(loc4).n]),"INFO_CHAT");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("NEW_EMOTE",[this.api.lang.getEmoteText(var4).n]),"INFO_CHAT");
 		}
 		this.refresh();
 	}
-	function onRemove(loc2)
+	function onRemove(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1] == "0";
-		if(!loc5)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1] == "0";
+		if(!var5)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("REMOVE_EMOTE",[this.api.lang.getEmoteText(loc4).n]),"INFO_CHAT");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("REMOVE_EMOTE",[this.api.lang.getEmoteText(var4).n]),"INFO_CHAT");
 		}
 		this.refresh();
 	}
-	function onDirection(loc2)
+	function onDirection(var2)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
 			return undefined;
 		}
-		var loc3 = loc2.split("|");
-		var loc4 = loc3[0];
-		var loc5 = Number(loc3[1]);
-		var loc6 = this.api.gfx.getSprite(loc4).animation;
-		this.api.gfx.setSpriteDirection(loc4,loc5);
-		this.api.gfx.setSpriteAnim(loc4,loc6);
+		var var3 = var2.split("|");
+		var var4 = var3[0];
+		var var5 = Number(var3[1]);
+		var var6 = this.api.gfx.getSprite(var4).animation;
+		this.api.gfx.setSpriteDirection(var4,var5);
+		this.api.gfx.setSpriteAnim(var4,var6);
 	}
 	function refresh()
 	{

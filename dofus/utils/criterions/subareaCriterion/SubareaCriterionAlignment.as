@@ -4,18 +4,18 @@ class dofus.utils.criterions.subareaCriterion.SubareaCriterionAlignment extends 
 	{
 		super();
 	}
-	function AreaCriterionAlignment(loc2, loc3)
+	function AreaCriterionAlignment(var2, var3)
 	{
-		this._sOperator = loc2;
-		this._nAlignmentIndex = loc3;
+		this._sOperator = var2;
+		this._nAlignmentIndex = var3;
 		this._aSubarea = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(this.api.datacenter.Map.subarea);
 	}
 	function isFilled()
 	{
-		var loc2 = this._aSubarea.alignment;
-		if((var loc0 = this._sOperator) !== "=")
+		var var2 = this._aSubarea.alignment;
+		if((var var0 = this._sOperator) !== "=")
 		{
-			if(loc0 !== "!")
+			if(var0 !== "!")
 			{
 				return false;
 			}

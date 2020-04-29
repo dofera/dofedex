@@ -1,10 +1,10 @@
 class com.ankamagames.exceptions.InvalidOperationException extends com.ankamagames.exceptions.AbstractException
 {
-	function InvalidOperationException(objectErrorSource, className, methodName, §\n\x15§)
+	function InvalidOperationException(objectErrorSource, className, methodName, §\n\x13§)
 	{
-		super(objectErrorSource,className,methodName,loc6);
+		super(objectErrorSource,className,methodName,var6);
 	}
-	function getExceptionName(loc2)
+	function getExceptionName(var2)
 	{
 		return "com.ankamagames.exceptions.InvalidOperationException";
 	}

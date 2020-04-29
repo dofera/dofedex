@@ -53,79 +53,79 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 	}
 	function refreshAreaList()
 	{
-		var loc2 = this.api.datacenter.Conquest.worldDatas;
-		var loc3 = this._cbFilter.selectedItem.value;
-		var loc4 = new ank.utils.();
-		var loc5 = new String();
-		var loc6 = 0;
-		while(loc6 < loc2.areas.length)
+		var var2 = this.api.datacenter.Conquest.worldDatas;
+		var var3 = this._cbFilter.selectedItem.value;
+		var var4 = new ank.utils.();
+		var var5 = new String();
+		var var6 = 0;
+		while(var6 < var2.areas.length)
 		{
-			if(!(loc3 == dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_HOSTILE_AREAS && !loc2.areas[loc6].fighting))
+			if(!(var3 == dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_HOSTILE_AREAS && !var2.areas[var6].fighting))
 			{
-				if(!(loc3 == dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_CAPTURABLE_AREAS && !loc2.areas[loc6].isCapturable()))
+				if(!(var3 == dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_CAPTURABLE_AREAS && !var2.areas[var6].isCapturable()))
 				{
-					if(!(loc3 == dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_VULNERALE_AREAS && !loc2.areas[loc6].isVulnerable()))
+					if(!(var3 == dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_VULNERALE_AREAS && !var2.areas[var6].isVulnerable()))
 					{
-						if(!(loc3 >= 0 && loc2.areas[loc6].alignment != loc3))
+						if(!(var3 >= 0 && var2.areas[var6].alignment != var3))
 						{
-							if(loc5 != loc2.areas[loc6].areaName)
+							if(var5 != var2.areas[var6].areaName)
 							{
-								loc4.push({area:loc2.areas[loc6].areaId});
-								loc5 = loc2.areas[loc6].areaName;
+								var4.push({area:var2.areas[var6].areaId});
+								var5 = var2.areas[var6].areaName;
 							}
-							loc4.push(loc2.areas[loc6]);
+							var4.push(var2.areas[var6]);
 						}
 					}
 				}
 			}
-			loc6 = loc6 + 1;
+			var6 = var6 + 1;
 		}
-		this._lstAreas.dataProvider = loc4;
+		this._lstAreas.dataProvider = var4;
 	}
 	function initData()
 	{
-		var loc2 = this.api.datacenter.Conquest.worldDatas;
-		this._lblGotAreas.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"f",false) + " : " + loc2.ownedAreas + " / " + loc2.possibleAreas + " / " + loc2.totalAreas;
-		this._lblGotVillages.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"m",false) + " : " + loc2.ownedVillages + " / " + loc2.totalVillages;
+		var var2 = this.api.datacenter.Conquest.worldDatas;
+		this._lblGotAreas.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"f",false) + " : " + var2.ownedAreas + " / " + var2.possibleAreas + " / " + var2.totalAreas;
+		this._lblGotVillages.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"m",false) + " : " + var2.ownedVillages + " / " + var2.totalVillages;
 		this.refreshAreaList();
-		this._lstVillages.dataProvider = loc2.villages;
-		var loc3 = new ank.utils.();
-		var loc4 = this.api.lang.getAlignments();
-		for(var s in loc4)
+		this._lstVillages.dataProvider = var2.villages;
+		var var3 = new ank.utils.();
+		var var4 = this.api.lang.getAlignments();
+		for(var s in var4)
 		{
-			if(loc4[s].c)
+			if(var4[s].c)
 			{
-				loc3.push({label:this.api.lang.getText("CONQUEST_ALIGNED_AREAS",[loc4[s].n]),value:s});
+				var3.push({label:this.api.lang.getText("CONQUEST_ALIGNED_AREAS",[var4[s].n]),value:s});
 			}
 		}
-		loc3.push({label:this.api.lang.getText("CONQUEST_HOSTILE_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_HOSTILE_AREAS});
-		loc3.push({label:this.api.lang.getText("CONQUEST_CAPTURABLE_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_CAPTURABLE_AREAS});
-		loc3.push({label:this.api.lang.getText("CONQUEST_VULNERALE_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_VULNERALE_AREAS});
-		loc3.push({label:this.api.lang.getText("CONQUEST_ALL_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_ALL_AREAS});
-		this._cbFilter.dataProvider = loc3;
-		this._cbFilter.selectedIndex = loc3.findFirstItem("value",this.api.kernel.OptionsManager.getOption("ConquestFilter")).index;
+		var3.push({label:this.api.lang.getText("CONQUEST_HOSTILE_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_HOSTILE_AREAS});
+		var3.push({label:this.api.lang.getText("CONQUEST_CAPTURABLE_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_CAPTURABLE_AREAS});
+		var3.push({label:this.api.lang.getText("CONQUEST_VULNERALE_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_VULNERALE_AREAS});
+		var3.push({label:this.api.lang.getText("CONQUEST_ALL_AREAS"),value:dofus.graphics.gapi.controls.ConquestZonesViewer.FILTER_ALL_AREAS});
+		this._cbFilter.dataProvider = var3;
+		this._cbFilter.selectedIndex = var3.findFirstItem("value",this.api.kernel.OptionsManager.getOption("ConquestFilter")).index;
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this.api.datacenter.Conquest.worldDatas;
-		switch(loc2.target)
+		var var3 = this.api.datacenter.Conquest.worldDatas;
+		switch(var2.target)
 		{
 			case this._mcGotAreasInteractivity:
-				this.api.ui.showTooltip(this.api.lang.getText("CONQUEST_GOT_ZONES",[loc3.ownedAreas,loc3.possibleAreas,loc3.ownedVillages,loc3.totalAreas]),this._mcGotAreasInteractivity,-55);
+				this.api.ui.showTooltip(this.api.lang.getText("CONQUEST_GOT_ZONES",[var3.ownedAreas,var3.possibleAreas,var3.ownedVillages,var3.totalAreas]),this._mcGotAreasInteractivity,-55);
 				break;
 			case this._mcGotVillagesInteractivity:
-				this.api.ui.showTooltip(this.api.lang.getText("CONQUEST_GOT_VILLAGES",[loc3.ownedVillages,loc3.totalVillages]),this._mcGotVillagesInteractivity,-20);
+				this.api.ui.showTooltip(this.api.lang.getText("CONQUEST_GOT_VILLAGES",[var3.ownedVillages,var3.totalVillages]),this._mcGotVillagesInteractivity,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}
-	function worldDataChanged(loc2)
+	function worldDataChanged(var2)
 	{
 		this.addToQueue({object:this,method:this.initData});
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		this.api.kernel.OptionsManager.setOption("ConquestFilter",this._cbFilter.selectedItem.value);
 		this.refreshAreaList();

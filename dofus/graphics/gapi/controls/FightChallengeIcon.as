@@ -35,7 +35,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 		this.onRollOver = this.virtualEvent(this,"over",this);
 		this.onRollOut = this.virtualEvent(this,"out",this);
 	}
-	function onEventRelease(§\x1e\x1b\x1c§, attachTarget, §\x1e\x18\n§, challenge)
+	function onEventRelease(§\x1e\x1b\x1a§, attachTarget, §\x1e\x18\b§, challenge)
 	{
 		return function()
 		{
@@ -50,34 +50,34 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 			}
 		};
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this.api.lang.getFightChallenge(this.challenge.id);
-		var loc4 = "<b>" + loc3.n + "</b>\n";
-		loc4 = loc4 + (this.challenge.description + "\n");
-		loc4 = loc4 + this.api.lang.getText("LOOT");
-		loc4 = loc4 + (" : +" + (this.challenge.teamDropBonus + this.challenge.basicDropBonus) + "%\n");
-		loc4 = loc4 + this.api.lang.getText("WORD_XP");
-		loc4 = loc4 + (" : +" + (this.challenge.teamXpBonus + this.challenge.basicXpBonus) + "%\n");
-		loc4 = loc4 + (this.api.lang.getText("STATE") + " : ");
-		if((var loc0 = this.challenge.state) !== 0)
+		var var3 = this.api.lang.getFightChallenge(this.challenge.id);
+		var var4 = "<b>" + var3.n + "</b>\n";
+		var4 = var4 + (this.challenge.description + "\n");
+		var4 = var4 + this.api.lang.getText("LOOT");
+		var4 = var4 + (" : +" + (this.challenge.teamDropBonus + this.challenge.basicDropBonus) + "%\n");
+		var4 = var4 + this.api.lang.getText("WORD_XP");
+		var4 = var4 + (" : +" + (this.challenge.teamXpBonus + this.challenge.basicXpBonus) + "%\n");
+		var4 = var4 + (this.api.lang.getText("STATE") + " : ");
+		if((var var0 = this.challenge.state) !== 0)
 		{
 			switch(null)
 			{
 				case 1:
-					loc4 = loc4 + this.api.lang.getText("FIGHT_CHALLENGE_DONE");
+					var4 = var4 + this.api.lang.getText("FIGHT_CHALLENGE_DONE");
 					break;
 				case 2:
-					loc4 = loc4 + this.api.lang.getText("FIGHT_CHALLENGE_FAILED");
+					var4 = var4 + this.api.lang.getText("FIGHT_CHALLENGE_FAILED");
 			}
 		}
 		else
 		{
-			loc4 = loc4 + this.api.lang.getText("CURRENT_FIGHT_CHALLENGE");
+			var4 = var4 + this.api.lang.getText("CURRENT_FIGHT_CHALLENGE");
 		}
-		this.gapi.showTooltip(loc4,loc2.target,40);
+		this.gapi.showTooltip(var4,var2.target,40);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

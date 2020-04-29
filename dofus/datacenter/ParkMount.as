@@ -1,9 +1,9 @@
 class dofus.datacenter.ParkMount extends dofus.datacenter.PlayableCharacter
 {
-	function ParkMount(sID, clipClass, §\x1e\x13\x16§, cellNum, §\x11\x1d§, gfxID, nModelID)
+	function ParkMount(sID, clipClass, §\x1e\x13\x14§, cellNum, §\x11\x1b§, gfxID, nModelID)
 	{
 		super();
-		this.initialize(sID,clipClass,loc5,cellNum,loc7,gfxID);
+		this.initialize(sID,clipClass,var5,cellNum,var7,gfxID);
 		this.modelID = nModelID;
 		this._lang = _global.API.lang.getMountText(nModelID);
 	}

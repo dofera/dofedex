@@ -15,38 +15,38 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 	static var _sSelf = null;
 	var _aIndicatorTimers = new Array();
 	var _nIndicatorIndex = 0;
-	function TipsManager(loc3)
+	function TipsManager(var3)
 	{
 		super();
 		dofus.managers.TipsManager._sSelf = this;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.TipsManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this.api = loc2;
+		this.api = var2;
 		this._aTipsList = new Array();
 		this.addToQueue({object:this,method:this.loadTipsStates});
 	}
-	function showNewTip(loc2)
+	function showNewTip(var2)
 	{
 		if(!this.getIsDisplayingFreshTips())
 		{
-			this.setHasBeenDisplayed(loc2);
+			this.setHasBeenDisplayed(var2);
 		}
-		else if(!this.getHasBeenDisplayed(loc2))
+		else if(!this.getHasBeenDisplayed(var2))
 		{
-			var loc3 = dofus.graphics.gapi.controls.Helper.getCurrentHelper();
-			if(loc3 == null)
+			var var3 = dofus.graphics.gapi.controls.Helper.getCurrentHelper();
+			if(var3 == null)
 			{
 				return undefined;
 			}
-			loc3.onNewTip();
-			this.addTipToList(loc2);
-			this.setHasBeenDisplayed(loc2);
+			var3.onNewTip();
+			this.addTipToList(var2);
+			this.setHasBeenDisplayed(var2);
 		}
 	}
 	function displayNextTips()
@@ -55,14 +55,14 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		{
 			return undefined;
 		}
-		var loc2 = this.getTipToDisplay();
-		this.showFloatingTips(loc2);
-		var loc3 = dofus.graphics.gapi.controls.Helper.getCurrentHelper();
-		if(loc3 == null)
+		var var2 = this.getTipToDisplay();
+		this.showFloatingTips(var2);
+		var var3 = dofus.graphics.gapi.controls.Helper.getCurrentHelper();
+		if(var3 == null)
 		{
 			return undefined;
 		}
-		loc3.onRemoveTip();
+		var3.onRemoveTip();
 	}
 	function hasNewTips()
 	{
@@ -73,99 +73,99 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		this._aTipsStates = new Array();
 		this.saveTipsStates();
 	}
-	function pointGUI(loc2, loc3)
+	function pointGUI(var2, var3)
 	{
-		var loc4 = this.api.ui.getUIComponent(loc2);
-		var loc5 = loc3[0];
-		var loc6 = loc4[loc5];
-		var loc7 = 1;
-		while(loc7 < loc3.length)
+		var var4 = this.api.ui.getUIComponent(var2);
+		var var5 = var3[0];
+		var var6 = var4[var5];
+		var var7 = 1;
+		while(var7 < var3.length)
 		{
-			loc5 = String(loc3[loc7]);
-			if(loc6[loc5] != undefined)
+			var5 = String(var3[var7]);
+			if(var6[var5] != undefined)
 			{
-				loc6 = loc6[loc5];
-				loc7 = loc7 + 1;
+				var6 = var6[var5];
+				var7 = var7 + 1;
 				continue;
 			}
 			break;
 		}
-		if(loc6 == undefined)
+		if(var6 == undefined)
 		{
 			return undefined;
 		}
-		var loc8 = loc6.getBounds();
-		var loc9 = loc8.xMax - loc8.xMin;
-		var loc10 = loc8.yMax - loc8.yMin;
-		var loc11 = loc9 / 2 + loc6._x + loc8.xMin;
-		var loc12 = loc10 / 2 + loc6._y + loc8.yMin;
-		var loc13 = {x:loc11,y:loc12};
-		loc6._parent.localToGlobal(loc13);
-		loc11 = loc13.x;
-		loc12 = loc13.y;
-		var loc14 = Math.sqrt(Math.pow(loc9,2) + Math.pow(loc10,2)) / 2;
-		this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[loc11,loc12],offset:loc14},{bAlwaysOnTop:true});
+		var var8 = var6.getBounds();
+		var var9 = var8.xMax - var8.xMin;
+		var var10 = var8.yMax - var8.yMin;
+		var var11 = var9 / 2 + var6._x + var8.xMin;
+		var var12 = var10 / 2 + var6._y + var8.yMin;
+		var var13 = {x:var11,y:var12};
+		var6._parent.localToGlobal(var13);
+		var11 = var13.x;
+		var12 = var13.y;
+		var var14 = Math.sqrt(Math.pow(var9,2) + Math.pow(var10,2)) / 2;
+		this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[var11,var12],offset:var14},{bAlwaysOnTop:true});
 		this._aIndicatorTimers[this._nIndicatorIndex] = _global.setInterval(this,"onIndicatorHide",dofus.managers.TipsManager.INDICATOR_SHOWUP_TIME * 1000,this._nIndicatorIndex++);
 	}
-	function pointCell(loc2, loc3, loc4)
+	function pointCell(var2, var3, var4)
 	{
-		if(this.api.datacenter.Basics.aks_current_map_id == loc2 || loc2 == -1)
+		if(this.api.datacenter.Basics.aks_current_map_id == var2 || var2 == -1)
 		{
-			var loc5 = this.api.gfx.mapHandler.getCellData(loc3).mc;
-			if(loc5 == undefined)
+			var var5 = this.api.gfx.mapHandler.getCellData(var3).mc;
+			if(var5 == undefined)
 			{
 				return undefined;
 			}
-			var loc6 = {x:loc5._x,y:loc5._y};
-			loc5._parent.localToGlobal(loc6);
-			var loc7 = loc6.x;
-			var loc8 = loc6.y;
-			this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[loc7,loc8],offset:loc4,rotate:false},{bAlwaysOnTop:true});
+			var var6 = {x:var5._x,y:var5._y};
+			var5._parent.localToGlobal(var6);
+			var var7 = var6.x;
+			var var8 = var6.y;
+			this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[var7,var8],offset:var4,rotate:false},{bAlwaysOnTop:true});
 			this._aIndicatorTimers[this._nIndicatorIndex] = _global.setInterval(this,"onIndicatorHide",dofus.managers.TipsManager.INDICATOR_SHOWUP_TIME * 1000,this._nIndicatorIndex++);
 		}
 		return undefined;
 	}
-	function pointSprite(loc2, loc3)
+	function pointSprite(var2, var3)
 	{
-		if(this.api.datacenter.Basics.aks_current_map_id == loc2 || loc2 == -1)
+		if(this.api.datacenter.Basics.aks_current_map_id == var2 || var2 == -1)
 		{
-			var loc4 = this.api.gfx.spriteHandler.getSprites().getItems();
-			§§enumerate(loc4);
-			while((var loc0 = §§enumeration()) != null)
+			var var4 = this.api.gfx.spriteHandler.getSprites().getItems();
+			for(var k in var4)
 			{
-				if(loc4[k].gfxFile == dofus.Constants.CLIPS_PERSOS_PATH + loc3 + ".swf")
+				if(var4[k].gfxFile == dofus.Constants.CLIPS_PERSOS_PATH + var3 + ".swf")
 				{
-					var loc5 = {x:loc4[k].mc._x,y:loc4[k].mc._y};
-					loc4[k].localToGlobal(loc5);
-					var loc6 = loc5.x;
-					var loc7 = loc5.y;
-					var loc8 = loc4[k].mc._height;
-					this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[loc6,loc7],offset:loc8,rotate:false},{bAlwaysOnTop:true});
+					var var5 = {x:var4[k].mc._x,y:var4[k].mc._y};
+					var4[k].localToGlobal(var5);
+					var var6 = var5.x;
+					var var7 = var5.y;
+					var var8 = var4[k].mc._height;
+					this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[var6,var7],offset:var8,rotate:false},{bAlwaysOnTop:true});
 					this._aIndicatorTimers[this._nIndicatorIndex] = _global.setInterval(this,"onIndicatorHide",dofus.managers.TipsManager.INDICATOR_SHOWUP_TIME * 1000,this._nIndicatorIndex++);
 				}
 			}
 		}
 		return undefined;
 	}
-	function pointPicto(loc2, loc3)
+	function pointPicto(var2, var3)
 	{
-		if(this.api.datacenter.Basics.aks_current_map_id == loc2 || loc2 == -1)
+		if(this.api.datacenter.Basics.aks_current_map_id == var2 || var2 == -1)
 		{
-			var loc4 = this.api.gfx.mapHandler.getCellsData();
-			for(var k in loc4)
+			var var4 = this.api.gfx.mapHandler.getCellsData();
+			§§enumerate(var4);
+			while((var var0 = §§enumeration()) != null)
 			{
-				if(loc4[k].layerObject1Num != undefined && (!_global.isNaN(loc4[k].layerObject1Num) && loc4[k].layerObject1Num > 0))
+				if(var4[k].layerObject1Num != undefined && (!_global.isNaN(var4[k].layerObject1Num) && var4[k].layerObject1Num > 0))
 				{
-					if(loc4[k].layerObject1Num == loc3)
+					if(var4[k].layerObject1Num == var3)
 					{
-						this.pointCell(loc2,loc4[k].num,loc4[k].mcObject1._height);
+						this.pointCell(var2,var4[k].num,var4[k].mcObject1._height);
 					}
 				}
-				if(loc4[k].layerObject2Num != undefined && (!_global.isNaN(loc4[k].layerObject2Num) && loc4[k].layerObject2Num > 0))
+				if(var4[k].layerObject2Num != undefined && (!_global.isNaN(var4[k].layerObject2Num) && var4[k].layerObject2Num > 0))
 				{
-					if(loc4[k].layerObject2Num == loc3)
+					if(var4[k].layerObject2Num == var3)
 					{
-						this.pointCell(loc2,loc4[k].num,loc4[k].mcObject2._height);
+						this.pointCell(var2,var4[k].num,var4[k].mcObject2._height);
 					}
 				}
 			}
@@ -174,46 +174,50 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 	}
 	function getTipToDisplay()
 	{
-		var loc2 = Number(this._aTipsList.pop());
-		return loc2;
+		var var2 = Number(this._aTipsList.pop());
+		return var2;
 	}
-	function showFloatingTips(loc2)
+	function showFloatingTips(var2)
 	{
-		var loc3 = this.api.kernel.OptionsManager.getOption("FloatingTipsCoord");
-		var loc4 = this.api.ui.loadUIComponent("FloatingTips","FloatingTips",{tip:loc2,position:loc3},{bStayIfPresent:true,bAlwaysOnTop:true});
+		var var3 = this.api.kernel.OptionsManager.getOption("FloatingTipsCoord");
+		var var4 = this.api.ui.loadUIComponent("FloatingTips","FloatingTips",{tip:var2,position:var3},{bStayIfPresent:true,bAlwaysOnTop:true});
 	}
-	function addTipToList(loc2)
+	function addTipToList(var2)
 	{
-		this._aTipsList.push(loc2);
+		this._aTipsList.push(var2);
 		this.saveTipsList();
 	}
-	function getHasBeenDisplayed(loc2)
+	function getHasBeenDisplayed(var2)
 	{
-		return this._aTipsStates[loc2] == true;
+		return this._aTipsStates[var2] == true;
 	}
-	function setHasBeenDisplayed(loc2, loc3)
+	function setHasBeenDisplayed(var2, var3)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = true;
+			var3 = true;
 		}
-		if(this._aTipsStates[loc2] != loc3)
+		if(this._aTipsStates[var2] != var3)
 		{
-			this._aTipsStates[loc2] = loc3;
+			this._aTipsStates[var2] = var3;
 			this.saveTipsStates();
 		}
 	}
 	function getIsDisplayingFreshTips()
 	{
+		if(this.api.datacenter.Player.isAuthorized)
+		{
+			return false;
+		}
 		if(this.api.config.isExpo)
 		{
 			return true;
 		}
 		return this.api.kernel.OptionsManager.getOption("DisplayingFreshTips");
 	}
-	function setIsDisplayingFreshTips(loc2)
+	function setIsDisplayingFreshTips(var2)
 	{
-		this.api.kernel.OptionsManager.setOption("DisplayingFreshTips",loc2);
+		this.api.kernel.OptionsManager.setOption("DisplayingFreshTips",var2);
 	}
 	function getTipsSharedObject()
 	{
@@ -231,12 +235,12 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		}
 		else
 		{
-			var loc2 = this.getTipsSharedObject();
-			this._aTipsStates = loc2.data.TIPSSTATES;
+			var var2 = this.getTipsSharedObject();
+			this._aTipsStates = var2.data.TIPSSTATES;
 			if(this._aTipsStates == undefined)
 			{
 				this._aTipsStates = new Array();
-				loc2.flush();
+				var2.flush();
 			}
 		}
 	}
@@ -244,16 +248,16 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 	{
 		if(!this.api.config.isExpo)
 		{
-			var loc2 = this.getTipsSharedObject();
-			loc2.data.TIPSSTATES = this._aTipsStates;
-			loc2.flush();
+			var var2 = this.getTipsSharedObject();
+			var2.data.TIPSSTATES = this._aTipsStates;
+			var2.flush();
 		}
 	}
 	function saveTipsList()
 	{
-		var loc2 = this.getTipsSharedObject();
-		loc2.data.TIPSLIST = this._aTipsList;
-		loc2.flush();
+		var var2 = this.getTipsSharedObject();
+		var2.data.TIPSLIST = this._aTipsList;
+		var2.flush();
 	}
 	function getInterfaceTriggers()
 	{
@@ -261,20 +265,20 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		{
 			return this._aInterfaceTriggers;
 		}
-		var loc2 = this.api.lang.getKnownledgeBaseTriggers();
-		if(loc2 == undefined)
+		var var2 = this.api.lang.getKnownledgeBaseTriggers();
+		if(var2 == undefined)
 		{
 			return new Array();
 		}
 		this._aInterfaceTriggers = new Array();
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(loc2[loc3].t == dofus.managers.TipsManager.TRIGGER_TYPE_GUI)
+			if(var2[var3].t == dofus.managers.TipsManager.TRIGGER_TYPE_GUI)
 			{
-				this._aInterfaceTriggers["GUI" + loc2[loc3].v] = loc2[loc3].d;
+				this._aInterfaceTriggers["GUI" + var2[var3].v] = var2[var3].d;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return this._aInterfaceTriggers;
 	}
@@ -284,115 +288,110 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		{
 			return this._aMapsTriggers;
 		}
-		var loc2 = this.api.lang.getKnownledgeBaseTriggers();
-		if(loc2 == undefined)
+		var var2 = this.api.lang.getKnownledgeBaseTriggers();
+		if(var2 == undefined)
 		{
 			return new Array();
 		}
 		this._aMapsTriggers = new Array();
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(loc2[loc3].t == dofus.managers.TipsManager.TRIGGER_TYPE_MAP)
+			if(var2[var3].t == dofus.managers.TipsManager.TRIGGER_TYPE_MAP)
 			{
-				var loc4 = loc2[loc3].v;
-				var loc5 = 0;
-				while(loc5 < loc4.length)
+				var var4 = var2[var3].v;
+				var var5 = 0;
+				while(var5 < var4.length)
 				{
-					if(this._aMapsTriggers["MAP" + loc4[loc5]] != undefined)
+					if(this._aMapsTriggers["MAP" + var4[var5]] != undefined)
 					{
-						this._aMapsTriggers["MAP" + loc4[loc5]] = this._aMapsTriggers["MAP" + loc4[loc5]] + "|" + loc2[loc3].d;
+						this._aMapsTriggers["MAP" + var4[var5]] = this._aMapsTriggers["MAP" + var4[var5]] + "|" + var2[var3].d;
 					}
 					else
 					{
-						this._aMapsTriggers["MAP" + loc4[loc5]] = loc2[loc3].d;
+						this._aMapsTriggers["MAP" + var4[var5]] = var2[var3].d;
 					}
-					loc5 = loc5 + 1;
+					var5 = var5 + 1;
 				}
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return this._aMapsTriggers;
 	}
-	function onIndicatorHide(loc2)
+	function onIndicatorHide(var2)
 	{
-		_global.clearInterval(this._aIndicatorTimers[loc2]);
-		this.api.ui.unloadUIComponent("Indicator" + loc2);
+		_global.clearInterval(this._aIndicatorTimers[var2]);
+		this.api.ui.unloadUIComponent("Indicator" + var2);
 	}
-	function onNewMap(loc2)
+	function onNewMap(var2)
 	{
-		var loc3 = String(this.getMapsTriggers()["MAP" + loc2]);
-		if(loc3 != undefined && loc3.length > 0)
+		var var3 = String(this.getMapsTriggers()["MAP" + var2]);
+		if(var3 != undefined && var3.length > 0)
 		{
-			var loc4 = loc3.split("|");
-			var loc5 = 0;
-			while(loc5 < loc4.length)
+			var var4 = var3.split("|");
+			var var5 = 0;
+			while(var5 < var4.length)
 			{
-				if(loc4[loc5] != undefined && !_global.isNaN(loc4[loc5]))
+				if(var4[var5] != undefined && !_global.isNaN(var4[var5]))
 				{
-					this.showNewTip(Number(loc4[loc5]));
+					this.showNewTip(Number(var4[var5]));
 				}
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
 		}
 	}
-	function onNewInterface(loc2)
+	function onNewInterface(var2)
 	{
-		var loc3 = this.getInterfaceTriggers()["GUI" + loc2];
-		if(loc3 != undefined && !_global.isNaN(loc3))
+		var var3 = this.getInterfaceTriggers()["GUI" + var2];
+		if(var3 != undefined && !_global.isNaN(var3))
 		{
-			this.showNewTip(loc3);
+			this.showNewTip(var3);
 		}
 	}
-	function onLink(loc2)
+	function onLink(var2)
 	{
-		var loc3 = loc2.params.split(",");
-		if((var loc0 = loc3[0]) !== "CellIndicator")
+		var var3 = var2.params.split(",");
+		if((var var0 = var3[0]) !== "CellIndicator")
 		{
 			switch(null)
 			{
 				case "UiIndicator":
-					var loc7 = loc3[1];
-					var loc8 = new Array();
-					var loc9 = 2;
-					while(loc9 < loc3.length)
+					var var7 = var3[1];
+					var var8 = new Array();
+					var var9 = 2;
+					while(var9 < var3.length)
 					{
-						loc8.push(loc3[loc9]);
-						loc9 = loc9 + 1;
+						var8.push(var3[var9]);
+						var9 = var9 + 1;
 					}
-					this.addToQueue({object:this,method:this.pointGUI,params:[loc7,loc8]});
+					this.addToQueue({object:this,method:this.pointGUI,params:[var7,var8]});
 					break;
 				case "SpriteIndicator":
-					var loc10 = Number(loc3[1]);
-					var loc11 = Number(loc3[2]);
-					this.addToQueue({object:this,method:this.pointSprite,params:[loc10,loc11]});
+					var var10 = Number(var3[1]);
+					var var11 = Number(var3[2]);
+					this.addToQueue({object:this,method:this.pointSprite,params:[var10,var11]});
 					break;
 				case "PictoIndicator":
-					var loc12 = Number(loc3[1]);
-					var loc13 = Number(loc3[2]);
-					this.addToQueue({object:this,method:this.pointPicto,params:[loc12,loc13]});
+					var var12 = Number(var3[1]);
+					var var13 = Number(var3[2]);
+					this.addToQueue({object:this,method:this.pointPicto,params:[var12,var13]});
 					break;
 				case "PointCompass":
-					var loc14 = Number(loc3[1]);
-					var loc15 = Number(loc3[2]);
-					this.addToQueue({object:this.api.kernel.GameManager,method:this.api.kernel.GameManager.updateCompass,params:[loc14,loc15,true]});
+					var var14 = Number(var3[1]);
+					var var15 = Number(var3[2]);
+					this.addToQueue({object:this.api.kernel.GameManager,method:this.api.kernel.GameManager.updateCompass,params:[var14,var15,true]});
 					break;
-				default:
-					if(loc0 !== "KnownledgeBase")
-					{
-						break;
-					}
-					var loc16 = Number(loc3[1]);
-					this.addToQueue({object:this.api.ui,method:this.api.ui.loadUIComponent,params:["KnownledgeBase","KnownledgeBase",{article:loc16}]});
-					break;
+				case "KnownledgeBase":
+					var var16 = Number(var3[1]);
+					this.addToQueue({object:this.api.ui,method:this.api.ui.loadUIComponent,params:["KnownledgeBase","KnownledgeBase",{article:var16}]});
 			}
 		}
 		else
 		{
-			var loc4 = Number(loc3[1]);
-			var loc5 = Number(loc3[2]);
-			var loc6 = Number(loc3[3]);
-			this.addToQueue({object:this,method:this.pointCell,params:[loc4,loc5,loc6]});
+			var var4 = Number(var3[1]);
+			var var5 = Number(var3[2]);
+			var var6 = Number(var3[3]);
+			this.addToQueue({object:this,method:this.pointCell,params:[var4,var5,var6]});
 		}
 	}
 }

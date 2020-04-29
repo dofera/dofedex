@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.TaxCollectorsViewer extends dofus.graphics.ga
 	{
 		super();
 	}
-	function __set__taxCollectors(loc2)
+	function __set__taxCollectors(var2)
 	{
-		this.updateData(loc2);
+		this.updateData(var2);
 		return this.__get__taxCollectors();
 	}
 	function init()
@@ -24,10 +24,10 @@ class dofus.graphics.gapi.controls.TaxCollectorsViewer extends dofus.graphics.ga
 		this._lblDescription.text = this.api.lang.getText("GUILD_TAXCOLLECTORS_LIST");
 		this._lblHowDefend.text = this.api.lang.getText("HELP_HOW_DEFEND_TAX");
 	}
-	function updateData(loc2)
+	function updateData(var2)
 	{
-		this._lblCount.text = String(loc2.length) + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("TAXCOLLECTORS"),"m",loc2.length < 2);
-		loc2.sortOn("state",Array.NUMERIC | Array.DESCENDING);
-		this._dgTaxCollectors.dataProvider = loc2;
+		this._lblCount.text = String(var2.length) + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("TAXCOLLECTORS"),"m",var2.length < 2);
+		var2.sortOn("state",Array.NUMERIC | Array.DESCENDING);
+		this._dgTaxCollectors.dataProvider = var2;
 	}
 }

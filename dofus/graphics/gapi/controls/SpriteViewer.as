@@ -19,9 +19,9 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._oSpriteData;
 	}
-	function __set__spriteData(loc2)
+	function __set__spriteData(var2)
 	{
-		this._oSpriteData = loc2;
+		this._oSpriteData = var2;
 		if(this.initialized)
 		{
 			this.addSpriteListeners();
@@ -33,9 +33,9 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._bEnableBlur;
 	}
-	function __set__enableBlur(loc2)
+	function __set__enableBlur(var2)
 	{
-		this._bEnableBlur = loc2;
+		this._bEnableBlur = var2;
 		this._mcSpriteA.onEnterFrame = this._mcSpriteB.onEnterFrame = undefined;
 		!this._bCurrentSprite?this._mcSpriteB:this._mcSpriteA._alpha = 100;
 		!!this._bCurrentSprite?this._mcSpriteB:this._mcSpriteA._alpha = 0;
@@ -45,9 +45,9 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._nZoom;
 	}
-	function __set__zoom(loc2)
+	function __set__zoom(var2)
 	{
-		this._nZoom = loc2;
+		this._nZoom = var2;
 		if(this.initialized)
 		{
 			this.refreshDisplay();
@@ -58,46 +58,46 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._bAllowAnimations;
 	}
-	function __set__allowAnimations(loc2)
+	function __set__allowAnimations(var2)
 	{
-		this._bAllowAnimations = loc2;
-		this._mcInteraction._visible = loc2;
+		this._bAllowAnimations = var2;
+		this._mcInteraction._visible = var2;
 		return this.__get__allowAnimations();
 	}
 	function __get__noDelay()
 	{
 		return this._bNoDelay;
 	}
-	function __set__noDelay(loc2)
+	function __set__noDelay(var2)
 	{
-		this._bNoDelay = loc2;
+		this._bNoDelay = var2;
 		return this.__get__noDelay();
 	}
 	function __get__spriteAnims()
 	{
 		return this.SPRITE_ANIMS;
 	}
-	function __set__spriteAnims(loc2)
+	function __set__spriteAnims(var2)
 	{
-		this.SPRITE_ANIMS = loc2;
+		this.SPRITE_ANIMS = var2;
 		return this.__get__spriteAnims();
 	}
 	function __get__refreshDelay()
 	{
 		return this.REFRESH_DELAY;
 	}
-	function __set__refreshDelay(loc2)
+	function __set__refreshDelay(var2)
 	{
-		this.REFRESH_DELAY = loc2;
+		this.REFRESH_DELAY = var2;
 		return this.__get__refreshDelay();
 	}
 	function __get__useSingleLoader()
 	{
 		return this._bUseSingleLoader;
 	}
-	function __set__useSingleLoader(loc2)
+	function __set__useSingleLoader(var2)
 	{
-		this._bUseSingleLoader = loc2;
+		this._bUseSingleLoader = var2;
 		return this.__get__useSingleLoader();
 	}
 	function refreshDisplay()
@@ -115,20 +115,20 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 			this._nInterval = _global.setInterval(this,"beginDisplay",this.REFRESH_DELAY);
 		}
 	}
-	function getColor(loc2)
+	function getColor(var2)
 	{
-		return this._oSpriteData["color" + loc2] != undefined?this._oSpriteData["color" + loc2]:-1;
+		return this._oSpriteData["color" + var2] != undefined?this._oSpriteData["color" + var2]:-1;
 	}
-	function setColor(loc2, loc3)
+	function setColor(var2, var3)
 	{
-		this._oSpriteData["color" + loc2] = loc3;
+		this._oSpriteData["color" + var2] = var3;
 		this.updateSprite();
 	}
-	function setColors(loc2)
+	function setColors(var2)
 	{
-		this._oSpriteData.color1 = loc2.color1;
-		this._oSpriteData.color2 = loc2.color2;
-		this._oSpriteData.color3 = loc2.color3;
+		this._oSpriteData.color1 = var2.color1;
+		this._oSpriteData.color2 = var2.color2;
+		this._oSpriteData.color3 = var2.color3;
 		this.updateSprite();
 	}
 	function init()
@@ -165,27 +165,27 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		}
 		if(this._bEnableBlur && !this._bUseSingleLoader)
 		{
-			var loc2 = !this._bCurrentSprite?this._ldrSpriteB:this._ldrSpriteA;
+			var var2 = !this._bCurrentSprite?this._ldrSpriteB:this._ldrSpriteA;
 			this._bCurrentSprite = !this._bCurrentSprite;
-			var loc3 = !this._bCurrentSprite?this._mcSpriteB:this._mcSpriteA;
+			var var3 = !this._bCurrentSprite?this._mcSpriteB:this._mcSpriteA;
 		}
 		else if(this._bUseSingleLoader)
 		{
-			loc2 = this._ldrSpriteA;
+			var2 = this._ldrSpriteA;
 			this._bCurrentSprite = false;
 		}
 		else
 		{
-			loc2 = !this._bCurrentSprite?this._ldrSpriteB:this._ldrSpriteA;
+			var2 = !this._bCurrentSprite?this._ldrSpriteB:this._ldrSpriteA;
 		}
-		loc2.forceReload = true;
-		loc2.contentPath = this._oSpriteData.gfxFile;
+		var2.forceReload = true;
+		var2.contentPath = this._oSpriteData.gfxFile;
 	}
-	function attachAnimation(loc2)
+	function attachAnimation(var2)
 	{
-		var loc3 = this._mcSpriteA != undefined?!!this._mcSpriteA.attachMovie(this.SPRITE_ANIMS[loc2],"mcAnim",10):true;
-		var loc4 = this._mcSpriteB != undefined?!!this._mcSpriteB.attachMovie(this.SPRITE_ANIMS[loc2],"mcAnim",10):true;
-		return loc3 && loc4;
+		var var3 = this._mcSpriteA != undefined?!!this._mcSpriteA.attachMovie(this.SPRITE_ANIMS[var2],"mcAnim",10):true;
+		var var4 = this._mcSpriteB != undefined?!!this._mcSpriteB.attachMovie(this.SPRITE_ANIMS[var2],"mcAnim",10):true;
+		return var3 && var4;
 	}
 	function applyZoom()
 	{
@@ -198,17 +198,17 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 			this._mcSpriteB._xscale = this._mcSpriteB._yscale = this._nZoom;
 		}
 	}
-	function playNextAnim(loc2)
+	function playNextAnim(var2)
 	{
-		if(loc2 == undefined || _global.isNaN(loc2))
+		if(var2 == undefined || _global.isNaN(var2))
 		{
-			loc2 = this._nSpriteAnimIndex;
+			var2 = this._nSpriteAnimIndex;
 		}
-		this._nSpriteAnimIndex = loc2;
+		this._nSpriteAnimIndex = var2;
 		this._mcSpriteA.mcAnim.removeMovieClip();
 		this._mcSpriteB.mcAnim.removeMovieClip();
-		var loc3 = this.attachAnimation(this._nSpriteAnimIndex);
-		if(!loc3 && --this._nAttempts)
+		var var3 = this.attachAnimation(this._nSpriteAnimIndex);
+		if(!var3 && --this._nAttempts)
 		{
 			this.addToQueue({object:this,method:this.playNextAnim,params:[this._nSpriteAnimIndex]});
 			return undefined;
@@ -219,7 +219,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 			this._nSpriteAnimIndex = 0;
 		}
 		this._nAttempts = 10;
-		if(!loc3)
+		if(!var3)
 		{
 			this.playNextAnim(this._nSpriteAnimIndex);
 			return undefined;
@@ -238,21 +238,21 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		_global.clearInterval(this._nInterval);
 		this._nInterval = 0;
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_ldrSpriteA":
-				this._mcSpriteA = loc0 = loc2.clip;
-				this._mcCurrentSprite = loc0;
+				this._mcSpriteA = var0 = var2.clip;
+				this._mcCurrentSprite = var0;
 				this._mcOtherSprite = this._mcSpriteB;
 				break;
 			case "_ldrSpriteB":
-				this._mcSpriteB = loc0 = loc2.clip;
-				this._mcCurrentSprite = loc0;
+				this._mcSpriteB = var0 = var2.clip;
+				this._mcCurrentSprite = var0;
 				this._mcOtherSprite = this._mcSpriteA;
 		}
-		this.api.colors.addSprite(loc2.target,this._oSpriteData);
+		this.api.colors.addSprite(var2.target,this._oSpriteData);
 		this.applyZoom();
 		if(this._bEnableBlur)
 		{
@@ -281,15 +281,15 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		}
 		this.addToQueue({object:this,method:this.playNextAnim,params:[this._nSpriteAnimIndex - 1]});
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.playNextAnim();
 	}
-	function gfxFileChanged(loc2)
+	function gfxFileChanged(var2)
 	{
 		this.refreshDisplay();
 	}
-	function accessoriesChanged(loc2)
+	function accessoriesChanged(var2)
 	{
 		this.refreshDisplay();
 	}

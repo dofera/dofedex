@@ -1,20 +1,20 @@
 class dofus.datacenter.Title
 {
-	function Title(§\r\x1d§, param)
+	function Title(§\r\x1b§, param)
 	{
 		this.api = _global.API;
-		this._id = loc2;
-		switch(this.api.lang.getTitle(loc2).pt)
+		this._id = var2;
+		switch(this.api.lang.getTitle(var2).pt)
 		{
 			case 1:
-				var loc4 = this.api.lang.getTitle(loc2).t.split("%1").join(this.api.lang.getMonsters()[_global.parseInt(param)].n);
+				var var4 = this.api.lang.getTitle(var2).t.split("%1").join(this.api.lang.getMonsters()[_global.parseInt(param)].n);
 				break;
 			case 0:
 			default:
-				loc4 = this.api.lang.getTitle(loc2).t.split("%1").join(param);
+				var4 = this.api.lang.getTitle(var2).t.split("%1").join(param);
 		}
-		this._text = "« " + loc4 + " »";
-		this._color = this.api.lang.getTitle(loc2).c;
+		this._text = "« " + var4 + " »";
+		this._color = this.api.lang.getTitle(var2).c;
 	}
 	function __get__color()
 	{

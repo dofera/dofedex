@@ -4,69 +4,69 @@ class dofus.graphics.gapi.ui.gameresult.GameResultPlayer extends ank.gapi.core.U
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		this._oItems = loc4;
-		if(loc2)
+		this._oItems = var4;
+		if(var2)
 		{
-			switch(loc4.type)
+			switch(var4.type)
 			{
 				default:
-					if(loc0 === "player")
+					if(var0 === "player")
 					{
 						break;
 					}
 				case "monster":
 				case "taxcollector":
 			}
-			this._lblName.text = loc4.name;
-			if(_global.isNaN(loc4.xp))
+			this._lblName.text = var4.name;
+			if(_global.isNaN(var4.xp))
 			{
 				this._pbXP._visible = false;
 			}
 			else
 			{
 				this._pbXP._visible = true;
-				this._pbXP.minimum = loc4.minxp;
-				this._pbXP.maximum = loc4.maxxp;
-				this._pbXP.value = loc4.xp;
+				this._pbXP.minimum = var4.minxp;
+				this._pbXP.maximum = var4.maxxp;
+				this._pbXP.value = var4.xp;
 			}
-			this._lblWinXP.text = !_global.isNaN(loc4.winxp)?loc4.winxp:"";
-			this._lblGuildXP.text = !_global.isNaN(loc4.guildxp)?loc4.guildxp:"";
-			this._lblMountXP.text = !_global.isNaN(loc4.mountxp)?loc4.mountxp:"";
-			this._lblKama.text = !_global.isNaN(loc4.kama)?loc4.kama:"";
-			this._lblLevel.text = loc4.level;
-			this._mcDeadHead._visible = loc4.bDead;
+			this._lblWinXP.text = !_global.isNaN(var4.winxp)?var4.winxp:"";
+			this._lblGuildXP.text = !_global.isNaN(var4.guildxp)?var4.guildxp:"";
+			this._lblMountXP.text = !_global.isNaN(var4.mountxp)?var4.mountxp:"";
+			this._lblKama.text = !_global.isNaN(var4.kama)?var4.kama:"";
+			this._lblLevel.text = var4.level;
+			this._mcDeadHead._visible = var4.bDead;
 			this.createEmptyMovieClip("_mcItems",10);
-			var loc5 = false;
-			loc4.items.sortOn(["_itemLevel","_itemName"],Array.DESCENDING | Array.NUMERIC);
-			var loc6 = loc4.items.length;
-			while((loc6 = loc6 - 1) >= 0)
+			var var5 = false;
+			var4.items.sortOn(["_itemLevel","_itemName"],Array.DESCENDING | Array.NUMERIC);
+			var var6 = var4.items.length;
+			while((var6 = var6 - 1) >= 0)
 			{
-				var loc7 = this._mcItemPlacer._x + 24 * loc6;
-				if(loc7 < this._mcItemPlacer._x + this._mcItemPlacer._width)
+				var var7 = this._mcItemPlacer._x + 24 * var6;
+				if(var7 < this._mcItemPlacer._x + this._mcItemPlacer._width)
 				{
-					var loc8 = loc4.items[loc6];
-					var loc9 = this._mcItems.attachMovie("Container","_ctrItem" + loc6,loc6,{_x:loc7,_y:this._mcItemPlacer._y + 1});
-					loc9.setSize(18,18);
-					loc9.addEventListener("over",this);
-					loc9.addEventListener("out",this);
-					loc9.addEventListener("click",this);
-					loc9.enabled = true;
-					loc9.margin = 0;
-					loc9.contentData = loc8;
+					var var8 = var4.items[var6];
+					var var9 = this._mcItems.attachMovie("Container","_ctrItem" + var6,var6,{_x:var7,_y:this._mcItemPlacer._y + 1});
+					var9.setSize(18,18);
+					var9.addEventListener("over",this);
+					var9.addEventListener("out",this);
+					var9.addEventListener("click",this);
+					var9.enabled = true;
+					var9.margin = 0;
+					var9.contentData = var8;
 				}
 				else
 				{
-					loc5 = true;
+					var5 = true;
 				}
 			}
-			this._ldrAllDrop._visible = loc5;
+			this._ldrAllDrop._visible = var5;
 		}
 		else if(this._lblName.text != undefined)
 		{
@@ -95,7 +95,7 @@ class dofus.graphics.gapi.ui.gameresult.GameResultPlayer extends ank.gapi.core.U
 	}
 	function addListeners()
 	{
-		var loc2 = this;
+		var var2 = this;
 		this._ldrAllDrop.onRollOver = function()
 		{
 			this._parent.over({target:this});
@@ -108,48 +108,48 @@ class dofus.graphics.gapi.ui.gameresult.GameResultPlayer extends ank.gapi.core.U
 		this._pbXP.addEventListener("over",this);
 		this._pbXP.addEventListener("out",this);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._ldrAllDrop:
-				var loc3 = this._oItems.items;
-				var loc4 = "";
-				var loc5 = 0;
-				while(loc5 < loc3.length)
+				var var3 = this._oItems.items;
+				var var4 = "";
+				var var5 = 0;
+				while(var5 < var3.length)
 				{
-					var loc6 = loc3[loc5];
-					if(loc5 > 0)
+					var var6 = var3[var5];
+					if(var5 > 0)
 					{
-						loc4 = loc4 + "\n";
+						var4 = var4 + "\n";
 					}
-					loc4 = loc4 + (loc6.Quantity + " x " + loc6.name);
-					loc5 = loc5 + 1;
+					var4 = var4 + (var6.Quantity + " x " + var6.name);
+					var5 = var5 + 1;
 				}
-				if(loc4 != "")
+				if(var4 != "")
 				{
-					this._mcList.gapi.showTooltip(loc4,loc2.target,30);
+					this._mcList.gapi.showTooltip(var4,var2.target,30);
 				}
 				break;
 			case this._pbXP:
-				this._mcList.gapi.showTooltip(this._oItems.xp + " / " + this._oItems.maxxp,loc2.target,20);
+				this._mcList.gapi.showTooltip(this._oItems.xp + " / " + this._oItems.maxxp,var2.target,20);
 				break;
 			default:
-				var loc7 = loc2.target.contentData;
-				var loc8 = loc7.style + "ToolTip";
-				this._mcList.gapi.showTooltip(loc7.Quantity + " x " + loc7.name,loc2.target,20,undefined,loc8);
+				var var7 = var2.target.contentData;
+				var var8 = var7.style + "ToolTip";
+				this._mcList.gapi.showTooltip(var7.Quantity + " x " + var7.name,var2.target,20,undefined,var8);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this._mcList.gapi.hideTooltip();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && loc3 != undefined)
+		var var3 = var2.target.contentData;
+		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var3 != undefined)
 		{
-			this._mcList._parent.gapi.api.kernel.GameManager.insertItemInChat(loc3);
+			this._mcList._parent.gapi.api.kernel.GameManager.insertItemInChat(var3);
 		}
 	}
 }

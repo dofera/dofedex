@@ -10,16 +10,16 @@ class ank.utils.Extensions
 		{
 			return true;
 		}
-		var loc2 = ank.utils.extensions.MovieClipExtensions.prototype;
-		var loc3 = MovieClip.prototype;
-		loc3.attachClassMovie = loc2.attachClassMovie;
-		loc3.alignOnPixel = loc2.alignOnPixel;
-		loc3.playFirstChildren = loc2.playFirstChildren;
-		loc3.getFirstParentProperty = loc2.getFirstParentProperty;
-		loc3.getActionClip = loc2.getActionClip;
-		loc3.end = loc2.end;
-		loc3.playAll = loc2.playAll;
-		loc3.stopAll = loc2.stopAll;
+		var var2 = ank.utils.extensions.MovieClipExtensions.prototype;
+		var var3 = MovieClip.prototype;
+		var3.attachClassMovie = var2.attachClassMovie;
+		var3.alignOnPixel = var2.alignOnPixel;
+		var3.playFirstChildren = var2.playFirstChildren;
+		var3.getFirstParentProperty = var2.getFirstParentProperty;
+		var3.getActionClip = var2.getActionClip;
+		var3.end = var2.end;
+		var3.playAll = var2.playAll;
+		var3.stopAll = var2.stopAll;
 		ank.utils.Extensions.bExtended = true;
 		return true;
 	}

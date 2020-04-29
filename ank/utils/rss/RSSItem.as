@@ -3,28 +3,28 @@ class ank.utils.rss.RSSItem
 	function RSSItem()
 	{
 	}
-	function parse(loc2)
+	function parse(var2)
 	{
 		this.initialize();
-		if(loc2.nodeName.toLowerCase() != "item")
+		if(var2.nodeName.toLowerCase() != "item")
 		{
 			return false;
 		}
-		var loc3 = loc2.firstChild;
-		while(loc3 != null)
+		var var3 = var2.firstChild;
+		while(var3 != null)
 		{
-			switch(loc3.nodeName.toLowerCase())
+			switch(var3.nodeName.toLowerCase())
 			{
 				case "title":
-					this._sTitle = loc3.childNodes.join("");
-					var loc4 = this._sTitle.split("&apos;");
-					this._sTitle = loc4.join("\'");
+					this._sTitle = var3.childNodes.join("");
+					var var4 = this._sTitle.split("&apos;");
+					this._sTitle = var4.join("\'");
 					break;
 				case "link":
-					this._sLink = loc3.childNodes.join("");
+					this._sLink = var3.childNodes.join("");
 					break;
 				case "pubdate":
-					this._sPubDate = loc3.childNodes.join("");
+					this._sPubDate = var3.childNodes.join("");
 					this._dPubDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
 					if(this._dPubDate == null)
 					{
@@ -32,13 +32,17 @@ class ank.utils.rss.RSSItem
 					}
 					this.sortByDate = org.utils.SimpleDateFormatter.formatDate(this._dPubDate,"yyyyMMdd");
 					break;
-				case "guid":
-					this._sGuid = loc3.childNodes.join("");
-					break;
-				case "icon":
-					this._sIcon = loc3.childNodes.join("");
+				default:
+					switch(null)
+					{
+						case "guid":
+							this._sGuid = var3.childNodes.join("");
+							break;
+						case "icon":
+							this._sIcon = var3.childNodes.join("");
+					}
 			}
-			loc3 = loc3.nextSibling;
+			var3 = var3.nextSibling;
 		}
 		return true;
 	}
@@ -58,9 +62,9 @@ class ank.utils.rss.RSSItem
 	{
 		return this._dPubDate;
 	}
-	function getPubDateStr(loc2, loc3)
+	function getPubDateStr(var2, var3)
 	{
-		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,loc2,loc3):this._sPubDate;
+		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,var2,var3):this._sPubDate;
 	}
 	function getGuid()
 	{

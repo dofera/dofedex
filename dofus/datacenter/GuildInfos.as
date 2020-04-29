@@ -1,14 +1,14 @@
 class dofus.datacenter.GuildInfos extends Object
 {
-	function GuildInfos(loc3, loc4, loc5, loc6, loc7, loc8)
+	function GuildInfos(var3, var4, var5, var6, var7, var8)
 	{
 		super();
 		this.api = _global.API;
 		mx.events.EventDispatcher.initialize(this);
-		this.initialize(loc3,loc4,loc5,loc6,loc7,loc8);
-		this._eaMembers = new ank.utils.();
-		this._eaTaxCollectors = new ank.utils.();
-		this._eaMountParks = new ank.utils.();
+		this.initialize(var3,var4,var5,var6,var7,var8);
+		this._eaMembers = new ank.utils.();
+		this._eaTaxCollectors = new ank.utils.();
+		this._eaMountParks = new ank.utils.();
 	}
 	function __get__name()
 	{
@@ -106,9 +106,9 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		return this._eaHouses;
 	}
-	function __set__defendedTaxCollectorID(loc2)
+	function __set__defendedTaxCollectorID(var2)
 	{
-		this._nDefendedTaxCollectorID = loc2;
+		this._nDefendedTaxCollectorID = var2;
 		return this.__get__defendedTaxCollectorID();
 	}
 	function __get__defendedTaxCollectorID()
@@ -119,111 +119,113 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		return this._nDefendedTaxCollectorID != undefined;
 	}
-	function initialize(loc2, loc3, loc4, loc5, loc6, loc7)
+	function initialize(var2, var3, var4, var5, var6, var7)
 	{
-		this._sName = loc2;
-		this._nBackEmblemID = loc3;
-		this._nBackEmblemColor = loc4;
-		this._nUpEmblemID = loc5;
-		this._nUpEmblemColor = loc6;
-		this._grPlayerRights = new dofus.datacenter.(loc7);
+		this._sName = var2;
+		this._nBackEmblemID = var3;
+		this._nBackEmblemColor = var4;
+		this._nUpEmblemID = var5;
+		this._nUpEmblemColor = var6;
+		this._grPlayerRights = new dofus.datacenter.
+(var7);
 	}
-	function setGeneralInfos(loc2, loc3, loc4, loc5, loc6)
+	function setGeneralInfos(var2, var3, var4, var5, var6)
 	{
-		this._bValid = loc2;
-		this._nLevel = loc3;
-		this._nXPMin = loc4;
-		this._nXP = loc5;
-		this._nXPMax = loc6;
+		this._bValid = var2;
+		this._nLevel = var3;
+		this._nXPMin = var4;
+		this._nXP = var5;
+		this._nXPMax = var6;
 		this.dispatchEvent({type:"modelChanged",eventName:"general"});
 	}
 	function setMembers()
 	{
 		this.dispatchEvent({type:"modelChanged",eventName:"members"});
 	}
-	function setMountParks(loc2, loc3)
+	function setMountParks(var2, var3)
 	{
-		this._nMaxMountParks = loc2;
-		this._eaMountParks = loc3;
+		this._nMaxMountParks = var2;
+		this._eaMountParks = var3;
 		this.dispatchEvent({type:"modelChanged",eventName:"mountParks"});
 	}
-	function setBoosts(loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12)
+	function setBoosts(var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12)
 	{
-		this._nTaxCount = loc2;
-		this._nTaxCountMax = loc3;
-		this._nTaxLP = loc4;
-		this._nTaxBonusDamage = loc5;
-		this._nTaxPods = loc6;
-		this._nTaxPP = loc7;
-		this._nTaxSagesse = loc8;
-		this._nTaxPercepteur = loc9;
-		this._nBoostPoints = loc10;
-		this._nTaxHireCost = loc11;
-		this._eaTaxSpells = loc12;
+		this._nTaxCount = var2;
+		this._nTaxCountMax = var3;
+		this._nTaxLP = var4;
+		this._nTaxBonusDamage = var5;
+		this._nTaxPods = var6;
+		this._nTaxPP = var7;
+		this._nTaxSagesse = var8;
+		this._nTaxPercepteur = var9;
+		this._nBoostPoints = var10;
+		this._nTaxHireCost = var11;
+		this._eaTaxSpells = var12;
 		this.dispatchEvent({type:"modelChanged",eventName:"boosts"});
 	}
 	function setNoBoosts()
 	{
 		this.dispatchEvent({type:"modelChanged",eventName:"noboosts"});
 	}
-	function canBoost(loc2, loc3)
+	function canBoost(var2, var3)
 	{
-		var loc4 = this.getBoostCostAndCountForCharacteristic(loc2,loc3).cost;
-		if(this._nBoostPoints >= loc4 && loc4 != undefined)
+		var var4 = this.getBoostCostAndCountForCharacteristic(var2,var3).cost;
+		if(this._nBoostPoints >= var4 && var4 != undefined)
 		{
 			return true;
 		}
 		return false;
 	}
-	function getBoostCostAndCountForCharacteristic(loc2, loc3)
+	function getBoostCostAndCountForCharacteristic(var2, var3)
 	{
-		var loc4 = this.api.lang.getGuildBoosts(loc2);
-		var loc5 = 1;
-		var loc6 = 1;
-		var loc7 = 0;
-		switch(loc2)
+		var var4 = this.api.lang.getGuildBoosts(var2);
+		var var5 = 1;
+		var var6 = 1;
+		var var7 = 0;
+		switch(var2)
 		{
 			case "w":
-				loc7 = this._nTaxPods;
+				var7 = this._nTaxPods;
 				break;
 			case "p":
-				loc7 = this._nTaxPP;
+				var7 = this._nTaxPP;
 				break;
 			case "c":
-				loc7 = this._nTaxPercepteur;
+				var7 = this._nTaxPercepteur;
+				break;
+			case "x":
+				var7 = this._nTaxSagesse;
 				break;
 			default:
-				switch(null)
+				if(var0 !== "s")
 				{
-					case "x":
-						loc7 = this._nTaxSagesse;
-						break;
-					case "s":
-						var loc8 = this._eaTaxSpells.findFirstItem("ID",loc3);
-						if(loc8 != -1)
-						{
-							loc7 = loc8.item.level;
-							break;
-						}
+					break;
 				}
-		}
-		var loc9 = this.api.lang.getGuildBoostsMax(loc2);
-		if(loc7 < loc9)
-		{
-			var loc10 = 0;
-			while(loc10 < loc4.length)
-			{
-				var loc11 = loc4[loc10][0];
-				if(loc7 >= loc11)
+				var var8 = this._eaTaxSpells.findFirstItem("ID",var3);
+				if(var8 != -1)
 				{
-					loc5 = loc4[loc10][1];
-					loc6 = loc4[loc10][2] != undefined?loc4[loc10][2]:1;
-					loc10 = loc10 + 1;
+					var7 = var8.item.level;
+					break;
+				}
+				break;
+		}
+		var var9 = this.api.lang.getGuildBoostsMax(var2);
+		if(var7 < var9)
+		{
+			var var10 = 0;
+			while(var10 < var4.length)
+			{
+				var var11 = var4[var10][0];
+				if(var7 >= var11)
+				{
+					var5 = var4[var10][1];
+					var6 = var4[var10][2] != undefined?var4[var10][2]:1;
+					var10 = var10 + 1;
 					continue;
 				}
 				break;
 			}
-			return {cost:loc5,count:loc6};
+			return {cost:var5,count:var6};
 		}
 		return null;
 	}
@@ -235,14 +237,14 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		this.dispatchEvent({type:"modelChanged",eventName:"notaxcollectors"});
 	}
-	function setHouses(loc2)
+	function setHouses(var2)
 	{
-		this._eaHouses = loc2;
+		this._eaHouses = var2;
 		this.dispatchEvent({type:"modelChanged",eventName:"houses"});
 	}
 	function setNoHouses()
 	{
-		this._eaHouses = new ank.utils.();
+		this._eaHouses = new ank.utils.();
 		this.dispatchEvent({type:"modelChanged",eventName:"nohouses"});
 	}
 }

@@ -8,13 +8,13 @@ class dofus.graphics.gapi.core.DofusAdvancedComponent extends ank.gapi.core.UIAd
 	{
 		return _global.API;
 	}
-	function __set__api(loc2)
+	function __set__api(var2)
 	{
-		super.__set__api(loc3);
+		super.__set__api(var3);
 		return this.__get__api();
 	}
-	function init(loc2, loc3)
+	function init(var2, var3)
 	{
-		super.init(loc3,loc4);
+		super.init(var3,var4);
 	}
 }

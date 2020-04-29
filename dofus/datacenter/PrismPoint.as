@@ -1,10 +1,10 @@
 class dofus.datacenter.PrismPoint extends Object
 {
-	function PrismPoint(§\f\b§, cost, attackNear)
+	function PrismPoint(§\f\x06§, cost, attackNear)
 	{
 		super();
 		this.api = _global.API;
-		this._nMapId = loc3;
+		this._nMapId = var3;
 		this._nCost = cost;
 		this._atkNear = attackNear;
 	}
@@ -34,7 +34,7 @@ class dofus.datacenter.PrismPoint extends Object
 	}
 	function __get__name()
 	{
-		var loc2 = Number(this.api.lang.getMapText(this._nMapId).sa);
-		return String(this.api.lang.getMapSubAreaText(loc2).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(loc2).n:String(this.api.lang.getMapSubAreaText(loc2).n).substr(2);
+		var var2 = Number(this.api.lang.getMapText(this._nMapId).sa);
+		return String(this.api.lang.getMapSubAreaText(var2).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(var2).n:String(this.api.lang.getMapSubAreaText(var2).n).substr(2);
 	}
 }

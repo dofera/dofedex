@@ -10,9 +10,9 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 		this._lblNumChar._visible = false;
 		this._mcNumChar._visible = false;
 	}
-	function __set__serverID(loc2)
+	function __set__serverID(var2)
 	{
-		this._nServerID = loc2;
+		this._nServerID = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -25,22 +25,22 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 	}
 	function __get__server()
 	{
-		var loc2 = this.api.datacenter.Basics.aks_servers;
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var2 = this.api.datacenter.Basics.aks_servers;
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(loc2[loc3].id == this._nServerID)
+			if(var2[var3].id == this._nServerID)
 			{
-				return loc2[loc3];
+				return var2[var3];
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return undefined;
 	}
-	function __set__selected(loc2)
+	function __set__selected(var2)
 	{
-		this._bSelected = loc2;
-		this.updateSelected(!loc2?this.getStyle().overcolor:this.getStyle().selectedcolor);
+		this._bSelected = var2;
+		this.updateSelected(!var2?this.getStyle().overcolor:this.getStyle().selectedcolor);
 		return this.__get__selected();
 	}
 	function __get__selected()
@@ -102,44 +102,44 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 	}
 	function updateData()
 	{
-		var loc2 = this.server;
-		var loc3 = 0;
-		while(loc3 < dofus.graphics.gapi.controls.ChooseServerSprite.MAX_CHARS_DISPLAYED + 1)
+		var var2 = this.server;
+		var var3 = 0;
+		while(var3 < dofus.graphics.gapi.controls.ChooseServerSprite.MAX_CHARS_DISPLAYED + 1)
 		{
-			this["Bonhomme" + loc3].removeMovieClip();
-			loc3 = loc3 + 1;
+			this["Bonhomme" + var3].removeMovieClip();
+			var3 = var3 + 1;
 		}
 		this._lblNumChar._visible = false;
 		this._mcNumChar._visible = false;
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._lblName.text = loc2.label;
-			var loc4 = loc2.charactersCount;
-			if(loc4 <= dofus.graphics.gapi.controls.ChooseServerSprite.MAX_CHARS_DISPLAYED)
+			this._lblName.text = var2.label;
+			var var4 = var2.charactersCount;
+			if(var4 <= dofus.graphics.gapi.controls.ChooseServerSprite.MAX_CHARS_DISPLAYED)
 			{
-				var loc5 = 3;
-				var loc6 = (112 - loc4 * (14.5 + loc5)) / 2;
-				var loc7 = loc6;
-				var loc8 = 165;
-				var loc9 = 0;
-				while(loc9 < loc4)
+				var var5 = 3;
+				var var6 = (112 - var4 * (14.5 + var5)) / 2;
+				var var7 = var6;
+				var var8 = 165;
+				var var9 = 0;
+				while(var9 < var4)
 				{
-					var loc10 = this.attachMovie("Bonhomme","Bonhomme" + loc9,loc9,{_x:loc7,_y:loc8});
-					loc7 = loc7 + (loc5 + 14.5);
-					loc9 = loc9 + 1;
+					var var10 = this.attachMovie("Bonhomme","Bonhomme" + var9,var9,{_x:var7,_y:var8});
+					var7 = var7 + (var5 + 14.5);
+					var9 = var9 + 1;
 				}
 			}
 			else
 			{
 				this._lblNumChar._visible = true;
 				this._mcNumChar._visible = true;
-				this._lblNumChar.text = "x" + loc4;
+				this._lblNumChar.text = "x" + var4;
 			}
-			this._lblState.text = loc2.stateStrShort;
+			this._lblState.text = var2.stateStrShort;
 			this._ldrSprite.forceReload = true;
-			this._ldrSprite.contentPath = dofus.Constants.SERVER_SYMBOL_PATH + loc2.id + ".swf";
-			this.enabled = loc2.state == dofus.datacenter.Server.SERVER_ONLINE;
-			this._ctrServerState.contentPath = loc2.state != dofus.datacenter.Server.SERVER_ONLINE?"NewCross":"NewValid";
+			this._ldrSprite.contentPath = dofus.Constants.SERVER_SYMBOL_PATH + var2.id + ".swf";
+			this.enabled = var2.state == dofus.datacenter.Server.SERVER_ONLINE;
+			this._ctrServerState.contentPath = var2.state != dofus.datacenter.Server.SERVER_ONLINE?"NewCross":"NewValid";
 		}
 		else if(this._lblName.text != undefined)
 		{
@@ -150,7 +150,7 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 			this.enabled = false;
 		}
 	}
-	function updateSelected(loc2)
+	function updateSelected(var2)
 	{
 		if(this._bSelected || this._bOver && this._bEnabled)
 		{
@@ -163,11 +163,11 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 			this._mcSelect._visible = false;
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.clip;
+		var var3 = var2.clip;
 	}
-	function error(loc2)
+	function error(var2)
 	{
 		this._ldrSprite.forceReload = true;
 		this._ldrSprite.contentPath = dofus.Constants.SERVER_SYMBOL_PATH + "0.swf";
@@ -187,18 +187,18 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 		this._bOver = false;
 		this.updateSelected(this.getStyle().selectedcolor);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target) === this._ctrServerState)
+		if((var var0 = var2.target) === this._ctrServerState)
 		{
 			this.gapi.showTooltip(this.server.stateStr,_root._xmouse,_root._ymouse - 20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		this.updateData();
 		this.dispatchEvent({type:"unselect"});

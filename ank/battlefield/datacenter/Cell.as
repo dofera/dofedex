@@ -24,61 +24,61 @@ class ank.battlefield.datacenter.Cell extends Object
 	}
 	function __get__isTrigger()
 	{
-		var loc2 = false;
-		var loc3 = 0;
-		while(loc3 < dofus.Constants.MAP_TRIGGER_LAYEROBJECTS.length)
+		var var2 = false;
+		var var3 = 0;
+		while(var3 < dofus.Constants.MAP_TRIGGER_LAYEROBJECTS.length)
 		{
-			var loc4 = dofus.Constants.MAP_TRIGGER_LAYEROBJECTS[loc3];
-			if(this.layerObject1Num == loc4 || this.layerObject2Num == loc4)
+			var var4 = dofus.Constants.MAP_TRIGGER_LAYEROBJECTS[var3];
+			if(this.layerObject1Num == var4 || this.layerObject2Num == var4)
 			{
-				loc2 = true;
+				var2 = true;
 				break;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__isUnwalkableLayerObject()
 	{
-		var loc2 = false;
-		var loc3 = 0;
-		while(loc3 < dofus.Constants.MAP_UNWALKABLE_LAYEROBJECTS.length)
+		var var2 = false;
+		var var3 = 0;
+		while(var3 < dofus.Constants.MAP_UNWALKABLE_LAYEROBJECTS.length)
 		{
-			var loc4 = dofus.Constants.MAP_UNWALKABLE_LAYEROBJECTS[loc3];
-			if(this.layerObject1Num == loc4 || this.layerObject2Num == loc4)
+			var var4 = dofus.Constants.MAP_UNWALKABLE_LAYEROBJECTS[var3];
+			if(this.layerObject1Num == var4 || this.layerObject2Num == var4)
 			{
-				loc2 = true;
+				var2 = true;
 				break;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__isTactic()
 	{
-		var loc2 = false;
+		var var2 = false;
 		if(this.layerGroundNum == 0 && (this.groundSlope == 1 && (this.layerObject2Num == 0 || (this.layerObject2Num == 25 || this.layerObject2Num == 1030))))
 		{
 			if(!this.lineOfSight)
 			{
 				if(this.layerObject1Num == 10000)
 				{
-					loc2 = true;
+					var2 = true;
 				}
 			}
 			else if(this.movement == 0 || this.movement == 1)
 			{
 				if(this.layerObject1Num == 10002)
 				{
-					loc2 = true;
+					var2 = true;
 				}
 			}
 			else if(this.layerObject1Num == 10001)
 			{
-				loc2 = true;
+				var2 = true;
 			}
 		}
-		return loc2;
+		return var2;
 	}
 	function addSpriteOnID(sID)
 	{
@@ -112,12 +112,12 @@ class ank.battlefield.datacenter.Cell extends Object
 	}
 	function __get__spriteOnCount()
 	{
-		var loc2 = 0;
+		var var2 = 0;
 		for(var k in this.allSpritesOn)
 		{
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__spriteOnID()
 	{
@@ -151,7 +151,7 @@ class ank.battlefield.datacenter.Cell extends Object
 	}
 	function turnTactic()
 	{
-		var loc2 = this.isTrigger;
+		var var2 = this.isTrigger;
 		if(this.nPermanentLevel == 0)
 		{
 			this.nPermanentLevel = 1;
@@ -173,7 +173,7 @@ class ank.battlefield.datacenter.Cell extends Object
 		}
 		if(this.layerObject2Num != 25)
 		{
-			if(loc2)
+			if(var2)
 			{
 				this.layerObject2Num = 1030;
 			}

@@ -12,32 +12,32 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		return this._nFileOutput;
 	}
-	function __set__fileOutput(loc2)
+	function __set__fileOutput(var2)
 	{
-		this._nFileOutput = loc2;
+		this._nFileOutput = var2;
 		return this.__get__fileOutput();
 	}
-	function setPrompt(loc2)
+	function setPrompt(var2)
 	{
 		if(this._lblPrompt.text == undefined)
 		{
 			return undefined;
 		}
-		this._lblPrompt.text = loc2 + " > ";
+		this._lblPrompt.text = var2 + " > ";
 		this._tiCommandLine._x = this._lblPrompt._x + this._lblPrompt.textWidth + 2;
 		this._lblPrompt.setPreferedSize("left");
 	}
-	function setLogsText(loc2)
+	function setLogsText(var2)
 	{
 		if(this._cLogs.text == undefined)
 		{
 			return undefined;
 		}
-		this._cLogs.text = loc2;
+		this._cLogs.text = var2;
 	}
-	function __set__command(loc2)
+	function __set__command(var2)
 	{
-		this._sCommand = loc2;
+		this._sCommand = var2;
 		if(this.initialized)
 		{
 			this.initCommand();
@@ -121,7 +121,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 	}
 	function applySizeIndex()
 	{
-		if((var loc0 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex")) !== 0)
+		if((var var0 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex")) !== 0)
 		{
 			switch(null)
 			{
@@ -144,43 +144,43 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 		this._srLogsBack.setSize(undefined,20);
 		this._srCommandLineBack._y = this._tiCommandLine._y = this._lblPrompt._y = this._cLogs._y;
 	}
-	function maximize(loc2)
+	function maximize(var2)
 	{
 		this._cLogs._visible = true;
-		this._cLogs.setSize(undefined,loc2);
-		this._srLogsBack.setSize(undefined,loc2 + 20);
-		this._srCommandLineBack._y = this._tiCommandLine._y = this._lblPrompt._y = this._cLogs._y + loc2;
+		this._cLogs.setSize(undefined,var2);
+		this._srLogsBack.setSize(undefined,var2 + 20);
+		this._srCommandLineBack._y = this._tiCommandLine._y = this._lblPrompt._y = this._cLogs._y + var2;
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		var loc3 = true;
-		switch(loc2)
+		var var3 = true;
+		switch(var2)
 		{
 			case "HISTORY_UP":
 				this._tiCommandLine.text = this.api.kernel.DebugConsole.getHistoryUp().value;
 				this.addToQueue({object:this,method:this.placeCursorAtTheEnd});
-				loc3 = false;
+				var3 = false;
 				break;
 			case "HISTORY_DOWN":
 				this._tiCommandLine.text = this.api.kernel.DebugConsole.getHistoryDown().value;
 				this.addToQueue({object:this,method:this.placeCursorAtTheEnd});
-				loc3 = false;
+				var3 = false;
 				break;
 			case "TEAM_MESSAGE":
-				var loc4 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex") + 1;
-				loc4 = loc4 % 3;
-				this.api.kernel.OptionsManager.setOption("DebugSizeIndex",loc4);
+				var var4 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex") + 1;
+				var4 = var4 % 3;
+				this.api.kernel.OptionsManager.setOption("DebugSizeIndex",var4);
 				this.applySizeIndex();
 				break;
 			default:
-				if(loc0 !== "ACCEPT_CURRENT_DIALOG")
+				if(var0 !== "ACCEPT_CURRENT_DIALOG")
 				{
 					break;
 				}
 				if(this._tiCommandLine.focused)
 				{
-					var loc5 = this._tiCommandLine.text;
-					if(loc5.length == 0)
+					var var5 = this._tiCommandLine.text;
+					if(var5.length == 0)
 					{
 						return true;
 					}
@@ -188,20 +188,20 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 					{
 						this._tiCommandLine.text = "";
 					}
-					this.api.kernel.DebugConsole.process(loc5);
+					this.api.kernel.DebugConsole.process(var5);
 				}
 				else
 				{
 					this._tiCommandLine.setFocus();
 				}
-				loc3 = false;
+				var3 = false;
 				break;
 		}
-		return loc3;
+		return var3;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnClose:
 				this.callClose();
@@ -209,40 +209,38 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 			case this._btnClear:
 				this.clear();
 				break;
-			default:
-				switch(null)
-				{
-					case this._btnCopy:
-						System.setClipboard(this._cLogs.text);
-						break;
-					case this._btnMinimize:
-						this.changeSize();
-				}
+			case this._btnCopy:
+				System.setClipboard(this._cLogs.text);
+				break;
+			case this._btnMinimize:
+				this.changeSize();
 		}
 	}
 	function changeSize()
 	{
-		var loc2 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex") + 1;
-		loc2 = loc2 % 3;
-		this.api.kernel.OptionsManager.setOption("DebugSizeIndex",loc2);
+		var var2 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex") + 1;
+		var2 = var2 % 3;
+		this.api.kernel.OptionsManager.setOption("DebugSizeIndex",var2);
 		this.applySizeIndex();
 	}
-	function href(loc2)
+	function href(var2)
 	{
-		var loc3 = loc2.params.split(",");
-		switch(loc3[0])
+		var var3 = var2.params.split(",");
+		if((var var0 = var3[0]) !== "ShowPlayerPopupMenu")
 		{
-			case "ShowPlayerPopupMenu":
-				this.api.kernel.GameManager.showPlayerPopupMenu(undefined,_global.unescape(loc3[1]));
-				break;
-			case "ExecCmd":
-				this._tiCommandLine.text = _global.unescape(loc3[1]);
-				if(loc3[2] == "true" || loc3[2] == true)
+			if(var0 === "ExecCmd")
+			{
+				this._tiCommandLine.text = _global.unescape(var3[1]);
+				if(var3[2] == "true" || var3[2] == true)
 				{
 					this._tiCommandLine.setFocus();
 					this.onShortcut("ACCEPT_CURRENT_DIALOG");
-					break;
 				}
+			}
+		}
+		else
+		{
+			this.api.kernel.GameManager.showPlayerPopupMenu(undefined,_global.unescape(var3[1]));
 		}
 	}
 }

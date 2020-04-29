@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.QuestStepListViewer extends dofus.graphics.ga
 	{
 		super();
 	}
-	function __set__steps(loc2)
+	function __set__steps(var2)
 	{
-		this._eaSteps = loc2;
+		this._eaSteps = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -37,22 +37,22 @@ class dofus.graphics.gapi.controls.QuestStepListViewer extends dofus.graphics.ga
 		if(this._eaSteps != undefined)
 		{
 			this._lstSteps.dataProvider = this._eaSteps;
-			var loc2 = 0;
-			while(loc2 < this._eaSteps.length)
+			var var2 = 0;
+			while(var2 < this._eaSteps.length)
 			{
-				if(this._eaSteps[loc2].isCurrent)
+				if(this._eaSteps[var2].isCurrent)
 				{
-					this._lstSteps.selectedIndex = loc2;
-					this._txtDescription.text = this._eaSteps[loc2].description;
+					this._lstSteps.selectedIndex = var2;
+					this._txtDescription.text = this._eaSteps[var2].description;
 					break;
 				}
-				loc2 = loc2 + 1;
+				var2 = var2 + 1;
 			}
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		var loc3 = loc2.row.item;
-		this._txtDescription.text = loc3.description;
+		var var3 = var2.row.item;
+		this._txtDescription.text = var3.description;
 	}
 }

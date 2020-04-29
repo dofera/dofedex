@@ -20,18 +20,18 @@ class ank.gapi.controls.ColorPicker extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__sliderOutWidth(loc2)
+	function __set__sliderOutWidth(var2)
 	{
-		this._nSliderOutWidth = Number(loc2);
+		this._nSliderOutWidth = Number(var2);
 		return this.__get__sliderOutWidth();
 	}
 	function __get__sliderOutWidth()
 	{
 		return this._nSliderOutWidth;
 	}
-	function __set__sliderInWidth(loc2)
+	function __set__sliderInWidth(var2)
 	{
-		this._nSliderInWidth = Number(loc2);
+		this._nSliderInWidth = Number(var2);
 		return this.__get__sliderInWidth();
 	}
 	function __get__sliderInWidth()
@@ -89,106 +89,106 @@ class ank.gapi.controls.ColorPicker extends ank.gapi.core.UIBasicComponent
 	}
 	function getGradientColor()
 	{
-		var loc2 = this._mcColorsCross._x / Math.floor(this._nColorsWidth);
-		var loc3 = Math.floor(loc2 * (ank.gapi.controls.ColorPicker.RATIOS_V.length - 1));
-		loc2 = loc2 * 255;
-		var loc4 = 255 * (1 - (ank.gapi.controls.ColorPicker.RATIOS_V[loc3 + 1] - loc2) / (ank.gapi.controls.ColorPicker.RATIOS_V[loc3 + 1] - ank.gapi.controls.ColorPicker.RATIOS_V[loc3]));
-		var loc5 = ank.gapi.controls.ColorPicker.COLORS_V[loc3];
-		var loc6 = ank.gapi.controls.ColorPicker.COLORS_V[loc3 + 1];
-		var loc7 = loc5 & 16711680;
-		var loc8 = loc5 & 65280;
-		var loc9 = loc5 & 255;
-		var loc10 = loc6 & 16711680;
-		var loc11 = loc6 & 65280;
-		var loc12 = loc6 & 255;
-		if(loc7 != loc10)
+		var var2 = this._mcColorsCross._x / Math.floor(this._nColorsWidth);
+		var var3 = Math.floor(var2 * (ank.gapi.controls.ColorPicker.RATIOS_V.length - 1));
+		var2 = var2 * 255;
+		var var4 = 255 * (1 - (ank.gapi.controls.ColorPicker.RATIOS_V[var3 + 1] - var2) / (ank.gapi.controls.ColorPicker.RATIOS_V[var3 + 1] - ank.gapi.controls.ColorPicker.RATIOS_V[var3]));
+		var var5 = ank.gapi.controls.ColorPicker.COLORS_V[var3];
+		var var6 = ank.gapi.controls.ColorPicker.COLORS_V[var3 + 1];
+		var var7 = var5 & 16711680;
+		var var8 = var5 & 65280;
+		var var9 = var5 & 255;
+		var var10 = var6 & 16711680;
+		var var11 = var6 & 65280;
+		var var12 = var6 & 255;
+		if(var7 != var10)
 		{
-			var loc13 = Math.round(loc7 <= loc10?loc4:255 - loc4);
+			var var13 = Math.round(var7 <= var10?var4:255 - var4);
 		}
 		else
 		{
-			loc13 = loc7 >> 16;
+			var13 = var7 >> 16;
 		}
-		if(loc8 != loc11)
+		if(var8 != var11)
 		{
-			var loc14 = Math.round(loc8 <= loc11?loc4:255 - loc4);
+			var var14 = Math.round(var8 <= var11?var4:255 - var4);
 		}
 		else
 		{
-			loc14 = loc8 >> 8;
+			var14 = var8 >> 8;
 		}
-		if(loc9 != loc12)
+		if(var9 != var12)
 		{
-			var loc15 = Math.round(loc9 <= loc12?loc4:255 - loc4);
+			var var15 = Math.round(var9 <= var12?var4:255 - var4);
 		}
 		else
 		{
-			loc15 = loc9;
+			var15 = var9;
 		}
-		var loc16 = this._mcColorsCross._y / this.__height * 255;
-		loc13 = loc13 + (127 - loc13) * loc16 / 255;
-		loc14 = loc14 + (127 - loc14) * loc16 / 255;
-		loc15 = loc15 + (127 - loc15) * loc16 / 255;
-		return (loc13 << 16) + (loc14 << 8) + loc15;
+		var var16 = this._mcColorsCross._y / this.__height * 255;
+		var13 = var13 + (127 - var13) * var16 / 255;
+		var14 = var14 + (127 - var14) * var16 / 255;
+		var15 = var15 + (127 - var15) * var16 / 255;
+		return (var13 << 16) + (var14 << 8) + var15;
 	}
-	function placeColorsCross(loc2, loc3)
+	function placeColorsCross(var2, var3)
 	{
-		this._mcColorsCross._x = loc2;
-		this._mcColorsCross._y = loc3;
+		this._mcColorsCross._x = var2;
+		this._mcColorsCross._y = var3;
 	}
-	function placeSliderCross(loc2, loc3)
+	function placeSliderCross(var2, var3)
 	{
-		this._mcSliderCross._x = loc2;
-		this._mcSliderCross._y = loc3;
+		this._mcSliderCross._x = var2;
+		this._mcSliderCross._y = var3;
 	}
-	function setColor(loc2)
+	function setColor(var2)
 	{
-		var loc3 = ((loc2 & 16711680) >> 16) / 255;
-		var loc4 = ((loc2 & 65280) >> 8) / 255;
-		var loc5 = (loc2 & 255) / 255;
-		var loc6 = Math.min(Math.min(loc3,loc4),loc5);
-		var loc7 = Math.max(Math.max(loc3,loc4),loc5);
-		var loc8 = loc7 - loc6;
-		var loc9 = Math.acos((loc3 - loc4 + (loc3 - loc5)) / 2 / Math.sqrt(Math.pow(loc3 - loc4,2) + (loc3 - loc5) * (loc4 - loc5)));
-		var loc10 = (loc7 + loc6) / 2;
-		var loc11 = loc10 >= 0.5?loc8 / (2 - loc7 - loc6):loc8 / (loc7 + loc6);
-		if(loc5 > loc4)
+		var var3 = ((var2 & 16711680) >> 16) / 255;
+		var var4 = ((var2 & 65280) >> 8) / 255;
+		var var5 = (var2 & 255) / 255;
+		var var6 = Math.min(Math.min(var3,var4),var5);
+		var var7 = Math.max(Math.max(var3,var4),var5);
+		var var8 = var7 - var6;
+		var var9 = Math.acos((var3 - var4 + (var3 - var5)) / 2 / Math.sqrt(Math.pow(var3 - var4,2) + (var3 - var5) * (var4 - var5)));
+		var var10 = (var7 + var6) / 2;
+		var var11 = var10 >= 0.5?var8 / (2 - var7 - var6):var8 / (var7 + var6);
+		if(var5 > var4)
 		{
-			loc9 = 2 * Math.PI - loc9;
+			var9 = 2 * Math.PI - var9;
 		}
-		var loc12 = Math.floor(loc9 / (2 * Math.PI) * this._nColorsWidth);
-		var loc13 = Math.floor((1 - Math.abs(loc11)) * this.__height);
-		var loc14 = Math.floor((1 - loc10) * this.__height);
-		if(_global.isNaN(loc12))
+		var var12 = Math.floor(var9 / (2 * Math.PI) * this._nColorsWidth);
+		var var13 = Math.floor((1 - Math.abs(var11)) * this.__height);
+		var var14 = Math.floor((1 - var10) * this.__height);
+		if(_global.isNaN(var12))
 		{
-			loc12 = 0;
+			var12 = 0;
 		}
-		this.placeColorsCross(loc12,loc13);
-		this.placeSliderCross(this._nSliderCenterX,loc14);
-		var loc15 = this.getGradientColor();
-		this._cSliderUpColor.setRGB(loc15);
-		this._nLastGradiantColor = loc15;
+		this.placeColorsCross(var12,var13);
+		this.placeSliderCross(this._nSliderCenterX,var14);
+		var var15 = this.getGradientColor();
+		this._cSliderUpColor.setRGB(var15);
+		this._nLastGradiantColor = var15;
 	}
 	function getColor()
 	{
-		var loc2 = 255 * (1 - this._mcSliderCross._y / Math.floor(this.__height) * 2);
-		var loc3 = (this._nLastGradiantColor & 16711680) >> 16;
-		var loc4 = (this._nLastGradiantColor & 65280) >> 8;
-		var loc5 = this._nLastGradiantColor & 255;
-		if(loc2 >= 0)
+		var var2 = 255 * (1 - this._mcSliderCross._y / Math.floor(this.__height) * 2);
+		var var3 = (this._nLastGradiantColor & 16711680) >> 16;
+		var var4 = (this._nLastGradiantColor & 65280) >> 8;
+		var var5 = this._nLastGradiantColor & 255;
+		if(var2 >= 0)
 		{
-			var loc6 = loc2 * (255 - loc3) / 255 + loc3;
-			var loc7 = loc2 * (255 - loc4) / 255 + loc4;
-			var loc8 = loc2 * (255 - loc5) / 255 + loc5;
+			var var6 = var2 * (255 - var3) / 255 + var3;
+			var var7 = var2 * (255 - var4) / 255 + var4;
+			var var8 = var2 * (255 - var5) / 255 + var5;
 		}
 		else
 		{
-			loc2 = loc2 * -1;
-			loc6 = Math.round(loc3 - loc3 * loc2 / 255);
-			loc7 = Math.round(loc4 - loc4 * loc2 / 255);
-			loc8 = Math.round(loc5 - loc5 * loc2 / 255);
+			var2 = var2 * -1;
+			var6 = Math.round(var3 - var3 * var2 / 255);
+			var7 = Math.round(var4 - var4 * var2 / 255);
+			var8 = Math.round(var5 - var5 * var2 / 255);
 		}
-		return Math.round((loc6 << 16) + (loc7 << 8) + loc8);
+		return Math.round((var6 << 16) + (var7 << 8) + var8);
 	}
 	function onStartColorsCrossMove()
 	{
@@ -221,9 +221,9 @@ class ank.gapi.controls.ColorPicker extends ank.gapi.core.UIBasicComponent
 	{
 		if(this._bMoveColorsCross)
 		{
-			var loc2 = this.getGradientColor();
-			this._cSliderUpColor.setRGB(loc2);
-			this._nLastGradiantColor = loc2;
+			var var2 = this.getGradientColor();
+			this._cSliderUpColor.setRGB(var2);
+			this._nLastGradiantColor = var2;
 			this.dispatchEvent({type:"change",value:this.getColor()});
 		}
 		if(this._bMoveSliderCross)

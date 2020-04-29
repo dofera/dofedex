@@ -5,13 +5,13 @@ class dofus.graphics.gapi.controls.SpellInfosViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__spell(loc2)
+	function __set__spell(var2)
 	{
-		if(loc2 == this._oSpell)
+		if(var2 == this._oSpell)
 		{
 			return undefined;
 		}
-		this._oSpell = loc2;
+		this._oSpell = var2;
 		if(this.initialized)
 		{
 			this.updateData();

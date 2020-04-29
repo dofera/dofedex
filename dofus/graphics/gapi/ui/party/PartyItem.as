@@ -13,13 +13,13 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 		}
 		return this.__get__data();
 	}
-	function __set__isFollowing(loc2)
+	function __set__isFollowing(var2)
 	{
-		this._bIsFollowing = loc2;
-		this._mcFollow._visible = loc2;
+		this._bIsFollowing = var2;
+		this._mcFollow._visible = var2;
 		return this.__get__isFollowing();
 	}
-	function __get__isInGroup(loc2)
+	function __get__isInGroup(var2)
 	{
 		return this._bIsInGroup;
 	}
@@ -29,8 +29,8 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 		{
 			return undefined;
 		}
-		var loc3 = oSprite.life.split(",");
-		this._mcHealth._yscale = loc3[0] / loc3[1] * 100;
+		var var3 = oSprite.life.split(",");
+		this._mcHealth._yscale = var3[0] / var3[1] * 100;
 		this._oSprite.life = oSprite.life;
 	}
 	function setData(oSprite)
@@ -50,26 +50,26 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 	}
 	function doReload(oSprite)
 	{
-		var loc3 = true;
+		var var3 = true;
 		if(this._oSprite.accessories && (oSprite.accessories.length == this._oSprite.accessories.length && oSprite.id == this._oSprite.id))
 		{
-			var loc4 = this._oSprite.accessories;
-			var loc5 = oSprite.accessories;
-			var loc6 = new Array();
-			var loc7 = new Array();
-			for(var i in loc4)
+			var var4 = this._oSprite.accessories;
+			var var5 = oSprite.accessories;
+			var var6 = new Array();
+			var var7 = new Array();
+			for(var i in var4)
 			{
-				loc6.push(loc4[i].unicID);
+				var6.push(var4[i].unicID);
 			}
-			for(var i in loc5)
+			for(var i in var5)
 			{
-				loc7.push(loc5[i].unicID);
+				var7.push(var5[i].unicID);
 			}
-			loc6.sort();
-			loc7.sort();
-			loc3 = !loc6 || loc6.join(",") != loc7.join(",");
+			var6.sort();
+			var7.sort();
+			var3 = !var6 || var6.join(",") != var7.join(",");
 		}
-		return loc3;
+		return var3;
 	}
 	function init()
 	{
@@ -129,43 +129,43 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 		this.api.network.Party.where();
 		this.api.ui.loadUIAutoHideComponent("MapExplorer","MapExplorer");
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.target.content;
-		loc3.attachMovie("staticR","anim",10);
-		loc3._xscale = -65;
-		loc3._yscale = 65;
+		var var3 = var2.target.content;
+		var3.attachMovie("staticR","anim",10);
+		var3._xscale = -65;
+		var3._yscale = 65;
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this._oSprite.life.split(",");
-		this._mcHealth._yscale = loc3[0] / loc3[1] * 100;
-		this.gapi.showTooltip(this._oSprite.name + "\n" + this.api.lang.getText("LEVEL") + " : " + this._oSprite.level + "\n" + this.api.lang.getText("LIFEPOINTS") + " : " + loc3[0] + " / " + loc3[1],loc2.target,30);
+		var var3 = this._oSprite.life.split(",");
+		this._mcHealth._yscale = var3[0] / var3[1] * 100;
+		this.gapi.showTooltip(this._oSprite.name + "\n" + this.api.lang.getText("LEVEL") + " : " + this._oSprite.level + "\n" + this.api.lang.getText("LIFEPOINTS") + " : " + var3[0] + " / " + var3[1],var2.target,30);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.api.kernel.GameManager.showPlayerPopupMenu(undefined,this._oSprite.name,this);
 	}
-	function addPartyMenuItems(loc2)
+	function addPartyMenuItems(var2)
 	{
-		loc2.addStaticItem(this.api.lang.getText("PARTY"));
-		loc2.addItem(this.api.lang.getText("PARTY_WHERE"),this,this.partyWhere,[]);
+		var2.addStaticItem(this.api.lang.getText("PARTY"));
+		var2.addItem(this.api.lang.getText("PARTY_WHERE"),this,this.partyWhere,[]);
 		if(this._oSprite.id == this.api.datacenter.Player.ID)
 		{
-			loc2.addItem(this.api.lang.getText("LEAVE_PARTY"),this.api.network.Party,this.api.network.Party.leave,[]);
+			var2.addItem(this.api.lang.getText("LEAVE_PARTY"),this.api.network.Party,this.api.network.Party.leave,[]);
 			if(this.isLocalPlayerLeader())
 			{
 				if(this._bIsFollowing)
 				{
-					loc2.addItem(this.api.lang.getText("PARTY_STOP_FOLLOW_ME_ALL"),this.api.network.Party,this.api.network.Party.followAll,[true,this._oSprite.id]);
+					var2.addItem(this.api.lang.getText("PARTY_STOP_FOLLOW_ME_ALL"),this.api.network.Party,this.api.network.Party.followAll,[true,this._oSprite.id]);
 				}
 				else
 				{
-					loc2.addItem(this.api.lang.getText("PARTY_FOLLOW_ME_ALL"),this.api.network.Party,this.api.network.Party.followAll,[false,this._oSprite.id]);
+					var2.addItem(this.api.lang.getText("PARTY_FOLLOW_ME_ALL"),this.api.network.Party,this.api.network.Party.followAll,[false,this._oSprite.id]);
 				}
 			}
 		}
@@ -175,24 +175,24 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 			{
 				if(this._bIsFollowing)
 				{
-					loc2.addItem(this.api.lang.getText("STOP_FOLLOW"),this.api.network.Party,this.api.network.Party.follow,[true,this._oSprite.id]);
+					var2.addItem(this.api.lang.getText("STOP_FOLLOW"),this.api.network.Party,this.api.network.Party.follow,[true,this._oSprite.id]);
 				}
 				else
 				{
-					loc2.addItem(this.api.lang.getText("FOLLOW"),this.api.network.Party,this.api.network.Party.follow,[false,this._oSprite.id]);
+					var2.addItem(this.api.lang.getText("FOLLOW"),this.api.network.Party,this.api.network.Party.follow,[false,this._oSprite.id]);
 				}
 			}
 			if(this.isLocalPlayerLeader())
 			{
 				if(this._bIsFollowing)
 				{
-					loc2.addItem(this.api.lang.getText("PARTY_STOP_FOLLOW_HIM_ALL"),this.api.network.Party,this.api.network.Party.followAll,[true,this._oSprite.id]);
+					var2.addItem(this.api.lang.getText("PARTY_STOP_FOLLOW_HIM_ALL"),this.api.network.Party,this.api.network.Party.followAll,[true,this._oSprite.id]);
 				}
 				else
 				{
-					loc2.addItem(this.api.lang.getText("PARTY_FOLLOW_HIM_ALL"),this.api.network.Party,this.api.network.Party.followAll,[false,this._oSprite.id]);
+					var2.addItem(this.api.lang.getText("PARTY_FOLLOW_HIM_ALL"),this.api.network.Party,this.api.network.Party.followAll,[false,this._oSprite.id]);
 				}
-				loc2.addItem(this.api.lang.getText("KICK_FROM_PARTY"),this.api.network.Party,this.api.network.Party.leave,[this._oSprite.id]);
+				var2.addItem(this.api.lang.getText("KICK_FROM_PARTY"),this.api.network.Party,this.api.network.Party.leave,[this._oSprite.id]);
 			}
 		}
 	}

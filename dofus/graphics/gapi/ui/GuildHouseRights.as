@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.GuildHouseRights extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__house(loc2)
+	function __set__house(var2)
 	{
-		this._hHouse = loc2;
+		this._hHouse = var2;
 		return this.__get__house();
 	}
 	function init()
@@ -77,53 +77,53 @@ class dofus.graphics.gapi.ui.GuildHouseRights extends dofus.graphics.gapi.core.D
 	}
 	function validate()
 	{
-		var loc2 = 0;
+		var var2 = 0;
 		if(this._btnShowEmblemForGuild.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_DOORSIGN_GUILD;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_DOORSIGN_GUILD;
 		}
 		if(this._btnShowEmblemForOthers.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_DOORSIGN_OTHERS;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_DOORSIGN_OTHERS;
 		}
 		if(this._btnAllowGuildToAccessHouse.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_ALLOWDOOR_GUILD;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_ALLOWDOOR_GUILD;
 		}
 		if(this._btnDenyOtherToAccessHouse.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_FORBIDDOOR_OTHERS;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_FORBIDDOOR_OTHERS;
 		}
 		if(this._btnAllowGuildToAccessSafes.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_ALLOWCHESTS_GUILD;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_ALLOWCHESTS_GUILD;
 		}
 		if(this._btnDenyOtherToAccessSafes.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_FORBIDCHESTS_OTHERS;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_FORBIDCHESTS_OTHERS;
 		}
 		if(this._btnAllowRespawn.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_RESPAWN;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_RESPAWN;
 		}
 		if(this._btnAllowTeleport.selected)
 		{
-			loc2 = loc2 + dofus.datacenter.House.GUILDSHARE_TELEPORT;
+			var2 = var2 + dofus.datacenter.House.GUILDSHARE_TELEPORT;
 		}
-		this.api.network.Houses.rights(loc2);
+		this.api.network.Houses.rights(var2);
 		this.unloadThis();
 	}
-	function guild(loc2)
+	function guild(var2)
 	{
 		this.update();
 	}
-	function shared(loc2)
+	function shared(var2)
 	{
 		this.update();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnEnableHouseSharing:
 				if(this._btnEnableHouseSharing.selected)
@@ -139,12 +139,12 @@ class dofus.graphics.gapi.ui.GuildHouseRights extends dofus.graphics.gapi.core.D
 				this.validate();
 				break;
 			default:
-				switch(null)
+				if(var0 !== this._btnCancel)
 				{
-					case this._btnClose:
-					case this._btnCancel:
-						this.unloadThis();
+					break;
 				}
+			case this._btnClose:
+				this.unloadThis();
 		}
 	}
 }

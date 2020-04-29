@@ -4,57 +4,57 @@ class dofus.graphics.gapi.ui.bigstore.BigStorePriceItem extends ank.gapi.core.UI
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function __set__row(loc2)
+	function __set__row(var2)
 	{
-		this._mcRow = loc2;
+		this._mcRow = var2;
 		return this.__get__row();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
 		delete this._nSelectedSet;
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			var loc5 = this._mcList._parent._parent.isThisPriceSelected(loc4.id,1);
-			var loc6 = this._mcList._parent._parent.isThisPriceSelected(loc4.id,2);
-			var loc7 = this._mcList._parent._parent.isThisPriceSelected(loc4.id,3);
-			if(loc5)
+			this._oItem = var4;
+			var var5 = this._mcList._parent._parent.isThisPriceSelected(var4.id,1);
+			var var6 = this._mcList._parent._parent.isThisPriceSelected(var4.id,2);
+			var var7 = this._mcList._parent._parent.isThisPriceSelected(var4.id,3);
+			if(var5)
 			{
-				var loc8 = this._btnPriceSet1;
+				var var8 = this._btnPriceSet1;
 			}
-			if(loc6)
+			if(var6)
 			{
-				loc8 = this._btnPriceSet2;
+				var8 = this._btnPriceSet2;
 			}
-			if(loc7)
+			if(var7)
 			{
-				loc8 = this._btnPriceSet3;
+				var8 = this._btnPriceSet3;
 			}
-			if(loc5 || (loc6 || loc7))
+			if(var5 || (var6 || var7))
 			{
-				var loc9 = this._btnBuy;
+				var var9 = this._btnBuy;
 			}
-			if(loc9 != undefined)
+			if(var9 != undefined)
 			{
-				this._mcList._parent._parent.setButtons(loc8,loc9);
+				this._mcList._parent._parent.setButtons(var8,var9);
 			}
-			this._btnPriceSet1.selected = loc5 && !_global.isNaN(loc4.priceSet1);
-			this._btnPriceSet2.selected = loc6 && !_global.isNaN(loc4.priceSet2);
-			this._btnPriceSet3.selected = loc7 && !_global.isNaN(loc4.priceSet3);
-			if(loc5)
+			this._btnPriceSet1.selected = var5 && !_global.isNaN(var4.priceSet1);
+			this._btnPriceSet2.selected = var6 && !_global.isNaN(var4.priceSet2);
+			this._btnPriceSet3.selected = var7 && !_global.isNaN(var4.priceSet3);
+			if(var5)
 			{
 				this._nSelectedSet = 1;
 			}
-			else if(loc6)
+			else if(var6)
 			{
 				this._nSelectedSet = 2;
 			}
-			else if(loc7)
+			else if(var7)
 			{
 				this._nSelectedSet = 3;
 			}
@@ -63,14 +63,14 @@ class dofus.graphics.gapi.ui.bigstore.BigStorePriceItem extends ank.gapi.core.UI
 			this._btnPriceSet1._visible = true;
 			this._btnPriceSet2._visible = true;
 			this._btnPriceSet3._visible = true;
-			this._btnPriceSet1.enabled = !_global.isNaN(loc4.priceSet1);
-			this._btnPriceSet2.enabled = !_global.isNaN(loc4.priceSet2);
-			this._btnPriceSet3.enabled = !_global.isNaN(loc4.priceSet3);
-			this._btnPriceSet1.label = !_global.isNaN(loc4.priceSet1)?new ank.utils.(loc4.priceSet1).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
-			this._btnPriceSet2.label = !_global.isNaN(loc4.priceSet2)?new ank.utils.(loc4.priceSet2).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
-			this._btnPriceSet3.label = !_global.isNaN(loc4.priceSet3)?new ank.utils.(loc4.priceSet3).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
-			this._ldrIcon.contentParams = loc4.item.params;
-			this._ldrIcon.contentPath = loc4.item.iconFile;
+			this._btnPriceSet1.enabled = !_global.isNaN(var4.priceSet1);
+			this._btnPriceSet2.enabled = !_global.isNaN(var4.priceSet2);
+			this._btnPriceSet3.enabled = !_global.isNaN(var4.priceSet3);
+			this._btnPriceSet1.label = !_global.isNaN(var4.priceSet1)?new ank.utils.(var4.priceSet1).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
+			this._btnPriceSet2.label = !_global.isNaN(var4.priceSet2)?new ank.utils.(var4.priceSet2).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
+			this._btnPriceSet3.label = !_global.isNaN(var4.priceSet3)?new ank.utils.(var4.priceSet3).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
+			this._ldrIcon.contentParams = var4.item.params;
+			this._ldrIcon.contentPath = var4.item.iconFile;
 		}
 		else if(this._ldrIcon.contentPath != undefined)
 		{
@@ -105,40 +105,41 @@ class dofus.graphics.gapi.ui.bigstore.BigStorePriceItem extends ank.gapi.core.UI
 	{
 		this._btnBuy.label = this._mcList.gapi.api.lang.getText("BUY");
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		loop0:
+		switch(var2.target._name)
 		{
+			default:
+				switch(null)
+				{
+					case "_btnPriceSet3":
+						break loop0;
+					case "_btnBuy":
+						if(!this._nSelectedSet || _global.isNaN(this._nSelectedSet))
+						{
+							this._btnBuy.enabled = false;
+							return undefined;
+						}
+						this._mcList._parent._parent.askBuy(this._oItem.item,this._nSelectedSet,this._oItem["priceSet" + this._nSelectedSet]);
+						this._mcList._parent._parent.askMiddlePrice(this._oItem.item);
+						break;
+				}
 			case "_btnPriceSet1":
 			case "_btnPriceSet2":
-			case "_btnPriceSet3":
-				var loc3 = Number(loc2.target._name.substr(12));
-				this._mcList._parent._parent.selectPrice(this._oItem,loc3,loc2.target,this._btnBuy);
-				if(loc2.target.selected)
-				{
-					this._nSelectedSet = loc3;
-					this._mcRow.select();
-					this._btnBuy.enabled = true;
-				}
-				else
-				{
-					delete this._nSelectedSet;
-					this._btnBuy.enabled = false;
-				}
-				break;
-			default:
-				if(loc0 !== "_btnBuy")
-				{
-					break;
-				}
-				if(!this._nSelectedSet || _global.isNaN(this._nSelectedSet))
-				{
-					this._btnBuy.enabled = false;
-					return undefined;
-				}
-				this._mcList._parent._parent.askBuy(this._oItem.item,this._nSelectedSet,this._oItem["priceSet" + this._nSelectedSet]);
-				this._mcList._parent._parent.askMiddlePrice(this._oItem.item);
-				break;
+		}
+		var var3 = Number(var2.target._name.substr(12));
+		this._mcList._parent._parent.selectPrice(this._oItem,var3,var2.target,this._btnBuy);
+		if(var2.target.selected)
+		{
+			this._nSelectedSet = var3;
+			this._mcRow.select();
+			this._btnBuy.enabled = true;
+		}
+		else
+		{
+			delete this._nSelectedSet;
+			this._btnBuy.enabled = false;
 		}
 	}
 }

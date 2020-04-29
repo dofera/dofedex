@@ -4,36 +4,36 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 	{
 		super();
 	}
-	static function uncompressMap(loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9)
+	static function uncompressMap(var2, var3, var4, var5, var6, var7, var8, var9)
 	{
-		if(loc8 == undefined)
+		if(var8 == undefined)
 		{
 			return undefined;
 		}
-		var loc10 = new Array();
-		var loc11 = loc7.length;
-		var loc13 = 0;
-		var loc14 = 0;
-		while(loc14 < loc11)
+		var var10 = new Array();
+		var var11 = var7.length;
+		var var13 = 0;
+		var var14 = 0;
+		while(var14 < var11)
 		{
-			var loc12 = ank.battlefield.utils.Compressor.uncompressCell(loc7.substring(loc14,loc14 + 10),loc9,0);
-			loc12.num = loc13;
-			loc10.push(loc12);
-			loc13 = loc13 + 1;
-			loc14 = loc14 + 10;
+			var var12 = ank.battlefield.utils.Compressor.uncompressCell(var7.substring(var14,var14 + 10),var9,0);
+			var12.num = var13;
+			var10.push(var12);
+			var13 = var13 + 1;
+			var14 = var14 + 10;
 		}
-		loc8.id = Number(loc2);
-		loc8.name = loc3;
-		loc8.width = Number(loc4);
-		loc8.height = Number(loc5);
-		loc8.backgroundNum = loc6;
-		loc8.data = loc10;
+		var8.id = Number(var2);
+		var8.name = var3;
+		var8.width = Number(var4);
+		var8.height = Number(var5);
+		var8.backgroundNum = var6;
+		var8.data = var10;
 	}
-	static function uncompressCell(§\x1e\x14\x19§, §\x1a\x07§, nPermanentLevel)
+	static function uncompressCell(§\x1e\x14\x17§, §\x1a\x06§, nPermanentLevel)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = false;
+			var3 = false;
 		}
 		if(nPermanentLevel == undefined)
 		{
@@ -43,186 +43,186 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		{
 			nPermanentLevel = Number(nPermanentLevel);
 		}
-		var loc5 = new ank.battlefield.datacenter.();
-		var loc6 = loc2.split("");
-		var loc7 = loc6.length - 1;
-		var loc8 = new Array();
-		while(loc7 >= 0)
+		var var5 = new ank.battlefield.datacenter.();
+		var var6 = var2.split("");
+		var var7 = var6.length - 1;
+		var var8 = new Array();
+		while(var7 >= 0)
 		{
-			loc8[loc7] = ank.utils.Compressor._self._hashCodes[loc6[loc7]];
-			loc7 = loc7 - 1;
+			var8[var7] = ank.utils.Compressor._self._hashCodes[var6[var7]];
+			var7 = var7 - 1;
 		}
-		loc5.active = !((loc8[0] & 32) >> 5)?false:true;
-		if(loc5.active || loc3)
+		var5.active = !((var8[0] & 32) >> 5)?false:true;
+		if(var5.active || var3)
 		{
-			loc5.nPermanentLevel = nPermanentLevel;
-			loc5.lineOfSight = !(loc8[0] & 1)?false:true;
-			loc5.layerGroundRot = (loc8[1] & 48) >> 4;
-			loc5.groundLevel = loc8[1] & 15;
-			loc5.movement = (loc8[2] & 56) >> 3;
-			loc5.layerGroundNum = ((loc8[0] & 24) << 6) + ((loc8[2] & 7) << 6) + loc8[3];
-			loc5.groundSlope = (loc8[4] & 60) >> 2;
-			loc5.layerGroundFlip = !((loc8[4] & 2) >> 1)?false:true;
-			loc5.layerObject1Num = ((loc8[0] & 4) << 11) + ((loc8[4] & 1) << 12) + (loc8[5] << 6) + loc8[6];
-			loc5.layerObject1Rot = (loc8[7] & 48) >> 4;
-			loc5.layerObject1Flip = !((loc8[7] & 8) >> 3)?false:true;
-			loc5.layerObject2Flip = !((loc8[7] & 4) >> 2)?false:true;
-			loc5.layerObject2Interactive = !((loc8[7] & 2) >> 1)?false:true;
-			loc5.layerObject2Num = ((loc8[0] & 2) << 12) + ((loc8[7] & 1) << 12) + (loc8[8] << 6) + loc8[9];
-			loc5.layerObjectExternal = "";
-			loc5.layerObjectExternalInteractive = false;
+			var5.nPermanentLevel = nPermanentLevel;
+			var5.lineOfSight = !(var8[0] & 1)?false:true;
+			var5.layerGroundRot = (var8[1] & 48) >> 4;
+			var5.groundLevel = var8[1] & 15;
+			var5.movement = (var8[2] & 56) >> 3;
+			var5.layerGroundNum = ((var8[0] & 24) << 6) + ((var8[2] & 7) << 6) + var8[3];
+			var5.groundSlope = (var8[4] & 60) >> 2;
+			var5.layerGroundFlip = !((var8[4] & 2) >> 1)?false:true;
+			var5.layerObject1Num = ((var8[0] & 4) << 11) + ((var8[4] & 1) << 12) + (var8[5] << 6) + var8[6];
+			var5.layerObject1Rot = (var8[7] & 48) >> 4;
+			var5.layerObject1Flip = !((var8[7] & 8) >> 3)?false:true;
+			var5.layerObject2Flip = !((var8[7] & 4) >> 2)?false:true;
+			var5.layerObject2Interactive = !((var8[7] & 2) >> 1)?false:true;
+			var5.layerObject2Num = ((var8[0] & 2) << 12) + ((var8[7] & 1) << 12) + (var8[8] << 6) + var8[9];
+			var5.layerObjectExternal = "";
+			var5.layerObjectExternalInteractive = false;
 		}
-		return loc5;
+		return var5;
 	}
-	static function compressMap(loc2)
+	static function compressMap(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		var loc3 = new Array();
-		var loc4 = loc2.data;
-		var loc5 = loc4.length;
-		var loc6 = 0;
-		while(loc6 < loc5)
+		var var3 = new Array();
+		var var4 = var2.data;
+		var var5 = var4.length;
+		var var6 = 0;
+		while(var6 < var5)
 		{
-			loc3.push(ank.battlefield.utils.Compressor.compressCell(loc4[loc6]));
-			loc6 = loc6 + 1;
+			var3.push(ank.battlefield.utils.Compressor.compressCell(var4[var6]));
+			var6 = var6 + 1;
 		}
-		return loc3.join("");
+		return var3.join("");
 	}
-	static function compressCell(loc2)
+	static function compressCell(var2)
 	{
-		var loc4 = new Array(0,0,0,0,0,0,0,0,0,0);
-		loc4[0] = (!loc2.active?0:1) << 5;
-		loc4[0] = loc4[0] | (!loc2.lineOfSight?0:1);
-		loc4[0] = loc4[0] | (loc2.layerGroundNum & 1536) >> 6;
-		loc4[0] = loc4[0] | (loc2.layerObject1Num & 8192) >> 11;
-		loc4[0] = loc4[0] | (loc2.layerObject2Num & 8192) >> 12;
-		loc4[1] = (loc2.layerGroundRot & 3) << 4;
-		loc4[1] = loc4[1] | loc2.groundLevel & 15;
-		loc4[2] = (loc2.movement & 7) << 3;
-		loc4[2] = loc4[2] | loc2.layerGroundNum >> 6 & 7;
-		loc4[3] = loc2.layerGroundNum & 63;
-		loc4[4] = (loc2.groundSlope & 15) << 2;
-		loc4[4] = loc4[4] | (!loc2.layerGroundFlip?0:1) << 1;
-		loc4[4] = loc4[4] | loc2.layerObject1Num >> 12 & 1;
-		loc4[5] = loc2.layerObject1Num >> 6 & 63;
-		loc4[6] = loc2.layerObject1Num & 63;
-		loc4[7] = (loc2.layerObject1Rot & 3) << 4;
-		loc4[7] = loc4[7] | (!loc2.layerObject1Flip?0:1) << 3;
-		loc4[7] = loc4[7] | (!loc2.layerObject2Flip?0:1) << 2;
-		loc4[7] = loc4[7] | (!loc2.layerObject2Interactive?0:1) << 1;
-		loc4[7] = loc4[7] | loc2.layerObject2Num >> 12 & 1;
-		loc4[8] = loc2.layerObject2Num >> 6 & 63;
-		loc4[9] = loc2.layerObject2Num & 63;
-		var loc5 = loc4.length - 1;
-		while(loc5 >= 0)
+		var var4 = new Array(0,0,0,0,0,0,0,0,0,0);
+		var4[0] = (!var2.active?0:1) << 5;
+		var4[0] = var4[0] | (!var2.lineOfSight?0:1);
+		var4[0] = var4[0] | (var2.layerGroundNum & 1536) >> 6;
+		var4[0] = var4[0] | (var2.layerObject1Num & 8192) >> 11;
+		var4[0] = var4[0] | (var2.layerObject2Num & 8192) >> 12;
+		var4[1] = (var2.layerGroundRot & 3) << 4;
+		var4[1] = var4[1] | var2.groundLevel & 15;
+		var4[2] = (var2.movement & 7) << 3;
+		var4[2] = var4[2] | var2.layerGroundNum >> 6 & 7;
+		var4[3] = var2.layerGroundNum & 63;
+		var4[4] = (var2.groundSlope & 15) << 2;
+		var4[4] = var4[4] | (!var2.layerGroundFlip?0:1) << 1;
+		var4[4] = var4[4] | var2.layerObject1Num >> 12 & 1;
+		var4[5] = var2.layerObject1Num >> 6 & 63;
+		var4[6] = var2.layerObject1Num & 63;
+		var4[7] = (var2.layerObject1Rot & 3) << 4;
+		var4[7] = var4[7] | (!var2.layerObject1Flip?0:1) << 3;
+		var4[7] = var4[7] | (!var2.layerObject2Flip?0:1) << 2;
+		var4[7] = var4[7] | (!var2.layerObject2Interactive?0:1) << 1;
+		var4[7] = var4[7] | var2.layerObject2Num >> 12 & 1;
+		var4[8] = var2.layerObject2Num >> 6 & 63;
+		var4[9] = var2.layerObject2Num & 63;
+		var var5 = var4.length - 1;
+		while(var5 >= 0)
 		{
-			loc4[loc5] = ank.utils.Compressor.encode64(loc4[loc5]);
-			loc5 = loc5 - 1;
+			var4[var5] = ank.utils.Compressor.encode64(var4[var5]);
+			var5 = var5 - 1;
 		}
-		var loc3 = loc4.join("");
-		return loc3;
+		var var3 = var4.join("");
+		return var3;
 	}
-	static function compressPath(loc2, loc3)
+	static function compressPath(var2, var3)
 	{
-		var loc4 = new String();
-		var loc5 = ank.battlefield.utils.Compressor.makeLightPath(loc2,loc3);
-		var loc11 = loc5.length;
-		var loc6 = 0;
-		while(loc6 < loc11)
+		var var4 = new String();
+		var var5 = ank.battlefield.utils.Compressor.makeLightPath(var2,var3);
+		var var11 = var5.length;
+		var var6 = 0;
+		while(var6 < var11)
 		{
-			var loc7 = loc5[loc6];
-			var loc8 = loc7.dir & 7;
-			var loc9 = (loc7.num & 4032) >> 6;
-			var loc10 = loc7.num & 63;
-			loc4 = loc4 + ank.utils.Compressor.encode64(loc8);
-			loc4 = loc4 + ank.utils.Compressor.encode64(loc9);
-			loc4 = loc4 + ank.utils.Compressor.encode64(loc10);
-			loc6 = loc6 + 1;
+			var var7 = var5[var6];
+			var var8 = var7.dir & 7;
+			var var9 = (var7.num & 4032) >> 6;
+			var var10 = var7.num & 63;
+			var4 = var4 + ank.utils.Compressor.encode64(var8);
+			var4 = var4 + ank.utils.Compressor.encode64(var9);
+			var4 = var4 + ank.utils.Compressor.encode64(var10);
+			var6 = var6 + 1;
 		}
-		return loc4;
+		return var4;
 	}
-	static function makeLightPath(loc2, loc3)
+	static function makeLightPath(var2, var3)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			ank.utils.Logger.err("Le chemin est vide");
 			return new Array();
 		}
-		var loc4 = new Array();
-		if(loc3)
+		var var4 = new Array();
+		if(var3)
 		{
-			loc4.push(loc2[0]);
+			var4.push(var2[0]);
 		}
-		var loc6 = loc2.length - 1;
-		while(loc6 >= 0)
+		var var6 = var2.length - 1;
+		while(var6 >= 0)
 		{
-			if(loc2[loc6].dir != loc5)
+			if(var2[var6].dir != var5)
 			{
-				loc4.splice(0,0,loc2[loc6]);
-				var loc5 = loc2[loc6].dir;
+				var4.splice(0,0,var2[var6]);
+				var var5 = var2[var6].dir;
 			}
-			loc6 = loc6 - 1;
+			var6 = var6 - 1;
 		}
-		return loc4;
+		return var4;
 	}
-	static function extractFullPath(mapHandler, §\x13\x0e§)
+	static function extractFullPath(mapHandler, §\x13\f§)
 	{
-		var loc4 = new Array();
-		var loc5 = loc3.split("");
-		var loc7 = loc3.length;
-		var loc8 = mapHandler.getCellCount();
-		var loc6 = 0;
-		while(loc6 < loc7)
+		var var4 = new Array();
+		var var5 = var3.split("");
+		var var7 = var3.length;
+		var var8 = mapHandler.getCellCount();
+		var var6 = 0;
+		while(var6 < var7)
 		{
-			loc5[loc6] = ank.utils.Compressor.decode64(loc5[loc6]);
-			loc5[loc6 + 1] = ank.utils.Compressor.decode64(loc5[loc6 + 1]);
-			loc5[loc6 + 2] = ank.utils.Compressor.decode64(loc5[loc6 + 2]);
-			var loc9 = (loc5[loc6 + 1] & 15) << 6 | loc5[loc6 + 2];
-			if(loc9 < 0)
+			var5[var6] = ank.utils.Compressor.decode64(var5[var6]);
+			var5[var6 + 1] = ank.utils.Compressor.decode64(var5[var6 + 1]);
+			var5[var6 + 2] = ank.utils.Compressor.decode64(var5[var6 + 2]);
+			var var9 = (var5[var6 + 1] & 15) << 6 | var5[var6 + 2];
+			if(var9 < 0)
 			{
 				ank.utils.Logger.err("Case pas sur carte");
 				return null;
 			}
-			if(loc9 > loc8)
+			if(var9 > var8)
 			{
 				ank.utils.Logger.err("Case pas sur carte");
 				return null;
 			}
-			loc4.push({num:loc9,dir:loc5[loc6]});
-			loc6 = loc6 + 3;
+			var4.push({num:var9,dir:var5[var6]});
+			var6 = var6 + 3;
 		}
-		return ank.battlefield.utils.Compressor.makeFullPath(mapHandler,loc4);
+		return ank.battlefield.utils.Compressor.makeFullPath(mapHandler,var4);
 	}
 	static function makeFullPath(mapHandler, §\x1e\x0e§)
 	{
-		var loc4 = new Array();
-		var loc6 = 0;
-		var loc7 = mapHandler.getWidth();
-		var loc8 = [1,loc7,loc7 * 2 - 1,loc7 - 1,-1,- loc7,- loc7 * 2 + 1,- loc7 - 1];
-		var loc5 = loc3[0].num;
-		loc4[loc6] = loc5;
-		var loc9 = 1;
-		while(loc9 < loc3.length)
+		var var4 = new Array();
+		var var6 = 0;
+		var var7 = mapHandler.getWidth();
+		var var8 = [1,var7,var7 * 2 - 1,var7 - 1,-1,- var7,- var7 * 2 + 1,- var7 - 1];
+		var var5 = var3[0].num;
+		var4[var6] = var5;
+		var var9 = 1;
+		while(var9 < var3.length)
 		{
-			var loc10 = loc3[loc9].num;
-			var loc11 = loc3[loc9].dir;
-			var loc12 = 2 * loc7 + 1;
-			while(loc4[loc6] != loc10)
+			var var10 = var3[var9].num;
+			var var11 = var3[var9].dir;
+			var var12 = 2 * var7 + 1;
+			while(var4[var6] != var10)
 			{
-				loc5 = loc5 + loc8[loc11];
-				loc4[loc6 = loc6 + 1] = loc5;
-				if((loc12 = loc12 - 1) < 0)
+				var5 = var5 + var8[var11];
+				var4[var6 = var6 + 1] = var5;
+				if((var12 = var12 - 1) < 0)
 				{
 					ank.utils.Logger.err("Chemin impossible");
 					return null;
 				}
 			}
-			loc5 = loc10;
-			loc9 = loc9 + 1;
+			var5 = var10;
+			var9 = var9 + 1;
 		}
-		return loc4;
+		return var4;
 	}
 }

@@ -5,15 +5,15 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 		super();
 		this.api = _global.API;
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this._ldrIcon.forceNextLoad();
 			this._ldrIcon.contentPath = dofus.Constants.EFFECTSICON_FILE;
-			this._lblDescription.text = loc4.description;
-			this._lblRemainingTurn.text = loc4.remainingTurnStr;
-			this._lblSpell.text = loc4.spellName;
+			this._lblDescription.text = var4.description;
+			this._lblRemainingTurn.text = var4.remainingTurnStr;
+			this._lblSpell.text = var4.spellName;
 			var ref = this;
 			this._mcInteractivity.onRollOver = function()
 			{
@@ -23,7 +23,7 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 			{
 				ref.out({target:this});
 			};
-			this._oItem = loc4;
+			this._oItem = var4;
 		}
 		else if(this._lblSpell.text != undefined)
 		{
@@ -47,16 +47,16 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 	{
 		this._ldrIcon.addEventListener("initialization",this);
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = this._ldrIcon.content.attachMovie("Icon_" + this._oItem.characteristic,"_mcIcon",10,{operator:this._oItem.operator});
-		loc3.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
-		var loc4 = (dofus.graphics.battlefield.EffectIcon)loc3;
-		loc4.initialize(this._oItem.operator,1);
+		var var3 = this._ldrIcon.content.attachMovie("Icon_" + this._oItem.characteristic,"_mcIcon",10,{operator:this._oItem.operator});
+		var3.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
+		var var4 = (dofus.graphics.battlefield.EffectIcon)var3;
+		var4.initialize(this._oItem.operator,1);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target) === this._mcInteractivity)
+		if((var var0 = var2.target) === this._mcInteractivity)
 		{
 			if(this._oItem.spellDescription.length > 0)
 			{
@@ -64,7 +64,7 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 			}
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

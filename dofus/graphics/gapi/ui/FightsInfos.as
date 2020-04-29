@@ -9,15 +9,15 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 	{
 		return this._eaFights;
 	}
-	function addFightTeams(loc2, loc3, loc4)
+	function addFightTeams(var2, var3, var4)
 	{
-		var loc6 = this._eaFights.findFirstItem("id",loc2);
-		if(loc6.index != -1)
+		var var6 = this._eaFights.findFirstItem("id",var2);
+		if(var6.index != -1)
 		{
-			var loc5 = loc6.item;
+			var var5 = var6.item;
 		}
-		loc5.addPlayers(1,loc3);
-		loc5.addPlayers(2,loc4);
+		var5.addPlayers(1,var3);
+		var5.addPlayers(2,var4);
 		this.showTeamInfos(true,this._oSelectedFight);
 	}
 	function init()
@@ -31,7 +31,7 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 	}
 	function createChildren()
 	{
-		this._eaFights = new ank.utils.();
+		this._eaFights = new ank.utils.();
 		this.showTeamInfos(false);
 		this.addToQueue({object:this,method:this.initTexts});
 		this.addToQueue({object:this,method:this.addListeners});
@@ -70,28 +70,28 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 	{
 		this._dgFights.dataProvider = this._eaFights;
 	}
-	function showTeamInfos(loc2, loc3)
+	function showTeamInfos(var2, var3)
 	{
-		this._lblTeam1Level._visible = loc2;
-		this._lblTeam2Level._visible = loc2;
-		this._lstTeam1._visible = loc2;
-		this._lstTeam2._visible = loc2;
-		this._mcBackTeam._visible = loc2;
-		this._mcSquare1._visible = loc2;
-		this._mcSquare2._visible = loc2;
-		this._txtSelectFight._visible = !loc2;
-		this._btnJoin.enabled = loc2;
-		if(loc2)
+		this._lblTeam1Level._visible = var2;
+		this._lblTeam2Level._visible = var2;
+		this._lstTeam1._visible = var2;
+		this._lstTeam2._visible = var2;
+		this._mcBackTeam._visible = var2;
+		this._mcSquare1._visible = var2;
+		this._mcSquare2._visible = var2;
+		this._txtSelectFight._visible = !var2;
+		this._btnJoin.enabled = var2;
+		if(var2)
 		{
-			this._lblTeam1Level.text = this.api.lang.getText("LEVEL") + " " + loc3.team1Level;
-			this._lblTeam2Level.text = this.api.lang.getText("LEVEL") + " " + loc3.team2Level;
-			this._lstTeam1.dataProvider = loc3.team1Players;
-			this._lstTeam2.dataProvider = loc3.team2Players;
+			this._lblTeam1Level.text = this.api.lang.getText("LEVEL") + " " + var3.team1Level;
+			this._lblTeam2Level.text = this.api.lang.getText("LEVEL") + " " + var3.team2Level;
+			this._lstTeam1.dataProvider = var3.team1Players;
+			this._lstTeam2.dataProvider = var3.team2Players;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnClose2":
@@ -102,54 +102,58 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 				this.callClose();
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		if((var loc0 = loc2.target._name) !== "_dgFights")
+		if((var var0 = var2.target._name) !== "_dgFights")
 		{
-			if(loc2.row.item.type == "player")
+			if(var2.row.item.type == "player")
 			{
-				var loc3 = loc2.row.item.name;
+				var var3 = var2.row.item.name;
 				if(this.api.datacenter.Player.isAuthorized && Key.isDown(Key.SHIFT))
 				{
-					var loc4 = "";
-					var loc5 = false;
-					for(var k in this._lstTeam1.dataProvider)
+					var var4 = "";
+					var var5 = false;
+					var var6 = 0;
+					while(var6 < this._lstTeam1.dataProvider.length)
 					{
-						var loc6 = this._lstTeam1.dataProvider[k].name;
-						if(loc6 == loc3)
+						var var7 = this._lstTeam1.dataProvider[var6].name;
+						if(var7 == var3)
 						{
-							loc5 = true;
+							var5 = true;
 						}
-						loc4 = loc4 + (loc6 + ",");
+						var4 = var4 + (var7 + ",");
+						var6 = var6 + 1;
 					}
-					if(!loc5)
+					if(!var5)
 					{
-						loc4 = "";
-						for(var k in this._lstTeam2.dataProvider)
+						var4 = "";
+						var var8 = 0;
+						while(var8 < this._lstTeam2.dataProvider.length)
 						{
-							var loc7 = this._lstTeam2.dataProvider[k].name;
-							if(loc7 == loc3)
+							var var9 = this._lstTeam2.dataProvider[var8].name;
+							if(var9 == var3)
 							{
-								loc5 = true;
+								var5 = true;
 							}
-							loc4 = loc4 + (loc7 + ",");
+							var4 = var4 + (var9 + ",");
+							var8 = var8 + 1;
 						}
 					}
-					if(loc5)
+					if(var5)
 					{
-						loc4 = loc4.substring(0,loc4.length - 1);
-						this.api.kernel.GameManager.showTeamAdminPopupMenu(loc4);
+						var4 = var4.substring(0,var4.length - 1);
+						this.api.kernel.GameManager.showTeamAdminPopupMenu(var4);
 					}
 				}
 				else
 				{
-					this.api.kernel.GameManager.showPlayerPopupMenu(undefined,loc3);
+					this.api.kernel.GameManager.showPlayerPopupMenu(undefined,var3);
 				}
 			}
 		}
 		else
 		{
-			this._oSelectedFight = loc2.row.item;
+			this._oSelectedFight = var2.row.item;
 			if(this._oSelectedFight.hasTeamPlayers)
 			{
 				this.showTeamInfos(true,this._oSelectedFight);

@@ -6,45 +6,45 @@ class ank.battlefield.mc.Sprite extends MovieClip
 	static var WALK_SPEEDS = [0.07,0.06,0.06,0.06,0.07,0.06,0.06,0.06];
 	static var MOUNT_SPEEDS = [0.23,0.2,0.2,0.2,0.23,0.2,0.2,0.2];
 	static var RUN_SPEEDS = [0.17,0.15,0.15,0.15,0.17,0.15,0.15,0.15];
-	function Sprite(loc3, loc4, loc5)
+	function Sprite(var3, var4, var5)
 	{
 		super();
-		this.initialize(loc3,loc4,loc5);
+		this.initialize(var3,var4,var5);
 	}
 	function __get__data()
 	{
 		return this._oData;
 	}
-	function __set__mcCarried(loc2)
+	function __set__mcCarried(var2)
 	{
-		this._mcCarried = loc2;
+		this._mcCarried = var2;
 		return this.__get__mcCarried();
 	}
-	function __set__mcChevauchorPos(loc2)
+	function __set__mcChevauchorPos(var2)
 	{
-		this._mcChevauchorPos = loc2;
+		this._mcChevauchorPos = var2;
 		return this.__get__mcChevauchorPos();
 	}
-	function __set__isHidden(loc2)
+	function __set__isHidden(var2)
 	{
-		this.setHidden(loc2);
+		this.setHidden(var2);
 		return this.__get__isHidden();
 	}
 	function __get__isHidden()
 	{
 		return this._bHidden;
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
-		_global.GAC.addSprite(this,loc4);
-		this._mcBattlefield = loc2;
-		this._oSprites = loc3;
-		this._oData = loc4;
+		_global.GAC.addSprite(this,var4);
+		this._mcBattlefield = var2;
+		this._oSprites = var3;
+		this._oData = var4;
 		this._mvlLoader = new MovieClipLoader();
 		this._mvlLoader.addListener(this);
 		this.setPosition(this._oData.cellNum);
 		this.draw();
-		this._ACTION = loc4;
+		this._ACTION = var4;
 		this.api = _global.API;
 	}
 	function draw()
@@ -64,52 +64,52 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		this.removeExtraClip();
 		this._oData.isClear = true;
 	}
-	function select(loc2)
+	function select(var2)
 	{
-		var loc3 = new Object();
-		if(loc2)
+		var var3 = new Object();
+		if(var2)
 		{
-			loc3 = {ra:60,rb:102,ga:60,gb:102,ba:60,bb:102};
+			var3 = {ra:60,rb:102,ga:60,gb:102,ba:60,bb:102};
 		}
 		else
 		{
-			loc3 = {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0};
+			var3 = {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0};
 		}
-		this.setColorTransform(loc3);
+		this.setColorTransform(var3);
 	}
-	function addExtraClip(loc2, loc3, loc4)
+	function addExtraClip(var2, var3, var4)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = false;
+			var4 = false;
 		}
-		this.removeExtraClip(loc4);
-		if(loc4)
+		this.removeExtraClip(var4);
+		if(var4)
 		{
-			var loc5 = new Object();
-			loc5.file = loc2;
-			loc5.color = loc3;
-			this._oData.xtraClipTopParams = loc5;
+			var var5 = new Object();
+			var5.file = var2;
+			var5.color = var3;
+			this._oData.xtraClipTopParams = var5;
 			if(!this._bGfxLoaded)
 			{
 				return undefined;
 			}
 		}
-		var loc6 = !loc4?this._mcXtraBack:this._mcXtraTop;
-		if(loc3 != undefined)
+		var var6 = !var4?this._mcXtraBack:this._mcXtraTop;
+		if(var3 != undefined)
 		{
-			var loc7 = new Color(loc6);
-			loc7.setRGB(loc3);
+			var var7 = new Color(var6);
+			var7.setRGB(var3);
 		}
-		loc6.loadMovie(loc2);
+		var6.loadMovie(var2);
 	}
-	function removeExtraClip(loc2)
+	function removeExtraClip(var2)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case true:
 				this._mcXtraTop.removeMovieClip();
@@ -126,68 +126,68 @@ class ank.battlefield.mc.Sprite extends MovieClip
 				this.createEmptyMovieClip("_mcXtraBack",10);
 		}
 	}
-	function setColorTransform(loc2)
+	function setColorTransform(var2)
 	{
-		var loc3 = new Color(this);
-		loc3.setTransform(loc2);
+		var var3 = new Color(this);
+		var3.setTransform(var2);
 	}
-	function setNewCellNum(loc2)
+	function setNewCellNum(var2)
 	{
-		this._oData.cellNum = Number(loc2);
+		this._oData.cellNum = Number(var2);
 	}
-	function setDirection(loc2)
+	function setDirection(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._oData.direction;
+			var2 = this._oData.direction;
 		}
-		this._oData.direction = loc2;
+		this._oData.direction = var2;
 		this.setAnim(this._oData.animation);
 	}
-	function setPosition(loc2)
+	function setPosition(var2)
 	{
-		this.updateMap(loc2,this._oData.isVisible);
-		this.setDepth(loc2);
-		if(loc2 == undefined)
+		this.updateMap(var2,this._oData.isVisible);
+		this.setDepth(var2);
+		if(var2 == undefined)
 		{
-			loc2 = this._oData.cellNum;
+			var2 = this._oData.cellNum;
 		}
 		else
 		{
-			this.setNewCellNum(loc2);
+			this.setNewCellNum(var2);
 		}
-		var loc3 = this._mcBattlefield.mapHandler.getCellData(loc2);
-		var loc4 = this._mcBattlefield.mapHandler.getCellHeight(loc2);
-		var loc5 = loc4 - Math.floor(loc4);
-		this._x = loc3.x;
-		this._y = loc3.y - loc5 * ank.battlefield.Constants.LEVEL_HEIGHT;
+		var var3 = this._mcBattlefield.mapHandler.getCellData(var2);
+		var var4 = this._mcBattlefield.mapHandler.getCellHeight(var2);
+		var var5 = var4 - Math.floor(var4);
+		this._x = var3.x;
+		this._y = var3.y - var5 * ank.battlefield.Constants.LEVEL_HEIGHT;
 	}
-	function setDepth(loc2)
+	function setDepth(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._oData.cellNum;
+			var2 = this._oData.cellNum;
 		}
-		var loc3 = ank.battlefield.utils.SpriteDepthFinder.getFreeDepthOnCell(this._mcBattlefield.mapHandler,this._oSprites,loc2,this._mcBattlefield.bGhostView);
-		this.swapDepths(loc3);
+		var var3 = ank.battlefield.utils.SpriteDepthFinder.getFreeDepthOnCell(this._mcBattlefield.mapHandler,this._oSprites,var2,this._mcBattlefield.bGhostView);
+		this.swapDepths(var3);
 		if(this._oData.hasCarriedChild())
 		{
-			this._oData.carriedChild.mc.setDepth(loc2);
+			this._oData.carriedChild.mc.setDepth(var2);
 		}
 	}
-	function setVisible(loc2)
+	function setVisible(var2)
 	{
-		this._oData.isVisible = loc2;
-		this._visible = loc2;
-		this.updateMap(this._oData.cellNum,loc2);
+		this._oData.isVisible = var2;
+		this._visible = var2;
+		this.updateMap(this._oData.cellNum,var2);
 	}
-	function setAlpha(loc2)
+	function setAlpha(var2)
 	{
-		this._mcGfx._alpha = loc2;
+		this._mcGfx._alpha = var2;
 	}
-	function setHidden(loc2)
+	function setHidden(var2)
 	{
-		this._bHidden = loc2;
+		this._bHidden = var2;
 		if(this._bHidden)
 		{
 			this._mcGfx._x = this._mcGfx._y = -5000;
@@ -199,10 +199,10 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			this._mcGfx._visible = true;
 		}
 	}
-	function setGhostView(loc2)
+	function setGhostView(var2)
 	{
 		this.setDepth();
-		if(loc2)
+		if(var2)
 		{
 			this._nLastAlphaValue = this._mcGfx._alpha;
 			this.setAlpha(ank.battlefield.Constants.GHOSTVIEW_SPRITE_ALPHA);
@@ -212,108 +212,108 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			this.setAlpha(this._nLastAlphaValue);
 		}
 	}
-	function moveToCell(loc2, loc3, loc4, loc5, loc6, loc7)
+	function moveToCell(var2, var3, var4, var5, var6, var7)
 	{
 		if(cellNum != this._oData.cellNum)
 		{
-			var loc8 = this._mcBattlefield.mapHandler.getCellData(this._oData.cellNum);
-			var loc9 = this._mcBattlefield.mapHandler.getCellData(cellNum);
-			var loc10 = loc9.x;
-			var loc11 = loc9.y;
-			var loc12 = 0.01;
-			if(loc9.groundSlope != 1)
+			var var8 = this._mcBattlefield.mapHandler.getCellData(this._oData.cellNum);
+			var var9 = this._mcBattlefield.mapHandler.getCellData(cellNum);
+			var var10 = var9.x;
+			var var11 = var9.y;
+			var var12 = 0.01;
+			if(var9.groundSlope != 1)
 			{
-				loc11 = loc11 - ank.battlefield.Constants.HALF_LEVEL_HEIGHT;
+				var11 = var11 - ank.battlefield.Constants.HALF_LEVEL_HEIGHT;
 			}
-			if(loc6.toLowerCase() != "static")
+			if(var6.toLowerCase() != "static")
 			{
-				this._oData.direction = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(loc8.x,loc8.rootY,loc10,loc9.rootY,true);
+				this._oData.direction = ank.battlefield.utils.Pathfinding.getDirectionFromCoordinates(var8.x,var8.rootY,var10,var9.rootY,true);
 			}
-			switch(loc5)
+			switch(var5)
 			{
 				case "slide":
-					var loc13 = 0.25;
-					this.setAnim(loc6);
+					var var13 = 0.25;
+					this.setAnim(var6);
 					break;
 				case "walk":
 				default:
-					loc13 = ank.battlefield.mc.Sprite.WALK_SPEEDS[this._oData.direction];
-					this.setAnim(loc6 != undefined?loc6:"walk",undefined,loc7);
+					var13 = ank.battlefield.mc.Sprite.WALK_SPEEDS[this._oData.direction];
+					this.setAnim(var6 != undefined?var6:"walk",undefined,var7);
 					break;
 				case "run":
-					loc13 = !!this._oData.isMounting?ank.battlefield.mc.Sprite.MOUNT_SPEEDS[this._oData.direction]:ank.battlefield.mc.Sprite.RUN_SPEEDS[this._oData.direction];
-					this.setAnim(loc6 != undefined?loc6:"run",undefined,loc7);
+					var13 = !!this._oData.isMounting?ank.battlefield.mc.Sprite.MOUNT_SPEEDS[this._oData.direction]:ank.battlefield.mc.Sprite.RUN_SPEEDS[this._oData.direction];
+					this.setAnim(var6 != undefined?var6:"run",undefined,var7);
 			}
-			loc13 = loc13 * this._oData.speedModerator;
-			if(loc9.groundLevel < loc8.groundLevel)
+			var13 = var13 * this._oData.speedModerator;
+			if(var9.groundLevel < var8.groundLevel)
 			{
-				loc13 = loc13 + loc12;
+				var13 = var13 + var12;
 			}
-			else if(loc9.groundLevel > loc8.groundLevel)
+			else if(var9.groundLevel > var8.groundLevel)
 			{
-				loc13 = loc13 - loc12;
+				var13 = var13 - var12;
 			}
-			else if(loc8.groundSlope != loc9.groundSlope)
+			else if(var8.groundSlope != var9.groundSlope)
 			{
-				if(loc9.groundSlope == 1)
+				if(var9.groundSlope == 1)
 				{
-					loc13 = loc13 + loc12;
+					var13 = var13 + var12;
 				}
-				else if(loc8.groundSlope == 1)
+				else if(var8.groundSlope == 1)
 				{
-					loc13 = loc13 - loc12;
+					var13 = var13 - var12;
 				}
 			}
-			this._nDistance = Math.sqrt(Math.pow(this._x - loc10,2) + Math.pow(this._y - loc11,2));
-			var loc14 = Math.atan2(loc11 - this._y,loc10 - this._x);
-			var loc15 = Math.cos(loc14);
-			var loc16 = Math.sin(loc14);
+			this._nDistance = Math.sqrt(Math.pow(this._x - var10,2) + Math.pow(this._y - var11,2));
+			var var14 = Math.atan2(var11 - this._y,var10 - this._x);
+			var var15 = Math.cos(var14);
+			var var16 = Math.sin(var14);
 			this._nLastTimer = getTimer();
-			var loc17 = Number(cellNum) > this._oData.cellNum;
+			var var17 = Number(cellNum) > this._oData.cellNum;
 			this.updateMap(cellNum,this._oData.isVisible,true);
 			this.setNewCellNum(cellNum);
 			this._oData.isInMove = true;
 			if(this._oData.hasCarriedChild())
 			{
-				var loc18 = this._oData.carriedChild;
-				var loc19 = loc18.mc;
-				loc19.setDirection(this._oData.direction);
-				loc19.updateMap(cellNum,loc18.isVisible);
-				loc19.setNewCellNum(cellNum);
+				var var18 = this._oData.carriedChild;
+				var var19 = var18.mc;
+				var19.setDirection(this._oData.direction);
+				var19.updateMap(cellNum,var18.isVisible);
+				var19.setNewCellNum(cellNum);
 			}
-			if(loc17)
+			if(var17)
 			{
 				this.setDepth(cellNum);
 			}
-			ank.utils.CyclicTimer.addFunction(this,this,this.basicMove,[loc13,loc15,loc16],this,this.basicMoveEnd,[loc2,loc10,loc11,cellNum,loc4,loc5 == "slide",!loc17]);
+			ank.utils.CyclicTimer.addFunction(this,this,this.basicMove,[var13,var15,var16],this,this.basicMoveEnd,[var2,var10,var11,cellNum,var4,var5 == "slide",!var17]);
 		}
 		else
 		{
-			loc2.onActionEnd();
+			var2.onActionEnd();
 		}
 	}
-	function basicMove(speed, §\x13\x01§, §\x1e\x13\x04§)
+	function basicMove(speed, §\x12\x1c§, §\x1e\x13\x02§)
 	{
-		var loc5 = getTimer() - this._nLastTimer;
-		var loc6 = speed * (loc5 <= 50?loc5:50);
-		this._x = this._x + loc6 * loc3;
-		this._y = this._y + loc6 * loc4;
-		this._nDistance = this._nDistance - loc6;
+		var var5 = getTimer() - this._nLastTimer;
+		var var6 = speed * (var5 <= 50?var5:50);
+		this._x = this._x + var6 * var3;
+		this._y = this._y + var6 * var4;
+		this._nDistance = this._nDistance - var6;
 		this._nLastTimer = getTimer();
-		if(this._nDistance <= loc6)
+		if(this._nDistance <= var6)
 		{
 			return false;
 		}
 		return true;
 	}
-	function basicMoveEnd(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	function basicMoveEnd(var2, var3, var4, var5, var6, var7, var8)
 	{
 		if(this._nOldCellNum != undefined)
 		{
 			this._mcBattlefield.mapHandler.getCellData(this._nOldCellNum).removeSpriteOnID(this._oData.id);
 			this._nOldCellNum = undefined;
 		}
-		if(loc6)
+		if(var6)
 		{
 			this._x = xDest;
 			this._y = yDest;
@@ -324,115 +324,115 @@ class ank.battlefield.mc.Sprite extends MovieClip
 				this._rollOver();
 			}
 		}
-		if(loc8)
+		if(var8)
 		{
 			this.setDepth(cellNum);
 		}
-		loc2.onActionEnd();
+		var2.onActionEnd();
 	}
-	function saveLastAnimation(loc2)
+	function saveLastAnimation(var2)
 	{
 		if(!this._oData.isMounting)
 		{
-			this._mcGfx.mcAnim.lastAnimation = loc2;
+			this._mcGfx.mcAnim.lastAnimation = var2;
 		}
 		else
 		{
-			this._mcChevauchor.mcAnim.lastAnimation = loc2;
-			this._mcGfx.mcAnimFront.lastAnimation = loc2;
-			this._mcGfx.mcAnimBack.lastAnimation = loc2;
+			this._mcChevauchor.mcAnim.lastAnimation = var2;
+			this._mcGfx.mcAnimFront.lastAnimation = var2;
+			this._mcGfx.mcAnimBack.lastAnimation = var2;
 		}
 	}
-	function setAnimTimer(loc2, loc3, loc4, loc5)
+	function setAnimTimer(var2, var3, var4, var5)
 	{
-		this.setAnim(loc2,loc3,loc4);
-		if(_global.isNaN(Number(loc5)))
+		this.setAnim(var2,var3,var4);
+		if(_global.isNaN(Number(var5)))
 		{
 			return undefined;
 		}
-		if(loc5 < 1)
+		if(var5 < 1)
 		{
 			return undefined;
 		}
-		ank.utils.Timer.setTimer(this,"battlefield",this,this.setAnim,loc5,[this._oData.defaultAnimation]);
+		ank.utils.Timer.setTimer(this,"battlefield",this,this.setAnim,var5,[this._oData.defaultAnimation]);
 	}
-	function setAnim(loc2, loc3, loc4)
+	function setAnim(var2, var3, var4)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._oData.defaultAnimation;
+			var2 = this._oData.defaultAnimation;
 		}
-		loc2 = String(loc2).toLowerCase();
-		if(loc3 == undefined)
+		var2 = String(var2).toLowerCase();
+		if(var3 == undefined)
 		{
-			loc3 = false;
+			var3 = false;
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = false;
+			var4 = false;
 		}
-		var loc5 = this._oData.noFlip;
-		this._oData.bAnimLoop = loc3;
-		var loc6 = this._mcGfx;
-		var loc7 = "";
+		var var5 = this._oData.noFlip;
+		this._oData.bAnimLoop = var3;
+		var var6 = this._mcGfx;
+		var var7 = "";
 		if(this._oData.hasCarriedChild())
 		{
-			loc7 = loc7 + "_C";
+			var7 = var7 + "_C";
 		}
-		if((var loc0 = this._oData.direction) !== 0)
+		if((var var0 = this._oData.direction) !== 0)
 		{
 			switch(null)
 			{
 				case 1:
-					var loc10 = "R";
-					var loc8 = loc2 + loc7 + loc10;
-					var loc9 = "staticR";
+					var var10 = "R";
+					var var8 = var2 + var7 + var10;
+					var var9 = "staticR";
 					this._xscale = 100;
 					break;
 				case 2:
-					loc10 = "F";
-					loc8 = loc2 + loc7 + loc10;
-					loc9 = "staticR";
+					var10 = "F";
+					var8 = var2 + var7 + var10;
+					var9 = "staticR";
 					this._xscale = 100;
 					break;
 				case 3:
-					loc10 = "R";
-					loc8 = loc2 + loc7 + loc10;
-					loc9 = "staticR";
-					if(!loc5)
+					var10 = "R";
+					var8 = var2 + var7 + var10;
+					var9 = "staticR";
+					if(!var5)
 					{
 						this._xscale = -100;
 					}
 					break;
 				case 4:
-					loc10 = "S";
-					loc8 = loc2 + loc7 + loc10;
-					loc9 = "staticL";
-					if(!loc5)
+					var10 = "S";
+					var8 = var2 + var7 + var10;
+					var9 = "staticL";
+					if(!var5)
 					{
 						this._xscale = -100;
 					}
 					break;
 				case 5:
-					loc10 = "L";
-					loc8 = loc2 + loc7 + loc10;
-					loc9 = "staticL";
+					var10 = "L";
+					var8 = var2 + var7 + var10;
+					var9 = "staticL";
 					this._xscale = 100;
 					break;
 				default:
 					switch(null)
 					{
 						case 6:
-							loc10 = "B";
-							loc8 = loc2 + loc7 + loc10;
-							loc9 = "staticL";
+							var10 = "B";
+							var8 = var2 + var7 + var10;
+							var9 = "staticL";
 							this._xscale = 100;
 							break;
 						case 7:
-							loc10 = "L";
-							loc8 = loc2 + loc7 + loc10;
-							loc9 = "staticL";
-							if(!loc5)
+							var10 = "L";
+							var8 = var2 + var7 + var10;
+							var9 = "staticL";
+							if(!var5)
 							{
 								this._xscale = -100;
 								break;
@@ -442,18 +442,18 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		else
 		{
-			loc10 = "S";
-			loc8 = loc2 + loc7 + loc10;
-			loc9 = "staticR";
+			var10 = "S";
+			var8 = var2 + var7 + var10;
+			var9 = "staticR";
 			this._xscale = 100;
 		}
-		var loc11 = this._oData.fullAnimation;
-		var loc12 = this._oData.animation;
-		this._oData.animation = loc2;
-		this._oData.fullAnimation = loc8;
+		var var11 = this._oData.fullAnimation;
+		var var12 = this._oData.animation;
+		this._oData.animation = var2;
+		this._oData.fullAnimation = var8;
 		if(this._oData.xtraClipTopAnimations != undefined)
 		{
-			if(this._oData.xtraClipTopAnimations[loc8])
+			if(this._oData.xtraClipTopAnimations[var8])
 			{
 				this.addExtraClip(this._oData.xtraClipTopParams.file,this._oData.xtraClipTopParams.color,true);
 			}
@@ -462,37 +462,37 @@ class ank.battlefield.mc.Sprite extends MovieClip
 				this.removeExtraClip(true);
 			}
 		}
-		if(loc4 || loc8 != loc11)
+		if(var4 || var8 != var11)
 		{
 			if(!this._oData.isMounting)
 			{
-				loc6.mcAnim.removeMovieClip();
-				if(loc6.attachMovie(loc8,"mcAnim",10,{lastAnimation:loc12}) == undefined)
+				var6.mcAnim.removeMovieClip();
+				if(var6.attachMovie(var8,"mcAnim",10,{lastAnimation:var12}) == undefined)
 				{
-					loc6.attachMovie("static" + loc10,"mcAnim",10,{lastAnimation:loc12});
-					ank.utils.Logger.err("L\'anim (" + loc8 + ") n\'existe pas !");
+					var6.attachMovie("static" + var10,"mcAnim",10,{lastAnimation:var12});
+					ank.utils.Logger.err("L\'anim (" + var8 + ") n\'existe pas !");
 				}
 				if(ank.battlefield.Battlefield.useCacheAsBitmapOnStaticAnim)
 				{
-					(MovieClip)loc6.mcAnim.cacheAsBitmap = (MovieClip)loc6.mcAnim._totalframes == 1;
+					(MovieClip)var6.mcAnim.cacheAsBitmap = (MovieClip)var6.mcAnim._totalframes == 1;
 				}
 			}
 			else
 			{
 				this._mcChevauchor.mcAnim.removeMovieClip();
-				loc6.mcAnimFront.removeMovieClip();
-				loc6.mcAnimBack.removeMovieClip();
-				if(this._mcChevauchor.attachMovie(loc8,"mcAnim",1,{lastAnimation:loc12}) == undefined)
+				var6.mcAnimFront.removeMovieClip();
+				var6.mcAnimBack.removeMovieClip();
+				if(this._mcChevauchor.attachMovie(var8,"mcAnim",1,{lastAnimation:var12}) == undefined)
 				{
-					this._mcChevauchor.attachMovie("static" + loc10,"mcAnim",1,{lastAnimation:loc12});
+					this._mcChevauchor.attachMovie("static" + var10,"mcAnim",1,{lastAnimation:var12});
 				}
-				if(loc6.attachMovie(loc8 + "_Front","mcAnimFront",30,{lastAnimation:loc12}) == undefined)
+				if(var6.attachMovie(var8 + "_Front","mcAnimFront",30,{lastAnimation:var12}) == undefined)
 				{
-					loc6.attachMovie("static" + loc10 + "_Front","mcAnimFront",30,{lastAnimation:loc12});
+					var6.attachMovie("static" + var10 + "_Front","mcAnimFront",30,{lastAnimation:var12});
 				}
-				if(loc6.attachMovie(loc8 + "_Back","mcAnimBack",10,{lastAnimation:loc12}) == undefined)
+				if(var6.attachMovie(var8 + "_Back","mcAnimBack",10,{lastAnimation:var12}) == undefined)
 				{
-					loc6.attachMovie("static" + loc10 + "_Back","mcAnimBack",10,{lastAnimation:loc12});
+					var6.attachMovie("static" + var10 + "_Back","mcAnimBack",10,{lastAnimation:var12});
 				}
 			}
 		}
@@ -516,11 +516,11 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		{
 			if(this._mcCarried != undefined)
 			{
-				var loc2 = {x:this._mcCarried._x,y:this._mcCarried._y};
-				this._mcCarried._parent.localToGlobal(loc2);
-				this._mcBattlefield.container.globalToLocal(loc2);
-				this._oData.carriedChild.mc._x = loc2.x;
-				this._oData.carriedChild.mc._y = loc2.y;
+				var var2 = {x:this._mcCarried._x,y:this._mcCarried._y};
+				this._mcCarried._parent.localToGlobal(var2);
+				this._mcBattlefield.container.globalToLocal(var2);
+				this._oData.carriedChild.mc._x = var2.x;
+				this._oData.carriedChild.mc._y = var2.y;
 			}
 		}
 		return this._oData.animation == "static"?false:true;
@@ -531,11 +531,11 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		{
 			if(this._mcChevauchorPos != undefined)
 			{
-				var loc2 = {x:this._mcChevauchorPos._x,y:this._mcChevauchorPos._y};
-				this._mcChevauchorPos._parent.localToGlobal(loc2);
-				this._mcGfx.globalToLocal(loc2);
-				this._mcChevauchor._x = loc2.x;
-				this._mcChevauchor._y = loc2.y;
+				var var2 = {x:this._mcChevauchorPos._x,y:this._mcChevauchorPos._y};
+				this._mcChevauchorPos._parent.localToGlobal(var2);
+				this._mcGfx.globalToLocal(var2);
+				this._mcChevauchor._x = var2.x;
+				this._mcChevauchor._y = var2.y;
 				this._mcChevauchor._rotation = this._mcChevauchorPos._rotation;
 				this._mcChevauchor._xscale = this._mcChevauchorPos._xscale;
 				this._mcChevauchor._yscale = this._mcChevauchorPos._yscale;
@@ -547,12 +547,12 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		return true;
 	}
-	function updateMap(loc2, loc3, loc4)
+	function updateMap(var2, var3, var4)
 	{
-		var loc5 = this._mcBattlefield.mapHandler.getCellData(loc2);
-		if(loc5 == undefined)
+		var var5 = this._mcBattlefield.mapHandler.getCellData(var2);
+		if(var5 == undefined)
 		{
-			if(loc3)
+			if(var3)
 			{
 				this._mcBattlefield.mapHandler.getCellData(this._oData.cellNum).addSpriteOnID(this._oData.id);
 			}
@@ -562,7 +562,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			}
 			return undefined;
 		}
-		if(loc4 != true)
+		if(var4 != true)
 		{
 			this._mcBattlefield.mapHandler.getCellData(this._oData.cellNum).removeSpriteOnID(this._oData.id);
 		}
@@ -570,17 +570,17 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		{
 			this._nOldCellNum = this._oData.cellNum;
 		}
-		if(loc3)
+		if(var3)
 		{
-			loc5.addSpriteOnID(this._oData.id);
+			var5.addSpriteOnID(this._oData.id);
 		}
 	}
-	function setScale(loc2, loc3)
+	function setScale(var2, var3)
 	{
-		this._mcGfx._xscale = loc2;
-		this._mcGfx._yscale = loc3 == undefined?loc2:loc3;
+		this._mcGfx._xscale = var2;
+		this._mcGfx._yscale = var3 == undefined?var2:var3;
 	}
-	function onLoadInit(loc2)
+	function onLoadInit(var2)
 	{
 		this.onEnterFrame = function()
 		{
@@ -611,15 +611,15 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			}
 		};
 	}
-	function _release(loc2)
+	function _release(var2)
 	{
 		this._mcBattlefield.onSpriteRelease(this);
 	}
-	function _rollOver(loc2)
+	function _rollOver(var2)
 	{
 		this._mcBattlefield.onSpriteRollOver(this);
 	}
-	function _rollOut(loc2)
+	function _rollOut(var2)
 	{
 		this._mcBattlefield.onSpriteRollOut(this);
 	}

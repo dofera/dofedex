@@ -3,21 +3,21 @@ class org.utils.Bitmap
 	function Bitmap()
 	{
 	}
-	static function loadBitmapSmoothed(loc2, loc3)
+	static function loadBitmapSmoothed(var2, var3)
 	{
-		var loc4 = loc3.createEmptyMovieClip("bmc",loc3.getNextHighestDepth());
-		var loc5 = new Object();
-		loc5.tmc = loc3;
-		loc5.onLoadInit = function(loc2)
+		var var4 = var3.createEmptyMovieClip("bmc",var3.getNextHighestDepth());
+		var var5 = new Object();
+		var5.tmc = var3;
+		var5.onLoadInit = function(var2)
 		{
-			loc2._visible = false;
-			loc2.forceSmoothing = true;
-			var loc3 = new flash.display.BitmapData(loc2._width,loc2._height,true);
-			this.tmc.attachBitmap(loc3,this.tmc.getNextHighestDepth(),"auto",true);
-			loc3.draw(loc2);
+			var2._visible = false;
+			var2.forceSmoothing = true;
+			var var3 = new flash.display.BitmapData(var2._width,var2._height,true);
+			this.tmc.attachBitmap(var3,this.tmc.getNextHighestDepth(),"auto",true);
+			var3.draw(var2);
 		};
-		var loc6 = new MovieClipLoader();
-		loc6.addListener(loc5);
-		loc6.loadClip(loc2,loc4);
+		var var6 = new MovieClipLoader();
+		var6.addListener(var5);
+		var6.loadClip(var2,var4);
 	}
 }

@@ -1,8 +1,8 @@
 class dofus.datacenter.Subway extends dofus.datacenter.Hint
 {
-	function Subway(§\x12\r§, cost)
+	function Subway(§\x12\x0b§, cost)
 	{
-		super(loc3);
+		super(var3);
 		this._nCost = cost;
 		this.fieldToSort = this.name + this.mapID;
 	}

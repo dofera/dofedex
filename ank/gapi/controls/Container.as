@@ -12,43 +12,43 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__contentPath(loc2)
+	function __set__contentPath(var2)
 	{
-		this.addToQueue({object:this,method:function(loc2)
+		this.addToQueue({object:this,method:function(var2)
 		{
-			this._ldrContent.contentPath = loc2;
-		},params:[loc2]});
+			this._ldrContent.contentPath = var2;
+		},params:[var2]});
 		return this.__get__contentPath();
 	}
-	function __set__forceReload(loc2)
+	function __set__forceReload(var2)
 	{
-		this._ldrContent.forceReload = loc2;
+		this._ldrContent.forceReload = var2;
 		return this.__get__forceReload();
 	}
 	function __get__contentPath()
 	{
 		return this._ldrContent.contentPath;
 	}
-	function __set__contentData(loc2)
+	function __set__contentData(var2)
 	{
-		this._oContentData = loc2;
+		this._oContentData = var2;
 		if(this._oContentData.params != undefined)
 		{
 			this._ldrContent.contentParams = this._oContentData.params;
 		}
-		if(loc2.iconFile != undefined)
+		if(var2.iconFile != undefined)
 		{
-			this.contentPath = loc2.iconFile;
+			this.contentPath = var2.iconFile;
 		}
 		else
 		{
 			this.contentPath = "";
 		}
-		if(loc2.label != undefined)
+		if(var2.label != undefined)
 		{
-			if(this.label != loc2.label)
+			if(this.label != var2.label)
 			{
-				this.label = loc2.label;
+				this.label = var2.label;
 			}
 		}
 		else
@@ -82,13 +82,13 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelected;
 	}
-	function __set__backgroundRenderer(loc2)
+	function __set__backgroundRenderer(var2)
 	{
-		if(loc2.length == 0 || loc2 == undefined)
+		if(var2.length == 0 || var2 == undefined)
 		{
 			return undefined;
 		}
-		this._sBackground = loc2;
+		this._sBackground = var2;
 		this.attachBackground();
 		if(this._bInitialized)
 		{
@@ -96,13 +96,13 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__backgroundRenderer();
 	}
-	function __set__borderRenderer(loc2)
+	function __set__borderRenderer(var2)
 	{
-		if(loc2.length == 0 || loc2 == undefined)
+		if(var2.length == 0 || var2 == undefined)
 		{
 			return undefined;
 		}
-		this._sBorder = loc2;
+		this._sBorder = var2;
 		this.attachBorder();
 		if(this._bInitialized)
 		{
@@ -110,13 +110,13 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__borderRenderer();
 	}
-	function __set__highlightRenderer(loc2)
+	function __set__highlightRenderer(var2)
 	{
-		if(loc2.length == 0 || loc2 == undefined)
+		if(var2.length == 0 || var2 == undefined)
 		{
 			return undefined;
 		}
-		this._sHighlight = loc2;
+		this._sHighlight = var2;
 		this.attachHighlight();
 		if(this._bInitialized)
 		{
@@ -124,13 +124,13 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__highlightRenderer();
 	}
-	function __set__dragAndDrop(loc2)
+	function __set__dragAndDrop(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		this._bDragAndDrop = loc2;
+		this._bDragAndDrop = var2;
 		if(this._bInitialized)
 		{
 			this.setEnabled();
@@ -141,14 +141,14 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bDragAndDrop;
 	}
-	function __set__showLabel(loc2)
+	function __set__showLabel(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		this._bShowLabel = loc2;
-		if(loc2)
+		this._bShowLabel = var2;
+		if(var2)
 		{
 			if(this._sLabel != undefined)
 			{
@@ -170,16 +170,16 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bShowLabel;
 	}
-	function __set__label(loc2)
+	function __set__label(var2)
 	{
-		this._sLabel = loc2;
+		this._sLabel = var2;
 		if(this._bShowLabel)
 		{
 			if(this._lblText == undefined)
 			{
 				this.attachMovie("Label","_lblText",30,{_width:this.__width,_height:this.__height,styleName:this.getStyle().labelstyle});
 			}
-			this.addToQueue({object:this,method:this.setLabel,params:[loc2]});
+			this.addToQueue({object:this,method:this.setLabel,params:[var2]});
 		}
 		return this.__get__label();
 	}
@@ -187,14 +187,14 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sLabel;
 	}
-	function __set__margin(loc2)
+	function __set__margin(var2)
 	{
-		loc2 = Number(loc2);
-		if(_global.isNaN(loc2))
+		var2 = Number(var2);
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		this._nMargin = loc2;
+		this._nMargin = var2;
 		if(this.initialized)
 		{
 			this._ldrContent.move(this._nMargin,this._nMargin);
@@ -205,10 +205,10 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMargin;
 	}
-	function __set__highlightFront(loc2)
+	function __set__highlightFront(var2)
 	{
-		this._bHighlightFront = loc2;
-		if(!loc2 && this._mcHighlight != undefined)
+		this._bHighlightFront = var2;
+		if(!var2 && this._mcHighlight != undefined)
 		{
 			this._mcHighlight.swapDepths(1);
 		}
@@ -218,9 +218,9 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bHighlightFront;
 	}
-	function __set__id(loc2)
+	function __set__id(var2)
 	{
-		this._nId = loc2;
+		this._nId = var2;
 		return this.__get__id();
 	}
 	function __get__id()
@@ -267,9 +267,9 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		this._mcBg.styleName = loc2.backgroundstyle;
-		this._lblText.styleName = loc2.labelstyle;
+		var var2 = this.getStyle();
+		this._mcBg.styleName = var2.backgroundstyle;
+		this._lblText.styleName = var2.labelstyle;
 	}
 	function setEnabled()
 	{
@@ -358,17 +358,17 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		this.attachMovie(this._sHighlight,"_mcHighlight",!this._bHighlightFront?5:100);
 		this._mcHighlight._visible = false;
 	}
-	function setLabel(loc2)
+	function setLabel(var2)
 	{
 		if(this._bShowLabel)
 		{
-			this._lblText.text = loc2;
-			var loc3 = Math.min(this._lblText.textWidth + 2,this.__width - 4);
-			var loc4 = this._lblText.textHeight;
+			this._lblText.text = var2;
+			var var3 = Math.min(this._lblText.textWidth + 2,this.__width - 4);
+			var var4 = this._lblText.textHeight;
 			this._mcLabelBackground.clear();
-			if(loc3 > 2 && loc4 != 0)
+			if(var3 > 2 && var4 != 0)
 			{
-				this.drawRoundRect(this._mcLabelBackground,2,2,loc3,loc4 + 2,0,0,50);
+				this.drawRoundRect(this._mcLabelBackground,2,2,var3,var4 + 2,0,0,50);
 			}
 		}
 		else

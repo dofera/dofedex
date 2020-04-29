@@ -1,23 +1,23 @@
 class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 {
 	var _sStartAnimation = "appear";
-	function Creature(sID, clipClass, §\x1e\x13\x16§, cellNum, §\x11\x1d§, gfxID)
+	function Creature(sID, clipClass, §\x1e\x13\x14§, cellNum, §\x11\x1b§, gfxID)
 	{
 		super();
-		this.initialize(sID,clipClass,loc5,cellNum,loc7,gfxID);
+		this.initialize(sID,clipClass,var5,cellNum,var7,gfxID);
 	}
-	function __set__name(loc2)
+	function __set__name(var2)
 	{
-		this._nNameID = Number(loc2);
+		this._nNameID = Number(var2);
 		return this.__get__name();
 	}
 	function __get__name()
 	{
 		return this.api.lang.getMonstersText(this._nNameID).n;
 	}
-	function __set__powerLevel(loc2)
+	function __set__powerLevel(var2)
 	{
-		this._nPowerLevel = Number(loc2);
+		this._nPowerLevel = Number(var2);
 		return this.__get__powerLevel();
 	}
 	function __get__powerLevel()
@@ -28,9 +28,9 @@ class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 	{
 		return this.api.lang.getMonstersText(this._nNameID)["g" + this._nPowerLevel].l;
 	}
-	function __set__resistances(loc2)
+	function __set__resistances(var2)
 	{
-		this._resistances = loc2;
+		this._resistances = var2;
 		return this.__get__resistances();
 	}
 	function __get__resistances()
@@ -39,10 +39,10 @@ class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 		{
 			return this._resistances;
 		}
-		var loc2 = this.api.lang.getMonstersText(this._nNameID)["g" + this._nPowerLevel].r;
-		loc2[5] = loc2[5] + this.CharacteristicsManager.getModeratorValue(dofus.managers.CharacteristicsManager.DODGE_PA_LOST_PROBABILITY);
-		loc2[6] = loc2[6] + this.CharacteristicsManager.getModeratorValue(dofus.managers.CharacteristicsManager.DODGE_PM_LOST_PROBABILITY);
-		return loc2;
+		var var2 = this.api.lang.getMonstersText(this._nNameID)["g" + this._nPowerLevel].r;
+		var2[5] = var2[5] + this.CharacteristicsManager.getModeratorValue(dofus.managers.CharacteristicsManager.DODGE_PA_LOST_PROBABILITY);
+		var2[6] = var2[6] + this.CharacteristicsManager.getModeratorValue(dofus.managers.CharacteristicsManager.DODGE_PM_LOST_PROBABILITY);
+		return var2;
 	}
 	function __get__alignment()
 	{

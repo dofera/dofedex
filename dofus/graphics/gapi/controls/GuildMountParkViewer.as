@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.GuildMountParkViewer extends dofus.graphics.g
 	{
 		super();
 	}
-	function __set__mountParks(loc2)
+	function __set__mountParks(var2)
 	{
-		this.updateData(loc2);
+		this.updateData(var2);
 		return this.__get__mountParks();
 	}
 	function init()
@@ -23,10 +23,10 @@ class dofus.graphics.gapi.controls.GuildMountParkViewer extends dofus.graphics.g
 		this._dgMountParks.columnsNames = [this.api.lang.getText("LOCALISATION"),this.api.lang.getText("MOUTPARK_ITEM"),this.api.lang.getText("MOUNTS")];
 		this._lblDescription.text = this.api.lang.getText("GUILD_MOUNTPARKS_LIST");
 	}
-	function updateData(loc2)
+	function updateData(var2)
 	{
-		this._lblCount.text = this.api.lang.getText("GUILD_MOUNTPARKS_COUNT",[loc2.length,this.api.datacenter.Player.guildInfos.maxMountParks]);
-		loc2.sortOn("size",Array.NUMERIC | Array.DESCENDING);
-		this._dgMountParks.dataProvider = loc2;
+		this._lblCount.text = this.api.lang.getText("GUILD_MOUNTPARKS_COUNT",[var2.length,this.api.datacenter.Player.guildInfos.maxMountParks]);
+		var2.sortOn("size",Array.NUMERIC | Array.DESCENDING);
+		this._dgMountParks.dataProvider = var2;
 	}
 }

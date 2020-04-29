@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.MountViewer extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__mount(loc2)
+	function __set__mount(var2)
 	{
-		this._oMount = loc2;
+		this._oMount = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -49,9 +49,9 @@ class dofus.graphics.gapi.ui.MountViewer extends dofus.graphics.gapi.core.DofusA
 	{
 		this._btnClose.label = this.api.lang.getText("CLOSE");
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnClose)
+		if((var var0 = var2.target) === this._btnClose)
 		{
 			this.callClose();
 		}

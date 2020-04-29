@@ -1,49 +1,49 @@
 class dofus.aks.Subareas extends dofus.aks.Handler
 {
-	function Subareas(loc3, loc4)
+	function Subareas(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function onList(loc2)
+	function onList(var2)
 	{
-		var loc3 = loc2.split("|");
+		var var3 = var2.split("|");
 		this.api.datacenter.Subareas.removeAll();
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var loc5 = String(loc3[loc4]).split(";");
-			var loc6 = Number(loc5[0]);
-			var loc7 = Number(loc5[1]);
-			var loc8 = new dofus.datacenter.(loc6,loc7);
-			this.api.datacenter.Subareas.addItemAt(loc6,loc8);
-			loc4 = loc4 + 1;
+			var var5 = String(var3[var4]).split(";");
+			var var6 = Number(var5[0]);
+			var var7 = Number(var5[1]);
+			var var8 = new dofus.datacenter.(var6,var7);
+			this.api.datacenter.Subareas.addItemAt(var6,var8);
+			var4 = var4 + 1;
 		}
 	}
-	function onAlignmentModification(loc2)
+	function onAlignmentModification(var2)
 	{
-		var loc3 = String(loc2).split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = Number(loc3[2]) == 1;
-		var loc7 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(loc4);
-		if(loc7 == undefined)
+		var var3 = String(var2).split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = Number(var3[2]) == 1;
+		var var7 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(var4);
+		if(var7 == undefined)
 		{
-			loc7 = new dofus.datacenter.(loc4,loc5);
-			this.api.datacenter.Subareas.addItemAt(loc4,loc7);
+			var7 = new dofus.datacenter.(var4,var5);
+			this.api.datacenter.Subareas.addItemAt(var4,var7);
 		}
 		else
 		{
-			loc7.alignment.index = loc5;
+			var7.alignment.index = var5;
 		}
-		if(!loc6)
+		if(!var6)
 		{
-			if(loc5 == -1)
+			if(var5 == -1)
 			{
-				this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("SUBAREA_ALIGNMENT_PRISM_REMOVED",[loc7.name]) + "</b>","PVP_CHAT");
+				this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("SUBAREA_ALIGNMENT_PRISM_REMOVED",[var7.name]) + "</b>","PVP_CHAT");
 			}
 			else
 			{
-				this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("SUBAREA_ALIGNMENT_IS",[loc7.name,loc7.alignment.name]) + "</b>","PVP_CHAT");
+				this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("SUBAREA_ALIGNMENT_IS",[var7.name,var7.alignment.name]) + "</b>","PVP_CHAT");
 			}
 		}
 	}

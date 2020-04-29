@@ -6,9 +6,9 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		super();
 	}
-	function __set__currentTab(loc2)
+	function __set__currentTab(var2)
 	{
-		this._sCurrentTab = loc2;
+		this._sCurrentTab = var2;
 		return this.__get__currentTab();
 	}
 	function init()
@@ -63,74 +63,74 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 	}
 	function initData()
 	{
-		var loc2 = this.api.datacenter.Player.guildInfos;
-		var loc3 = loc2.emblem;
-		this._eEmblem.backID = loc3.backID;
-		this._eEmblem.backColor = loc3.backColor;
-		this._eEmblem.upID = loc3.upID;
-		this._eEmblem.upColor = loc3.upColor;
-		this._winBg.title = this.api.lang.getText("GUILD") + " \'" + loc2.name + "\'";
+		var var2 = this.api.datacenter.Player.guildInfos;
+		var var3 = var2.emblem;
+		this._eEmblem.backID = var3.backID;
+		this._eEmblem.backColor = var3.backColor;
+		this._eEmblem.upID = var3.upID;
+		this._eEmblem.upColor = var3.upColor;
+		this._winBg.title = this.api.lang.getText("GUILD") + " \'" + var2.name + "\'";
 		this.api.network.Guild.getInfosGeneral();
 	}
 	function updateCurrentTabInformations()
 	{
 		this._mcTabViewer.removeMovieClip();
-		switch(this._sCurrentTab)
+		if((var var0 = this._sCurrentTab) !== "Members")
 		{
-			case "Members":
-				this.attachMovie("GuildMembersViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-				this.api.datacenter.Player.guildInfos.members.removeAll();
-				this.api.network.Guild.getInfosMembers();
-				break;
-			case "Boosts":
-				this.attachMovie("GuildBoostsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-				this.api.network.Guild.getInfosBoosts();
-				break;
-			default:
-				switch(null)
-				{
-					case "TaxCollectors":
-						this.attachMovie("TaxCollectorsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-						this.api.datacenter.Player.guildInfos.taxCollectors.removeAll();
-						this.api.network.Guild.getInfosTaxCollector();
-						break;
-					case "MountParks":
-						this.attachMovie("GuildMountParkViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-						this.api.network.Guild.getInfosMountPark();
-						break;
-					case "GuildHouses":
-						this.attachMovie("GuildHousesViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-						this.api.network.Guild.getInfosGuildHouses();
-				}
+			switch(null)
+			{
+				case "Boosts":
+					this.attachMovie("GuildBoostsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+					this.api.network.Guild.getInfosBoosts();
+					break;
+				case "TaxCollectors":
+					this.attachMovie("TaxCollectorsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+					this.api.datacenter.Player.guildInfos.taxCollectors.removeAll();
+					this.api.network.Guild.getInfosTaxCollector();
+					break;
+				case "MountParks":
+					this.attachMovie("GuildMountParkViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+					this.api.network.Guild.getInfosMountPark();
+					break;
+				case "GuildHouses":
+					this.attachMovie("GuildHousesViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+					this.api.network.Guild.getInfosGuildHouses();
+			}
+		}
+		else
+		{
+			this.attachMovie("GuildMembersViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+			this.api.datacenter.Player.guildInfos.members.removeAll();
+			this.api.network.Guild.getInfosMembers();
 		}
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
 		if(this._sCurrentTab == "TaxCollectors")
 		{
 			this.api.network.Guild.leaveTaxInterface();
 		}
-		var loc3 = this["_btnTab" + this._sCurrentTab];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
-		this._sCurrentTab = loc2;
+		var var3 = this["_btnTab" + this._sCurrentTab];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
+		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
 	function checkIfLocalPlayerIsDefender()
 	{
-		var loc2 = this.api.datacenter.Player.guildInfos;
-		if(loc2.isLocalPlayerDefender)
+		var var2 = this.api.datacenter.Player.guildInfos;
+		if(var2.isLocalPlayerDefender)
 		{
-			this.api.network.Guild.leaveTaxCollector(loc2.defendedTaxCollectorID);
+			this.api.network.Guild.leaveTaxCollector(var2.defendedTaxCollectorID);
 			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("AUTO_DISJOIN_TAX"),"ERROR_BOX");
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 				this.callClose();
@@ -138,20 +138,20 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 			case "_btnTabMembers":
 				this.setCurrentTab("Members");
 				break;
-			case "_btnTabBoosts":
-				if(this.api.datacenter.Player.guildInfos.isValid)
-				{
-					this.setCurrentTab("Boosts");
-				}
-				else
-				{
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
-					loc2.target.selected = true;
-				}
-				break;
 			default:
 				switch(null)
 				{
+					case "_btnTabBoosts":
+						if(this.api.datacenter.Player.guildInfos.isValid)
+						{
+							this.setCurrentTab("Boosts");
+						}
+						else
+						{
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
+							var2.target.selected = true;
+						}
+						break;
 					case "_btnTabTaxCollectors":
 						if(this.api.datacenter.Player.guildInfos.isValid)
 						{
@@ -160,7 +160,7 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 						else
 						{
 							this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
-							loc2.target.selected = true;
+							var2.target.selected = true;
 						}
 						break;
 					case "_btnTabMountParks":
@@ -171,7 +171,7 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 						else
 						{
 							this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
-							loc2.target.selected = true;
+							var2.target.selected = true;
 						}
 						break;
 					case "_btnTabGuildHouses":
@@ -181,32 +181,32 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 							break;
 						}
 						this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
-						loc2.target.selected = true;
+						var2.target.selected = true;
 						break;
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_pbXP")
+		if((var var0 = var2.target._name) === "_pbXP")
 		{
-			this.gapi.showTooltip(new ank.utils.(this._pbXP.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._pbXP.maximum).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this._pbXP,-20);
+			this.gapi.showTooltip(new ank.utils.(this._pbXP.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._pbXP.maximum).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this._pbXP,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
-		switch(loc2.eventName)
+		switch(var2.eventName)
 		{
 			case "general":
-				var loc3 = this.api.datacenter.Player.guildInfos;
-				this._lblLevel.text = this.api.lang.getText("LEVEL") + " " + loc3.level;
-				this._pbXP.minimum = loc3.xpmin;
-				this._pbXP.maximum = loc3.xpmax;
-				this._pbXP.value = loc3.xp;
+				var var3 = this.api.datacenter.Player.guildInfos;
+				this._lblLevel.text = this.api.lang.getText("LEVEL") + " " + var3.level;
+				this._pbXP.minimum = var3.xpmin;
+				this._pbXP.maximum = var3.xpmax;
+				this._pbXP.value = var3.xp;
 				this._pbXP.onRollOver = function()
 				{
 					this._parent.gapi.showTooltip(this.value + " / " + this.maximum,this,-20);
@@ -215,17 +215,17 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 				{
 					this._parent.gapi.hideTooltip();
 				};
-				if(loc3.isValid)
+				if(var3.isValid)
 				{
 					this._y = 0;
-					this._lblValid._visible = loc0 = false;
-					this._mcCaution._visible = loc0;
+					this._lblValid._visible = var0 = false;
+					this._mcCaution._visible = var0;
 				}
 				else
 				{
 					this._y = -20;
-					this._lblValid._visible = loc0 = true;
-					this._mcCaution._visible = loc0;
+					this._lblValid._visible = var0 = true;
+					this._mcCaution._visible = var0;
 					this._lblValid.text = this.api.lang.getText("GUILD_INVALID_INFOS");
 				}
 				break;
@@ -241,15 +241,15 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 					this._mcTabViewer.updateData();
 				}
 				break;
-			case "taxcollectors":
-				if(this._sCurrentTab == "TaxCollectors")
-				{
-					this._mcTabViewer.taxCollectors = this.api.datacenter.Player.guildInfos.taxCollectors;
-				}
-				break;
 			default:
 				switch(null)
 				{
+					case "taxcollectors":
+						if(this._sCurrentTab == "TaxCollectors")
+						{
+							this._mcTabViewer.taxCollectors = this.api.datacenter.Player.guildInfos.taxCollectors;
+						}
+						break;
 					case "noboosts":
 					case "notaxcollectors":
 						this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");

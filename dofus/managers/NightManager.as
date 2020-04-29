@@ -2,42 +2,42 @@ class dofus.managers.NightManager
 {
 	static var STATE_COLORS = [undefined,dofus.Constants.NIGHT_COLOR];
 	static var _sSelf = null;
-	function NightManager(loc3)
+	function NightManager(var3)
 	{
 		dofus.managers.NightManager._sSelf = this;
-		this._oApi = loc2;
+		this._oApi = var2;
 	}
 	function __get__time()
 	{
-		var loc2 = this.getCurrentTime();
-		if(new ank.utils.(loc2[1]).addLeftChar("0",2) == "undefined")
+		var var2 = this.getCurrentTime();
+		if(new ank.utils.(var2[1]).addLeftChar("0",2) == "undefined")
 		{
 			return "";
 		}
-		return new ank.utils.(loc2[0]).addLeftChar("0",2) + ":" + new ank.utils.(loc2[1]).addLeftChar("0",2);
+		return new ank.utils.(var2[0]).addLeftChar("0",2) + ":" + new ank.utils.(var2[1]).addLeftChar("0",2);
 	}
 	function __get__date()
 	{
 		return this.getCurrentDateString();
 	}
-	function initialize(loc2, loc3, loc4, loc5)
+	function initialize(var2, var3, var4, var5)
 	{
-		this._aSequence = loc2;
-		this._aMonths = loc3;
-		this._nYearOffset = loc4;
-		this._mcBattlefield = loc5;
+		this._aSequence = var2;
+		this._aMonths = var3;
+		this._nYearOffset = var4;
+		this._mcBattlefield = var5;
 	}
-	function setReferenceTime(loc2)
+	function setReferenceTime(var2)
 	{
-		this._cdDate = new ank.utils.(loc2,this._aMonths,this._nYearOffset);
+		this._cdDate = new ank.utils.(var2,this._aMonths,this._nYearOffset);
 		this.clear();
 		this.setState();
 	}
-	function setReferenceDate(loc2, loc3, loc4)
+	function setReferenceDate(var2, var3, var4)
 	{
-		this._nYear = loc2;
-		this._nMonth = loc3;
-		this._nDay = loc4;
+		this._nYear = var2;
+		this._nMonth = var3;
+		this._nDay = var4;
 	}
 	function clear()
 	{
@@ -54,17 +54,17 @@ class dofus.managers.NightManager
 	}
 	function getCurrentDateString()
 	{
-		var loc2 = this._cdDate.getCurrentDate();
+		var var2 = this._cdDate.getCurrentDate();
 		if(getTimer() - this._oApi.datacenter.Basics.lastDateUpdate > 60000)
 		{
 			this._oApi.network.Basics.getDate();
 		}
-		var loc3 = this._nYear == undefined?loc2[2] + " " + loc2[1] + " " + loc2[0]:this._nDay + " " + this._aMonths[11 - this._nMonth][1] + " " + this._nYear;
-		return loc3;
+		var var3 = this._nYear == undefined?var2[2] + " " + var2[1] + " " + var2[0]:this._nDay + " " + this._aMonths[11 - this._nMonth][1] + " " + this._nYear;
+		return var3;
 	}
-	function getDiffDate(loc2)
+	function getDiffDate(var2)
 	{
-		return this._cdDate.getDiffDate(loc2);
+		return this._cdDate.getDiffDate(var2);
 	}
 	static function getInstance()
 	{
@@ -72,25 +72,25 @@ class dofus.managers.NightManager
 	}
 	function setState()
 	{
-		var loc2 = this._cdDate.getCurrentMillisInDay();
-		var loc3 = 0;
-		while(loc3 < this._aSequence.length)
+		var var2 = this._cdDate.getCurrentMillisInDay();
+		var var3 = 0;
+		while(var3 < this._aSequence.length)
 		{
-			var loc4 = this._aSequence[loc3][1];
-			if(loc2 < loc4)
+			var var4 = this._aSequence[var3][1];
+			if(var2 < var4)
 			{
-				var loc5 = this._aSequence[loc3][2];
-				this.applyState(loc5,loc4 - loc2,loc4);
+				var var5 = this._aSequence[var3][2];
+				this.applyState(var5,var4 - var2,var4);
 				return undefined;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		ank.utils.Logger.err("[setState] ... heu la date " + loc2 + " n\'est pas dans la séquence");
+		ank.utils.Logger.err("[setState] ... heu la date " + var2 + " n\'est pas dans la séquence");
 	}
-	function applyState(loc2, loc3, loc4)
+	function applyState(var2, var3, var4)
 	{
-		this._mcBattlefield.setColor(loc2);
+		this._mcBattlefield.setColor(var2);
 		this.clear();
-		this._nIntervalID = _global.setInterval(this,"setState",loc3,loc4);
+		this._nIntervalID = _global.setInterval(this,"setState",var3,var4);
 	}
 }

@@ -23,64 +23,63 @@ class dofus.datacenter.ServerInformations extends Object
 		this.api = _global.API;
 		mx.events.EventDispatcher.initialize(this);
 	}
-	function parseXml(loc2)
+	function parseXml(var2)
 	{
 		this._pProblems = new Array();
-		var loc3 = loc2.firstChild;
-		var loc4 = 0;
-		while(loc4 < loc3.childNodes.length)
+		var var3 = var2.firstChild;
+		var var4 = 0;
+		while(var4 < var3.childNodes.length)
 		{
-			var loc5 = loc3.childNodes[loc4];
-			var loc6 = Number(loc5.attributes.id);
-			var loc7 = Number(loc5.attributes.date);
-			var loc8 = Number(loc5.attributes.type);
-			var loc9 = Number(loc5.attributes.state);
-			var loc10 = loc5.attributes.visible == "true";
-			this._bOnFocus = this._bOnFocus || loc10;
-			var loc11 = loc5.childNodes[0];
-			var loc12 = new Array();
-			if(loc11.attributes.cnx == "true")
+			var var5 = var3.childNodes[var4];
+			var var6 = Number(var5.attributes.id);
+			var var7 = Number(var5.attributes.date);
+			var var8 = Number(var5.attributes.type);
+			var var9 = Number(var5.attributes.state);
+			var var10 = var5.attributes.visible == "true";
+			this._bOnFocus = this._bOnFocus || var10;
+			var var11 = var5.childNodes[0];
+			var var12 = new Array();
+			if(var11.attributes.cnx == "true")
 			{
-				loc12.push(this.api.lang.getText("CONNECTION_SERVER"));
+				var12.push(this.api.lang.getText("CONNECTION_SERVER"));
 			}
-			if(loc11.attributes.all == "true")
+			if(var11.attributes.all == "true")
 			{
-				loc12.push(this.api.lang.getText("EVERY_SERVERS"));
+				var12.push(this.api.lang.getText("EVERY_SERVERS"));
 			}
 			else
 			{
-				var loc13 = 0;
-				while(loc13 < loc11.childNodes.length)
+				var var13 = 0;
+				while(var13 < var11.childNodes.length)
 				{
-					loc12.push(loc11.childNodes[loc13].attributes.name);
-					loc13 = loc13 + 1;
+					var12.push(var11.childNodes[var13].attributes.name);
+					var13 = var13 + 1;
 				}
 			}
-			var loc14 = loc5.childNodes[1];
-			var loc15 = new Array();
-			var loc16 = 0;
-			while(loc16 < loc14.childNodes.length)
+			var var14 = var5.childNodes[1];
+			var var15 = new Array();
+			var var16 = 0;
+			while(var16 < var14.childNodes.length)
 			{
-				var loc17 = loc14.childNodes[loc16];
-				var loc18 = Number(loc17.attributes.timestamp);
-				var loc19 = Number(loc17.attributes.id);
-				var loc20 = loc17.attributes.translated == "true";
-				var loc21 = loc17.firstChild.nodeValue;
-				var loc22 = new dofus.datacenter.	(loc18,loc19,loc20,loc21);
-				loc15.push(loc22);
-				loc16 = loc16 + 1;
+				var var17 = var14.childNodes[var16];
+				var var18 = Number(var17.attributes.timestamp);
+				var var19 = Number(var17.attributes.id);
+				var var20 = var17.attributes.translated == "true";
+				var var21 = var17.firstChild.nodeValue;
+				var var22 = new dofus.datacenter.(var18,var19,var20,var21);
+				var15.push(var22);
+				var16 = var16 + 1;
 			}
-			var loc23 = new dofus.datacenter.
-(loc6,loc7,loc8,loc9,loc12,loc15);
-			this._pProblems.push(loc23);
-			loc4 = loc4 + 1;
+			var var23 = new dofus.datacenter.(var6,var7,var8,var9,var12,var15);
+			this._pProblems.push(var23);
+			var4 = var4 + 1;
 		}
 		this.dispatchEvent({type:"onData"});
 	}
-	function onXMLLoadComplete(loc2)
+	function onXMLLoadComplete(var2)
 	{
-		var loc3 = loc2.value;
-		this.parseXml(loc3);
+		var var3 = var2.value;
+		this.parseXml(var3);
 	}
 	function onXMLLoadError()
 	{

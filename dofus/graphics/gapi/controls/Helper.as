@@ -11,13 +11,13 @@ class dofus.graphics.gapi.controls.Helper extends dofus.graphics.gapi.core.Dofus
 	{
 		if(dofus.graphics.gapi.controls.Helper.SINGLETON_INSTANCE == null || !(dofus.graphics.gapi.controls.Helper.SINGLETON_INSTANCE instanceof dofus.graphics.gapi.controls.Helper))
 		{
-			var loc2 = _global.API.ui.getUIComponent("Banner");
-			if(loc2 == undefined)
+			var var2 = _global.API.ui.getUIComponent("Banner");
+			if(var2 == undefined)
 			{
 				return null;
 			}
-			var loc3 = loc2.showCircleXtra("helper",true);
-			return loc3.content;
+			var var3 = var2.showCircleXtra("helper",true);
+			return var3.content;
 		}
 		return dofus.graphics.gapi.controls.Helper.SINGLETON_INSTANCE;
 	}
@@ -38,17 +38,17 @@ class dofus.graphics.gapi.controls.Helper extends dofus.graphics.gapi.core.Dofus
 	}
 	function showStars(nCount)
 	{
-		var loc3 = 0;
-		while(loc3 < dofus.graphics.gapi.controls.Helper.MAX_STARS_DISPLAYED)
+		var var3 = 0;
+		while(var3 < dofus.graphics.gapi.controls.Helper.MAX_STARS_DISPLAYED)
 		{
-			this.getStar(loc3 + 1)._visible = nCount > loc3;
-			loc3 = loc3 + 1;
+			this.getStar(var3 + 1)._visible = nCount > var3;
+			var3 = var3 + 1;
 		}
 		this._nStarsDisplayed = nCount;
 	}
-	function getStar(loc2)
+	function getStar(var2)
 	{
-		return this["_mcStar" + loc2];
+		return this["_mcStar" + var2];
 	}
 	function addStar()
 	{
@@ -64,9 +64,9 @@ class dofus.graphics.gapi.controls.Helper extends dofus.graphics.gapi.core.Dofus
 			this.showStars(this._nStarsDisplayed - 1);
 		}
 	}
-	function addAnimationToQueue(loc2)
+	function addAnimationToQueue(var2)
 	{
-		this._aAnimationQueue.push(loc2);
+		this._aAnimationQueue.push(var2);
 		if(!this._bIsPlaying)
 		{
 			this.playNextAnimation();
@@ -76,16 +76,16 @@ class dofus.graphics.gapi.controls.Helper extends dofus.graphics.gapi.core.Dofus
 	{
 		if(this._aAnimationQueue.length > 0)
 		{
-			var loc2 = String(this._aAnimationQueue.shift());
-			this._sLastAnimation = loc2;
-			this._mcBoon.gotoAndPlay(loc2);
+			var var2 = String(this._aAnimationQueue.shift());
+			this._sLastAnimation = var2;
+			this._mcBoon.gotoAndPlay(var2);
 		}
 		else
 		{
-			if((var loc0 = this._sLastAnimation) === "hide")
+			if((var var0 = this._sLastAnimation) === "hide")
 			{
-				var loc3 = _global.API.ui.getUIComponent("Banner");
-				loc3.showCircleXtra("artwork",true,{bMask:true});
+				var var3 = _global.API.ui.getUIComponent("Banner");
+				var3.showCircleXtra("artwork",true,{bMask:true});
 			}
 			this._mcBoon.gotoAndStop("static");
 		}

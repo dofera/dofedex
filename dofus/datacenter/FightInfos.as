@@ -1,9 +1,9 @@
 class dofus.datacenter.FightInfos extends Object
 {
-	function FightInfos(loc3, loc4)
+	function FightInfos(var3, var4)
 	{
 		super();
-		this.initialize(loc3,loc4);
+		this.initialize(var3,var4);
 	}
 	function __get__id()
 	{
@@ -31,12 +31,14 @@ class dofus.datacenter.FightInfos extends Object
 	}
 	function __get__team1Level()
 	{
-		var loc2 = 0;
-		for(var k in this._eaTeam1Players)
+		var var2 = 0;
+		var var3 = 0;
+		while(var3 < this._eaTeam1Players.length)
 		{
-			loc2 = loc2 + this._eaTeam1Players[k].level;
+			var2 = var2 + this._eaTeam1Players[var3].level;
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__team2IconFile()
 	{
@@ -52,43 +54,45 @@ class dofus.datacenter.FightInfos extends Object
 	}
 	function __get__team2Level()
 	{
-		var loc2 = 0;
-		for(var k in this._eaTeam2Players)
+		var var2 = 0;
+		var var3 = 0;
+		while(var3 < this._eaTeam2Players.length)
 		{
-			loc2 = loc2 + this._eaTeam2Players[k].level;
+			var2 = var2 + this._eaTeam2Players[var3].level;
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
 		this.api = _global.API;
-		this._nID = loc2;
-		this.duration = loc3;
+		this._nID = var2;
+		this.duration = var3;
 	}
-	function addTeam(§\x05\x1a§, §\x1e\x1d\b§, §\n\x04§, nCount)
+	function addTeam(§\x05\x18§, §\x1e\x1d\x06§, §\n\x02§, nCount)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case 1:
-				this._nTeam1Type = loc3;
-				this._nTeam1AlignmentIndex = loc4;
+				this._nTeam1Type = var3;
+				this._nTeam1AlignmentIndex = var4;
 				this._nTeam1Count = nCount;
 				break;
 			case 2:
-				this._nTeam2Type = loc3;
-				this._nTeam2AlignmentIndex = loc4;
+				this._nTeam2Type = var3;
+				this._nTeam2AlignmentIndex = var4;
 				this._nTeam2Count = nCount;
 		}
 	}
-	function addPlayers(loc2, loc3)
+	function addPlayers(var2, var3)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case 1:
-				this._eaTeam1Players = loc3;
+				this._eaTeam1Players = var3;
 				break;
 			case 2:
-				this._eaTeam2Players = loc3;
+				this._eaTeam2Players = var3;
 		}
 	}
 }

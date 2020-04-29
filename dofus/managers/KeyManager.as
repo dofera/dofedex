@@ -6,28 +6,28 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 	var _bShiftDown = true;
 	static var _sSelf = null;
 	var _nLastTriggerShow = 0;
-	function KeyManager(loc3)
+	function KeyManager(var3)
 	{
 		super();
 		dofus.managers.KeyManager._sSelf = this;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	function __get__Broadcasting()
 	{
 		return this._bIsBroadcasting;
 	}
-	function __set__Broadcasting(loc2)
+	function __set__Broadcasting(var2)
 	{
-		this._bIsBroadcasting = loc2;
+		this._bIsBroadcasting = var2;
 		return this.__get__Broadcasting();
 	}
 	static function getInstance()
 	{
 		return dofus.managers.KeyManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 		Key.addListener(this);
 		this._aAnyTimeShortcuts = new Array();
 		this._aNoChatShortcuts = new Array();
@@ -35,120 +35,120 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		this._nCurrentSet = this.api.kernel.OptionsManager.getOption("ShortcutSet");
 		this.loadShortcuts();
 	}
-	function addShortcutsListener(loc2, loc3)
+	function addShortcutsListener(var2, var3)
 	{
 		if(this._aListening == undefined)
 		{
 			this._aListening = new Array();
 		}
-		var loc4 = 0;
-		while(loc4 < this._aListening.length)
+		var var4 = 0;
+		while(var4 < this._aListening.length)
 		{
-			if(String(this._aListening[loc4].o) == String(loc3) && this._aListening[loc4].m == loc2)
+			if(String(this._aListening[var4].o) == String(var3) && this._aListening[var4].m == var2)
 			{
-				this.removeShortcutsListener(this._aListening[loc4].o);
+				this.removeShortcutsListener(this._aListening[var4].o);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		this._aListening.unshift({o:loc3,m:loc2});
+		this._aListening.unshift({o:var3,m:var2});
 	}
-	function removeShortcutsListener(loc2)
+	function removeShortcutsListener(var2)
 	{
 		if(this._aListening == undefined)
 		{
 			return undefined;
 		}
-		var loc3 = new Array();
-		var loc4 = 0;
-		while(loc4 < this._aListening.length)
+		var var3 = new Array();
+		var var4 = 0;
+		while(var4 < this._aListening.length)
 		{
-			if(this._aListening[loc4].o == loc2)
+			if(this._aListening[var4].o == var2)
 			{
-				loc3.push(loc4);
+				var3.push(var4);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		loc3.sort(Array.DESCENDING);
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var3.sort(Array.DESCENDING);
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			this._aListening.splice(loc3[loc5],1);
-			loc5 = loc5 + 1;
+			this._aListening.splice(var3[var5],1);
+			var5 = var5 + 1;
 		}
 	}
-	function addKeysListener(loc2, loc3)
+	function addKeysListener(var2, var3)
 	{
 		if(this._aKeysListening == undefined)
 		{
 			this._aKeysListening = new Array();
 		}
-		var loc4 = 0;
-		while(loc4 < this._aKeysListening.length)
+		var var4 = 0;
+		while(var4 < this._aKeysListening.length)
 		{
-			if(String(this._aKeysListening[loc4].o) == String(loc3) && this._aKeysListening[loc4].m == loc2)
+			if(String(this._aKeysListening[var4].o) == String(var3) && this._aKeysListening[var4].m == var2)
 			{
-				this._aKeysListening[loc4] = undefined;
+				this._aKeysListening[var4] = undefined;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		this._aKeysListening.unshift({o:loc3,m:loc2});
+		this._aKeysListening.unshift({o:var3,m:var2});
 	}
-	function removeKeysListener(loc2)
+	function removeKeysListener(var2)
 	{
 		if(this._aKeysListening == undefined)
 		{
 			return undefined;
 		}
-		var loc3 = new Array();
-		var loc4 = 0;
-		while(loc4 < this._aKeysListening.length)
+		var var3 = new Array();
+		var var4 = 0;
+		while(var4 < this._aKeysListening.length)
 		{
-			if(this._aKeysListening[loc4].o == loc2)
+			if(this._aKeysListening[var4].o == var2)
 			{
-				loc3.push(loc4);
+				var3.push(var4);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		loc3.sort(Array.DESCENDING);
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var3.sort(Array.DESCENDING);
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			this._aKeysListening.splice(loc3[loc5],1);
-			loc5 = loc5 + 1;
+			this._aKeysListening.splice(var3[var5],1);
+			var5 = var5 + 1;
 		}
 	}
-	function getDefaultShortcut(loc2)
+	function getDefaultShortcut(var2)
 	{
-		return this.api.lang.getKeyboardShortcutsKeys(this._nCurrentSet,loc2);
+		return this.api.lang.getKeyboardShortcutsKeys(this._nCurrentSet,var2);
 	}
-	function getCurrentShortcut(loc2)
+	function getCurrentShortcut(var2)
 	{
-		var loc3 = new Array();
-		var loc4 = 0;
-		while(loc4 < this._aAnyTimeShortcuts.length)
+		var var3 = new Array();
+		var var4 = 0;
+		while(var4 < this._aAnyTimeShortcuts.length)
 		{
-			if(this._aAnyTimeShortcuts[loc4].d == loc2)
+			if(this._aAnyTimeShortcuts[var4].d == var2)
 			{
-				loc3.push({k:this._aAnyTimeShortcuts[loc4].k,c:this._aAnyTimeShortcuts[loc4].c,d:this._aAnyTimeShortcuts[loc4].l});
+				var3.push({k:this._aAnyTimeShortcuts[var4].k,c:this._aAnyTimeShortcuts[var4].c,d:this._aAnyTimeShortcuts[var4].l});
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		var loc5 = 0;
-		while(loc5 < this._aNoChatShortcuts.length)
+		var var5 = 0;
+		while(var5 < this._aNoChatShortcuts.length)
 		{
-			if(this._aNoChatShortcuts[loc5].d == loc2)
+			if(this._aNoChatShortcuts[var5].d == var2)
 			{
-				loc3.push({k:this._aNoChatShortcuts[loc5].k,c:this._aNoChatShortcuts[loc5].c,d:this._aNoChatShortcuts[loc5].l});
+				var3.push({k:this._aNoChatShortcuts[var5].k,c:this._aNoChatShortcuts[var5].c,d:this._aNoChatShortcuts[var5].l});
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		if(loc3.length == 1)
+		if(var3.length == 1)
 		{
-			return loc3[0];
+			return var3[0];
 		}
-		if(loc3.length == 2)
+		if(var3.length == 2)
 		{
-			return {k:loc3[0].k,c:loc3[0].c,d:loc3[0].d,k2:loc3[1].k,c2:loc3[1].c,d2:loc3[1].d};
+			return {k:var3[0].k,c:var3[0].c,d:var3[0].d,k2:var3[1].k,c2:var3[1].c,d2:var3[1].d};
 		}
 		return undefined;
 	}
@@ -157,64 +157,64 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		this._so.clear();
 		this.loadShortcuts();
 	}
-	function askCustomShortcut(loc2, loc3)
+	function askCustomShortcut(var2, var3)
 	{
-		this.api.ui.loadUIComponent("AskCustomShortcut","AskCustomShortcut",{title:this.api.lang.getText("SHORTCUTS_CUSTOM"),ShortcutCode:loc2,IsAlt:loc3,Description:this.api.lang.getKeyboardShortcuts()[loc2].d});
+		this.api.ui.loadUIComponent("AskCustomShortcut","AskCustomShortcut",{title:this.api.lang.getText("SHORTCUTS_CUSTOM"),ShortcutCode:var2,IsAlt:var3,Description:this.api.lang.getKeyboardShortcuts()[var2].d});
 	}
-	function setCustomShortcut(loc2, loc3, loc4, loc5, loc6)
+	function setCustomShortcut(var2, var3, var4, var5, var6)
 	{
-		if(loc2 == undefined || loc3 == undefined)
+		if(var2 == undefined || var3 == undefined)
 		{
 			return undefined;
 		}
-		var loc7 = loc2 + (!loc3?"_MAIN":"_ALT");
-		if(loc4 == undefined)
+		var var7 = var2 + (!var3?"_MAIN":"_ALT");
+		if(var4 == undefined)
 		{
-			this._so.data[loc7] = undefined;
+			this._so.data[var7] = undefined;
 		}
 		else
 		{
-			if(loc5 == undefined)
+			if(var5 == undefined)
 			{
-				loc5 = 0;
+				var5 = 0;
 			}
-			if(loc6 == undefined || loc6 == "")
+			if(var6 == undefined || var6 == "")
 			{
-				loc6 = this.api.lang.getKeyStringFromKeyCode(loc4);
-				loc6 = this.api.lang.getControlKeyString(loc5) + loc6;
+				var6 = this.api.lang.getKeyStringFromKeyCode(var4);
+				var6 = this.api.lang.getControlKeyString(var5) + var6;
 			}
-			this._so.data[loc7] = {s:loc2,a:loc3,k:loc4,c:loc5,i:loc6};
+			this._so.data[var7] = {s:var2,a:var3,k:var4,c:var5,i:var6};
 		}
 		this._so.flush();
 		this.loadShortcuts();
 	}
-	function getCustomShortcut(loc2, loc3)
+	function getCustomShortcut(var2, var3)
 	{
-		var loc4 = loc2 + (!loc3?"_MAIN":"_ALT");
-		return this._so.data[loc4];
+		var var4 = var2 + (!var3?"_MAIN":"_ALT");
+		return this._so.data[var4];
 	}
-	function isCustomShortcut(loc2, loc3)
+	function isCustomShortcut(var2, var3)
 	{
-		return this.getCustomShortcut(loc2,loc3) != undefined;
+		return this.getCustomShortcut(var2,var3) != undefined;
 	}
-	function deleteCustomShortcut(loc2, loc3)
+	function deleteCustomShortcut(var2, var3)
 	{
-		this.setCustomShortcut(loc2,loc3);
+		this.setCustomShortcut(var2,var3);
 	}
 	function getCurrentDefaultSet()
 	{
-		var loc2 = Number(this.api.lang.getText("SHORTCUTS_DEFAULT_SET"));
-		if(loc2 < 1)
+		var var2 = Number(this.api.lang.getText("SHORTCUTS_DEFAULT_SET"));
+		if(var2 < 1)
 		{
-			loc2 = 1;
+			var2 = 1;
 		}
-		return loc2;
+		return var2;
 	}
-	function dispatchCtrlState(loc2)
+	function dispatchCtrlState(var2)
 	{
-		this.dispatchShortcut(!loc2?"CTRL_STATE_CHANGED_OFF":"CTRL_STATE_CHANGED_ON");
+		this.dispatchShortcut(!var2?"CTRL_STATE_CHANGED_OFF":"CTRL_STATE_CHANGED_ON");
 	}
-	function dispatchShortcut(loc2)
+	function dispatchShortcut(var2)
 	{
 		if(!this._bIsBroadcasting)
 		{
@@ -224,40 +224,40 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		{
 			return true;
 		}
-		var loc3 = new Array();
-		var loc4 = true;
-		var loc5 = 0;
-		while(loc5 < this._aListening.length)
+		var var3 = new Array();
+		var var4 = true;
+		var var5 = 0;
+		while(var5 < this._aListening.length)
 		{
-			if(this._aListening[loc5] == undefined || this._aListening[loc5].o == undefined)
+			if(this._aListening[var5] == undefined || this._aListening[var5].o == undefined)
 			{
-				loc3.push(loc5);
+				var3.push(var5);
 			}
 			else
 			{
-				var loc6 = eval(String(this._aListening[loc5].o) + "." + this._aListening[loc5].m).call(this._aListening[loc5].o,loc2);
-				if(loc6 != undefined && loc6 == false)
+				var var6 = eval(String(this._aListening[var5].o) + "." + this._aListening[var5].m).call(this._aListening[var5].o,var2);
+				if(var6 != undefined && var6 == false)
 				{
-					loc4 = false;
+					var4 = false;
 					break;
 				}
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		loc3.sort(Array.DESCENDING);
-		var loc7 = 0;
-		while(loc7 < loc3.length)
+		var3.sort(Array.DESCENDING);
+		var var7 = 0;
+		while(var7 < var3.length)
 		{
-			this._aListening.splice(loc3[loc7],1);
-			loc7 = loc7 + 1;
+			this._aListening.splice(var3[var7],1);
+			var7 = var7 + 1;
 		}
-		if(loc4)
+		if(var4)
 		{
-			loc4 = this.onShortcut(loc2);
+			var4 = this.onShortcut(var2);
 		}
-		return loc4;
+		return var4;
 	}
-	function dispatchKey(loc2)
+	function dispatchKey(var2)
 	{
 		if(!this._bIsBroadcasting)
 		{
@@ -267,82 +267,82 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		loc2 = new ank.utils.(loc2).trim().toString();
-		if(loc2.length == 0)
+		var2 = new ank.utils.(var2).trim().toString();
+		if(var2.length == 0)
 		{
 			return undefined;
 		}
-		var loc3 = new Array();
-		var loc4 = 0;
-		while(loc4 < this._aKeysListening.length)
+		var var3 = new Array();
+		var var4 = 0;
+		while(var4 < this._aKeysListening.length)
 		{
-			if(this._aKeysListening[loc4] == undefined || this._aKeysListening[loc4].o == undefined)
+			if(this._aKeysListening[var4] == undefined || this._aKeysListening[var4].o == undefined)
 			{
-				loc3.push(loc4);
+				var3.push(var4);
 			}
 			else
 			{
-				eval(String(this._aKeysListening[loc4].o) + "." + this._aKeysListening[loc4].m).call(this._aKeysListening[loc4].o,loc2);
+				eval(String(this._aKeysListening[var4].o) + "." + this._aKeysListening[var4].m).call(this._aKeysListening[var4].o,var2);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		loc3.sort(Array.DESCENDING);
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var3.sort(Array.DESCENDING);
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			this._aKeysListening.splice(loc3[loc5],1);
-			loc5 = loc5 + 1;
+			this._aKeysListening.splice(var3[var5],1);
+			var5 = var5 + 1;
 		}
 	}
 	function loadShortcuts()
 	{
-		var loc2 = this.api.lang.getKeyboardShortcuts();
+		var var2 = this.api.lang.getKeyboardShortcuts();
 		this._aNoChatShortcuts = new Array();
 		this._aAnyTimeShortcuts = new Array();
-		for(var k in loc2)
+		for(var k in var2)
 		{
-			var loc3 = this.api.lang.getKeyboardShortcutsKeys(this._nCurrentSet,k);
-			var loc4 = this.getCustomShortcut(k,false);
-			if(loc4 != undefined && !loc2[k].s)
+			var var3 = this.api.lang.getKeyboardShortcutsKeys(this._nCurrentSet,k);
+			var var4 = this.getCustomShortcut(k,false);
+			if(var4 != undefined && !var2[k].s)
 			{
-				if(loc3.o)
+				if(var3.o)
 				{
-					this._aNoChatShortcuts.push({k:loc4.k,c:loc4.c,o:loc3.o,d:k,l:loc4.i,s:loc2[k].s});
+					this._aNoChatShortcuts.push({k:var4.k,c:var4.c,o:var3.o,d:k,l:var4.i,s:var2[k].s});
 				}
 				else
 				{
-					this._aAnyTimeShortcuts.push({k:loc4.k,c:loc4.c,o:loc3.o,d:k,l:loc4.i,s:loc2[k].s});
+					this._aAnyTimeShortcuts.push({k:var4.k,c:var4.c,o:var3.o,d:k,l:var4.i,s:var2[k].s});
 				}
 			}
-			else if(loc3.o)
+			else if(var3.o)
 			{
-				this._aNoChatShortcuts.push({k:loc3.k,c:loc3.c,o:loc3.o,d:k,l:loc3.s,s:loc2[k].s});
+				this._aNoChatShortcuts.push({k:var3.k,c:var3.c,o:var3.o,d:k,l:var3.s,s:var2[k].s});
 			}
-			else if(loc3.k != undefined)
+			else if(var3.k != undefined)
 			{
-				this._aAnyTimeShortcuts.push({k:loc3.k,c:loc3.c,o:loc3.o,d:k,l:loc3.s,s:loc2[k].s});
+				this._aAnyTimeShortcuts.push({k:var3.k,c:var3.c,o:var3.o,d:k,l:var3.s,s:var2[k].s});
 			}
-			var loc5 = this.getCustomShortcut(k,true);
-			if(loc5 != undefined && !loc2[k].s)
+			var var5 = this.getCustomShortcut(k,true);
+			if(var5 != undefined && !var2[k].s)
 			{
-				if(loc3.o)
+				if(var3.o)
 				{
-					this._aNoChatShortcuts.push({k:loc5.k,c:loc5.c,o:loc3.o,d:k,l:loc5.i,s:loc2[k].s});
-				}
-				else
-				{
-					this._aAnyTimeShortcuts.push({k:loc5.k,c:loc5.c,o:loc3.o,d:k,l:loc5.i,s:loc2[k].s});
-				}
-			}
-			else if(!_global.isNaN(loc3.k2) && loc3.k2 != undefined)
-			{
-				if(loc3.o)
-				{
-					this._aNoChatShortcuts.push({k:loc3.k2,c:loc3.c2,o:loc3.o,d:k,l:loc3.s2,s:loc2[k].s});
+					this._aNoChatShortcuts.push({k:var5.k,c:var5.c,o:var3.o,d:k,l:var5.i,s:var2[k].s});
 				}
 				else
 				{
-					this._aAnyTimeShortcuts.push({k:loc3.k2,c:loc3.c2,o:loc3.o,d:k,l:loc3.s2,s:loc2[k].s});
+					this._aAnyTimeShortcuts.push({k:var5.k,c:var5.c,o:var3.o,d:k,l:var5.i,s:var2[k].s});
+				}
+			}
+			else if(!_global.isNaN(var3.k2) && var3.k2 != undefined)
+			{
+				if(var3.o)
+				{
+					this._aNoChatShortcuts.push({k:var3.k2,c:var3.c2,o:var3.o,d:k,l:var3.s2,s:var2[k].s});
+				}
+				else
+				{
+					this._aAnyTimeShortcuts.push({k:var3.k2,c:var3.c2,o:var3.o,d:k,l:var3.s2,s:var2[k].s});
 				}
 			}
 		}
@@ -353,87 +353,90 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 			this._aAnyTimeShortcuts.push({k:13,c:1,o:true,d:"GUILD_MESSAGE"});
 			this._aAnyTimeShortcuts.push({k:13,c:0,o:true,d:"ACCEPT_CURRENT_DIALOG"});
 			this._aAnyTimeShortcuts.push({k:70,c:1,o:true,d:"FULLSCREEN"});
-			var loc6 = this.api.lang.getDefaultConsoleShortcuts();
-			var loc7 = 0;
-			while(loc7 < loc6.length)
+			var var6 = this.api.lang.getDefaultConsoleShortcuts();
+			var var7 = 0;
+			while(var7 < var6.length)
 			{
-				this._aAnyTimeShortcuts.push({k:loc6[loc7].k,c:1,o:true,d:"CONSOLE"});
-				loc7 = loc7 + 1;
+				this._aAnyTimeShortcuts.push({k:var6[var7].k,c:1,o:true,d:"CONSOLE"});
+				var7 = var7 + 1;
 			}
-			var loc8 = 0;
-			while(loc8 < loc6.length)
+			var var8 = 0;
+			while(var8 < var6.length)
 			{
-				this._aAnyTimeShortcuts.push({k:loc6[loc8].k,c:2,o:true,d:"CONSOLESIZE"});
-				loc8 = loc8 + 1;
+				this._aAnyTimeShortcuts.push({k:var6[var8].k,c:2,o:true,d:"CONSOLESIZE"});
+				var8 = var8 + 1;
 			}
 		}
 	}
-	function processShortcuts(loc2, loc3, loc4, loc5)
+	function processShortcuts(var2, var3, var4, var5)
 	{
-		var loc6 = true;
-		var loc7 = 0;
-		while(loc7 < loc2.length)
+		var var6 = true;
+		var var7 = 0;
+		while(var7 < var2.length)
 		{
-			if(Number(loc2[loc7].k) == loc3)
+			if(Number(var2[var7].k) == var3)
 			{
-				var loc8 = false;
-				switch(loc2[loc7].c)
+				var var8 = false;
+				switch(var2[var7].c)
 				{
 					case 1:
-						if(loc4 && !loc5)
+						if(var4 && !var5)
 						{
-							loc8 = true;
+							var8 = true;
 						}
 						break;
 					case 2:
-						if(!loc4 && loc5)
+						if(!var4 && var5)
 						{
-							loc8 = true;
-						}
-						break;
-					case 3:
-						if(loc4 && loc5)
-						{
-							loc8 = true;
+							var8 = true;
 						}
 						break;
 					default:
-						if(!loc4 && !loc5)
+						if(var0 !== 3)
 						{
-							loc8 = true;
+							if(!var4 && !var5)
+							{
+								var8 = true;
+								break;
+							}
 							break;
 						}
+						if(var4 && var5)
+						{
+							var8 = true;
+						}
+						break;
 				}
-				if(loc8)
+				if(var8)
 				{
-					loc6 = this.dispatchShortcut(loc2[loc7].d);
+					var6 = this.dispatchShortcut(var2[var7].d);
 				}
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		return loc6;
+		return var6;
 	}
-	function onSetChange(loc2)
+	function onSetChange(var2)
 	{
-		this._nCurrentSet = loc2;
+		this._nCurrentSet = var2;
 		this.loadShortcuts();
 	}
 	function onKeyDown()
 	{
-		var loc2 = Key.getCode();
-		var loc3 = Key.getAscii();
-		var loc4 = Key.isDown(Key.CONTROL);
-		var loc5 = Key.isDown(Key.SHIFT);
-		if(this._lastCtrlState != loc4)
+		var var2 = Key.getCode();
+		var var3 = Key.getAscii();
+		var var4 = Key.isDown(Key.CONTROL);
+		var var5 = Key.isDown(Key.SHIFT);
+		if(this._lastCtrlState != var4)
 		{
-			this._lastCtrlState = loc4;
-			this.dispatchCtrlState(loc4);
+			this._lastCtrlState = var4;
+			this.dispatchCtrlState(var4);
 		}
-		if(this._bPressedKeys[loc2] != undefined)
+		if(this._bPressedKeys[var2] != undefined)
 		{
 			return undefined;
 		}
-		this._bPressedKeys[loc2] = true;
+		this._bPressedKeys[var2] = true;
 		if(this.api.gfx.spriteHandler.isShowingMonstersTooltip)
 		{
 			this.api.gfx.spriteHandler.showMonstersTooltip(false);
@@ -442,7 +445,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		{
 			this.api.gfx.spriteHandler.hidePlayerSprites(false);
 		}
-		if(!this.processShortcuts(this._aAnyTimeShortcuts,loc2,loc4,loc5))
+		if(!this.processShortcuts(this._aAnyTimeShortcuts,var2,var4,var5))
 		{
 			return undefined;
 		}
@@ -450,13 +453,13 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		if(!this.processShortcuts(this._aNoChatShortcuts,loc2,loc4,loc5))
+		if(!this.processShortcuts(this._aNoChatShortcuts,var2,var4,var5))
 		{
 			return undefined;
 		}
-		if(loc3 > 0)
+		if(var3 > 0)
 		{
-			this.dispatchKey(String.fromCharCode(loc3));
+			this.dispatchKey(String.fromCharCode(var3));
 		}
 	}
 	function onKeyUp()
@@ -469,18 +472,18 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		{
 			this.api.gfx.spriteHandler.hidePlayerSprites(false);
 		}
-		var loc2 = Key.getCode();
+		var var2 = Key.getCode();
 		delete this._bPressedKeys.register2;
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		var loc3 = true;
+		var var3 = true;
 		loop0:
-		switch(loc2)
+		switch(var2)
 		{
 			case "TOGGLE_FIGHT_INFOS":
 				this.api.kernel.OptionsManager.setOption("ChatEffects",!this.api.kernel.OptionsManager.getOption("ChatEffects"));
-				loc3 = false;
+				var3 = false;
 				break;
 			case "ESCAPE":
 				this.api.datacenter.Basics.gfx_canLaunch = false;
@@ -496,7 +499,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 				if(this.api.datacenter.Player.isAuthorized)
 				{
 					this.api.ui.loadUIComponent("Debug","Debug",undefined,{bAlwaysOnTop:true});
-					loc3 = false;
+					var3 = false;
 				}
 				break;
 			default:
@@ -505,21 +508,21 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 					case "CONSOLESIZE":
 						if(this.api.datacenter.Player.isAuthorized)
 						{
-							var loc4 = this.api.ui.getUIComponent("Debug");
-							if(loc4 != undefined)
+							var var4 = this.api.ui.getUIComponent("Debug");
+							if(var4 != undefined)
 							{
-								loc4.changeSize();
+								var4.changeSize();
 							}
-							loc3 = false;
+							var3 = false;
 						}
 						break loop0;
 					case "GRID":
 						this.api.kernel.OptionsManager.setOption("Grid");
-						loc3 = false;
+						var3 = false;
 						break loop0;
 					case "SHOWMONSTERSTOOLTIP":
 						this.api.gfx.spriteHandler.showMonstersTooltip(true);
-						loc3 = false;
+						var3 = false;
 						break loop0;
 					case "SHOWTRIGGERS":
 						if(!this.api.datacenter.Game.isFight)
@@ -529,60 +532,56 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 								this._nLastTriggerShow = getTimer();
 								this.api.gfx.mapHandler.showTriggers();
 							}
-							loc3 = false;
+							var3 = false;
 						}
+						break loop0;
+					case "HIDESPRITES":
+						this.api.gfx.spriteHandler.hidePlayerSprites(true);
+						var3 = false;
+						break loop0;
+					case "TRANSPARENCY":
+						this.api.kernel.OptionsManager.setOption("Transparency",!this.api.gfx.bGhostView);
+						var3 = false;
+						break loop0;
+					case "SPRITEINFOS":
+						this.api.kernel.OptionsManager.setOption("SpriteInfos");
+						var3 = false;
+						break loop0;
+					case "COORDS":
+						this.api.kernel.OptionsManager.setOption("MapInfos");
+						var3 = false;
+						break loop0;
+					case "STRINGCOURSE":
+						this.api.kernel.OptionsManager.setOption("StringCourse");
+						var3 = false;
+						break loop0;
+					case "BUFF":
+						this.api.kernel.OptionsManager.setOption("Buff");
+						var3 = false;
 						break loop0;
 					default:
 						switch(null)
 						{
-							case "HIDESPRITES":
-								this.api.gfx.spriteHandler.hidePlayerSprites(true);
-								loc3 = false;
-								break loop0;
-							case "TRANSPARENCY":
-								this.api.kernel.OptionsManager.setOption("Transparency",!this.api.gfx.bGhostView);
-								loc3 = false;
-								break loop0;
-							case "SPRITEINFOS":
-								this.api.kernel.OptionsManager.setOption("SpriteInfos");
-								loc3 = false;
-								break loop0;
-							case "COORDS":
-								this.api.kernel.OptionsManager.setOption("MapInfos");
-								loc3 = false;
-								break loop0;
-							case "STRINGCOURSE":
-								this.api.kernel.OptionsManager.setOption("StringCourse");
-								loc3 = false;
-								break loop0;
-							default:
-								switch(null)
-								{
-									case "BUFF":
-										this.api.kernel.OptionsManager.setOption("Buff");
-										loc3 = false;
-										break;
-									case "MOVABLEBAR":
-										this.api.kernel.OptionsManager.setOption("MovableBar",!this.api.kernel.OptionsManager.getOption("MovableBar"));
-										loc3 = false;
-										break;
-									case "MOUNTING":
-										this.api.network.Mount.ride();
-										loc3 = false;
-										break;
-									case "FULLSCREEN":
-										this.api.kernel.GameManager.isFullScreen = loc0 = !this.api.kernel.GameManager.isFullScreen;
-										getURL("FSCommand:" add "fullscreen",loc0);
-										loc3 = false;
-										break;
-									case "ALLOWSCALE":
-										this.api.kernel.GameManager.isAllowingScale = loc0 = !this.api.kernel.GameManager.isAllowingScale;
-										getURL("FSCommand:" add "allowscale",loc0);
-										loc3 = false;
-								}
+							case "MOVABLEBAR":
+								this.api.kernel.OptionsManager.setOption("MovableBar",!this.api.kernel.OptionsManager.getOption("MovableBar"));
+								var3 = false;
+								break;
+							case "MOUNTING":
+								this.api.network.Mount.ride();
+								var3 = false;
+								break;
+							case "FULLSCREEN":
+								this.api.kernel.GameManager.isFullScreen = var0 = !this.api.kernel.GameManager.isFullScreen;
+								getURL("FSCommand:" add "fullscreen",var0);
+								var3 = false;
+								break;
+							case "ALLOWSCALE":
+								this.api.kernel.GameManager.isAllowingScale = var0 = !this.api.kernel.GameManager.isAllowingScale;
+								getURL("FSCommand:" add "allowscale",var0);
+								var3 = false;
 						}
 				}
 		}
-		return loc3;
+		return var3;
 	}
 }

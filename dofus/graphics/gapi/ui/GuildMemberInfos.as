@@ -5,13 +5,14 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__member(loc2)
+	function __set__member(var2)
 	{
-		this._oMember = loc2;
+		this._oMember = var2;
 		this._oMemberClone = new Object();
 		this._oMemberClone.rank = this._oMember.rank;
 		this._oMemberClone.percentxp = this._oMember.percentxp;
-		this._oMemberClone.rights = new dofus.datacenter.(this._oMember.rights.value);
+		this._oMemberClone.rights = new dofus.datacenter.
+(this._oMember.rights.value);
 		return this.__get__member();
 	}
 	function init()
@@ -72,78 +73,78 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 	{
 		this._winBg.title = this._oMember.name + " (" + this.api.lang.getText("LEVEL_SMALL") + " " + this._oMember.level + ")";
 		this._lblPercentXPValue.text = this._oMemberClone.percentxp + "%";
-		var loc2 = this.api.datacenter.Player.guildInfos.playerRights;
-		this._cbRanks.enabled = loc2.canManageRanks;
-		this._btnPercentXP._visible = loc2.canManageXPContitribution || loc2.canManageOwnXPContitribution;
-		var loc3 = this._oMemberClone.rights;
-		this._btnRBoost.selected = loc3.canManageBoost;
-		this._btnRRights.selected = loc3.canManageRights;
-		this._btnRInvit.selected = loc3.canInvite;
-		this._btnRBann.selected = loc3.canBann;
-		this._btnRPercentXP.selected = loc3.canManageXPContitribution;
-		this._btnRRank.selected = loc3.canManageRanks;
-		this._btnRHireTax.selected = loc3.canHireTaxCollector;
-		this._btnROwnPercentXP.selected = loc3.canManageOwnXPContitribution;
-		this._btnRCollect.selected = loc3.canCollect;
-		this._bntRCanUseMountPark.selected = loc3.canUseMountPark;
-		this._btnRCanArrangeMountPark.selected = loc3.canArrangeMountPark;
-		this._btnRCanManageOtherMount.selected = loc3.canManageOtherMount;
-		var loc4 = loc2.canManageRights && !loc3.isBoss;
-		this._btnRBoost.enabled = loc4;
-		this._btnRRights.enabled = loc4;
-		this._btnRInvit.enabled = loc4;
-		this._btnRBann.enabled = loc4;
-		this._btnRPercentXP.enabled = loc4;
-		this._btnRRank.enabled = loc4;
-		this._btnRHireTax.enabled = loc4;
-		this._btnROwnPercentXP.enabled = loc4;
-		this._btnRCollect.enabled = loc4;
-		this._bntRCanUseMountPark.enabled = loc4;
-		this._btnRCanArrangeMountPark.enabled = loc4;
-		this._btnRCanManageOtherMount.enabled = loc4;
-		this._btnModify.enabled = loc2.isBoss || (loc2.canManageRights || (loc2.canManageRanks || (loc2.canManageXPContitribution || loc3.canManageOwnXPContitribution)));
-		if(loc2.canManageRanks)
+		var var2 = this.api.datacenter.Player.guildInfos.playerRights;
+		this._cbRanks.enabled = var2.canManageRanks;
+		this._btnPercentXP._visible = var2.canManageXPContitribution || var2.canManageOwnXPContitribution;
+		var var3 = this._oMemberClone.rights;
+		this._btnRBoost.selected = var3.canManageBoost;
+		this._btnRRights.selected = var3.canManageRights;
+		this._btnRInvit.selected = var3.canInvite;
+		this._btnRBann.selected = var3.canBann;
+		this._btnRPercentXP.selected = var3.canManageXPContitribution;
+		this._btnRRank.selected = var3.canManageRanks;
+		this._btnRHireTax.selected = var3.canHireTaxCollector;
+		this._btnROwnPercentXP.selected = var3.canManageOwnXPContitribution;
+		this._btnRCollect.selected = var3.canCollect;
+		this._bntRCanUseMountPark.selected = var3.canUseMountPark;
+		this._btnRCanArrangeMountPark.selected = var3.canArrangeMountPark;
+		this._btnRCanManageOtherMount.selected = var3.canManageOtherMount;
+		var var4 = var2.canManageRights && !var3.isBoss;
+		this._btnRBoost.enabled = var4;
+		this._btnRRights.enabled = var4;
+		this._btnRInvit.enabled = var4;
+		this._btnRBann.enabled = var4;
+		this._btnRPercentXP.enabled = var4;
+		this._btnRRank.enabled = var4;
+		this._btnRHireTax.enabled = var4;
+		this._btnROwnPercentXP.enabled = var4;
+		this._btnRCollect.enabled = var4;
+		this._bntRCanUseMountPark.enabled = var4;
+		this._btnRCanArrangeMountPark.enabled = var4;
+		this._btnRCanManageOtherMount.enabled = var4;
+		this._btnModify.enabled = var2.isBoss || (var2.canManageRights || (var2.canManageRanks || (var2.canManageXPContitribution || var3.canManageOwnXPContitribution)));
+		if(var2.canManageRanks)
 		{
 			this._cbRanks._visible = true;
-			var loc5 = this.api.lang.getRanks().slice();
-			var loc6 = new ank.utils.();
-			loc5.sortOn("o",Array.NUMERIC);
+			var var5 = this.api.lang.getRanks().slice();
+			var var6 = new ank.utils.();
+			var5.sortOn("o",Array.NUMERIC);
 			if(this.api.datacenter.Player.guildInfos.playerRights.isBoss)
 			{
-				loc6.push({label:loc5[0].n,id:loc5[0].i});
-				if(this._oMemberClone.rank == loc5[0].i)
+				var6.push({label:var5[0].n,id:var5[0].i});
+				if(this._oMemberClone.rank == var5[0].i)
 				{
 					this._cbRanks.selectedIndex = 0;
 				}
 			}
-			var loc7 = 1;
-			while(loc7 < loc5.length)
+			var var7 = 1;
+			while(var7 < var5.length)
 			{
-				loc6.push({label:loc5[loc7].n,id:loc5[loc7].i});
-				if(this._oMemberClone.rank == loc5[loc7].i)
+				var6.push({label:var5[var7].n,id:var5[var7].i});
+				if(this._oMemberClone.rank == var5[var7].i)
 				{
-					this._cbRanks.selectedIndex = loc6.length - 1;
+					this._cbRanks.selectedIndex = var6.length - 1;
 				}
-				loc7 = loc7 + 1;
+				var7 = var7 + 1;
 			}
-			this._cbRanks.dataProvider = loc6;
+			this._cbRanks.dataProvider = var6;
 		}
 		else
 		{
 			this._lblRankValue.text = this.api.lang.getRankInfos(this._oMemberClone.rank).n;
 		}
 	}
-	function setRank(loc2)
+	function setRank(var2)
 	{
-		this._oMemberClone.rank = loc2;
-		this._oMemberClone.rankOrder = this.api.lang.getRankInfos(loc2).o;
+		this._oMemberClone.rank = var2;
+		this._oMemberClone.rankOrder = this.api.lang.getRankInfos(var2).o;
 		this.updateData();
 	}
 	function setBoss()
 	{
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_GIVERIGHTS",[this._oMember.name]),"CAUTION_YESNO",{name:"GuildSetBoss",listener:this});
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		if(this._cbRanks.selectedItem.id == 1)
 		{
@@ -154,10 +155,10 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 			this.setRank(this._cbRanks.selectedItem.id);
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		loop0:
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnCancel":
 			case "_btnClose":
@@ -180,8 +181,8 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 						this.unloadThis();
 						break loop0;
 					case "_btnPercentXP":
-						var loc3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:this._oMember.percentxp,max:90,min:0});
-						loc3.addEventListener("validate",this);
+						var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:this._oMember.percentxp,max:90,min:0});
+						var3.addEventListener("validate",this);
 						break loop0;
 					case "_btnRBoost":
 						if(this._btnRBoost.selected)
@@ -256,19 +257,19 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 									this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 128;
 								}
 								break loop0;
-							case "_btnROwnPercentXP":
-								if(this._btnROwnPercentXP.selected)
-								{
-									this._oMemberClone.rights.value = this._oMemberClone.rights.value | 256;
-								}
-								else
-								{
-									this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 256;
-								}
-								break loop0;
 							default:
 								switch(null)
 								{
+									case "_btnROwnPercentXP":
+										if(this._btnROwnPercentXP.selected)
+										{
+											this._oMemberClone.rights.value = this._oMemberClone.rights.value | 256;
+										}
+										else
+										{
+											this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 256;
+										}
+										break loop0;
 									case "_btnRCollect":
 										if(this._btnRCollect.selected)
 										{
@@ -278,7 +279,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 										{
 											this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 512;
 										}
-										break;
+										break loop0;
 									case "_bntRCanUseMountPark":
 										if(this._bntRCanUseMountPark.selected)
 										{
@@ -288,7 +289,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 										{
 											this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 4096;
 										}
-										break;
+										break loop0;
 									case "_btnRCanArrangeMountPark":
 										if(this._btnRCanArrangeMountPark.selected)
 										{
@@ -298,39 +299,43 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 										{
 											this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 8192;
 										}
-										break;
-									case "_btnRCanManageOtherMount":
+										break loop0;
+									default:
+										if(var0 !== "_btnRCanManageOtherMount")
+										{
+											break loop0;
+										}
 										if(this._btnRCanManageOtherMount.selected)
 										{
 											this._oMemberClone.rights.value = this._oMemberClone.rights.value | 16384;
-											break;
+											break loop0;
 										}
 										this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 16384;
-										break;
+										break loop0;
 								}
 						}
 				}
 		}
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		var loc3 = loc2.value;
-		if(_global.isNaN(loc3))
+		var var3 = var2.value;
+		if(_global.isNaN(var3))
 		{
 			return undefined;
 		}
-		if(loc3 > 90)
+		if(var3 > 90)
 		{
 			return undefined;
 		}
-		if(loc3 < 0)
+		if(var3 < 0)
 		{
 			return undefined;
 		}
-		this._oMemberClone.percentxp = loc3;
+		this._oMemberClone.percentxp = var3;
 		this.updateData();
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
 		this.setRank(1);
 	}

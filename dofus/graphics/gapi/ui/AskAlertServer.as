@@ -6,14 +6,14 @@ class dofus.graphics.gapi.ui.AskAlertServer extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		return this.__get__text();
 	}
-	function __set__hideNext(loc2)
+	function __set__hideNext(var2)
 	{
-		this._bHideNext = loc2;
+		this._bHideNext = var2;
 		return this.__get__hideNext();
 	}
 	function initWindowContent()
@@ -24,9 +24,9 @@ class dofus.graphics.gapi.ui.AskAlertServer extends ank.gapi.ui.FlyWindow
 		c._txtText.text = this._sText;
 		c._btnClose.label = this.api.lang.getText("CLOSE");
 		c._lblHideNext.text = this.api.lang.getText("ALERT_HIDENEXT");
-		SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME).onStatus = function(loc2)
+		SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME).onStatus = function(var2)
 		{
-			if(loc2.level == "status" && loc2.code == "SharedObject.Flush.Success")
+			if(var2.level == "status" && var2.code == "SharedObject.Flush.Success")
 			{
 				c._btnHideNext._visible = true;
 				c._lblHideNext._visible = true;
@@ -47,9 +47,9 @@ class dofus.graphics.gapi.ui.AskAlertServer extends ank.gapi.ui.FlyWindow
 		}
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 				this.api.kernel.KeyManager.removeShortcutsListener(this);
@@ -57,18 +57,18 @@ class dofus.graphics.gapi.ui.AskAlertServer extends ank.gapi.ui.FlyWindow
 				this.unloadThis();
 				break;
 			case "_btnHideNext":
-				this._bHideNext = loc2.target.selected;
+				this._bHideNext = var2.target.selected;
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		var loc3 = this._winBackground.content;
-		loc3._btnOk._y = loc3._txtText._y + loc3._txtText.height + 20;
+		var var3 = this._winBackground.content;
+		var3._btnOk._y = var3._txtText._y + var3._txtText.height + 20;
 		this._winBackground.setPreferedSize();
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG")
+		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
 			this.click(this._winBackground.content._btnClose);
 			return false;

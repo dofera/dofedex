@@ -1,104 +1,104 @@
 class dofus.aks.Job extends dofus.aks.Handler
 {
-	function Job(loc3, loc4)
+	function Job(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function changeJobStats(§\x05\x12§, §\x1e\x18\x14§, minSlots)
+	function changeJobStats(§\x05\x10§, §\x1e\x18\x12§, minSlots)
 	{
-		this.aks.send("JO" + loc2 + "|" + loc3 + "|" + minSlots);
+		this.aks.send("JO" + var2 + "|" + var3 + "|" + minSlots);
 	}
-	function onSkills(loc2)
+	function onSkills(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = this.api.datacenter.Player.Jobs;
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var3 = var2.split("|");
+		var var4 = this.api.datacenter.Player.Jobs;
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = loc3[loc5].split(";");
-			var loc7 = Number(loc6[0]);
-			var loc8 = new ank.utils.();
-			var loc9 = loc6[1].split(",");
-			var loc10 = loc9.length;
+			var var6 = var3[var5].split(";");
+			var var7 = Number(var6[0]);
+			var var8 = new ank.utils.();
+			var var9 = var6[1].split(",");
+			var var10 = var9.length;
 			while(true)
 			{
-				loc10;
-				if(loc10-- > 0)
+				var10;
+				if(var10-- > 0)
 				{
-					var loc11 = loc9[loc10].split("~");
-					loc8.push(new dofus.datacenter.(loc11[0],loc11[1],loc11[2],loc11[3],loc11[4]));
+					var var11 = var9[var10].split("~");
+					var8.push(new dofus.datacenter.(var11[0],var11[1],var11[2],var11[3],var11[4]));
 					continue;
 				}
 				break;
 			}
-			var loc12 = new dofus.datacenter.Job(loc7,loc8);
-			var loc13 = loc4.findFirstItem("id",loc7);
-			if(loc13.index != -1)
+			var var12 = new dofus.datacenter.Job(var7,var8);
+			var var13 = var4.findFirstItem("id",var7);
+			if(var13.index != -1)
 			{
-				loc4.updateItem(loc13.index,loc12);
+				var4.updateItem(var13.index,var12);
 			}
 			else
 			{
-				loc4.push(loc12);
+				var4.push(var12);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
 	}
-	function onXP(loc2)
+	function onXP(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = this.api.datacenter.Player.Jobs;
-		var loc5 = loc3.length;
+		var var3 = var2.split("|");
+		var var4 = this.api.datacenter.Player.Jobs;
+		var var5 = var3.length;
 		while(true)
 		{
-			loc5;
-			if(loc5-- > 0)
+			var5;
+			if(var5-- > 0)
 			{
-				var loc6 = loc3[loc5].split(";");
-				var loc7 = Number(loc6[0]);
-				var loc8 = Number(loc6[1]);
-				var loc9 = Number(loc6[2]);
-				var loc10 = Number(loc6[3]);
-				var loc11 = Number(loc6[4]);
-				var loc12 = loc4.findFirstItem("id",loc7);
-				if(loc12.index != -1)
+				var var6 = var3[var5].split(";");
+				var var7 = Number(var6[0]);
+				var var8 = Number(var6[1]);
+				var var9 = Number(var6[2]);
+				var var10 = Number(var6[3]);
+				var var11 = Number(var6[4]);
+				var var12 = var4.findFirstItem("id",var7);
+				if(var12.index != -1)
 				{
-					var loc13 = loc12.item;
-					loc13.level = loc8;
-					loc13.xpMin = loc9;
-					loc13.xpMax = loc11;
-					loc13.xp = loc10;
-					loc4.updateItem(loc12.index,loc13);
+					var var13 = var12.item;
+					var13.level = var8;
+					var13.xpMin = var9;
+					var13.xpMax = var11;
+					var13.xp = var10;
+					var4.updateItem(var12.index,var13);
 				}
 				continue;
 			}
 			break;
 		}
 	}
-	function onLevel(loc2)
+	function onLevel(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("NEW_JOB_LEVEL",[this.api.lang.getJobText(loc4).n,loc5]),"ERROR_BOX",{name:"NewJobLevel"});
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("NEW_JOB_LEVEL",[this.api.lang.getJobText(var4).n,var5]),"ERROR_BOX",{name:"NewJobLevel"});
 	}
-	function onRemove(loc2)
+	function onRemove(var2)
 	{
-		var loc3 = Number(loc2);
-		var loc4 = this.api.datacenter.Player.Jobs;
-		var loc5 = loc4.findFirstItem("id",loc3);
-		if(loc5.index != -1)
+		var var3 = Number(var2);
+		var var4 = this.api.datacenter.Player.Jobs;
+		var var5 = var4.findFirstItem("id",var3);
+		if(var5.index != -1)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("REMOVE_JOB",[loc5.item.name]),"INFO_CHAT");
-			loc4.removeItems(loc5.index,1);
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("REMOVE_JOB",[var5.item.name]),"INFO_CHAT");
+			var4.removeItems(var5.index,1);
 		}
 	}
-	function onOptions(loc2)
+	function onOptions(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = Number(loc3[2]);
-		this.api.datacenter.Player.Jobs[loc4].options = new dofus.datacenter.(loc5,loc6);
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = Number(var3[2]);
+		this.api.datacenter.Player.Jobs[var4].options = new dofus.datacenter.(var5,var6);
 	}
 }

@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 	{
 		super();
 	}
-	function __set__houses(loc2)
+	function __set__houses(var2)
 	{
-		this.updateData(loc2);
+		this.updateData(var2);
 		return this.__get__houses();
 	}
 	function init()
@@ -36,28 +36,28 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 		this._lstHouses.addEventListener("itemSelected",this);
 		this._btnTeleport.addEventListener("click",this);
 	}
-	function updateData(loc2)
+	function updateData(var2)
 	{
-		this._lstHouses.dataProvider = loc2;
+		this._lstHouses.dataProvider = var2;
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		this._hSelectedHouse = (dofus.datacenter.House)loc2.row.item;
+		this._hSelectedHouse = (dofus.datacenter.House)var2.row.item;
 		this._lblHouseName.text = this._hSelectedHouse.name;
 		this._lblHouseCoords.text = this._hSelectedHouse.coords.x + ";" + this._hSelectedHouse.coords.y;
 		this._lblHouseOwner.text = this._hSelectedHouse.ownerName;
-		var loc3 = new ank.utils.();
-		var loc4 = 0;
-		while(loc4 < this._hSelectedHouse.skills.length)
+		var var3 = new ank.utils.();
+		var var4 = 0;
+		while(var4 < this._hSelectedHouse.skills.length)
 		{
-			var loc5 = new dofus.datacenter.(this._hSelectedHouse.skills[loc4]);
-			if(!_global.isNaN(loc5.id))
+			var var5 = new dofus.datacenter.(this._hSelectedHouse.skills[var4]);
+			if(!_global.isNaN(var5.id))
 			{
-				loc3.push({id:loc5.id,label:loc5.description});
+				var3.push({id:var5.id,label:var5.description});
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		this._lstSkills.dataProvider = loc3;
+		this._lstSkills.dataProvider = var3;
 		this._lstRights.dataProvider = this._hSelectedHouse.getHumanReadableRightsList();
 		this._btnTeleport._visible = this._hSelectedHouse.hasRight(dofus.datacenter.House.GUILDSHARE_TELEPORT);
 		if(!this._btnTeleport._visible)
@@ -71,9 +71,9 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 		this._mcMask._visible = false;
 		this._lblSelectHouse._visible = false;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnTeleport)
+		if((var var0 = var2.target) === this._btnTeleport)
 		{
 			if(this._hSelectedHouse == null)
 			{
@@ -86,14 +86,14 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 			this.api.network.Guild.teleportToGuildHouse(this._hSelectedHouse.id);
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnTeleport)
+		if((var var0 = var2.target) === this._btnTeleport)
 		{
 			this.gapi.showTooltip(this.api.lang.getText("GUILD_HOUSE_TELEPORT_TOOLTIP"),this._btnTeleport,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

@@ -1,15 +1,15 @@
-class dofus.graphics.gapi.ui.knownledgebase.KnownledgeBaseCategoryItem extends ank.gapi.core.UIBasicComponent
+class dofus.graphics.gapi.ui.Login.KnownledgeBaseCategoryItem extends ank.gapi.core.UIBasicComponent
 {
 	function KnownledgeBaseCategoryItem()
 	{
 		super();
 		this._mcPicto._visible = false;
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._lblCategory.text = loc4.n;
+			this._lblCategory.text = var4.n;
 			this._mcPicto._visible = true;
 		}
 		else if(this._lblCategory.text != undefined)

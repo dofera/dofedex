@@ -13,9 +13,9 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 		this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES,true);
 		this._btnMaximize._visible = false;
 	}
-	function __set__article(loc2)
+	function __set__article(var2)
 	{
-		this.addToQueue({object:this,method:this.displayArticle,params:[loc2]});
+		this.addToQueue({object:this,method:this.displayArticle,params:[var2]});
 		return this.__get__article();
 	}
 	function init()
@@ -65,42 +65,42 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 	}
 	function initData()
 	{
-		var loc2 = this.api.lang.getKnownledgeBaseCategories();
-		loc2.sortOn("o",Array.NUMERIC | Array.DESCENDING);
-		this._eaCategories = new ank.utils.();
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var2 = this.api.lang.getKnownledgeBaseCategories();
+		var2.sortOn("o",Array.NUMERIC | Array.DESCENDING);
+		this._eaCategories = new ank.utils.();
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(loc2[loc3] != undefined && (this.api.datacenter.Basics.aks_current_regional_version != undefined && loc2[loc3].ep <= this.api.datacenter.Basics.aks_current_regional_version))
+			if(var2[var3] != undefined && (this.api.datacenter.Basics.aks_current_regional_version != undefined && var2[var3].ep <= this.api.datacenter.Basics.aks_current_regional_version))
 			{
-				this._eaCategories.push(loc2[loc3]);
+				this._eaCategories.push(var2[var3]);
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		this._lstCategories.dataProvider = this._eaCategories;
-		var loc4 = this.api.lang.getKnownledgeBaseArticles();
-		loc4.sortOn("o",Array.NUMERIC | Array.DESCENDING);
-		this._eaArticles = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < loc4.length)
+		var var4 = this.api.lang.getKnownledgeBaseArticles();
+		var4.sortOn("o",Array.NUMERIC | Array.DESCENDING);
+		this._eaArticles = new ank.utils.();
+		var var5 = 0;
+		while(var5 < var4.length)
 		{
-			if(loc4[loc5] != undefined && (this.api.datacenter.Basics.aks_current_regional_version != undefined && loc4[loc5].ep <= this.api.datacenter.Basics.aks_current_regional_version))
+			if(var4[var5] != undefined && (this.api.datacenter.Basics.aks_current_regional_version != undefined && var4[var5].ep <= this.api.datacenter.Basics.aks_current_regional_version))
 			{
-				this._eaArticles.push(loc4[loc5]);
+				this._eaArticles.push(var4[var5]);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
 		this.generateIndexes();
 	}
 	function recoverLastState()
 	{
-		if((var loc0 = this.api.datacenter.Basics.kbDisplayType) !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES)
+		if((var var0 = this.api.datacenter.Basics.kbDisplayType) !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES)
 		{
-			if(loc0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES)
+			if(var0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES)
 			{
-				if(loc0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLE)
+				if(var0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLE)
 				{
-					if(loc0 === dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_SEARCH)
+					if(var0 === dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_SEARCH)
 					{
 						this._tiSearch.text = this.api.datacenter.Basics.kbSearch;
 					}
@@ -120,43 +120,43 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 			this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES);
 		}
 	}
-	function switchToState(loc2)
+	function switchToState(var2)
 	{
-		if(this._nCurrentState == loc2)
+		if(this._nCurrentState == var2)
 		{
 			return undefined;
 		}
-		var loc3 = this.api.ui.getUIComponent("KnownledgeBase");
-		if((var loc0 = loc2) !== dofus.graphics.gapi.ui.KnownledgeBase.STATE_MINIMIZED)
+		var var3 = this.api.ui.getUIComponent("KnownledgeBase");
+		if((var var0 = var2) !== dofus.graphics.gapi.ui.KnownledgeBase.STATE_MINIMIZED)
 		{
-			if(loc0 === dofus.graphics.gapi.ui.KnownledgeBase.STATE_MAXIMIZED)
+			if(var0 === dofus.graphics.gapi.ui.KnownledgeBase.STATE_MAXIMIZED)
 			{
 				this._btnMaximize._visible = false;
 				this._btnMinimize._visible = true;
-				loc3._y = 0;
+				var3._y = 0;
 			}
 		}
 		else
 		{
 			this._btnMaximize._visible = true;
 			this._btnMinimize._visible = false;
-			loc3._y = 352;
+			var3._y = 352;
 		}
-		this._nCurrentState = loc2;
+		this._nCurrentState = var2;
 	}
-	function switchToDisplay(loc2, loc3)
+	function switchToDisplay(var2, var3)
 	{
-		if(this._nCurrentDisplay == loc2)
+		if(this._nCurrentDisplay == var2)
 		{
 			return undefined;
 		}
-		if((var loc0 = loc2) !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES)
+		if((var var0 = var2) !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES)
 		{
-			if(loc0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES)
+			if(var0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES)
 			{
-				if(loc0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_SEARCH)
+				if(var0 !== dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_SEARCH)
 				{
-					if(loc0 === dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLE)
+					if(var0 === dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLE)
 					{
 						this._lstCategories._visible = false;
 						this._lstArticles._visible = false;
@@ -231,127 +231,127 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 			this._mcBookComplete._visible = false;
 			this._mcArrowUp2._visible = false;
 		}
-		this._nCurrentDisplay = loc2;
-		if(loc3 !== true)
+		this._nCurrentDisplay = var2;
+		if(var3 !== true)
 		{
-			this.api.datacenter.Basics.kbDisplayType = loc2;
+			this.api.datacenter.Basics.kbDisplayType = var2;
 		}
 	}
 	function generateIndexes()
 	{
-		this._eaIndexes = new ank.utils.();
-		var loc2 = 0;
-		while(loc2 < this._eaArticles.length)
+		this._eaIndexes = new ank.utils.();
+		var var2 = 0;
+		while(var2 < this._eaArticles.length)
 		{
-			var loc3 = 0;
-			while(loc3 < this._eaArticles[loc2].k.length)
+			var var3 = 0;
+			while(var3 < this._eaArticles[var2].k.length)
 			{
-				this._eaIndexes.push({name:this._eaArticles[loc2].k[loc3].toUpperCase(),i:this._eaArticles[loc2].i});
-				loc3 = loc3 + 1;
+				this._eaIndexes.push({name:this._eaArticles[var2].k[var3].toUpperCase(),i:this._eaArticles[var2].i});
+				var3 = var3 + 1;
 			}
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
 	}
-	function searchTopic(loc2)
+	function searchTopic(var2)
 	{
-		var loc3 = loc2.split(" ");
-		var loc4 = new ank.utils.();
-		var loc5 = new ank.utils.();
-		var loc6 = new Array();
-		var loc7 = 0;
-		var loc8 = new Array();
-		var loc9 = -1;
-		var loc10 = 0;
-		while(loc10 < this._eaIndexes.length)
+		var var3 = var2.split(" ");
+		var var4 = new ank.utils.();
+		var var5 = new ank.utils.();
+		var var6 = new Array();
+		var var7 = 0;
+		var var8 = new Array();
+		var var9 = -1;
+		var var10 = 0;
+		while(var10 < this._eaIndexes.length)
 		{
-			var loc11 = this._eaIndexes[loc10];
-			var loc12 = this.searchWordsInName(loc3,loc11.name,loc7);
-			if(loc12 != 0)
+			var var11 = this._eaIndexes[var10];
+			var var12 = this.searchWordsInName(var3,var11.name,var7);
+			if(var12 != 0)
 			{
-				loc6.push({i:loc11.i,w:loc12});
-				loc7 = loc12;
+				var6.push({i:var11.i,w:var12});
+				var7 = var12;
 			}
-			loc10 = loc10 + 1;
+			var10 = var10 + 1;
 		}
-		var loc13 = 0;
-		while(loc13 < loc6.length)
+		var var13 = 0;
+		while(var13 < var6.length)
 		{
-			if(!loc8[loc6[loc13].i] && loc6[loc13].w >= loc7)
+			if(!var8[var6[var13].i] && var6[var13].w >= var7)
 			{
-				var loc14 = this._eaArticles.findFirstItem("i",loc6[loc13].i).item;
-				loc4.push(loc14);
-				loc8[loc6[loc13].i] = true;
+				var var14 = this._eaArticles.findFirstItem("i",var6[var13].i).item;
+				var4.push(var14);
+				var8[var6[var13].i] = true;
 			}
-			loc13 = loc13 + 1;
+			var13 = var13 + 1;
 		}
-		loc4.sortOn("c",Array.NUMERIC | Array.DESCENDING);
-		var loc15 = 0;
-		while(loc15 < loc4.length)
+		var4.sortOn("c",Array.NUMERIC | Array.DESCENDING);
+		var var15 = 0;
+		while(var15 < var4.length)
 		{
-			if(loc4[loc15].n != "" && loc4[loc15].n != undefined)
+			if(var4[var15].n != "" && var4[var15].n != undefined)
 			{
-				if(loc9 != loc4[loc15].c)
+				if(var9 != var4[var15].c)
 				{
-					loc5.push(this.api.lang.getKnownledgeBaseCategory(loc4[loc15].c));
-					loc9 = loc4[loc15].c;
+					var5.push(this.api.lang.getKnownledgeBaseCategory(var4[var15].c));
+					var9 = var4[var15].c;
 				}
-				loc5.push(loc4[loc15]);
+				var5.push(var4[var15]);
 			}
-			loc15 = loc15 + 1;
+			var15 = var15 + 1;
 		}
-		this._lstSearch.dataProvider = loc5;
+		this._lstSearch.dataProvider = var5;
 	}
-	function searchWordsInName(loc2, loc3, loc4)
+	function searchWordsInName(var2, var3, var4)
 	{
-		var loc5 = 0;
-		var loc6 = loc2.length;
-		while(loc6 >= 0)
+		var var5 = 0;
+		var var6 = var2.length;
+		while(var6 >= 0)
 		{
-			var loc7 = loc2[loc6];
-			if(loc3.indexOf(loc7) != -1)
+			var var7 = var2[var6];
+			if(var3.indexOf(var7) != -1)
 			{
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
-			else if(loc5 + loc6 < loc4)
+			else if(var5 + var6 < var4)
 			{
 				return 0;
 			}
-			loc6 = loc6 - 1;
+			var6 = var6 - 1;
 		}
-		return loc5;
+		return var5;
 	}
-	function displayArticles(loc2, loc3)
+	function displayArticles(var2, var3)
 	{
-		var loc4 = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < this._eaArticles.length)
+		var var4 = new ank.utils.();
+		var var5 = 0;
+		while(var5 < this._eaArticles.length)
 		{
-			if(this._eaArticles[loc5].c == loc2)
+			if(this._eaArticles[var5].c == var2)
 			{
-				loc4.push(this._eaArticles[loc5]);
+				var4.push(this._eaArticles[var5]);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		this._lstArticles.dataProvider = loc4;
-		this._lblCategory.text = this._eaCategories.findFirstItem("i",loc2).item.n;
-		if(loc3 !== true)
+		this._lstArticles.dataProvider = var4;
+		this._lblCategory.text = this._eaCategories.findFirstItem("i",var2).item.n;
+		if(var3 !== true)
 		{
 			this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES);
 		}
-		this.api.datacenter.Basics.kbCategory = loc2;
+		this.api.datacenter.Basics.kbCategory = var2;
 	}
-	function displayArticle(loc2)
+	function displayArticle(var2)
 	{
-		var loc3 = this._eaArticles.findFirstItem("i",loc2).item;
-		this._lblArticle.text = loc3.n;
-		this.displayArticles(loc3.c,true);
-		this._taArticle.text = "<p class=\'body\'>" + loc3.a + "</p>";
+		var var3 = this._eaArticles.findFirstItem("i",var2).item;
+		this._lblArticle.text = var3.n;
+		this.displayArticles(var3.c,true);
+		this._taArticle.text = "<p class=\'body\'>" + var3.a + "</p>";
 		this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLE);
-		this.api.datacenter.Basics.kbArticle = loc2;
+		this.api.datacenter.Basics.kbArticle = var2;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 				this.callClose();
@@ -359,12 +359,12 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 			case "_mcBtnCategory":
 				this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_CATEGORIES);
 				break;
-			case "_mcBtnArticle":
-				this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES);
-				break;
 			default:
 				switch(null)
 				{
+					case "_mcBtnArticle":
+						this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES);
+						break;
 					case "_btnMaximize":
 						this.switchToState(dofus.graphics.gapi.ui.KnownledgeBase.STATE_MAXIMIZED);
 						break;
@@ -373,71 +373,71 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnMinimize":
-				this.gapi.showTooltip(this.api.lang.getText("WINDOW_MINIMIZE"),loc2.target,20);
+				this.gapi.showTooltip(this.api.lang.getText("WINDOW_MINIMIZE"),var2.target,20);
 				break;
 			case "_btnMaximize":
-				this.gapi.showTooltip(this.api.lang.getText("WINDOW_MAXIMIZE"),loc2.target,20);
+				this.gapi.showTooltip(this.api.lang.getText("WINDOW_MAXIMIZE"),var2.target,20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_lstCategories":
-				this.displayArticles(Number(loc2.row.item.i));
+				this.displayArticles(Number(var2.row.item.i));
 				break;
 			case "_lstArticles":
-				this.displayArticle(Number(loc2.row.item.i));
+				this.displayArticle(Number(var2.row.item.i));
 				break;
 			default:
-				if(loc0 !== "_lstSearch")
+				if(var0 !== "_lstSearch")
 				{
 					break;
 				}
-				var loc3 = loc2.row.item;
-				if(loc3.c > 0)
+				var var3 = var2.row.item;
+				if(var3.c > 0)
 				{
-					this._lblArticle.text = loc3.n;
-					this._lblCategory.text = this._eaCategories.findFirstItem("i",loc3.c).item.n;
-					this._taArticle.text = loc3.a;
+					this._lblArticle.text = var3.n;
+					this._lblCategory.text = this._eaCategories.findFirstItem("i",var3.c).item.n;
+					this._taArticle.text = var3.a;
 					this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLE);
 					break;
 				}
-				this._lblCategory.text = loc3.n;
-				var loc4 = loc3.i;
-				var loc5 = new ank.utils.();
-				var loc6 = 0;
-				while(loc6 < this._eaArticles.length)
+				this._lblCategory.text = var3.n;
+				var var4 = var3.i;
+				var var5 = new ank.utils.();
+				var var6 = 0;
+				while(var6 < this._eaArticles.length)
 				{
-					if(this._eaArticles[loc6].c == loc4)
+					if(this._eaArticles[var6].c == var4)
 					{
-						loc5.push(this._eaArticles[loc6]);
+						var5.push(this._eaArticles[var6]);
 					}
-					loc6 = loc6 + 1;
+					var6 = var6 + 1;
 				}
-				this._lstArticles.dataProvider = loc5;
+				this._lstArticles.dataProvider = var5;
 				this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_ARTICLES);
 				break;
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_tiSearch")
+		if((var var0 = var2.target._name) === "_tiSearch")
 		{
-			var loc3 = this._tiSearch.text;
-			if(loc3.length > 0)
+			var var3 = this._tiSearch.text;
+			if(var3.length > 0)
 			{
 				this.switchToDisplay(dofus.graphics.gapi.ui.KnownledgeBase.DISPLAY_SEARCH);
-				this.searchTopic(loc3.toUpperCase());
+				this.searchTopic(var3.toUpperCase());
 			}
 			else
 			{
@@ -446,13 +446,13 @@ class dofus.graphics.gapi.ui.KnownledgeBase extends dofus.graphics.gapi.core.Dof
 			this.api.datacenter.Basics.kbSearch = this._tiSearch.text;
 		}
 	}
-	function href(loc2)
+	function href(var2)
 	{
-		this.api.kernel.TipsManager.onLink(loc2);
+		this.api.kernel.TipsManager.onLink(var2);
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if((var loc0 = loc2) === "ACCEPT_CURRENT_DIALOG")
+		if((var var0 = var2) === "ACCEPT_CURRENT_DIALOG")
 		{
 			if(this._tiSearch.focused)
 			{

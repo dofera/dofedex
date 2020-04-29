@@ -12,14 +12,14 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		super();
 	}
-	function __set__showComboBox(loc2)
+	function __set__showComboBox(var2)
 	{
-		this._bShowComboBox = loc2;
+		this._bShowComboBox = var2;
 		return this.__get__showComboBox();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		this.updateData();
 		return this.__get__data();
 	}
@@ -27,43 +27,43 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		return this._oData;
 	}
-	function __set__selected(loc2)
+	function __set__selected(var2)
 	{
-		this._bSelected = loc2;
-		this.updateSelected(!loc2?this.getStyle().overcolor:this.getStyle().selectedcolor);
+		this._bSelected = var2;
+		this.updateSelected(!var2?this.getStyle().overcolor:this.getStyle().selectedcolor);
 		return this.__get__selected();
 	}
 	function __get__selected()
 	{
 		return this._bSelected;
 	}
-	function __set__deleteButton(loc2)
+	function __set__deleteButton(var2)
 	{
-		this._bDeleteButton = loc2;
-		this._btnDelete._visible = loc2;
+		this._bDeleteButton = var2;
+		this._btnDelete._visible = var2;
 		return this.__get__deleteButton();
 	}
 	function __get__deleteButton()
 	{
 		return this._bDeleteButton;
 	}
-	function __set__isDead(loc2)
+	function __set__isDead(var2)
 	{
-		this._isDead = loc2;
+		this._isDead = var2;
 		if(this._isDead)
 		{
-			var loc3 = {ra:dofus.graphics.gapi.controls.ChooseCharacterSprite.DEATH_ALPHA,rb:100,ga:dofus.graphics.gapi.controls.ChooseCharacterSprite.DEATH_ALPHA,gb:100,ba:dofus.graphics.gapi.controls.ChooseCharacterSprite.DEATH_ALPHA,bb:100};
+			var var3 = {ra:dofus.graphics.gapi.controls.ChooseCharacterSprite.DEATH_ALPHA,rb:100,ga:dofus.graphics.gapi.controls.ChooseCharacterSprite.DEATH_ALPHA,gb:100,ba:dofus.graphics.gapi.controls.ChooseCharacterSprite.DEATH_ALPHA,bb:100};
 		}
 		else
 		{
-			loc3 = {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0};
+			var3 = {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0};
 		}
-		var loc4 = new Color(this._ldrSprite);
-		loc4.setTransform(loc3);
-		loc4 = new Color(this._ldrMerchant);
-		loc4.setTransform(loc3);
-		loc4 = new Color(this._mcGround._mcGround);
-		loc4.setTransform(loc3);
+		var var4 = new Color(this._ldrSprite);
+		var4.setTransform(var3);
+		var4 = new Color(this._ldrMerchant);
+		var4.setTransform(var3);
+		var4 = new Color(this._mcGround._mcGround);
+		var4.setTransform(var3);
 		this._btnReset._visible = this._isDead;
 		this._dcCharacter._visible = this._isDead;
 		return this.__get__isDead();
@@ -72,22 +72,22 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		return this._isDead && this._isDead != undefined;
 	}
-	function __set__death(loc2)
+	function __set__death(var2)
 	{
-		this._dcCharacter.death = loc2;
+		this._dcCharacter.death = var2;
 		this._dcCharacter._alpha = 50;
 		return this.__get__death();
 	}
-	function __set__deathState(loc2)
+	function __set__deathState(var2)
 	{
-		this._nDeathState = loc2;
+		this._nDeathState = var2;
 		var ref = this;
 		if(this._nDeathState == 2)
 		{
 			this.onEnterFrame = function()
 			{
 				ref._nCurrAlpha = ref._nCurrAlpha + ref._nCurrAlphaStep;
-				var loc2 = ref._nCurrAlpha;
+				var var2 = ref._nCurrAlpha;
 				if(ref._nCurrAlpha == 0)
 				{
 					ref._nCurrAlphaStep = 1;
@@ -96,13 +96,13 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 				{
 					ref._nCurrAlphaStep = -1;
 				}
-				var loc3 = {ra:loc2,rb:100,ga:loc2,gb:100,ba:loc2,bb:100};
-				var loc4 = new Color(ref._ldrSprite);
-				loc4.setTransform(loc3);
-				loc4 = new Color(ref._ldrMerchant);
-				loc4.setTransform(loc3);
-				loc4 = new Color(ref._mcGround._mcGround);
-				loc4.setTransform(loc3);
+				var var3 = {ra:var2,rb:100,ga:var2,gb:100,ba:var2,bb:100};
+				var var4 = new Color(ref._ldrSprite);
+				var4.setTransform(var3);
+				var4 = new Color(ref._ldrMerchant);
+				var4.setTransform(var3);
+				var4 = new Color(ref._mcGround._mcGround);
+				var4.setTransform(var3);
 			};
 		}
 		else
@@ -221,40 +221,40 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._mcStateBack._visible = false;
 		}
 	}
-	function updateServer(loc2)
+	function updateServer(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._nServerID = loc2;
+			this._nServerID = var2;
 		}
-		var loc3 = this.api.datacenter.Basics.aks_servers;
-		var loc4 = 0;
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var3 = this.api.datacenter.Basics.aks_servers;
+		var var4 = 0;
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = loc3[loc5].id;
-			if(loc6 == this._nServerID)
+			var var6 = var3[var5].id;
+			if(var6 == this._nServerID)
 			{
-				loc4 = loc5;
-				this._oServer = loc3[loc5];
+				var4 = var5;
+				this._oServer = var3[var5];
 				break;
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		var loc7 = loc3[loc4];
-		if(loc7 == undefined)
+		var var7 = var3[var4];
+		if(var7 == undefined)
 		{
 			ank.utils.Logger.err("Serveur " + this._nServerID + " inconnu");
 		}
 		else
 		{
-			this.enabled = loc7.state == dofus.datacenter.Server.SERVER_ONLINE;
-			this._ctrServerState.contentPath = "ChooseCharacterServerState" + loc7.state;
+			this.enabled = var7.state == dofus.datacenter.Server.SERVER_ONLINE;
+			this._ctrServerState.contentPath = "ChooseCharacterServerState" + var7.state;
 		}
 		if(this._bShowComboBox && this._lblServer.text != undefined)
 		{
-			this._cbServers.dataProvider = loc3;
-			this._cbServers.selectedIndex = loc4;
+			this._cbServers.dataProvider = var3;
+			this._cbServers.selectedIndex = var4;
 			this._cbServers.buttonIcon = "ComboBoxButtonNormalIcon";
 			this._lblServer.text = "";
 			this._cbServers.enabled = true;
@@ -262,15 +262,15 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 		else
 		{
 			this._cbServers.buttonIcon = "";
-			this._lblServer.text = loc7.label;
+			this._lblServer.text = var7.label;
 			this._cbServers.enabled = false;
 		}
 	}
-	function updateSelected(loc2)
+	function updateSelected(var2)
 	{
 		if(this._bSelected || this._bOver && this._bEnabled)
 		{
-			this.setMovieClipColor(this._mcSelect,loc2);
+			this.setMovieClipColor(this._mcSelect,var2);
 			this._mcSelect.gotoAndPlay(1);
 			this._mcSelect._visible = true;
 		}
@@ -280,61 +280,61 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._mcSelect._visible = false;
 		}
 	}
-	function changeSpriteOrientation(loc2)
+	function changeSpriteOrientation(var2)
 	{
 		_global.clearInterval(this._nIntervalID);
-		var loc3 = loc2.attachMovie("staticF","mcAnim",10);
-		if(!loc3)
+		var var3 = var2.attachMovie("staticF","mcAnim",10);
+		if(!var3)
 		{
-			loc3 = loc2.attachMovie("staticR","mcAnim",10);
+			var3 = var2.attachMovie("staticR","mcAnim",10);
 		}
-		if(!loc3)
+		if(!var3)
 		{
-			this.addToQueue({object:this,method:this.changeSpriteOrientation,params:[loc2]});
+			this.addToQueue({object:this,method:this.changeSpriteOrientation,params:[var2]});
 		}
 	}
-	function animCharacter(loc2, loc3)
+	function animCharacter(var2, var3)
 	{
-		var loc4 = 55;
-		var loc5 = 100;
-		if(loc2 == undefined)
+		var var4 = 55;
+		var var5 = 100;
+		if(var2 == undefined)
 		{
-			loc2 = Math.atan2(this._ymouse - loc5,this._xmouse - loc4);
+			var2 = Math.atan2(this._ymouse - var5,this._xmouse - var4);
 		}
 		this._sDir = "F";
 		this._bFlip = false;
-		var loc6 = Math.PI / 8;
-		if(loc2 < -9 * loc6)
+		var var6 = Math.PI / 8;
+		if(var2 < -9 * var6)
 		{
 			this._sDir = "S";
 			this._bFlip = true;
 		}
-		else if(loc2 < -5 * loc6)
+		else if(var2 < -5 * var6)
 		{
 			this._sDir = "L";
 		}
-		else if(loc2 < -3 * loc6)
+		else if(var2 < -3 * var6)
 		{
 			this._sDir = "B";
 		}
-		else if(loc2 < - loc6)
+		else if(var2 < - var6)
 		{
 			this._sDir = "L";
 			this._bFlip = true;
 		}
-		else if(loc2 < loc6)
+		else if(var2 < var6)
 		{
 			this._sDir = "S";
 		}
-		else if(loc2 < 3 * loc6)
+		else if(var2 < 3 * var6)
 		{
 			this._sDir = "R";
 		}
-		else if(loc2 < 5 * loc6)
+		else if(var2 < 5 * var6)
 		{
 			this._sDir = "F";
 		}
-		else if(loc2 < 7 * loc6)
+		else if(var2 < 7 * var6)
 		{
 			this._sDir = "R";
 			this._bFlip = true;
@@ -344,50 +344,50 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._sDir = "S";
 			this._bFlip = true;
 		}
-		var loc7 = "static";
+		var var7 = "static";
 		if(Key.isDown(Key.SHIFT))
 		{
-			loc7 = "walk";
+			var7 = "walk";
 		}
 		if(Key.isDown(Key.CONTROL))
 		{
-			loc7 = "run";
+			var7 = "run";
 		}
-		this.setAnim(loc7);
+		this.setAnim(var7);
 	}
 	function onKeyUp()
 	{
 		if(this._bSelected)
 		{
-			var loc2 = Number(String.fromCharCode(Key.getCode()));
-			if(!_global.isNaN(loc2))
+			var var2 = Number(String.fromCharCode(Key.getCode()));
+			if(!_global.isNaN(var2))
 			{
 				if(Key.isDown(Key.SHIFT))
 				{
-					loc2 = loc2 + 10;
+					var2 = var2 + 10;
 				}
-				this.setAnim("emote" + loc2);
+				this.setAnim("emote" + var2);
 			}
 		}
 	}
-	function setAnim(loc2, loc3)
+	function setAnim(var2, var3)
 	{
-		if(loc3)
+		if(var3)
 		{
 			this._sDir = "R";
 			this._bFlip = false;
 		}
-		var loc4 = loc2 + this._sDir;
-		if(this._sOldAnim != loc4 || (!this._bFlip?180:-180) != this._mcSprite._xscale)
+		var var4 = var2 + this._sDir;
+		if(this._sOldAnim != var4 || (!this._bFlip?180:-180) != this._mcSprite._xscale)
 		{
-			this._mcSprite.attachMovie(loc4,"anim",10);
+			this._mcSprite.attachMovie(var4,"anim",10);
 			this._mcSprite._xscale = !this._bFlip?180:-180;
-			this._sOldAnim = loc4;
+			this._sOldAnim = var4;
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		this._mcSprite = loc2.clip;
+		this._mcSprite = var2.clip;
 		this.gapi.api.colors.addSprite(this._mcSprite,this._oData);
 		this._mcSprite._xscale = this._mcSprite._yscale = 180;
 		this.addToQueue({object:this,method:this.changeSpriteOrientation,params:[this._mcSprite]});
@@ -415,9 +415,9 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 		this._bOver = false;
 		this.updateSelected(this.getStyle().selectedcolor);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnDelete:
 				if(this._nDeathState == 2)
@@ -437,9 +437,9 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 				break;
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnDelete:
 				this.gapi.showTooltip(this.api.lang.getText("DELETE_CHARACTER"),_root._xmouse,_root._ymouse - 20);
@@ -451,14 +451,14 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 				this.gapi.showTooltip(this._oServer.stateStr,_root._xmouse,_root._ymouse - 20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		var loc3 = loc2.target.selectedItem;
-		this._nServerID = loc3.id;
+		var var3 = var2.target.selectedItem;
+		this._nServerID = var3.id;
 		this.updateServer();
 		if(!this._bSelected && this._bEnabled)
 		{
@@ -469,7 +469,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this.dispatchEvent({type:"unselect"});
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		if(this._oData != undefined)
 		{

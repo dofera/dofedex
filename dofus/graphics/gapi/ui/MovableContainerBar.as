@@ -13,19 +13,19 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._nContainerNumber;
 	}
-	function __set__size(loc2)
+	function __set__size(var2)
 	{
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
-			loc2 = 0;
+			var2 = 0;
 		}
-		if(loc2 > this._nMaxContainer)
+		if(var2 > this._nMaxContainer)
 		{
-			loc2 = this._nMaxContainer;
+			var2 = this._nMaxContainer;
 		}
-		if(loc2 != this._nContainerNumber)
+		if(var2 != this._nContainerNumber)
 		{
-			this._nContainerNumber = loc2;
+			this._nContainerNumber = var2;
 			this.move(this._x,this._y,true);
 		}
 		return this.__get__size();
@@ -34,12 +34,12 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._nMaxContainer;
 	}
-	function __set__maxContainer(loc2)
+	function __set__maxContainer(var2)
 	{
-		this._nMaxContainer = loc2;
-		if(this._nContainerNumber > loc2)
+		this._nMaxContainer = var2;
+		if(this._nContainerNumber > var2)
 		{
-			this.size = loc2;
+			this.size = var2;
 		}
 		return this.__get__maxContainer();
 	}
@@ -47,18 +47,18 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._oBounds;
 	}
-	function __set__bounds(loc2)
+	function __set__bounds(var2)
 	{
-		this._oBounds = loc2;
+		this._oBounds = var2;
 		return this.__get__bounds();
 	}
 	function __get__snap()
 	{
 		return this._nSnap;
 	}
-	function __set__snap(loc2)
+	function __set__snap(var2)
 	{
-		this._nSnap = loc2;
+		this._nSnap = var2;
 		return this.__get__snap();
 	}
 	function init()
@@ -110,16 +110,16 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		this._aContainers = new Array();
 		this._mcContainers = this.createEmptyMovieClip("_mcContainers",1);
-		var loc2 = new Object();
-		loc2.backgroundRenderer = "UI_BannerContainerBackground";
-		loc2.borderRenderer = "UI_BannerContainerBorder";
-		loc2.dragAndDrop = true;
-		loc2.enabled = true;
-		loc2.highlightFront = true;
-		loc2.highlightRenderer = "UI_BannerContainerHighLight";
-		loc2.margin = 1;
-		loc2.showLabel = false;
-		loc2.styleName = "InventoryGridContainer";
+		var var2 = new Object();
+		var2.backgroundRenderer = "UI_BannerContainerBackground";
+		var2.borderRenderer = "UI_BannerContainerBorder";
+		var2.dragAndDrop = true;
+		var2.enabled = true;
+		var2.highlightFront = true;
+		var2.highlightRenderer = "UI_BannerContainerHighLight";
+		var2.margin = 1;
+		var2.showLabel = false;
+		var2.styleName = "InventoryGridContainer";
 		switch(this._bVertical)
 		{
 			case true:
@@ -127,22 +127,22 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 				this._mcDragOne._y = 3;
 				this._mcDragTwo._x = 3;
 				this._mcDragTwo._y = 18 + this._nContainerNumber * (25 + 3);
-				this._mcDragTwo._width = loc0 = 25;
-				this._mcDragOne._width = loc0;
-				this._mcDragTwo._height = loc0 = 12;
-				this._mcDragOne._height = loc0;
+				this._mcDragTwo._width = var0 = 25;
+				this._mcDragOne._width = var0;
+				this._mcDragTwo._height = var0 = 12;
+				this._mcDragOne._height = var0;
 				this._mcDragOne.styleName = "VerticalDragOneMovableBarStylizedRectangle";
 				this._mcDragTwo.styleName = "VerticalDragTwoMovableBarStylizedRectangle";
 				this._mcContainers._x = 3;
 				this._mcContainers._y = 18;
-				var loc3 = 0;
-				while(loc3 < this._nContainerNumber)
+				var var3 = 0;
+				while(var3 < this._nContainerNumber)
 				{
-					loc2._y = (25 + 3) * loc3;
-					var loc4 = this._mcContainers.attachMovie("Container","_ctr" + loc3,loc3,loc2);
-					loc4.setSize(25,25);
-					this._aContainers.push(loc4);
-					loc3 = loc3 + 1;
+					var2._y = (25 + 3) * var3;
+					var var4 = this._mcContainers.attachMovie("Container","_ctr" + var3,var3,var2);
+					var4.setSize(25,25);
+					this._aContainers.push(var4);
+					var3 = var3 + 1;
 				}
 				this._mcBackground.setSize(31,33 + this._nContainerNumber * (25 + 3));
 				break;
@@ -151,123 +151,123 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 				this._mcDragOne._y = 3;
 				this._mcDragTwo._x = 18 + this._nContainerNumber * (25 + 3);
 				this._mcDragTwo._y = 3;
-				this._mcDragTwo._width = loc0 = 12;
-				this._mcDragOne._width = loc0;
-				this._mcDragTwo._height = loc0 = 25;
-				this._mcDragOne._height = loc0;
+				this._mcDragTwo._width = var0 = 12;
+				this._mcDragOne._width = var0;
+				this._mcDragTwo._height = var0 = 25;
+				this._mcDragOne._height = var0;
 				this._mcDragOne.styleName = "HorizontalDragOneMovableBarStylizedRectangle";
 				this._mcDragTwo.styleName = "HorizontalDragTwoMovableBarStylizedRectangle";
 				this._mcContainers._x = 18;
 				this._mcContainers._y = 3;
-				var loc5 = 0;
-				while(loc5 < this._nContainerNumber)
+				var var5 = 0;
+				while(var5 < this._nContainerNumber)
 				{
-					loc2._x = (25 + 3) * loc5;
-					var loc6 = this._mcContainers.attachMovie("Container","_ctr" + loc5,loc5,loc2);
-					loc6.setSize(25,25);
-					this._aContainers.push(loc6);
-					loc5 = loc5 + 1;
+					var2._x = (25 + 3) * var5;
+					var var6 = this._mcContainers.attachMovie("Container","_ctr" + var5,var5,var2);
+					var6.setSize(25,25);
+					this._aContainers.push(var6);
+					var5 = var5 + 1;
 				}
 				this._mcBackground.setSize(33 + this._nContainerNumber * (25 + 3),31);
 		}
 		this.dispatchEvent({type:"drawBar"});
 	}
-	function autoDetectBarOrientation(loc2, loc3)
+	function autoDetectBarOrientation(var2, var3)
 	{
-		var loc4 = loc3 - this._oBounds.top;
-		var loc5 = this._oBounds.bottom - loc3;
-		var loc6 = loc2 - this._oBounds.left;
-		var loc7 = this._oBounds.right - loc2;
-		var loc8 = this._bVertical;
-		var loc9 = 1000000;
-		if(loc4 < this._nSnap)
+		var var4 = var3 - this._oBounds.top;
+		var var5 = this._oBounds.bottom - var3;
+		var var6 = var2 - this._oBounds.left;
+		var var7 = this._oBounds.right - var2;
+		var var8 = this._bVertical;
+		var var9 = 1000000;
+		if(var4 < this._nSnap)
 		{
-			if(loc4 < loc9)
+			if(var4 < var9)
 			{
-				loc9 = loc4;
-				loc8 = false;
+				var9 = var4;
+				var8 = false;
 			}
 		}
-		if(loc5 < this._nSnap)
+		if(var5 < this._nSnap)
 		{
-			if(loc5 < loc9)
+			if(var5 < var9)
 			{
-				loc9 = loc5;
-				loc8 = false;
+				var9 = var5;
+				var8 = false;
 			}
 		}
-		if(loc6 < this._nSnap)
+		if(var6 < this._nSnap)
 		{
-			if(loc6 < loc9)
+			if(var6 < var9)
 			{
-				loc9 = loc6;
-				loc8 = true;
+				var9 = var6;
+				var8 = true;
 			}
 		}
-		if(loc7 < this._nSnap)
+		if(var7 < this._nSnap)
 		{
-			if(loc7 < loc9)
+			if(var7 < var9)
 			{
-				loc9 = loc7;
-				loc8 = true;
+				var9 = var7;
+				var8 = true;
 			}
 		}
-		if(loc8 != undefined && this._bVertical != loc8)
+		if(var8 != undefined && this._bVertical != var8)
 		{
-			this._bVertical = loc8;
+			this._bVertical = var8;
 			return true;
 		}
 		return false;
 	}
 	function snapBar()
 	{
-		var loc2 = this._x;
-		var loc3 = this._y;
-		var loc4 = this.getBounds();
-		var loc5 = loc3 + loc4.yMin - this._oBounds.top;
-		var loc6 = this._oBounds.bottom - loc3 - loc4.yMax;
-		var loc7 = loc2 + loc4.xMin - this._oBounds.left;
-		var loc8 = this._oBounds.right - loc2 - loc4.xMax;
-		if(loc5 < this._nSnap)
+		var var2 = this._x;
+		var var3 = this._y;
+		var var4 = this.getBounds();
+		var var5 = var3 + var4.yMin - this._oBounds.top;
+		var var6 = this._oBounds.bottom - var3 - var4.yMax;
+		var var7 = var2 + var4.xMin - this._oBounds.left;
+		var var8 = this._oBounds.right - var2 - var4.xMax;
+		if(var5 < this._nSnap)
 		{
-			loc3 = this._oBounds.top - loc4.yMin;
+			var3 = this._oBounds.top - var4.yMin;
 		}
-		if(loc6 < this._nSnap)
+		if(var6 < this._nSnap)
 		{
-			loc3 = this._oBounds.bottom - loc4.yMax;
+			var3 = this._oBounds.bottom - var4.yMax;
 		}
-		if(loc7 < this._nSnap)
+		if(var7 < this._nSnap)
 		{
-			loc2 = this._oBounds.left - loc4.xMin;
+			var2 = this._oBounds.left - var4.xMin;
 		}
-		if(loc8 < this._nSnap)
+		if(var8 < this._nSnap)
 		{
-			loc2 = this._oBounds.right - loc4.xMax;
+			var2 = this._oBounds.right - var4.xMax;
 		}
-		this._y = loc3;
-		this._x = loc2;
+		this._y = var3;
+		this._x = var2;
 	}
 	function destroy()
 	{
 		Mouse.removeListener(this);
 	}
-	function move(loc2, loc3, loc4)
+	function move(var2, var3, var4)
 	{
-		if(this.autoDetectBarOrientation(loc2,loc3) || loc4)
+		if(this.autoDetectBarOrientation(var2,var3) || var4)
 		{
 			this.drawBar();
 		}
-		this._x = loc2;
-		this._y = loc3;
+		this._x = var2;
+		this._y = var3;
 		this.snapBar();
 	}
-	function setOptions(loc2, loc3, loc4, loc5, loc6)
+	function setOptions(var2, var3, var4, var5, var6)
 	{
-		this._nMaxContainer = loc2;
-		this._nSnap = loc3;
-		this._oBounds = loc4;
-		this._nContainerNumber = loc5;
-		this.move(loc6.x,loc6.y,true);
+		this._nMaxContainer = var2;
+		this._nSnap = var3;
+		this._oBounds = var4;
+		this._nContainerNumber = var5;
+		this.move(var6.x,var6.y,true);
 	}
 	function _onMouseMove()
 	{
@@ -278,18 +278,18 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 		ank.utils.Timer.removeTimer(this,"movablecontainerbar");
 		this._bTimerEnable = false;
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		var loc3 = 0;
-		while(loc3 < this._nContainerNumber)
+		var var3 = 0;
+		while(var3 < this._nContainerNumber)
 		{
-			if(loc2 == "MOVABLEBAR_SH" + loc3)
+			if(var2 == "MOVABLEBAR_SH" + var3)
 			{
-				this._aContainers[loc3].notInChat = true;
-				this._aContainers[loc3].emulateClick();
+				this._aContainers[var3].notInChat = true;
+				this._aContainers[var3].emulateClick();
 				return false;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return true;
 	}

@@ -12,9 +12,9 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		super();
 		this.initialize();
 	}
-	function __set__api(loc2)
+	function __set__api(var2)
 	{
-		this._oAPI = loc2;
+		this._oAPI = var2;
 		return this.__get__api();
 	}
 	function __get__api()
@@ -37,138 +37,138 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		this.createEmptyMovieClip("_mcLayer_Popup",40).cacheAsBitmap = _global.CONFIG.cacheAsBitmap["GAPI/Popup"];
 		this.createEmptyMovieClip("_mcLayer_Cursor",50).cacheAsBitmap = _global.CONFIG.cacheAsBitmap["GAPI/Cursor"];
 		this._oUIComponentsList = new Object();
-		this._eaUIComponentsInstances = new ank.utils.();
+		this._eaUIComponentsInstances = new ank.utils.();
 	}
-	function setScreenSize(loc2, loc3)
+	function setScreenSize(var2, var3)
 	{
-		this._nScreenWidth = loc2;
-		this._nScreenHeight = loc3;
+		this._nScreenWidth = var2;
+		this._nScreenHeight = var3;
 	}
-	function createPopupMenu(loc2)
+	function createPopupMenu(var2)
 	{
-		var loc3 = this.pmPopupMenu;
-		if(loc2 == undefined)
+		var var3 = this.pmPopupMenu;
+		if(var2 == undefined)
 		{
-			loc2 = "BrownPopupMenu";
+			var2 = "BrownPopupMenu";
 		}
 		if(this.nPopupMenuCnt == undefined)
 		{
 			this.nPopupMenuCnt = 0;
 		}
-		var loc4 = this.nPopupMenuCnt++;
-		this.pmPopupMenu = (ank.gapi.controls.PopupMenu)this._mcLayer_Popup.attachMovie("PopupMenu","_mcPopupMenu" + loc4,loc4,{styleName:loc2,gapi:this});
-		loc3.removeMovieClip();
+		var var4 = this.nPopupMenuCnt++;
+		this.pmPopupMenu = (ank.gapi.controls.PopupMenu)this._mcLayer_Popup.attachMovie("PopupMenu","_mcPopupMenu" + var4,var4,{styleName:var2,gapi:this});
+		var3.removeMovieClip();
 		return this.pmPopupMenu;
 	}
 	function removePopupMenu()
 	{
 		this.pmPopupMenu.removeMovieClip();
 	}
-	function showFixedTooltip(loc2, loc3, loc4, loc5, loc6)
+	function showFixedTooltip(var2, var3, var4, var5, var6)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		if(typeof loc3 == "movieclip")
+		if(typeof var3 == "movieclip")
 		{
-			var loc8 = loc3;
-			var loc9 = {x:loc8._x,y:loc8._y};
-			loc8._parent.localToGlobal(loc9);
-			var loc7 = loc9.x;
-			loc4 = loc4 + loc9.y;
+			var var8 = var3;
+			var var9 = {x:var8._x,y:var8._y};
+			var8._parent.localToGlobal(var9);
+			var var7 = var9.x;
+			var4 = var4 + var9.y;
 		}
 		else
 		{
-			loc7 = Number(loc3);
+			var7 = Number(var3);
 		}
-		if(this._mcLayer_Popup["_mcToolTip" + loc6] != undefined)
+		if(this._mcLayer_Popup["_mcToolTip" + var6] != undefined)
 		{
-			var loc10 = this._mcLayer_Popup["_mcToolTip" + loc6];
-			loc10.params = loc5;
-			loc10.x = loc7;
-			loc10.y = loc4;
-			loc10.text = loc2;
+			var var10 = this._mcLayer_Popup["_mcToolTip" + var6];
+			var10.params = var5;
+			var10.x = var7;
+			var10.y = var4;
+			var10.text = var2;
 		}
 		else
 		{
-			this._mcLayer_Popup.attachMovie("ToolTip","_mcToolTip" + loc6,this._mcLayer_Popup.getNextHighestDepth(),{text:loc2,x:loc7,y:loc4,params:loc5,gapi:this});
+			this._mcLayer_Popup.attachMovie("ToolTip","_mcToolTip" + var6,this._mcLayer_Popup.getNextHighestDepth(),{text:var2,x:var7,y:var4,params:var5,gapi:this});
 		}
 	}
-	function showTooltip(loc2, loc3, loc4, loc5, loc6)
+	function showTooltip(var2, var3, var4, var5, var6)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		if(typeof loc3 == "movieclip")
+		if(typeof var3 == "movieclip")
 		{
-			var loc8 = loc3;
-			var loc9 = {x:loc8._x,y:loc8._y};
-			loc8._parent.localToGlobal(loc9);
-			this.globalToLocal(loc9);
-			var loc7 = loc9.x;
-			loc4 = loc4 + loc9.y;
+			var var8 = var3;
+			var var9 = {x:var8._x,y:var8._y};
+			var8._parent.localToGlobal(var9);
+			this.globalToLocal(var9);
+			var var7 = var9.x;
+			var4 = var4 + var9.y;
 		}
 		else
 		{
-			loc7 = Number(loc3);
+			var7 = Number(var3);
 		}
 		if(this._mcLayer_Popup._mcToolTip != undefined)
 		{
-			var loc10 = this._mcLayer_Popup._mcToolTip;
-			loc10.params = loc5;
-			loc10.x = loc7;
-			loc10.y = loc4;
-			loc10.text = loc2;
+			var var10 = this._mcLayer_Popup._mcToolTip;
+			var10.params = var5;
+			var10.x = var7;
+			var10.y = var4;
+			var10.text = var2;
 		}
 		else
 		{
-			this._mcLayer_Popup.attachMovie("ToolTip","_mcToolTip",this._mcLayer_Popup.getNextHighestDepth(),{text:loc2,x:loc7,y:loc4,params:loc5,gapi:this,styleName:loc6});
+			this._mcLayer_Popup.attachMovie("ToolTip","_mcToolTip",this._mcLayer_Popup.getNextHighestDepth(),{text:var2,x:var7,y:var4,params:var5,gapi:this,styleName:var6});
 		}
 	}
 	function hideTooltip()
 	{
 		this._mcLayer_Popup._mcToolTip.removeMovieClip();
 	}
-	function setCursor(loc2, loc3)
+	function setCursor(var2, var3)
 	{
 		this._nLastSetCursorTimer = getTimer();
 		this.removeCursor();
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = new Object();
+			var3 = new Object();
 		}
-		loc3.width = loc3.width == undefined?ank.gapi.Gapi.CURSOR_MAX_SIZE:loc3.width;
-		loc3.height = loc3.height == undefined?ank.gapi.Gapi.CURSOR_MAX_SIZE:loc3.height;
-		loc3.x = loc3.x == undefined?ank.gapi.Gapi.CURSOR_CENTER[0]:loc3.x;
-		loc3.y = loc3.y == undefined?ank.gapi.Gapi.CURSOR_CENTER[1]:loc3.y;
-		var loc4 = (ank.gapi.controls.Container)this._mcLayer_Cursor.attachMovie("Container","cursor1",10);
-		loc4.setSize(loc3.width,loc3.height);
-		loc4.move(loc3.x,loc3.y);
-		loc4.contentData = loc2;
-		this._oCursorAligment = loc3;
-		this._oCursorData = loc2;
+		var3.width = var3.width == undefined?ank.gapi.Gapi.CURSOR_MAX_SIZE:var3.width;
+		var3.height = var3.height == undefined?ank.gapi.Gapi.CURSOR_MAX_SIZE:var3.height;
+		var3.x = var3.x == undefined?ank.gapi.Gapi.CURSOR_CENTER[0]:var3.x;
+		var3.y = var3.y == undefined?ank.gapi.Gapi.CURSOR_CENTER[1]:var3.y;
+		var var4 = (ank.gapi.controls.Container)this._mcLayer_Cursor.attachMovie("Container","cursor1",10);
+		var4.setSize(var3.width,var3.height);
+		var4.move(var3.x,var3.y);
+		var4.contentData = var2;
+		this._oCursorAligment = var3;
+		this._oCursorData = var2;
 		this._mcLayer_Cursor.startDrag(true);
 	}
-	function setCursorForbidden(loc2, loc3)
+	function setCursorForbidden(var2, var3)
 	{
 		if(this.isCursorHidden())
 		{
 			return undefined;
 		}
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = false;
+			var2 = false;
 		}
-		if(loc2)
+		if(var2)
 		{
 			if(this._mcLayer_Cursor.mcForbidden == undefined)
 			{
-				var loc4 = this._mcLayer_Cursor.attachMovie("Loader","mcForbidden",20,{scaleContent:true});
-				loc4.setSize(this._oCursorAligment.width,this._oCursorAligment.height);
-				loc4.move(this._oCursorAligment.x,this._oCursorAligment.y);
-				loc4.contentPath = loc3;
+				var var4 = this._mcLayer_Cursor.attachMovie("Loader","mcForbidden",20,{scaleContent:true});
+				var4.setSize(this._oCursorAligment.width,this._oCursorAligment.height);
+				var4.move(this._oCursorAligment.x,this._oCursorAligment.y);
+				var4.contentPath = var3;
 			}
 		}
 		else
@@ -184,9 +184,9 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._mcLayer_Cursor.cursor1 == undefined;
 	}
-	function removeCursor(loc2)
+	function removeCursor(var2)
 	{
-		this.hideCursor(loc2);
+		this.hideCursor(var2);
 		if(this._oCursorData == undefined)
 		{
 			return false;
@@ -194,12 +194,12 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		delete this._oCursorData;
 		return true;
 	}
-	function hideCursor(loc2)
+	function hideCursor(var2)
 	{
 		this.setCursorForbidden(false);
 		this._mcLayer_Cursor.stopDrag();
 		this._mcLayer_Cursor.cursor1.removeMovieClip();
-		if(loc2 == true)
+		if(var2 == true)
 		{
 			this.dispatchEvent({type:"removeCursor"});
 		}
@@ -208,57 +208,56 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		return this.unloadUIComponent(this._sLastAutoHideComponent);
 	}
-	function loadUIAutoHideComponent(loc2, loc3, loc4, loc5)
+	function loadUIAutoHideComponent(var2, var3, var4, var5)
 	{
-		if(this._sLastAutoHideComponent != loc2)
+		if(this._sLastAutoHideComponent != var2)
 		{
 			this.unloadUIComponent(this._sLastAutoHideComponent);
 		}
-		this._sLastAutoHideComponent = loc2;
-		return this.loadUIComponent(loc2,loc3,loc4,loc5);
+		this._sLastAutoHideComponent = var2;
+		return this.loadUIComponent(var2,var3,var4,var5);
 	}
-	function loadUIComponent(loc2, loc3, loc4, loc5)
+	function loadUIComponent(var2, var3, var4, var5)
 	{
-		if(loc5.bForceLoad == undefined)
+		if(var5.bForceLoad == undefined)
 		{
-			var loc6 = false;
+			var var6 = false;
 		}
 		else
 		{
-			loc6 = loc5.bForceLoad;
+			var6 = var5.bForceLoad;
 		}
-		if(loc5.bStayIfPresent == undefined)
+		if(var5.bStayIfPresent == undefined)
 		{
-			var loc7 = false;
-		}
-		else
-		{
-			loc7 = loc5.bStayIfPresent;
-		}
-		if(loc5.bAlwaysOnTop == undefined)
-		{
-			var loc8 = false;
+			var var7 = false;
 		}
 		else
 		{
-			loc8 = loc5.bAlwaysOnTop;
+			var7 = var5.bStayIfPresent;
 		}
-		if(loc5.bUltimateOnTop == undefined)
+		if(var5.bAlwaysOnTop == undefined)
 		{
-			var loc9 = false;
+			var var8 = false;
 		}
 		else
 		{
-			loc9 = loc5.bUltimateOnTop;
+			var8 = var5.bAlwaysOnTop;
+		}
+		if(var5.bUltimateOnTop == undefined)
+		{
+			var var9 = false;
+		}
+		else
+		{
+			var9 = var5.bUltimateOnTop;
 		}
 		if(dofus.Constants.DOUBLEFRAMERATE)
 		{
-			switch(loc2)
+			switch(var2)
 			{
 				default:
 					switch(null)
 					{
-						case "Waiting":
 						case "AskGameBegin":
 						case "Login":
 						case "Inventory":
@@ -267,111 +266,112 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 				case "BigStoreBuy":
 				case "JoinFriend":
 				case "StringCourse":
+				case "Waiting":
 			}
-			loc2 = loc2 + "_DoubleFramerate";
+			var2 = var2 + "_DoubleFramerate";
 		}
-		if(loc2.substring(0,3) == "Ask")
+		if(var2.substring(0,3) == "Ask")
 		{
-			loc9 = true;
+			var9 = true;
 		}
-		if(this._oUIComponentsList[loc3] != undefined)
+		if(this._oUIComponentsList[var3] != undefined)
 		{
-			if(loc7)
+			if(var7)
 			{
-				var loc10 = this._oUIComponentsList[loc3];
-				for(var k in loc4)
+				var var10 = this._oUIComponentsList[var3];
+				for(var k in var4)
 				{
-					loc10[k] = loc4[k];
+					var10[k] = var4[k];
 				}
 				return null;
 			}
-			this.unloadUIComponent(loc3);
-			if(!loc6)
+			this.unloadUIComponent(var3);
+			if(!var6)
 			{
 				return null;
 			}
 		}
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = new Object();
+			var4 = new Object();
 		}
-		loc4.api = this._oAPI;
-		loc4.gapi = this;
-		loc4.instanceName = loc3;
-		if(loc8)
+		var4.api = this._oAPI;
+		var4.gapi = this;
+		var4.instanceName = var3;
+		if(var8)
 		{
-			var loc11 = this._mcLayer_UI_Top;
+			var var11 = this._mcLayer_UI_Top;
 		}
-		else if(loc9)
+		else if(var9)
 		{
-			loc11 = this._mcLayer_UI_Ultimate;
+			var11 = this._mcLayer_UI_Ultimate;
 		}
 		else
 		{
-			loc11 = this._mcLayer_UI;
+			var11 = this._mcLayer_UI;
 		}
-		var loc12 = loc11.attachMovie("UI_" + loc2,loc3,loc11.getNextHighestDepth(),loc4);
-		this._oUIComponentsList[loc3] = loc12;
-		this._eaUIComponentsInstances.push({name:loc3});
-		return loc12;
+		var var12 = var11.attachMovie("UI_" + var2,var3,var11.getNextHighestDepth(),var4);
+		this._oUIComponentsList[var3] = var12;
+		this._eaUIComponentsInstances.push({name:var3});
+		return var12;
 	}
-	function unloadUIComponent(loc2)
+	function unloadUIComponent(var2)
 	{
-		var loc3 = this.getUIComponent(loc2);
+		var var3 = this.getUIComponent(var2);
 		delete this._oUIComponentsList.register2;
-		var loc4 = this._eaUIComponentsInstances.findFirstItem("name",loc2);
-		if(loc4.index != -1)
+		var var4 = this._eaUIComponentsInstances.findFirstItem("name",var2);
+		if(var4.index != -1)
 		{
-			this._eaUIComponentsInstances.removeItems(loc4.index,1);
+			this._eaUIComponentsInstances.removeItems(var4.index,1);
 		}
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
 			return false;
 		}
-		loc3.destroy();
-		Key.removeListener(loc3);
-		this.api.kernel.KeyManager.removeShortcutsListener(loc3);
-		this.api.kernel.KeyManager.removeKeysListener(loc3);
-		loc3.removeMovieClip();
+		var3.destroy();
+		Key.removeListener(var3);
+		this.api.kernel.KeyManager.removeShortcutsListener(var3);
+		this.api.kernel.KeyManager.removeKeysListener(var3);
+		var3.removeMovieClip();
 		return true;
 	}
-	function getUIComponent(loc2)
+	function getUIComponent(var2)
 	{
-		var loc3 = this._mcLayer_UI[loc2];
-		if(loc3 == undefined)
+		var var3 = this._mcLayer_UI[var2];
+		if(var3 == undefined)
 		{
-			loc3 = this._mcLayer_UI_Top[loc2];
+			var3 = this._mcLayer_UI_Top[var2];
 		}
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = this._mcLayer_UI_Ultimate[loc2];
+			var3 = this._mcLayer_UI_Ultimate[var2];
 		}
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
 			return null;
 		}
-		return loc3;
+		return var3;
 	}
-	function callCloseOnLastUI(loc2)
+	function callCloseOnLastUI(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._eaUIComponentsInstances.length - 1;
+			var2 = this._eaUIComponentsInstances.length - 1;
 		}
-		if(loc2 < 0)
-		{
-			return false;
-		}
-		if(_global.isNaN(loc2))
+		if(var2 < 0)
 		{
 			return false;
 		}
-		var loc3 = this.getUIComponent(this._eaUIComponentsInstances[loc2].name);
-		if(loc3.callClose() == true)
+		if(_global.isNaN(var2))
+		{
+			return false;
+		}
+		var var3 = this.getUIComponent(this._eaUIComponentsInstances[var2].name);
+		if(var3.callClose() == true)
 		{
 			return true;
 		}
-		return this.callCloseOnLastUI(loc2 - 1);
+		return this.callCloseOnLastUI(var2 - 1);
 	}
 	function initialize()
 	{
@@ -391,12 +391,12 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		{
 			return undefined;
 		}
-		var loc2 = getTimer() - this._nLastSetCursorTimer;
-		if(_global.isNaN(loc2))
+		var var2 = getTimer() - this._nLastSetCursorTimer;
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		if(loc2 < ank.gapi.Gapi.MAX_DELAY_CURSOR)
+		if(var2 < ank.gapi.Gapi.MAX_DELAY_CURSOR)
 		{
 			return undefined;
 		}

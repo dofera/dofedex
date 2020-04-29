@@ -1,124 +1,123 @@
 class ank.battlefield.SelectionHandler
 {
-	function SelectionHandler(loc3, loc4, loc5)
+	function SelectionHandler(var3, var4, var5)
 	{
-		this.initialize(loc2,loc3,loc4);
+		this.initialize(var2,var3,var4);
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
-		this._mcBattlefield = loc2;
-		this._oDatacenter = loc4;
-		this._mcContainer = loc3;
+		this._mcBattlefield = var2;
+		this._oDatacenter = var4;
+		this._mcContainer = var3;
 		this.clear();
 	}
-	function clear(loc2)
+	function clear(var2)
 	{
-		for(var loc3 in this._mcContainer.Select)
+		for(var k in this._mcContainer.Select)
 		{
-			if(loc3 != undefined)
+			var var3 = this._mcContainer.Select[k];
+			if(var3 != undefined)
 			{
-				var loc4 = loc3.inObjectClips;
-				§§enumerate(loc4);
-				while((var loc0 = §§enumeration()) != null)
+				var var4 = var3.inObjectClips;
+				for(var l in var4)
 				{
-					loc4[l].removeMovieClip();
+					var4[l].removeMovieClip();
 				}
 			}
-			loc3.removeMovieClip();
+			var3.removeMovieClip();
 		}
 	}
-	function clearLayer(loc2)
+	function clearLayer(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = "default";
+			var2 = "default";
 		}
-		var loc3 = this._mcContainer.Select[loc2];
-		if(loc3 != undefined)
+		var var3 = this._mcContainer.Select[var2];
+		if(var3 != undefined)
 		{
-			var loc4 = loc3.inObjectClips;
-			§§enumerate(loc4);
-			while((var loc0 = §§enumeration()) != null)
+			var var4 = var3.inObjectClips;
+			§§enumerate(var4);
+			while((var var0 = §§enumeration()) != null)
 			{
-				loc4[k].removeMovieClip();
+				var4[k].removeMovieClip();
 			}
 		}
-		loc3.removeMovieClip();
+		var3.removeMovieClip();
 	}
-	function select(loc2, loc3, loc4, loc5, loc6)
+	function select(var2, var3, var4, var5, var6)
 	{
-		var loc7 = this._mcBattlefield.mapHandler.getCellData(loc3);
-		if(loc5 == undefined)
+		var var7 = this._mcBattlefield.mapHandler.getCellData(var3);
+		if(var5 == undefined)
 		{
-			loc5 = "default";
+			var5 = "default";
 		}
-		var loc8 = this._mcContainer.Select[loc5];
-		if(loc8 == undefined)
+		var var8 = this._mcContainer.Select[var5];
+		if(var8 == undefined)
 		{
-			loc8 = this._mcContainer.Select.createEmptyMovieClip(loc5,this._mcContainer.Select.getNextHighestDepth());
-			loc8.inObjectClips = new Array();
+			var8 = this._mcContainer.Select.createEmptyMovieClip(var5,this._mcContainer.Select.getNextHighestDepth());
+			var8.inObjectClips = new Array();
 		}
-		if(loc7 != undefined && loc7.x != undefined)
+		if(var7 != undefined && var7.x != undefined)
 		{
-			var loc9 = loc7.movement > 1 && loc7.layerObject2Num != 0;
-			var loc10 = "cell" + String(loc3);
-			if(loc2)
+			var var9 = var7.movement > 1 && var7.layerObject2Num != 0;
+			var var10 = "cell" + String(var3);
+			if(var2)
 			{
-				if(loc9)
+				if(var9)
 				{
-					var loc12 = this._mcContainer.Object2["select" + loc3];
-					if(loc12 == undefined)
+					var var12 = this._mcContainer.Object2["select" + var3];
+					if(var12 == undefined)
 					{
-						loc12 = this._mcContainer.Object2.createEmptyMovieClip("select" + loc3,loc3 * 100 + 2);
+						var12 = this._mcContainer.Object2.createEmptyMovieClip("select" + var3,var3 * 100 + 2);
 					}
-					var loc11 = loc12[loc5];
-					if(loc11 == undefined)
+					var var11 = var12[var5];
+					if(var11 == undefined)
 					{
-						loc11 = loc12.attachMovie("s" + loc7.groundSlope,loc5,loc12.getNextHighestDepth());
+						var11 = var12.attachMovie("s" + var7.groundSlope,var5,var12.getNextHighestDepth());
 					}
-					loc8.inObjectClips.push(loc11);
+					var8.inObjectClips.push(var11);
 				}
 				else
 				{
-					loc11 = loc8.attachMovie("s" + loc7.groundSlope,loc10,loc3 * 100);
+					var11 = var8.attachMovie("s" + var7.groundSlope,var10,var3 * 100);
 				}
-				loc11._x = loc7.x;
-				loc11._y = loc7.y;
-				var loc13 = new Color(loc11);
-				loc13.setRGB(Number(loc4));
-				loc11._alpha = loc6 == undefined?100:loc6;
+				var11._x = var7.x;
+				var11._y = var7.y;
+				var var13 = new Color(var11);
+				var13.setRGB(Number(var4));
+				var11._alpha = var6 == undefined?100:var6;
 			}
-			else if(loc9)
+			else if(var9)
 			{
-				this._mcContainer.Object2["select" + loc3][loc5].unloadMovie();
-				this._mcContainer.Object2["select" + loc3][loc5].removeMovieClip();
+				this._mcContainer.Object2["select" + var3][var5].unloadMovie();
+				this._mcContainer.Object2["select" + var3][var5].removeMovieClip();
 			}
 			else
 			{
-				loc8[loc10].unloadMovie();
-				loc8[loc10].removeMovieClip();
+				var8[var10].unloadMovie();
+				var8[var10].removeMovieClip();
 			}
 		}
 	}
-	function selectMultiple(loc2, loc3, loc4, loc5, loc6)
+	function selectMultiple(var2, var3, var4, var5, var6)
 	{
-		§§enumerate(loc3);
-		while((var loc0 = §§enumeration()) != null)
+		for(var i in var3)
 		{
-			this.select(loc2,loc3[i],loc4,loc5,loc6);
+			this.select(var2,var3[i],var4,var5,var6);
 		}
 	}
 	function getLayers()
 	{
-		var loc2 = new Array();
+		var var2 = new Array();
 		for(var k in this._mcContainer.Select)
 		{
-			var loc3 = this._mcContainer.Select[k];
-			if(loc3 != undefined)
+			var var3 = this._mcContainer.Select[k];
+			if(var3 != undefined)
 			{
-				loc2.push(loc3._name);
+				var2.push(var3._name);
 			}
 		}
-		return loc2;
+		return var2;
 	}
 }

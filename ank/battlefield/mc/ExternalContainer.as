@@ -4,21 +4,21 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 	{
 		super();
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
 		this.api = _global.API;
 		if(this.api.electron.enabled)
 		{
 			this.createEmptyMovieClip("Accessories",900);
-			var loc3 = new MovieClipLoader();
-			loc3.loadClip(dofus.Constants.CLIPS_PERSOS_PATH + "10.swf",this.Accessories);
+			var var3 = new MovieClipLoader();
+			var3.loadClip(dofus.Constants.CLIPS_PERSOS_PATH + "10.swf",this.Accessories);
 		}
-		this._sGroundFile = loc2;
+		this._sGroundFile = var2;
 		this.clear();
 	}
-	function useCustomGroundGfxFile(loc2)
+	function useCustomGroundGfxFile(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this.InteractionCell = this.Ground.createEmptyMovieClip("InteractionCell",-400);
 		}
@@ -35,16 +35,17 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 			}
 			else
 			{
-				var loc2 = new MovieClipLoader();
-				loc2.addListener(this._parent._parent);
-				loc2.loadClip(this._sGroundFile,this.Ground);
+				var var2 = new MovieClipLoader();
+				var2.addListener(this._parent._parent);
+				var2.loadClip(this._sGroundFile,this.Ground);
 			}
 		}
 		else
 		{
 			if(ank.battlefield.Constants.USE_STREAMING_FILES || ank.battlefield.Constants.STREAMING_METHOD == "compact")
 			{
-				for(var s in this.Ground)
+				§§enumerate(this.Ground);
+				while((var var0 = §§enumeration()) != null)
 				{
 					if(typeof this.Ground[s] == "movieclip")
 					{
@@ -67,7 +68,8 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 		this.clearGround();
 		if(ank.battlefield.Constants.USE_STREAMING_FILES && ank.battlefield.Constants.STREAMING_METHOD == "explod")
 		{
-			for(var s in this.Object1)
+			§§enumerate(this.Object1);
+			while((var var0 = §§enumeration()) != null)
 			{
 				if(typeof this.Object1[s] == "movieclip")
 				{
@@ -94,7 +96,8 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 		this.Pointer.cacheAsBitmap = _global.CONFIG.cacheAsBitmap["ExternalContainer/Pointer"];
 		if(ank.battlefield.Constants.USE_STREAMING_FILES && ank.battlefield.Constants.STREAMING_METHOD == "explod")
 		{
-			for(var s in this.Object2)
+			§§enumerate(this.Object2);
+			while((var var0 = §§enumeration()) != null)
 			{
 				if(typeof this.Object1[s] == "movieclip")
 				{

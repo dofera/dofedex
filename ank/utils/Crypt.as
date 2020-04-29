@@ -4,19 +4,19 @@ class ank.utils.Crypt
 	function Crypt()
 	{
 	}
-	static function cryptPassword(loc2, loc3)
+	static function cryptPassword(var2, var3)
 	{
-		var loc4 = "#1";
-		var loc5 = 0;
-		while(loc5 < loc2.length)
+		var var4 = "#1";
+		var var5 = 0;
+		while(var5 < var2.length)
 		{
-			var loc6 = loc2.charCodeAt(loc5);
-			var loc7 = loc3.charCodeAt(loc5);
-			var loc8 = Math.floor(loc6 / 16);
-			var loc9 = loc6 % 16;
-			loc4 = loc4 + (ank.utils.Crypt.HASH[(loc8 + loc7 % ank.utils.Crypt.HASH.length) % ank.utils.Crypt.HASH.length] + ank.utils.Crypt.HASH[(loc9 + loc7 % ank.utils.Crypt.HASH.length) % ank.utils.Crypt.HASH.length]);
-			loc5 = loc5 + 1;
+			var var6 = var2.charCodeAt(var5);
+			var var7 = var3.charCodeAt(var5);
+			var var8 = Math.floor(var6 / 16);
+			var var9 = var6 % 16;
+			var4 = var4 + (ank.utils.Crypt.HASH[(var8 + var7 % ank.utils.Crypt.HASH.length) % ank.utils.Crypt.HASH.length] + ank.utils.Crypt.HASH[(var9 + var7 % ank.utils.Crypt.HASH.length) % ank.utils.Crypt.HASH.length]);
+			var5 = var5 + 1;
 		}
-		return loc4;
+		return var4;
 	}
 }

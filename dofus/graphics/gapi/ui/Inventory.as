@@ -12,17 +12,17 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__dataProvider(loc2)
+	function __set__dataProvider(var2)
 	{
 		this._eaDataProvider.removeEventListener("modelChanged",this);
-		this._eaDataProvider = loc2;
+		this._eaDataProvider = var2;
 		this._eaDataProvider.addEventListener("modelChanged",this);
 		this.modelChanged();
 		return this.__get__dataProvider();
 	}
-	function showCharacterPreview(loc2)
+	function showCharacterPreview(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this._winPreview._visible = true;
 			this._svCharacterViewer._visible = true;
@@ -41,11 +41,11 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 			this._isvItemSetViewer._y = this._winPreview._y;
 		}
 	}
-	function showLivingItems(loc2)
+	function showLivingItems(var2)
 	{
-		this._livItemViewer._visible = loc2;
-		this._winLivingItems._visible = loc2;
-		if(loc2)
+		this._livItemViewer._visible = var2;
+		this._winLivingItems._visible = var2;
+		if(var2)
 		{
 			this._winPreview._visible = false;
 			this._svCharacterViewer._visible = false;
@@ -59,9 +59,9 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 			this.showCharacterPreview(this.api.kernel.OptionsManager.getOption("CharacterPreview"));
 		}
 	}
-	function showItemInfos(loc2)
+	function showItemInfos(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			this.hideItemViewer(true);
 			this.hideItemSetViewer(true);
@@ -69,21 +69,21 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 		else
 		{
 			this.hideItemViewer(false);
-			var loc3 = loc2.clone();
-			if(loc3.realGfx)
+			var var3 = var2.clone();
+			if(var3.realGfx)
 			{
-				loc3.gfx = loc3.realGfx;
+				var3.gfx = var3.realGfx;
 			}
-			this._itvItemViewer.itemData = loc3;
-			if(loc2.isFromItemSet)
+			this._itvItemViewer.itemData = var3;
+			if(var2.isFromItemSet)
 			{
-				var loc4 = this.api.datacenter.Player.ItemSets.getItemAt(loc2.itemSetID);
-				if(loc4 == undefined)
+				var var4 = this.api.datacenter.Player.ItemSets.getItemAt(var2.itemSetID);
+				if(var4 == undefined)
 				{
-					loc4 = new dofus.datacenter.ItemSet(loc2.itemSetID,"",[]);
+					var4 = new dofus.datacenter.ItemSet(var2.itemSetID,"",[]);
 				}
 				this.hideItemSetViewer(false);
-				this._isvItemSetViewer.itemSet = loc4;
+				this._isvItemSetViewer.itemSet = var4;
 			}
 			else
 			{
@@ -143,12 +143,12 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		this.addToQueue({object:this,method:this.setSubComponentsStyle,params:[loc2]});
+		var var2 = this.getStyle();
+		this.addToQueue({object:this,method:this.setSubComponentsStyle,params:[var2]});
 	}
-	function setSubComponentsStyle(loc2)
+	function setSubComponentsStyle(var2)
 	{
-		this._itvItemViewer.styleName = loc2.itenviewerstyle;
+		this._itvItemViewer.styleName = var2.itenviewerstyle;
 	}
 	function hideEpisodicContent()
 	{
@@ -189,18 +189,18 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 		this._cbTypes.addEventListener("itemSelected",this);
 		for(var a in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE)
 		{
-			var loc2 = dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[a];
-			var loc3 = 0;
-			while(loc3 < loc2.length)
+			var var2 = dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[a];
+			var var3 = 0;
+			while(var3 < var2.length)
 			{
-				var loc4 = this[loc2[loc3]];
-				loc4.addEventListener("over",this);
-				loc4.addEventListener("out",this);
-				if(loc4.toolTipText == undefined)
+				var var4 = this[var2[var3]];
+				var4.addEventListener("over",this);
+				var4.addEventListener("out",this);
+				if(var4.toolTipText == undefined)
 				{
-					loc4.toolTipText = this.api.lang.getText(loc4 != this._ctrMount?"INVENTORY_" + a.toUpperCase():"MOUNT");
+					var4.toolTipText = this.api.lang.getText(var4 != this._ctrMount?"INVENTORY_" + a.toUpperCase():"MOUNT");
 				}
-				loc3 = loc3 + 1;
+				var3 = var3 + 1;
 			}
 		}
 	}
@@ -215,7 +215,7 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function initFilter()
 	{
-		if((var loc0 = this.api.datacenter.Basics.inventory_filter) !== "nonequipement")
+		if((var var0 = this.api.datacenter.Basics.inventory_filter) !== "nonequipement")
 		{
 			switch(null)
 			{
@@ -249,54 +249,57 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 		this._svCharacterViewer.spriteData = (ank.battlefield.datacenter.Sprite)this.api.datacenter.Player.data;
 		this.dataProvider = this.api.datacenter.Player.Inventory;
 	}
-	function enabledFromSuperType(loc2)
+	function enabledFromSuperType(var2)
 	{
-		var loc3 = loc2.superType;
-		if(loc3 != undefined)
+		var var3 = var2.superType;
+		if(var3 != undefined)
 		{
 			for(var k in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE)
 			{
 				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k])
 				{
-					var loc4 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k][i]];
-					loc4.enabled = false;
-					loc4.selected = false;
+					var var4 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k][i]];
+					var4.enabled = false;
+					var4.selected = false;
 				}
 			}
-			var loc5 = this.api.lang.getItemSuperTypeText(loc3);
-			if(loc5)
+			var var5 = this.api.lang.getItemSuperTypeText(var3);
+			if(var5)
 			{
-				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3])
+				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3])
 				{
-					var loc6 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3][i]];
-					if(!(loc3 == 9 && loc6.contentPath == ""))
+					var var6 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3][i]];
+					if(!(var3 == 9 && var6.contentPath == ""))
 					{
-						loc6.enabled = true;
-						loc6.selected = true;
+						var6.enabled = true;
+						var6.selected = true;
 					}
 				}
 			}
 			else
 			{
-				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3])
+				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3])
 				{
-					var loc8 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3][i]];
-					if(loc8.contentData == undefined)
+					var var8 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3][i]];
+					if(var8.contentData == undefined)
 					{
-						var loc7 = loc8;
+						var var7 = var8;
 					}
-					else if(loc8.contentData.unicID == loc2.unicID)
+					else if(var8.contentData.unicID == var2.unicID)
 					{
+						while(§§pop() != null)
+						{
+						}
 						return undefined;
 					}
 				}
-				if(loc7 != undefined)
+				if(var7 != undefined)
 				{
-					loc7.enabled = true;
-					loc7.selected = true;
+					var7.enabled = true;
+					var7.selected = true;
 				}
 			}
-			if(loc2.needTwoHands)
+			if(var2.needTwoHands)
 			{
 				this._mcTwoHandedCrossLeft._visible = true;
 				this._mcTwoHandedCrossRight._visible = false;
@@ -304,7 +307,7 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 				this._mcTwoHandedLink.play();
 				this._mcTwoHandedLink._visible = true;
 			}
-			if(loc3 == 7 && this.api.datacenter.Player.weaponItem.needTwoHands)
+			if(var3 == 7 && this.api.datacenter.Player.weaponItem.needTwoHands)
 			{
 				this._mcTwoHandedCrossLeft._visible = false;
 				this._mcTwoHandedCrossRight._visible = true;
@@ -319,11 +322,11 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 			{
 				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k])
 				{
-					var loc9 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k][i]];
-					loc9.enabled = true;
-					if(loc9.selected)
+					var var9 = this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k][i]];
+					var9.enabled = true;
+					if(var9.selected)
 					{
-						loc9.selected = false;
+						var9.selected = false;
 					}
 				}
 			}
@@ -335,59 +338,59 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 			}
 		}
 	}
-	function updateData(loc2)
+	function updateData(var2)
 	{
-		var loc3 = this.api.datacenter.Basics[dofus.graphics.gapi.ui.Inventory.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name];
-		this._nSelectedTypeID = loc3 != undefined?loc3:0;
-		var loc4 = new Object();
-		if(!loc2)
+		var var3 = this.api.datacenter.Basics[dofus.graphics.gapi.ui.Inventory.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name];
+		this._nSelectedTypeID = var3 != undefined?var3:0;
+		var var4 = new Object();
+		if(!var2)
 		{
 			for(var k in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE)
 			{
 				for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k])
 				{
-					loc4[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k][i]] = true;
+					var4[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE[k][i]] = true;
 				}
 			}
 		}
-		var loc5 = new ank.utils.();
-		var loc6 = new ank.utils.();
-		var loc7 = new Object();
+		var var5 = new ank.utils.();
+		var var6 = new ank.utils.();
+		var var7 = new Object();
 		for(var k in this._eaDataProvider)
 		{
-			var loc8 = this._eaDataProvider[k];
-			var loc9 = loc8.position;
-			if(loc9 != -1)
+			var var8 = this._eaDataProvider[k];
+			var var9 = var8.position;
+			if(var9 != -1)
 			{
-				if(!loc2)
+				if(!var2)
 				{
-					var loc10 = this["_ctr" + loc9];
-					loc10.contentData = loc8;
-					delete register4[loc10._name];
+					var var10 = this["_ctr" + var9];
+					var10.contentData = var8;
+					delete register4[var10._name];
 				}
 			}
-			else if(this._aSelectedSuperTypes[loc8.superType])
+			else if(this._aSelectedSuperTypes[var8.superType])
 			{
-				if(loc8.type == this._nSelectedTypeID || this._nSelectedTypeID == 0)
+				if(var8.type == this._nSelectedTypeID || this._nSelectedTypeID == 0)
 				{
-					loc5.push(loc8);
+					var5.push(var8);
 				}
-				var loc11 = loc8.type;
-				if(loc7[loc11] != true)
+				var var11 = var8.type;
+				if(var7[var11] != true)
 				{
-					loc6.push({label:this.api.lang.getItemTypeText(loc11).n,id:loc11});
-					loc7[loc11] = true;
+					var6.push({label:this.api.lang.getItemTypeText(var11).n,id:var11});
+					var7[var11] = true;
 				}
 			}
 		}
-		loc6.sortOn("label");
-		loc6.splice(0,0,{label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
-		this._cbTypes.dataProvider = loc6;
+		var6.sortOn("label");
+		var6.splice(0,0,{label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
+		this._cbTypes.dataProvider = var6;
 		this.setType(this._nSelectedTypeID);
-		this._cgGrid.dataProvider = loc5;
-		if(!loc2)
+		this._cgGrid.dataProvider = var5;
+		if(!var2)
 		{
-			for(var k in loc4)
+			for(var k in var4)
 			{
 				if(this[k] != this._ctrMount)
 				{
@@ -415,53 +418,53 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 			this._mcTwoHandedCrossRight._visible = false;
 		}
 	}
-	function setType(loc2)
+	function setType(var2)
 	{
-		var loc3 = this._cbTypes.dataProvider;
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var3 = this._cbTypes.dataProvider;
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			if(loc3[loc4].id == loc2)
+			if(var3[var4].id == var2)
 			{
-				this._cbTypes.selectedIndex = loc4;
+				this._cbTypes.selectedIndex = var4;
 				return undefined;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 		this._nSelectedTypeID = 0;
 		this._cbTypes.selectedIndex = this._nSelectedTypeID;
 	}
 	function canMoveItem()
 	{
-		var loc2 = this.api.datacenter.Game.isRunning;
-		var loc3 = this.api.datacenter.Exchange != undefined;
-		if(loc2 || loc3)
+		var var2 = this.api.datacenter.Game.isRunning;
+		var var3 = this.api.datacenter.Exchange != undefined;
+		if(var2 || var3)
 		{
 			this.gapi.loadUIComponent("AskOk","AskOkInventory",{title:this.api.lang.getText("INFORMATIONS"),text:this.api.lang.getText("CANT_MOVE_ITEM")});
 		}
-		return !(loc2 || loc3);
+		return !(var2 || var3);
 	}
-	function askDestroy(loc2, loc3)
+	function askDestroy(var2, var3)
 	{
-		if(loc2.Quantity == 1)
+		if(var2.Quantity == 1)
 		{
-			var loc4 = this.gapi.loadUIComponent("AskYesNo","AskYesNoDestroy",{title:this.api.lang.getText("QUESTION"),text:this.api.lang.getText("DO_U_DESTROY",[loc3,loc2.name]),params:{item:loc2,quantity:loc3}});
-			loc4.addEventListener("yes",this);
+			var var4 = this.gapi.loadUIComponent("AskYesNo","AskYesNoDestroy",{title:this.api.lang.getText("QUESTION"),text:this.api.lang.getText("DO_U_DESTROY",[var3,var2.name]),params:{item:var2,quantity:var3}});
+			var4.addEventListener("yes",this);
 		}
 		else
 		{
-			this.api.network.Items.destroy(loc2.ID,loc3);
+			this.api.network.Items.destroy(var2.ID,var3);
 		}
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._itvItemViewer._visible = !loc2;
-		this._mcItvDescBg._visible = !loc2;
-		this._mcItvIconBg._visible = !loc2;
+		this._itvItemViewer._visible = !var2;
+		this._mcItvDescBg._visible = !var2;
+		this._mcItvIconBg._visible = !var2;
 	}
-	function hideItemSetViewer(loc2)
+	function hideItemSetViewer(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this._isvItemSetViewer.removeMovieClip();
 		}
@@ -470,13 +473,13 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 			this.attachMovie("ItemSetViewer","_isvItemSetViewer",this.getNextHighestDepth(),{_x:this._mcItemSetViewerPlacer._x,_y:this._mcItemSetViewerPlacer._y});
 		}
 	}
-	function kamaChanged(loc2)
+	function kamaChanged(var2)
 	{
-		this._lblKama.text = new ank.utils.(loc2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
+		this._lblKama.text = new ank.utils.(var2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if(loc2.target == this._btnClose)
+		if(var2.target == this._btnClose)
 		{
 			this.callClose();
 			return undefined;
@@ -485,47 +488,47 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 		{
 			this._mcArrowAnimation._visible = false;
 		}
-		if(loc2.target != this._btnSelectedFilterButton)
+		if(var2.target != this._btnSelectedFilterButton)
 		{
 			this.api.sounds.events.onInventoryFilterButtonClick();
 			this._btnSelectedFilterButton.selected = false;
-			this._btnSelectedFilterButton = loc2.target;
-			switch(loc2.target._name)
+			this._btnSelectedFilterButton = var2.target;
+			if((var var0 = var2.target._name) !== "_btnFilterEquipement")
 			{
-				case "_btnFilterEquipement":
-					this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_EQUIPEMENT;
-					this._lblFilter.text = this.api.lang.getText("EQUIPEMENT");
-					this.api.datacenter.Basics.inventory_filter = "equipement";
-					break;
-				case "_btnFilterNonEquipement":
-					this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_NONEQUIPEMENT;
-					this._lblFilter.text = this.api.lang.getText("NONEQUIPEMENT");
-					this.api.datacenter.Basics.inventory_filter = "nonequipement";
-					break;
-				default:
-					switch(null)
-					{
-						case "_btnFilterRessoureces":
-							this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_RESSOURECES;
-							this._lblFilter.text = this.api.lang.getText("RESSOURECES");
-							this.api.datacenter.Basics.inventory_filter = "resources";
-							break;
-						case "_btnFilterQuest":
-							this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_QUEST;
-							this._lblFilter.text = this.api.lang.getText("QUEST_OBJECTS");
-							this.api.datacenter.Basics.inventory_filter = "quest";
-					}
+				switch(null)
+				{
+					case "_btnFilterNonEquipement":
+						this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_NONEQUIPEMENT;
+						this._lblFilter.text = this.api.lang.getText("NONEQUIPEMENT");
+						this.api.datacenter.Basics.inventory_filter = "nonequipement";
+						break;
+					case "_btnFilterRessoureces":
+						this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_RESSOURECES;
+						this._lblFilter.text = this.api.lang.getText("RESSOURECES");
+						this.api.datacenter.Basics.inventory_filter = "resources";
+						break;
+					case "_btnFilterQuest":
+						this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_QUEST;
+						this._lblFilter.text = this.api.lang.getText("QUEST_OBJECTS");
+						this.api.datacenter.Basics.inventory_filter = "quest";
+				}
+			}
+			else
+			{
+				this._aSelectedSuperTypes = dofus.graphics.gapi.ui.Inventory.FILTER_EQUIPEMENT;
+				this._lblFilter.text = this.api.lang.getText("EQUIPEMENT");
+				this.api.datacenter.Basics.inventory_filter = "equipement";
 			}
 			this.updateData(true);
 		}
 		else
 		{
-			loc2.target.selected = true;
+			var2.target.selected = true;
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
-		switch(loc2.eventName)
+		switch(var2.eventName)
 		{
 			case "updateOne":
 			case "updateAll":
@@ -539,205 +542,205 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 	{
 		this.addToQueue({object:this,method:this.enabledFromSuperType});
 	}
-	function dragItem(loc2)
+	function dragItem(var2)
 	{
 		this.gapi.removeCursor();
 		if(!this.canMoveItem())
 		{
 			return undefined;
 		}
-		if(loc2.target.contentData == undefined)
+		if(var2.target.contentData == undefined)
 		{
 			return undefined;
 		}
-		if(loc2.target.contentData.isCursed)
+		if(var2.target.contentData.isCursed)
 		{
 			return undefined;
 		}
-		this.enabledFromSuperType(loc2.target.contentData);
-		this.gapi.setCursor(loc2.target.contentData);
+		this.enabledFromSuperType(var2.target.contentData);
+		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(loc2)
+	function dropItem(var2)
 	{
 		if(!this.canMoveItem())
 		{
 			return undefined;
 		}
-		var loc3 = this.gapi.getCursor();
-		if(loc3 == undefined)
+		var var3 = this.gapi.getCursor();
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		if(loc2.target._parent == this)
+		if(var2.target._parent == this)
 		{
-			var loc4 = Number(loc2.target._name.substr(4));
+			var var4 = Number(var2.target._name.substr(4));
 		}
 		else
 		{
-			if(loc3.position == -1)
+			if(var3.position == -1)
 			{
 				this.resetTwoHandClip();
 				return undefined;
 			}
-			loc4 = -1;
+			var4 = -1;
 		}
-		if(loc3.position == loc4)
+		if(var3.position == var4)
 		{
 			this.resetTwoHandClip();
 			return undefined;
 		}
 		this.gapi.removeCursor();
-		if(loc3.Quantity > 1 && (loc4 == -1 || loc4 == 16))
+		if(var3.Quantity > 1 && (var4 == -1 || var4 == 16))
 		{
-			var loc5 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:loc3.Quantity,max:loc3.Quantity,params:{type:"move",position:loc4,item:loc3}});
-			loc5.addEventListener("validate",this);
+			var var5 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:var3.Quantity,max:var3.Quantity,params:{type:"move",position:var4,item:var3}});
+			var5.addEventListener("validate",this);
 		}
 		else
 		{
-			this.api.network.Items.movement(loc3.ID,loc4);
+			this.api.network.Items.movement(var3.ID,var4);
 		}
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && loc2.target.contentData != undefined)
+		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var2.target.contentData != undefined)
 		{
-			this.api.kernel.GameManager.insertItemInChat(loc2.target.contentData);
+			this.api.kernel.GameManager.insertItemInChat(var2.target.contentData);
 		}
 		else
 		{
-			this.showItemInfos(loc2.target.contentData);
-			this.showLivingItems(loc2.target.contentData.skineable == true);
-			if(loc2.target.contentData.skineable)
+			this.showItemInfos(var2.target.contentData);
+			this.showLivingItems(var2.target.contentData.skineable == true);
+			if(var2.target.contentData.skineable)
 			{
-				this._livItemViewer.itemData = loc2.target.contentData;
+				this._livItemViewer.itemData = var2.target.contentData;
 			}
 		}
 	}
-	function overItem(loc2)
+	function overItem(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		var loc4 = -20;
-		var loc5 = loc3.name;
-		var loc6 = true;
-		for(var s in loc3.effects)
+		var var3 = var2.target.contentData;
+		var var4 = -20;
+		var var5 = var3.name;
+		var var6 = true;
+		for(var s in var3.effects)
 		{
-			var loc7 = loc3.effects[s];
-			if(loc7.description.length > 0)
+			var var7 = var3.effects[s];
+			if(var7.description.length > 0)
 			{
-				if(loc6)
+				if(var6)
 				{
-					loc5 = loc5 + "\n";
-					loc4 = loc4 - 10;
-					loc6 = false;
+					var5 = var5 + "\n";
+					var4 = var4 - 10;
+					var6 = false;
 				}
-				loc5 = loc5 + "\n" + loc7.description;
-				loc4 = loc4 - 12;
+				var5 = var5 + "\n" + var7.description;
+				var4 = var4 - 12;
 			}
 		}
-		this.gapi.showTooltip(loc5,loc2.target,loc4,undefined,loc2.target.contentData.style + "ToolTip");
+		this.gapi.showTooltip(var5,var2.target,var4,undefined,var2.target.contentData.style + "ToolTip");
 	}
-	function outItem(loc2)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function dblClickItem(loc2)
+	function dblClickItem(var2)
 	{
 		if(!this.canMoveItem())
 		{
 			return undefined;
 		}
-		var loc3 = loc2.target.contentData;
-		if(loc3 == undefined)
+		var var3 = var2.target.contentData;
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		if(loc3.position == -1)
+		if(var3.position == -1)
 		{
-			if(loc3.canUse && this.api.datacenter.Player.canUseObject)
+			if(var3.canUse && this.api.datacenter.Player.canUseObject)
 			{
-				this.api.network.Items.use(loc3.ID);
+				this.api.network.Items.use(var3.ID);
 			}
 			else if(this.api.lang.getConfigText("DOUBLE_CLICK_TO_EQUIP"))
 			{
-				this.equipItem(loc3);
+				this.equipItem(var3);
 			}
 		}
 		else
 		{
-			this.api.network.Items.movement(loc3.ID,-1);
+			this.api.network.Items.movement(var3.ID,-1);
 		}
 	}
-	function getFreeSlot(loc2)
+	function getFreeSlot(var2)
 	{
-		var loc3 = loc2.superType;
-		for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3])
+		var var3 = var2.superType;
+		for(var i in dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3])
 		{
-			if(dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3][i] != "_ctr16")
+			if(dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3][i] != "_ctr16")
 			{
-				if(this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3][i]].contentData == undefined)
+				if(this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3][i]].contentData == undefined)
 				{
-					return this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + loc3][i]];
+					return this[dofus.graphics.gapi.ui.Inventory.CONTAINER_BY_TYPE["type" + var3][i]];
 				}
 			}
 		}
 		return undefined;
 	}
-	function equipItem(loc2)
+	function equipItem(var2)
 	{
-		if(loc2.position != -1)
+		if(var2.position != -1)
 		{
 			return undefined;
 		}
-		var loc3 = loc2.superType;
-		if(loc2.type != 83)
+		var var3 = var2.superType;
+		if(var2.type != 83)
 		{
-			var loc4 = 0;
-			while(loc4 < dofus.graphics.gapi.ui.Inventory.SUPERTYPE_NOT_EQUIPABLE.length)
+			var var4 = 0;
+			while(var4 < dofus.graphics.gapi.ui.Inventory.SUPERTYPE_NOT_EQUIPABLE.length)
 			{
-				if(dofus.graphics.gapi.ui.Inventory.SUPERTYPE_NOT_EQUIPABLE[loc4] == loc3)
+				if(dofus.graphics.gapi.ui.Inventory.SUPERTYPE_NOT_EQUIPABLE[var4] == var3)
 				{
 					return undefined;
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
 		}
-		var loc5 = this.getFreeSlot(loc2);
-		if(loc5 != undefined)
+		var var5 = this.getFreeSlot(var2);
+		if(var5 != undefined)
 		{
-			var loc6 = Number(loc5._name.substr(4));
-			this.cleanRideIfNecessary(loc3);
-			this.api.network.Items.movement(loc2.ID,loc6);
+			var var6 = Number(var5._name.substr(4));
+			this.cleanRideIfNecessary(var3);
+			this.api.network.Items.movement(var2.ID,var6);
 		}
 		else
 		{
-			var loc8 = this.api.lang.getSlotsFromSuperType(loc2.superType);
-			var loc9 = getTimer();
-			var loc10 = 0;
-			while(loc10 < loc8.length)
+			var var8 = this.api.lang.getSlotsFromSuperType(var2.superType);
+			var var9 = getTimer();
+			var var10 = 0;
+			while(var10 < var8.length)
 			{
-				if(this.api.kernel.GameManager.getLastModified(loc8[loc10]) < loc9)
+				if(this.api.kernel.GameManager.getLastModified(var8[var10]) < var9)
 				{
-					loc9 = this.api.kernel.GameManager.getLastModified(loc8[loc10]);
-					var loc7 = loc8[loc10];
+					var9 = this.api.kernel.GameManager.getLastModified(var8[var10]);
+					var var7 = var8[var10];
 				}
-				loc10 = loc10 + 1;
+				var10 = var10 + 1;
 			}
-			if(this["_ctr" + loc7].contentData.ID == undefined || _global.isNaN(this["_ctr" + loc7].contentData.ID))
+			if(this["_ctr" + var7].contentData.ID == undefined || _global.isNaN(this["_ctr" + var7].contentData.ID))
 			{
 				return undefined;
 			}
-			if(loc7 == undefined || _global.isNaN(loc7))
+			if(var7 == undefined || _global.isNaN(var7))
 			{
 				return undefined;
 			}
-			this.cleanRideIfNecessary(loc3);
-			this.api.network.Items.movement(this["_ctr" + loc7].contentData.ID,-1);
-			this.api.network.Items.movement(loc2.ID,loc7);
+			this.cleanRideIfNecessary(var3);
+			this.api.network.Items.movement(this["_ctr" + var7].contentData.ID,-1);
+			this.api.network.Items.movement(var2.ID,var7);
 		}
 	}
-	function cleanRideIfNecessary(loc2)
+	function cleanRideIfNecessary(var2)
 	{
-		if(loc2 == 12 && (!this.api.datacenter.Game.isFight && this.api.datacenter.Player.isRiding))
+		if(var2 == 12 && (!this.api.datacenter.Game.isFight && this.api.datacenter.Player.isRiding))
 		{
 			this.api.network.Mount.ride();
 		}
@@ -748,121 +751,115 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 		{
 			return undefined;
 		}
-		var loc2 = this.gapi.getCursor();
-		if(!loc2.canDrop)
+		var var2 = this.gapi.getCursor();
+		if(!var2.canDrop)
 		{
 			this.gapi.loadUIComponent("AskOk","AskOkCantDrop",{title:this.api.lang.getText("IMPOSSIBLE"),text:this.api.lang.getText("CANT_DROP_ITEM")});
 			return undefined;
 		}
-		if(loc2.Quantity > 1)
+		if(var2.Quantity > 1)
 		{
-			var loc3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:loc2.Quantity,params:{type:"drop",item:loc2}});
-			loc3.addEventListener("validate",this);
+			var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:var2.Quantity,params:{type:"drop",item:var2}});
+			var3.addEventListener("validate",this);
 		}
 		else if(this.api.kernel.OptionsManager.getOption("ConfirmDropItem"))
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_DROP_ITEM"),"CAUTION_YESNO",{name:"ConfirmDropOne",params:{item:loc2},listener:this});
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_DROP_ITEM"),"CAUTION_YESNO",{name:"ConfirmDropOne",params:{item:var2},listener:this});
 		}
 		else
 		{
-			this.api.network.Items.drop(loc2.ID,1);
+			this.api.network.Items.drop(var2.ID,1);
 		}
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		switch(loc2.params.type)
+		switch(var2.params.type)
 		{
 			case "destroy":
-				if(loc2.value > 0 && !_global.isNaN(Number(loc2.value)))
+				if(var2.value > 0 && !_global.isNaN(Number(var2.value)))
 				{
-					var loc3 = Math.min(loc2.value,loc2.params.item.Quantity);
-					this.askDestroy(loc2.params.item,loc3);
+					var var3 = Math.min(var2.value,var2.params.item.Quantity);
+					this.askDestroy(var2.params.item,var3);
 				}
 				break;
 			case "drop":
 				this.gapi.removeCursor();
-				if(loc2.value > 0 && !_global.isNaN(Number(loc2.value)))
+				if(var2.value > 0 && !_global.isNaN(Number(var2.value)))
 				{
-					§§push("ConfirmDropItem");
-					§§push(1);
-					§§push(this.api.kernel);
-					§§push("OptionsManager");
-				}
-				break;
-			default:
-				if(§§pop()[§§pop()].getOption())
-				{
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_DROP_ITEM"),"CAUTION_YESNO",{name:"ConfirmDrop",params:{item:loc2.params.item,minValue:loc2.value},listener:this});
-				}
-				else
-				{
-					this.api.network.Items.drop(loc2.params.item.ID,Math.min(loc2.value,loc2.params.item.Quantity));
+					if(this.api.kernel.OptionsManager.getOption("ConfirmDropItem"))
+					{
+						this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_DROP_ITEM"),"CAUTION_YESNO",{name:"ConfirmDrop",params:{item:var2.params.item,minValue:var2.value},listener:this});
+					}
+					else
+					{
+						this.api.network.Items.drop(var2.params.item.ID,Math.min(var2.value,var2.params.item.Quantity));
+					}
 				}
 				break;
 			case "move":
-				if(loc2.value > 0 && !_global.isNaN(Number(loc2.value)))
+				if(var2.value > 0 && !_global.isNaN(Number(var2.value)))
 				{
-					this.api.network.Items.movement(loc2.params.item.ID,loc2.params.position,Math.min(loc2.value,loc2.params.item.Quantity));
+					this.api.network.Items.movement(var2.params.item.ID,var2.params.position,Math.min(var2.value,var2.params.item.Quantity));
 					break;
 				}
 		}
 	}
-	function useItem(loc2)
+	function useItem(var2)
 	{
-		if(!loc2.item.canUse || !this.api.datacenter.Player.canUseObject)
+		if(!var2.item.canUse || !this.api.datacenter.Player.canUseObject)
 		{
 			return undefined;
 		}
-		this.api.network.Items.use(loc2.item.ID);
+		this.api.network.Items.use(var2.item.ID);
 	}
-	function destroyItem(loc2)
+	function destroyItem(var2)
 	{
-		if(loc2.item.Quantity > 1)
+		if(var2.item.Quantity > 1)
 		{
-			var loc3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:loc2.item.Quantity,params:{type:"destroy",item:loc2.item}});
-			loc3.addEventListener("validate",this);
+			var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:var2.item.Quantity,params:{type:"destroy",item:var2.item}});
+			var3.addEventListener("validate",this);
 		}
 		else
 		{
-			this.askDestroy(loc2.item,1);
+			this.askDestroy(var2.item,1);
 		}
 	}
-	function targetItem(loc2)
+	function targetItem(var2)
 	{
-		if(!loc2.item.canTarget || !this.api.datacenter.Player.canUseObject)
+		if(!var2.item.canTarget || !this.api.datacenter.Player.canUseObject)
 		{
 			return undefined;
 		}
-		this.api.kernel.GameManager.switchToItemTarget(loc2.item);
+		this.api.kernel.GameManager.switchToItemTarget(var2.item);
 		this.callClose();
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesNoConfirmDropOne":
-				this.api.network.Items.drop(loc2.target.params.item.ID,1);
+				this.api.network.Items.drop(var2.target.params.item.ID,1);
 				break;
 			case "AskYesNoConfirmDrop":
-				this.api.network.Items.drop(loc2.params.item.ID,Math.min(loc2.params.minValue,loc2.params.item.Quantity));
+				this.api.network.Items.drop(var2.params.item.ID,Math.min(var2.params.minValue,var2.params.item.Quantity));
 				break;
 			default:
-				this.api.network.Items.destroy(loc2.target.params.item.ID,loc2.target.params.quantity);
+				this.api.network.Items.destroy(var2.target.params.item.ID,var2.target.params.quantity);
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_cbTypes")
+		if((var var0 = var2.target._name) === "_cbTypes")
 		{
 			this._nSelectedTypeID = this._cbTypes.selectedItem.id;
 			this.api.datacenter.Basics[dofus.graphics.gapi.ui.Inventory.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name] = this._nSelectedTypeID;
 			this.updateData();
 		}
 	}
-	function mountChanged(loc2)
+	function mountChanged(var2)
 	{
-		var loc3 = this.api.datacenter.Player.mount;
-		if(loc3 != undefined)
+		var var3 = this.api.datacenter.Player.mount;
+		if(var3 != undefined)
 		{
 			this._ctrMount.contentPath = "UI_InventoryMountIcon";
 			this._mcMountCross._visible = false;
@@ -874,32 +871,30 @@ class dofus.graphics.gapi.ui.Inventory extends dofus.graphics.gapi.core.DofusAdv
 		}
 		this.hideEpisodicContent();
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		loop0:
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnFilterEquipement:
-				this.api.ui.showTooltip(this.api.lang.getText("EQUIPEMENT"),loc2.target,-20);
+				this.api.ui.showTooltip(this.api.lang.getText("EQUIPEMENT"),var2.target,-20);
 				break;
 			case this._btnFilterNonEquipement:
-				this.api.ui.showTooltip(this.api.lang.getText("NONEQUIPEMENT"),loc2.target,-20);
+				this.api.ui.showTooltip(this.api.lang.getText("NONEQUIPEMENT"),var2.target,-20);
+				break;
+			case this._btnFilterRessoureces:
+				this.api.ui.showTooltip(this.api.lang.getText("RESSOURECES"),var2.target,-20);
 				break;
 			default:
-				switch(null)
+				if(var0 !== this._btnFilterQuest)
 				{
-					case this._btnFilterRessoureces:
-						this.api.ui.showTooltip(this.api.lang.getText("RESSOURECES"),loc2.target,-20);
-						break loop0;
-					case this._btnFilterQuest:
-						this.api.ui.showTooltip(this.api.lang.getText("QUEST_OBJECTS"),loc2.target,-20);
-						break loop0;
-					default:
-						this.api.ui.showTooltip(loc2.target.toolTipText,loc2.target,-20);
+					this.api.ui.showTooltip(var2.target.toolTipText,var2.target,-20);
+					break;
 				}
+				this.api.ui.showTooltip(this.api.lang.getText("QUEST_OBJECTS"),var2.target,-20);
+				break;
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

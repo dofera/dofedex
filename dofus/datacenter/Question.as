@@ -1,9 +1,9 @@
 class dofus.datacenter.Question extends Object
 {
-	function Question(loc3, loc4, loc5)
+	function Question(var3, var4, var5)
 	{
 		super();
-		this.initialize(loc3,loc4,loc5);
+		this.initialize(var3,var4,var5);
 	}
 	function __get__id()
 	{
@@ -17,18 +17,18 @@ class dofus.datacenter.Question extends Object
 	{
 		return this._eaResponsesObjects;
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
 		this.api = _global.API;
-		this._nQuestionID = loc2;
-		this._sQuestionText = ank.utils.PatternDecoder.getDescription(this.api.lang.getDialogQuestionText(loc2),loc4);
-		this._eaResponsesObjects = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		this._nQuestionID = var2;
+		this._sQuestionText = ank.utils.PatternDecoder.getDescription(this.api.lang.getDialogQuestionText(var2),var4);
+		this._eaResponsesObjects = new ank.utils.();
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = Number(loc3[loc5]);
-			this._eaResponsesObjects.push({label:this.api.lang.fetchString(this.api.lang.getDialogResponseText(loc6)),id:loc6});
-			loc5 = loc5 + 1;
+			var var6 = Number(var3[var5]);
+			this._eaResponsesObjects.push({label:this.api.lang.fetchString(this.api.lang.getDialogResponseText(var6)),id:var6});
+			var5 = var5 + 1;
 		}
 	}
 }

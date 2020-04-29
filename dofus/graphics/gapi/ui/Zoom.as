@@ -34,45 +34,45 @@ class dofus.graphics.gapi.ui.Zoom extends dofus.graphics.gapi.core.DofusAdvanced
 		this._vsZoom.addEventListener("change",this);
 		this._vsZoom.min = this.api.gfx.getZoom();
 	}
-	function setZoom(loc2)
+	function setZoom(var2)
 	{
 		if(this._vsZoom.value < this._vsZoom.min + this._vsZoom.min * 10 / 100)
 		{
 			this.api.kernel.GameManager.zoomGfx();
 		}
-		else if(loc2)
+		else if(var2)
 		{
 			this.api.kernel.GameManager.zoomGfx(this._vsZoom.value,this._oSprite.mc._x,this._oSprite.mc._y - 20);
 		}
 		else
 		{
-			var loc3 = this.api.gfx.getZoom();
-			var loc4 = (_root._xmouse - this.api.gfx.container._x) * 100 / loc3;
-			var loc5 = (_root._ymouse - this.api.gfx.container._y) * 100 / loc3;
-			this.api.kernel.GameManager.zoomGfx(this._vsZoom.value,loc4,loc5,_root._xmouse,_root._ymouse);
+			var var3 = this.api.gfx.getZoom();
+			var var4 = (_root._xmouse - this.api.gfx.container._x) * 100 / var3;
+			var var5 = (_root._ymouse - this.api.gfx.container._y) * 100 / var3;
+			this.api.kernel.GameManager.zoomGfx(this._vsZoom.value,var4,var5,_root._xmouse,_root._ymouse);
 		}
 	}
-	function onMouseWheel(loc2)
+	function onMouseWheel(var2)
 	{
-		this._vsZoom.value = this._vsZoom.value + loc2 * 5;
+		this._vsZoom.value = this._vsZoom.value + var2 * 5;
 		this.setZoom(false);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnCancel)
+		if((var var0 = var2.target) === this._btnCancel)
 		{
 			this.callClose();
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		this.setZoom(true);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		this.gapi.showTooltip(this.api.lang.getText("CLOSE"),loc2.target,-20);
+		this.gapi.showTooltip(this.api.lang.getText("CLOSE"),var2.target,-20);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

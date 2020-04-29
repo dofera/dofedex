@@ -5,14 +5,14 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		return this.__get__data();
 	}
-	function __set__isMount(loc2)
+	function __set__isMount(var2)
 	{
-		this._bMount = loc2;
+		this._bMount = var2;
 		return this.__get__isMount();
 	}
 	function init()
@@ -85,27 +85,27 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 		this._ivInventoryViewer2.checkMountPods = this._bMount;
 		this.modelChanged();
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._itvItemViewer._visible = !loc2;
-		this._winItemViewer._visible = !loc2;
+		this._itvItemViewer._visible = !var2;
+		this._winItemViewer._visible = !var2;
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.callClose();
-		var loc0 = loc2.target;
+		var var0 = var2.target;
 	}
-	function selectedItem(loc2)
+	function selectedItem(var2)
 	{
-		if(loc2.item == undefined)
+		if(var2.item == undefined)
 		{
 			this.hideItemViewer(true);
 		}
 		else
 		{
 			this.hideItemViewer(false);
-			this._itvItemViewer.itemData = loc2.item;
-			switch(loc2.target._name)
+			this._itvItemViewer.itemData = var2.item;
+			switch(var2.target._name)
 			{
 				case "_ivInventoryViewer":
 					this._ivInventoryViewer2.setFilter(this._ivInventoryViewer.currentFilterID);
@@ -115,125 +115,83 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 			}
 		}
 	}
-	function dblClickItem(loc2)
+	function dblClickItem(var2)
 	{
-		var loc3 = loc2.item;
-		if(loc3 == undefined)
+		var var3 = var2.item;
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		if(Key.isDown(Key.ALT) && false)
+		var var13 = Key.isDown(Key.CONTROL);
+		var var14 = 1;
+		switch(var2.target._name)
 		{
-			var loc4 = new ank.utils.();
-			var loc5 = loc2.index;
-			if(loc2.target._name == "_ivInventoryViewer")
-			{
-				loc4 = this._ivInventoryViewer.dataProvider;
-				var loc6 = this._ivInventoryViewer.selectedItem;
-				var loc7 = true;
-			}
-			if(loc2.target._name == "_ivInventoryViewer2")
-			{
-				loc4 = this._ivInventoryViewer2.dataProvider;
-				loc6 = this._ivInventoryViewer2.selectedItem;
-				loc7 = false;
-			}
-			if(loc5 == undefined || loc6 == undefined)
-			{
-				return undefined;
-			}
-			if(loc5 > loc6)
-			{
-				var loc8 = loc5;
-				loc5 = loc6;
-				loc6 = loc8;
-			}
-			var loc10 = new Array();
-			var loc12 = loc5;
-			while(loc12 <= loc6)
-			{
-				var loc9 = loc4[loc12];
-				var loc11 = loc9.Quantity;
-				if(!(loc11 < 1 || loc11 == undefined))
+			case "_ivInventoryViewer":
+				§§push(Key.isDown(Key.ALT));
+				if(this._bMount)
 				{
-					loc10.push({Add:loc7,ID:loc9.ID,Quantity:loc11});
-				}
-				loc12 = loc12 + 1;
-			}
-			this.api.network.Exchange.movementItems(loc10);
-		}
-		else
-		{
-			var loc13 = Key.isDown(Key.CONTROL);
-			var loc14 = 1;
-			switch(loc2.target._name)
-			{
-				case "_ivInventoryViewer":
-					if(this._bMount)
+					var var15 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(var3,true);
+					if(var15 <= 0)
 					{
-						var loc15 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(loc3,true);
-						if(loc15 <= 0)
-						{
-							this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("SRV_MSG_6"),"ERROR_BOX",{name:undefined});
-						}
-						else
-						{
-							if(loc13)
-							{
-								loc14 = loc15;
-							}
-							this.api.network.Exchange.movementItem(true,loc2.item.ID,loc14);
-						}
+						this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("SRV_MSG_6"),"ERROR_BOX",{name:undefined});
 					}
 					else
 					{
-						if(loc13)
+						if(var13)
 						{
-							loc14 = loc3.Quantity;
+							var14 = var15;
 						}
-						this.api.network.Exchange.movementItem(true,loc2.item.ID,loc14);
+						this.api.network.Exchange.movementItem(true,var2.item.ID,var14);
 					}
-					break;
-				case "_ivInventoryViewer2":
-					var loc16 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(loc3,false);
-					if(loc16 <= 0)
+				}
+				else
+				{
+					if(var13)
 					{
-						this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("SRV_MSG_6"),"ERROR_BOX",{name:undefined});
-						break;
+						var14 = var3.Quantity;
 					}
-					if(loc13)
-					{
-						loc14 = loc16;
-					}
-					this.api.network.Exchange.movementItem(false,loc2.item.ID,loc14);
+					this.api.network.Exchange.movementItem(true,var2.item.ID,var14);
+				}
+				break;
+			case "_ivInventoryViewer2":
+				var var16 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(var3,false);
+				if(var16 <= 0)
+				{
+					this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("SRV_MSG_6"),"ERROR_BOX",{name:undefined});
 					break;
-			}
+				}
+				if(var13)
+				{
+					var14 = var16;
+				}
+				this.api.network.Exchange.movementItem(false,var2.item.ID,var14);
+				break;
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		this._ivInventoryViewer2.dataProvider = this._oData.inventory;
 	}
-	function dropItem(loc2)
+	function dropItem(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_ivInventoryViewer":
-				this.api.network.Exchange.movementItem(false,loc2.item.ID,loc2.quantity);
+				this.api.network.Exchange.movementItem(false,var2.item.ID,var2.quantity);
 				break;
 			case "_ivInventoryViewer2":
-				this.api.network.Exchange.movementItem(true,loc2.item.ID,loc2.quantity);
+				this.api.network.Exchange.movementItem(true,var2.item.ID,var2.quantity);
 		}
 	}
-	function dragKama(loc2)
+	function dragKama(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._ivInventoryViewer:
-				this.api.network.Exchange.movementKama(loc2.quantity);
+				this.api.network.Exchange.movementKama(var2.quantity);
 				break;
 			case this._ivInventoryViewer2:
-				this.api.network.Exchange.movementKama(- loc2.quantity);
+				this.api.network.Exchange.movementKama(- var2.quantity);
 		}
 	}
 }

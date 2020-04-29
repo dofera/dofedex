@@ -9,51 +9,51 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 	{
 		return this._aChallengeList;
 	}
-	function addChallenge(loc2)
+	function addChallenge(var2)
 	{
-		this._aChallengeList.push(loc2);
+		this._aChallengeList.push(var2);
 		this.updateList();
 	}
 	function cleanChallenge()
 	{
-		var loc2 = 0;
-		while(loc2 < this._aChallengeIcon.length)
+		var var2 = 0;
+		while(var2 < this._aChallengeIcon.length)
 		{
-			(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[loc2].unloadMovie();
-			(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[loc2].removeMovieClip();
-			loc2 = loc2 + 1;
+			(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[var2].unloadMovie();
+			(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[var2].removeMovieClip();
+			var2 = var2 + 1;
 		}
 		this._aChallengeIcon = new Array();
-		this._aChallengeList = new ank.utils.();
+		this._aChallengeList = new ank.utils.();
 		this.FightChallengeViewer.unloadMovie();
 		this._visible = false;
 	}
-	function updateChallenge(loc2, loc3)
+	function updateChallenge(var2, var3)
 	{
-		var loc4 = 0;
-		while(loc4 < this._aChallengeIcon.length)
+		var var4 = 0;
+		while(var4 < this._aChallengeIcon.length)
 		{
-			if((dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[loc4].challenge.id == loc2)
+			if((dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[var4].challenge.id == var2)
 			{
-				(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[loc4].challenge.state = !loc3?2:1;
-				(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[loc4].update();
+				(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[var4].challenge.state = !var3?2:1;
+				(dofus.graphics.gapi.controls.FightChallengeIcon)this._aChallengeIcon[var4].update();
 				this.FightChallengeViewer.update();
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		var loc5 = 0;
-		while(loc5 < this._aChallengeList.length)
+		var var5 = 0;
+		while(var5 < this._aChallengeList.length)
 		{
-			if((dofus.datacenter.FightChallengeData)this._aChallengeList[loc5].id == loc2)
+			if((dofus.datacenter.FightChallengeData)this._aChallengeList[var5].id == var2)
 			{
-				this._aChallengeList[loc5].state = !loc3?2:1;
+				this._aChallengeList[var5].state = !var3?2:1;
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
 	}
 	function init()
 	{
-		this._aChallengeList = new ank.utils.();
+		this._aChallengeList = new ank.utils.();
 		super.init(false,dofus.graphics.gapi.ui.FightChallenge.CLASS_NAME);
 	}
 	function createChildren()
@@ -70,35 +70,35 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 	{
 		this._aChallengeIcon = new Array();
 		this._visible = this._aChallengeList.length > 0;
-		var loc3 = 0;
-		while(loc3 < this._aChallengeList.length)
+		var var3 = 0;
+		while(var3 < this._aChallengeList.length)
 		{
-			var loc2 = (dofus.graphics.gapi.controls.FightChallengeIcon)this.attachMovie("FightChallengeIcon","FightChallengeIcon" + loc3,loc3 + 1,{challenge:this._aChallengeList[loc3]});
-			loc2._x = this._btnOpenClose._x;
-			loc2._y = this._btnOpenClose._y + 15 + (6 + loc2._height) * loc3;
-			loc2.addEventListener("over",this);
-			this._aChallengeIcon.push(loc2);
-			loc2._visible = !this._btnOpenClose.selected;
-			loc3 = loc3 + 1;
+			var var2 = (dofus.graphics.gapi.controls.FightChallengeIcon)this.attachMovie("FightChallengeIcon","FightChallengeIcon" + var3,var3 + 1,{challenge:this._aChallengeList[var3]});
+			var2._x = this._btnOpenClose._x;
+			var2._y = this._btnOpenClose._y + 15 + (6 + var2._height) * var3;
+			var2.addEventListener("over",this);
+			this._aChallengeIcon.push(var2);
+			var2._visible = !this._btnOpenClose.selected;
+			var3 = var3 + 1;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = 0;
-		while(loc3 < this._aChallengeIcon.length)
+		var var3 = 0;
+		while(var3 < this._aChallengeIcon.length)
 		{
-			this._aChallengeIcon[loc3]._visible = !this._btnOpenClose.selected;
-			loc3 = loc3 + 1;
+			this._aChallengeIcon[var3]._visible = !this._btnOpenClose.selected;
+			var3 = var3 + 1;
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnOpenClose)
+		if((var var0 = var2.target) === this._btnOpenClose)
 		{
-			this.gapi.showTooltip(this.api.lang.getText("PARTY_OPEN_CLOSE"),loc2.target,20);
+			this.gapi.showTooltip(this.api.lang.getText("PARTY_OPEN_CLOSE"),var2.target,20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

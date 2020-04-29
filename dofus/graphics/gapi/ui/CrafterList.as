@@ -5,19 +5,19 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__jobs(loc2)
+	function __set__jobs(var2)
 	{
-		this._eaJobs = loc2;
+		this._eaJobs = var2;
 		if(this.initialized)
 		{
 			this.updateJobs();
 		}
 		return this.__get__jobs();
 	}
-	function __set__crafters(loc2)
+	function __set__crafters(var2)
 	{
 		this._eaCrafters.removeEventListener("modelChanged",this);
-		this._eaCrafters = loc2;
+		this._eaCrafters = var2;
 		this._eaCrafters.addEventListener("modelChanged",this);
 		if(this.initialized)
 		{
@@ -72,33 +72,33 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 	{
 		this._dgCrafter.dataProvider = this._eaCrafters;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnClose:
 			case this._btnClose2:
 				this.callClose();
 		}
 	}
-	function itemdblClick(loc2)
+	function itemdblClick(var2)
 	{
-		this.itemSelected(loc2);
+		this.itemSelected(var2);
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._cbJobs:
 				this._eaCrafters.removeAll();
 				this.api.network.Exchange.getCrafterForJob(this._cbJobs.selectedItem.id);
 				break;
 			case this._dgCrafter:
-				var loc3 = loc2.row.item;
-				this.api.ui.loadUIComponent("CrafterCard","CrafterCard",{crafter:loc3});
+				var var3 = var2.row.item;
+				this.api.ui.loadUIComponent("CrafterCard","CrafterCard",{crafter:var3});
 		}
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		this.updateCrafters();
 	}

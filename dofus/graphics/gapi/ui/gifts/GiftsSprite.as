@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.gifts.GiftsSprite extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		if(this.initialized)
 		{
 			this.addToQueue({object:this,method:this.updateData});
@@ -49,20 +49,20 @@ class dofus.graphics.gapi.ui.gifts.GiftsSprite extends dofus.graphics.gapi.core.
 			this._ldrSprite.contentPath = "";
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.clip;
-		this.gapi.api.colors.addSprite(loc3,this._oData);
-		loc3.attachMovie("staticF","mcAnim",10);
+		var var3 = var2.clip;
+		this.gapi.api.colors.addSprite(var3,this._oData);
+		var3.attachMovie("staticF","mcAnim",10);
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		if(this._bEnabled)
 		{
 			this.dispatchEvent({type:"onSpriteSelected",data:this._oData});
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
 		if(this._bEnabled)
 		{
@@ -70,7 +70,7 @@ class dofus.graphics.gapi.ui.gifts.GiftsSprite extends dofus.graphics.gapi.core.
 			this._mcSelect.play();
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		if(this._bEnabled)
 		{

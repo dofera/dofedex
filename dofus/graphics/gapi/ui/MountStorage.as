@@ -9,10 +9,10 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__mounts(loc2)
+	function __set__mounts(var2)
 	{
 		this._eaMount.removeEventListener("modelChanged",this);
-		this._eaMount = loc2;
+		this._eaMount = var2;
 		this._eaMount.addEventListener("modelChanged",this);
 		if(this.initialized)
 		{
@@ -24,10 +24,10 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 	{
 		return this._eaMount;
 	}
-	function __set__parkMounts(loc2)
+	function __set__parkMounts(var2)
 	{
 		this._eaParkMounts.removeEventListener("modelChanged",this);
-		this._eaParkMounts = loc2;
+		this._eaParkMounts = var2;
 		this._eaParkMounts.addEventListener("modelChanged",this);
 		if(this.initialized)
 		{
@@ -107,76 +107,76 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 	}
 	function createCertificateArray()
 	{
-		var loc2 = new ank.utils.();
-		var loc3 = this.api.datacenter.Player.Inventory;
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var2 = new ank.utils.();
+		var var3 = this.api.datacenter.Player.Inventory;
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var loc5 = loc3[loc4];
-			if(loc5.type == 97)
+			var var5 = var3[var4];
+			if(var5.type == 97)
 			{
-				loc2.push(loc5);
+				var2.push(var5);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		return loc2;
+		return var2;
 	}
-	function hideShedButton(loc2)
+	function hideShedButton(var2)
 	{
-		this._mcArrowShed._visible = !loc2;
-		this._btnShed._visible = !loc2;
+		this._mcArrowShed._visible = !var2;
+		this._btnShed._visible = !var2;
 	}
-	function hideMountParkButton(loc2)
+	function hideMountParkButton(var2)
 	{
-		this._mcArrowMountPark._visible = !loc2;
-		this._btnMountPark._visible = !loc2;
+		this._mcArrowMountPark._visible = !var2;
+		this._btnMountPark._visible = !var2;
 	}
-	function hideCertificateButton(loc2)
+	function hideCertificateButton(var2)
 	{
-		this._mcArrowCertificate._visible = !loc2;
-		this._btnCertificate._visible = !loc2;
+		this._mcArrowCertificate._visible = !var2;
+		this._btnCertificate._visible = !var2;
 	}
-	function hideInventoryButton(loc2)
+	function hideInventoryButton(var2)
 	{
-		this._mcArrowInventory._visible = !loc2;
-		this._btnInventory._visible = !loc2;
+		this._mcArrowInventory._visible = !var2;
+		this._btnInventory._visible = !var2;
 	}
-	function hideMountViewer(loc2)
+	function hideMountViewer(var2)
 	{
-		this._winMountViewer._visible = !loc2;
-		this._mvMountViewer._visible = !loc2;
-		if(!loc2)
+		this._winMountViewer._visible = !var2;
+		this._mvMountViewer._visible = !var2;
+		if(!var2)
 		{
 			this.moveTopButtons(0);
 			this.moveBottomButtons(0);
 		}
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._winItemViewer._visible = !loc2;
-		this._itvItemViewer._visible = !loc2;
-		if(!loc2)
+		this._winItemViewer._visible = !var2;
+		this._itvItemViewer._visible = !var2;
+		if(!var2)
 		{
 			this.moveTopButtons(14);
 			this.moveBottomButtons(-13);
 		}
 	}
-	function moveTopButtons(loc2)
+	function moveTopButtons(var2)
 	{
-		this._btnInventory._y = 146 + loc2;
-		this._btnShed._y = 146 + loc2;
+		this._btnInventory._y = 146 + var2;
+		this._btnShed._y = 146 + var2;
 	}
-	function moveBottomButtons(loc2)
+	function moveBottomButtons(var2)
 	{
-		this._btnCertificate._y = 383 + loc2;
-		this._btnMountPark._y = 383 + loc2;
+		this._btnCertificate._y = 383 + var2;
+		this._btnMountPark._y = 383 + var2;
 	}
-	function hideAllButtons(loc2)
+	function hideAllButtons(var2)
 	{
-		this.hideShedButton(loc2);
-		this.hideMountParkButton(loc2);
-		this.hideCertificateButton(loc2);
-		this.hideInventoryButton(loc2);
+		this.hideShedButton(var2);
+		this.hideMountParkButton(var2);
+		this.hideCertificateButton(var2);
+		this.hideInventoryButton(var2);
 	}
 	function hideViewersAndButtons()
 	{
@@ -184,93 +184,94 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		this.hideMountViewer(true);
 		this.hideItemViewer(true);
 	}
-	function fillTypeCombobox(loc2, loc3)
+	function fillTypeCombobox(var2, var3)
 	{
-		var loc4 = loc2.selectedItem.id;
-		var loc5 = loc2.selectedItem.modelID;
-		var loc6 = !loc2.dataProvider.length?new ank.utils.():loc2.dataProvider;
-		if(!loc2.dataProvider.length)
+		var var4 = var2.selectedItem.id;
+		var var5 = var2.selectedItem.modelID;
+		var var6 = !var2.dataProvider.length?new ank.utils.():var2.dataProvider;
+		if(!var2.dataProvider.length)
 		{
-			loc6.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_MAN"),id:1});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_WOMAN"),id:2});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_FECONDABLE"),id:3});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_FECONDEE"),id:4});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_MOUNTABLE"),id:5});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_NONAME"),id:6});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_CAPACITY"),id:7});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_MUSTXP"),id:8});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_TIRED"),id:9});
-			loc6.push({label:this.api.lang.getText("MOUNT_FILTER_NOTIRED"),id:10});
+			var6.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_MAN"),id:1});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_WOMAN"),id:2});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_FECONDABLE"),id:3});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_FECONDEE"),id:4});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_MOUNTABLE"),id:5});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_NONAME"),id:6});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_CAPACITY"),id:7});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_MUSTXP"),id:8});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_TIRED"),id:9});
+			var6.push({label:this.api.lang.getText("MOUNT_FILTER_NOTIRED"),id:10});
 		}
-		loc3.sortOn("modelID");
-		for(var loc7 in loc3)
+		var3.sortOn("modelID");
+		for(var i in var3)
 		{
-			§§enumerate(loc6);
-			loop1:
-			while((var loc0 = §§enumeration()) != null)
+			var var7 = false;
+			for(var j in var6)
 			{
-				if(loc6[j].modelID == loc3[i].modelID)
+				if(var6[j].modelID == var3[i].modelID)
 				{
-					loc7 = true;
-					while(true)
-					{
-						if(§§pop() == null)
-						{
-							break loop1;
-						}
-					}
-				}
-				else
-				{
-					continue;
+					var7 = true;
+					var6.sortOn(["id","modelName"],modelName.NUMERIC);
+					var var8 = -1;
+					§§enumerate(var6);
+					var var3[i] = var var0 = §§enumeration();
+					var7 = false;
+					§§enumerate(var6);
+					var j = §§enum_assign();
+					var6.push({(var var0 = §§enumeration()) == null:var6[j],id:11,modelID:var3[i].modelID});
+					var8 = Array.parseInt();
+					var2.dataProvider = var6;
+					var7 = true;
+					§§push(!var7);
+					§§push(var2);
+					§§push("selectedIndex");
+					§§push(var8 != -1[0].modelID != var3[i].modelID);
+					break;
 				}
 			}
-			if(!loc7)
+			if(!var7)
 			{
-				loc6.push({label:loc3[i].modelName,id:11,modelID:loc3[i].modelID});
+				var6.push({label:var3[i].modelName,id:11,modelID:var3[i].modelID});
 			}
 		}
-		loc6.sortOn(["id","modelName"],Array.NUMERIC);
-		var loc8 = -1;
-		§§enumerate(loc6);
-		while((var loc0 = §§enumeration()) != null)
+		var6.sortOn(["id","modelName"],Array.NUMERIC);
+		var8 = -1;
+		for(var i in var6)
 		{
-			if(loc6[i].id == loc4 && loc6[i].modelID == loc5)
+			if(var6[i].id == var4 && var6[i].modelID == var5)
 			{
-				loc8 = _global.parseInt(i);
+				var8 = _global.parseInt(i);
 			}
 		}
-		loc2.dataProvider = loc6;
-		loc2.selectedIndex = loc8 == -1?0:loc8;
+		var2.dataProvider = var6;
+		var2.selectedIndex = var8 == -1?0:var8;
 	}
-	function makeDataProvider(loc2, loc3)
+	function makeDataProvider(var2, var3)
 	{
-		var loc4 = new ank.utils.();
-		var loc5 = loc3.selectedItem.id;
+		var var4 = new ank.utils.();
+		var var5 = var3.selectedItem.id;
 		loop11:
-		switch(loc5)
+		switch(var5)
 		{
 			case 0:
-				loc4 = loc2;
+				var4 = var2;
 				break;
 			case 1:
-				§§enumerate(loc2);
-				while((loc0 = §§enumeration()) != null)
+				for(var i in var2)
 				{
-					if(!loc2[i].sex)
+					if(!var2[i].sex)
 					{
-						loc4.push(loc2[i]);
+						var4.push(var2[i]);
 					}
 				}
 				break;
 			case 2:
-				§§enumerate(loc2);
-				while((var loc0 = §§enumeration()) != null)
+				for(var i in var2)
 				{
-					if(loc2[i].sex)
+					if(var2[i].sex)
 					{
-						loc4.push(loc2[i]);
+						var4.push(var2[i]);
 					}
 				}
 				break;
@@ -278,94 +279,86 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 				switch(null)
 				{
 					case 3:
-						§§enumerate(loc2);
-						while((var loc0 = §§enumeration()) != null)
+						for(var i in var2)
 						{
-							if(loc2[i].fecondable && loc2[i].fecondation == -1)
+							if(var2[i].fecondable && var2[i].fecondation == -1)
 							{
-								loc4.push(loc2[i]);
+								var4.push(var2[i]);
 							}
 						}
 						break loop11;
 					case 4:
-						§§enumerate(loc2);
-						while((var loc0 = §§enumeration()) != null)
+						for(var i in var2)
 						{
-							if(loc2[i].fecondation > 0)
+							if(var2[i].fecondation > 0)
 							{
-								loc4.push(loc2[i]);
+								var4.push(var2[i]);
 							}
 						}
 						break loop11;
 					case 5:
-						§§enumerate(loc2);
-						while((var loc0 = §§enumeration()) != null)
+						for(var i in var2)
 						{
-							if(loc2[i].mountable)
+							if(var2[i].mountable)
 							{
-								loc4.push(loc2[i]);
+								var4.push(var2[i]);
 							}
 						}
 						break loop11;
 					case 6:
-						§§enumerate(loc2);
-						while((var loc0 = §§enumeration()) != null)
+						for(var i in var2)
 						{
-							if(loc2[i].name == this.api.lang.getText("NO_NAME"))
+							if(var2[i].name == this.api.lang.getText("NO_NAME"))
 							{
-								loc4.push(loc2[i]);
+								var4.push(var2[i]);
 							}
 						}
 						break loop11;
 					case 7:
-						for(var i in loc2)
+						for(var i in var2)
 						{
-							if(loc2[i].capacities.length > 0)
+							if(var2[i].capacities.length > 0)
 							{
-								loc4.push(loc2[i]);
-							}
-						}
-						break loop11;
-					case 8:
-						§§enumerate(loc2);
-						while((var loc0 = §§enumeration()) != null)
-						{
-							if(loc2[i].mountable && loc2[i].level < 5)
-							{
-								loc4.push(loc2[i]);
+								var4.push(var2[i]);
 							}
 						}
 						break loop11;
 					default:
 						switch(null)
 						{
-							case 9:
-								§§enumerate(loc2);
-								while((var loc0 = §§enumeration()) != null)
+							case 8:
+								for(var i in var2)
 								{
-									if(loc2[i].tired == loc2[i].tiredMax)
+									if(var2[i].mountable && var2[i].level < 5)
 									{
-										loc4.push(loc2[i]);
+										var4.push(var2[i]);
+									}
+								}
+								break;
+							case 9:
+								for(var i in var2)
+								{
+									if(var2[i].tired == var2[i].tiredMax)
+									{
+										var4.push(var2[i]);
 									}
 								}
 								break;
 							case 10:
-								§§enumerate(loc2);
-								while((var loc0 = §§enumeration()) != null)
+								for(var i in var2)
 								{
-									if(loc2[i].tired < loc2[i].tiredMax)
+									if(var2[i].tired < var2[i].tiredMax)
 									{
-										loc4.push(loc2[i]);
+										var4.push(var2[i]);
 									}
 								}
 								break;
 							case 11:
-								§§enumerate(loc2);
-								while((var loc0 = §§enumeration()) != null)
+								for(var i in var2)
 								{
-									if(loc2[i].modelID == loc3.selectedItem.modelID)
+									if(var2[i].modelID == var3.selectedItem.modelID)
 									{
-										loc4.push(loc2[i]);
+										var4.push(var2[i]);
 									}
 								}
 						}
@@ -373,37 +366,37 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		}
 		break loop10;
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.target.content;
-		loc3.attachMovie("staticR_front","anim_front",11);
-		loc3.attachMovie("staticR_back","anim_back",10);
+		var var3 = var2.target.content;
+		var3.attachMovie("staticR_front","anim_front",11);
+		var3.attachMovie("staticR_back","anim_back",10);
 	}
-	function mountChanged(loc2)
+	function mountChanged(var2)
 	{
 		this.hideViewersAndButtons();
-		var loc3 = this.api.datacenter.Player.mount;
-		var loc4 = loc3 != undefined;
-		if(loc4)
+		var var3 = this.api.datacenter.Player.mount;
+		var var4 = var3 != undefined;
+		if(var4)
 		{
-			this._lblInventoryMountModel.text = loc3.modelName;
-			this._lblInventoryMountName.text = loc3.name;
+			this._lblInventoryMountModel.text = var3.modelName;
+			this._lblInventoryMountName.text = var3.name;
 			this._ldrSprite.forceNextLoad();
-			this._ldrSprite.contentPath = loc3.gfxFile;
-			var loc5 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
-			loc5.mount = loc3;
-			this.api.colors.addSprite(this._ldrSprite,loc5);
+			this._ldrSprite.contentPath = var3.gfxFile;
+			var var5 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
+			var5.mount = var3;
+			this.api.colors.addSprite(this._ldrSprite,var5);
 		}
-		this._lblInventoryNoMount._visible = !loc4;
-		this._lblInventoryMountModel._visible = loc4;
-		this._lblInventoryMountName._visible = loc4;
-		this._ldrSprite._visible = loc4;
-		this._mcRectanglePreview._visible = loc4;
+		this._lblInventoryNoMount._visible = !var4;
+		this._lblInventoryMountModel._visible = var4;
+		this._lblInventoryMountName._visible = var4;
+		this._ldrSprite._visible = var4;
+		this._mcRectanglePreview._visible = var4;
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
 		this.hideViewersAndButtons();
-		if((var loc0 = loc2.target) !== this._eaMount)
+		if((var var0 = var2.target) !== this._eaMount)
 		{
 			switch(null)
 			{
@@ -425,10 +418,10 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			this.fillTypeCombobox(this._cbFilterPark,this.mounts.concat(this.parkMounts));
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = this.api.network.Exchange;
-		if((var loc0 = loc2.target) !== this._btnClose)
+		var var3 = this.api.network.Exchange;
+		if((var var0 = var2.target) !== this._btnClose)
 		{
 			switch(null)
 			{
@@ -441,85 +434,85 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 					this.hideInventoryButton(true);
 					break;
 				case this._btnShed:
-					if((loc0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+					if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
 					{
-						if(loc0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
+						if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
 						{
-							if(loc0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
+							if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
 							{
-								loc3.putInShedFromInventory(this.api.datacenter.Player.mount.ID);
+								var3.putInShedFromInventory(this.api.datacenter.Player.mount.ID);
 							}
 						}
 						else
 						{
-							loc3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
+							var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
 						}
 					}
 					else
 					{
-						loc3.putInShedFromCertificate(this._itvItemViewer.itemData.ID);
+						var3.putInShedFromCertificate(this._itvItemViewer.itemData.ID);
 					}
 					break;
 				case this._btnInventory:
-					if((loc0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
+					if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
 					{
-						if(loc0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
+						if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
 						{
-							if(loc0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+							if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
 							{
 							}
 						}
 						else
 						{
-							loc3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
-							loc3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
+							var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
+							var3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
 						}
 					}
 					else
 					{
-						loc3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
-					}
-					break;
-				case this._btnMountPark:
-					if((loc0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
-					{
-						if(loc0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
-						{
-							if(loc0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
-							{
-								loc3.putInShedFromInventory(this._mvMountViewer.mount.ID);
-								loc3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
-							}
-						}
-					}
-					else
-					{
-						loc3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
+						var3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
 					}
 					break;
 				default:
-					if(loc0 !== this._btnCertificate)
+					switch(null)
 					{
-						break;
-					}
-					if((loc0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
-					{
-						if(loc0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
-						{
-							if(loc0 !== dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
+						case this._btnMountPark:
+							if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
 							{
+								if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+								{
+									if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
+									{
+										var3.putInShedFromInventory(this._mvMountViewer.mount.ID);
+										var3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
+									}
+								}
+							}
+							else
+							{
+								var3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
+							}
+							break;
+						case this._btnCertificate:
+							if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
+							{
+								if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
+								{
+									if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
+									{
+										break;
+									}
+									var3.putInShedFromInventory(this._mvMountViewer.mount.ID);
+									var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
+									break;
+								}
+								var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
+								var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
 								break;
 							}
-							loc3.putInShedFromInventory(this._mvMountViewer.mount.ID);
-							loc3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
+							var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
 							break;
-						}
-						loc3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
-						loc3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
-						break;
 					}
-					loc3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
-					break;
 			}
 		}
 		else
@@ -527,22 +520,22 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			this.callClose();
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		this.hideAllButtons(false);
 		loop0:
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._lstShed:
 				this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_SHED;
-				this._mvMountViewer.mount = loc2.row.item;
+				this._mvMountViewer.mount = var2.row.item;
 				this.hideItemViewer(true);
 				this.hideShedButton(true);
 				this.hideMountViewer(false);
 				break;
 			case this._lstMountPark:
 				this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK;
-				this._mvMountViewer.mount = loc2.row.item;
+				this._mvMountViewer.mount = var2.row.item;
 				this.hideItemViewer(true);
 				this.hideMountParkButton(true);
 				this.hideMountViewer(false);
@@ -554,7 +547,7 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 						this.hideMountParkButton(true);
 						this.hideInventoryButton(true);
 						this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE;
-						this._itvItemViewer.itemData = loc2.row.item;
+						this._itvItemViewer.itemData = var2.row.item;
 						this.hideCertificateButton(true);
 						this.hideMountViewer(true);
 						this.hideItemViewer(false);
@@ -572,23 +565,23 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 				}
 		}
 	}
-	function itemRollOver(loc2)
+	function itemRollOver(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._lstCertificate:
 				break;
 			case this._lstMountPark:
 			case this._lstShed:
-				this.gapi.showTooltip(loc2.row.item.getToolTip(),loc2.target,20,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(var2.row.item.getToolTip(),var2.target,20,{bXLimit:true,bYLimit:false});
 		}
 	}
-	function itemRollOut(loc2)
+	function itemRollOut(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function nameChanged(loc2)
+	function nameChanged(var2)
 	{
-		this._lblInventoryMountName.text = loc2.name;
+		this._lblInventoryMountName.text = var2.name;
 	}
 }

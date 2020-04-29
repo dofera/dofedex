@@ -1,76 +1,77 @@
 class dofus.aks.Quests extends dofus.aks.Handler
 {
-	function Quests(loc3, loc4)
+	function Quests(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function getList()
 	{
 		this.aks.send("QL");
 	}
-	function getStep(loc2, loc3)
+	function getStep(var2, var3)
 	{
-		this.aks.send("QS" + loc2 + (loc3 == undefined?"":"|" + (loc3 <= 0?loc3:"+" + loc3)));
+		this.aks.send("QS" + var2 + (var3 == undefined?"":"|" + (var3 <= 0?var3:"+" + var3)));
 	}
-	function onList(loc2)
+	function onList(var2)
 	{
-		var loc3 = 0;
-		var loc4 = new Array();
-		if(loc2.length != 0)
+		var var3 = 0;
+		var var4 = new Array();
+		if(var2.length != 0)
 		{
-			var loc5 = loc2.split("|");
-			var loc6 = 0;
-			while(loc6 < loc5.length)
+			var var5 = var2.split("|");
+			var var6 = 0;
+			while(var6 < var5.length)
 			{
-				var loc7 = loc5[loc6].split(";");
-				var loc8 = Number(loc7[0]);
-				var loc9 = loc7[1] == "1";
-				var loc10 = Number(loc7[2]);
-				if(!loc9)
+				var var7 = var5[var6].split(";");
+				var var8 = Number(var7[0]);
+				var var9 = var7[1] == "1";
+				var var10 = Number(var7[2]);
+				if(!var9)
 				{
-					loc3 = loc3 + 1;
+					var3 = var3 + 1;
 				}
-				var loc11 = new dofus.datacenter.(loc8,loc9,loc10);
-				loc4.push(loc11);
-				loc6 = loc6 + 1;
+				var var11 = new dofus.datacenter.(var8,var9,var10);
+				var4.push(var11);
+				var6 = var6 + 1;
 			}
 		}
-		this.api.datacenter.Temporary.QuestBook.quests.replaceAll(0,loc4);
-		this.api.ui.getUIComponent("Quests").setPendingCount(loc3);
+		this.api.datacenter.Temporary.QuestBook.quests.replaceAll(0,var4);
+		this.api.ui.getUIComponent("Quests").setPendingCount(var3);
 	}
-	function onStep(loc2)
+	function onStep(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = loc3[2];
-		var loc7 = new ank.utils.();
-		var loc8 = loc3[3];
-		var loc9 = loc8.length != 0?loc8.split(";"):new Array();
-		loc9.reverse();
-		var loc10 = loc3[4];
-		var loc11 = loc10.length != 0?loc10.split(";"):new Array();
-		var loc12 = loc3[5].split(";");
-		var loc13 = loc12[0];
-		var loc14 = loc12[1].split(",");
-		var loc15 = loc6.split(";");
-		var loc16 = 0;
-		while(loc16 < loc15.length)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = var3[2];
+		var var7 = new ank.utils.();
+		var var8 = var3[3];
+		var var9 = var8.length != 0?var8.split(";"):new Array();
+		var9.reverse();
+		var var10 = var3[4];
+		var var11 = var10.length != 0?var10.split(";"):new Array();
+		var var12 = var3[5].split(";");
+		var var13 = var12[0];
+		var var14 = var12[1].split(",");
+		var var15 = var6.split(";");
+		var var16 = 0;
+		while(var16 < var15.length)
 		{
-			var loc17 = loc15[loc16].split(",");
-			var loc18 = Number(loc17[0]);
-			var loc19 = loc17[1] == "1";
-			var loc20 = new dofus.datacenter.(loc18,loc19);
-			loc7.push(loc20);
-			loc16 = loc16 + 1;
+			var var17 = var15[var16].split(",");
+			var var18 = Number(var17[0]);
+			var var19 = var17[1] == "1";
+			var var20 = new dofus.datacenter.
+(var18,var19);
+			var7.push(var20);
+			var16 = var16 + 1;
 		}
-		var loc21 = this.api.datacenter.Temporary.QuestBook;
-		var loc22 = loc21.getQuest(loc4);
-		if(loc22 != null)
+		var var21 = this.api.datacenter.Temporary.QuestBook;
+		var var22 = var21.getQuest(var4);
+		if(var22 != null)
 		{
-			var loc23 = new dofus.datacenter.(loc5,1,loc7,loc9,loc11,loc13,loc14);
-			loc22.addStep(loc23);
-			this.api.ui.getUIComponent("Quests").setStep(loc23);
+			var var23 = new dofus.datacenter.(var5,1,var7,var9,var11,var13,var14);
+			var22.addStep(var23);
+			this.api.ui.getUIComponent("Quests").setStep(var23);
 		}
 		else
 		{

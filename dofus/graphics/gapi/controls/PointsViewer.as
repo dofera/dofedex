@@ -5,24 +5,24 @@ class dofus.graphics.gapi.controls.PointsViewer extends ank.gapi.core.UIBasicCom
 	{
 		super();
 	}
-	function __set__background(loc2)
+	function __set__background(var2)
 	{
-		this._sBackgroundLink = loc2;
+		this._sBackgroundLink = var2;
 		return this.__get__background();
 	}
-	function __set__textColor(loc2)
+	function __set__textColor(var2)
 	{
-		this._nTextColor = loc2;
+		this._nTextColor = var2;
 		return this.__get__textColor();
 	}
-	function __set__value(loc2)
+	function __set__value(var2)
 	{
-		loc2 = Number(loc2);
-		if(_global.isNaN(loc2))
+		var2 = Number(var2);
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		this._nValue = loc2;
+		this._nValue = var2;
 		this.applyValue();
 		this.useHandCursor = false;
 		return this.__get__value();

@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.ClassInfosViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__classID(loc2)
+	function __set__classID(var2)
 	{
-		this._nClassID = loc2;
+		this._nClassID = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__classID();
 	}
@@ -26,34 +26,34 @@ class dofus.graphics.gapi.controls.ClassInfosViewer extends dofus.graphics.gapi.
 	}
 	function addListeners()
 	{
-		var loc2 = 0;
-		while(loc2 < 20)
+		var var2 = 0;
+		while(var2 < 20)
 		{
-			this["_ctr" + loc2].addEventListener("over",this);
-			this["_ctr" + loc2].addEventListener("out",this);
-			this["_ctr" + loc2].addEventListener("click",this);
-			loc2 = loc2 + 1;
+			this["_ctr" + var2].addEventListener("over",this);
+			this["_ctr" + var2].addEventListener("out",this);
+			this["_ctr" + var2].addEventListener("click",this);
+			var2 = var2 + 1;
 		}
 	}
 	function layoutContent()
 	{
-		var loc2 = dofus.Constants.SPELLS_ICONS_PATH;
-		var loc3 = this.api.lang.getClassText(this._nClassID).s;
-		var loc4 = 0;
-		while(loc4 < 20)
+		var var2 = dofus.Constants.SPELLS_ICONS_PATH;
+		var var3 = this.api.lang.getClassText(this._nClassID).s;
+		var var4 = 0;
+		while(var4 < 20)
 		{
-			var loc5 = this["_ctr" + loc4];
-			loc5.contentPath = loc2 + loc3[loc4] + ".swf";
-			loc5.params = {spellID:loc3[loc4]};
-			loc4 = loc4 + 1;
+			var var5 = this["_ctr" + var4];
+			var5.contentPath = var2 + var3[var4] + ".swf";
+			var5.params = {spellID:var3[var4]};
+			var4 = var4 + 1;
 		}
 		this._txtDescription.text = this.api.lang.getClassText(this._nClassID).d;
-		this.showSpellInfos(loc3[0]);
+		this.showSpellInfos(var3[0]);
 	}
-	function showSpellInfos(loc2)
+	function showSpellInfos(var2)
 	{
-		var loc3 = this.api.kernel.CharactersManager.getSpellObjectFromData(loc2 + "~1~");
-		if(loc3.name == undefined)
+		var var3 = this.api.kernel.CharactersManager.getSpellObjectFromData(var2 + "~1~");
+		if(var3.name == undefined)
 		{
 			this._lblSpellName.text = "";
 			this._lblSpellRange.text = "";
@@ -63,15 +63,15 @@ class dofus.graphics.gapi.controls.ClassInfosViewer extends dofus.graphics.gapi.
 		}
 		else if(this._lblSpellName.text != undefined)
 		{
-			this._lblSpellName.text = loc3.name;
-			this._lblSpellRange.text = this.api.lang.getText("RANGEFULL") + " : " + loc3.rangeStr;
-			this._lblSpellAP.text = this.api.lang.getText("ACTIONPOINTS") + " : " + loc3.apCost;
-			this._txtSpellDescription.text = loc3.description + "\n" + loc3.descriptionNormalHit;
-			this._ldrSpellIcon.contentPath = loc3.iconFile;
+			this._lblSpellName.text = var3.name;
+			this._lblSpellRange.text = this.api.lang.getText("RANGEFULL") + " : " + var3.rangeStr;
+			this._lblSpellAP.text = this.api.lang.getText("ACTIONPOINTS") + " : " + var3.apCost;
+			this._txtSpellDescription.text = var3.description + "\n" + var3.descriptionNormalHit;
+			this._ldrSpellIcon.contentPath = var3.iconFile;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		this.showSpellInfos(loc2.target.params.spellID);
+		this.showSpellInfos(var2.target.params.spellID);
 	}
 }

@@ -20,8 +20,8 @@ class dofus.graphics.gapi.ui.MapInfos extends dofus.graphics.gapi.core.DofusAdva
 	}
 	function initText()
 	{
-		var loc2 = this.api.datacenter.Map;
-		if(loc2.name == undefined)
+		var var2 = this.api.datacenter.Map;
+		if(var2.name == undefined)
 		{
 			this._lblArea.text = "";
 			this._lblCoordinates.text = "";
@@ -30,12 +30,12 @@ class dofus.graphics.gapi.ui.MapInfos extends dofus.graphics.gapi.core.DofusAdva
 		}
 		else
 		{
-			var loc3 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(loc2.subarea);
-			var loc4 = loc2.name + (loc3 != undefined?loc3.alignment.name != undefined?" - " + loc3.alignment.name:"":"");
-			this._lblArea.text = loc4;
-			this._lblCoordinates.text = loc2.coordinates;
-			this._lblAreaShadow.text = loc4;
-			this._lblCoordinatesShadow.text = loc2.coordinates;
+			var var3 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(var2.subarea);
+			var var4 = var2.name + (var3 != undefined?var3.alignment.name != undefined?" - " + var3.alignment.name:"":"");
+			this._lblArea.text = var4;
+			this._lblCoordinates.text = var2.coordinates;
+			this._lblAreaShadow.text = var4;
+			this._lblCoordinatesShadow.text = var2.coordinates;
 		}
 	}
 }

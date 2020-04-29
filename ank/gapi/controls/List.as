@@ -14,33 +14,33 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__multipleSelection(loc2)
+	function __set__multipleSelection(var2)
 	{
-		this._bMultipleSelection = loc2;
+		this._bMultipleSelection = var2;
 		return this.__get__multipleSelection();
 	}
 	function __get__multipleSelection()
 	{
 		return this._bMultipleSelection;
 	}
-	function __set__rowHeight(loc2)
+	function __set__rowHeight(var2)
 	{
-		if(loc2 == 0)
+		if(var2 == 0)
 		{
 			return undefined;
 		}
-		this._nRowHeight = loc2;
+		this._nRowHeight = var2;
 		return this.__get__rowHeight();
 	}
 	function __get__rowHeight()
 	{
 		return this._nRowHeight;
 	}
-	function __set__cellRenderer(loc2)
+	function __set__cellRenderer(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this._sCellRenderer = loc2;
+			this._sCellRenderer = var2;
 		}
 		return this.__get__cellRenderer();
 	}
@@ -48,13 +48,13 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sCellRenderer;
 	}
-	function __set__dataProvider(loc2)
+	function __set__dataProvider(var2)
 	{
 		delete this._nSelectedIndex;
-		this._eaDataProvider = loc2;
+		this._eaDataProvider = var2;
 		this._eaDataProvider.addEventListener("modelChanged",this);
-		var loc3 = Math.ceil(this.__height / this._nRowHeight);
-		if(loc2.length <= loc3)
+		var var3 = Math.ceil(this.__height / this._nRowHeight);
+		if(var2.length <= var3)
 		{
 			this.setVPosition(0);
 		}
@@ -65,11 +65,11 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider;
 	}
-	function __set__selectedIndex(loc2)
+	function __set__selectedIndex(var2)
 	{
-		var loc3 = this._mcContent["row" + loc2];
-		this._nSelectedIndex = loc2;
-		this.layoutSelection(loc2,loc3);
+		var var3 = this._mcContent["row" + var2];
+		this._nSelectedIndex = var2;
+		this.layoutSelection(var2,var3);
 		return this.__get__selectedIndex();
 	}
 	function __get__selectedIndex()
@@ -80,39 +80,39 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider[this._nSelectedIndex];
 	}
-	function __set__autoScroll(loc2)
+	function __set__autoScroll(var2)
 	{
-		this._bAutoScroll = loc2;
+		this._bAutoScroll = var2;
 		return this.__get__autoScroll();
 	}
 	function __get__autoScroll()
 	{
 		return this._bAutoScroll;
 	}
-	function __set__dblClickEnabled(loc2)
+	function __set__dblClickEnabled(var2)
 	{
-		this._bDblClickEnabled = loc2;
+		this._bDblClickEnabled = var2;
 		return this.__get__dblClickEnabled();
 	}
 	function __get__dblClickEnabled()
 	{
 		return this._bDblClickEnabled;
 	}
-	function addItem(loc2)
+	function addItem(var2)
 	{
-		this._aRows.push({item:loc2,selected:false});
+		this._aRows.push({item:var2,selected:false});
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function addItemAt(loc2, loc3)
+	function addItemAt(var2, var3)
 	{
-		this._aRows.splice(loc3,0,{item:loc2,selected:false});
+		this._aRows.splice(var3,0,{item:var2,selected:false});
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function removeItemAt(loc2, loc3)
+	function removeItemAt(var2, var3)
 	{
-		this._aRows.splice(loc3,1);
+		this._aRows.splice(var3,1);
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
@@ -122,27 +122,27 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function setVPosition(loc2, loc3)
+	function setVPosition(var2, var3)
 	{
-		var loc4 = this._eaDataProvider.length - Math.floor(this.__height / this._nRowHeight);
-		if(loc2 > loc4)
+		var var4 = this._eaDataProvider.length - Math.floor(this.__height / this._nRowHeight);
+		if(var2 > var4)
 		{
-			loc2 = loc4;
+			var2 = var4;
 		}
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
-			loc2 = 0;
+			var2 = 0;
 		}
-		if(this._nScrollPosition != loc2 || loc3)
+		if(this._nScrollPosition != var2 || var3)
 		{
-			this._nScrollPosition = loc2;
-			this.setScrollBarProperties(loc3 == true);
+			this._nScrollPosition = var2;
+			this.setScrollBarProperties(var3 == true);
 			this.layoutContent();
 		}
 	}
-	function sortOn(loc2, loc3)
+	function sortOn(var2, var3)
 	{
-		this._eaDataProvider.sortOn(loc2,loc3);
+		this._eaDataProvider.sortOn(var2,var3);
 		this.modelChanged();
 	}
 	function init()
@@ -175,11 +175,12 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		{
 			return undefined;
 		}
-		var loc2 = this.getStyle();
-		for(this._mcContent[k].styleName in this._mcContent)
+		var var2 = this.getStyle();
+		for(var k in this._mcContent)
 		{
+			this._mcContent[k].styleName = this.styleName;
 		}
-		this._sbVertical.styleName = loc2.scrollbarstyle;
+		this._sbVertical.styleName = var2.scrollbarstyle;
 	}
 	function arrange()
 	{
@@ -201,121 +202,121 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	}
 	function layoutContent()
 	{
-		var loc2 = Math.ceil(this.__height / this._nRowHeight);
-		var loc3 = 0;
-		while(loc3 < loc2)
+		var var2 = Math.ceil(this.__height / this._nRowHeight);
+		var var3 = 0;
+		while(var3 < var2)
 		{
-			var loc4 = this._mcContent["row" + loc3];
-			if(loc4 == undefined)
+			var var4 = this._mcContent["row" + var3];
+			if(var4 == undefined)
 			{
-				loc4 = (ank.gapi.controls.list.SelectableRow)this._mcContent.attachMovie("SelectableRow","row" + loc3,loc3,{_x:0,_y:loc3 * this._nRowHeight,index:loc3,styleName:this.styleName,enabled:this._bEnabled,gapi:this.gapi});
-				loc4.setCellRenderer(this._sCellRenderer);
-				loc4.addEventListener("itemSelected",this);
-				loc4.addEventListener("itemdblClick",this);
-				loc4.addEventListener("itemRollOver",this);
-				loc4.addEventListener("itemRollOut",this);
-				loc4.addEventListener("itemDrag",this);
-				loc4.addEventListener("itemDrop",this);
+				var4 = (ank.gapi.controls.list.SelectableRow)this._mcContent.attachMovie("SelectableRow","row" + var3,var3,{_x:0,_y:var3 * this._nRowHeight,index:var3,styleName:this.styleName,enabled:this._bEnabled,gapi:this.gapi});
+				var4.setCellRenderer(this._sCellRenderer);
+				var4.addEventListener("itemSelected",this);
+				var4.addEventListener("itemdblClick",this);
+				var4.addEventListener("itemRollOver",this);
+				var4.addEventListener("itemRollOut",this);
+				var4.addEventListener("itemDrag",this);
+				var4.addEventListener("itemDrop",this);
 			}
-			var loc5 = loc3 + this._nScrollPosition;
+			var var5 = var3 + this._nScrollPosition;
 			if(this._bInvalidateLayout)
 			{
-				loc4.setSize(this._nMaskWidth,this._nRowHeight);
+				var4.setSize(this._nMaskWidth,this._nRowHeight);
 			}
-			var loc6 = this._aRows[loc5];
-			var loc7 = loc6.item;
-			var loc8 = typeof loc7 != "string"?loc7.label:loc7;
-			var loc9 = !((loc6.selected || loc5 == this._nSelectedIndex) && loc7 != undefined)?"normal":"selected";
-			loc4.setValue(loc8,loc7,loc9);
-			loc4.itemIndex = loc5;
-			loc3 = loc3 + 1;
+			var var6 = this._aRows[var5];
+			var var7 = var6.item;
+			var var8 = typeof var7 != "string"?var7.label:var7;
+			var var9 = !((var6.selected || var5 == this._nSelectedIndex) && var7 != undefined)?"normal":"selected";
+			var4.setValue(var8,var7,var9);
+			var4.itemIndex = var5;
+			var3 = var3 + 1;
 		}
 		this._bInvalidateLayout = false;
 	}
-	function addScrollBar(loc2)
+	function addScrollBar(var2)
 	{
 		if(!this._sbVertical._visible)
 		{
 			this._sbVertical._visible = true;
-			if(loc2)
+			if(var2)
 			{
 				this.arrange();
 			}
 		}
 	}
-	function removeScrollBar(loc2)
+	function removeScrollBar(var2)
 	{
 		if(this._sbVertical._visible)
 		{
 			this._sbVertical._visible = false;
-			if(loc2)
+			if(var2)
 			{
 				this.arrange();
 			}
 		}
 	}
-	function setScrollBarProperties(loc2)
+	function setScrollBarProperties(var2)
 	{
 		this._bInvalidateScrollBar = false;
-		var loc3 = Math.floor(this.__height / this._nRowHeight);
-		var loc4 = this._aRows.length - loc3;
-		var loc5 = loc3 * (loc4 / this._aRows.length);
-		if(loc3 >= this._aRows.length || this._aRows.length == 0)
+		var var3 = Math.floor(this.__height / this._nRowHeight);
+		var var4 = this._aRows.length - var3;
+		var var5 = var3 * (var4 / this._aRows.length);
+		if(var3 >= this._aRows.length || this._aRows.length == 0)
 		{
-			this.removeScrollBar(loc2);
+			this.removeScrollBar(var2);
 		}
 		else
 		{
-			this.addScrollBar(loc2);
-			this._sbVertical.setScrollProperties(loc5,0,loc4);
+			this.addScrollBar(var2);
+			this._sbVertical.setScrollProperties(var5,0,var4);
 			this._sbVertical.scrollPosition = this._nScrollPosition;
 		}
 	}
-	function layoutSelection(loc2, loc3)
+	function layoutSelection(var2, var3)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this._nSelectedIndex;
+			var2 = this._nSelectedIndex;
 		}
-		var loc4 = this._aRows[loc2];
-		var loc5 = this._aRows[loc2].selected;
+		var var4 = this._aRows[var2];
+		var var5 = this._aRows[var2].selected;
 		if(!this._bMultipleSelection)
 		{
-			var loc6 = this._aRows.length;
-			while((loc6 = loc6 - 1) >= 0)
+			var var6 = this._aRows.length;
+			while((var6 = var6 - 1) >= 0)
 			{
-				if(this._aRows[loc6].selected)
+				if(this._aRows[var6].selected)
 				{
-					this._aRows[loc6].selected = false;
-					this._mcContent["row" + (loc6 - this._nScrollPosition)].setState("normal");
+					this._aRows[var6].selected = false;
+					this._mcContent["row" + (var6 - this._nScrollPosition)].setState("normal");
 				}
 			}
 		}
-		if(loc5 && this._bMultipleSelection)
+		if(var5 && this._bMultipleSelection)
 		{
-			loc4.selected = false;
-			loc3.setState("normal");
+			var4.selected = false;
+			var3.setState("normal");
 		}
 		else
 		{
-			loc4.selected = true;
-			loc3.setState("selected");
+			var4.selected = true;
+			var3.setState("selected");
 		}
 	}
 	function modelChanged()
 	{
 		this.selectedIndex = -1;
 		this._aRows = new Array();
-		var loc2 = this._eaDataProvider.length;
-		var loc3 = 0;
-		while(loc3 < loc2)
+		var var2 = this._eaDataProvider.length;
+		var var3 = 0;
+		while(var3 < var2)
 		{
-			this._aRows[loc3] = {item:this._eaDataProvider[loc3],selected:false};
-			loc3 = loc3 + 1;
+			this._aRows[var3] = {item:this._eaDataProvider[var3],selected:false};
+			var3 = var3 + 1;
 		}
 		if(this._bAutoScroll)
 		{
-			this.setVPosition(loc2,true);
+			this.setVPosition(var2,true);
 		}
 		else
 		{
@@ -323,47 +324,47 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this.layoutContent();
 		}
 	}
-	function scroll(loc2)
+	function scroll(var2)
 	{
-		this.setVPosition(loc2.target.scrollPosition);
+		this.setVPosition(var2.target.scrollPosition);
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		var loc3 = loc2.target.itemIndex;
-		var loc4 = loc2.target;
-		this._nSelectedIndex = loc3;
-		this.layoutSelection(loc3,loc4);
-		this.dispatchEvent({type:"itemSelected",row:loc2.target});
+		var var3 = var2.target.itemIndex;
+		var var4 = var2.target;
+		this._nSelectedIndex = var3;
+		this.layoutSelection(var3,var4);
+		this.dispatchEvent({type:"itemSelected",row:var2.target});
 	}
-	function itemdblClick(loc2)
+	function itemdblClick(var2)
 	{
-		var loc3 = loc2.target.itemIndex;
-		var loc4 = loc2.target;
-		this._nSelectedIndex = loc3;
-		this.layoutSelection(loc3,loc4);
-		this.dispatchEvent({type:"itemdblClick",row:loc2.target});
+		var var3 = var2.target.itemIndex;
+		var var4 = var2.target;
+		this._nSelectedIndex = var3;
+		this.layoutSelection(var3,var4);
+		this.dispatchEvent({type:"itemdblClick",row:var2.target});
 	}
-	function itemRollOver(loc2)
+	function itemRollOver(var2)
 	{
-		this.dispatchEvent({type:"itemRollOver",row:loc2.target});
+		this.dispatchEvent({type:"itemRollOver",row:var2.target});
 	}
-	function itemRollOut(loc2)
+	function itemRollOut(var2)
 	{
-		this.dispatchEvent({type:"itemRollOut",row:loc2.target});
+		this.dispatchEvent({type:"itemRollOut",row:var2.target});
 	}
-	function itemDrag(loc2)
+	function itemDrag(var2)
 	{
-		this.dispatchEvent({type:"itemDrag",row:loc2.target});
+		this.dispatchEvent({type:"itemDrag",row:var2.target});
 	}
-	function itemDrop(loc2)
+	function itemDrop(var2)
 	{
-		this.dispatchEvent({type:"itemDrop",row:loc2.target});
+		this.dispatchEvent({type:"itemDrop",row:var2.target});
 	}
-	function onMouseWheel(loc2, loc3)
+	function onMouseWheel(var2, var3)
 	{
-		if(String(loc3._target).indexOf(this._target) != -1)
+		if(String(var3._target).indexOf(this._target) != -1)
 		{
-			this.setVPosition(this._nScrollPosition - loc2);
+			this.setVPosition(this._nScrollPosition - var2);
 		}
 	}
 }

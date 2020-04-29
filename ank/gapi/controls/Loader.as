@@ -12,41 +12,41 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__enabled(loc2)
+	function __set__enabled(var2)
 	{
-		super.__set__enabled(loc3);
+		super.__set__enabled(var3);
 		return this.__get__enabled();
 	}
-	function __set__scaleContent(loc2)
+	function __set__scaleContent(var2)
 	{
-		this._bScaleContent = loc2;
+		this._bScaleContent = var2;
 		return this.__get__scaleContent();
 	}
 	function __get__scaleContent()
 	{
 		return this._bScaleContent;
 	}
-	function __set__autoLoad(loc2)
+	function __set__autoLoad(var2)
 	{
-		this._bAutoLoad = loc2;
+		this._bAutoLoad = var2;
 		return this.__get__autoLoad();
 	}
 	function __get__autoLoad()
 	{
 		return this._bAutoLoad;
 	}
-	function __set__centerContent(loc2)
+	function __set__centerContent(var2)
 	{
-		this._bCenterContent = loc2;
+		this._bCenterContent = var2;
 		return this.__get__centerContent();
 	}
 	function __get__centerContent()
 	{
 		return this._bCenterContent;
 	}
-	function __set__contentParams(loc2)
+	function __set__contentParams(var2)
 	{
-		this._oParams = loc2;
+		this._oParams = var2;
 		if(this._oParams.frame)
 		{
 			this.frame = this._oParams.frame;
@@ -70,18 +70,18 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sURL;
 	}
-	function __set__fallbackContentPath(loc2)
+	function __set__fallbackContentPath(var2)
 	{
-		this._sURLFallback = loc2;
+		this._sURLFallback = var2;
 		return this.__get__fallbackContentPath();
 	}
 	function __get__fallbackContentPath()
 	{
 		return this._sURLFallback;
 	}
-	function __set__forceReload(loc2)
+	function __set__forceReload(var2)
 	{
-		this._bForceReload = loc2;
+		this._bForceReload = var2;
 		return this.__get__forceReload();
 	}
 	function __get__forceReload()
@@ -98,9 +98,9 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 	}
 	function __get__percentLoaded()
 	{
-		var loc2 = Math.round(this.bytesLoaded / this.bytesTotal * 100);
-		loc2 = !_global.isNaN(loc2)?loc2:0;
-		return loc2;
+		var var2 = Math.round(this.bytesLoaded / this.bytesTotal * 100);
+		var2 = !_global.isNaN(var2)?var2:0;
+		return var2;
 	}
 	function __get__content()
 	{
@@ -114,10 +114,10 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bLoaded;
 	}
-	function __set__frame(loc2)
+	function __set__frame(var2)
 	{
-		this._sFrame = loc2;
-		this.content.gotoAndStop(loc2);
+		this._sFrame = var2;
+		this.content.gotoAndStop(var2);
 		this.size();
 		return this.__get__frame();
 	}
@@ -158,28 +158,28 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 			}
 			if(this._bScaleContent)
 			{
-				var loc3 = this.holder_mc.content_mc._width;
-				var loc4 = this.holder_mc.content_mc._height;
-				var loc5 = loc3 / loc4;
-				var loc6 = this.__width / this.__height;
-				if(loc5 == loc6)
+				var var3 = this.holder_mc.content_mc._width;
+				var var4 = this.holder_mc.content_mc._height;
+				var var5 = var3 / var4;
+				var var6 = this.__width / this.__height;
+				if(var5 == var6)
 				{
 					this.holder_mc._width = this.__width;
 					this.holder_mc._height = this.__height;
 				}
-				else if(loc5 > loc6)
+				else if(var5 > var6)
 				{
 					this.holder_mc._width = this.__width;
-					this.holder_mc._height = this.__width / loc5;
+					this.holder_mc._height = this.__width / var5;
 				}
 				else
 				{
-					this.holder_mc._width = this.__height * loc5;
+					this.holder_mc._width = this.__height * var5;
 					this.holder_mc._height = this.__height;
 				}
-				var loc7 = this.holder_mc.content_mc.getBounds();
-				this.holder_mc.content_mc._x = - loc7.xMin;
-				this.holder_mc.content_mc._y = - loc7.yMin;
+				var var7 = this.holder_mc.content_mc.getBounds();
+				this.holder_mc.content_mc._x = - var7.xMin;
+				this.holder_mc.content_mc._y = - var7.yMin;
 				this.holder_mc._x = (this.__width - this.holder_mc._width) / 2;
 				this.holder_mc._y = (this.__height - this.holder_mc._height) / 2;
 			}
@@ -233,7 +233,7 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 			this.onLoadInit(this.holder_mc.content_mc);
 		}
 	}
-	function onLoadError(loc2)
+	function onLoadError(var2)
 	{
 		if(this._sURLFallback != "")
 		{
@@ -243,24 +243,24 @@ class ank.gapi.controls.Loader extends ank.gapi.core.UIBasicComponent
 		}
 		else
 		{
-			this.dispatchEvent({type:"error",target:this,clip:loc2});
+			this.dispatchEvent({type:"error",target:this,clip:var2});
 		}
 	}
-	function onLoadProgress(loc2, loc3, loc4)
+	function onLoadProgress(var2, var3, var4)
 	{
-		this._nBytesLoaded = loc3;
-		this._nBytesTotal = loc4;
-		this.dispatchEvent({type:"progress",target:this,clip:loc2});
+		this._nBytesLoaded = var3;
+		this._nBytesTotal = var4;
+		this.dispatchEvent({type:"progress",target:this,clip:var2});
 	}
-	function onLoadComplete(loc2)
+	function onLoadComplete(var2)
 	{
 		this._bLoaded = true;
-		this.dispatchEvent({type:"complete",clip:loc2});
+		this.dispatchEvent({type:"complete",clip:var2});
 	}
-	function onLoadInit(loc2)
+	function onLoadInit(var2)
 	{
 		this.size();
 		this._visible = true;
-		this.dispatchEvent({type:"initialization",clip:loc2});
+		this.dispatchEvent({type:"initialization",clip:var2});
 	}
 }

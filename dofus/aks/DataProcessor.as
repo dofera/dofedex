@@ -1,33 +1,33 @@
 class dofus.aks.DataProcessor extends dofus.aks.Handler
 {
-	function DataProcessor(loc3, loc4)
+	function DataProcessor(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function process(loc2)
+	function process(var2)
 	{
-		var loc3 = loc2.charAt(0);
-		var loc4 = loc2.charAt(1);
-		var loc5 = loc2.charAt(2) == "E";
-		this.postProcess(loc3,loc4,loc5,loc2);
+		var var3 = var2.charAt(0);
+		var var4 = var2.charAt(1);
+		var var5 = var2.charAt(2) == "E";
+		this.postProcess(var3,var4,var5,var2);
 	}
-	function defaultProcessAction(loc2, loc3, loc4, loc5)
+	function defaultProcessAction(var2, var3, var4, var5)
 	{
-		this.api.network.defaultProcessAction(loc2,loc3,loc4,loc5);
+		this.api.network.defaultProcessAction(var2,var3,var4,var5);
 	}
-	function postProcess(loc2, loc3, loc4, loc5)
+	function postProcess(var2, var3, var4, var5)
 	{
 		loop0:
-		switch(loc2)
+		switch(var2)
 		{
 			case "H":
-				switch(loc3)
+				switch(var3)
 				{
 					case "C":
-						this.aks.onHelloConnectionServer(loc5.substr(2));
+						this.aks.onHelloConnectionServer(var5.substr(2));
 						break;
 					case "G":
-						this.aks.onHelloGameServer(loc5.substr(2));
+						this.aks.onHelloGameServer(var5.substr(2));
 						break;
 					default:
 						this.aks.disconnect(false,true);
@@ -39,41 +39,41 @@ class dofus.aks.DataProcessor extends dofus.aks.Handler
 			case "q":
 				this.aks.onQuickPong();
 				break;
-			case "r":
-				this.aks.send("rpong" + loc5.substr(5),false);
-				break;
 			default:
 				switch(null)
 				{
+					case "r":
+						this.aks.send("rpong" + var5.substr(5),false);
+						break loop0;
 					case "M":
-						this.aks.onServerMessage(loc5.substr(1));
+						this.aks.onServerMessage(var5.substr(1));
 						break loop0;
 					case "k":
 						this.aks.onServerWillDisconnect();
 						break loop0;
 					case "B":
 						loop3:
-						switch(loc3)
+						switch(var3)
 						{
 							case "N":
 								return undefined;
 								break;
 							case "A":
 								loop4:
-								switch(loc5.charAt(2))
+								switch(var5.charAt(2))
 								{
 									case "T":
-										this.aks.Basics.onAuthorizedCommand(true,loc5.substr(3));
+										this.aks.Basics.onAuthorizedCommand(true,var5.substr(3));
 										break;
 									case "L":
-										this.aks.Basics.onAuthorizedLine(loc5.substr(3));
+										this.aks.Basics.onAuthorizedLine(var5.substr(3));
+										break;
+									case "P":
+										this.aks.Basics.onAuthorizedCommandPrompt(var5.substr(3));
 										break;
 									default:
 										switch(null)
 										{
-											case "P":
-												this.aks.Basics.onAuthorizedCommandPrompt(loc5.substr(3));
-												break loop4;
 											case "C":
 												this.aks.Basics.onAuthorizedCommandClear();
 												break loop4;
@@ -81,408 +81,413 @@ class dofus.aks.DataProcessor extends dofus.aks.Handler
 												this.aks.Basics.onAuthorizedCommand(false);
 												break loop4;
 											case "I":
-												if((loc0 = loc5.charAt(3)) !== "O")
+												switch(var5.charAt(3))
 												{
-													if(loc0 !== "C")
-													{
-														this.defaultProcessAction(loc2,loc3,loc4,loc5);
-													}
-													else
-													{
-														this.aks.Basics.onAuthorizedInterfaceClose(loc5.substr(4));
-													}
-												}
-												else
-												{
-													this.aks.Basics.onAuthorizedInterfaceOpen(loc5.substr(4));
+													case "O":
+														this.aks.Basics.onAuthorizedInterfaceOpen(var5.substr(4));
+														break;
+													case "C":
+														this.aks.Basics.onAuthorizedInterfaceClose(var5.substr(4));
+														break;
+													default:
+														this.defaultProcessAction(var2,var3,var4,var5);
 												}
 												break loop4;
 											default:
-												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+												this.defaultProcessAction(var2,var3,var4,var5);
 										}
 								}
 								break;
 							case "T":
-								this.aks.Basics.onReferenceTime(loc5.substr(2));
+								this.aks.Basics.onReferenceTime(var5.substr(2));
 								break;
 							case "D":
-								this.aks.Basics.onDate(loc5.substr(2));
-								break;
-							case "W":
-								this.aks.Basics.onWhoIs(!loc4,loc5.substr(3));
+								this.aks.Basics.onDate(var5.substr(2));
 								break;
 							default:
 								switch(null)
 								{
+									case "W":
+										this.aks.Basics.onWhoIs(!var4,var5.substr(3));
+										break loop3;
 									case "P":
-										this.aks.Basics.onSubscriberRestriction(loc5.substr(2));
+										this.aks.Basics.onSubscriberRestriction(var5.substr(2));
 										break loop3;
 									case "C":
-										this.aks.Basics.onFileCheck(loc5.substr(2));
+										this.aks.Basics.onFileCheck(var5.substr(2));
 										break loop3;
 									case "p":
-										this.aks.Basics.onAveragePing(loc5.substr(2));
+										this.aks.Basics.onAveragePing(var5.substr(2));
 										break loop3;
 									case "M":
-										this.aks.Basics.onPopupMessage(loc5.substr(2));
+										this.aks.Basics.onPopupMessage(var5.substr(2));
 										break loop3;
 									default:
-										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										this.defaultProcessAction(var2,var3,var4,var5);
 								}
 						}
 						break loop0;
 					case "A":
-						loop7:
-						switch(loc3)
+						if((var0 = var3) !== "E")
 						{
-							case "E":
-								var loc6 = false;
-								var loc7 = false;
-								if((loc0 = loc5.charAt(2)) !== "n")
-								{
-									if(loc0 === "c")
+							loop8:
+							switch(null)
+							{
+								case "c":
+									this.aks.Account.onCommunity(var5.substr(2));
+									break;
+								case "d":
+									this.aks.Account.onDofusPseudo(var5.substr(2));
+									break;
+								case "l":
+									this.aks.Account.onLogin(!var4,var5.substr(3));
+									break;
+								case "L":
+									this.aks.Account.onCharactersList(!var4,var5.substr(3));
+									break;
+								default:
+									switch(null)
 									{
-										loc7 = true;
+										case "x":
+											this.aks.Account.onServersList(!var4,var5.substr(3));
+											break loop8;
+										case "A":
+											this.aks.Account.onCharacterAdd(!var4,var5.substr(3));
+											break loop8;
+										case "T":
+											this.aks.Account.onTicketResponse(!var4,var5.substr(3));
+											break loop8;
+										case "X":
+											this.aks.Account.onSelectServer(!var4,true,var5.substr(3));
+											break loop8;
+										case "Y":
+											this.aks.Account.onSelectServer(!var4,false,var5.substr(3));
+											break loop8;
+										default:
+											switch(null)
+											{
+												case "S":
+													this.aks.Account.onCharacterSelected(!var4,var5.substr(4));
+													break loop8;
+												case "s":
+													this.aks.Account.onStats(var5.substr(2));
+													break loop8;
+												case "N":
+													this.aks.Account.onNewLevel(var5.substr(2));
+													break loop8;
+												case "R":
+													this.aks.Account.onRestrictions(var5.substr(2));
+													break loop8;
+												case "H":
+													this.aks.Account.onHosts(var5.substr(2));
+													break loop8;
+												default:
+													switch(null)
+													{
+														case "r":
+															this.aks.Account.onRescue(!var4);
+															break loop8;
+														case "g":
+															this.aks.Account.onGiftsList(var5.substr(2));
+															break loop8;
+														case "G":
+															this.aks.Account.onGiftStored(!var4);
+															break loop8;
+														case "q":
+															this.aks.Account.onQueue(var5.substr(2));
+															break loop8;
+														case "f":
+															this.aks.Account.onNewQueue(var5.substr(2));
+															break loop8;
+														default:
+															switch(null)
+															{
+																case "V":
+																	this.aks.Account.onRegionalVersion(var5.substr(2));
+																	break loop8;
+																case "P":
+																	this.aks.Account.onCharacterNameGenerated(!var4,var5.substr(3));
+																	break loop8;
+																case "K":
+																	this.aks.Account.onKey(var5.substr(2));
+																	break loop8;
+																case "Q":
+																	this.aks.Account.onSecretQuestion(var5.substr(2));
+																	break loop8;
+																case "D":
+																	this.aks.Account.onCharacterDelete(!var4,var5.substr(3));
+																	break loop8;
+																default:
+																	switch(null)
+																	{
+																		case "M":
+																			if((var0 = var5.charAt(2)) !== "?")
+																			{
+																				this.aks.Account.onCharactersList(!var4,var5.substr(3),true);
+																			}
+																			else
+																			{
+																				this.aks.Account.onCharactersMigrationAskConfirm(var5.substr(3));
+																			}
+																			break;
+																		case "F":
+																			this.aks.Account.onFriendServerList(var5.substr(2));
+																			break;
+																		case "m":
+																			if(!_global.CONFIG.isStreaming)
+																			{
+																				this.aks.Account.onMiniClipInfo();
+																				break;
+																			}
+																			var var9 = _global.parseInt(var5.charAt(2),10);
+																			if(_global.isNaN(var9))
+																			{
+																				var9 = 3;
+																			}
+																			getURL("FSCommand:" add "GoToCongratulation",var9);
+																			break;
+																	}
+															}
+													}
+											}
 									}
-								}
-								else
-								{
-									loc6 = true;
-								}
-								var loc8 = loc5.charAt(3) != undefined && loc5.charAt(3) == "f";
-								if(this.api.ui.getUIComponent("EditPlayer") == undefined)
-								{
-									this.api.ui.loadUIComponent("EditPlayer","EditPlayer",{editName:loc6,editColors:loc7,force:loc8});
-								}
-								break;
-							case "c":
-								this.aks.Account.onCommunity(loc5.substr(2));
-								break;
-							case "d":
-								this.aks.Account.onDofusPseudo(loc5.substr(2));
-								break;
-							case "l":
-								this.aks.Account.onLogin(!loc4,loc5.substr(3));
-								break;
-							default:
-								switch(null)
-								{
-									case "L":
-										this.aks.Account.onCharactersList(!loc4,loc5.substr(3));
-										break loop7;
-									case "x":
-										this.aks.Account.onServersList(!loc4,loc5.substr(3));
-										break loop7;
-									case "A":
-										this.aks.Account.onCharacterAdd(!loc4,loc5.substr(3));
-										break loop7;
-									case "T":
-										this.aks.Account.onTicketResponse(!loc4,loc5.substr(3));
-										break loop7;
-									default:
-										switch(null)
-										{
-											case "X":
-												this.aks.Account.onSelectServer(!loc4,true,loc5.substr(3));
-												break loop7;
-											case "Y":
-												this.aks.Account.onSelectServer(!loc4,false,loc5.substr(3));
-												break loop7;
-											case "S":
-												this.aks.Account.onCharacterSelected(!loc4,loc5.substr(4));
-												break loop7;
-											case "s":
-												this.aks.Account.onStats(loc5.substr(2));
-												break loop7;
-											case "N":
-												this.aks.Account.onNewLevel(loc5.substr(2));
-												break loop7;
-											default:
-												switch(null)
-												{
-													case "R":
-														this.aks.Account.onRestrictions(loc5.substr(2));
-														break loop7;
-													case "H":
-														this.aks.Account.onHosts(loc5.substr(2));
-														break loop7;
-													case "r":
-														this.aks.Account.onRescue(!loc4);
-														break loop7;
-													case "g":
-														this.aks.Account.onGiftsList(loc5.substr(2));
-														break loop7;
-													case "G":
-														this.aks.Account.onGiftStored(!loc4);
-														break loop7;
-													default:
-														switch(null)
-														{
-															case "q":
-																this.aks.Account.onQueue(loc5.substr(2));
-																break loop7;
-															case "f":
-																this.aks.Account.onNewQueue(loc5.substr(2));
-																break loop7;
-															case "V":
-																this.aks.Account.onRegionalVersion(loc5.substr(2));
-																break loop7;
-															case "P":
-																this.aks.Account.onCharacterNameGenerated(!loc4,loc5.substr(3));
-																break loop7;
-															default:
-																switch(null)
-																{
-																	case "K":
-																		this.aks.Account.onKey(loc5.substr(2));
-																		break loop7;
-																	case "Q":
-																		this.aks.Account.onSecretQuestion(loc5.substr(2));
-																		break loop7;
-																	case "D":
-																		this.aks.Account.onCharacterDelete(!loc4,loc5.substr(3));
-																		break loop7;
-																	case "M":
-																		if((loc0 = loc5.charAt(2)) !== "?")
-																		{
-																			this.aks.Account.onCharactersList(!loc4,loc5.substr(3),true);
-																		}
-																		else
-																		{
-																			this.aks.Account.onCharactersMigrationAskConfirm(loc5.substr(3));
-																		}
-																		break loop7;
-																	case "F":
-																		this.aks.Account.onFriendServerList(loc5.substr(2));
-																		break loop7;
-																	case "m":
-																		if(!_global.CONFIG.isStreaming)
-																		{
-																			this.aks.Account.onMiniClipInfo();
-																			break loop7;
-																		}
-																		var loc9 = _global.parseInt(loc5.charAt(2),10);
-																		if(_global.isNaN(loc9))
-																		{
-																			loc9 = 3;
-																		}
-																		getURL("FSCommand:" add "GoToCongratulation",loc9);
-																		break loop7;
-																}
-														}
-												}
-										}
-								}
+							}
 						}
-						break loop0;
-					case "G":
-						loop13:
-						switch(loc3)
+						else
 						{
-							case "C":
-								this.aks.Game.onCreate(!loc4,loc5.substr(4));
-								break;
-							case "J":
-								this.aks.Game.onJoin(loc5.substr(3));
-								break;
-							case "P":
-								this.aks.Game.onPositionStart(loc5.substr(2));
-								break;
-							default:
-								switch(null)
-								{
-									case "R":
-										this.aks.Game.onReady(loc5.substr(2));
-										break loop13;
-									case "S":
-										this.aks.Game.onStartToPlay();
-										break loop13;
-									case "E":
-										this.aks.Game.onEnd(loc5.substr(2));
-										break loop13;
-									case "M":
-										this.aks.Game.onMovement(loc5.substr(3));
-										break loop13;
-									case "c":
-										this.aks.Game.onChallenge(loc5.substr(2));
-										break loop13;
-									default:
-										switch(null)
-										{
-											case "t":
-												this.aks.Game.onTeam(loc5.substr(2));
-												break loop13;
-											case "V":
-												this.aks.Game.onLeave(true,loc5.substr(2));
-												break loop13;
-											case "f":
-												this.aks.Game.onFlag(loc5.substr(2));
-												break loop13;
-											case "I":
-												switch(loc5.charAt(2))
-												{
-													case "C":
-														this.aks.Game.onPlayersCoordinates(loc5.substr(4));
-														break;
-													case "E":
-														this.aks.Game.onEffect(loc5.substr(3));
-														break;
-													case "e":
-														this.aks.Game.onClearAllEffect(loc5.substr(3));
-														break;
-													default:
-														if(loc0 !== "P")
-														{
-															this.defaultProcessAction(loc2,loc3,loc4,loc5);
-															break;
-														}
-														this.aks.Game.onPVP(loc5.substr(3),false);
-														break;
-												}
-												break loop13;
-											case "D":
-												loop17:
-												switch(loc5.charAt(2))
-												{
-													case "M":
-														this.aks.Game.onMapData(loc5.substr(4));
-														break;
-													case "K":
-														this.aks.Game.onMapLoaded();
-														break;
-													case "C":
-														this.aks.Game.onCellData(loc5.substr(3));
-														break;
-													case "Z":
-														this.aks.Game.onZoneData(loc5.substring(3));
-														break;
-													default:
-														switch(null)
-														{
-															case "O":
-																this.aks.Game.onCellObject(loc5.substring(3));
-																break loop17;
-															case "F":
-																this.aks.Game.onFrameObject2(loc5.substring(4));
-																break loop17;
-															case "E":
-																this.aks.Game.onFrameObjectExternal(loc5.substring(4));
-																break loop17;
-															default:
-																this.defaultProcessAction(loc2,loc3,loc4,loc5);
-														}
-												}
-												break loop13;
-											default:
-												switch(null)
-												{
-													case "d":
-														switch(loc5.charAt(3))
-														{
-															case "K":
-																this.aks.Game.onFightChallengeUpdate(loc5.substr(4),true);
-																break;
-															case "O":
-																this.aks.Game.onFightChallengeUpdate(loc5.substr(4),false);
-																break;
-															default:
-																this.aks.Game.onFightChallenge(loc5.substr(2));
-														}
-														break loop13;
-													case "A":
-														switch(loc5.charAt(2))
-														{
-															case "S":
-																this.aks.GameActions.onActionsStart(loc5.substr(3));
-																break;
-															case "F":
-																this.aks.GameActions.onActionsFinish(loc5.substr(3));
-																break;
-															default:
-																this.aks.GameActions.onActions(loc5.substr(2));
-														}
-														break loop13;
-													case "T":
-														loop22:
-														switch(loc5.charAt(2))
-														{
-															case "S":
-																this.aks.Game.onTurnStart(loc5.substr(3));
-																break;
-															case "F":
-																this.aks.Game.onTurnFinish(loc5.substr(3));
-																break;
-															default:
-																switch(null)
-																{
-																	case "L":
-																		this.aks.Game.onTurnlist(loc5.substr(4));
-																		break loop22;
-																	case "M":
-																		this.aks.Game.onTurnMiddle(loc5.substr(4));
-																		break loop22;
-																	case "R":
-																		this.aks.Game.onTurnReady(loc5.substr(3));
-																		break loop22;
-																	default:
-																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																}
-														}
-														break loop13;
-													case "X":
-														this.aks.Game.onExtraClip(loc5.substr(2));
-														break loop13;
-													default:
-														switch(null)
-														{
-															case "o":
-																this.aks.Game.onFightOption(loc5.substr(2));
-																break loop13;
-															case "O":
-																this.aks.Game.onGameOver();
-																break loop13;
-															default:
-																this.defaultProcessAction(loc2,loc3,loc4,loc5);
-														}
-												}
-										}
-								}
+							var var6 = false;
+							var var7 = false;
+							switch(var5.charAt(2))
+							{
+								case "n":
+									var6 = true;
+									break;
+								case "c":
+									var7 = true;
+							}
+							var var8 = var5.charAt(3) != undefined && var5.charAt(3) == "f";
+							if(this.api.ui.getUIComponent("EditPlayer") == undefined)
+							{
+								this.api.ui.loadUIComponent("EditPlayer","EditPlayer",{editName:var6,editColors:var7,force:var8});
+							}
 						}
 						break loop0;
 					default:
 						switch(null)
 						{
+							case "G":
+								if((var0 = var3) !== "C")
+								{
+									loop16:
+									switch(null)
+									{
+										case "J":
+											this.aks.Game.onJoin(var5.substr(3));
+											break;
+										case "P":
+											this.aks.Game.onPositionStart(var5.substr(2));
+											break;
+										case "R":
+											this.aks.Game.onReady(var5.substr(2));
+											break;
+										case "S":
+											this.aks.Game.onStartToPlay();
+											break;
+										default:
+											switch(null)
+											{
+												case "E":
+													this.aks.Game.onEnd(var5.substr(2));
+													break loop16;
+												case "M":
+													this.aks.Game.onMovement(var5.substr(3));
+													break loop16;
+												case "c":
+													this.aks.Game.onChallenge(var5.substr(2));
+													break loop16;
+												case "t":
+													this.aks.Game.onTeam(var5.substr(2));
+													break loop16;
+												default:
+													switch(null)
+													{
+														case "V":
+															this.aks.Game.onLeave(true,var5.substr(2));
+															break loop16;
+														case "f":
+															this.aks.Game.onFlag(var5.substr(2));
+															break loop16;
+														case "I":
+															switch(var5.charAt(2))
+															{
+																case "C":
+																	this.aks.Game.onPlayersCoordinates(var5.substr(4));
+																	break;
+																case "E":
+																	this.aks.Game.onEffect(var5.substr(3));
+																	break;
+																case "e":
+																	this.aks.Game.onClearAllEffect(var5.substr(3));
+																	break;
+																case "P":
+																	this.aks.Game.onPVP(var5.substr(3),false);
+																	break;
+																default:
+																	this.defaultProcessAction(var2,var3,var4,var5);
+															}
+															break loop16;
+														case "D":
+															if((var0 = var5.charAt(2)) !== "M")
+															{
+																loop20:
+																switch(null)
+																{
+																	case "K":
+																		this.aks.Game.onMapLoaded();
+																		break;
+																	case "C":
+																		this.aks.Game.onCellData(var5.substr(3));
+																		break;
+																	case "Z":
+																		this.aks.Game.onZoneData(var5.substring(3));
+																		break;
+																	case "O":
+																		this.aks.Game.onCellObject(var5.substring(3));
+																		break;
+																	default:
+																		switch(null)
+																		{
+																			case "F":
+																				this.aks.Game.onFrameObject2(var5.substring(4));
+																				break loop20;
+																			case "E":
+																				this.aks.Game.onFrameObjectExternal(var5.substring(4));
+																				break loop20;
+																			default:
+																				this.defaultProcessAction(var2,var3,var4,var5);
+																		}
+																}
+															}
+															else
+															{
+																this.aks.Game.onMapData(var5.substr(4));
+															}
+															break loop16;
+														default:
+															switch(null)
+															{
+																case "d":
+																	if((var0 = var5.charAt(3)) !== "K")
+																	{
+																		if(var0 !== "O")
+																		{
+																			this.aks.Game.onFightChallenge(var5.substr(2));
+																		}
+																		else
+																		{
+																			this.aks.Game.onFightChallengeUpdate(var5.substr(4),false);
+																		}
+																	}
+																	else
+																	{
+																		this.aks.Game.onFightChallengeUpdate(var5.substr(4),true);
+																	}
+																	break loop16;
+																case "A":
+																	switch(var5.charAt(2))
+																	{
+																		case "S":
+																			this.aks.GameActions.onActionsStart(var5.substr(3));
+																			break;
+																		case "F":
+																			this.aks.GameActions.onActionsFinish(var5.substr(3));
+																			break;
+																		default:
+																			this.aks.GameActions.onActions(var5.substr(2));
+																	}
+																	break loop16;
+																case "T":
+																	loop24:
+																	switch(var5.charAt(2))
+																	{
+																		case "S":
+																			this.aks.Game.onTurnStart(var5.substr(3));
+																			break;
+																		case "F":
+																			this.aks.Game.onTurnFinish(var5.substr(3));
+																			break;
+																		case "L":
+																			this.aks.Game.onTurnlist(var5.substr(4));
+																			break;
+																		default:
+																			switch(null)
+																			{
+																				case "M":
+																					this.aks.Game.onTurnMiddle(var5.substr(4));
+																					break loop24;
+																				case "R":
+																					this.aks.Game.onTurnReady(var5.substr(3));
+																					break loop24;
+																				default:
+																					this.defaultProcessAction(var2,var3,var4,var5);
+																			}
+																	}
+																	break loop16;
+																case "X":
+																	this.aks.Game.onExtraClip(var5.substr(2));
+																	break loop16;
+																case "o":
+																	this.aks.Game.onFightOption(var5.substr(2));
+																	break loop16;
+																default:
+																	if(var0 !== "O")
+																	{
+																		this.defaultProcessAction(var2,var3,var4,var5);
+																		break loop16;
+																	}
+																	this.aks.Game.onGameOver();
+																	break loop16;
+															}
+													}
+											}
+									}
+								}
+								else
+								{
+									this.aks.Game.onCreate(!var4,var5.substr(4));
+								}
+								break loop0;
 							case "c":
-								switch(loc3)
+								switch(var3)
 								{
 									case "M":
-										this.aks.Chat.onMessage(!loc4,loc5.substr(3));
+										this.aks.Chat.onMessage(!var4,var5.substr(3));
 										break;
 									case "s":
-										this.aks.Chat.onServerMessage(loc5.substr(2));
+										this.aks.Chat.onServerMessage(var5.substr(2));
 										break;
 									case "S":
-										this.aks.Chat.onSmiley(loc5.substr(2));
+										this.aks.Chat.onSmiley(var5.substr(2));
 										break;
 									case "C":
-										this.aks.Chat.onSubscribeChannel(loc5.substr(2));
+										this.aks.Chat.onSubscribeChannel(var5.substr(2));
 										break;
 									default:
-										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										this.defaultProcessAction(var2,var3,var4,var5);
 								}
 								break loop0;
 							case "D":
 								loop27:
-								switch(loc3)
+								switch(var3)
 								{
 									case "A":
-										this.aks.Dialog.onCustomAction(loc5.substr(2));
+										this.aks.Dialog.onCustomAction(var5.substr(2));
 										break;
 									case "C":
-										this.aks.Dialog.onCreate(!loc4,loc5.substr(3));
+										this.aks.Dialog.onCreate(!var4,var5.substr(3));
 										break;
 									case "Q":
-										this.aks.Dialog.onQuestion(loc5.substr(2));
+										this.aks.Dialog.onQuestion(var5.substr(2));
 										break;
 									default:
 										switch(null)
@@ -494,340 +499,346 @@ class dofus.aks.DataProcessor extends dofus.aks.Handler
 												this.aks.Dialog.onPause();
 												break loop27;
 											default:
-												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+												this.defaultProcessAction(var2,var3,var4,var5);
 										}
 								}
 								break loop0;
 							case "I":
-								if((loc0 = loc3) !== "M")
+								loop29:
+								switch(var3)
 								{
-									switch(null)
-									{
-										case "C":
-											this.aks.Infos.onInfoCompass(loc5.substr(2));
-											break;
-										case "H":
-											this.aks.Infos.onInfoCoordinatespHighlight(loc5.substr(2));
-											break;
-										case "m":
-											this.aks.Infos.onMessage(loc5.substr(2));
-											break;
-										case "Q":
-											this.aks.Infos.onQuantity(loc5.substr(2));
-											break;
-										case "O":
-											this.aks.Infos.onObject(loc5.substr(2));
-											break;
-										case "L":
-											switch(loc5.charAt(2))
-											{
-												case "S":
-													this.aks.Infos.onLifeRestoreTimerStart(loc5.substr(3));
-													break;
-												case "F":
-													this.aks.Infos.onLifeRestoreTimerFinish(loc5.substr(3));
-													break;
-												default:
-													this.defaultProcessAction(loc2,loc3,loc4,loc5);
-											}
-											break;
-										default:
-											this.defaultProcessAction(loc2,loc3,loc4,loc5);
-									}
-								}
-								else
-								{
-									this.aks.Infos.onInfoMaps(loc5.substr(2));
+									case "M":
+										this.aks.Infos.onInfoMaps(var5.substr(2));
+										break;
+									case "C":
+										this.aks.Infos.onInfoCompass(var5.substr(2));
+										break;
+									case "H":
+										this.aks.Infos.onInfoCoordinatespHighlight(var5.substr(2));
+										break;
+									case "m":
+										this.aks.Infos.onMessage(var5.substr(2));
+										break;
+									case "Q":
+										this.aks.Infos.onQuantity(var5.substr(2));
+										break;
+									default:
+										switch(null)
+										{
+											case "O":
+												this.aks.Infos.onObject(var5.substr(2));
+												break loop29;
+											case "L":
+												switch(var5.charAt(2))
+												{
+													case "S":
+														this.aks.Infos.onLifeRestoreTimerStart(var5.substr(3));
+														break;
+													case "F":
+														this.aks.Infos.onLifeRestoreTimerFinish(var5.substr(3));
+														break;
+													default:
+														this.defaultProcessAction(var2,var3,var4,var5);
+												}
+												break loop29;
+											default:
+												this.defaultProcessAction(var2,var3,var4,var5);
+										}
 								}
 								break loop0;
 							case "S":
-								switch(loc3)
+								loop32:
+								switch(var3)
 								{
 									case "L":
-										if((loc0 = loc5.charAt(2)) !== "o")
+										if((var0 = var5.charAt(2)) !== "o")
 										{
-											this.aks.Spells.onList(loc5.substr(2));
+											this.aks.Spells.onList(var5.substr(2));
 										}
 										else
 										{
-											this.aks.Spells.onChangeOption(loc5.substr(3));
+											this.aks.Spells.onChangeOption(var5.substr(3));
 										}
 										break;
 									case "U":
-										this.aks.Spells.onUpgradeSpell(!loc4,loc5.substr(3));
-										break;
-									case "B":
-										this.aks.Spells.onSpellBoost(loc5.substr(2));
-										break;
-									case "F":
-										this.aks.Spells.onSpellForget(loc5.substr(2));
+										this.aks.Spells.onUpgradeSpell(!var4,var5.substr(3));
 										break;
 									default:
-										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+										switch(null)
+										{
+											case "B":
+												this.aks.Spells.onSpellBoost(var5.substr(2));
+												break loop32;
+											case "F":
+												this.aks.Spells.onSpellForget(var5.substr(2));
+												break loop32;
+											default:
+												this.defaultProcessAction(var2,var3,var4,var5);
+										}
 								}
 								break loop0;
 							default:
 								switch(null)
 								{
 									case "O":
-										loop33:
-										switch(loc3)
+										loop35:
+										switch(var3)
 										{
 											case "a":
-												this.aks.Items.onAccessories(loc5.substr(2));
+												this.aks.Items.onAccessories(var5.substr(2));
 												break;
 											case "D":
-												this.aks.Items.onDrop(!loc4,loc5.substr(3));
+												this.aks.Items.onDrop(!var4,var5.substr(3));
+												break;
+											case "A":
+												this.aks.Items.onAdd(!var4,var5.substr(3));
+												break;
+											case "C":
+												this.aks.Items.onChange(var5.substr(3));
+												break;
+											case "R":
+												this.aks.Items.onRemove(var5.substr(2));
 												break;
 											default:
 												switch(null)
 												{
-													case "A":
-														this.aks.Items.onAdd(!loc4,loc5.substr(3));
-														break loop33;
-													case "C":
-														this.aks.Items.onChange(loc5.substr(3));
-														break loop33;
-													case "R":
-														this.aks.Items.onRemove(loc5.substr(2));
-														break loop33;
 													case "Q":
-														this.aks.Items.onQuantity(loc5.substr(2));
-														break loop33;
+														this.aks.Items.onQuantity(var5.substr(2));
+														break loop35;
 													case "M":
-														this.aks.Items.onMovement(loc5.substr(2));
-														break loop33;
+														this.aks.Items.onMovement(var5.substr(2));
+														break loop35;
+													case "T":
+														this.aks.Items.onTool(var5.substr(2));
+														break loop35;
+													case "w":
+														this.aks.Items.onWeight(var5.substr(2));
+														break loop35;
+													case "S":
+														this.aks.Items.onItemSet(var5.substr(2));
+														break loop35;
 													default:
 														switch(null)
 														{
-															case "T":
-																this.aks.Items.onTool(loc5.substr(2));
-																break loop33;
-															case "w":
-																this.aks.Items.onWeight(loc5.substr(2));
-																break loop33;
-															case "S":
-																this.aks.Items.onItemSet(loc5.substr(2));
-																break loop33;
 															case "K":
-																this.aks.Items.onItemUseCondition(loc5.substr(2));
-																break loop33;
+																this.aks.Items.onItemUseCondition(var5.substr(2));
+																break loop35;
+															case "F":
+																this.aks.Items.onItemFound(var5.substr(2));
+																break loop35;
 															default:
-																if(loc0 !== "F")
-																{
-																	this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																	break loop33;
-																}
-																this.aks.Items.onItemFound(loc5.substr(2));
-																break loop33;
+																this.defaultProcessAction(var2,var3,var4,var5);
 														}
 												}
 										}
 										break loop0;
 									case "F":
-										switch(loc3)
+										switch(var3)
 										{
 											case "A":
-												this.aks.Friends.onAddFriend(!loc4,loc5.substr(3));
+												this.aks.Friends.onAddFriend(!var4,var5.substr(3));
 												break;
 											case "D":
-												this.aks.Friends.onRemoveFriend(!loc4,loc5.substr(3));
+												this.aks.Friends.onRemoveFriend(!var4,var5.substr(3));
 												break;
 											case "L":
-												this.aks.Friends.onFriendsList(loc5.substr(3));
+												this.aks.Friends.onFriendsList(var5.substr(3));
 												break;
 											case "S":
-												this.aks.Friends.onSpouse(loc5.substr(2));
-												break;
-											case "O":
-												this.aks.Friends.onNotifyChange(loc5.substr(2));
+												this.aks.Friends.onSpouse(var5.substr(2));
 												break;
 											default:
-												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+												if(var0 !== "O")
+												{
+													this.defaultProcessAction(var2,var3,var4,var5);
+													break;
+												}
+												this.aks.Friends.onNotifyChange(var5.substr(2));
+												break;
 										}
 										break loop0;
 									case "i":
-										switch(loc3)
+										switch(var3)
 										{
 											case "A":
-												this.aks.Enemies.onAddEnemy(!loc4,loc5.substr(3));
+												this.aks.Enemies.onAddEnemy(!var4,var5.substr(3));
 												break;
 											case "D":
-												this.aks.Enemies.onRemoveEnemy(!loc4,loc5.substr(3));
+												this.aks.Enemies.onRemoveEnemy(!var4,var5.substr(3));
 												break;
 											case "L":
-												this.aks.Enemies.onEnemiesList(loc5.substr(3));
+												this.aks.Enemies.onEnemiesList(var5.substr(3));
 												break;
 											default:
-												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+												this.defaultProcessAction(var2,var3,var4,var5);
 										}
 										break loop0;
 									case "K":
-										switch(loc3)
+										switch(var3)
 										{
 											case "C":
-												this.aks.Key.onCreate(loc5.substr(3));
+												this.aks.Key.onCreate(var5.substr(3));
 												break;
 											case "K":
-												this.aks.Key.onKey(!loc4);
+												this.aks.Key.onKey(!var4);
 												break;
 											case "V":
 												this.aks.Key.onLeave();
 												break;
 											default:
-												this.defaultProcessAction(loc2,loc3,loc4,loc5);
+												this.defaultProcessAction(var2,var3,var4,var5);
+										}
+										break loop0;
+									case "J":
+										loop41:
+										switch(var3)
+										{
+											case "S":
+												this.aks.Job.onSkills(var5.substr(3));
+												break;
+											case "X":
+												this.aks.Job.onXP(var5.substr(3));
+												break;
+											default:
+												switch(null)
+												{
+													case "N":
+														this.aks.Job.onLevel(var5.substr(2));
+														break loop41;
+													case "R":
+														this.aks.Job.onRemove(var5.substr(2));
+														break loop41;
+													case "O":
+														this.aks.Job.onOptions(var5.substr(2));
+														break loop41;
+													default:
+														this.defaultProcessAction(var2,var3,var4,var5);
+												}
 										}
 										break loop0;
 									default:
 										switch(null)
 										{
-											case "J":
-												loop40:
-												switch(loc3)
-												{
-													case "S":
-														this.aks.Job.onSkills(loc5.substr(3));
-														break;
-													case "X":
-														this.aks.Job.onXP(loc5.substr(3));
-														break;
-													default:
-														switch(null)
-														{
-															case "N":
-																this.aks.Job.onLevel(loc5.substr(2));
-																break loop40;
-															case "R":
-																this.aks.Job.onRemove(loc5.substr(2));
-																break loop40;
-															case "O":
-																this.aks.Job.onOptions(loc5.substr(2));
-																break loop40;
-															default:
-																this.defaultProcessAction(loc2,loc3,loc4,loc5);
-														}
-												}
-												break loop0;
 											case "E":
-												loop42:
-												switch(loc3)
+												loop44:
+												switch(var3)
 												{
 													case "R":
-														this.aks.Exchange.onRequest(!loc4,loc5.substr(3));
+														this.aks.Exchange.onRequest(!var4,var5.substr(3));
 														break;
 													case "K":
-														this.aks.Exchange.onReady(loc5.substr(2));
+														this.aks.Exchange.onReady(var5.substr(2));
 														break;
 													case "V":
-														this.aks.Exchange.onLeave(!loc4,loc5.substr(2));
+														this.aks.Exchange.onLeave(!var4,var5.substr(2));
 														break;
 													default:
 														switch(null)
 														{
 															case "C":
-																this.aks.Exchange.onCreate(!loc4,loc5.substr(3));
-																break loop42;
+																this.aks.Exchange.onCreate(!var4,var5.substr(3));
+																break loop44;
 															case "c":
-																this.aks.Exchange.onCraft(!loc4,loc5.substr(3));
-																break loop42;
+																this.aks.Exchange.onCraft(!var4,var5.substr(3));
+																break loop44;
 															case "M":
-																this.aks.Exchange.onLocalMovement(!loc4,loc5.substr(3));
-																break loop42;
+																this.aks.Exchange.onLocalMovement(!var4,var5.substr(3));
+																break loop44;
 															case "m":
-																this.aks.Exchange.onDistantMovement(!loc4,loc5.substr(3));
-																break loop42;
+																this.aks.Exchange.onDistantMovement(!var4,var5.substr(3));
+																break loop44;
 															default:
 																switch(null)
 																{
 																	case "r":
-																		this.aks.Exchange.onCoopMovement(!loc4,loc5.substr(3));
-																		break loop42;
+																		this.aks.Exchange.onCoopMovement(!var4,var5.substr(3));
+																		break loop44;
 																	case "p":
-																		this.aks.Exchange.onPayMovement(!loc4,loc5.substr(2));
-																		break loop42;
+																		this.aks.Exchange.onPayMovement(!var4,var5.substr(2));
+																		break loop44;
 																	case "s":
-																		this.aks.Exchange.onStorageMovement(!loc4,loc5.substr(3));
-																		break loop42;
+																		this.aks.Exchange.onStorageMovement(!var4,var5.substr(3));
+																		break loop44;
 																	case "i":
-																		this.aks.Exchange.onPlayerShopMovement(!loc4,loc5.substr(3));
-																		break loop42;
+																		this.aks.Exchange.onPlayerShopMovement(!var4,var5.substr(3));
+																		break loop44;
 																	case "W":
-																		this.aks.Exchange.onCraftPublicMode(loc5.substr(2));
-																		break loop42;
+																		this.aks.Exchange.onCraftPublicMode(var5.substr(2));
+																		break loop44;
 																	default:
 																		switch(null)
 																		{
 																			case "e":
-																				this.aks.Exchange.onMountStorage(loc5.substr(2));
-																				break loop42;
+																				this.aks.Exchange.onMountStorage(var5.substr(2));
+																				break loop44;
 																			case "f":
-																				this.aks.Exchange.onMountPark(loc5.substr(2));
-																				break loop42;
+																				this.aks.Exchange.onMountPark(var5.substr(2));
+																				break loop44;
 																			case "w":
-																				this.aks.Exchange.onMountPods(loc5.substr(2));
-																				break loop42;
+																				this.aks.Exchange.onMountPods(var5.substr(2));
+																				break loop44;
 																			case "L":
-																				this.aks.Exchange.onList(loc5.substr(2));
-																				break loop42;
+																				this.aks.Exchange.onList(var5.substr(2));
+																				break loop44;
+																			case "S":
+																				this.aks.Exchange.onSell(!var4);
+																				break loop44;
 																			default:
 																				switch(null)
 																				{
-																					case "S":
-																						this.aks.Exchange.onSell(!loc4);
-																						break loop42;
 																					case "B":
-																						this.aks.Exchange.onBuy(!loc4);
-																						break loop42;
+																						this.aks.Exchange.onBuy(!var4);
+																						break loop44;
 																					case "q":
-																						this.aks.Exchange.onAskOfflineExchange(loc5.substr(2));
-																						break loop42;
+																						this.aks.Exchange.onAskOfflineExchange(var5.substr(2));
+																						break loop44;
 																					case "H":
-																						loop47:
-																						switch(loc5.charAt(2))
+																						loop49:
+																						switch(var5.charAt(2))
 																						{
 																							case "S":
-																								this.aks.Exchange.onSearch(loc5.substr(3));
+																								this.aks.Exchange.onSearch(var5.substr(3));
 																								break;
 																							case "L":
-																								this.aks.Exchange.onBigStoreTypeItemsList(loc5.substr(3));
+																								this.aks.Exchange.onBigStoreTypeItemsList(var5.substr(3));
 																								break;
 																							case "M":
-																								this.aks.Exchange.onBigStoreTypeItemsMovement(loc5.substr(3));
+																								this.aks.Exchange.onBigStoreTypeItemsMovement(var5.substr(3));
 																								break;
 																							case "l":
-																								this.aks.Exchange.onBigStoreItemsList(loc5.substr(3));
+																								this.aks.Exchange.onBigStoreItemsList(var5.substr(3));
 																								break;
 																							default:
 																								switch(null)
 																								{
 																									case "m":
-																										this.aks.Exchange.onBigStoreItemsMovement(loc5.substr(3));
-																										break loop47;
+																										this.aks.Exchange.onBigStoreItemsMovement(var5.substr(3));
+																										break loop49;
 																									case "P":
-																										this.aks.Exchange.onItemMiddlePriceInBigStore(loc5.substr(3));
-																										break loop47;
+																										this.aks.Exchange.onItemMiddlePriceInBigStore(var5.substr(3));
+																										break loop49;
 																									default:
-																										this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																										this.defaultProcessAction(var2,var3,var4,var5);
 																								}
 																						}
-																						break loop42;
+																						break loop44;
 																					case "J":
-																						this.aks.Exchange.onCrafterListChanged(loc5.substr(2));
-																						break loop42;
+																						this.aks.Exchange.onCrafterListChanged(var5.substr(2));
+																						break loop44;
+																					case "j":
+																						this.aks.Exchange.onCrafterReference(var5.substr(2));
+																						break loop44;
 																					default:
 																						switch(null)
 																						{
-																							case "j":
-																								this.aks.Exchange.onCrafterReference(loc5.substr(2));
-																								break loop42;
 																							case "A":
-																								this.aks.Exchange.onCraftLoop(loc5.substr(2));
-																								break loop42;
+																								this.aks.Exchange.onCraftLoop(var5.substr(2));
+																								break loop44;
 																							case "a":
-																								this.aks.Exchange.onCraftLoopEnd(loc5.substr(2));
-																								break loop42;
+																								this.aks.Exchange.onCraftLoopEnd(var5.substr(2));
+																								break loop44;
 																							default:
-																								this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																								this.defaultProcessAction(var2,var3,var4,var5);
 																						}
 																				}
 																		}
@@ -836,455 +847,454 @@ class dofus.aks.DataProcessor extends dofus.aks.Handler
 												}
 												break loop0;
 											case "h":
-												loop50:
-												switch(loc3)
+												loop52:
+												switch(var3)
 												{
 													case "L":
-														this.aks.Houses.onList(loc5.substr(2));
+														this.aks.Houses.onList(var5.substr(2));
 														break;
 													case "P":
-														this.aks.Houses.onProperties(loc5.substr(2));
+														this.aks.Houses.onProperties(var5.substr(2));
 														break;
 													case "X":
-														this.aks.Houses.onLockedProperty(loc5.substr(2));
+														this.aks.Houses.onLockedProperty(var5.substr(2));
+														break;
+													case "C":
+														this.aks.Houses.onCreate(var5.substr(3));
+														break;
+													case "S":
+														this.aks.Houses.onSell(!var4,var5.substr(3));
+														break;
+													case "B":
+														this.aks.Houses.onBuy(!var4,var5.substr(3));
 														break;
 													default:
 														switch(null)
 														{
-															case "C":
-																this.aks.Houses.onCreate(loc5.substr(3));
-																break loop50;
-															case "S":
-																this.aks.Houses.onSell(!loc4,loc5.substr(3));
-																break loop50;
-															case "B":
-																this.aks.Houses.onBuy(!loc4,loc5.substr(3));
-																break loop50;
 															case "V":
 																this.aks.Houses.onLeave();
-																break loop50;
+																break loop52;
+															case "G":
+																this.aks.Houses.onGuildInfos(var5.substr(2));
+																break loop52;
 															default:
-																if(loc0 !== "G")
-																{
-																	this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																	break loop50;
-																}
-																this.aks.Houses.onGuildInfos(loc5.substr(2));
-																break loop50;
+																this.defaultProcessAction(var2,var3,var4,var5);
 														}
 												}
 												break loop0;
 											case "s":
-												switch(loc3)
+												switch(var3)
 												{
 													case "L":
-														this.aks.Storages.onList(loc5.substr(2));
+														this.aks.Storages.onList(var5.substr(2));
 														break;
 													case "X":
-														this.aks.Storages.onLockedProperty(loc5.substr(2));
+														this.aks.Storages.onLockedProperty(var5.substr(2));
 														break;
 													default:
-														this.defaultProcessAction(loc2,loc3,loc4,loc5);
+														this.defaultProcessAction(var2,var3,var4,var5);
+												}
+												break loop0;
+											case "e":
+												switch(var3)
+												{
+													case "U":
+														this.aks.Emotes.onUse(!var4,var5.substr(3));
+														break;
+													case "L":
+														this.aks.Emotes.onList(var5.substr(2));
+														break;
+													case "A":
+														this.aks.Emotes.onAdd(var5.substr(2));
+														break;
+													case "R":
+														this.aks.Emotes.onRemove(var5.substr(2));
+														break;
+													case "D":
+														this.aks.Emotes.onDirection(var5.substr(2));
+														break;
+													default:
+														this.defaultProcessAction(var2,var3,var4,var5);
+												}
+												break loop0;
+											case "d":
+												switch(var3)
+												{
+													case "C":
+														this.aks.Documents.onCreate(!var4,var5.substr(3));
+														break;
+													case "V":
+														this.aks.Documents.onLeave();
+														break;
+													default:
+														this.defaultProcessAction(var2,var3,var4,var5);
 												}
 												break loop0;
 											default:
 												switch(null)
 												{
-													case "e":
-														loop54:
-														switch(loc3)
-														{
-															case "U":
-																this.aks.Emotes.onUse(!loc4,loc5.substr(3));
-																break;
-															case "L":
-																this.aks.Emotes.onList(loc5.substr(2));
-																break;
-															default:
-																switch(null)
-																{
-																	case "A":
-																		this.aks.Emotes.onAdd(loc5.substr(2));
-																		break loop54;
-																	case "R":
-																		this.aks.Emotes.onRemove(loc5.substr(2));
-																		break loop54;
-																	case "D":
-																		this.aks.Emotes.onDirection(loc5.substr(2));
-																		break loop54;
-																	default:
-																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																}
-														}
-														break loop0;
-													case "d":
-														switch(loc3)
-														{
-															case "C":
-																this.aks.Documents.onCreate(!loc4,loc5.substr(3));
-																break;
-															case "V":
-																this.aks.Documents.onLeave();
-																break;
-															default:
-																this.defaultProcessAction(loc2,loc3,loc4,loc5);
-														}
-														break loop0;
 													case "g":
-														loop57:
-														switch(loc3)
+														loop58:
+														switch(var3)
 														{
 															case "n":
 																this.aks.Guild.onNew();
 																break;
 															case "C":
-																this.aks.Guild.onCreate(!loc4,loc5.substr(3));
+																this.aks.Guild.onCreate(!var4,var5.substr(3));
+																break;
+															case "S":
+																this.aks.Guild.onStats(var5.substr(2));
+																break;
+															case "I":
+																if((var0 = var5.charAt(2)) !== "G")
+																{
+																	switch(null)
+																	{
+																		case "M":
+																			this.aks.Guild.onInfosMembers(var5.substr(3));
+																			break;
+																		case "B":
+																			this.aks.Guild.onInfosBoosts(var5.substr(3));
+																			break;
+																		case "F":
+																			this.aks.Guild.onInfosMountPark(var5.substr(3));
+																			break;
+																		case "T":
+																			if((var0 = var5.charAt(3)) !== "M")
+																			{
+																				switch(null)
+																				{
+																					case "P":
+																						this.aks.Guild.onInfosTaxCollectorsPlayers(var5.substr(4));
+																						break;
+																					case "p":
+																						this.aks.Guild.onInfosTaxCollectorsAttackers(var5.substr(4));
+																						break;
+																					default:
+																						this.defaultProcessAction(var2,var3,var4,var5);
+																				}
+																			}
+																			else
+																			{
+																				this.aks.Guild.onInfosTaxCollectorsMovement(var5.substr(4));
+																			}
+																			break;
+																		default:
+																			if(var0 !== "H")
+																			{
+																				this.defaultProcessAction(var2,var3,var4,var5);
+																				break;
+																			}
+																			this.aks.Guild.onInfosHouses(var5.substr(3));
+																			break;
+																	}
+																}
+																else
+																{
+																	this.aks.Guild.onInfosGeneral(var5.substr(3));
+																}
+																break;
+															case "J":
+																switch(var5.charAt(2))
+																{
+																	case "E":
+																		this.aks.Guild.onJoinError(var5.substr(3));
+																		break;
+																	case "R":
+																		this.aks.Guild.onRequestLocal(var5.substr(3));
+																		break;
+																	case "r":
+																		this.aks.Guild.onRequestDistant(var5.substr(3));
+																		break;
+																	case "K":
+																		this.aks.Guild.onJoinOk(var5.substr(3));
+																		break;
+																	default:
+																		if(var0 !== "C")
+																		{
+																			this.defaultProcessAction(var2,var3,var4,var5);
+																			break;
+																		}
+																		this.aks.Guild.onJoinDistantOk();
+																		break;
+																}
 																break;
 															default:
 																switch(null)
 																{
-																	case "S":
-																		this.aks.Guild.onStats(loc5.substr(2));
-																		break loop57;
-																	case "I":
-																		loop59:
-																		switch(loc5.charAt(2))
-																		{
-																			case "G":
-																				this.aks.Guild.onInfosGeneral(loc5.substr(3));
-																				break;
-																			case "M":
-																				this.aks.Guild.onInfosMembers(loc5.substr(3));
-																				break;
-																			default:
-																				switch(null)
-																				{
-																					case "B":
-																						this.aks.Guild.onInfosBoosts(loc5.substr(3));
-																						break loop59;
-																					case "F":
-																						this.aks.Guild.onInfosMountPark(loc5.substr(3));
-																						break loop59;
-																					case "T":
-																						switch(loc5.charAt(3))
-																						{
-																							case "M":
-																								this.aks.Guild.onInfosTaxCollectorsMovement(loc5.substr(4));
-																								break;
-																							case "P":
-																								this.aks.Guild.onInfosTaxCollectorsPlayers(loc5.substr(4));
-																								break;
-																							case "p":
-																								this.aks.Guild.onInfosTaxCollectorsAttackers(loc5.substr(4));
-																								break;
-																							default:
-																								this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																						}
-																						break loop59;
-																					case "H":
-																						this.aks.Guild.onInfosHouses(loc5.substr(3));
-																						break loop59;
-																					default:
-																						this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																				}
-																		}
-																		break loop57;
-																	case "J":
-																		switch(loc5.charAt(2))
-																		{
-																			case "E":
-																				this.aks.Guild.onJoinError(loc5.substr(3));
-																				break;
-																			case "R":
-																				this.aks.Guild.onRequestLocal(loc5.substr(3));
-																				break;
-																			case "r":
-																				this.aks.Guild.onRequestDistant(loc5.substr(3));
-																				break;
-																			case "K":
-																				this.aks.Guild.onJoinOk(loc5.substr(3));
-																				break;
-																			case "C":
-																				this.aks.Guild.onJoinDistantOk();
-																				break;
-																			default:
-																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																		}
-																		break loop57;
 																	case "V":
 																		this.aks.Guild.onLeave();
-																		break loop57;
+																		break loop58;
+																	case "K":
+																		this.aks.Guild.onBann(!var4,var5.substr(3));
+																		break loop58;
+																	case "H":
+																		this.aks.Guild.onHireTaxCollector(!var4,var5.substr(3));
+																		break loop58;
+																	case "A":
+																		this.aks.Guild.onTaxCollectorAttacked(var5.substr(2));
+																		break loop58;
+																	case "T":
+																		this.aks.Guild.onTaxCollectorInfo(var5.substr(2));
+																		break loop58;
 																	default:
-																		switch(null)
+																		if(var0 !== "U")
 																		{
-																			case "K":
-																				this.aks.Guild.onBann(!loc4,loc5.substr(3));
-																				break loop57;
-																			case "H":
-																				this.aks.Guild.onHireTaxCollector(!loc4,loc5.substr(3));
-																				break loop57;
-																			case "A":
-																				this.aks.Guild.onTaxCollectorAttacked(loc5.substr(2));
-																				break loop57;
-																			case "T":
-																				this.aks.Guild.onTaxCollectorInfo(loc5.substr(2));
-																				break loop57;
-																			case "U":
-																				this.aks.Guild.onUserInterfaceOpen(loc5.substr(2));
-																				break loop57;
-																			default:
-																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																			this.defaultProcessAction(var2,var3,var4,var5);
+																			break loop58;
 																		}
+																		this.aks.Guild.onUserInterfaceOpen(var5.substr(2));
+																		break loop58;
 																}
 														}
 														break loop0;
 													case "W":
-														if((loc0 = loc3) !== "C")
+														loop63:
+														switch(var3)
 														{
-															loop64:
+															case "C":
+																this.aks.Waypoints.onCreate(var5.substr(2));
+																break;
+															case "V":
+																this.aks.Waypoints.onLeave();
+																break;
+															case "U":
+																this.aks.Waypoints.onUseError();
+																break;
+															case "c":
+																this.aks.Subway.onCreate(var5.substr(2));
+																break;
+															case "v":
+																this.aks.Subway.onLeave();
+																break;
+															default:
+																switch(null)
+																{
+																	case "u":
+																		this.aks.Subway.onUseError();
+																		break loop63;
+																	case "p":
+																		this.aks.Subway.onPrismCreate(var5.substr(2));
+																		break loop63;
+																	case "w":
+																		this.aks.Subway.onPrismLeave();
+																		break loop63;
+																	default:
+																		this.defaultProcessAction(var2,var3,var4,var5);
+																}
+														}
+														break loop0;
+													case "a":
+														switch(var3)
+														{
+															case "l":
+																this.aks.Subareas.onList(var5.substr(3));
+																break;
+															case "m":
+																this.aks.Subareas.onAlignmentModification(var5.substr(2));
+																break;
+															case "M":
+																this.aks.Conquest.onAreaAlignmentChanged(var5.substr(2));
+																break;
+															default:
+																this.defaultProcessAction(var2,var3,var4,var5);
+														}
+														break loop0;
+													case "C":
+														if((var0 = var3) !== "I")
+														{
 															switch(null)
 															{
-																case "V":
-																	this.aks.Waypoints.onLeave();
+																case "B":
+																	this.aks.Conquest.onConquestBonus(var5.substr(2));
 																	break;
-																case "U":
-																	this.aks.Waypoints.onUseError();
+																case "A":
+																	this.aks.Conquest.onPrismAttacked(var5.substr(2));
 																	break;
-																case "c":
-																	this.aks.Subway.onCreate(loc5.substr(2));
+																case "S":
+																	this.aks.Conquest.onPrismSurvived(var5.substr(2));
 																	break;
-																case "v":
-																	this.aks.Subway.onLeave();
+																case "D":
+																	this.aks.Conquest.onPrismDead(var5.substr(2));
+																	break;
+																case "P":
+																	this.aks.Conquest.onPrismFightAddPlayer(var5.substr(2));
+																	break;
+																case "p":
+																	this.aks.Conquest.onPrismFightAddEnemy(var5.substr(2));
+																	break;
+																case "W":
+																	this.aks.Conquest.onWorldData(var5.substr(2));
+																	break;
+																case "b":
+																	this.aks.Conquest.onConquestBalance(var5.substr(2));
 																	break;
 																default:
-																	switch(null)
-																	{
-																		case "u":
-																			this.aks.Subway.onUseError();
-																			break loop64;
-																		case "p":
-																			this.aks.Subway.onPrismCreate(loc5.substr(2));
-																			break loop64;
-																		case "w":
-																			this.aks.Subway.onPrismLeave();
-																			break loop64;
-																		default:
-																			this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																	}
+																	this.defaultProcessAction(var2,var3,var4,var5);
 															}
 														}
 														else
 														{
-															this.aks.Waypoints.onCreate(loc5.substr(2));
+															switch(var5.charAt(2))
+															{
+																case "J":
+																	this.aks.Conquest.onPrismInfosJoined(var5.substr(3));
+																	break;
+																case "V":
+																	this.aks.Conquest.onPrismInfosClosing(var5.substr(3));
+																	break;
+																default:
+																	this.defaultProcessAction(var2,var3,var4,var5);
+															}
 														}
 														break loop0;
 													default:
 														switch(null)
 														{
-															case "a":
-																if((loc0 = loc3) !== "l")
+															case "Z":
+																if((var0 = var3) !== "S")
 																{
-																	switch(null)
+																	if(var0 !== "C")
 																	{
-																		case "m":
-																			this.aks.Subareas.onAlignmentModification(loc5.substr(2));
-																			break;
-																		case "M":
-																			this.aks.Conquest.onAreaAlignmentChanged(loc5.substr(2));
-																			break;
-																		default:
-																			this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																		this.defaultProcessAction(var2,var3,var4,var5);
+																	}
+																	else
+																	{
+																		this.aks.Specialization.onChange(var5.substr(2));
 																	}
 																}
 																else
 																{
-																	this.aks.Subareas.onList(loc5.substr(3));
+																	this.aks.Specialization.onSet(var5.substr(2));
 																}
 																break loop0;
-															case "C":
-																loop68:
-																switch(loc3)
+															case "f":
+																switch(var3)
 																{
-																	case "I":
-																		switch(loc5.charAt(2))
+																	case "C":
+																		this.aks.Fights.onCount(var5.substr(2));
+																		break;
+																	case "L":
+																		this.aks.Fights.onList(var5.substr(2));
+																		break;
+																	case "D":
+																		this.aks.Fights.onDetails(var5.substr(2));
+																		break;
+																	default:
+																		this.defaultProcessAction(var2,var3,var4,var5);
+																}
+																break loop0;
+															case "T":
+																switch(var3)
+																{
+																	case "C":
+																		this.aks.Tutorial.onCreate(var5.substr(2));
+																		break;
+																	case "T":
+																		this.aks.Tutorial.onShowTip(var5.substr(2));
+																		break;
+																	default:
+																		if(var0 !== "B")
 																		{
-																			case "J":
-																				this.aks.Conquest.onPrismInfosJoined(loc5.substr(3));
-																				break;
-																			case "V":
-																				this.aks.Conquest.onPrismInfosClosing(loc5.substr(3));
-																				break;
-																			default:
-																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																			this.defaultProcessAction(var2,var3,var4,var5);
+																			break;
 																		}
+																		this.aks.Tutorial.onGameBegin();
 																		break;
-																	case "B":
-																		this.aks.Conquest.onConquestBonus(loc5.substr(2));
-																		break;
-																	case "A":
-																		this.aks.Conquest.onPrismAttacked(loc5.substr(2));
+																}
+																break loop0;
+															case "Q":
+																switch(var3)
+																{
+																	case "L":
+																		this.aks.Quests.onList(var5.substr(3));
 																		break;
 																	case "S":
-																		this.aks.Conquest.onPrismSurvived(loc5.substr(2));
+																		this.aks.Quests.onStep(var5.substr(2));
+																		break;
+																	default:
+																		this.defaultProcessAction(var2,var3,var4,var5);
+																}
+																break loop0;
+															case "P":
+																loop72:
+																switch(var3)
+																{
+																	case "I":
+																		this.aks.Party.onInvite(!var4,var5.substr(3));
+																		break;
+																	case "L":
+																		this.aks.Party.onLeader(var5.substr(2));
+																		break;
+																	case "R":
+																		this.aks.Party.onRefuse(var5.substr(2));
+																		break;
+																	case "A":
+																		this.aks.Party.onAccept(var5.substr(2));
+																		break;
+																	case "C":
+																		this.aks.Party.onCreate(!var4,var5.substr(3));
 																		break;
 																	default:
 																		switch(null)
 																		{
-																			case "D":
-																				this.aks.Conquest.onPrismDead(loc5.substr(2));
-																				break loop68;
-																			case "P":
-																				this.aks.Conquest.onPrismFightAddPlayer(loc5.substr(2));
-																				break loop68;
-																			case "p":
-																				this.aks.Conquest.onPrismFightAddEnemy(loc5.substr(2));
-																				break loop68;
-																			case "W":
-																				this.aks.Conquest.onWorldData(loc5.substr(2));
-																				break loop68;
-																			case "b":
-																				this.aks.Conquest.onConquestBalance(loc5.substr(2));
-																				break loop68;
+																			case "V":
+																				this.aks.Party.onLeave(var5.substr(2));
+																				break loop72;
+																			case "F":
+																				this.aks.Party.onFollow(!var4,var5.substr(3));
+																				break loop72;
+																			case "M":
+																				this.aks.Party.onMovement(var5.substr(2));
+																				break loop72;
 																			default:
-																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
+																				this.defaultProcessAction(var2,var3,var4,var5);
 																		}
-																}
-																break loop0;
-															case "Z":
-																switch(loc3)
-																{
-																	case "S":
-																		this.aks.Specialization.onSet(loc5.substr(2));
-																		break;
-																	case "C":
-																		this.aks.Specialization.onChange(loc5.substr(2));
-																		break;
-																	default:
-																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																}
-																break loop0;
-															case "f":
-																switch(loc3)
-																{
-																	case "C":
-																		this.aks.Fights.onCount(loc5.substr(2));
-																		break;
-																	case "L":
-																		this.aks.Fights.onList(loc5.substr(2));
-																		break;
-																	case "D":
-																		this.aks.Fights.onDetails(loc5.substr(2));
-																		break;
-																	default:
-																		this.defaultProcessAction(loc2,loc3,loc4,loc5);
 																}
 																break loop0;
 															default:
-																loop73:
-																switch(null)
+																if(var0 !== "R")
 																{
-																	case "T":
-																		switch(loc3)
-																		{
-																			case "C":
-																				this.aks.Tutorial.onCreate(loc5.substr(2));
-																				break;
-																			case "T":
-																				this.aks.Tutorial.onShowTip(loc5.substr(2));
-																				break;
-																			case "B":
-																				this.aks.Tutorial.onGameBegin();
-																				break;
-																			default:
-																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																		}
-																		break;
-																	case "Q":
-																		switch(loc3)
-																		{
-																			case "L":
-																				this.aks.Quests.onList(loc5.substr(3));
-																				break;
-																			case "S":
-																				this.aks.Quests.onStep(loc5.substr(2));
-																				break;
-																			default:
-																				this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																		}
-																		break;
-																	case "P":
-																		loop76:
-																		switch(loc3)
-																		{
-																			case "I":
-																				this.aks.Party.onInvite(!loc4,loc5.substr(3));
-																				break;
-																			case "L":
-																				this.aks.Party.onLeader(loc5.substr(2));
-																				break;
-																			case "R":
-																				this.aks.Party.onRefuse(loc5.substr(2));
-																				break;
-																			case "A":
-																				this.aks.Party.onAccept(loc5.substr(2));
-																				break;
-																			case "C":
-																				this.aks.Party.onCreate(!loc4,loc5.substr(3));
-																				break;
-																			default:
-																				switch(null)
-																				{
-																					case "V":
-																						this.aks.Party.onLeave(loc5.substr(2));
-																						break loop76;
-																					case "F":
-																						this.aks.Party.onFollow(!loc4,loc5.substr(3));
-																						break loop76;
-																					case "M":
-																						this.aks.Party.onMovement(loc5.substr(2));
-																						break loop76;
-																					default:
-																						this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																				}
-																		}
-																		break;
-																	case "R":
-																		switch(loc3)
-																		{
-																			case "e":
-																				this.aks.Mount.onEquip(loc5.substr(2));
-																				break loop73;
-																			case "x":
-																				this.aks.Mount.onXP(loc5.substr(2));
-																				break loop73;
-																			default:
-																				switch(null)
-																				{
-																					case "n":
-																						this.aks.Mount.onName(loc5.substr(2));
-																						break loop73;
-																					case "d":
-																						this.aks.Mount.onData(loc5.substr(2));
-																						break loop73;
-																					case "p":
-																						this.aks.Mount.onMountPark(loc5.substr(2));
-																						break loop73;
-																					case "D":
-																						this.aks.Mount.onMountParkBuy(loc5.substr(2));
-																						break loop73;
-																					case "v":
-																						this.aks.Mount.onLeave(loc5.substr(2));
-																						break loop73;
-																					default:
-																						if(loc0 !== "r")
-																						{
-																							this.defaultProcessAction(loc2,loc3,loc4,loc5);
-																							break loop73;
-																						}
-																						this.aks.Mount.onRidingState(loc5.substr(2));
-																						break loop73;
-																				}
-																		}
+																	break loop0;
+																}
+																if((var0 = var3) !== "e")
+																{
+																	switch(null)
+																	{
+																		case "x":
+																			this.aks.Mount.onXP(var5.substr(2));
+																			break loop0;
+																		case "n":
+																			this.aks.Mount.onName(var5.substr(2));
+																			break loop0;
+																		case "d":
+																			this.aks.Mount.onData(var5.substr(2));
+																			break loop0;
+																		case "p":
+																			this.aks.Mount.onMountPark(var5.substr(2));
+																			break loop0;
+																		default:
+																			switch(null)
+																			{
+																				case "D":
+																					this.aks.Mount.onMountParkBuy(var5.substr(2));
+																					break loop0;
+																				case "v":
+																					this.aks.Mount.onLeave(var5.substr(2));
+																					break loop0;
+																				case "r":
+																					this.aks.Mount.onRidingState(var5.substr(2));
+																					break loop0;
+																				default:
+																					this.defaultProcessAction(var2,var3,var4,var5);
+																			}
+																	}
+																}
+																else
+																{
+																	this.aks.Mount.onEquip(var5.substr(2));
+																	break loop0;
 																}
 														}
 												}

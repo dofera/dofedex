@@ -9,15 +9,15 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 	function init()
 	{
 		super.init(false,dofus.graphics.gapi.ui.Options.CLASS_NAME);
-		var loc3 = System.capabilities.playerType == "StandAlone" && System.capabilities.os.indexOf("Windows") != -1;
-		this._eaDisplayStyles = new ank.utils.();
+		var var3 = System.capabilities.playerType == "StandAlone" && System.capabilities.os.indexOf("Windows") != -1;
+		this._eaDisplayStyles = new ank.utils.();
 		this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_NORMAL"),style:"normal"});
-		if(System.capabilities.screenResolutionY > 950 || loc3)
+		if(System.capabilities.screenResolutionY > 950 || var3)
 		{
-			this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_MEDIUM" + (!loc3?"":"_RES")),style:"medium"});
+			this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_MEDIUM" + (!var3?"":"_RES")),style:"medium"});
 		}
-		this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_MAXIMIZED" + (!loc3?"":"_RES")),style:"maximized"});
-		this._eaFlashQualities = new ank.utils.();
+		this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_MAXIMIZED" + (!var3?"":"_RES")),style:"maximized"});
+		this._eaFlashQualities = new ank.utils.();
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_LOW"),quality:"low"});
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_MEDIUM"),quality:"medium"});
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_HIGH"),quality:"high"});
@@ -159,84 +159,84 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 	function initData()
 	{
 		this._mcTabViewer._btnShortcuts.enabled = this.api.ui.getUIComponent("Banner") != undefined;
-		var loc2 = this.api.kernel.OptionsManager;
-		this._mcTabViewer._vsMusic.value = loc2.getOption("AudioMusicVol");
-		this._mcTabViewer._vsSounds.value = loc2.getOption("AudioEffectVol");
-		this._mcTabViewer._vsEnvironment.value = loc2.getOption("AudioEnvVol");
-		this._mcTabViewer._btnMuteMusic.selected = loc2.getOption("AudioMusicMute");
-		this._mcTabViewer._btnMuteSounds.selected = loc2.getOption("AudioEffectMute");
-		this._mcTabViewer._btnMuteEnvironment.selected = loc2.getOption("AudioEnvMute");
-		this._mcTabViewer._btnGrid.selected = loc2.getOption("Grid");
-		this._mcTabViewer._btnTransparency.selected = loc2.getOption("Transparency");
-		this._mcTabViewer._btnSpriteInfos.selected = loc2.getOption("SpriteInfos");
-		this._mcTabViewer._btnSpriteMove.selected = loc2.getOption("SpriteMove");
-		this._mcTabViewer._btnMapInfos.selected = loc2.getOption("MapInfos");
-		this._mcTabViewer._btnAutoHideSmileys.selected = loc2.getOption("AutoHideSmileys");
-		this._mcTabViewer._btnStringCourse.selected = loc2.getOption("StringCourse");
-		this._mcTabViewer._btnPointsOverHead.selected = loc2.getOption("PointsOverHead");
-		this._mcTabViewer._btnChatEffects.selected = loc2.getOption("ChatEffects");
-		this._mcTabViewer._btnBuff.selected = loc2.getOption("Buff");
-		this._mcTabViewer._btnGuildMessageSound.selected = loc2.getOption("GuildMessageSound");
-		this._mcTabViewer._btnStartTurnSound.selected = loc2.getOption("StartTurnSound");
-		this._mcTabViewer._btnBannerShortcuts.selected = loc2.getOption("BannerShortcuts");
-		this._mcTabViewer._btnTipsOnStart.selected = loc2.getOption("TipsOnStart");
-		this._mcTabViewer._btnViewAllMonsterInGroup.selected = loc2.getOption("ViewAllMonsterInGroup");
-		this._mcTabViewer._btnCharacterPreview.selected = loc2.getOption("CharacterPreview");
-		this._mcTabViewer._btnAura.selected = loc2.getOption("Aura");
-		this._mcTabViewer._btnTutorialTips.selected = loc2.getOption("DisplayingFreshTips");
-		this._mcTabViewer._btnCensorshipFilter.selected = loc2.getOption("CensorshipFilter");
-		this._mcTabViewer._btnCraftWrongConfirm.selected = loc2.getOption("AskForWrongCraft");
-		this._mcTabViewer._btnAdvancedLineOfSight.selected = loc2.getOption("AdvancedLineOfSight");
-		this._mcTabViewer._btnRemindTurnTime.selected = loc2.getOption("RemindTurnTime");
-		this._mcTabViewer._btnHideSpellBar.selected = loc2.getOption("HideSpellBar");
-		this._mcTabViewer._btnSeeAllSpell.selected = !loc2.getOption("SeeAllSpell");
-		this._mcTabViewer._btnSpeakingItems.selected = loc2.getOption("UseSpeakingItems");
-		this._mcTabViewer._btnConfirmDropItem.selected = loc2.getOption("ConfirmDropItem");
-		this._mcTabViewer._btnChatTimestamp.selected = loc2.getOption("TimestampInChat");
-		this._mcTabViewer._btnViewDicesDammages.selected = loc2.getOption("ViewDicesDammages");
-		this._mcTabViewer._btnMovableBar.selected = loc2.getOption("MovableBar");
-		this._mcTabViewer._vsMovableBarSize.value = loc2.getOption("MovableBarSize");
-		this._mcTabViewer._lblMovableBarSizeValue.text = loc2.getOption("MovableBarSize");
-		this._mcTabViewer._vsCreaturesMode.value = loc2.getOption("CreaturesMode");
-		this._mcTabViewer._lblCreaturesModeValue.text = !!_global.isFinite(loc2.getOption("CreaturesMode"))?loc2.getOption("CreaturesMode"):this.api.lang.getText("INFINIT");
+		var var2 = this.api.kernel.OptionsManager;
+		this._mcTabViewer._vsMusic.value = var2.getOption("AudioMusicVol");
+		this._mcTabViewer._vsSounds.value = var2.getOption("AudioEffectVol");
+		this._mcTabViewer._vsEnvironment.value = var2.getOption("AudioEnvVol");
+		this._mcTabViewer._btnMuteMusic.selected = var2.getOption("AudioMusicMute");
+		this._mcTabViewer._btnMuteSounds.selected = var2.getOption("AudioEffectMute");
+		this._mcTabViewer._btnMuteEnvironment.selected = var2.getOption("AudioEnvMute");
+		this._mcTabViewer._btnGrid.selected = var2.getOption("Grid");
+		this._mcTabViewer._btnTransparency.selected = var2.getOption("Transparency");
+		this._mcTabViewer._btnSpriteInfos.selected = var2.getOption("SpriteInfos");
+		this._mcTabViewer._btnSpriteMove.selected = var2.getOption("SpriteMove");
+		this._mcTabViewer._btnMapInfos.selected = var2.getOption("MapInfos");
+		this._mcTabViewer._btnAutoHideSmileys.selected = var2.getOption("AutoHideSmileys");
+		this._mcTabViewer._btnStringCourse.selected = var2.getOption("StringCourse");
+		this._mcTabViewer._btnPointsOverHead.selected = var2.getOption("PointsOverHead");
+		this._mcTabViewer._btnChatEffects.selected = var2.getOption("ChatEffects");
+		this._mcTabViewer._btnBuff.selected = var2.getOption("Buff");
+		this._mcTabViewer._btnGuildMessageSound.selected = var2.getOption("GuildMessageSound");
+		this._mcTabViewer._btnStartTurnSound.selected = var2.getOption("StartTurnSound");
+		this._mcTabViewer._btnBannerShortcuts.selected = var2.getOption("BannerShortcuts");
+		this._mcTabViewer._btnTipsOnStart.selected = var2.getOption("TipsOnStart");
+		this._mcTabViewer._btnViewAllMonsterInGroup.selected = var2.getOption("ViewAllMonsterInGroup");
+		this._mcTabViewer._btnCharacterPreview.selected = var2.getOption("CharacterPreview");
+		this._mcTabViewer._btnAura.selected = var2.getOption("Aura");
+		this._mcTabViewer._btnTutorialTips.selected = var2.getOption("DisplayingFreshTips");
+		this._mcTabViewer._btnCensorshipFilter.selected = var2.getOption("CensorshipFilter");
+		this._mcTabViewer._btnCraftWrongConfirm.selected = var2.getOption("AskForWrongCraft");
+		this._mcTabViewer._btnAdvancedLineOfSight.selected = var2.getOption("AdvancedLineOfSight");
+		this._mcTabViewer._btnRemindTurnTime.selected = var2.getOption("RemindTurnTime");
+		this._mcTabViewer._btnHideSpellBar.selected = var2.getOption("HideSpellBar");
+		this._mcTabViewer._btnSeeAllSpell.selected = !var2.getOption("SeeAllSpell");
+		this._mcTabViewer._btnSpeakingItems.selected = var2.getOption("UseSpeakingItems");
+		this._mcTabViewer._btnConfirmDropItem.selected = var2.getOption("ConfirmDropItem");
+		this._mcTabViewer._btnChatTimestamp.selected = var2.getOption("TimestampInChat");
+		this._mcTabViewer._btnViewDicesDammages.selected = var2.getOption("ViewDicesDammages");
+		this._mcTabViewer._btnMovableBar.selected = var2.getOption("MovableBar");
+		this._mcTabViewer._vsMovableBarSize.value = var2.getOption("MovableBarSize");
+		this._mcTabViewer._lblMovableBarSizeValue.text = var2.getOption("MovableBarSize");
+		this._mcTabViewer._vsCreaturesMode.value = var2.getOption("CreaturesMode");
+		this._mcTabViewer._lblCreaturesModeValue.text = !!_global.isFinite(var2.getOption("CreaturesMode"))?var2.getOption("CreaturesMode"):this.api.lang.getText("INFINIT");
 		this._mcTabViewer._cbDefaultQuality.dataProvider = this._eaFlashQualities;
-		this.selectQuality(loc2.getOption("DefaultQuality"));
+		this.selectQuality(var2.getOption("DefaultQuality"));
 		this._mcTabViewer._cbDisplayStyle.dataProvider = this._eaDisplayStyles;
-		var loc3 = System.capabilities.playerType == "PlugIn" || (System.capabilities.playerType == "ActiveX" || System.capabilities.playerType == "StandAlone" && System.capabilities.os.indexOf("Windows") != -1);
-		this.selectDisplayStyle(!!loc3?loc2.getOption("DisplayStyle"):"normal");
-		this._mcTabViewer._cbDisplayStyle.enabled = loc3;
-		var loc4 = new Color(this._mcTabViewer._cbDisplayStyle);
-		loc4.setTransform(!loc3?{ra:30,rb:149,ga:30,gb:145,ba:30,bb:119}:{ra:100,rb:0,ga:100,gb:0,ba:100,bb:0});
+		var var3 = System.capabilities.playerType == "PlugIn" || (System.capabilities.playerType == "ActiveX" || System.capabilities.playerType == "StandAlone" && System.capabilities.os.indexOf("Windows") != -1);
+		this.selectDisplayStyle(!!var3?var2.getOption("DisplayStyle"):"normal");
+		this._mcTabViewer._cbDisplayStyle.enabled = var3;
+		var var4 = new Color(this._mcTabViewer._cbDisplayStyle);
+		var4.setTransform(!var3?{ra:30,rb:149,ga:30,gb:145,ba:30,bb:119}:{ra:100,rb:0,ga:100,gb:0,ba:100,bb:0});
 	}
-	function selectQuality(loc2)
+	function selectQuality(var2)
 	{
-		var loc3 = 0;
-		var loc4 = 0;
-		while(loc4 < this._eaFlashQualities.length)
+		var var3 = 0;
+		var var4 = 0;
+		while(var4 < this._eaFlashQualities.length)
 		{
-			if(this._eaFlashQualities[loc4].quality == loc2)
+			if(this._eaFlashQualities[var4].quality == var2)
 			{
-				loc3 = loc4;
+				var3 = var4;
 				break;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		this._mcTabViewer._cbDefaultQuality.selectedIndex = loc3;
+		this._mcTabViewer._cbDefaultQuality.selectedIndex = var3;
 	}
-	function selectDisplayStyle(loc2)
+	function selectDisplayStyle(var2)
 	{
-		var loc3 = 0;
-		var loc4 = 0;
-		while(loc4 < this._eaDisplayStyles.length)
+		var var3 = 0;
+		var var4 = 0;
+		while(var4 < this._eaDisplayStyles.length)
 		{
-			if(this._eaDisplayStyles[loc4].style == loc2)
+			if(this._eaDisplayStyles[var4].style == var2)
 			{
-				loc3 = loc4;
+				var3 = var4;
 				break;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		this._mcTabViewer._cbDisplayStyle.selectedIndex = loc3;
+		this._mcTabViewer._cbDisplayStyle.selectedIndex = var3;
 	}
 	function updateCurrentTabInformations()
 	{
@@ -258,165 +258,163 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 		this.addToQueue({object:this,method:this.initTabTexts});
 		this.addToQueue({object:this,method:this.addTabListeners});
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
 		this._mcComboBoxPopup.removeMovieClip();
-		var loc3 = this["_btnTab" + this._sCurrentTab];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
-		this._sCurrentTab = loc2;
+		var var3 = this["_btnTab" + this._sCurrentTab];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
+		this._sCurrentTab = var2;
 		this._sbOptions.scrollPosition = 0;
 		this.updateCurrentTabInformations();
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		loop0:
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
-			case "_btnTabGeneral":
-			case "_btnTabSound":
-			case "_btnTabDisplay":
-				this.setCurrentTab(loc2.target._name.substr(7));
-				break;
 			default:
+				loop1:
 				switch(null)
 				{
+					case "_btnTabDisplay":
+						break loop0;
 					case "_btnMuteMusic":
-						this.api.kernel.OptionsManager.setOption("AudioMusicMute",loc2.target.selected);
-						break loop0;
+						this.api.kernel.OptionsManager.setOption("AudioMusicMute",var2.target.selected);
+						break;
 					case "_btnMuteSounds":
-						this.api.kernel.OptionsManager.setOption("AudioEffectMute",loc2.target.selected);
-						break loop0;
+						this.api.kernel.OptionsManager.setOption("AudioEffectMute",var2.target.selected);
+						break;
 					case "_btnMuteEnvironment":
-						this.api.kernel.OptionsManager.setOption("AudioEnvMute",loc2.target.selected);
-						break loop0;
-					case "_btnClose":
-					case "_btnClose2":
-						this.callClose();
-						break loop0;
+						this.api.kernel.OptionsManager.setOption("AudioEnvMute",var2.target.selected);
+						break;
 					default:
 						switch(null)
 						{
+							case "_btnClose":
+							case "_btnClose2":
+								this.callClose();
+								break loop1;
 							case "_btnDefault":
 								this.api.kernel.OptionsManager.loadDefault();
-								break loop0;
+								break loop1;
 							case "_btnShortcuts":
 								this.api.ui.loadUIComponent("Shortcuts","Shortcuts",undefined,{bAlwaysOnTop:true});
-								break loop0;
+								break loop1;
 							case "_btnClearCache":
 								this.api.kernel.askClearCache();
-								break loop0;
-							case "_btnGrid":
-								this.api.kernel.OptionsManager.setOption("Grid",loc2.target.selected);
-								break loop0;
-							case "_btnTransparency":
-								this.api.kernel.OptionsManager.setOption("Transparency",loc2.target.selected);
-								break loop0;
+								break loop1;
 							default:
 								switch(null)
 								{
+									case "_btnGrid":
+										this.api.kernel.OptionsManager.setOption("Grid",var2.target.selected);
+										break loop1;
+									case "_btnTransparency":
+										this.api.kernel.OptionsManager.setOption("Transparency",var2.target.selected);
+										break loop1;
 									case "_btnSpriteInfos":
-										this.api.kernel.OptionsManager.setOption("SpriteInfos",loc2.target.selected);
-										break loop0;
+										this.api.kernel.OptionsManager.setOption("SpriteInfos",var2.target.selected);
+										break loop1;
 									case "_btnSpriteMove":
-										this.api.kernel.OptionsManager.setOption("SpriteMove",loc2.target.selected);
-										break loop0;
+										this.api.kernel.OptionsManager.setOption("SpriteMove",var2.target.selected);
+										break loop1;
 									case "_btnMapInfos":
-										this.api.kernel.OptionsManager.setOption("MapInfos",loc2.target.selected);
-										break loop0;
-									case "_btnCraftWrongConfirm":
-										this.api.kernel.OptionsManager.setOption("AskForWrongCraft",loc2.target.selected);
-										break loop0;
-									case "_btnAutoHideSmileys":
-										this.api.kernel.OptionsManager.setOption("AutoHideSmileys",loc2.target.selected);
-										break loop0;
+										this.api.kernel.OptionsManager.setOption("MapInfos",var2.target.selected);
+										break loop1;
 									default:
 										switch(null)
 										{
+											case "_btnCraftWrongConfirm":
+												this.api.kernel.OptionsManager.setOption("AskForWrongCraft",var2.target.selected);
+												break loop1;
+											case "_btnAutoHideSmileys":
+												this.api.kernel.OptionsManager.setOption("AutoHideSmileys",var2.target.selected);
+												break loop1;
 											case "_btnStringCourse":
-												this.api.kernel.OptionsManager.setOption("StringCourse",loc2.target.selected);
-												break loop0;
+												this.api.kernel.OptionsManager.setOption("StringCourse",var2.target.selected);
+												break loop1;
 											case "_btnPointsOverHead":
-												this.api.kernel.OptionsManager.setOption("PointsOverHead",loc2.target.selected);
-												break loop0;
+												this.api.kernel.OptionsManager.setOption("PointsOverHead",var2.target.selected);
+												break loop1;
 											case "_btnChatEffects":
-												this.api.kernel.OptionsManager.setOption("ChatEffects",loc2.target.selected);
-												break loop0;
-											case "_btnBuff":
-												this.api.kernel.OptionsManager.setOption("Buff",loc2.target.selected);
-												break loop0;
+												this.api.kernel.OptionsManager.setOption("ChatEffects",var2.target.selected);
+												break loop1;
 											default:
 												switch(null)
 												{
+													case "_btnBuff":
+														this.api.kernel.OptionsManager.setOption("Buff",var2.target.selected);
+														break loop1;
 													case "_btnGuildMessageSound":
-														this.api.kernel.OptionsManager.setOption("GuildMessageSound",loc2.target.selected);
-														break loop0;
+														this.api.kernel.OptionsManager.setOption("GuildMessageSound",var2.target.selected);
+														break loop1;
 													case "_btnStartTurnSound":
-														this.api.kernel.OptionsManager.setOption("StartTurnSound",loc2.target.selected);
-														break loop0;
+														this.api.kernel.OptionsManager.setOption("StartTurnSound",var2.target.selected);
+														break loop1;
 													case "_btnBannerShortcuts":
-														this.api.kernel.OptionsManager.setOption("BannerShortcuts",loc2.target.selected);
-														break loop0;
+														this.api.kernel.OptionsManager.setOption("BannerShortcuts",var2.target.selected);
+														break loop1;
 													case "_btnTipsOnStart":
-														this.api.kernel.OptionsManager.setOption("TipsOnStart",loc2.target.selected);
-														break loop0;
-													case "_btnMovableBar":
-														this.api.kernel.OptionsManager.setOption("MovableBar",loc2.target.selected);
-														break loop0;
+														this.api.kernel.OptionsManager.setOption("TipsOnStart",var2.target.selected);
+														break loop1;
 													default:
 														switch(null)
 														{
+															case "_btnMovableBar":
+																this.api.kernel.OptionsManager.setOption("MovableBar",var2.target.selected);
+																break loop1;
 															case "_btnViewAllMonsterInGroup":
-																this.api.kernel.OptionsManager.setOption("ViewAllMonsterInGroup",loc2.target.selected);
-																break loop0;
+																this.api.kernel.OptionsManager.setOption("ViewAllMonsterInGroup",var2.target.selected);
+																break loop1;
 															case "_btnCharacterPreview":
-																this.api.kernel.OptionsManager.setOption("CharacterPreview",loc2.target.selected);
-																break loop0;
+																this.api.kernel.OptionsManager.setOption("CharacterPreview",var2.target.selected);
+																break loop1;
 															case "_btnAura":
-																this.api.kernel.OptionsManager.setOption("Aura",loc2.target.selected);
-																break loop0;
+																this.api.kernel.OptionsManager.setOption("Aura",var2.target.selected);
+																break loop1;
 															case "_btnTutorialTips":
-																this.api.kernel.OptionsManager.setOption("DisplayingFreshTips",loc2.target.selected);
-																break loop0;
-															case "_btnResetTips":
-																this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_RESET_TIPS"),"CAUTION_YESNO",{name:"ResetTips",listener:this});
-																break loop0;
+																this.api.kernel.OptionsManager.setOption("DisplayingFreshTips",var2.target.selected);
+																break loop1;
 															default:
 																switch(null)
 																{
+																	case "_btnResetTips":
+																		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_RESET_TIPS"),"CAUTION_YESNO",{name:"ResetTips",listener:this});
+																		break loop1;
 																	case "_btnCensorshipFilter":
-																		this.api.kernel.OptionsManager.setOption("CensorshipFilter",loc2.target.selected);
-																		break loop0;
+																		this.api.kernel.OptionsManager.setOption("CensorshipFilter",var2.target.selected);
+																		break loop1;
 																	case "_btnAdvancedLineOfSight":
-																		this.api.kernel.OptionsManager.setOption("AdvancedLineOfSight",loc2.target.selected);
-																		break loop0;
+																		this.api.kernel.OptionsManager.setOption("AdvancedLineOfSight",var2.target.selected);
+																		break loop1;
 																	case "_btnRemindTurnTime":
-																		this.api.kernel.OptionsManager.setOption("RemindTurnTime",loc2.target.selected);
-																		break loop0;
+																		this.api.kernel.OptionsManager.setOption("RemindTurnTime",var2.target.selected);
+																		break loop1;
 																	case "_btnHideSpellBar":
-																		this.api.kernel.OptionsManager.setOption("HideSpellBar",loc2.target.selected);
-																		break loop0;
+																		this.api.kernel.OptionsManager.setOption("HideSpellBar",var2.target.selected);
+																		break loop1;
 																	default:
 																		switch(null)
 																		{
 																			case "_btnSeeAllSpell":
-																				this.api.kernel.OptionsManager.setOption("SeeAllSpell",!loc2.target.selected);
+																				this.api.kernel.OptionsManager.setOption("SeeAllSpell",!var2.target.selected);
 																				break;
 																			case "_btnSpeakingItems":
-																				this.api.kernel.OptionsManager.setOption("UseSpeakingItems",loc2.target.selected);
+																				this.api.kernel.OptionsManager.setOption("UseSpeakingItems",var2.target.selected);
 																				break;
 																			case "_btnConfirmDropItem":
-																				this.api.kernel.OptionsManager.setOption("ConfirmDropItem",loc2.target.selected);
+																				this.api.kernel.OptionsManager.setOption("ConfirmDropItem",var2.target.selected);
 																				break;
 																			case "_btnChatTimestamp":
-																				this.api.kernel.OptionsManager.setOption("TimestampInChat",loc2.target.selected);
+																				this.api.kernel.OptionsManager.setOption("TimestampInChat",var2.target.selected);
 																				this.api.kernel.ChatManager.refresh();
 																				break;
 																			case "_btnViewDicesDammages":
-																				this.api.kernel.OptionsManager.setOption("ViewDicesDammages",loc2.target.selected);
+																				this.api.kernel.OptionsManager.setOption("ViewDicesDammages",var2.target.selected);
 																		}
 																}
 														}
@@ -425,174 +423,182 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 								}
 						}
 				}
+			case "_btnTabGeneral":
+			case "_btnTabSound":
 		}
+		this.setCurrentTab(var2.target._name.substr(7));
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_vsMusic":
-				this.api.kernel.OptionsManager.setOption("AudioMusicVol",loc2.target.value);
+				this.api.kernel.OptionsManager.setOption("AudioMusicVol",var2.target.value);
 				break;
 			case "_vsSounds":
-				this.api.kernel.OptionsManager.setOption("AudioEffectVol",loc2.target.value);
+				this.api.kernel.OptionsManager.setOption("AudioEffectVol",var2.target.value);
 				break;
 			case "_vsEnvironment":
-				this.api.kernel.OptionsManager.setOption("AudioEnvVol",loc2.target.value);
+				this.api.kernel.OptionsManager.setOption("AudioEnvVol",var2.target.value);
 				break;
 			default:
 				switch(null)
 				{
 					case "_vsCreaturesMode":
-						if(loc2.target.value == loc2.target.max)
+						if(var2.target.value == var2.target.max)
 						{
 							this.api.kernel.OptionsManager.setOption("CreaturesMode",Number.POSITIVE_INFINITY);
 						}
-						else if(loc2.target.value == loc2.target.min)
+						else if(var2.target.value == var2.target.min)
 						{
 							this.api.kernel.OptionsManager.setOption("CreaturesMode",0);
 						}
 						else
 						{
-							this.api.kernel.OptionsManager.setOption("CreaturesMode",Math.floor(loc2.target.value));
+							this.api.kernel.OptionsManager.setOption("CreaturesMode",Math.floor(var2.target.value));
 						}
 						break;
 					case "_vsMovableBarSize":
-						var loc3 = Math.floor(loc2.target.value);
-						this.api.kernel.OptionsManager.setOption("MovableBarSize",loc3);
-						this._mcTabViewer._lblMovableBarSizeValue.text = loc3.toString();
+						var var3 = Math.floor(var2.target.value);
+						this.api.kernel.OptionsManager.setOption("MovableBarSize",var3);
+						this._mcTabViewer._lblMovableBarSizeValue.text = var3.toString();
 				}
 		}
 	}
-	function optionChanged(loc2)
+	function optionChanged(var2)
 	{
 		loop0:
-		switch(loc2.key)
+		switch(var2.key)
 		{
 			case "Grid":
-				this._mcTabViewer._btnGrid.selected = loc2.value;
+				this._mcTabViewer._btnGrid.selected = var2.value;
 				break;
 			case "Transparency":
-				this._mcTabViewer._btnTransparency.selected = loc2.value;
+				this._mcTabViewer._btnTransparency.selected = var2.value;
 				break;
 			case "SpriteInfos":
-				this._mcTabViewer._btnSpriteInfos.selected = loc2.value;
+				this._mcTabViewer._btnSpriteInfos.selected = var2.value;
 				break;
 			default:
 				switch(null)
 				{
 					case "SpriteMove":
-						this._mcTabViewer._btnSpriteMove.selected = loc2.value;
+						this._mcTabViewer._btnSpriteMove.selected = var2.value;
 						break loop0;
 					case "MapInfos":
-						this._mcTabViewer._btnMapInfos.selected = loc2.value;
+						this._mcTabViewer._btnMapInfos.selected = var2.value;
 						break loop0;
 					case "AutoHideSmileys":
-						this._mcTabViewer._btnAutoHideSmileys.selected = loc2.value;
+						this._mcTabViewer._btnAutoHideSmileys.selected = var2.value;
 						break loop0;
 					case "StringCourse":
-						this._mcTabViewer._btnStringCourse.selected = loc2.value;
+						this._mcTabViewer._btnStringCourse.selected = var2.value;
 						break loop0;
 					default:
 						switch(null)
 						{
 							case "PointsOverHead":
-								this._mcTabViewer._btnPointsOverHead.selected = loc2.value;
+								this._mcTabViewer._btnPointsOverHead.selected = var2.value;
 								break loop0;
 							case "ChatEffects":
-								this._mcTabViewer._btnChatEffects.selected = loc2.value;
+								this._mcTabViewer._btnChatEffects.selected = var2.value;
 								break loop0;
 							case "CreaturesMode":
-								this._mcTabViewer._vsCreaturesMode.value = loc2.value;
-								this._mcTabViewer._lblCreaturesModeValue.text = !_global.isFinite(loc2.value)?this.api.lang.getText("INFINIT"):loc2.value;
+								this._mcTabViewer._vsCreaturesMode.value = var2.value;
+								this._mcTabViewer._lblCreaturesModeValue.text = !_global.isFinite(var2.value)?this.api.lang.getText("INFINIT"):var2.value;
 								break loop0;
 							case "Buff":
-								this._mcTabViewer._btnBuff.selected = loc2.value;
-								break loop0;
-							case "GuildMessageSound":
-								this._mcTabViewer._btnGuildMessageSound.selected = loc2.value;
+								this._mcTabViewer._btnBuff.selected = var2.value;
 								break loop0;
 							default:
 								switch(null)
 								{
+									case "GuildMessageSound":
+										this._mcTabViewer._btnGuildMessageSound.selected = var2.value;
+										break loop0;
 									case "StartTurnSound":
-										this._mcTabViewer._btnStartTurnSound.selected = loc2.value;
+										this._mcTabViewer._btnStartTurnSound.selected = var2.value;
 										break loop0;
 									case "BannerShortcuts":
-										this._mcTabViewer._btnBannerShortcuts.selected = loc2.value;
+										this._mcTabViewer._btnBannerShortcuts.selected = var2.value;
 										break loop0;
 									case "TipsOnStart":
-										this._mcTabViewer._btnTipsOnStart.selected = loc2.value;
-										break loop0;
-									case "DisplayStyle":
-										this._mcTabViewer.selectDisplayStyle(loc2.value);
+										this._mcTabViewer._btnTipsOnStart.selected = var2.value;
 										break loop0;
 									default:
 										switch(null)
 										{
+											case "DisplayStyle":
+												this._mcTabViewer.selectDisplayStyle(var2.value);
+												break loop0;
 											case "MovableBar":
-												this._mcTabViewer._btnMovableBar.selected = loc2.value;
+												this._mcTabViewer._btnMovableBar.selected = var2.value;
 												break loop0;
 											case "MovableBarSize":
-												this._mcTabViewer._vsMovableBarSize.value = loc2.value;
+												this._mcTabViewer._vsMovableBarSize.value = var2.value;
 												break loop0;
 											case "ViewAllMonsterInGroup":
-												this._mcTabViewer._btnViewAllMonsterInGroup.selected = loc2.value;
-												break loop0;
-											case "CharacterPreview":
-												this._mcTabViewer._btnCharacterPreview.selected = loc2.value;
-												break loop0;
-											case "Aura":
-												this._mcTabViewer._btnAura.selected = loc2.value;
+												this._mcTabViewer._btnViewAllMonsterInGroup.selected = var2.value;
 												break loop0;
 											default:
 												switch(null)
 												{
+													case "CharacterPreview":
+														this._mcTabViewer._btnCharacterPreview.selected = var2.value;
+														break loop0;
+													case "Aura":
+														this._mcTabViewer._btnAura.selected = var2.value;
+														break loop0;
 													case "DisplayingFreshTips":
-														this._mcTabViewer._btnTutorialTips.selected = loc2.value;
+														this._mcTabViewer._btnTutorialTips.selected = var2.value;
 														break loop0;
 													case "CensorshipFilter":
-														this._mcTabViewer._btnCensorshipFilter.selected = loc2.value;
+														this._mcTabViewer._btnCensorshipFilter.selected = var2.value;
 														break loop0;
 													case "AskForWrongCraft":
-														this._mcTabViewer._btnCraftWrongConfirm.selected = loc2.value;
-														break loop0;
-													case "AdvancedLineOfSight":
-														this._mcTabViewer._btnAdvancedLineOfSight.selected = loc2.value;
-														break loop0;
-													case "RemindTurnTime":
-														this._mcTabViewer._btnRemindTurnTime.selected = loc2.value;
+														this._mcTabViewer._btnCraftWrongConfirm.selected = var2.value;
 														break loop0;
 													default:
 														switch(null)
 														{
+															case "AdvancedLineOfSight":
+																this._mcTabViewer._btnAdvancedLineOfSight.selected = var2.value;
+																break loop0;
+															case "RemindTurnTime":
+																this._mcTabViewer._btnRemindTurnTime.selected = var2.value;
+																break loop0;
 															case "HideSpellBar":
-																this._mcTabViewer._btnHideSpellBar.selected = loc2.value;
+																this._mcTabViewer._btnHideSpellBar.selected = var2.value;
 																break loop0;
 															case "SeeAllSpell":
-																this._mcTabViewer._btnSeeAllSpell.selected = !loc2.value;
+																this._mcTabViewer._btnSeeAllSpell.selected = !var2.value;
 																break loop0;
 															case "UseSpeakingItems":
-																this._mcTabViewer._btnSpeakingItems.selected = loc2.value;
-																break loop0;
-															case "ConfirmDropItem":
-																this._mcTabViewer._btnConfirmDropItem.selected = loc2.value;
+																this._mcTabViewer._btnSpeakingItems.selected = var2.value;
 																break loop0;
 															default:
 																switch(null)
 																{
+																	case "ConfirmDropItem":
+																		this._mcTabViewer._btnConfirmDropItem.selected = var2.value;
+																		break loop0;
 																	case "TimestampInChat":
-																		this._mcTabViewer._btnChatTimestamp.selected = loc2.value;
+																		this._mcTabViewer._btnChatTimestamp.selected = var2.value;
 																		this.api.kernel.ChatManager.refresh();
-																		break;
+																		break loop0;
 																	case "AudioMusicMute":
-																		this._mcTabViewer._btnMuteMusic.selected = loc2.value;
-																		break;
+																		this._mcTabViewer._btnMuteMusic.selected = var2.value;
+																		break loop0;
 																	case "AudioEffectMute":
-																		this._mcTabViewer._btnMuteSounds.selected = loc2.value;
-																		break;
-																	case "AudioEnvMute":
-																		this._mcTabViewer._btnMuteEnvironment.selected = loc2.value;
+																		this._mcTabViewer._btnMuteSounds.selected = var2.value;
+																		break loop0;
+																	default:
+																		if(var0 !== "AudioEnvMute")
+																		{
+																			break loop0;
+																		}
+																		this._mcTabViewer._btnMuteEnvironment.selected = var2.value;
+																		break loop0;
 																}
 														}
 												}
@@ -602,43 +608,48 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				}
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_cbDisplayStyle":
-				var loc3 = loc2.target.selectedItem;
-				if(loc3.style == "normal")
+				var var3 = var2.target.selectedItem;
+				if(var3.style == "normal")
 				{
-					this.api.kernel.OptionsManager.setOption("DisplayStyle",loc3.style);
+					this.api.kernel.OptionsManager.setOption("DisplayStyle",var3.style);
 				}
 				else
 				{
-					this.api.kernel.showMessage(this.api.lang.getText("OPTIONS_DISPLAY"),this.api.lang.getText("DO_U_CHANGE_DISPLAYSTYLE"),"CAUTION_YESNO",{name:"Display",listener:this,params:{style:loc3.style}});
+					this.api.kernel.showMessage(this.api.lang.getText("OPTIONS_DISPLAY"),this.api.lang.getText("DO_U_CHANGE_DISPLAYSTYLE"),"CAUTION_YESNO",{name:"Display",listener:this,params:{style:var3.style}});
 				}
 				break;
 			case "_cbDefaultQuality":
-				var loc4 = loc2.target.selectedItem;
-				this.api.kernel.showMessage(this.api.lang.getText("OPTIONS_DISPLAY"),this.api.lang.getText("DO_U_CHANGE_QUALITY_" + String(loc4.quality).toUpperCase()),"CAUTION_YESNO",{name:"Quality",listener:this,params:{quality:loc4.quality}});
+				var var4 = var2.target.selectedItem;
+				this.api.kernel.showMessage(this.api.lang.getText("OPTIONS_DISPLAY"),this.api.lang.getText("DO_U_CHANGE_QUALITY_" + String(var4.quality).toUpperCase()),"CAUTION_YESNO",{name:"Quality",listener:this,params:{quality:var4.quality}});
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesNoDisplay":
-				this.api.kernel.OptionsManager.setOption("DisplayStyle",loc2.target.params.style);
+				this.api.kernel.OptionsManager.setOption("DisplayStyle",var2.target.params.style);
 				break;
 			case "AskYesNoResetTips":
 				dofus.managers.TipsManager.getInstance().resetDisplayedTipsList();
 				break;
-			case "AskYesNoQuality":
-				this.api.kernel.OptionsManager.setOption("DefaultQuality",loc2.target.params.quality);
+			default:
+				if(var0 !== "AskYesNoQuality")
+				{
+					break;
+				}
+				this.api.kernel.OptionsManager.setOption("DefaultQuality",var2.target.params.quality);
+				break;
 		}
 	}
-	function no(loc2)
+	function no(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesNoDisplay":
 				this.selectDisplayStyle(this.api.kernel.OptionsManager.getOption("DisplayStyle"));
@@ -647,15 +658,15 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				this.selectQuality(this.api.kernel.OptionsManager.getOption("DefaultQuality"));
 		}
 	}
-	function scroll(loc2)
+	function scroll(var2)
 	{
 		this._mcTabViewer._y = this._mcPlacer._y - this._sbOptions.scrollPosition;
 	}
-	function onMouseWheel(loc2, loc3)
+	function onMouseWheel(var2, var3)
 	{
-		if(String(loc3._target).indexOf(this._target) != -1 && this._sbOptions._visible)
+		if(String(var3._target).indexOf(this._target) != -1 && this._sbOptions._visible)
 		{
-			this._sbOptions.scrollPosition = this._sbOptions.scrollPosition - (loc2 <= 0?- dofus.graphics.gapi.ui.Options.SCROLL_BY:dofus.graphics.gapi.ui.Options.SCROLL_BY);
+			this._sbOptions.scrollPosition = this._sbOptions.scrollPosition - (var2 <= 0?- dofus.graphics.gapi.ui.Options.SCROLL_BY:dofus.graphics.gapi.ui.Options.SCROLL_BY);
 		}
 	}
 }

@@ -7,24 +7,24 @@ class dofus.graphics.gapi.ui.InventorySearch extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__types(loc2)
+	function __set__types(var2)
 	{
-		this._aTypes = loc2;
+		this._aTypes = var2;
 		return this.__get__types();
 	}
-	function __set__maxLevel(loc2)
+	function __set__maxLevel(var2)
 	{
-		this._nMaxLevel = loc2;
+		this._nMaxLevel = var2;
 		return this.__get__maxLevel();
 	}
-	function __set__defaultSearch(loc2)
+	function __set__defaultSearch(var2)
 	{
-		this._sDefaultText = loc2;
+		this._sDefaultText = var2;
 		return this.__get__defaultSearch();
 	}
-	function __set__oParent(loc2)
+	function __set__oParent(var2)
 	{
-		this._oParent = loc2;
+		this._oParent = var2;
 		return this.__get__oParent();
 	}
 	function init()
@@ -62,92 +62,92 @@ class dofus.graphics.gapi.ui.InventorySearch extends dofus.graphics.gapi.core.Do
 	}
 	function generateIndexes()
 	{
-		var loc2 = new Object();
+		var var2 = new Object();
 		for(var k in this._aTypes)
 		{
-			loc2[this._aTypes[k]] = true;
+			var2[this._aTypes[k]] = true;
 		}
-		var loc3 = this._oDataProvider;
+		var var3 = this._oDataProvider;
 		this._aItems = new Array();
-		for(var k in loc3)
+		for(var k in var3)
 		{
-			var loc4 = loc3[k].name;
-			var loc5 = loc3[k].unicID;
-			this._aItems.push({id:loc5,name:loc4.toUpperCase()});
+			var var4 = var3[k].name;
+			var var5 = var3[k].unicID;
+			this._aItems.push({id:var5,name:var4.toUpperCase()});
 		}
 	}
-	function searchItem(loc2)
+	function searchItem(var2)
 	{
-		var loc3 = loc2.split(" ");
-		var loc4 = new ank.utils.();
-		var loc5 = new Object();
-		var loc6 = 0;
-		var loc7 = 0;
-		while(loc7 < this._aItems.length)
+		var var3 = var2.split(" ");
+		var var4 = new ank.utils.();
+		var var5 = new Object();
+		var var6 = 0;
+		var var7 = 0;
+		while(var7 < this._aItems.length)
 		{
-			var loc8 = this._aItems[loc7];
-			var loc9 = this.searchWordsInName(loc3,loc8.name,loc6);
-			if(loc9 != 0)
+			var var8 = this._aItems[var7];
+			var var9 = this.searchWordsInName(var3,var8.name,var6);
+			if(var9 != 0)
 			{
-				loc5[loc8.id] = loc9;
-				loc6 = loc9;
+				var5[var8.id] = var9;
+				var6 = var9;
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		for(var k in loc5)
+		for(var k in var5)
 		{
-			if(loc5[k] >= loc6)
+			if(var5[k] >= var6)
 			{
-				loc4.push(new dofus.datacenter.(0,Number(k)));
+				var4.push(new dofus.datacenter.(0,Number(k)));
 			}
 		}
-		this._lstItems.dataProvider = loc4;
-		this._lblSearchCount.text = loc4.length != 0?loc4.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",loc4 < 2):this.api.lang.getText("NO_INVENTORY_SEARCH_RESULT");
+		this._lstItems.dataProvider = var4;
+		this._lblSearchCount.text = var4.length != 0?var4.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",var4 < 2):this.api.lang.getText("NO_INVENTORY_SEARCH_RESULT");
 		this._btnView.enabled = false;
 	}
-	function searchWordsInName(loc2, loc3, loc4)
+	function searchWordsInName(var2, var3, var4)
 	{
-		var loc5 = 0;
-		var loc6 = loc2.length;
-		while(loc6 >= 0)
+		var var5 = 0;
+		var var6 = var2.length;
+		while(var6 >= 0)
 		{
-			var loc7 = loc2[loc6];
-			if(loc3.indexOf(loc7) != -1)
+			var var7 = var2[var6];
+			if(var3.indexOf(var7) != -1)
 			{
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
-			else if(loc5 + loc6 < loc4)
+			else if(var5 + var6 < var4)
 			{
 				return 0;
 			}
-			loc6 = loc6 - 1;
+			var6 = var6 - 1;
 		}
-		return loc5;
+		return var5;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnClose2":
 				this.callClose();
 				break;
 			case "_btnView":
-				var loc3 = this._lstItems.selectedItem;
-				this.dispatchEvent({type:"select",value:loc3.unicID});
+				var var3 = this._lstItems.selectedItem;
+				this.dispatchEvent({type:"select",value:var3.unicID});
 				this.callClose();
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		var loc3 = new ank.utils.(this._tiSearch.text).trim().toString();
-		if(loc3.length >= dofus.graphics.gapi.ui.InventorySearch.MIN_SEARCH_CHAR)
+		var var3 = new ank.utils.(this._tiSearch.text).trim().toString();
+		if(var3.length >= dofus.graphics.gapi.ui.InventorySearch.MIN_SEARCH_CHAR)
 		{
-			this.searchItem(loc3.toUpperCase());
+			this.searchItem(var3.toUpperCase());
 		}
 		else
 		{
-			this._lstItems.dataProvider = new ank.utils.();
+			this._lstItems.dataProvider = new ank.utils.();
 			if(this._lblSearchCount.text != undefined)
 			{
 				this._lblSearchCount.text = "";
@@ -155,7 +155,7 @@ class dofus.graphics.gapi.ui.InventorySearch extends dofus.graphics.gapi.core.Do
 		}
 		this._oParent.defaultSearch = this._tiSearch.text;
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		this._btnView.enabled = true;
 	}

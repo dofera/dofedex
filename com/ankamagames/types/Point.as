@@ -1,9 +1,9 @@
 class com.ankamagames.types.Point
 {
-	function Point(loc3, loc4)
+	function Point(var3, var4)
 	{
-		this.x = loc2;
-		this.y = loc3;
+		this.x = var2;
+		this.y = var3;
 	}
 	function toString()
 	{

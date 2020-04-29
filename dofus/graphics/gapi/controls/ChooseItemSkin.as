@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.ChooseItemSkin extends dofus.graphics.gapi.co
 	{
 		super();
 	}
-	function __set__item(loc2)
+	function __set__item(var2)
 	{
-		this._oItem = loc2;
+		this._oItem = var2;
 		return this.__get__item();
 	}
 	function __get__selectedItem()
@@ -30,24 +30,24 @@ class dofus.graphics.gapi.controls.ChooseItemSkin extends dofus.graphics.gapi.co
 	}
 	function initData()
 	{
-		var loc2 = new ank.utils.();
-		var loc3 = 0;
-		while(loc3 < this._oItem.maxSkin)
+		var var2 = new ank.utils.();
+		var var3 = 0;
+		while(var3 < this._oItem.maxSkin)
 		{
 			if(this._oItem.isAssociate)
 			{
-				loc2.push(new dofus.datacenter.(-1,this._oItem.realUnicId,1,0,"",0,loc3,1));
+				var2.push(new dofus.datacenter.(-1,this._oItem.realUnicId,1,0,"",0,var3,1));
 			}
 			else
 			{
-				loc2.push(new dofus.datacenter.(-1,this._oItem.unicID,1,0,"",0,loc3,1));
+				var2.push(new dofus.datacenter.(-1,this._oItem.unicID,1,0,"",0,var3,1));
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		this._cgGrid.dataProvider = loc2;
+		this._cgGrid.dataProvider = var2;
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		this._oSelectedItem = loc2.target.contentData;
+		this._oSelectedItem = var2.target.contentData;
 	}
 }

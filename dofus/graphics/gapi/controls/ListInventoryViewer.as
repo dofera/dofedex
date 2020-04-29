@@ -7,23 +7,23 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 	{
 		super();
 	}
-	function __set__displayKamas(loc2)
+	function __set__displayKamas(var2)
 	{
-		this._bDisplayKama = loc2;
+		this._bDisplayKama = var2;
 		if(this.initialized)
 		{
-			this.showKamas(loc2);
+			this.showKamas(var2);
 		}
 		return this.__get__displayKamas();
 	}
-	function __set__displayPrices(loc2)
+	function __set__displayPrices(var2)
 	{
 		if(this.initialized)
 		{
 			ank.utils.Logger.err("[displayPrices] impossible après init");
 			return undefined;
 		}
-		this._bDisplayPrices = loc2;
+		this._bDisplayPrices = var2;
 		return this.__get__displayPrices();
 	}
 	function init()
@@ -32,8 +32,8 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 	}
 	function createChildren()
 	{
-		var loc3 = !this._bDisplayPrices?"ListInventoryViewerItemNoPrice":"ListInventoryViewerItem";
-		this.attachMovie("List","_lstInventory",10,{styleName:"LightBrownList",cellRenderer:loc3,rowHeight:20});
+		var var3 = !this._bDisplayPrices?"ListInventoryViewerItemNoPrice":"ListInventoryViewerItem";
+		this.attachMovie("List","_lstInventory",10,{styleName:"LightBrownList",cellRenderer:var3,rowHeight:20});
 		this._lstInventory.move(this._mcLstPlacer._x,this._mcLstPlacer._y);
 		this._lstInventory.setSize(this._mcLstPlacer._width,this._mcLstPlacer._height);
 		this._oDataViewer = this._lstInventory;
@@ -57,26 +57,26 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 	{
 		this.kamaChanged({value:this._oKamasProvider.Kama});
 	}
-	function showKamas(loc2)
+	function showKamas(var2)
 	{
-		this._lblKama._visible = loc2;
-		this._mcKamaSymbol._visible = loc2;
+		this._lblKama._visible = var2;
+		this._mcKamaSymbol._visible = var2;
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		super.itemSelected(loc3);
-		if(loc3.target != this._cbTypes)
+		super.itemSelected(var3);
+		if(var3.target != this._cbTypes)
 		{
-			if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && loc3.row.item != undefined)
+			if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var3.row.item != undefined)
 			{
-				this.api.kernel.GameManager.insertItemInChat(loc3.row.item);
+				this.api.kernel.GameManager.insertItemInChat(var3.row.item);
 				return undefined;
 			}
-			this.dispatchEvent({type:"selectedItem",item:loc3.row.item});
+			this.dispatchEvent({type:"selectedItem",item:var3.row.item});
 		}
 	}
-	function itemdblClick(loc2)
+	function itemdblClick(var2)
 	{
-		this.dispatchEvent({type:"itemdblClick",item:loc2.row.item});
+		this.dispatchEvent({type:"itemdblClick",item:var2.row.item});
 	}
 }

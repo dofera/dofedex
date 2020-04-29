@@ -4,29 +4,29 @@ class dofus.datacenter.Team extends ank.battlefield.datacenter.Sprite
 	static var OPT_BLOCK_SPECTATOR = "BlockSpectator";
 	static var OPT_BLOCK_JOINER_EXCEPT_PARTY_MEMBER = "BlockJoinerExceptPartyMember";
 	static var OPT_NEED_HELP = "NeedHelp";
-	function Team(sID, §\x0f\x14§, §\x1e\x13\x16§, §\b\x1a§, §\b\b§, §\x1e\x1d\b§, §\n\x05§)
+	function Team(sID, §\x0f\x12§, §\x1e\x13\x14§, §\b\x18§, §\b\x06§, §\x1e\x1d\x06§, §\n\x03§)
 	{
 		super();
-		this.initialize(sID,loc4,loc5,loc6,loc7,loc8,loc9);
+		this.initialize(sID,var4,var5,var6,var7,var8,var9);
 	}
-	function initialize(sID, §\x0f\x14§, §\x1e\x13\x16§, §\b\x1a§, §\b\b§, §\x1e\x1d\b§, §\n\x05§)
+	function initialize(sID, §\x0f\x12§, §\x1e\x13\x14§, §\b\x18§, §\b\x06§, §\x1e\x1d\x06§, §\n\x03§)
 	{
-		super.initialize(sID,loc4,loc5,loc6);
-		this.color1 = loc7;
-		this._nType = Number(loc8);
-		this._oAlignment = new dofus.datacenter.(Number(loc9));
+		super.initialize(sID,var4,var5,var6);
+		this.color1 = var7;
+		this._nType = Number(var8);
+		this._oAlignment = new dofus.datacenter.(Number(var9));
 		this._aPlayers = new Object();
 		this.options = new Object();
 	}
-	function setChallenge(loc2)
+	function setChallenge(var2)
 	{
-		this._oChallenge = loc2;
+		this._oChallenge = var2;
 	}
-	function addPlayer(loc2)
+	function addPlayer(var2)
 	{
-		this._aPlayers[loc2.id] = loc2;
+		this._aPlayers[var2.id] = var2;
 	}
-	function removePlayer(loc2)
+	function removePlayer(var2)
 	{
 		delete this._aPlayers.register2;
 	}
@@ -40,28 +40,30 @@ class dofus.datacenter.Team extends ank.battlefield.datacenter.Sprite
 	}
 	function __get__name()
 	{
-		var loc2 = new String();
-		for(var loc2 in this._aPlayers)
+		var var2 = new String();
+		for(var k in this._aPlayers)
 		{
+			var2 = var2 + ("\n" + this._aPlayers[k].name + "(" + this._aPlayers[k].level + ")");
 		}
-		return loc2.substr(1);
+		return var2.substr(1);
 	}
 	function __get__totalLevel()
 	{
-		var loc2 = 0;
+		var var2 = 0;
 		for(var k in this._aPlayers)
 		{
-			loc2 = loc2 + Number(this._aPlayers[k].level);
+			var2 = var2 + Number(this._aPlayers[k].level);
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__count()
 	{
-		var loc2 = 0;
-		for(var loc2 in this._aPlayers)
+		var var2 = 0;
+		for(var k in this._aPlayers)
 		{
+			var2 = var2 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__challenge()
 	{
@@ -69,16 +71,15 @@ class dofus.datacenter.Team extends ank.battlefield.datacenter.Sprite
 	}
 	function __get__enemyTeam()
 	{
-		var loc2 = this._oChallenge.teams;
-		§§enumerate(loc2);
-		while((var loc0 = §§enumeration()) != null)
+		var var2 = this._oChallenge.teams;
+		for(var k in var2)
 		{
 			if(k != this.id)
 			{
-				var loc3 = k;
+				var var3 = k;
 				break;
 			}
 		}
-		return loc2[loc3];
+		return var2[var3];
 	}
 }

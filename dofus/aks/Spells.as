@@ -1,74 +1,74 @@
 class dofus.aks.Spells extends dofus.aks.Handler
 {
-	function Spells(loc3, loc4)
+	function Spells(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function moveToUsed(loc2, loc3)
+	function moveToUsed(var2, var3)
 	{
-		this.aks.send("SM" + loc2 + "|" + loc3,false);
+		this.aks.send("SM" + var2 + "|" + var3,false);
 	}
-	function boost(loc2)
+	function boost(var2)
 	{
-		this.aks.send("SB" + loc2);
+		this.aks.send("SB" + var2);
 	}
-	function spellForget(loc2)
+	function spellForget(var2)
 	{
-		this.aks.send("SF" + loc2);
+		this.aks.send("SF" + var2);
 	}
-	function onUpgradeSpell(loc2, loc3)
+	function onUpgradeSpell(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc4 = this.api.kernel.CharactersManager.getSpellObjectFromData(loc3);
-			this.api.datacenter.Player.updateSpell(loc4);
+			var var4 = this.api.kernel.CharactersManager.getSpellObjectFromData(var3);
+			this.api.datacenter.Player.updateSpell(var4);
 		}
 		else
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_BOOST_SPELL"),"ERROR_BOX");
 		}
 	}
-	function onList(loc2)
+	function onList(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = this.api.datacenter.Player;
-		loc4.Spells.removeItems(1,loc4.Spells.length);
-		var loc5 = new Array();
-		var loc6 = 0;
-		while(loc6 < loc3.length)
+		var var3 = var2.split(";");
+		var var4 = this.api.datacenter.Player;
+		var4.Spells.removeItems(1,var4.Spells.length);
+		var var5 = new Array();
+		var var6 = 0;
+		while(var6 < var3.length)
 		{
-			var loc7 = loc3[loc6];
-			if(loc7.length != 0)
+			var var7 = var3[var6];
+			if(var7.length != 0)
 			{
-				var loc8 = this.api.kernel.CharactersManager.getSpellObjectFromData(loc7);
-				if(loc8 != undefined)
+				var var8 = this.api.kernel.CharactersManager.getSpellObjectFromData(var7);
+				if(var8 != undefined)
 				{
-					loc5.push(loc8);
+					var5.push(var8);
 				}
 			}
-			loc6 = loc6 + 1;
+			var6 = var6 + 1;
 		}
-		loc4.Spells.replaceAll(1,loc5);
+		var4.Spells.replaceAll(1,var5);
 	}
-	function onChangeOption(loc2)
+	function onChangeOption(var2)
 	{
-		this.api.datacenter.Basics.canUseSeeAllSpell = loc2.charAt(0) == "+";
+		this.api.datacenter.Basics.canUseSeeAllSpell = var2.charAt(0) == "+";
 	}
-	function onSpellBoost(loc2)
+	function onSpellBoost(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = Number(loc3[2]);
-		this.api.kernel.SpellsBoostsManager.setSpellModificator(loc4,loc5,loc6);
+		var var3 = var2.split(";");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = Number(var3[2]);
+		this.api.kernel.SpellsBoostsManager.setSpellModificator(var4,var5,var6);
 	}
-	function onSpellForget(loc2)
+	function onSpellForget(var2)
 	{
-		if(loc2 == "+")
+		if(var2 == "+")
 		{
 			this.api.ui.loadUIComponent("SpellForget","SpellForget",undefined,{bStayIfPresent:true});
 		}
-		else if(loc2 == "-")
+		else if(var2 == "-")
 		{
 			this.api.ui.unloadUIComponent("SpellForget");
 		}

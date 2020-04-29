@@ -4,37 +4,37 @@ class dofus.graphics.gapi.ui.friends.FriendsConnectedItem extends ank.gapi.core.
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			if(loc4.account != undefined && !this._mcList._parent._parent.api.config.isStreaming)
+			this._oItem = var4;
+			if(var4.account != undefined && !this._mcList._parent._parent.api.config.isStreaming)
 			{
-				this._lblName.text = loc4.account + " (" + loc4.name + ")";
+				this._lblName.text = var4.account + " (" + var4.name + ")";
 			}
 			else
 			{
-				this._lblName.text = loc4.name;
+				this._lblName.text = var4.name;
 			}
-			if(loc4.level != undefined)
+			if(var4.level != undefined)
 			{
-				this._lblLevel.text = loc4.level;
+				this._lblLevel.text = var4.level;
 			}
 			else
 			{
 				this._lblLevel.text = "";
 			}
-			this._mcFight._visible = loc4.state == "IN_MULTI";
-			this._ldrGuild.contentPath = dofus.Constants.GUILDS_MINI_PATH + loc4.gfxID + ".swf";
-			if(loc4.alignement != -1)
+			this._mcFight._visible = var4.state == "IN_MULTI";
+			this._ldrGuild.contentPath = dofus.Constants.GUILDS_MINI_PATH + var4.gfxID + ".swf";
+			if(var4.alignement != -1)
 			{
-				this._ldrAlignement.contentPath = dofus.Constants.ALIGNMENTS_MINI_PATH + loc4.alignement + ".swf";
+				this._ldrAlignement.contentPath = dofus.Constants.ALIGNMENTS_MINI_PATH + var4.alignement + ".swf";
 			}
 			else
 			{
@@ -66,7 +66,7 @@ class dofus.graphics.gapi.ui.friends.FriendsConnectedItem extends ank.gapi.core.
 	{
 		this._btnRemove.addEventListener("click",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		if(this._oItem.account != undefined)
 		{

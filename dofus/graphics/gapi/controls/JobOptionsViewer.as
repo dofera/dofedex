@@ -5,10 +5,10 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__job(loc2)
+	function __set__job(var2)
 	{
 		this._oJob.removeEventListener("optionsChanged",this);
-		this._oJob = loc2;
+		this._oJob = var2;
 		this._oJob.addEventListener("optionsChanged",this);
 		if(this.initialized)
 		{
@@ -58,89 +58,88 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 	{
 		this._btnEnabled.label = !this.api.datacenter.Player.craftPublicMode?this.api.lang.getText("ENABLE"):this.api.lang.getText("DISABLE");
 	}
-	function refreshCraftComplexityLabel(loc2)
+	function refreshCraftComplexityLabel(var2)
 	{
-		this._lblCraftComplexityValue.text = loc2.toString() + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("SLOT"),"m",loc2 < 2);
+		this._lblCraftComplexityValue.text = var2.toString() + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("SLOT"),"m",var2 < 2);
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_vsCraftComplexity")
+		if((var var0 = var2.target._name) === "_vsCraftComplexity")
 		{
 			this.refreshCraftComplexityLabel(this._vsCraftComplexity.value);
 			this._btnValidate.enabled = true;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnEnabled":
 				this.api.network.Exchange.setPublicMode(!this.api.datacenter.Player.craftPublicMode);
 				break;
 			case "_btnValidate":
-				var loc3 = this.api.datacenter.Player.Jobs.findFirstItem("id",this._oJob.id);
-				if(loc3.index != -1)
+				var var3 = this.api.datacenter.Player.Jobs.findFirstItem("id",this._oJob.id);
+				if(var3.index != -1)
 				{
-					var loc4 = (!this._btnNotFree.selected?0:1) + (!this._btnFreeIfFailed.selected?0:2) + (!this._btnRessourcesNeeded.selected?0:4);
-					this.api.network.Job.changeJobStats(loc3.index,loc4,this._vsCraftComplexity._visible != false?this._vsCraftComplexity.value:2);
+					var var4 = (!this._btnNotFree.selected?0:1) + (!this._btnFreeIfFailed.selected?0:2) + (!this._btnRessourcesNeeded.selected?0:4);
+					this.api.network.Job.changeJobStats(var3.index,var4,this._vsCraftComplexity._visible != false?this._vsCraftComplexity.value:2);
 				}
-				break;
-			case "_btnNotFree":
-				this._btnFreeIfFailed.enabled = !this._btnNotFree.selected?false:true;
 				break;
 			default:
 				switch(null)
 				{
+					case "_btnNotFree":
+						this._btnFreeIfFailed.enabled = !this._btnNotFree.selected?false:true;
 					case "_btnFreeIfFailed":
 					case "_btnRessourcesNeeded":
+						this._btnValidate.enabled = true;
 				}
 		}
-		this._btnValidate.enabled = true;
 	}
-	function optionsChanged(loc2)
+	function optionsChanged(var2)
 	{
 		if(this._oJob != undefined && this._btnNotFree.selected != undefined)
 		{
-			var loc3 = this._oJob.options;
-			var loc4 = this._oJob.getMaxSkillSlot();
-			loc4 = loc4 <= 8?loc4:8;
-			if(loc4 > 2)
+			var var3 = this._oJob.options;
+			var var4 = this._oJob.getMaxSkillSlot();
+			var4 = var4 <= 8?var4:8;
+			if(var4 > 2)
 			{
 				this._vsCraftComplexity._visible = true;
-				this._vsCraftComplexity.markerCount = loc4 - 1;
+				this._vsCraftComplexity.markerCount = var4 - 1;
 				this._vsCraftComplexity.min = 2;
-				this._vsCraftComplexity.max = loc4;
+				this._vsCraftComplexity.max = var4;
 				this._vsCraftComplexity.redraw();
-				this._vsCraftComplexity.value = loc3.minSlots;
+				this._vsCraftComplexity.value = var3.minSlots;
 			}
 			else
 			{
 				this._vsCraftComplexity._visible = false;
 			}
-			this.refreshCraftComplexityLabel(loc3.minSlots);
-			this._btnNotFree.selected = loc3.isNotFree;
-			this._btnFreeIfFailed.selected = loc3.isFreeIfFailed;
+			this.refreshCraftComplexityLabel(var3.minSlots);
+			this._btnNotFree.selected = var3.isNotFree;
+			this._btnFreeIfFailed.selected = var3.isFreeIfFailed;
 			this._btnFreeIfFailed.enabled = !this._btnNotFree.selected?false:true;
-			this._btnRessourcesNeeded.selected = loc3.ressourcesNeeded;
+			this._btnRessourcesNeeded.selected = var3.ressourcesNeeded;
 			this._btnValidate.enabled = false;
 		}
 	}
-	function craftPublicModeChanged(loc2)
+	function craftPublicModeChanged(var2)
 	{
 		this._lblPublicMode.text = this.api.lang.getText("PUBLIC_MODE") + " (" + this.api.lang.getText(!this.api.datacenter.Player.craftPublicMode?"INACTIVE":"ACTIVE") + ")";
 		this.refreshBtnEnabledLabel();
 		this._mcPublicDisable._visible = !this.api.datacenter.Player.craftPublicMode;
 		this._mcPublicEnable._visible = this.api.datacenter.Player.craftPublicMode;
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnEnabled)
+		if((var var0 = var2.target) === this._btnEnabled)
 		{
-			var loc3 = !this.api.datacenter.Player.craftPublicMode?this.api.lang.getText("ENABLE_PUBLIC_MODE"):this.api.lang.getText("DISABLE_PUBLIC_MODE");
-			this.gapi.showTooltip(loc3,loc2.target,-20);
+			var var3 = !this.api.datacenter.Player.craftPublicMode?this.api.lang.getText("ENABLE_PUBLIC_MODE"):this.api.lang.getText("DISABLE_PUBLIC_MODE");
+			this.gapi.showTooltip(var3,var2.target,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

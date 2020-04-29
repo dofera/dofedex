@@ -1,24 +1,24 @@
 class dofus.aks.Houses extends dofus.aks.Handler
 {
-	function Houses(loc3, loc4)
+	function Houses(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function kick(loc2)
+	function kick(var2)
 	{
-		this.aks.send("hQ" + loc2);
+		this.aks.send("hQ" + var2);
 	}
 	function leave()
 	{
 		this.aks.send("hV");
 	}
-	function sell(loc2)
+	function sell(var2)
 	{
-		this.aks.send("hS" + loc2,true);
+		this.aks.send("hS" + var2,true);
 	}
-	function buy(loc2)
+	function buy(var2)
 	{
-		this.aks.send("hB" + loc2,true);
+		this.aks.send("hB" + var2,true);
 	}
 	function state()
 	{
@@ -32,117 +32,117 @@ class dofus.aks.Houses extends dofus.aks.Handler
 	{
 		this.aks.send("hG-",true);
 	}
-	function rights(loc2)
+	function rights(var2)
 	{
-		this.aks.send("hG" + loc2,true);
+		this.aks.send("hG" + var2,true);
 	}
-	function onList(loc2)
+	function onList(var2)
 	{
-		if(loc2.length == 0)
+		if(var2.length == 0)
 		{
-			this.api.datacenter.Houses = new ank.utils.();
+			this.api.datacenter.Houses = new ank.utils.();
 			return undefined;
 		}
-		var loc3 = loc2.charAt(0) == "+";
-		var loc4 = loc2.substr(1).split("|");
-		var loc5 = 0;
-		while(loc5 < loc4.length)
+		var var3 = var2.charAt(0) == "+";
+		var var4 = var2.substr(1).split("|");
+		var var5 = 0;
+		while(var5 < var4.length)
 		{
-			var loc6 = loc4[loc5].split(";");
-			var loc7 = loc6[0];
-			var loc8 = loc6[1] == "1";
-			var loc9 = loc6[2] == "1";
-			var loc10 = loc4[3] == "1";
-			var loc11 = this.api.datacenter.Houses;
-			if(loc3)
+			var var6 = var4[var5].split(";");
+			var var7 = var6[0];
+			var var8 = var6[1] == "1";
+			var var9 = var6[2] == "1";
+			var var10 = var4[3] == "1";
+			var var11 = this.api.datacenter.Houses;
+			if(var3)
 			{
-				var loc12 = loc11.getItemAt(loc7);
-				if(loc12 == undefined)
+				var var12 = var11.getItemAt(var7);
+				if(var12 == undefined)
 				{
-					loc12 = new dofus.datacenter.(loc7);
+					var12 = new dofus.datacenter.(var7);
 				}
-				loc12.localOwner = loc3;
-				loc12.isLocked = loc8;
-				loc12.isForSale = loc9;
-				loc12.isShared = loc10;
-				loc11.addItemAt(loc7,loc12);
+				var12.localOwner = var3;
+				var12.isLocked = var8;
+				var12.isForSale = var9;
+				var12.isShared = var10;
+				var11.addItemAt(var7,var12);
 			}
 			else
 			{
-				var loc13 = loc11.getItemAt(loc7);
-				loc13.localOwner = false;
-				var loc14 = this.api.lang.getHousesMapText(this.api.datacenter.Map.id);
-				if(loc14 == loc7)
+				var var13 = var11.getItemAt(var7);
+				var13.localOwner = false;
+				var var14 = this.api.lang.getHousesMapText(this.api.datacenter.Map.id);
+				if(var14 == var7)
 				{
 					this.api.ui.unloadUIComponent("HouseIndoor");
 				}
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
 	}
-	function onProperties(loc2)
+	function onProperties(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1].split(";");
-		var loc6 = loc5[0];
-		var loc7 = loc5[1] == "1";
-		var loc8 = loc5[2];
-		var loc9 = this.api.kernel.CharactersManager.createGuildEmblem(loc5[3]);
-		var loc10 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(loc4);
-		if(loc10 == undefined)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1].split(";");
+		var var6 = var5[0];
+		var var7 = var5[1] == "1";
+		var var8 = var5[2];
+		var var9 = this.api.kernel.CharactersManager.createGuildEmblem(var5[3]);
+		var var10 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var4);
+		if(var10 == undefined)
 		{
-			loc10 = new dofus.datacenter.(loc4);
-			this.api.datacenter.Houses.addItemAt(loc4,loc10);
+			var10 = new dofus.datacenter.(var4);
+			this.api.datacenter.Houses.addItemAt(var4,var10);
 		}
-		loc10.ownerName = loc6;
-		loc10.isForSale = loc7;
-		loc10.guildName = loc8;
-		loc10.guildEmblem = loc9;
+		var10.ownerName = var6;
+		var10.isForSale = var7;
+		var10.guildName = var8;
+		var10.guildEmblem = var9;
 	}
-	function onLockedProperty(loc2)
+	function onLockedProperty(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = loc3[1] == "1";
-		var loc6 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(loc4);
-		if(loc6 == undefined)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = var3[1] == "1";
+		var var6 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var4);
+		if(var6 == undefined)
 		{
-			loc6 = new dofus.datacenter.(loc4);
-			this.api.datacenter.Houses.addItemAt(loc4,loc6);
+			var6 = new dofus.datacenter.(var4);
+			this.api.datacenter.Houses.addItemAt(var4,var6);
 		}
-		loc6.isLocked = loc5;
+		var6.isLocked = var5;
 	}
-	function onCreate(loc2)
+	function onCreate(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(loc4);
-		if(loc6 == undefined)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var4);
+		if(var6 == undefined)
 		{
-			loc6 = new dofus.datacenter.(loc4);
+			var6 = new dofus.datacenter.(var4);
 		}
-		loc6.price = loc5;
-		this.api.ui.loadUIComponent("HouseSale","HouseSale",{house:loc6});
+		var6.price = var5;
+		this.api.ui.loadUIComponent("HouseSale","HouseSale",{house:var6});
 	}
-	function onSell(loc2, loc3)
+	function onSell(var2, var3)
 	{
-		var loc4 = loc3.split("|");
-		var loc5 = Number(loc4[0]);
-		var loc6 = Number(loc4[1]);
-		var loc7 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(loc5);
-		if(loc7 == undefined)
+		var var4 = var3.split("|");
+		var var5 = Number(var4[0]);
+		var var6 = Number(var4[1]);
+		var var7 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var5);
+		if(var7 == undefined)
 		{
-			loc7 = new dofus.datacenter.(loc5);
+			var7 = new dofus.datacenter.(var5);
 		}
-		loc7.isForSale = loc6 > 0;
-		loc7.price = loc6;
-		if(loc6 > 0)
+		var7.isForSale = var6 > 0;
+		var7.price = var6;
+		if(var6 > 0)
 		{
-			if(loc2)
+			if(var2)
 			{
-				this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("HOUSE_SELL",[loc7.name,loc7.price]),"ERROR_BOX",{name:"SellHouse"});
+				this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("HOUSE_SELL",[var7.name,var7.price]),"ERROR_BOX",{name:"SellHouse"});
 			}
 			else
 			{
@@ -151,63 +151,63 @@ class dofus.aks.Houses extends dofus.aks.Handler
 		}
 		else
 		{
-			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("HOUSE_NOSELL",[loc7.name]),"ERROR_BOX",{name:"NoSellHouse"});
+			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("HOUSE_NOSELL",[var7.name]),"ERROR_BOX",{name:"NoSellHouse"});
 		}
 	}
-	function onBuy(loc2, loc3)
+	function onBuy(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc4 = loc3.split("|");
-			var loc5 = Number(loc4[0]);
-			var loc6 = Number(loc4[1]);
-			var loc7 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(loc5);
-			if(loc7 == undefined)
+			var var4 = var3.split("|");
+			var var5 = Number(var4[0]);
+			var var6 = Number(var4[1]);
+			var var7 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var5);
+			if(var7 == undefined)
 			{
-				loc7 = new dofus.datacenter.(loc5);
+				var7 = new dofus.datacenter.(var5);
 			}
-			loc7.price = loc6;
-			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("HOUSE_BUY",[loc7.name,loc7.price]),"ERROR_BOX",{name:"BuyHouse"});
-			loc7.isForSale = false;
-			loc7.price = 0;
+			var7.price = var6;
+			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("HOUSE_BUY",[var7.name,var7.price]),"ERROR_BOX",{name:"BuyHouse"});
+			var7.isForSale = false;
+			var7.price = 0;
 		}
-		else if((var loc0 = loc3.charAt(0)) === "C")
+		else if((var var0 = var3.charAt(0)) === "C")
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_BUY_HOUSE",[loc3.substr(1)]),"ERROR_BOX",{name:"BuyHouse"});
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_BUY_HOUSE",[var3.substr(1)]),"ERROR_BOX",{name:"BuyHouse"});
 		}
 	}
 	function onLeave()
 	{
 		this.api.ui.unloadUIComponent("HouseSale");
 	}
-	function onGuildInfos(loc2)
+	function onGuildInfos(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = Number(loc3[0]);
-		var loc5 = true;
-		var loc6 = new String();
-		var loc7 = new Object();
-		var loc8 = 0;
-		if(loc3.length < 4)
+		var var3 = var2.split(";");
+		var var4 = Number(var3[0]);
+		var var5 = true;
+		var var6 = new String();
+		var var7 = new Object();
+		var var8 = 0;
+		if(var3.length < 4)
 		{
-			loc5 = false;
+			var5 = false;
 		}
 		else
 		{
-			loc5 = true;
-			loc6 = loc3[1];
-			loc7 = this.api.kernel.CharactersManager.createGuildEmblem(loc3[2]);
-			loc8 = Number(loc3[3]);
+			var5 = true;
+			var6 = var3[1];
+			var7 = this.api.kernel.CharactersManager.createGuildEmblem(var3[2]);
+			var8 = Number(var3[3]);
 		}
-		var loc9 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(loc4);
-		if(loc9 == undefined)
+		var var9 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var4);
+		if(var9 == undefined)
 		{
-			loc9 = new dofus.datacenter.(loc4);
-			this.api.datacenter.Houses.addItemAt(loc4,loc9);
+			var9 = new dofus.datacenter.(var4);
+			this.api.datacenter.Houses.addItemAt(var4,var9);
 		}
-		loc9.isShared = loc5;
-		loc9.guildName = loc6;
-		loc9.guildEmblem = loc7;
-		loc9.guildRights = loc8;
+		var9.isShared = var5;
+		var9.guildName = var6;
+		var9.guildEmblem = var7;
+		var9.guildRights = var8;
 	}
 }

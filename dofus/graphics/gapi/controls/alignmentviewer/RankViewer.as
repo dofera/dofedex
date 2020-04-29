@@ -41,9 +41,9 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		this._pbDisgrace.maximum = this.api.lang.getMaxDisgracePoints();
 		this.rankChanged({rank:this.api.datacenter.Player.rank});
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnEnabled":
 				if(this.api.datacenter.Player.rank.enable)
@@ -59,16 +59,16 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 				this.api.kernel.GameManager.showDisgraceSanction();
 		}
 	}
-	function rankChanged(loc2)
+	function rankChanged(var2)
 	{
-		this._oRank = loc2.rank;
-		var loc3 = this.api.lang.getGradeHonourPointsBounds(this._oRank.value);
-		this._pbHonour.maximum = loc3.max;
-		this._pbHonour.minimum = loc3.min;
+		this._oRank = var2.rank;
+		var var3 = this.api.lang.getGradeHonourPointsBounds(this._oRank.value);
+		this._pbHonour.maximum = var3.max;
+		this._pbHonour.minimum = var3.min;
 		this._pbHonour.value = this._oRank.honour;
 		this._mcHonour.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.honour).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbHonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.honour).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbHonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcHonour.onRollOut = function()
 		{
@@ -77,7 +77,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		this._pbDisgrace.value = this._oRank.disgrace;
 		this._mcDisgrace.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.disgrace).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbDisgrace.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.disgrace).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbDisgrace.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcDisgrace.onRollOut = function()
 		{
@@ -85,14 +85,14 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		};
 		if(this._oRank.enable && this._lblRankDisabled.text != undefined)
 		{
-			var loc4 = this.api.datacenter.Player.alignment.index;
-			if(loc4 == 0)
+			var var4 = this.api.datacenter.Player.alignment.index;
+			if(var4 == 0)
 			{
 				this._lblRankValue.text = this.api.lang.getRankLongName(0,0);
 			}
 			else
 			{
-				this._lblRankValue.text = loc2.rank.value + " (" + this.api.lang.getRankLongName(loc4,this._oRank.value) + ")";
+				this._lblRankValue.text = var2.rank.value + " (" + this.api.lang.getRankLongName(var4,this._oRank.value) + ")";
 			}
 			this._lblDisgrace._visible = true;
 			this._mcDisgrace._visible = true;
@@ -119,9 +119,9 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		}
 		this._btnDisgraceSanction._visible = this.api.datacenter.Player.rank.disgrace > 0;
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnEnabled":
 				this.gapi.showTooltip(this.api.lang.getText(!this._oRank.enable?"ENABLE_PVP":"DISABLE_PVP"),this._btnEnabled,-20);
@@ -130,7 +130,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 				this.gapi.showTooltip(this.api.lang.getText("DISGRACE_SANCTION_TOOLTIP"),this._btnDisgraceSanction,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

@@ -1,11 +1,11 @@
 class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 {
-	function DofusCore(_loc3_)
+	function DofusCore(var3)
 	{
 		super();
 		System.security.allowDomain("*");
 		getURL("FSCommand:" add "trapallkeys","true");
-		dofus.DofusCore._mcCore = _loc3_;
+		dofus.DofusCore._mcCore = var3;
 		dofus.DofusCore._cCore = this;
 		_global.subtrace = trace;
 	}
@@ -352,8 +352,8 @@ class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 		Object.registerClass("AlignmentViewerTree",dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerTree);
 		Object.registerClass("AlignmentViewerFeatsItem",dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerFeatsItem);
 		Object.registerClass("UI_FightsInfos",dofus.graphics.gapi.ui.FightsInfos);
-		Object.registerClass("UI_FightsInfosPlayerItem",dofus.graphics.gapi.ui.fightsinfos.FightsInfosPlayerItem);
-		Object.registerClass("UI_FightsInfosFightItem",dofus.graphics.gapi.ui.fightsinfos.FightsInfosFightItem);
+		Object.registerClass("UI_FightsInfosPlayerItem",dofus.graphics.gapi.ui.NpcDialog["\x0f\b"]);
+		Object.registerClass("UI_FightsInfosFightItem",dofus.graphics.gapi.ui.NpcDialog["\x0f\t"]);
 		Object.registerClass("UI_Tips",dofus.graphics.gapi.ui.Tips);
 		Object.registerClass("UI_CardsCollection",dofus.graphics.gapi.ui.CardsCollection);
 		Object.registerClass("Card",dofus.graphics.gapi.controls.Card);
@@ -404,8 +404,8 @@ class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 		Object.registerClass("UI_TitleDisplayer",dofus.graphics.gapi.ui.TitleDisplayer);
 		Object.registerClass("UI_ForgemagusCraft",dofus.graphics.gapi.ui.ForgemagusCraft);
 		Object.registerClass("UI_KnownledgeBase",dofus.graphics.gapi.ui.KnownledgeBase);
-		Object.registerClass("UI_KnownledgeBaseCategory",dofus.graphics.gapi.ui.knownledgebase.KnownledgeBaseCategoryItem);
-		Object.registerClass("UI_KnownledgeBaseItem",dofus.graphics.gapi.ui.knownledgebase.KnownledgeBaseItem);
+		Object.registerClass("UI_KnownledgeBaseCategory",dofus.graphics.gapi.ui.Login.KnownledgeBaseCategoryItem);
+		Object.registerClass("UI_KnownledgeBaseItem",dofus.graphics.gapi.ui.Login["\f\x1d"]);
 		Object.registerClass("Helper",dofus.graphics.gapi.controls.Helper);
 		Object.registerClass("Helper_DoubleFramerate",dofus.graphics.gapi.controls.Helper);
 		Object.registerClass("UI_FloatingTips",dofus.graphics.gapi.ui.FloatingTips);

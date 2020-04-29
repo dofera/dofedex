@@ -6,10 +6,10 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__nickAlreadyUsed(loc2)
+	function __set__nickAlreadyUsed(var2)
 	{
-		this._lblError._visible = loc2;
-		if(loc2)
+		this._lblError._visible = var2;
+		if(var2)
 		{
 			this.state = 1;
 		}
@@ -19,9 +19,9 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 		}
 		return this.__get__nickAlreadyUsed();
 	}
-	function __set__state(loc2)
+	function __set__state(var2)
 	{
-		this._nState = loc2;
+		this._nState = var2;
 		switch(this._nState)
 		{
 			case 0:
@@ -80,15 +80,15 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 	{
 		this.state = 0;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnOk":
-				var loc3 = this._tiNickName.text;
-				if(loc3.length > 2)
+				var var3 = this._tiNickName.text;
+				if(var3.length > 2)
 				{
-					if(loc3.toUpperCase() == this.api.datacenter.Player.login.toUpperCase())
+					if(var3.toUpperCase() == this.api.datacenter.Player.login.toUpperCase())
 					{
 						this.api.kernel.showMessage(undefined,this.api.lang.getText("NICKNAME_EQUALS_LOGIN"),"ERROR_BOX");
 					}
@@ -116,9 +116,9 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 				break;
 		}
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG" || loc2 == "CTRL_STATE_CHANGED_OFF")
+		if(var2 == "ACCEPT_CURRENT_DIALOG" || var2 == "CTRL_STATE_CHANGED_OFF")
 		{
 			this.click({target:this._btnOk});
 			return false;

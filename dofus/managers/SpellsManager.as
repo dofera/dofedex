@@ -1,13 +1,13 @@
 class dofus.managers.SpellsManager
 {
-	function SpellsManager(loc3)
+	function SpellsManager(var3)
 	{
-		this.initialize(loc2);
+		this.initialize(var2);
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this._localPlayerData = loc2;
-		this.api = loc2.api;
+		this._localPlayerData = var2;
+		this.api = var2.api;
 		this.clear();
 		this._oSpellsModificators = new Object();
 		mx.events.EventDispatcher.initialize(this);
@@ -20,44 +20,44 @@ class dofus.managers.SpellsManager
 		this._oSpellsCountByPlayer_Counter = new Object();
 		this._aSpellsDelay = new Array();
 	}
-	function addLaunchedSpell(loc2)
+	function addLaunchedSpell(var2)
 	{
-		var loc3 = loc2.spell;
-		var loc4 = loc3.launchCountByTurn;
-		var loc5 = loc3.launchCountByPlayerTurn;
-		var loc6 = loc3.delayBetweenLaunch;
-		if(loc6 != 0)
+		var var3 = var2.spell;
+		var var4 = var3.launchCountByTurn;
+		var var5 = var3.launchCountByPlayerTurn;
+		var var6 = var3.delayBetweenLaunch;
+		if(var6 != 0)
 		{
-			this._aSpellsDelay.push(loc2);
+			this._aSpellsDelay.push(var2);
 		}
-		if(loc5 != 0)
+		if(var5 != 0)
 		{
-			if(loc2.spriteOnID != undefined)
+			if(var2.spriteOnID != undefined)
 			{
-				this._aSpellsCountByPlayer.push(loc2);
-				if(this._oSpellsCountByPlayer_Counter[loc2.spriteOnID + "|" + loc3.ID] == undefined)
+				this._aSpellsCountByPlayer.push(var2);
+				if(this._oSpellsCountByPlayer_Counter[var2.spriteOnID + "|" + var3.ID] == undefined)
 				{
-					this._oSpellsCountByPlayer_Counter[loc2.spriteOnID + "|" + loc3.ID] = 1;
+					this._oSpellsCountByPlayer_Counter[var2.spriteOnID + "|" + var3.ID] = 1;
 				}
 				else
 				{
-					this._oSpellsCountByPlayer_Counter[loc2.spriteOnID + "|" + loc3.ID]++;
+					this._oSpellsCountByPlayer_Counter[var2.spriteOnID + "|" + var3.ID]++;
 				}
 			}
 		}
-		if(loc4 != 0)
+		if(var4 != 0)
 		{
-			this._aSpellsCountByTurn.push(loc2);
-			if(this._oSpellsCountByTurn_Counter[loc3.ID] == undefined)
+			this._aSpellsCountByTurn.push(var2);
+			if(this._oSpellsCountByTurn_Counter[var3.ID] == undefined)
 			{
-				this._oSpellsCountByTurn_Counter[loc3.ID] = 1;
+				this._oSpellsCountByTurn_Counter[var3.ID] = 1;
 			}
 			else
 			{
-				this._oSpellsCountByTurn_Counter[loc3.ID]++;
+				this._oSpellsCountByTurn_Counter[var3.ID]++;
 			}
 		}
-		this.dispatchEvent({type:"spellLaunched",spell:loc3});
+		this.dispatchEvent({type:"spellLaunched",spell:var3});
 	}
 	function nextTurn()
 	{
@@ -65,136 +65,136 @@ class dofus.managers.SpellsManager
 		this._oSpellsCountByTurn_Counter = new Object();
 		this._aSpellsCountByPlayer = new Array();
 		this._oSpellsCountByPlayer_Counter = new Object();
-		var loc3 = this._aSpellsDelay.length;
-		while((loc3 = loc3 - 1) >= 0)
+		var var3 = this._aSpellsDelay.length;
+		while((var3 = var3 - 1) >= 0)
 		{
-			var loc2 = this._aSpellsDelay[loc3];
-			loc2.remainingTurn--;
-			if(loc2.remainingTurn <= 0)
+			var var2 = this._aSpellsDelay[var3];
+			var2.remainingTurn--;
+			if(var2.remainingTurn <= 0)
 			{
-				this._aSpellsDelay.splice(loc3,1);
+				this._aSpellsDelay.splice(var3,1);
 			}
 		}
 		this.dispatchEvent({type:"nextTurn"});
 	}
-	function checkCanLaunchSpell(loc2, loc3)
+	function checkCanLaunchSpell(var2, var3)
 	{
-		var loc4 = this.checkCanLaunchSpellReturnObject(loc2,loc3);
-		if(loc4.can == false)
+		var var4 = this.checkCanLaunchSpellReturnObject(var2,var3);
+		if(var4.can == false)
 		{
-			this.api.datacenter.Basics.spellManager_errorMsg = this.api.lang.getText(loc4.type,loc4.params);
+			this.api.datacenter.Basics.spellManager_errorMsg = this.api.lang.getText(var4.type,var4.params);
 			return false;
 		}
 		return true;
 	}
-	function checkCanLaunchSpellReturnObject(loc2, loc3)
+	function checkCanLaunchSpellReturnObject(var2, var3)
 	{
 		if(!this.api.datacenter.Game.isRunning || this.api.datacenter.Game.isSpectator)
 		{
 			return {can:false,type:"NOT_IN_FIGHT"};
 		}
-		var loc9 = this.api.datacenter.Player.Spells.findFirstItem("ID",loc2).item;
-		var loc10 = new Object();
-		if(loc9.needStates)
+		var var9 = this.api.datacenter.Player.Spells.findFirstItem("ID",var2).item;
+		var var10 = new Object();
+		if(var9.needStates)
 		{
-			var loc11 = loc9.requiredStates;
-			var loc12 = loc9.forbiddenStates;
-			var loc13 = 0;
-			while(loc13 < loc11.length)
+			var var11 = var9.requiredStates;
+			var var12 = var9.forbiddenStates;
+			var var13 = 0;
+			while(var13 < var11.length)
 			{
-				if(!this.api.datacenter.Player.data.isInState(loc11[loc13]))
+				if(!this.api.datacenter.Player.data.isInState(var11[var13]))
 				{
-					loc10 = {can:false,type:"NOT_IN_REQUIRED_STATE",params:[this.api.lang.getStateText(loc11[loc13])]};
+					var10 = {can:false,type:"NOT_IN_REQUIRED_STATE",params:[this.api.lang.getStateText(var11[var13])]};
 					break;
 				}
-				loc13 = loc13 + 1;
+				var13 = var13 + 1;
 			}
-			var loc14 = 0;
-			while(loc14 < loc12.length)
+			var var14 = 0;
+			while(var14 < var12.length)
 			{
-				if(this.api.datacenter.Player.data.isInState(loc12[loc14]))
+				if(this.api.datacenter.Player.data.isInState(var12[var14]))
 				{
-					loc10 = {can:false,type:"IN_FORBIDDEN_STATE",params:[this.api.lang.getStateText(loc12[loc14])]};
+					var10 = {can:false,type:"IN_FORBIDDEN_STATE",params:[this.api.lang.getStateText(var12[var14])]};
 					break;
 				}
-				loc14 = loc14 + 1;
+				var14 = var14 + 1;
 			}
 		}
-		var loc15 = this._aSpellsDelay.length;
-		while((loc15 = loc15 - 1) >= 0)
+		var var15 = this._aSpellsDelay.length;
+		while((var15 = var15 - 1) >= 0)
 		{
-			var loc5 = this._aSpellsDelay[loc15];
-			var loc6 = loc5.spell;
-			if(loc6.ID == loc2)
+			var var5 = this._aSpellsDelay[var15];
+			var var6 = var5.spell;
+			if(var6.ID == var2)
 			{
-				if(loc5.remainingTurn >= 63)
+				if(var5.remainingTurn >= 63)
 				{
-					if(loc10.type)
+					if(var10.type)
 					{
-						loc10.params[1] = loc5.remainingTurn;
-						return loc10;
+						var10.params[1] = var5.remainingTurn;
+						return var10;
 					}
 					return {can:false,type:"CANT_RELAUNCH"};
 				}
-				if(loc10.type)
+				if(var10.type)
 				{
-					loc10.params[1] = loc5.remainingTurn;
-					return loc10;
+					var10.params[1] = var5.remainingTurn;
+					return var10;
 				}
-				return {can:false,type:"CANT_LAUNCH_BEFORE",params:[loc5.remainingTurn]};
+				return {can:false,type:"CANT_LAUNCH_BEFORE",params:[var5.remainingTurn]};
 			}
 		}
-		if(loc10.type)
+		if(var10.type)
 		{
-			return loc10;
+			return var10;
 		}
-		if(loc9.summonSpell)
+		if(var9.summonSpell)
 		{
-			var loc16 = this.api.datacenter.Player.data.CharacteristicsManager.getModeratorValue(dofus.managers.CharacteristicsManager.MAX_SUMMONED_CREATURES_BOOST) + this.api.datacenter.Player.MaxSummonedCreatures;
-			if(this.api.datacenter.Player.SummonedCreatures >= loc16)
+			var var16 = this.api.datacenter.Player.data.CharacteristicsManager.getModeratorValue(dofus.managers.CharacteristicsManager.MAX_SUMMONED_CREATURES_BOOST) + this.api.datacenter.Player.MaxSummonedCreatures;
+			if(this.api.datacenter.Player.SummonedCreatures >= var16)
 			{
-				return {can:false,type:"CANT_SUMMON_MORE_CREATURE",params:[loc16]};
+				return {can:false,type:"CANT_SUMMON_MORE_CREATURE",params:[var16]};
 			}
 		}
-		loc15 = this._aSpellsCountByPlayer.length;
-		while((loc15 = loc15 - 1) >= 0)
+		var15 = this._aSpellsCountByPlayer.length;
+		while((var15 = var15 - 1) >= 0)
 		{
-			loc5 = this._aSpellsCountByPlayer[loc15];
-			loc6 = loc5.spell;
-			if(loc6.ID == loc2)
+			var5 = this._aSpellsCountByPlayer[var15];
+			var6 = var5.spell;
+			if(var6.ID == var2)
 			{
-				var loc8 = loc6.launchCountByPlayerTurn;
-				if(loc5.spriteOnID == loc3 && this._oSpellsCountByPlayer_Counter[loc5.spriteOnID + "|" + loc2] >= loc8)
+				var var8 = var6.launchCountByPlayerTurn;
+				if(var5.spriteOnID == var3 && this._oSpellsCountByPlayer_Counter[var5.spriteOnID + "|" + var2] >= var8)
 				{
 					return {can:false,type:"CANT_ON_THIS_PLAYER"};
 				}
 			}
 		}
-		loc15 = this._aSpellsCountByTurn.length;
-		while((loc15 = loc15 - 1) >= 0)
+		var15 = this._aSpellsCountByTurn.length;
+		while((var15 = var15 - 1) >= 0)
 		{
-			loc5 = this._aSpellsCountByTurn[loc15];
-			loc6 = loc5.spell;
-			if(loc6.ID == loc2)
+			var5 = this._aSpellsCountByTurn[var15];
+			var6 = var5.spell;
+			if(var6.ID == var2)
 			{
-				var loc7 = loc6.launchCountByTurn;
-				if(this._oSpellsCountByTurn_Counter[loc2] >= loc7)
+				var var7 = var6.launchCountByTurn;
+				if(this._oSpellsCountByTurn_Counter[var2] >= var7)
 				{
-					return {can:false,type:"CANT_LAUNCH_MORE",params:[loc7]};
+					return {can:false,type:"CANT_LAUNCH_MORE",params:[var7]};
 				}
 			}
 		}
-		if(!this.api.datacenter.Player.hasEnoughAP(loc9.apCost))
+		if(!this.api.datacenter.Player.hasEnoughAP(var9.apCost))
 		{
 			return {can:false,type:"NOT_ENOUGH_AP"};
 		}
 		return {can:true};
 	}
-	function checkCanLaunchSpellOnCell(mapHandler, §\x1e\x19\f§, §\x14\x02§, §\x1e\x16\x1d§)
+	function checkCanLaunchSpellOnCell(mapHandler, §\x1e\x19\n§, §\x13\x1d§, §\x1e\x16\x1b§)
 	{
-		var loc6 = Number(this._localPlayerData.data.cellNum);
-		var loc7 = Number(loc4.mc.num);
-		if(loc6 == loc7 && loc3.rangeMin != 0)
+		var var6 = Number(this._localPlayerData.data.cellNum);
+		var var7 = Number(var4.mc.num);
+		if(var6 == var7 && var3.rangeMin != 0)
 		{
 			return false;
 		}
@@ -202,28 +202,28 @@ class dofus.managers.SpellsManager
 		{
 			return false;
 		}
-		if(ank.battlefield.utils.Pathfinding.checkRange(mapHandler,loc6,loc7,loc3.lineOnly,loc3.rangeMin,loc3.rangeMax,loc5))
+		if(ank.battlefield.utils.Pathfinding.checkRange(mapHandler,var6,var7,var3.lineOnly,var3.rangeMin,var3.rangeMax,var5))
 		{
-			if(loc3.freeCell)
+			if(var3.freeCell)
 			{
-				if(loc4.movement > 1 && loc4.spriteOnID != undefined)
+				if(var4.movement > 1 && var4.spriteOnID != undefined)
 				{
 					return false;
 				}
-				if(loc4.movement <= 1)
+				if(var4.movement <= 1)
 				{
 					return false;
 				}
 			}
-			if(loc3.lineOfSight)
+			if(var3.lineOfSight)
 			{
-				if(ank.battlefield.utils.Pathfinding.checkView(mapHandler,loc6,loc7))
+				if(ank.battlefield.utils.Pathfinding.checkView(mapHandler,var6,var7))
 				{
-					return this.checkCanLaunchSpell(loc3.ID,loc4.spriteOnID);
+					return this.checkCanLaunchSpell(var3.ID,var4.spriteOnID);
 				}
 				return false;
 			}
-			return this.checkCanLaunchSpell(loc3.ID,loc4.spriteOnID);
+			return this.checkCanLaunchSpell(var3.ID,var4.spriteOnID);
 		}
 		return false;
 	}

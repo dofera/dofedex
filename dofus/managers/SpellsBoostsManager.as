@@ -13,19 +13,19 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 	static var ACTION_BOOST_SPELL_MAXPERTARGET = 291;
 	static var ACTION_BOOST_SPELL_SET_INTVL = 292;
 	static var _sSelf = null;
-	function SpellsBoostsManager(loc3)
+	function SpellsBoostsManager(var3)
 	{
 		super();
 		dofus.managers.SpellsBoostsManager._sSelf = this;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.SpellsBoostsManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 		this.clear();
 	}
 	function clear()
@@ -35,70 +35,70 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		delete dofus.managers.SpellsBoostsManager._aDamagingEffects;
 		delete dofus.managers.SpellsBoostsManager._aHealingEffects;
 	}
-	function getSpellModificator(loc2, loc3)
+	function getSpellModificator(var2, var3)
 	{
-		if(_global.isNaN(this._oSpellsModificators[loc2][loc3]) || this._oSpellsModificators[loc2][loc3] == undefined)
+		if(_global.isNaN(this._oSpellsModificators[var2][var3]) || this._oSpellsModificators[var2][var3] == undefined)
 		{
 			return -1;
 		}
-		return Number(this._oSpellsModificators[loc2][loc3]);
+		return Number(this._oSpellsModificators[var2][var3]);
 	}
-	function setSpellModificator(loc2, loc3, loc4)
+	function setSpellModificator(var2, var3, var4)
 	{
-		if(typeof this._oSpellsModificators[loc2] != "object" && this._oSpellsModificators[loc2] == undefined)
+		if(typeof this._oSpellsModificators[var2] != "object" && this._oSpellsModificators[var2] == undefined)
 		{
-			this._oSpellsModificators[loc2] = new Object();
+			this._oSpellsModificators[var2] = new Object();
 		}
-		this._oSpellsModificators[loc2][loc3] = loc4;
+		this._oSpellsModificators[var2][var3] = var4;
 	}
-	function isBoostedDamagingEffect(loc2)
+	function isBoostedDamagingEffect(var2)
 	{
 		if(dofus.managers.SpellsBoostsManager._aDamagingEffects == undefined)
 		{
 			this.computeBoostedEffectsLists();
 		}
-		var loc3 = 0;
-		while(loc3 < dofus.managers.SpellsBoostsManager._aDamagingEffects.length)
+		var var3 = 0;
+		while(var3 < dofus.managers.SpellsBoostsManager._aDamagingEffects.length)
 		{
-			if(dofus.managers.SpellsBoostsManager._aDamagingEffects[loc3] == loc2)
+			if(dofus.managers.SpellsBoostsManager._aDamagingEffects[var3] == var2)
 			{
 				return true;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return false;
 	}
-	function isBoostedHealingEffect(loc2)
+	function isBoostedHealingEffect(var2)
 	{
 		if(dofus.managers.SpellsBoostsManager._aHealingEffects == undefined)
 		{
 			this.computeBoostedEffectsLists();
 		}
-		var loc3 = 0;
-		while(loc3 < dofus.managers.SpellsBoostsManager._aHealingEffects.length)
+		var var3 = 0;
+		while(var3 < dofus.managers.SpellsBoostsManager._aHealingEffects.length)
 		{
-			if(dofus.managers.SpellsBoostsManager._aHealingEffects[loc3] == loc2)
+			if(dofus.managers.SpellsBoostsManager._aHealingEffects[var3] == var2)
 			{
 				return true;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return false;
 	}
-	function isBoostedHealingOrDamagingEffect(loc2)
+	function isBoostedHealingOrDamagingEffect(var2)
 	{
 		if(dofus.managers.SpellsBoostsManager._aBoostedEffects == undefined)
 		{
 			this.computeBoostedEffectsLists();
 		}
-		var loc3 = 0;
-		while(loc3 < dofus.managers.SpellsBoostsManager._aBoostedEffects.length)
+		var var3 = 0;
+		while(var3 < dofus.managers.SpellsBoostsManager._aBoostedEffects.length)
 		{
-			if(dofus.managers.SpellsBoostsManager._aBoostedEffects[loc3] == loc2)
+			if(dofus.managers.SpellsBoostsManager._aBoostedEffects[var3] == var2)
 			{
 				return true;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return false;
 	}
@@ -107,17 +107,17 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		dofus.managers.SpellsBoostsManager._aBoostedEffects = new Array();
 		dofus.managers.SpellsBoostsManager._aDamagingEffects = this.api.lang.getBoostedDamagingEffects();
 		dofus.managers.SpellsBoostsManager._aHealingEffects = this.api.lang.getBoostedHealingEffects();
-		var loc2 = 0;
-		while(loc2 < dofus.managers.SpellsBoostsManager._aDamagingEffects.length)
+		var var2 = 0;
+		while(var2 < dofus.managers.SpellsBoostsManager._aDamagingEffects.length)
 		{
-			dofus.managers.SpellsBoostsManager._aBoostedEffects.push(dofus.managers.SpellsBoostsManager._aDamagingEffects[loc2]);
-			loc2 = loc2 + 1;
+			dofus.managers.SpellsBoostsManager._aBoostedEffects.push(dofus.managers.SpellsBoostsManager._aDamagingEffects[var2]);
+			var2 = var2 + 1;
 		}
-		var loc3 = 0;
-		while(loc3 < dofus.managers.SpellsBoostsManager._aHealingEffects.length)
+		var var3 = 0;
+		while(var3 < dofus.managers.SpellsBoostsManager._aHealingEffects.length)
 		{
-			dofus.managers.SpellsBoostsManager._aBoostedEffects.push(dofus.managers.SpellsBoostsManager._aHealingEffects[loc3]);
-			loc3 = loc3 + 1;
+			dofus.managers.SpellsBoostsManager._aBoostedEffects.push(dofus.managers.SpellsBoostsManager._aHealingEffects[var3]);
+			var3 = var3 + 1;
 		}
 	}
 }

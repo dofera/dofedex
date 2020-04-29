@@ -1,555 +1,575 @@
 class dofus.managers.CharactersManager extends dofus.utils.ApiElement
 {
 	static var _sSelf = null;
-	function CharactersManager(loc3)
+	function CharactersManager(var3)
 	{
 		dofus.managers.CharactersManager._sSelf = this;
-		super.initialize(loc3);
+		super.initialize(var3);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.CharactersManager._sSelf;
 	}
-	function setLocalPlayerData(loc2, loc3, loc4)
+	function setLocalPlayerData(var2, var3, var4)
 	{
-		var loc5 = this.api.datacenter.Player;
-		loc5.clean();
-		loc5.ID = loc2;
-		loc5.Name = loc3;
-		loc5.Guild = loc4.guild;
-		loc5.Level = loc4.level;
-		loc5.Sex = loc4.sex;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		var loc6 = loc4.items.split(";");
-		var loc7 = 0;
-		while(loc7 < loc6.length)
+		var var5 = this.api.datacenter.Player;
+		var5.clean();
+		var5.ID = var2;
+		var5.Name = var3;
+		var5.Guild = var4.guild;
+		var5.Level = var4.level;
+		var5.Sex = var4.sex;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		var var6 = var4.items.split(";");
+		var var7 = 0;
+		while(var7 < var6.length)
 		{
-			var loc8 = loc6[loc7];
-			if(loc8.length != 0)
+			var var8 = var6[var7];
+			if(var8.length != 0)
 			{
-				var loc9 = this.getItemObjectFromData(loc8);
-				if(loc9 != undefined)
+				var var9 = this.getItemObjectFromData(var8);
+				if(var9 != undefined)
 				{
-					loc5.addItem(loc9);
+					var5.addItem(var9);
 				}
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		loc5.updateCloseCombat();
+		var5.updateCloseCombat();
 	}
-	function createCharacter(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function updateLocalPlayerData(oSprite)
 	{
-		if(this.api.datacenter.Player.isAuthorized && loc4.gfxID == "999")
+		var var3 = this.api.datacenter.Player;
+		if(var3.Name != oSprite.name)
 		{
-			loc4.gfxID = "8023";
+			var3.Name = oSprite.name;
 		}
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		if(var3.color1 != oSprite.color1 || (var3.color2 != oSprite.color2 || var3.color3 != oSprite.color3))
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID,loc4.title);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var3.color1 = oSprite.color1;
+			var3.color2 = oSprite.color2;
+			var3.color3 = oSprite.color3;
+			this.api.ui.getUIComponent("Banner").updateArtwork(true);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = Number(loc4.cell);
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.name = loc3;
-		loc5.Guild = Number(loc4.spriteType);
-		loc5.Level = Number(loc4.level);
-		loc5.Sex = loc4.sex == undefined?1:loc4.sex;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		loc5.Aura = loc4.aura == undefined?0:loc4.aura;
-		loc5.Merchant = loc4.merchant != "1"?false:true;
-		loc5.serverID = Number(loc4.serverID);
-		loc5.alignment = loc4.alignment;
-		loc5.rank = loc4.rank;
-		loc5.mount = loc4.mount;
-		loc5.isDead = loc4.isDead == 1;
-		loc5.deathState = Number(loc4.isDead);
-		loc5.deathCount = Number(loc4.deathCount);
-		loc5.lvlMax = Number(loc4.lvlMax);
-		loc5.pvpGain = Number(loc4.pvpGain);
-		this.setSpriteAccessories(loc5,loc4.accessories);
-		if(loc4.LP != undefined)
+		if(var3.Sex != oSprite.Sex)
 		{
-			loc5.LP = loc4.LP;
+			var3.Sex = oSprite.Sex;
 		}
-		if(loc4.LP != undefined)
+	}
+	function createCharacter(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
+	{
+		if(this.api.datacenter.Player.isAuthorized && var4.gfxID == "999")
 		{
-			loc5.LPmax = loc4.LP;
+			var4.gfxID = "8023";
 		}
-		if(loc4.AP != undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5.AP = loc4.AP;
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID,var4.title);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		if(loc4.AP != undefined)
+		var5.GameActionsManager.init();
+		var5.cellNum = Number(var4.cell);
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.name = var3;
+		var5.Guild = Number(var4.spriteType);
+		var5.Level = Number(var4.level);
+		var5.Sex = var4.sex == undefined?1:var4.sex;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		var5.Aura = var4.aura == undefined?0:var4.aura;
+		var5.Merchant = var4.merchant != "1"?false:true;
+		var5.serverID = Number(var4.serverID);
+		var5.alignment = var4.alignment;
+		var5.rank = var4.rank;
+		var5.mount = var4.mount;
+		var5.isDead = var4.isDead == 1;
+		var5.deathState = Number(var4.isDead);
+		var5.deathCount = Number(var4.deathCount);
+		var5.lvlMax = Number(var4.lvlMax);
+		var5.pvpGain = Number(var4.pvpGain);
+		this.setSpriteAccessories(var5,var4.accessories);
+		if(var4.LP != undefined)
 		{
-			loc5.APinit = loc4.AP;
+			var5.LP = var4.LP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.LP != undefined)
 		{
-			loc5.MP = loc4.MP;
+			var5.LPmax = var4.LP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.MPinit = loc4.MP;
+			var5.AP = var4.AP;
 		}
-		if(loc4.resistances != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.resistances = loc4.resistances;
+			var5.APinit = var4.AP;
 		}
-		loc5.Team = loc4.team != undefined?loc4.team:null;
-		if(loc4.emote != undefined && loc4.emote.length != 0)
+		if(var4.MP != undefined)
 		{
-			loc5.direction = ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(loc4.dir);
-			if(loc4.emoteTimer != undefined && loc4.emote.length != 0)
+			var5.MP = var4.MP;
+		}
+		if(var4.MP != undefined)
+		{
+			var5.MPinit = var4.MP;
+		}
+		if(var4.resistances != undefined)
+		{
+			var5.resistances = var4.resistances;
+		}
+		var5.Team = var4.team != undefined?var4.team:null;
+		if(var4.emote != undefined && var4.emote.length != 0)
+		{
+			var5.direction = ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(var4.dir);
+			if(var4.emoteTimer != undefined && var4.emote.length != 0)
 			{
-				loc5.startAnimationTimer = loc4.emoteTimer;
+				var5.startAnimationTimer = var4.emoteTimer;
 			}
-			loc5.startAnimation = "EmoteStatic" + loc4.emote;
+			var5.startAnimation = "EmoteStatic" + var4.emote;
 		}
-		if(loc4.guildName != undefined)
+		if(var4.guildName != undefined)
 		{
-			loc5.guildName = loc4.guildName;
+			var5.guildName = var4.guildName;
 		}
-		loc5.emblem = this.createGuildEmblem(loc4.emblem);
-		if(loc4.restrictions != undefined)
+		var5.emblem = this.createGuildEmblem(var4.emblem);
+		if(var4.restrictions != undefined)
 		{
-			loc5.restrictions = _global.parseInt(loc4.restrictions,36);
+			var5.restrictions = _global.parseInt(var4.restrictions,36);
 		}
 		if(sID == this.api.datacenter.Player.ID)
 		{
+			this.updateLocalPlayerData(var5);
 			if(!this.api.datacenter.Player.haveFakeAlignment)
 			{
-				this.api.datacenter.Player.alignment = loc5.alignment.clone();
+				this.api.datacenter.Player.alignment = var5.alignment.clone();
 			}
 		}
-		return loc5;
+		return var5;
 	}
-	function createCreature(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createCreature(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.Creature(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.Creature(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.name = loc3;
-		loc5.powerLevel = loc4.powerLevel;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.noFlip = loc4.noFlip;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		this.setSpriteAccessories(loc5,loc4.accessories);
-		if(loc4.LP != undefined)
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.name = var3;
+		var5.powerLevel = var4.powerLevel;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.noFlip = var4.noFlip;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		this.setSpriteAccessories(var5,var4.accessories);
+		if(var4.LP != undefined)
 		{
-			loc5.LP = loc4.LP;
+			var5.LP = var4.LP;
 		}
-		if(loc4.LP != undefined)
+		if(var4.LP != undefined)
 		{
-			loc5.LPmax = loc4.LP;
+			var5.LPmax = var4.LP;
 		}
-		if(loc4.AP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.AP = loc4.AP;
+			var5.AP = var4.AP;
 		}
-		if(loc4.AP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.APinit = loc4.AP;
+			var5.APinit = var4.AP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.MP != undefined)
 		{
-			loc5.MP = loc4.MP;
+			var5.MP = var4.MP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.MP != undefined)
 		{
-			loc5.MPinit = loc4.MP;
+			var5.MPinit = var4.MP;
 		}
-		if(loc4.resistances != undefined)
+		if(var4.resistances != undefined)
 		{
-			loc5.resistances = loc4.resistances;
+			var5.resistances = var4.resistances;
 		}
-		if(loc4.summoned != undefined)
+		if(var4.summoned != undefined)
 		{
-			loc5.isSummoned = loc4.summoned;
+			var5.isSummoned = var4.summoned;
 		}
-		loc5.Team = loc4.team != undefined?loc4.team:null;
-		return loc5;
+		var5.Team = var4.team != undefined?var4.team:null;
+		return var5;
 	}
-	function createMonster(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createMonster(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.name = loc3;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.noFlip = loc4.noFlip;
-		loc5.powerLevel = loc4.powerLevel;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		this.setSpriteAccessories(loc5,loc4.accessories);
-		if(loc4.LP != undefined)
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.name = var3;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.noFlip = var4.noFlip;
+		var5.powerLevel = var4.powerLevel;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		this.setSpriteAccessories(var5,var4.accessories);
+		if(var4.LP != undefined)
 		{
-			loc5.LP = loc4.LP;
+			var5.LP = var4.LP;
 		}
-		if(loc4.LP != undefined)
+		if(var4.LP != undefined)
 		{
-			loc5.LPmax = loc4.LP;
+			var5.LPmax = var4.LP;
 		}
-		if(loc4.AP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.AP = loc4.AP;
+			var5.AP = var4.AP;
 		}
-		if(loc4.AP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.APinit = loc4.AP;
+			var5.APinit = var4.AP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.MP != undefined)
 		{
-			loc5.MP = loc4.MP;
+			var5.MP = var4.MP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.MP != undefined)
 		{
-			loc5.MPinit = loc4.MP;
+			var5.MPinit = var4.MP;
 		}
-		if(loc4.summoned != undefined)
+		if(var4.summoned != undefined)
 		{
-			loc5.isSummoned = loc4.summoned;
+			var5.isSummoned = var4.summoned;
 		}
-		loc5.Team = loc4.team != undefined?loc4.team:null;
-		return loc5;
+		var5.Team = var4.team != undefined?var4.team:null;
+		return var5;
 	}
-	function createMonsterGroup(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createMonsterGroup(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.bonusValue);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.bonusValue);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.name = loc3;
-		loc5.Level = loc4.level;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.noFlip = loc4.noFlip;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		this.setSpriteAccessories(loc5,loc4.accessories);
-		return loc5;
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.name = var3;
+		var5.Level = var4.level;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.noFlip = var4.noFlip;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		this.setSpriteAccessories(var5,var4.accessories);
+		return var5;
 	}
-	function createNonPlayableCharacter(sID, §\x1e\x1d\x05§, §\x1e\x1b\n§)
+	function createNonPlayableCharacter(sID, §\x1e\x1d\x03§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID,loc4.customArtwork);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID,var4.customArtwork);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.unicID = loc3;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		this.setSpriteAccessories(loc5,loc4.accessories);
-		if(loc4.extraClipID >= 0)
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.unicID = var3;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		this.setSpriteAccessories(var5,var4.accessories);
+		if(var4.extraClipID >= 0)
 		{
-			loc5.extraClipID = loc4.extraClipID;
+			var5.extraClipID = var4.extraClipID;
 		}
-		return loc5;
+		return var5;
 	}
-	function createOfflineCharacter(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createOfflineCharacter(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.name = loc3;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.color1 = loc4.color1 != -1?Number("0x" + loc4.color1):loc4.color1;
-		loc5.color2 = loc4.color2 != -1?Number("0x" + loc4.color2):loc4.color2;
-		loc5.color3 = loc4.color3 != -1?Number("0x" + loc4.color3):loc4.color3;
-		this.setSpriteAccessories(loc5,loc4.accessories);
-		if(loc4.guildName != undefined)
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.name = var3;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.color1 = var4.color1 != -1?Number("0x" + var4.color1):var4.color1;
+		var5.color2 = var4.color2 != -1?Number("0x" + var4.color2):var4.color2;
+		var5.color3 = var4.color3 != -1?Number("0x" + var4.color3):var4.color3;
+		this.setSpriteAccessories(var5,var4.accessories);
+		if(var4.guildName != undefined)
 		{
-			loc5.guildName = loc4.guildName;
+			var5.guildName = var4.guildName;
 		}
-		loc5.emblem = this.createGuildEmblem(loc4.emblem);
-		loc5.offlineType = loc4.offlineType;
-		return loc5;
+		var5.emblem = this.createGuildEmblem(var4.emblem);
+		var5.offlineType = var4.offlineType;
+		return var5;
 	}
-	function createTaxCollector(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createTaxCollector(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.name = this.api.lang.getFullNameText(loc3.split(","));
-		loc5.Level = loc4.level;
-		if(loc4.guildName != undefined)
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.name = this.api.lang.getFullNameText(var3.split(","));
+		var5.Level = var4.level;
+		if(var4.guildName != undefined)
 		{
-			loc5.guildName = loc4.guildName;
+			var5.guildName = var4.guildName;
 		}
-		loc5.emblem = this.createGuildEmblem(loc4.emblem);
-		if(loc4.LP != undefined)
+		var5.emblem = this.createGuildEmblem(var4.emblem);
+		if(var4.LP != undefined)
 		{
-			loc5.LP = loc4.LP;
+			var5.LP = var4.LP;
 		}
-		if(loc4.LP != undefined)
+		if(var4.LP != undefined)
 		{
-			loc5.LPmax = loc4.LP;
+			var5.LPmax = var4.LP;
 		}
-		if(loc4.AP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.AP = loc4.AP;
+			var5.AP = var4.AP;
 		}
-		if(loc4.AP != undefined)
+		if(var4.AP != undefined)
 		{
-			loc5.APinit = loc4.AP;
+			var5.APinit = var4.AP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.MP != undefined)
 		{
-			loc5.MP = loc4.MP;
+			var5.MP = var4.MP;
 		}
-		if(loc4.MP != undefined)
+		if(var4.MP != undefined)
 		{
-			loc5.MPinit = loc4.MP;
+			var5.MPinit = var4.MP;
 		}
-		if(loc4.resistances != undefined)
+		if(var4.resistances != undefined)
 		{
-			loc5.resistances = loc4.resistances;
+			var5.resistances = var4.resistances;
 		}
-		loc5.Team = loc4.team != undefined?loc4.team:null;
-		return loc5;
+		var5.Team = var4.team != undefined?var4.team:null;
+		return var5;
 	}
-	function createPrism(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createPrism(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.linkedMonster = Number(loc3);
-		loc5.Level = loc4.level;
-		loc5.alignment = loc4.alignment;
-		return loc5;
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.linkedMonster = Number(var3);
+		var5.Level = var4.level;
+		var5.alignment = var4.alignment;
+		return var5;
 	}
-	function createParkMount(sID, §\x1e\x11\x15§, §\x1e\x1b\n§)
+	function createParkMount(sID, §\x1e\x11\x13§, §\x1e\x1b\b§)
 	{
-		var loc5 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc5 == undefined)
+		var var5 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			loc5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc4.gfxID + ".swf",loc4.cell,loc4.dir,loc4.gfxID,loc4.modelID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc5);
+			var5 = new dofus.datacenter.(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var4.gfxID + ".swf",var4.cell,var4.dir,var4.gfxID,var4.modelID);
+			this.api.datacenter.Sprites.addItemAt(sID,var5);
 		}
-		loc5.GameActionsManager.init();
-		loc5.cellNum = loc4.cell;
-		loc5.name = loc3;
-		loc5.scaleX = loc4.scaleX;
-		loc5.scaleY = loc4.scaleY;
-		loc5.ownerName = loc4.ownerName;
-		loc5.level = loc4.level;
-		return loc5;
+		var5.GameActionsManager.init();
+		var5.cellNum = var4.cell;
+		var5.name = var3;
+		var5.scaleX = var4.scaleX;
+		var5.scaleY = var4.scaleY;
+		var5.ownerName = var4.ownerName;
+		var5.level = var4.level;
+		return var5;
 	}
-	function createMutant(sID, §\x1e\x1b\n§)
+	function createMutant(sID, §\x1e\x1b\b§)
 	{
-		var loc4 = this.api.datacenter.Sprites.getItemAt(sID);
-		if(loc4 == undefined)
+		var var4 = this.api.datacenter.Sprites.getItemAt(sID);
+		if(var4 == undefined)
 		{
-			loc4 = new dofus.datacenter.
-(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + loc3.gfxID + ".swf",loc3.cell,loc3.dir,loc3.gfxID);
-			this.api.datacenter.Sprites.addItemAt(sID,loc4);
+			var4 = new dofus.datacenter.
+(sID,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var3.gfxID + ".swf",var3.cell,var3.dir,var3.gfxID);
+			this.api.datacenter.Sprites.addItemAt(sID,var4);
 		}
-		loc4.GameActionsManager.init();
-		loc4.scaleX = loc3.scaleX;
-		loc4.scaleY = loc3.scaleY;
-		loc4.cellNum = Number(loc3.cell);
-		loc4.Guild = Number(loc3.spriteType);
-		loc4.powerLevel = Number(loc3.powerLevel);
-		loc4.Sex = loc3.sex == undefined?1:loc3.sex;
-		loc4.showIsPlayer = loc3.showIsPlayer;
-		loc4.monsterID = loc3.monsterID;
-		loc4.playerName = loc3.playerName;
-		this.setSpriteAccessories(loc4,loc3.accessories);
-		if(loc3.LP != undefined)
+		var4.GameActionsManager.init();
+		var4.scaleX = var3.scaleX;
+		var4.scaleY = var3.scaleY;
+		var4.cellNum = Number(var3.cell);
+		var4.Guild = Number(var3.spriteType);
+		var4.powerLevel = Number(var3.powerLevel);
+		var4.Sex = var3.sex == undefined?1:var3.sex;
+		var4.showIsPlayer = var3.showIsPlayer;
+		var4.monsterID = var3.monsterID;
+		var4.playerName = var3.playerName;
+		this.setSpriteAccessories(var4,var3.accessories);
+		if(var3.LP != undefined)
 		{
-			loc4.LP = loc3.LP;
+			var4.LP = var3.LP;
 		}
-		if(loc3.LP != undefined)
+		if(var3.LP != undefined)
 		{
-			loc4.LPmax = loc3.LP;
+			var4.LPmax = var3.LP;
 		}
-		if(loc3.AP != undefined)
+		if(var3.AP != undefined)
 		{
-			loc4.AP = loc3.AP;
+			var4.AP = var3.AP;
 		}
-		if(loc3.AP != undefined)
+		if(var3.AP != undefined)
 		{
-			loc4.APinit = loc3.AP;
+			var4.APinit = var3.AP;
 		}
-		if(loc3.MP != undefined)
+		if(var3.MP != undefined)
 		{
-			loc4.MP = loc3.MP;
+			var4.MP = var3.MP;
 		}
-		if(loc3.MP != undefined)
+		if(var3.MP != undefined)
 		{
-			loc4.MPinit = loc3.MP;
+			var4.MPinit = var3.MP;
 		}
-		loc4.Team = loc3.team != undefined?loc3.team:null;
-		if(loc3.emote != undefined && loc3.emote.length != 0)
+		var4.Team = var3.team != undefined?var3.team:null;
+		if(var3.emote != undefined && var3.emote.length != 0)
 		{
-			loc4.direction = ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(loc3.dir);
-			if(loc3.emoteTimer != undefined && loc3.emote.length != 0)
+			var4.direction = ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(var3.dir);
+			if(var3.emoteTimer != undefined && var3.emote.length != 0)
 			{
-				loc4.startAnimationTimer = loc3.emoteTimer;
+				var4.startAnimationTimer = var3.emoteTimer;
 			}
-			loc4.startAnimation = "EmoteStatic" + loc3.emote;
+			var4.startAnimation = "EmoteStatic" + var3.emote;
 		}
-		if(loc3.restrictions != undefined)
+		if(var3.restrictions != undefined)
 		{
-			loc4.restrictions = _global.parseInt(loc3.restrictions,36);
+			var4.restrictions = _global.parseInt(var3.restrictions,36);
 		}
-		return loc4;
+		return var4;
 	}
-	function getItemObjectFromData(loc2)
+	function getItemObjectFromData(var2)
 	{
-		if(loc2.length == 0)
+		if(var2.length == 0)
 		{
 			return null;
 		}
-		var loc3 = loc2.split("~");
-		var loc4 = _global.parseInt(loc3[0],16);
-		var loc5 = _global.parseInt(loc3[1],16);
-		var loc6 = _global.parseInt(loc3[2],16);
-		var loc7 = loc3[3].length != 0?_global.parseInt(loc3[3],16):-1;
-		var loc8 = loc3[4];
-		var loc9 = new dofus.datacenter.(loc4,loc5,loc6,loc7,loc8);
-		loc9.priceMultiplicator = this.api.lang.getConfigText("SELL_PRICE_MULTIPLICATOR");
-		return loc9;
+		var var3 = var2.split("~");
+		var var4 = _global.parseInt(var3[0],16);
+		var var5 = _global.parseInt(var3[1],16);
+		var var6 = _global.parseInt(var3[2],16);
+		var var7 = var3[3].length != 0?_global.parseInt(var3[3],16):-1;
+		var var8 = var3[4];
+		var var9 = new dofus.datacenter.(var4,var5,var6,var7,var8);
+		var9.priceMultiplicator = this.api.lang.getConfigText("SELL_PRICE_MULTIPLICATOR");
+		return var9;
 	}
-	function getSpellObjectFromData(loc2)
+	function getSpellObjectFromData(var2)
 	{
-		var loc3 = loc2.split("~");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = loc3[2];
-		var loc7 = new dofus.datacenter.(loc4,loc5,loc6);
-		return loc7;
+		var var3 = var2.split("~");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = var3[2];
+		var var7 = new dofus.datacenter.(var4,var5,var6);
+		return var7;
 	}
-	function getNameFromData(loc2)
+	function getNameFromData(var2)
 	{
-		var loc3 = new Object();
-		var loc4 = loc2.split(",");
-		if(loc4.length == 2)
+		var var3 = new Object();
+		var var4 = var2.split(",");
+		if(var4.length == 2)
 		{
-			loc3.name = this.api.lang.getFullNameText(loc4);
-			loc3.type = "taxcollector";
+			var3.name = this.api.lang.getFullNameText(var4);
+			var3.type = "taxcollector";
 		}
-		else if(_global.isNaN(Number(loc2)))
+		else if(_global.isNaN(Number(var2)))
 		{
-			loc3.name = loc2;
-			loc3.type = "player";
+			var3.name = var2;
+			var3.type = "player";
 		}
 		else
 		{
-			loc3.name = this.api.lang.getMonstersText(Number(loc2)).n;
-			loc3.type = "monster";
+			var3.name = this.api.lang.getMonstersText(Number(var2)).n;
+			var3.type = "monster";
 		}
-		return loc3;
+		return var3;
 	}
-	function setSpriteAccessories(oSprite, §\x1e\x16\x12§)
+	function setSpriteAccessories(oSprite, §\x1e\x16\x10§)
 	{
-		if(loc3.length != 0)
+		if(var3.length != 0)
 		{
-			var loc4 = new Array();
-			var loc5 = loc3.split(",");
-			var loc6 = 0;
-			while(loc6 < loc5.length)
+			var var4 = new Array();
+			var var5 = var3.split(",");
+			var var6 = 0;
+			while(var6 < var5.length)
 			{
-				if(loc5[loc6].indexOf("~") != -1)
+				if(var5[var6].indexOf("~") != -1)
 				{
-					var loc10 = loc5[loc6].split("~");
-					var loc7 = _global.parseInt(loc10[0],16);
-					var loc9 = _global.parseInt(loc10[1]);
-					var loc8 = _global.parseInt(loc10[2]) - 1;
-					if(loc8 < 0)
+					var var10 = var5[var6].split("~");
+					var var7 = _global.parseInt(var10[0],16);
+					var var9 = _global.parseInt(var10[1]);
+					var var8 = _global.parseInt(var10[2]) - 1;
+					if(var8 < 0)
 					{
-						loc8 = 0;
+						var8 = 0;
 					}
 				}
 				else
 				{
-					loc7 = _global.parseInt(loc5[loc6],16);
-					loc9 = undefined;
-					loc8 = undefined;
+					var7 = _global.parseInt(var5[var6],16);
+					var9 = undefined;
+					var8 = undefined;
 				}
-				if(!_global.isNaN(loc7))
+				if(!_global.isNaN(var7))
 				{
-					var loc11 = new dofus.datacenter.(loc7,loc9,loc8);
-					loc4[loc6] = loc11;
+					var var11 = new dofus.datacenter.(var7,var9,var8);
+					var4[var6] = var11;
 				}
-				loc6 = loc6 + 1;
+				var6 = var6 + 1;
 			}
-			oSprite.accessories = loc4;
+			oSprite.accessories = var4;
 		}
 	}
-	function createGuildEmblem(loc2)
+	function createGuildEmblem(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			var loc3 = loc2.split(",");
-			var loc4 = _global.parseInt(loc3[0],36);
-			var loc5 = _global.parseInt(loc3[2],36);
-			if(loc4 < 1 || loc4 > dofus.Constants.EMBLEM_BACKS_COUNT)
+			var var3 = var2.split(",");
+			var var4 = _global.parseInt(var3[0],36);
+			var var5 = _global.parseInt(var3[2],36);
+			if(var4 < 1 || var4 > dofus.Constants.EMBLEM_BACKS_COUNT)
 			{
-				loc4 = 1;
+				var4 = 1;
 			}
-			if(loc5 < 1 || loc5 > dofus.Constants.EMBLEM_UPS_COUNT)
+			if(var5 < 1 || var5 > dofus.Constants.EMBLEM_UPS_COUNT)
 			{
-				loc5 = 1;
+				var5 = 1;
 			}
-			var loc6 = new Object();
-			loc6.backID = loc4;
-			loc6.backColor = _global.parseInt(loc3[1],36);
-			loc6.upID = loc5;
-			loc6.upColor = _global.parseInt(loc3[3],36);
-			return loc6;
+			var var6 = new Object();
+			var6.backID = var4;
+			var6.backColor = _global.parseInt(var3[1],36);
+			var6.upID = var5;
+			var6.upColor = _global.parseInt(var3[3],36);
+			return var6;
 		}
 		return undefined;
 	}

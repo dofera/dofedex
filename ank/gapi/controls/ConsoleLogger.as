@@ -9,18 +9,18 @@ class ank.gapi.controls.ConsoleLogger extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bShadowy;
 	}
-	function __set__shadowy(loc2)
+	function __set__shadowy(var2)
 	{
-		this._bShadowy = loc2;
+		this._bShadowy = var2;
 		return this.__get__shadowy();
 	}
-	function log(loc2, loc3, loc4)
+	function log(var2, var3, var4)
 	{
-		var loc5 = new Object();
-		loc5.text = loc2;
-		loc5.hColor = loc3 != undefined?loc3:"#FFFFFF";
-		loc5.lColor = loc4 != undefined?loc4:"#999999";
-		this._aLogs.push(loc5);
+		var var5 = new Object();
+		var5.text = var2;
+		var5.hColor = var3 != undefined?var3:"#FFFFFF";
+		var5.lColor = var4 != undefined?var4:"#999999";
+		this._aLogs.push(var5);
 		this.refreshLogs();
 	}
 	function clear()
@@ -49,9 +49,9 @@ class ank.gapi.controls.ConsoleLogger extends ank.gapi.core.UIBasicComponent
 		};
 		if(this._bShadowy)
 		{
-			var loc2 = new Array();
-			loc2.push(new flash.filters.DropShadowFilter(1,60,0,1,3,3,4,3,false,false,false));
-			this._tText.filters = loc2;
+			var var2 = new Array();
+			var2.push(new flash.filters.DropShadowFilter(1,60,0,1,3,3,4,3,false,false,false));
+			this._tText.filters = var2;
 			this._tText.antiAliasType = "advanced";
 		}
 		this._aLogs = new Array();
@@ -64,32 +64,32 @@ class ank.gapi.controls.ConsoleLogger extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 		this._tText.embedFonts = this.getStyle().embedfonts;
 	}
 	function refreshLogs()
 	{
-		var loc2 = "";
-		var loc3 = this._aLogs.length - 1;
-		var loc5 = this.getStyle();
-		var loc6 = 0;
-		while(loc6 < loc3)
+		var var2 = "";
+		var var3 = this._aLogs.length - 1;
+		var var5 = this.getStyle();
+		var var6 = 0;
+		while(var6 < var3)
 		{
-			var loc4 = this._aLogs[loc6];
-			loc2 = loc2 + ("<p><font size=\'" + loc5.size + "\' face=\'" + loc5.font + "\' color=\'" + loc4.lColor + "\'>" + loc4.text + "</font></p>");
-			loc6 = loc6 + 1;
+			var var4 = this._aLogs[var6];
+			var2 = var2 + ("<p><font size=\'" + var5.size + "\' face=\'" + var5.font + "\' color=\'" + var4.lColor + "\'>" + var4.text + "</font></p>");
+			var6 = var6 + 1;
 		}
-		loc4 = this._aLogs[loc3];
-		if(loc4 != undefined)
+		var4 = this._aLogs[var3];
+		if(var4 != undefined)
 		{
-			loc2 = loc2 + ("<p><font size=\'" + loc5.size + "\' face=\'" + loc5.font + "\' color=\'" + loc4.hColor + "\'>" + loc4.text + "</font></p>");
+			var2 = var2 + ("<p><font size=\'" + var5.size + "\' face=\'" + var5.font + "\' color=\'" + var4.hColor + "\'>" + var4.text + "</font></p>");
 		}
-		this._tText.htmlText = loc2;
+		this._tText.htmlText = var2;
 		this._tText.scroll = this._tText.maxscroll;
 	}
-	function onHref(loc2)
+	function onHref(var2)
 	{
-		this.dispatchEvent({type:"href",params:loc2});
+		this.dispatchEvent({type:"href",params:var2});
 	}
 	function onSetFocus()
 	{

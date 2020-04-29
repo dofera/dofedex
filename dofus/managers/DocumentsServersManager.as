@@ -10,22 +10,22 @@ class dofus.managers.DocumentsServersManager extends dofus.managers.ServersManag
 	{
 		return dofus.managers.DocumentsServersManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3,"docs","docs/");
+		super.initialize(var3,"docs","docs/");
 	}
 	function loadDocument(sID)
 	{
 		this.loadData(sID + ".swf");
 	}
-	function getDocumentObject(loc2)
+	function getDocumentObject(var2)
 	{
-		return new dofus.datacenter.Document(loc2);
+		return new dofus.datacenter.Document(var2);
 	}
-	function onComplete(loc2)
+	function onComplete(var2)
 	{
-		var loc3 = this.getDocumentObject(loc2);
-		this.addToQueue({object:this.api.ui,method:this.api.ui.loadUIComponent,params:[loc3.uiType,"Document",{document:loc3}]});
+		var var3 = this.getDocumentObject(var2);
+		this.addToQueue({object:this.api.ui,method:this.api.ui.loadUIComponent,params:[var3.uiType,"Document",{document:var3}]});
 	}
 	function onFailed()
 	{

@@ -2,10 +2,10 @@ class dofus.Electron extends dofus.utils.ApiElement
 {
 	var _bEnabled = _root.electron != undefined;
 	var _bUseRsaCrypto = _root.RSACrypto != undefined;
-	function Electron(loc3)
+	function Electron(var3)
 	{
 		super();
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	function __get__enabled()
 	{
@@ -15,9 +15,9 @@ class dofus.Electron extends dofus.utils.ApiElement
 	{
 		return this._bUseRsaCrypto;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 	}
 	function setIngameDiscordActivity()
 	{
@@ -25,44 +25,44 @@ class dofus.Electron extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		var loc2 = "Dofus Retro v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION;
-		var loc3 = this.api.lang.getText("CURRENT_SERVER",[this.api.datacenter.Basics.aks_current_server.label]);
-		var loc4 = this.api.datacenter.Player.Name;
-		var loc5 = this.api.datacenter.Basics.dofusPseudo;
-		var loc6 = this.api.lang.getClassText(this.api.datacenter.Player.Guild).ln;
-		var loc7 = this.api.datacenter.Player.Guild;
-		var loc8 = this.api.datacenter.Player.Sex;
-		flash.external.ExternalInterface.call("setIngameDiscordActivity",loc2,loc3,loc4,loc5,loc6,loc7,loc8);
+		var var2 = "Dofus Retro v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION;
+		var var3 = this.api.lang.getText("CURRENT_SERVER",[this.api.datacenter.Basics.aks_current_server.label]);
+		var var4 = this.api.datacenter.Player.Name;
+		var var5 = this.api.datacenter.Basics.dofusPseudo;
+		var var6 = this.api.lang.getClassText(this.api.datacenter.Player.Guild).ln;
+		var var7 = this.api.datacenter.Player.Guild;
+		var var8 = this.api.datacenter.Player.Sex;
+		flash.external.ExternalInterface.call("setIngameDiscordActivity",var2,var3,var4,var5,var6,var7,var8);
 	}
-	function log(loc2, loc3)
+	function log(var2, var3)
 	{
 		if(!this._bEnabled)
 		{
 			return undefined;
 		}
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = false;
+			var3 = false;
 		}
-		flash.external.ExternalInterface.call("userLog",loc2,loc3);
+		flash.external.ExternalInterface.call("userLog",var2,var3);
 	}
-	function consoleLog(loc2, loc3)
+	function consoleLog(var2, var3)
 	{
 		if(!this._bEnabled)
 		{
 			return undefined;
 		}
-		flash.external.ExternalInterface.call("consoleLog",loc2,loc3);
+		flash.external.ExternalInterface.call("consoleLog",var2,var3);
 	}
-	function debugRequest(loc2, loc3)
+	function debugRequest(var2, var3)
 	{
 		if(!this._bEnabled)
 		{
 			return undefined;
 		}
-		var loc4 = this.api.datacenter.Player.Name;
-		var loc5 = this.api.datacenter.Basics.aks_current_server.label;
-		flash.external.ExternalInterface.call("debugRequest",loc2,dofus.Constants.LOG_DATAS,loc3,loc4,loc5);
+		var var4 = this.api.datacenter.Player.Name;
+		var var5 = this.api.datacenter.Basics.aks_current_server.label;
+		flash.external.ExternalInterface.call("debugRequest",var2,dofus.Constants.LOG_DATAS,var3,var4,var5);
 	}
 	function setLoginDiscordActivity()
 	{
@@ -70,34 +70,34 @@ class dofus.Electron extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		var loc2 = "Client v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION;
-		var loc3 = "Build " + dofus.Constants.VERSIONDATE;
-		flash.external.ExternalInterface.call("setLoginDiscordActivity",loc2,loc3);
+		var var2 = "Client v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION;
+		var var3 = "Build " + dofus.Constants.VERSIONDATE;
+		flash.external.ExternalInterface.call("setLoginDiscordActivity",var2,var3);
 	}
-	function makeNotification(loc2)
+	function makeNotification(var2)
 	{
-		if(!this._bEnabled || loc2 == undefined)
+		if(!this._bEnabled || var2 == undefined)
 		{
 			return undefined;
 		}
-		loc2 = loc2.split("<b>").join("");
-		loc2 = loc2.split("</b>").join("");
-		loc2 = loc2.split("<u>").join("");
-		loc2 = loc2.split("</u>").join("");
-		flash.external.ExternalInterface.call("makeNotification",loc2);
+		var2 = var2.split("<b>").join("");
+		var2 = var2.split("</b>").join("");
+		var2 = var2.split("<u>").join("");
+		var2 = var2.split("</u>").join("");
+		flash.external.ExternalInterface.call("makeNotification",var2);
 	}
-	function updateWindowTitle(loc2)
+	function updateWindowTitle(var2)
 	{
 		if(!this._bEnabled)
 		{
 			return undefined;
 		}
-		var loc3 = "";
-		if(loc2 != undefined)
+		var var3 = "";
+		if(var2 != undefined)
 		{
-			loc3 = loc2 + " - ";
+			var3 = var2 + " - ";
 		}
-		loc3 = loc3 + "Dofus Retro v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION;
-		flash.external.ExternalInterface.call("changeTitle",loc3);
+		var3 = var3 + "Dofus Retro v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION;
+		flash.external.ExternalInterface.call("changeTitle",var3);
 	}
 }

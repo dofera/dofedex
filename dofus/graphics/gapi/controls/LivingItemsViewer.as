@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.LivingItemsViewer extends dofus.graphics.gapi
 	{
 		super();
 	}
-	function __set__itemData(loc2)
+	function __set__itemData(var2)
 	{
-		this._oItemData = loc2;
+		this._oItemData = var2;
 		this.updateData();
 		return this.__get__itemData();
 	}
@@ -39,12 +39,13 @@ class dofus.graphics.gapi.controls.LivingItemsViewer extends dofus.graphics.gapi
 		this._btnDissociate.label = this.api.lang.getText("DISSOCIATE");
 		this._btnFeed.label = this.api.lang.getText("FEED_WORD");
 		this._btnSkin.label = this.api.lang.getText("CHOOSE_SKIN");
-		var loc2 = this._oItemData.effects;
-		for(var i in loc2)
+		var var2 = this._oItemData.effects;
+		§§enumerate(var2);
+		while((var var0 = §§enumeration()) != null)
 		{
-			if(loc2[i].type == 808)
+			if(var2[i].type == 808)
 			{
-				this._lblEatDate.text = loc2[i].description;
+				this._lblEatDate.text = var2[i].description;
 				break;
 			}
 		}
@@ -60,9 +61,9 @@ class dofus.graphics.gapi.controls.LivingItemsViewer extends dofus.graphics.gapi
 		this._btnFeed.enabled = this._oItemData.isAssociate;
 		this.initTexts();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnSkin:
 				this.api.ui.loadUIComponent("ChooseItemSkin","ChooseItemSkin",{item:this._oItemData});
@@ -71,7 +72,7 @@ class dofus.graphics.gapi.controls.LivingItemsViewer extends dofus.graphics.gapi
 				this.api.ui.loadUIComponent("ChooseFeed","ChooseFeed",{itemsType:[this._oItemData.type],item:this._oItemData});
 				break;
 			default:
-				if(loc0 !== this._btnDissociate)
+				if(var0 !== this._btnDissociate)
 				{
 					break;
 				}
@@ -80,11 +81,11 @@ class dofus.graphics.gapi.controls.LivingItemsViewer extends dofus.graphics.gapi
 				break;
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		this.gapi.showTooltip(new ank.utils.(this._pbXP.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._pbXP.maximum).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this._pbXP,-20);
+		this.gapi.showTooltip(new ank.utils.(this._pbXP.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._pbXP.maximum).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this._pbXP,-20);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

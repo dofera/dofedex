@@ -1,162 +1,163 @@
 class dofus.managers.DebugManager extends dofus.utils.ApiElement
 {
 	static var _sSelf = null;
-	function DebugManager(loc3)
+	function DebugManager(var3)
 	{
 		super();
 		dofus.managers.DebugManager._sSelf = this;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.DebugManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 		this.setDebug(dofus.Constants.DEBUG == true);
 	}
-	function setDebug(loc2)
+	function setDebug(var2)
 	{
-		this._bDebugEnabled = loc2;
-		this.print("Debug mode " + (!loc2?"OFF":"ON"),5,true);
+		this._bDebugEnabled = var2;
+		this.print("Debug mode " + (!var2?"OFF":"ON"),5,true);
 	}
 	function toggleDebug()
 	{
 		this.setDebug(!this._bDebugEnabled);
 	}
-	function print(loc2, loc3, loc4)
+	function print(var2, var3, var4)
 	{
-		if(!loc4 && !this._bDebugEnabled)
+		if(!var4 && !this._bDebugEnabled)
 		{
 			return undefined;
 		}
-		var loc5 = this.getTimestamp() + " ";
-		loc5 = loc5 + loc2;
-		var loc6 = "DEBUG_INFO";
-		switch(loc3)
+		var var5 = this.getTimestamp() + " ";
+		var5 = var5 + var2;
+		var var6 = "DEBUG_INFO";
+		switch(var3)
 		{
 			case 5:
-				loc6 = "ERROR_CHAT";
+				var6 = "ERROR_CHAT";
 				break;
 			case 4:
-				loc6 = "MESSAGE_CHAT";
+				var6 = "MESSAGE_CHAT";
 				break;
 			case 3:
-				loc6 = "DEBUG_ERROR";
+				var6 = "DEBUG_ERROR";
+				break;
+			case 2:
+				var6 = "DEBUG_LOG";
 				break;
 			default:
-				if(loc0 !== 2)
-				{
-					loc6 = "DEBUG_INFO";
-					break;
-				}
-				loc6 = "DEBUG_LOG";
-				break;
+				var6 = "DEBUG_INFO";
 		}
-		this.api.kernel.showMessage(undefined,loc5,loc6);
+		this.api.kernel.showMessage(undefined,var5,var6);
 	}
-	function getFormattedMessage(loc2)
+	function getFormattedMessage(var2)
 	{
-		var loc3 = "";
+		var var3 = "";
 		while(true)
 		{
-			var loc4 = loc2.indexOf("#");
-			if(loc4 != -1)
+			var var4 = var2.indexOf("#");
+			if(var4 != -1)
 			{
-				loc3 = loc3 + loc2.substring(0,loc4);
-				loc2 = loc2.substring(loc4 + 1);
-				var loc5 = loc2.split("|");
-				loc5.splice(2);
-				var loc6 = null;
-				if(loc5 != undefined && loc5.length > 1)
+				var3 = var3 + var2.substring(0,var4);
+				var2 = var2.substring(var4 + 1);
+				var var5 = var2.split("|");
+				var5.splice(2);
+				var var6 = null;
+				if(var5 != undefined && var5.length > 1)
 				{
-					switch(loc5[0])
+					switch(var5[0])
 					{
 						case "getioname":
-							var loc7 = Number(loc5[1]);
-							if(loc7 != undefined && !_global.isNaN(loc7))
+							var var7 = Number(var5[1]);
+							if(var7 != undefined && !_global.isNaN(var7))
 							{
-								loc6 = this.api.lang.getInteractiveObjectDataText(loc7).n;
-								if(loc6 == undefined)
+								var6 = this.api.lang.getInteractiveObjectDataText(var7).n;
+								if(var6 == undefined)
 								{
-									loc6 = "-";
+									var6 = "-";
 								}
 							}
 							break;
 						case "getitemname":
-							var loc8 = Number(loc5[1]);
-							if(loc8 != undefined && !_global.isNaN(loc8))
+							var var8 = Number(var5[1]);
+							if(var8 != undefined && !_global.isNaN(var8))
 							{
-								loc6 = this.api.lang.getItemUnics()[loc8].n;
-								if(loc6 == undefined)
+								var6 = this.api.lang.getItemUnics()[var8].n;
+								if(var6 == undefined)
 								{
-									loc6 = "-";
+									var6 = "-";
 								}
 							}
 							break;
-						case "getsubareaname":
-							var loc9 = Number(loc5[1]);
-							if(loc9 != undefined && !_global.isNaN(loc9))
+						default:
+							switch(null)
 							{
-								loc6 = this.api.lang.getMapSubAreaText(loc9).n;
-								if(loc6 == undefined)
-								{
-									loc6 = "-";
-								}
-							}
-							break;
-						case "getcelliogfxname":
-							var loc10 = Number(loc5[1]);
-							if(loc10 != undefined && !_global.isNaN(loc10))
-							{
-								var loc11 = this.api.gfx.mapHandler.getCellData(loc10).layerObject2Num;
-								if(!_global.isNaN(loc11))
-								{
-									loc6 = this.api.lang.getInteractiveObjectDataByGfxText(loc11).n;
-								}
-								if(loc6 == undefined)
-								{
-									loc6 = "-";
-								}
-							}
-							break;
-						case "getmonstername":
-							var loc12 = Number(loc5[1]);
-							if(loc12 != undefined && !_global.isNaN(loc12))
-							{
-								loc6 = this.api.lang.getMonstersText(loc12).n;
-								if(loc6 == undefined)
-								{
-									loc6 = "-";
+								case "getsubareaname":
+									var var9 = Number(var5[1]);
+									if(var9 != undefined && !_global.isNaN(var9))
+									{
+										var6 = this.api.lang.getMapSubAreaText(var9).n;
+										if(var6 == undefined)
+										{
+											var6 = "-";
+										}
+									}
 									break;
-								}
-								break;
+								case "getcelliogfxname":
+									var var10 = Number(var5[1]);
+									if(var10 != undefined && !_global.isNaN(var10))
+									{
+										var var11 = this.api.gfx.mapHandler.getCellData(var10).layerObject2Num;
+										if(!_global.isNaN(var11))
+										{
+											var6 = this.api.lang.getInteractiveObjectDataByGfxText(var11).n;
+										}
+										if(var6 == undefined)
+										{
+											var6 = "-";
+										}
+									}
+									break;
+								case "getmonstername":
+									var var12 = Number(var5[1]);
+									if(var12 != undefined && !_global.isNaN(var12))
+									{
+										var6 = this.api.lang.getMonstersText(var12).n;
+										if(var6 == undefined)
+										{
+											var6 = "-";
+											break;
+										}
+										break;
+									}
 							}
 					}
 				}
-				if(loc6 != null && loc6.length > 0)
+				if(var6 != null && var6.length > 0)
 				{
-					loc3 = loc3 + loc6;
-					loc2 = loc2.substring(loc5.join("|").length + 1);
+					var3 = var3 + var6;
+					var2 = var2.substring(var5.join("|").length + 1);
 				}
 				else
 				{
-					loc3 = loc3 + "#";
+					var3 = var3 + "#";
 				}
 			}
-			if(loc4 == undefined || loc4 != -1)
+			if(var4 == undefined || var4 != -1)
 			{
 				continue;
 			}
 			break;
 		}
-		loc3 = loc3 + loc2;
-		return loc3;
+		var3 = var3 + var2;
+		return var3;
 	}
 	function getTimestamp()
 	{
-		var loc2 = new Date();
-		return "[" + new ank.utils.(loc2.getHours()).addLeftChar("0",2) + ":" + new ank.utils.(loc2.getMinutes()).addLeftChar("0",2) + ":" + new ank.utils.(loc2.getSeconds()).addLeftChar("0",2) + ":" + new ank.utils.(loc2.getMilliseconds()).addLeftChar("0",3) + "]";
+		var var2 = new Date();
+		return "[" + new ank.utils.(var2.getHours()).addLeftChar("0",2) + ":" + new ank.utils.(var2.getMinutes()).addLeftChar("0",2) + ":" + new ank.utils.(var2.getSeconds()).addLeftChar("0",2) + ":" + new ank.utils.(var2.getMilliseconds()).addLeftChar("0",3) + "]";
 	}
 }

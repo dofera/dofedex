@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.DocumentBook extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__document(loc2)
+	function __set__document(var2)
 	{
-		this._oDoc = loc2;
+		this._oDoc = var2;
 		return this.__get__document();
 	}
 	function init()
@@ -48,58 +48,62 @@ class dofus.graphics.gapi.ui.DocumentBook extends dofus.graphics.gapi.core.Dofus
 		this._btnAskPageLeft.addEventListener("out",this);
 		this._btnAskPageRight.addEventListener("out",this);
 	}
-	function setLeftPageNumber(loc2)
+	function setLeftPageNumber(var2)
 	{
 		if(this._oDoc == undefined)
 		{
 			return undefined;
 		}
-		this._nCurrentLeftPageNum = loc2;
-		var loc3 = this._oDoc.getPage(loc2);
-		var loc4 = this._oDoc.getPage(loc2 + 1);
-		this.layoutContent(loc3,true);
-		this.layoutContent(loc4,false);
-		this._btnPrevious._visible = loc2 > 0;
-		this._btnNext._visible = loc2 + 2 < this._oDoc.pageCount;
+		this._nCurrentLeftPageNum = var2;
+		var var3 = this._oDoc.getPage(var2);
+		var var4 = this._oDoc.getPage(var2 + 1);
+		this.layoutContent(var3,true);
+		this.layoutContent(var4,false);
+		this._btnPrevious._visible = var2 > 0;
+		this._btnNext._visible = var2 + 2 < this._oDoc.pageCount;
 	}
-	function layoutContent(loc2, loc3)
+	function layoutContent(var2, var3)
 	{
-		var loc4 = !loc3?"_mcRightRenderer":"_mcLeftRenderer";
-		var loc5 = !loc3?this._mcRightPlacer:this._mcLeftPlacer;
-		this[loc4].removeMovieClip();
-		switch(loc2.type)
+		var var4 = !var3?"_mcRightRenderer":"_mcLeftRenderer";
+		var var5 = !var3?this._mcRightPlacer:this._mcLeftPlacer;
+		this[var4].removeMovieClip();
+		if((var var0 = var2.type) !== "title")
 		{
-			case "title":
-				this.attachMovie("BookPageTitle",loc4,this.getNextHighestDepth(),{_x:loc5._x,_y:loc5._y,page:loc2});
-				break;
-			case "index":
-				this.attachMovie("BookPageIndex",loc4,this.getNextHighestDepth(),{_x:loc5._x,_y:loc5._y,page:loc2});
-				this[loc4].addEventListener("chapterChange",this);
-				break;
-			case "text":
-				this.attachMovie("BookPageText",loc4,this.getNextHighestDepth(),{_x:loc5._x,_y:loc5._y,page:loc2});
-				break;
-			case "blank":
-		}
-		if(loc3)
-		{
-			this._lblLeftPageNum.text = loc2.num != undefined?loc2.num:"";
-			this._btnAskPageLeft.enabled = loc2.num != undefined;
+			switch(null)
+			{
+				case "index":
+					this.attachMovie("BookPageIndex",var4,this.getNextHighestDepth(),{_x:var5._x,_y:var5._y,page:var2});
+					this[var4].addEventListener("chapterChange",this);
+					break;
+				case "text":
+					this.attachMovie("BookPageText",var4,this.getNextHighestDepth(),{_x:var5._x,_y:var5._y,page:var2});
+					break;
+				case "blank":
+			}
 		}
 		else
 		{
-			this._lblRightPageNum.text = loc2.num != undefined?loc2.num:"";
-			this._btnAskPageRight.enabled = loc2.num != undefined;
+			this.attachMovie("BookPageTitle",var4,this.getNextHighestDepth(),{_x:var5._x,_y:var5._y,page:var2});
+		}
+		if(var3)
+		{
+			this._lblLeftPageNum.text = var2.num != undefined?var2.num:"";
+			this._btnAskPageLeft.enabled = var2.num != undefined;
+		}
+		else
+		{
+			this._lblRightPageNum.text = var2.num != undefined?var2.num:"";
+			this._btnAskPageRight.enabled = var2.num != undefined;
 		}
 	}
-	function askPage(loc2)
+	function askPage(var2)
 	{
-		var loc3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:loc2,max:loc2});
-		loc3.addEventListener("validate",this);
+		var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:var2,max:var2});
+		var3.addEventListener("validate",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnPrevious":
 				this.setLeftPageNumber(this._nCurrentLeftPageNum - 2);
@@ -107,12 +111,12 @@ class dofus.graphics.gapi.ui.DocumentBook extends dofus.graphics.gapi.core.Dofus
 			case "_btnNext":
 				this.setLeftPageNumber(this._nCurrentLeftPageNum + 2);
 				break;
-			case "_btnClose":
-				this.callClose();
-				break;
 			default:
 				switch(null)
 				{
+					case "_btnClose":
+						this.callClose();
+						break;
 					case "_btnAskPageLeft":
 						this.askPage(1);
 						break;
@@ -121,44 +125,44 @@ class dofus.graphics.gapi.ui.DocumentBook extends dofus.graphics.gapi.core.Dofus
 				}
 		}
 	}
-	function chapterChange(loc2)
+	function chapterChange(var2)
 	{
-		var loc3 = loc2.pageNum % 2 != 0?loc2.pageNum - 1:loc2.pageNum;
-		this.setLeftPageNumber(loc3);
+		var var3 = var2.pageNum % 2 != 0?var2.pageNum - 1:var2.pageNum;
+		this.setLeftPageNumber(var3);
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		var loc3 = Number(loc2.value);
-		if(_global.isNaN(loc3))
+		var var3 = Number(var2.value);
+		if(_global.isNaN(var3))
 		{
-			loc3 = 1;
+			var3 = 1;
 		}
-		if(loc3 < 1)
+		if(var3 < 1)
 		{
-			loc3 = 1;
+			var3 = 1;
 		}
-		if(loc3 >= this._oDoc.pageCount)
+		if(var3 >= this._oDoc.pageCount)
 		{
-			loc3 = this._oDoc.pageCount - 1;
+			var3 = this._oDoc.pageCount - 1;
 		}
-		var loc4 = loc3 % 2 != 0?loc3 - 1:loc3;
-		this.setLeftPageNumber(loc4);
+		var var4 = var3 % 2 != 0?var3 - 1:var3;
+		this.setLeftPageNumber(var4);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnPrevious":
-				this.gapi.showTooltip(this.api.lang.getText("PREVIOUS_PAGE"),loc2.target,-20);
+				this.gapi.showTooltip(this.api.lang.getText("PREVIOUS_PAGE"),var2.target,-20);
 				break;
 			case "_btnNext":
-				this.gapi.showTooltip(this.api.lang.getText("NEXT_PAGE"),loc2.target,-20);
+				this.gapi.showTooltip(this.api.lang.getText("NEXT_PAGE"),var2.target,-20);
 				break;
 			default:
-				this.gapi.showTooltip(this.api.lang.getText("CHOOSE_PAGE_NUMBER"),loc2.target,-20);
+				this.gapi.showTooltip(this.api.lang.getText("CHOOSE_PAGE_NUMBER"),var2.target,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

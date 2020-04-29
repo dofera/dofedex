@@ -5,19 +5,19 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__servers(loc2)
+	function __set__servers(var2)
 	{
-		this._eaServers = loc2;
+		this._eaServers = var2;
 		return this.__get__servers();
 	}
-	function __set__serverID(loc2)
+	function __set__serverID(var2)
 	{
-		this._nServerID = loc2;
+		this._nServerID = var2;
 		return this.__get__serverID();
 	}
-	function __set__remainingTime(loc2)
+	function __set__remainingTime(var2)
 	{
-		this._nRemainingTime = loc2;
+		this._nRemainingTime = var2;
 		return this.__get__remainingTime();
 	}
 	function init()
@@ -76,21 +76,21 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 		};
 		this._lblLogin.onRelease = function()
 		{
-			var loc2 = this._parent.api.lang.getText("PSEUDO_DOFUS_LINK");
-			if(loc2 != undefined && loc2 != "")
+			var var2 = this._parent.api.lang.getText("PSEUDO_DOFUS_LINK");
+			if(var2 != undefined && var2 != "")
 			{
-				this.getURL(loc2,"_blank");
+				this.getURL(var2,"_blank");
 			}
 		};
-		this._eaFavoriteServers = new ank.utils.();
-		var loc2 = 0;
-		while(loc2 < this._eaServers.length)
+		this._eaFavoriteServers = new ank.utils.();
+		var var2 = 0;
+		while(var2 < this._eaServers.length)
 		{
-			if(this._eaServers[loc2].charactersCount > 0)
+			if(this._eaServers[var2].charactersCount > 0)
 			{
-				this._eaFavoriteServers.push(this._eaServers[loc2]);
+				this._eaFavoriteServers.push(this._eaServers[var2]);
 			}
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
 		this._eaFavoriteServers.bubbleSortOn("charactersCount",Array.DESCENDING);
 		this._btnArrowLeft._visible = this._btnArrowRight._visible = this._eaFavoriteServers.length > 5;
@@ -128,39 +128,39 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 	{
 		if(this._eaFavoriteServers.length > 0)
 		{
-			var loc2 = 0;
-			while(loc2 < 5)
+			var var2 = 0;
+			while(var2 < 5)
 			{
-				var loc3 = this._eaFavoriteServers[loc2 + this._nServerStartIndex];
-				if(loc3 != undefined)
+				var var3 = this._eaFavoriteServers[var2 + this._nServerStartIndex];
+				if(var3 != undefined)
 				{
-					var loc4 = this["_css" + loc2];
-					loc4._visible = true;
-					loc4.index = loc2;
-					loc4.serverID = loc3.id;
-					loc4.addEventListener("select",this);
-					loc4.addEventListener("unselect",this);
-					loc4.addEventListener("remove",this);
-					this["_mcServerEmpty" + loc2]._visible = false;
+					var var4 = this["_css" + var2];
+					var4._visible = true;
+					var4.index = var2;
+					var4.serverID = var3.id;
+					var4.addEventListener("select",this);
+					var4.addEventListener("unselect",this);
+					var4.addEventListener("remove",this);
+					this["_mcServerEmpty" + var2]._visible = false;
 				}
 				else
 				{
-					this["_css" + loc2]._visible = false;
-					this["_mcServerEmpty" + loc2]._visible = true;
+					this["_css" + var2]._visible = false;
+					this["_mcServerEmpty" + var2]._visible = true;
 				}
-				loc2 = loc2 + 1;
+				var2 = var2 + 1;
 			}
 			this._txtWhy._visible = false;
 			this._btnAutomaticSelection._visible = false;
 		}
 		else
 		{
-			var loc5 = 0;
-			while(loc5 < 5)
+			var var5 = 0;
+			while(var5 < 5)
 			{
-				this["_mcServerEmpty" + loc5]._visible = false;
-				this["_css" + loc5]._visible = false;
-				loc5 = loc5 + 1;
+				this["_mcServerEmpty" + var5]._visible = false;
+				this["_css" + var5]._visible = false;
+				var5 = var5 + 1;
 			}
 			this._btnAutomaticSelection.label = this.api.lang.getText("AUTOMATIC_SERVER_SELECTION");
 			this._txtWhy.text = this.api.lang.getText("CHOOSE_SERVER_WHY_BLABLA");
@@ -173,22 +173,22 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 			this.api.datacenter.Basics.hasForcedManualSelection = false;
 		}
 	}
-	function selectServer(loc2)
+	function selectServer(var2)
 	{
-		if(_global.isNaN(loc2))
+		if(_global.isNaN(var2))
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CHOOSE_SERVER"),"ERROR_BOX");
 		}
 		else
 		{
-			var loc3 = this.api.datacenter.Basics.aks_servers.findFirstItem("id",loc2).item;
-			if(loc3.state == dofus.datacenter.Server.SERVER_ONLINE)
+			var var3 = this.api.datacenter.Basics.aks_servers.findFirstItem("id",var2).item;
+			if(var3.state == dofus.datacenter.Server.SERVER_ONLINE)
 			{
-				var loc4 = new dofus.datacenter.(loc2,1,0);
-				if(loc4.isAllowed())
+				var var4 = new dofus.datacenter.	(var2,1,0);
+				if(var4.isAllowed())
 				{
-					this.api.datacenter.Basics.aks_current_server = loc4;
-					this.api.network.Account.setServer(loc2);
+					this.api.datacenter.Basics.aks_current_server = var4;
+					this.api.network.Account.setServer(var2);
 				}
 				else
 				{
@@ -201,41 +201,41 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 			}
 		}
 	}
-	function select(loc2)
+	function select(var2)
 	{
-		var loc3 = 0;
-		while(loc3 < 5)
+		var var3 = 0;
+		while(var3 < 5)
 		{
-			this["_css" + loc3].selected = false;
-			loc3 = loc3 + 1;
+			this["_css" + var3].selected = false;
+			var3 = var3 + 1;
 		}
-		loc2.target.selected = true;
-		var loc4 = loc2.target.serverID;
-		var loc5 = this._nServerID;
-		this._nServerID = loc4;
-		if(loc5 == loc4)
+		var2.target.selected = true;
+		var var4 = var2.target.serverID;
+		var var5 = this._nServerID;
+		this._nServerID = var4;
+		if(var5 == var4)
 		{
 			this.click({target:this._btnSelect});
 		}
 	}
-	function unselect(loc2)
+	function unselect(var2)
 	{
-		var loc3 = loc2.target.serverID;
-		if(this._nServerID == loc3)
+		var var3 = var2.target.serverID;
+		if(this._nServerID == var3)
 		{
 			delete this._nServerID;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnSelect":
-				var loc3 = this.gapi.getUIComponent("ServerList");
-				if(loc3 != undefined)
+				var var3 = this.gapi.getUIComponent("ServerList");
+				if(var3 != undefined)
 				{
-					this._nServerID = loc3.selectedServerID;
-					loc3.onServerSelected();
+					this._nServerID = var3.selectedServerID;
+					var3.onServerSelected();
 				}
 				else
 				{
@@ -257,7 +257,7 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 				this.api.datacenter.Basics.isCreatingNewCharacter = true;
 				break;
 			default:
-				if(loc0 !== "_btnSubscribe")
+				if(var0 !== "_btnSubscribe")
 				{
 					break;
 				}
@@ -265,10 +265,10 @@ class dofus.graphics.gapi.ui.ChooseServer extends dofus.graphics.gapi.core.Dofus
 				break;
 		}
 	}
-	function serverSelected(loc2)
+	function serverSelected(var2)
 	{
 		this.api.datacenter.Basics.createCharacter = true;
 		this.gapi.unloadUIComponent("ServerList");
-		this.selectServer(loc2.serverID);
+		this.selectServer(var2.serverID);
 	}
 }

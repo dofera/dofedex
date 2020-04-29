@@ -11,9 +11,9 @@ class dofus.graphics.gapi.controls.StarsDisplayer extends dofus.graphics.gapi.co
 	{
 		return this._nValue;
 	}
-	function __set__value(loc2)
+	function __set__value(var2)
 	{
-		this._nValue = loc2;
+		this._nValue = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -35,7 +35,6 @@ class dofus.graphics.gapi.controls.StarsDisplayer extends dofus.graphics.gapi.co
 	}
 	function addListeners()
 	{
-		var ref = this;
 		this._mcMask.onRollOut = function()
 		{
 			ref.dispatchEvent({type:"out"});
@@ -53,43 +52,43 @@ class dofus.graphics.gapi.controls.StarsDisplayer extends dofus.graphics.gapi.co
 	{
 		if(this._nValue != undefined && (this._nValue > 0 && !_global.isNaN(this._nValue)))
 		{
-			var loc2 = this.getStarsColor();
-			var loc3 = 0;
-			while(loc3 < dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)
+			var var2 = this.getStarsColor();
+			var var3 = 0;
+			while(var3 < dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)
 			{
-				var loc4 = this["_mcStar" + loc3].fill;
-				if(loc2[loc3] > -1)
+				var var4 = this["_mcStar" + var3].fill;
+				if(var2[var3] > -1)
 				{
-					var loc5 = new Color(loc4);
-					loc5.setRGB(loc2[loc3]);
+					var var5 = new Color(var4);
+					var5.setRGB(var2[var3]);
 				}
 				else
 				{
-					loc4._alpha = 0;
+					var4._alpha = 0;
 				}
-				loc3 = loc3 + 1;
+				var3 = var3 + 1;
 			}
 		}
 		else
 		{
-			var loc6 = 0;
-			while(loc6 < dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)
+			var var6 = 0;
+			while(var6 < dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)
 			{
-				this["_mcStar" + loc6].fill._alpha = 0;
-				loc6 = loc6 + 1;
+				this["_mcStar" + var6].fill._alpha = 0;
+				var6 = var6 + 1;
 			}
 		}
 	}
 	function getStarsColor()
 	{
-		var loc2 = new Array();
-		var loc3 = 0;
-		while(loc3 < dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)
+		var var2 = new Array();
+		var var3 = 0;
+		while(var3 < dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)
 		{
-			var loc4 = Math.floor(this._nValue / 100) + (this._nValue - Math.floor(this._nValue / 100) * 100 <= loc3 * (100 / dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)?0:1);
-			loc2[loc3] = dofus.graphics.gapi.controls.StarsDisplayer.STARS_COLORS[Math.min(loc4,dofus.graphics.gapi.controls.StarsDisplayer.STARS_COLORS.length - 1)];
-			loc3 = loc3 + 1;
+			var var4 = Math.floor(this._nValue / 100) + (this._nValue - Math.floor(this._nValue / 100) * 100 <= var3 * (100 / dofus.graphics.gapi.controls.StarsDisplayer.STARS_COUNT)?0:1);
+			var2[var3] = dofus.graphics.gapi.controls.StarsDisplayer.STARS_COLORS[Math.min(var4,dofus.graphics.gapi.controls.StarsDisplayer.STARS_COLORS.length - 1)];
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 }

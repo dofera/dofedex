@@ -1,73 +1,84 @@
-class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.DofusAdvancedComponent
+if(!dofus.graphics.gapi.ui.ForgemagusCraft)
 {
-	static var CLASS_NAME = "ForgemagusCraft";
-	static var FILTER_EQUIPEMENT = [false,true,true,true,true,true,false,true,true,false,true,true,true,true,false];
-	static var FILTER_NONEQUIPEMENT = [false,false,false,false,false,false,true,false,false,false,false,false,false,false,false];
-	static var FILTER_RESSOURECES = [false,false,false,false,false,false,false,false,false,true,false,false,false,false,false];
-	static var GRID_CONTAINER_WIDTH = 38;
-	static var TYPES_ALLOWED_AS_COMPONENT = [26,78];
-	static var ITEMS_ALLOWED_AS_SIGNATURE = [7508];
-	var _bInvalidateDistant = false;
-	var _aSelectedSuperTypes = dofus.graphics.gapi.ui.ForgemagusCraft.FILTER_RESSOURECES;
-	var _nSelectedTypeID = 0;
-	var _nCurrentQuantity = 1;
-	function ForgemagusCraft()
+	if(!dofus)
+	{
+		_global.dofus = new Object();
+	}
+	if(!dofus.graphics)
+	{
+		_global.dofus.graphics = new Object();
+	}
+	if(!dofus.graphics.gapi)
+	{
+		_global.dofus.graphics.gapi = new Object();
+	}
+	if(!dofus.graphics.gapi.ui)
+	{
+		_global.dofus.graphics.gapi.ui = new Object();
+	}
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
 	{
 		super();
 		this._cgLocal._visible = false;
 		this._cgDistant._visible = false;
-	}
-	function __set__maxItem(loc2)
+	} extends dofus.graphics.gapi.core.DofusAdvancedComponent;
+	var var1 = dofus.graphics.gapi.ui.ForgemagusCraft = function()
 	{
-		this._nMaxItem = Number(loc2);
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}.prototype;
+	var1.__set__maxItem = function __set__maxItem(var2)
+	{
+		this._nMaxItem = Number(var2);
 		return this.__get__maxItem();
-	}
-	function __set__skillId(loc2)
+	};
+	var1.__set__skillId = function __set__skillId(var2)
 	{
-		this._nSkillId = Number(loc2);
+		this._nSkillId = Number(var2);
 		this._nForgemagusItemType = _global.API.lang.getSkillForgemagus(this._nSkillId);
 		return this.__get__skillId();
-	}
-	function __set__dataProvider(loc2)
+	};
+	var1.__set__dataProvider = function __set__dataProvider(var2)
 	{
 		this._eaDataProvider.removeEventListener("modelChanged",this);
-		this._eaDataProvider = loc2;
+		this._eaDataProvider = var2;
 		this._eaDataProvider.addEventListener("modelChanged",this);
 		this.modelChanged();
 		return this.__get__dataProvider();
-	}
-	function __set__localDataProvider(loc2)
+	};
+	var1.__set__localDataProvider = function __set__localDataProvider(var2)
 	{
 		this._eaLocalDataProvider.removeEventListener("modelChanged",this);
-		this._eaLocalDataProvider = loc2;
+		this._eaLocalDataProvider = var2;
 		this._eaLocalDataProvider.addEventListener("modelChanged",this);
 		this.modelChanged();
 		return this.__get__localDataProvider();
-	}
-	function __set__distantDataProvider(loc2)
+	};
+	var1.__set__distantDataProvider = function __set__distantDataProvider(var2)
 	{
 		this._eaDistantDataProvider.removeEventListener("modelChanged",this);
-		this._eaDistantDataProvider = loc2;
+		this._eaDistantDataProvider = var2;
 		this._eaDistantDataProvider.addEventListener("modelChanged",this);
 		this.modelChanged();
 		return this.__get__distantDataProvider();
-	}
-	function init()
+	};
+	var1.init = function init()
 	{
 		super.init(false,dofus.graphics.gapi.ui.ForgemagusCraft.CLASS_NAME);
 		this.api.datacenter.Basics.aks_exchange_isForgemagus = true;
-	}
-	function destroy()
+	};
+	var1.destroy = function destroy()
 	{
 		this.gapi.hideTooltip();
 		this.api.datacenter.Basics.aks_exchange_isForgemagus = false;
-	}
-	function callClose()
+	};
+	var1.callClose = function callClose()
 	{
 		this.api.network.Exchange.leave();
 		return true;
-	}
-	function createChildren()
+	};
+	var1.createChildren = function createChildren()
 	{
 		this._bMakeAll = false;
 		this._mcPlacer._visible = false;
@@ -76,8 +87,8 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 		this.addToQueue({object:this,method:this.initData});
 		this.hideItemViewer(true);
 		this.addToQueue({object:this,method:this.initTexts});
-	}
-	function addListeners()
+	};
+	var1.addListeners = function addListeners()
 	{
 		this._cgGrid.addEventListener("dblClickItem",this);
 		this._cgGrid.addEventListener("dropItem",this);
@@ -117,8 +128,8 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 		this.api.datacenter.Player.addEventListener("kamaChanged",this);
 		this.addToQueue({object:this,method:this.kamaChanged,params:[{value:this.api.datacenter.Player.Kama}]});
 		this._cbTypes.addEventListener("itemSelected",this);
-	}
-	function initTexts()
+	};
+	var1.initTexts = function initTexts()
 	{
 		this._lblFilter.text = this.api.lang.getText("EQUIPEMENT");
 		this._winInventory.title = this.api.datacenter.Player.data.name;
@@ -129,228 +140,224 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 		this._lblSignatureTitle.text = this.api.lang.getText("FM_CRAFT_SIGNATURE");
 		this._btnOneShot.label = this.api.lang.getText("APPLY_ONE_RUNE");
 		this._btnLoop.label = this.api.lang.getText("APPLY_MULTIPLE_RUNES");
-	}
-	function initData()
+	};
+	var1.initData = function initData()
 	{
 		this.dataProvider = this.api.datacenter.Exchange.inventory;
 		this.localDataProvider = this.api.datacenter.Exchange.localGarbage;
 		this.distantDataProvider = this.api.datacenter.Exchange.distantGarbage;
-	}
-	function updateData()
+	};
+	var1.updateData = function updateData()
 	{
 		if(this._bIsLooping)
 		{
 			return undefined;
 		}
-		var loc2 = this.api.datacenter.Basics[dofus.graphics.gapi.ui.ForgemagusCraft.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name];
-		this._nSelectedTypeID = loc2 != undefined?loc2:0;
-		var loc3 = new ank.utils.();
-		var loc4 = new ank.utils.();
-		var loc5 = new Object();
+		var var2 = this.api.datacenter.Basics[dofus.graphics.gapi.ui.ForgemagusCraft.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name];
+		this._nSelectedTypeID = var2 != undefined?var2:0;
+		var var3 = new ank.utils.();
+		var var4 = new ank.utils.();
+		var var5 = new Object();
 		for(var k in this._eaDataProvider)
 		{
-			var loc6 = this._eaDataProvider[k];
-			var loc7 = loc6.position;
-			if(loc7 == -1 && this._aSelectedSuperTypes[loc6.superType])
+			var var6 = this._eaDataProvider[k];
+			var var7 = var6.position;
+			if(var7 == -1 && this._aSelectedSuperTypes[var6.superType])
 			{
-				if(loc6.type == this._nSelectedTypeID || this._nSelectedTypeID == 0)
+				if(var6.type == this._nSelectedTypeID || this._nSelectedTypeID == 0)
 				{
-					loc3.push(loc6);
+					var3.push(var6);
 				}
-				var loc8 = loc6.type;
-				if(loc5[loc8] != true)
+				var var8 = var6.type;
+				if(var5[var8] != true)
 				{
-					loc4.push({label:this.api.lang.getItemTypeText(loc8).n,id:loc8});
-					loc5[loc8] = true;
+					var4.push({label:this.api.lang.getItemTypeText(var8).n,id:var8});
+					var5[var8] = true;
 				}
 			}
 		}
-		loc4.sortOn("label");
-		loc4.splice(0,0,{label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
-		this._cbTypes.dataProvider = loc4;
+		var4.sortOn("label");
+		var4.splice(0,0,{label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
+		this._cbTypes.dataProvider = var4;
 		this.setType(this._nSelectedTypeID);
-		this._cgGrid.dataProvider = loc3;
-	}
-	function setType(loc2)
+		this._cgGrid.dataProvider = var3;
+	};
+	var1.setType = function setType(var2)
 	{
-		var loc3 = this._cbTypes.dataProvider;
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var3 = this._cbTypes.dataProvider;
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			if(loc3[loc4].id == loc2)
+			if(var3[var4].id == var2)
 			{
-				this._cbTypes.selectedIndex = loc4;
+				this._cbTypes.selectedIndex = var4;
 				return undefined;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 		this._nSelectedTypeID = 0;
 		this._cbTypes.selectedIndex = this._nSelectedTypeID;
-	}
-	function updateLocalData()
+	};
+	var1.updateLocalData = function updateLocalData()
 	{
 		this._cgLocal.dataProvider = this._eaLocalDataProvider;
 		this._ctrItem.contentData = this._ctrRune.contentData = this._ctrSignature.contentData = undefined;
-		var loc2 = 0;
-		while(loc2 < this._eaLocalDataProvider.length)
+		var var2 = 0;
+		while(var2 < this._eaLocalDataProvider.length)
 		{
-			var loc3 = false;
-			var loc4 = 0;
-			while(loc4 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
+			var var3 = false;
+			var var4 = 0;
+			while(var4 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
 			{
-				if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[loc4] == this._eaLocalDataProvider[loc2].unicID)
+				if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[var4] == this._eaLocalDataProvider[var2].unicID)
 				{
-					this._ctrSignature.contentData = this._eaLocalDataProvider[loc2];
-					loc3 = true;
+					this._ctrSignature.contentData = this._eaLocalDataProvider[var2];
+					var3 = true;
 					break;
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
-			var loc5 = 0;
-			while(loc5 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
+			var var5 = 0;
+			while(var5 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
 			{
-				if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[loc5] == this._eaLocalDataProvider[loc2].type)
+				if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[var5] == this._eaLocalDataProvider[var2].type)
 				{
-					this._ctrRune.contentData = this._eaLocalDataProvider[loc2];
-					loc3 = true;
+					this._ctrRune.contentData = this._eaLocalDataProvider[var2];
+					var3 = true;
 					break;
 				}
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
-			if(!loc3)
+			if(!var3)
 			{
-				this._ctrItem.contentData = this._eaLocalDataProvider[loc2];
+				this._ctrItem.contentData = this._eaLocalDataProvider[var2];
 				if(this._ctrItem.contentData != undefined)
 				{
 					this.hideItemViewer(false);
 					this._itvItemViewer.itemData = this._ctrItem.contentData;
 				}
 			}
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
-	}
-	function updateDistantData()
+	};
+	var1.updateDistantData = function updateDistantData()
 	{
 		this._cgDistant.dataProvider = this._eaDistantDataProvider;
-		var loc2 = this._cgDistant.getContainer(0).contentData;
-		if(loc2 != undefined)
+		var var2 = this._cgDistant.getContainer(0).contentData;
+		if(var2 != undefined)
 		{
 			this.hideItemViewer(false);
-			this._itvItemViewer.itemData = loc2;
+			this._itvItemViewer.itemData = var2;
 		}
 		this._bInvalidateDistant = true;
-	}
-	function hideItemViewer(loc2)
+	};
+	var1.hideItemViewer = function hideItemViewer(var2)
 	{
-		this._itvItemViewer._visible = !loc2;
-		this._winItemViewer._visible = !loc2;
-	}
-	function validateDrop(loc2, loc3, loc4)
+		this._itvItemViewer._visible = !var2;
+		this._winItemViewer._visible = !var2;
+	};
+	var1.validateDrop = function validateDrop(var2, var3, var4)
 	{
-		if(loc4 < 1 || loc4 == undefined)
+		if(var4 < 1 || var4 == undefined)
 		{
 			return undefined;
 		}
-		if(loc4 > loc3.Quantity)
+		if(var4 > var3.Quantity)
 		{
-			loc4 = loc3.Quantity;
+			var4 = var3.Quantity;
 		}
-		switch(loc2)
+		switch(var2)
 		{
 			case "_cgGrid":
-				this.api.network.Exchange.movementItem(false,loc3.ID,loc4);
+				this.api.network.Exchange.movementItem(false,var3.ID,var4);
 				break;
 			case "_cgLocal":
-				this.api.network.Exchange.movementItem(true,loc3.ID,loc4);
+				this.api.network.Exchange.movementItem(true,var3.ID,var4);
 				break;
-			default:
-				switch(null)
+			case "_ctrItem":
+			case "_ctrRune":
+			case "_ctrSignature":
+				var var5 = false;
+				var var6 = false;
+				switch(var2)
 				{
 					case "_ctrItem":
+						if(this._nForgemagusItemType != var3.type || !var3.enhanceable)
+						{
+							return undefined;
+						}
+						var var7 = 0;
+						while(var7 < this._eaLocalDataProvider.length)
+						{
+							var var8 = false;
+							var var9 = 0;
+							while(var9 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
+							{
+								if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[var9] == this._eaLocalDataProvider[var7].unicID)
+								{
+									var8 = true;
+								}
+								var9 = var9 + 1;
+							}
+							var var10 = 0;
+							while(var10 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
+							{
+								if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[var10] == this._eaLocalDataProvider[var7].type)
+								{
+									var8 = true;
+								}
+								var10 = var10 + 1;
+							}
+							if(!var8)
+							{
+								this.api.network.Exchange.movementItem(false,this._eaLocalDataProvider[var7].ID,this._eaLocalDataProvider[var7].Quantity);
+							}
+							var7 = var7 + 1;
+						}
+						var5 = true;
+						break;
 					case "_ctrRune":
+						var var11 = 0;
+						while(var11 < this._eaLocalDataProvider.length)
+						{
+							var var12 = 0;
+							while(var12 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
+							{
+								if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[var12] == this._eaLocalDataProvider[var11].type && this._eaLocalDataProvider[var11].unicID != var3.unicID)
+								{
+									this.api.network.Exchange.movementItem(false,this._eaLocalDataProvider[var11].ID,this._eaLocalDataProvider[var11].Quantity);
+								}
+								var12 = var12 + 1;
+							}
+							var11 = var11 + 1;
+						}
+						break;
 					case "_ctrSignature":
-						var loc5 = false;
-						var loc6 = false;
-						switch(loc2)
+						var var13 = 0;
+						while(var13 < this._eaLocalDataProvider.length)
 						{
-							case "_ctrItem":
-								if(this._nForgemagusItemType != loc3.type || !loc3.enhanceable)
+							var var14 = 0;
+							while(var14 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
+							{
+								if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[var14] == this._eaLocalDataProvider[var13].unicID)
 								{
-									return undefined;
+									this.api.network.Exchange.movementItem(false,this._eaLocalDataProvider[var13].ID,this._eaLocalDataProvider[var13].Quantity);
 								}
-								var loc7 = 0;
-								while(loc7 < this._eaLocalDataProvider.length)
-								{
-									var loc8 = false;
-									var loc9 = 0;
-									while(loc9 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
-									{
-										if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[loc9] == this._eaLocalDataProvider[loc7].unicID)
-										{
-											loc8 = true;
-										}
-										loc9 = loc9 + 1;
-									}
-									var loc10 = 0;
-									while(loc10 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
-									{
-										if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[loc10] == this._eaLocalDataProvider[loc7].type)
-										{
-											loc8 = true;
-										}
-										loc10 = loc10 + 1;
-									}
-									if(!loc8)
-									{
-										this.api.network.Exchange.movementItem(false,this._eaLocalDataProvider[loc7].ID,this._eaLocalDataProvider[loc7].Quantity);
-									}
-									loc7 = loc7 + 1;
-								}
-								loc5 = true;
-								break;
-							case "_ctrRune":
-								var loc11 = 0;
-								while(loc11 < this._eaLocalDataProvider.length)
-								{
-									var loc12 = 0;
-									while(loc12 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
-									{
-										if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[loc12] == this._eaLocalDataProvider[loc11].type && this._eaLocalDataProvider[loc11].unicID != loc3.unicID)
-										{
-											this.api.network.Exchange.movementItem(false,this._eaLocalDataProvider[loc11].ID,this._eaLocalDataProvider[loc11].Quantity);
-										}
-										loc12 = loc12 + 1;
-									}
-									loc11 = loc11 + 1;
-								}
-								break;
-							case "_ctrSignature":
-								var loc13 = 0;
-								while(loc13 < this._eaLocalDataProvider.length)
-								{
-									var loc14 = 0;
-									while(loc14 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
-									{
-										if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[loc14] == this._eaLocalDataProvider[loc13].unicID)
-										{
-											this.api.network.Exchange.movementItem(false,this._eaLocalDataProvider[loc13].ID,this._eaLocalDataProvider[loc13].Quantity);
-										}
-										loc14 = loc14 + 1;
-									}
-									loc13 = loc13 + 1;
-								}
-								if(this.getCurrentCraftLevel() < 100)
-								{
-									loc6 = true;
-									this.api.kernel.showMessage(undefined,this.api.lang.getText("CRAFT_LEVEL_DOESNT_ALLOW_A_SIGNATURE"),"ERROR_CHAT");
-								}
-								loc5 = true;
+								var14 = var14 + 1;
+							}
+							var13 = var13 + 1;
 						}
-						if(!loc6)
+						if(this.getCurrentCraftLevel() < 100)
 						{
-							this.api.network.Exchange.movementItem(true,loc3.ID,!loc5?loc4:1);
-							break;
+							var6 = true;
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("CRAFT_LEVEL_DOESNT_ALLOW_A_SIGNATURE"),"ERROR_CHAT");
 						}
+						var5 = true;
+				}
+				if(!var6)
+				{
+					this.api.network.Exchange.movementItem(true,var3.ID,!var5?var4:1);
+					break;
 				}
 		}
 		if(this._bInvalidateDistant)
@@ -358,119 +365,119 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 			this.api.datacenter.Exchange.clearDistantGarbage();
 			this._bInvalidateDistant = false;
 		}
-	}
-	function getCurrentCraftLevel()
+	};
+	var1.getCurrentCraftLevel = function getCurrentCraftLevel()
 	{
-		var loc2 = this.api.datacenter.Player.Jobs;
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var2 = this.api.datacenter.Player.Jobs;
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			var loc4 = 0;
-			while(loc4 < loc2[loc3].skills.length)
+			var var4 = 0;
+			while(var4 < var2[var3].skills.length)
 			{
-				if((dofus.datacenter.Skill)(dofus.datacenter.Job)loc2[loc3].skills[loc4].id == this._nSkillId)
+				if((dofus.datacenter.Skill)(dofus.datacenter.Job)var2[var3].skills[var4].id == this._nSkillId)
 				{
-					return (dofus.datacenter.Job)loc2[loc3].level;
+					return (dofus.datacenter.Job)var2[var3].level;
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return 0;
-	}
-	function setReady()
+	};
+	var1.setReady = function setReady()
 	{
 		if(this.api.datacenter.Exchange.localGarbage.length == 0)
 		{
 			return undefined;
 		}
 		this.api.network.Exchange.ready();
-	}
-	function canDropInGarbage(loc2)
+	};
+	var1.canDropInGarbage = function canDropInGarbage(var2)
 	{
-		var loc3 = this.api.datacenter.Exchange.localGarbage.findFirstItem("ID",loc2.ID);
-		var loc4 = this.api.datacenter.Exchange.localGarbage.length;
-		if(loc3.index == -1 && loc4 >= this._nMaxItem)
+		var var3 = this.api.datacenter.Exchange.localGarbage.findFirstItem("ID",var2.ID);
+		var var4 = this.api.datacenter.Exchange.localGarbage.length;
+		if(var3.index == -1 && var4 >= this._nMaxItem)
 		{
 			return false;
 		}
 		return true;
-	}
-	function recordGarbage()
+	};
+	var1.recordGarbage = function recordGarbage()
 	{
 		this._aGarbageMemory = new Array();
-		var loc2 = 0;
-		while(loc2 < this._eaLocalDataProvider.length)
+		var var2 = 0;
+		while(var2 < this._eaLocalDataProvider.length)
 		{
-			var loc3 = this._eaLocalDataProvider[loc2];
-			this._aGarbageMemory.push({id:loc3.ID,quantity:loc3.Quantity});
-			loc2 = loc2 + 1;
+			var var3 = this._eaLocalDataProvider[var2];
+			this._aGarbageMemory.push({id:var3.ID,quantity:var3.Quantity});
+			var2 = var2 + 1;
 		}
-	}
-	function cleanGarbage()
+	};
+	var1.cleanGarbage = function cleanGarbage()
 	{
-		var loc2 = 0;
-		while(loc2 < this._eaLocalDataProvider.length)
+		var var2 = 0;
+		while(var2 < this._eaLocalDataProvider.length)
 		{
-			var loc3 = this._eaLocalDataProvider[loc2];
-			this.api.network.Exchange.movementItem(false,loc3.ID,loc3.Quantity);
-			loc2 = loc2 + 1;
+			var var3 = this._eaLocalDataProvider[var2];
+			this.api.network.Exchange.movementItem(false,var3.ID,var3.Quantity);
+			var2 = var2 + 1;
 		}
-	}
-	function recallGarbageMemory()
+	};
+	var1.recallGarbageMemory = function recallGarbageMemory()
 	{
 		if(this._aGarbageMemory == undefined || this._aGarbageMemory.length == 0)
 		{
 			return false;
 		}
 		this.cleanGarbage();
-		var loc2 = 0;
-		while(loc2 < this._aGarbageMemory.length)
+		var var2 = 0;
+		while(var2 < this._aGarbageMemory.length)
 		{
-			var loc3 = this._aGarbageMemory[loc2];
-			var loc4 = this._eaDataProvider.findFirstItem("ID",loc3.id);
-			if(loc4.index != -1)
+			var var3 = this._aGarbageMemory[var2];
+			var var4 = this._eaDataProvider.findFirstItem("ID",var3.id);
+			if(var4.index != -1)
 			{
-				if(loc4.item.Quantity >= loc3.quantity)
+				if(var4.item.Quantity >= var3.quantity)
 				{
-					this.api.network.Exchange.movementItem(true,loc4.item.ID,loc3.quantity);
-					loc2 = loc2 + 1;
+					this.api.network.Exchange.movementItem(true,var4.item.ID,var3.quantity);
+					var2 = var2 + 1;
 					continue;
 				}
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("CRAFT_NOT_ENOUGHT",[loc4.item.name]),"ERROR_BOX",{name:"NotEnougth"});
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("CRAFT_NOT_ENOUGHT",[var4.item.name]),"ERROR_BOX",{name:"NotEnougth"});
 				return false;
 			}
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CRAFT_NO_RESOURCE"),"ERROR_BOX",{name:"NotEnougth"});
 			return false;
 		}
 		return true;
-	}
-	function nextCraft()
+	};
+	var1.nextCraft = function nextCraft()
 	{
 		ank.utils.Timer.setTimer(this,"doNextCraft",this,this.doNextCraft,250);
-	}
-	function doNextCraft()
+	};
+	var1.doNextCraft = function doNextCraft()
 	{
 		if(this.recallGarbageMemory() == false)
 		{
 			this.stopMakeAll();
 		}
-	}
-	function stopMakeAll()
+	};
+	var1.stopMakeAll = function stopMakeAll()
 	{
 		ank.utils.Timer.removeTimer(this,"doNextCraft");
 		this._bMakeAll = false;
 		this._cgLocal.dataProvider = this.api.datacenter.Exchange.localGarbage;
 		this.updateData();
 		this.updateDistantData();
-	}
-	function kamaChanged(loc2)
+	};
+	var1.kamaChanged = function kamaChanged(var2)
 	{
-		this._lblKama.text = new ank.utils.(loc2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
-	}
-	function modelChanged(loc2)
+		this._lblKama.text = new ank.utils.(var2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
+	};
+	var1.modelChanged = function modelChanged(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._eaLocalDataProvider:
 				if(this._bMakeAll)
@@ -496,7 +503,7 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 				}
 				break;
 			default:
-				if(loc0 !== this._eaDataProvider)
+				if(var0 !== this._eaDataProvider)
 				{
 					if(!this._bMakeAll && !this._bIsLooping)
 					{
@@ -513,364 +520,423 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 				}
 				break;
 		}
-	}
-	function over(loc2)
+	};
+	var1.over = function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnFilterEquipement:
-				this.api.ui.showTooltip(this.api.lang.getText("EQUIPEMENT"),loc2.target,-20);
+				this.api.ui.showTooltip(this.api.lang.getText("EQUIPEMENT"),var2.target,-20);
 				break;
 			case this._btnFilterNonEquipement:
-				this.api.ui.showTooltip(this.api.lang.getText("NONEQUIPEMENT"),loc2.target,-20);
-				break;
 			default:
-				if(loc0 !== this._btnFilterRessoureces)
-				{
-					break;
-				}
-				this.api.ui.showTooltip(this.api.lang.getText("RESSOURECES"),loc2.target,-20);
+				this.api.ui.showTooltip(this.api.lang.getText("NONEQUIPEMENT"),var2.target,-20);
 				break;
+			case this._btnFilterRessoureces:
+				this.api.ui.showTooltip(this.api.lang.getText("RESSOURECES"),var2.target,-20);
 		}
-	}
-	function out(loc2)
+	};
+	var1.out = function out(var2)
 	{
-		this.api.ui.hideTooltip();
-	}
-	function onCraftLoopEnd()
+		this[§§constant(37)][§§constant(3)][§§constant(42)]();
+	};
+	var1[§§constant(198)] = function §\§\§constant(198)§()
 	{
-		this._bIsLooping = false;
-		this._nCurrentQuantity = 1;
-		this._btnLoop.label = this.api.lang.getText("APPLY_MULTIPLE_RUNES");
-		this._btnOneShot.enabled = true;
-	}
-	function repeatCraft()
+		this[§§constant(118)] = false;
+		this[§§constant(199)] = 1;
+		this[§§constant(77)][§§constant(108)] = this[§§constant(37)][§§constant(20)][§§constant(90)](§§constant(110));
+		this[§§constant(76)][§§constant(200)] = true;
+	};
+	var1["���\x03"] = function §���\x03§()
 	{
-		var loc2 = this._ctrRune.contentData.Quantity - 1;
-		if(loc2 <= 1)
+		var var2 = this[§§constant(70)][§§constant(141)][§§constant(152)] - 1;
+		if(var2 <= 1)
 		{
 			return undefined;
 		}
-		this._bIsLooping = true;
-		this.api.network.Exchange.repeatCraft(loc2);
-		this._btnLoop.label = this.api.lang.getText("STOP_WORD");
-		this._btnOneShot.enabled = false;
-	}
-	function checkIsBaka()
+		this[§§constant(118)] = true;
+		this[§§constant(37)][§§constant(44)][§§constant(45)][§§constant(201)](var2);
+		this[§§constant(77)][§§constant(108)] = this[§§constant(37)][§§constant(20)][§§constant(90)](§§constant(202));
+		this[§§constant(76)][§§constant(200)] = false;
+	};
+	var1[§§constant(203)] = function §\§\§constant(203)§()
 	{
-		if(this._ctrItem.contentData == undefined || this._ctrRune.contentData == undefined)
+		if(this[§§constant(65)][§§constant(141)] == undefined || this[§§constant(70)][§§constant(141)] == undefined)
 		{
-			this.api.kernel.showMessage(this.api.lang.getText("ERROR_WORD"),this.api.lang.getText("FM_ERROR_NO_ITEMS"),"ERROR_BOX");
+			this[§§constant(37)][§§constant(159)][§§constant(160)](this[§§constant(37)][§§constant(20)][§§constant(90)](§§constant(205)),this[§§constant(37)][§§constant(20)][§§constant(90)](§§constant(204)),§§constant(180));
 			return true;
 		}
 		return false;
-	}
-	function click(loc2)
+	};
+	var1[§§constant(68)] = function §\§\§constant(68)§(var2)
 	{
 		loop0:
-		switch(loc2.target)
+		switch(var2["�\x02"])
 		{
-			case this._btnClose:
-				this.callClose();
+			case this["\x03>�\x04"]:
+				this();
 				break;
-			case this._btnOneShot:
-				if(this.checkIsBaka())
+			case this["\x04\x03\b��\x02"]:
+				if(this["\n"]())
 				{
 					return undefined;
 				}
-				this.recordGarbage();
-				this.setReady();
-				break;
-			case this._btnLoop:
-				if(this._bIsLooping)
-				{
-					this.api.network.Exchange.stopRepeatCraft();
-					return undefined;
-				}
-				if(this.checkIsBaka())
-				{
-					return undefined;
-				}
-				this.recordGarbage();
-				this.setReady();
-				this.addToQueue({object:this,method:this.repeatCraft});
+				this["\b"]();
+				this["9�+NHL\x12�\x02"]();
 				break;
 			default:
 				switch(null)
 				{
-					case this._ctrItem:
-					case this._ctrRune:
-					case this._ctrSignature:
-						if(loc2.target.contentData == undefined)
+					case this["\x05\x01�\x02"]:
+						if(this["�\x01�\x01"])
 						{
-							this.hideItemViewer(true);
+							this["\x05"][""]["BO�\t"]["\x06\x17�\x0f"]();
+							return undefined;
+						}
+						if(this["\n"]())
+						{
+							return undefined;
+						}
+						this["\b"]();
+						this["9�+NHL\x12�\x02"]();
+						this({O�:this,:this["���\x03"]});
+						break loop0;
+					case this["\x01"]:
+					case this["\b�N�\x01"]:
+					case this["\x04\x02\b�N�\x02"]:
+						if(var2["�\x02"]["�"] == undefined)
+						{
+							this(true);
 						}
 						else
 						{
-							if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY))
+							if(eval("")["\x04\x01\b�4�\x02"](eval("�\x02")["\x04\x04\x04\x03\x04\x06\x07\x03"][""]))
 							{
-								this.api.kernel.GameManager.insertItemInChat(loc2.target.contentData);
+								this["\x05"]["ON�\x02"]["\x01"]["OR\x17�\x02"](var2["�\x02"]["�"]);
 								return undefined;
 							}
-							this.hideItemViewer(false);
-							this._itvItemViewer.itemData = loc2.target.contentData;
+							this(false);
+							this["\b�N�\x02"]["\x04\bN�\x04"] = var2["�\x02"]["�"];
 						}
 						break loop0;
 					default:
-						if(loc2.target != this._btnSelectedFilterButton)
+						if(var2["�\x02"] != this[""])
 						{
-							this._btnSelectedFilterButton.selected = false;
-							this._btnSelectedFilterButton = loc2.target;
-							if((loc0 = loc2.target._name) !== "_btnFilterEquipement")
+							this[""]["\x19"] = false;
+							this[""] = var2["�\x02"];
+							switch(var2["�\x02"]["\x06\x17�\x02"])
 							{
-								switch(null)
-								{
-									case "_btnFilterNonEquipement":
-										this._aSelectedSuperTypes = dofus.graphics.gapi.ui.ForgemagusCraft.FILTER_NONEQUIPEMENT;
-										this._lblFilter.text = this.api.lang.getText("NONEQUIPEMENT");
-										break;
-									case "_btnFilterRessoureces":
-										this._aSelectedSuperTypes = dofus.graphics.gapi.ui.ForgemagusCraft.FILTER_RESSOURECES;
-										this._lblFilter.text = this.api.lang.getText("RESSOURECES");
-								}
+								case "\x03\x17�\x03":
+									this[""] = eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["�\x0f"];
+									this["\x04\x07P�\x01"]["\x07\x17�\x04"] = this["\x05"]["\x05"]["\x1c�\x02"]("\x04\x07\b");
+									break;
+								case "\x04\x03\x03I\x12�\x02":
+									this[""] = eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["\x04\x04\x04\x03\b<\x07\x03"];
+									this["\x04\x07P�\x01"]["\x07\x17�\x04"] = this["\x05"]["\x05"]["\x1c�\x02"]("g�#NI\x12�\x02");
+									break;
+								case "\x07\x1a":
+									this[""] = eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"][""];
+									this["\x04\x07P�\x01"]["\x07\x17�\x04"] = this["\x05"]["\x05"]["\x1c�\x02"]("\n");
 							}
-							else
-							{
-								this._aSelectedSuperTypes = dofus.graphics.gapi.ui.ForgemagusCraft.FILTER_EQUIPEMENT;
-								this._lblFilter.text = this.api.lang.getText("EQUIPEMENT");
-							}
-							this.updateData(true);
+							this["\x04\x01\b�R\x12�\x02"](true);
 							break loop0;
 						}
-						loc2.target.selected = true;
+						var2["�\x02"]["\x19"] = true;
 						break loop0;
 				}
 		}
-	}
-	function dblClick(loc2)
+	};
+	var1[""] = function §§(var2)
 	{
-		loc2.owner = this._cgLocal;
-		this.dblClickItem(loc2);
-	}
-	function drag(loc2)
+		var2[§§constant(217)] = this[§§constant(7)];
+		this[§§constant(59)](var2);
+	};
+	var1["\t)"] = function §\t)§(var2)
 	{
-		this.dragItem(loc2);
-	}
-	function drop(loc2)
+		this[§§constant(62)](var2);
+	};
+	var1["\x02\x1e\x1b\x01"] = function §\x02\x1e\x1b\x01§(var2)
 	{
-		var loc3 = this.gapi.getCursor();
-		if(loc3 == undefined)
+		var var3 = this.v[§§constant(218)]();
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		this.gapi.removeCursor();
-		if(loc3.position == -2)
+		this.v[§§constant(219)]();
+		if(var3[§§constant(126)] == -2)
 		{
 			return undefined;
 		}
-		if(!this.canDropInGarbage(loc3))
+		if(!this[§§constant(169)](var3))
 		{
 			return undefined;
 		}
-		var loc4 = false;
-		var loc5 = false;
-		switch(loc2.target)
+		var var4 = false;
+		var var5 = false;
+		switch(var2[§§constant(194)])
 		{
-			case this._ctrItem:
-				loc4 = loc5 = true;
-				var loc6 = 0;
-				while(loc6 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
+			case this[§§constant(65)]:
+				var4 = var5 = true;
+				var var6 = 0;
+				while(var6 < eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(144)][§§constant(138)])
 				{
-					if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[loc6] == loc3.type)
+					if(eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(144)][var6] == var3[§§constant(129)])
 					{
-						loc4 = false;
+						var4 = false;
 					}
-					loc6 = loc6 + 1;
+					var6 = var6 + 1;
 				}
-				var loc7 = 0;
-				while(loc7 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
+				var var7 = 0;
+				while(var7 < eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(142)][§§constant(138)])
 				{
-					if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[loc7] == loc3.unicID)
+					if(eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(142)][var7] == var3[§§constant(143)])
 					{
-						loc4 = false;
+						var4 = false;
 					}
-					loc7 = loc7 + 1;
+					var7 = var7 + 1;
 				}
 				break;
-			case this._ctrRune:
-				var loc8 = 0;
-				while(loc8 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length)
+			case this[§§constant(70)]:
+				var var8 = 0;
+				while(var8 < eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(144)][§§constant(138)])
 				{
-					if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[loc8] == loc3.type)
+					if(eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(144)][var8] == var3[§§constant(129)])
 					{
-						loc4 = true;
+						var4 = true;
 					}
-					loc8 = loc8 + 1;
+					var8 = var8 + 1;
 				}
 				break;
-			case this._ctrSignature:
-				var loc9 = 0;
-				while(loc9 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length)
+			case this[§§constant(69)]:
+				var var9 = 0;
+				while(var9 < eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(142)][§§constant(138)])
 				{
-					if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[loc9] == loc3.unicID)
+					if(eval("h\x11")["\f"].v[§§constant(3)][§§constant(4)][§§constant(142)][var9] == var3[§§constant(143)])
 					{
-						loc4 = true;
+						var4 = true;
 					}
-					loc9 = loc9 + 1;
+					var9 = var9 + 1;
 				}
-				loc5 = true;
+				var5 = true;
 		}
-		if(!loc4)
+		if(!var4)
 		{
 			return undefined;
 		}
-		if(!loc5 && loc3.Quantity > 1)
+		if(!var5 && var3[§§constant(152)] > 1)
 		{
-			var loc10 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:loc3.Quantity,params:{targetType:"item",oItem:loc3,targetGrid:loc2.target._name}});
-			loc10.addEventListener("validate",this);
+			var var10 = this.v[§§constant(225)](§§constant(224),§§constant(224),{§§constant(83):1,§§constant(220):var3[§§constant(152)],§§constant(82):{§§constant(221):§§constant(178),§§constant(222):var3,§§constant(223):var2[§§constant(194)][§§constant(120)]}});
+			var10[§§constant(27)](§§constant(226),this);
 		}
 		else
 		{
-			this.validateDrop(loc2.target._name,loc3,1);
+			this[§§constant(151)](var2[§§constant(194)][§§constant(120)],var3,1);
 		}
-	}
-	function updateForgemagusResult(loc2)
+	};
+	var1[§§constant(227)] = function §\§\§constant(227)§(var2)
 	{
-		var loc3 = new ank.utils.();
-		loc3.push(loc2);
-		this.distantDataProvider = loc3;
-	}
-	function dblClickItem(loc2)
+		var var3 = new eval("Z�\'�\x02")["\bE�\x01"].�();
+		var3["�\x01"](var2);
+		this[""] = var3;
+	};
+	var1.dblClickItem = function dblClickItem(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(loc3 == undefined)
+		var var3 = var2["�\x02"]["�"];
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		var loc4 = loc3.Quantity;
-		var loc5 = loc2.owner._name;
-		if((var loc0 = loc5) !== "_cgGrid")
+		var var4 = var3["\b\x04N�\x02"];
+		var var5 = var2[""]["\x06\x17�\x02"];
+		switch(var5)
 		{
-			if(loc0 === "_cgLocal")
-			{
-				this.validateDrop("_cgGrid",loc3,loc4);
-			}
-		}
-		else if(this.canDropInGarbage(loc3))
-		{
-			var loc6 = undefined;
-			var loc7 = 0;
-			while(loc7 < dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE.length && loc6 == undefined)
-			{
-				if(dofus.graphics.gapi.ui.ForgemagusCraft.ITEMS_ALLOWED_AS_SIGNATURE[loc7] == loc3.unicID)
+			case "":
+				if(this["\x17�\x03"](var3))
 				{
-					loc6 = "_ctrSignature";
+					var var6 = undefined;
+					var var7 = 0;
+					while(var7 < eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["<N�\x02"][""] && var6 == undefined)
+					{
+						if(eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["<N�\x02"][var7] == var3["\b\x03N�\x02"])
+						{
+							var6 = "\x04\x02\b�N�\x02";
+						}
+						var7 = var7 + 1;
+					}
+					var var8 = 0;
+					while(var8 < eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["\b\x04N�\x02"][""] && var6 == undefined)
+					{
+						if(eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["\b\x04N�\x02"][var8] == var3[""])
+						{
+							var6 = "\b�N�\x01";
+						}
+						var8 = var8 + 1;
+					}
+					if(var6 == undefined)
+					{
+						var6 = "\x01";
+					}
+					this["\b\x03N�\x02"](var6,var3,var4);
 				}
-				loc7 = loc7 + 1;
-			}
-			var loc8 = 0;
-			while(loc8 < dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT.length && loc6 == undefined)
-			{
-				if(dofus.graphics.gapi.ui.ForgemagusCraft.TYPES_ALLOWED_AS_COMPONENT[loc8] == loc3.type)
-				{
-					loc6 = "_ctrRune";
-				}
-				loc8 = loc8 + 1;
-			}
-			if(loc6 == undefined)
-			{
-				loc6 = "_ctrItem";
-			}
-			this.validateDrop(loc6,loc3,loc4);
+				break;
+			case "O�\'":
+				this["\b\x03N�\x02"]("",var3,var4);
 		}
-	}
-	function dragItem(loc2)
+	};
+	var1[§§constant(62)] = function §\§\§constant(62)§(var2)
 	{
-		this.gapi.removeCursor();
-		if(loc2.target.contentData == undefined)
+		this.v[§§constant(219)]();
+		if(var2[§§constant(194)][§§constant(141)] == undefined)
 		{
 			return undefined;
 		}
-		this.gapi.setCursor(loc2.target.contentData);
-	}
-	function dropItem(loc2)
+		this.v[§§constant(228)](var2[§§constant(194)][§§constant(141)]);
+	};
+	var1["B�\x02"] = function §B�\x02§(var2)
 	{
-		var loc3 = this.gapi.getCursor();
-		if(loc3 == undefined)
+		var var3 = this.v[§§constant(218)]();
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		this.gapi.removeCursor();
-		var loc4 = loc2.target._parent._parent._name;
-		switch(loc4)
+		this.v[§§constant(219)]();
+		var var4 = var2[§§constant(194)][§§constant(229)][§§constant(229)][§§constant(120)];
+		switch(var4)
 		{
-			case "_cgGrid":
-				if(loc3.position == -1)
+			case §§constant(60):
+				if(var3[§§constant(126)] == -1)
 				{
 					return undefined;
 				}
 				break;
-			case "_cgLocal":
-				if(loc3.position == -2)
+			case §§constant(7):
+				if(var3[§§constant(126)] == -2)
 				{
 					return undefined;
 				}
-				if(!this.canDropInGarbage(loc3))
+				if(!this[§§constant(169)](var3))
 				{
 					return undefined;
 				}
 				break;
 		}
-		if(loc3.Quantity > 1)
+		if(var3[§§constant(152)] > 1)
 		{
-			var loc5 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:loc3.Quantity,params:{targetType:"item",oItem:loc3,targetGrid:loc4}});
-			loc5.addEventListener("validate",this);
+			var var5 = this.v[§§constant(225)](§§constant(224),§§constant(224),{§§constant(83):1,§§constant(220):var3[§§constant(152)],§§constant(82):{§§constant(221):§§constant(178),§§constant(222):var3,§§constant(223):var4}});
+			var5[§§constant(27)](§§constant(226),this);
 		}
 		else
 		{
-			this.validateDrop(loc4,loc3,1);
+			this[§§constant(151)](var4,var3,1);
 		}
-	}
-	function selectItem(loc2)
+	};
+	var1["h\x16,�\r"] = function §h\x16,�\r§(var2)
 	{
-		if(loc2.target.contentData == undefined)
+		if(var2[§§constant(194)][§§constant(141)] == undefined)
 		{
-			this.hideItemViewer(true);
+			this[§§constant(57)](true);
 		}
 		else
 		{
-			if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY))
+			if(eval(§§constant(209))[§§constant(210)](eval("h\x11")[§§constant(207)][§§constant(208)]))
 			{
-				this.api.kernel.GameManager.insertItemInChat(loc2.target.contentData);
+				this[§§constant(37)][§§constant(159)][§§constant(211)][§§constant(212)](var2[§§constant(194)][§§constant(141)]);
 				return undefined;
 			}
-			this.hideItemViewer(false);
-			this._itvItemViewer.itemData = loc2.target.contentData;
+			this[§§constant(57)](false);
+			this[§§constant(145)][§§constant(146)] = var2[§§constant(194)][§§constant(141)];
 		}
-	}
-	function validate(loc2)
+	};
+	var1[§§constant(226)] = function §\§\§constant(226)§(var2)
 	{
-		switch(loc2.params.targetType)
+		switch(var2[""]["�\x02"])
 		{
-			case "item":
-				this.validateDrop(loc2.params.targetGrid,loc2.params.oItem,loc2.value);
+			case "\b\x01N�\x02":
+				this["\b\x03N�\x02"](var2[""]["\x12�\x02"],var2[""]["\x05"],var2["�\x01"]);
 				break;
-			case "repeat":
-				var loc3 = Number(loc2.value);
-				if(loc3 < 1 || (loc3 == undefined || _global.isNaN(loc3)))
+			case "�\x02":
+				var var3 = Number(var2["�\x01"]);
+				if(var3 < 1 || (var3 == undefined || eval("\f")["\x05\x01�\x02"](var3)))
 				{
-					loc3 = 1;
+					var3 = 1;
 				}
-				this._nCurrentQuantity = loc3;
+				this["\bF�\x01"] = var3;
 		}
-	}
-	function itemSelected(loc2)
+	};
+	var1[§§constant(85)] = function §\§\§constant(85)§(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_cbTypes")
+		if((var var0 = var2["�\x02"]["\x06\x17�\x02"]) === "�\x02")
 		{
-			this._nSelectedTypeID = this._cbTypes.selectedItem.id;
-			this.api.datacenter.Basics[dofus.graphics.gapi.ui.ForgemagusCraft.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name] = this._nSelectedTypeID;
-			this.updateData();
+			this["\x05\x01�\x02"] = this["�\x02"]["�\x11\'O�\x04"]["�\x02"];
+			this["\x05"]["\x05"]["\x05"][eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"]["\x05"] + "\x03�\x01" + this[""]["\x06\x17�\x02"]] = this["\x05\x01�\x02"];
+			this["\x04\x01\b�R\x12�\x02"]();
 		}
+	};
+	var1["\x04\x01\b+4P�\x02"]("�\x01�\x0b",function()
+	{
 	}
+	,var1[§§constant(29)]);
+	var1["\x04\x01\b+4P�\x02"]("\b\x07f�\x02",function()
+	{
+	}
+	,var1["\x07\x0f"]);
+	var1["\x04\x01\b+4P�\x02"]("",function()
+	{
+	}
+	,var1["\x05"]);
+	var1["\x04\x01\b+4P�\x02"]("�\"#�\f",function()
+	{
+	}
+	,var1["\x05"]);
+	var1.addProperty("maxItem",function()
+	{
+	}
+	,var1["\x05"]);
+	ASSetPropFlags(var1,null,1);
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}.CLASS_NAME = "ForgemagusCraft";
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}.FILTER_EQUIPEMENT = [false,true,true,true,true,true,false,true,true,false,true,true,true,true,false];
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}[§§constant(215)] = [false,false,false,false,false,false,true,false,false,false,false,false,false,false,false];
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}[""] = [false,false,false,false,false,false,false,false,false,true,false,false,false,false,false];
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}["\x03)"] = 38;
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}["\b\x04N�\x02"] = [26,78];
+	dofus.graphics.gapi.ui.ForgemagusCraft = function()
+	{
+		super();
+		this._cgLocal._visible = false;
+		this._cgDistant._visible = false;
+	}["<N�\x02"] = [7508];
+	var1["<N�\x02"] = false;
+	var1[""] = eval("�\x02")["\x05\x01L\x11�\x02"]["�A�\t"]["\x03"]["h\x11"][""];
+	var1["\x05\x01�\x02"] = 0;
+	var1["\bF�\x01"] = 1;
 }

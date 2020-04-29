@@ -11,198 +11,198 @@ class ank.battlefield.GlobalSpriteHandler
 		this._mclLoader.addListener(this);
 		this._aFrameToGo = new Array();
 	}
-	function setAccessoriesRoot(loc2)
+	function setAccessoriesRoot(var2)
 	{
-		this._sAccessoriesPath = loc2;
+		this._sAccessoriesPath = var2;
 	}
-	function addSprite(loc2, loc3)
+	function addSprite(var2, var3)
 	{
-		this._oSprites[loc2._target] = {mc:loc2,data:loc3};
+		this._oSprites[var2._target] = {mc:var2,data:var3};
 		this.garbageCollector();
 	}
-	function setColors(loc2, loc3, loc4, loc5)
+	function setColors(var2, var3, var4, var5)
 	{
-		var loc6 = this._oSprites[loc2._target].data;
-		if(loc3 != -1)
+		var var6 = this._oSprites[var2._target].data;
+		if(var3 != -1)
 		{
-			loc6.color1 = loc3;
+			var6.color1 = var3;
 		}
-		if(loc4 != -1)
+		if(var4 != -1)
 		{
-			loc6.color2 = loc4;
+			var6.color2 = var4;
 		}
-		if(loc5 != -1)
+		if(var5 != -1)
 		{
-			loc6.color3 = loc5;
+			var6.color3 = var5;
 		}
 	}
-	function setAccessories(loc2, loc3)
+	function setAccessories(var2, var3)
 	{
-		var loc4 = this._oSprites[loc2._target].data;
-		if(loc3 != undefined)
+		var var4 = this._oSprites[var2._target].data;
+		if(var3 != undefined)
 		{
-			loc4.accessories = loc3;
+			var4.accessories = var3;
 		}
 	}
-	function applyColor(loc2, loc3, loc4)
+	function applyColor(var2, var3, var4)
 	{
-		var loc5 = this.getSpriteData(loc2);
-		if(loc5 != undefined)
+		var var5 = this.getSpriteData(var2);
+		if(var5 != undefined)
 		{
-			var loc6 = !(loc4 && loc5.mount != undefined)?loc5["color" + loc3]:loc5.mount["color" + loc3];
-			if(loc6 != undefined && loc6 != -1)
+			var var6 = !(var4 && var5.mount != undefined)?var5["color" + var3]:var5.mount["color" + var3];
+			if(var6 != undefined && var6 != -1)
 			{
-				var loc7 = (loc6 & 16711680) >> 16;
-				var loc8 = (loc6 & 65280) >> 8;
-				var loc9 = loc6 & 255;
-				var loc10 = new Color(loc2);
-				var loc11 = new Object();
-				loc11 = {ra:"0",rb:loc7,ga:"0",gb:loc8,ba:"0",bb:loc9,aa:"100",ab:"0"};
-				loc10.setTransform(loc11);
+				var var7 = (var6 & 16711680) >> 16;
+				var var8 = (var6 & 65280) >> 8;
+				var var9 = var6 & 255;
+				var var10 = new Color(var2);
+				var var11 = new Object();
+				var11 = {ra:"0",rb:var7,ga:"0",gb:var8,ba:"0",bb:var9,aa:"100",ab:"0"};
+				var10.setTransform(var11);
 			}
 		}
 	}
-	function applyAccessory(loc2, loc3, loc4, loc5, loc6)
+	function applyAccessory(var2, var3, var4, var5, var6)
 	{
-		if(loc6 == undefined)
+		if(var6 == undefined)
 		{
-			loc6 = false;
+			var6 = false;
 		}
-		var loc7 = this.getSpriteData(loc2);
-		if(loc7 != undefined)
+		var var7 = this.getSpriteData(var2);
+		if(var7 != undefined)
 		{
-			var loc8 = loc7.accessories[loc3].gfx;
-			loc2.clip.removeMovieClip();
-			if(loc6)
+			var var8 = var7.accessories[var3].gfx;
+			var2.clip.removeMovieClip();
+			if(var6)
 			{
-				switch(loc7.direction)
+				if((var var0 = var7.direction) !== 3)
 				{
-					default:
-						if(loc0 === 7)
-						{
-							break;
-						}
-					case 3:
-					case 4:
+					switch(null)
+					{
+						case 4:
+						case 7:
+					}
 				}
-				loc2._x = - loc2._x;
+				var2._x = - var2._x;
 			}
-			if(loc8 != undefined)
+			if(var8 != undefined)
 			{
-				if(loc5 != undefined)
+				if(var5 != undefined)
 				{
-					loc5.gotoAndStop(!(loc8.length == 0 || loc8 == "_")?2:1);
+					var5.gotoAndStop(!(var8.length == 0 || var8 == "_")?2:1);
 				}
 				if(!ank.battlefield.Constants.USE_STREAMING_FILES || ank.battlefield.Constants.STREAMING_METHOD == "compact")
 				{
-					loc2.attachMovie(loc8,"clip",10);
-					if(loc7.accessories[loc3].frame != undefined)
+					var2.attachMovie(var8,"clip",10);
+					if(var7.accessories[var3].frame != undefined)
 					{
-						loc2.clip.gotoAndStop(loc4 + loc7.accessories[loc3].frame);
+						var2.clip.gotoAndStop(var4 + var7.accessories[var3].frame);
 					}
 					else
 					{
-						loc2.clip.gotoAndStop(loc4);
+						var2.clip.gotoAndStop(var4);
 					}
 				}
 				else
 				{
-					var loc9 = loc8.split("_");
-					if(loc9[0] == undefined || (_global.isNaN(Number(loc9[0])) || (loc9[1] == undefined || _global.isNaN(Number(loc9[1])))))
+					var var9 = var8.split("_");
+					if(var9[0] == undefined || (_global.isNaN(Number(var9[0])) || (var9[1] == undefined || _global.isNaN(Number(var9[1])))))
 					{
 						return undefined;
 					}
-					var loc10 = loc2.createEmptyMovieClip("clip",10);
-					if(loc7.skin !== undefined)
+					var var10 = var2.createEmptyMovieClip("clip",10);
+					if(var7.skin !== undefined)
 					{
-						this._aFrameToGo[loc10] = loc4 + loc7.skin;
+						this._aFrameToGo[var10] = var4 + var7.skin;
 					}
 					else
 					{
-						this._aFrameToGo[loc10] = loc4;
+						this._aFrameToGo[var10] = var4;
 					}
-					this._mclLoader.loadClip(this._sAccessoriesPath + loc9.join("/") + ".swf",loc10);
+					this._mclLoader.loadClip(this._sAccessoriesPath + var9.join("/") + ".swf",var10);
 				}
 			}
 		}
 	}
-	function applyAnim(loc2, loc3)
+	function applyAnim(var2, var3)
 	{
-		var loc4 = this.getSpriteData(loc2);
-		if(loc4 != undefined)
+		var var4 = this.getSpriteData(var2);
+		if(var4 != undefined)
 		{
-			if(loc4.bAnimLoop)
+			if(var4.bAnimLoop)
 			{
-				loc4.mc.saveLastAnimation(loc4.animation);
+				var4.mc.saveLastAnimation(var4.animation);
 			}
 			else
 			{
-				loc4.mc.setAnim(loc3);
+				var4.mc.setAnim(var3);
 			}
 		}
 	}
-	function applyEnd(loc2)
+	function applyEnd(var2)
 	{
-		var loc3 = this.getSpriteData(loc2);
-		if(loc3 != undefined)
+		var var3 = this.getSpriteData(var2);
+		if(var3 != undefined)
 		{
-			if(!loc3.bAnimLoop)
+			if(!var3.bAnimLoop)
 			{
-				loc3.sequencer.onActionEnd();
+				var3.sequencer.onActionEnd();
 			}
 		}
 	}
-	function applySprite(loc2)
+	function applySprite(var2)
 	{
-		var loc3 = this.getSpriteData(loc2);
-		if((var loc0 = loc3.direction) !== 0)
+		var var3 = this.getSpriteData(var2);
+		loop0:
+		switch(var3.direction)
 		{
-			switch(null)
-			{
-				case 4:
-					break;
-				case 1:
-				case 3:
-					loc2.attachMovie(loc3.animation + "R","clip",1);
-					break;
-				case 2:
-					loc2.attachMovie(loc3.animation + "F","clip",1);
-					break;
-				default:
-					switch(null)
-					{
-						case 7:
-							break;
-						case 6:
-							loc2.attachMovie(loc3.animation + "B","clip",1);
-					}
-					break;
-				case 5:
-					loc2.attachMovie(loc3.animation + "L","clip",1);
-			}
+			case 0:
+			case 4:
+				var2.attachMovie(var3.animation + "S","clip",1);
+				break;
+			default:
+				switch(null)
+				{
+					case 3:
+					case 2:
+						var2.attachMovie(var3.animation + "F","clip",1);
+						break loop0;
+					case 5:
+					case 7:
+						var2.attachMovie(var3.animation + "L","clip",1);
+						break loop0;
+					default:
+						if(var0 !== 6)
+						{
+							break loop0;
+						}
+						var2.attachMovie(var3.animation + "B","clip",1);
+						break loop0;
+				}
+			case 1:
+				var2.attachMovie(var3.animation + "R","clip",1);
 		}
-		loc2.attachMovie(loc3.animation + "S","clip",1);
 	}
-	function registerCarried(loc2)
+	function registerCarried(var2)
 	{
-		var loc3 = this.getSpriteData(loc2);
-		loc3.mc.mcCarried = loc2;
+		var var3 = this.getSpriteData(var2);
+		var3.mc.mcCarried = var2;
 	}
-	function registerChevauchor(loc2)
+	function registerChevauchor(var2)
 	{
-		var loc3 = this.getSpriteData(loc2);
-		loc3.mc.mcChevauchorPos = loc2;
-		loc3.mc.updateChevauchorPosition();
+		var var3 = this.getSpriteData(var2);
+		var3.mc.mcChevauchorPos = var2;
+		var3.mc.updateChevauchorPosition();
 	}
-	function getSpriteData(loc2)
+	function getSpriteData(var2)
 	{
-		var loc3 = loc2._target;
+		var var3 = var2._target;
 		§§enumerate(this._oSprites);
-		while((var loc0 = §§enumeration()) != null)
+		while((var var0 = §§enumeration()) != null)
 		{
-			if(loc3.substring(0,name.length) == name)
+			if(var3.substring(0,name.length) == name)
 			{
-				if(loc3.charAt(name.length) != "/")
+				if(var3.charAt(name.length) != "/")
 				{
 					continue;
 				}
@@ -213,10 +213,9 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function garbageCollector(loc2)
+	function garbageCollector(var2)
 	{
-		§§enumerate(this._oSprites);
-		while((var loc0 = §§enumeration()) != null)
+		for(var o in this._oSprites)
 		{
 			if(this._oSprites[o].mc._target == undefined)
 			{
@@ -224,21 +223,22 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function recursiveGotoAndStop(loc2, loc3)
+	function recursiveGotoAndStop(var2, var3)
 	{
-		loc2.stop();
-		loc2.gotoAndStop(loc3);
-		for(var i in loc2)
+		var2.stop();
+		var2.gotoAndStop(var3);
+		§§enumerate(var2);
+		while((var var0 = §§enumeration()) != null)
 		{
-			if(loc2[i] instanceof MovieClip)
+			if(var2[i] instanceof MovieClip)
 			{
-				this.recursiveGotoAndStop(loc2[i],loc3);
+				this.recursiveGotoAndStop(var2[i],var3);
 			}
 		}
 	}
-	function onLoadInit(loc2)
+	function onLoadInit(var2)
 	{
-		this.recursiveGotoAndStop(loc2,this._aFrameToGo[loc2]);
+		this.recursiveGotoAndStop(var2,this._aFrameToGo[var2]);
 		delete this._aFrameToGo.register2;
 	}
 }

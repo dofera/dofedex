@@ -9,23 +9,23 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 	{
 		super();
 	}
-	function __set__classID(loc2)
+	function __set__classID(var2)
 	{
-		this._nClassID = loc2;
+		this._nClassID = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__classID();
 	}
-	function __set__sex(loc2)
+	function __set__sex(var2)
 	{
-		this._nSex = loc2;
+		this._nSex = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__sex();
 	}
-	function __set__colors(loc2)
+	function __set__colors(var2)
 	{
-		this.addToQueue({object:this,method:this.applyColor,params:[loc2[0],1]});
-		this.addToQueue({object:this,method:this.applyColor,params:[loc2[1],2]});
-		this.addToQueue({object:this,method:this.applyColor,params:[loc2[2],3]});
+		this.addToQueue({object:this,method:this.applyColor,params:[var2[0],1]});
+		this.addToQueue({object:this,method:this.applyColor,params:[var2[1],2]});
+		this.addToQueue({object:this,method:this.applyColor,params:[var2[2],3]});
 		this.addToQueue({object:this,method:this.updateSprite});
 		return this.__get__colors();
 	}
@@ -134,26 +134,26 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 		}
 		this._ldrSprite.contentPath = dofus.Constants.CLIPS_PERSOS_PATH + this._nClassID + this._nSex + ".swf";
 	}
-	function applyColor(loc2, loc3)
+	function applyColor(var2, var3)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = this._nSelectedColorIndex;
+			var3 = this._nSelectedColorIndex;
 		}
-		var loc4 = {ColoredButton:{bgcolor:(loc2 != -1?loc2:16711680),highlightcolor:(loc2 != -1?loc2:16777215),bgdowncolor:(loc2 != -1?loc2:16711680),highlightdowncolor:(loc2 != -1?loc2:16777215)}};
-		ank.gapi.styles.StylesManager.loadStylePackage(loc4);
-		this["_btnColor" + loc3].styleName = "ColoredButton";
-		this._oColors["color" + loc3] = loc2;
-		this._oBakColors["color" + loc3] = loc2;
+		var var4 = {ColoredButton:{bgcolor:(var2 != -1?var2:16711680),highlightcolor:(var2 != -1?var2:16777215),bgdowncolor:(var2 != -1?var2:16711680),highlightdowncolor:(var2 != -1?var2:16777215)}};
+		ank.gapi.styles.StylesManager.loadStylePackage(var4);
+		this["_btnColor" + var3].styleName = "ColoredButton";
+		this._oColors["color" + var3] = var2;
+		this._oBakColors["color" + var3] = var2;
 		this.updateSprite();
 	}
-	function setColorIndex(loc2)
+	function setColorIndex(var2)
 	{
-		var loc3 = this["_btnColor" + this._nSelectedColorIndex];
-		var loc4 = this["_btnColor" + loc2];
-		loc3.selected = false;
-		loc4.selected = true;
-		this._nSelectedColorIndex = loc2;
+		var var3 = this["_btnColor" + this._nSelectedColorIndex];
+		var var4 = this["_btnColor" + var2];
+		var3.selected = false;
+		var4.selected = true;
+		this._nSelectedColorIndex = var2;
 	}
 	function showColorPosition(nIndex)
 	{
@@ -165,7 +165,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 			bWhite = !bWhite;
 		};
 	}
-	function hideColorPosition(loc2)
+	function hideColorPosition(var2)
 	{
 		delete this.onEnterFrame;
 		this._oColors.color1 = this._oBakColors.color1;
@@ -175,57 +175,57 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 	}
 	function updateSprite()
 	{
-		var loc2 = this._ldrSprite.content;
-		loc2.mcAnim.removeMovieClip();
-		loc2.attachMovie(dofus.graphics.gapi.controls.ClassCustomize.SPRITE_ANIMS[this._nSpriteAnimIndex],"mcAnim",10);
-		loc2._xscale = loc2._yscale = 200;
+		var var2 = this._ldrSprite.content;
+		var2.mcAnim.removeMovieClip();
+		var2.attachMovie(dofus.graphics.gapi.controls.ClassCustomize.SPRITE_ANIMS[this._nSpriteAnimIndex],"mcAnim",10);
+		var2._xscale = var2._yscale = 200;
 	}
 	function hideGenerateRandomName()
 	{
 		this._mcRegenerateNickName._visible = false;
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_itCharacterName":
-				var loc3 = this._itCharacterName.text;
+				var var3 = this._itCharacterName.text;
 				if(!this.api.datacenter.Player.isAuthorized)
 				{
-					loc3 = loc3.substr(0,1).toUpperCase() + loc3.substr(1);
-					var loc4 = loc3.substr(0,1);
-					var loc5 = 1;
-					while(loc5 < loc3.length)
+					var3 = var3.substr(0,1).toUpperCase() + var3.substr(1);
+					var var4 = var3.substr(0,1);
+					var var5 = 1;
+					while(var5 < var3.length)
 					{
-						if(loc3.substr(loc5 - 1,1) != "-")
+						if(var3.substr(var5 - 1,1) != "-")
 						{
-							loc4 = loc4 + loc3.substr(loc5,1).toLowerCase();
+							var4 = var4 + var3.substr(var5,1).toLowerCase();
 						}
 						else
 						{
-							loc4 = loc4 + loc3.substr(loc5,1);
+							var4 = var4 + var3.substr(var5,1);
 						}
-						loc5 = loc5 + 1;
+						var5 = var5 + 1;
 					}
 					this._itCharacterName.removeEventListener("change",this);
-					this._itCharacterName.text = loc4;
+					this._itCharacterName.text = var4;
 					this._itCharacterName.addEventListener("change",this);
 				}
 				this.dispatchEvent({type:"nameChange",value:this._itCharacterName.text});
 				break;
 			case "_cpColorPicker":
-				this.applyColor(loc2.value);
+				this.applyColor(var2.value);
 				this.dispatchEvent({type:"colorsChange",value:this._oColors});
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
 		this.updateSprite();
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		loop0:
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnNextAnim":
 				this._nSpriteAnimIndex++;
@@ -249,13 +249,13 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 					case "_btnColor1":
 					case "_btnColor2":
 					case "_btnColor3":
-						var loc3 = Number(loc2.target._name.substr(9));
-						var loc4 = this._oBakColors["color" + loc3];
-						if(loc4 != -1)
+						var var3 = Number(var2.target._name.substr(9));
+						var var4 = this._oBakColors["color" + var3];
+						if(var4 != -1)
 						{
-							this._cpColorPicker.setColor(loc4);
+							this._cpColorPicker.setColor(var4);
 						}
-						this.setColorIndex(loc3);
+						this.setColorIndex(var3);
 						break loop0;
 					default:
 						switch(null)
@@ -273,36 +273,36 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 						}
 						break loop0;
 					case "_btnReset1":
-						var loc5 = Number(loc2.target._name.substr(9));
-						this.applyColor(-1,loc5);
+						var var5 = Number(var2.target._name.substr(9));
+						this.applyColor(-1,var5);
 						this.dispatchEvent({type:"colorsChange",value:this._oColors});
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target._name)
+		loop0:
+		switch(var2.target._name)
 		{
+			default:
+				switch(null)
+				{
+					case "_btnColor3":
+						break loop0;
+					case "_mcRegenerateNickName":
+						var var4 = {x:this._mcRegenerateNickName._x,y:this._mcRegenerateNickName._y};
+						this._mcRegenerateNickName.localToGlobal(var4);
+						this.gapi.showTooltip(this.api.lang.getText("RANDOM_NICKNAME"),var4.x + this._x,var4.y + this._y - 20);
+				}
 			case "_btnColor1":
 			case "_btnColor2":
-			case "_btnColor3":
-				var loc3 = Number(loc2.target._name.substr(9));
-				this.showColorPosition(loc3);
-				break;
-			default:
-				if(loc0 !== "_mcRegenerateNickName")
-				{
-					break;
-				}
-				var loc4 = {x:this._mcRegenerateNickName._x,y:this._mcRegenerateNickName._y};
-				this._mcRegenerateNickName.localToGlobal(loc4);
-				this.gapi.showTooltip(this.api.lang.getText("RANDOM_NICKNAME"),loc4.x + this._x,loc4.y + this._y - 20);
-				break;
 		}
+		var var3 = Number(var2.target._name.substr(9));
+		this.showColorPosition(var3);
 	}
-	function out(loc2)
+	function out(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnColor1":
 			case "_btnColor2":

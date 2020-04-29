@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.CenterInfo extends dofus.graphics.gapi.ui.CenterTex
 	{
 		super();
 	}
-	function __set__textInfo(loc2)
+	function __set__textInfo(var2)
 	{
-		this._sDesc = loc2;
+		this._sDesc = var2;
 		return this.__get__textInfo();
 	}
 	function init()

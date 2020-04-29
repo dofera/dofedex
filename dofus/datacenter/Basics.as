@@ -6,9 +6,9 @@ class dofus.datacenter.Basics extends dofus.utils.ApiElement
 		super();
 		this.initialize();
 	}
-	function __set__login(loc2)
+	function __set__login(var2)
 	{
-		this._sLogin = loc2.toLowerCase();
+		this._sLogin = var2.toLowerCase();
 		return this.__get__login();
 	}
 	function __get__login()
@@ -19,15 +19,15 @@ class dofus.datacenter.Basics extends dofus.utils.ApiElement
 	{
 		return this._aks_infos_highlightCoords;
 	}
-	function __set__aks_infos_highlightCoords(loc2)
+	function __set__aks_infos_highlightCoords(var2)
 	{
-		this._aks_infos_highlightCoords = loc2;
+		this._aks_infos_highlightCoords = var2;
 		this.api.ui.getUIComponent("Banner").illustration.updateFlags();
 		return this.__get__aks_infos_highlightCoords();
 	}
-	function __set__banner_targetCoords(loc2)
+	function __set__banner_targetCoords(var2)
 	{
-		this._banner_targetCoords = loc2;
+		this._banner_targetCoords = var2;
 		this.api.ui.getUIComponent("Banner").illustration.updateFlags();
 		return this.__get__banner_targetCoords();
 	}
@@ -35,18 +35,18 @@ class dofus.datacenter.Basics extends dofus.utils.ApiElement
 	{
 		return this._banner_targetCoords;
 	}
-	function team(loc2)
+	function team(var2)
 	{
-		var loc3 = new ank.utils.();
-		var loc4 = this.api.datacenter.Sprites.getItems();
-		for(var i in loc4)
+		var var3 = new ank.utils.();
+		var var4 = this.api.datacenter.Sprites.getItems();
+		for(var i in var4)
 		{
-			if(this.api.datacenter.Sprites.getItemAt(i).Team == loc2)
+			if(this.api.datacenter.Sprites.getItemAt(i).Team == var2)
 			{
-				loc3.push(this.api.datacenter.Sprites.getItemAt(i));
+				var3.push(this.api.datacenter.Sprites.getItemAt(i));
 			}
 		}
-		return loc3;
+		return var3;
 	}
 	function initialize()
 	{
@@ -69,7 +69,7 @@ class dofus.datacenter.Basics extends dofus.utils.ApiElement
 		delete this.aks_gameserver_ip;
 		delete this.aks_gameserver_port;
 		this.aks_rescue_count = -1;
-		this.aks_servers = new ank.utils.();
+		this.aks_servers = new ank.utils.();
 		delete this.aks_current_server;
 		delete this.aks_can_send_identity;
 		delete this.aks_identity;
@@ -103,25 +103,25 @@ class dofus.datacenter.Basics extends dofus.utils.ApiElement
 		this.canUseSeeAllSpell = true;
 		_global.API.kernel.SpellsBoostsManager.clear();
 	}
-	function aks_infos_highlightCoords_clear(loc2)
+	function aks_infos_highlightCoords_clear(var2)
 	{
-		if(_global.isNaN(loc2))
+		if(_global.isNaN(var2))
 		{
 			this._aks_infos_highlightCoords = new Array();
 		}
 		else
 		{
-			var loc3 = new Array();
-			var loc4 = 0;
-			while(loc4 < this._aks_infos_highlightCoords.length)
+			var var3 = new Array();
+			var var4 = 0;
+			while(var4 < this._aks_infos_highlightCoords.length)
 			{
-				if(this._aks_infos_highlightCoords[loc4].type != loc2)
+				if(this._aks_infos_highlightCoords[var4].type != var2)
 				{
-					loc3.push(this._aks_infos_highlightCoords[loc4]);
+					var3.push(this._aks_infos_highlightCoords[var4]);
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
-			this._aks_infos_highlightCoords = loc3;
+			this._aks_infos_highlightCoords = var3;
 		}
 		this.api.ui.getUIComponent("Banner").illustration.updateFlags();
 	}

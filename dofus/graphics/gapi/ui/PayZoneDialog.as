@@ -11,25 +11,25 @@ class dofus.graphics.gapi.ui.PayZoneDialog extends dofus.graphics.gapi.core.Dofu
 	{
 		super();
 	}
-	function __set__id(loc2)
+	function __set__id(var2)
 	{
-		this._nNpcID = loc2;
+		this._nNpcID = var2;
 		return this.__get__id();
 	}
-	function __set__name(loc2)
+	function __set__name(var2)
 	{
-		this._sName = loc2;
+		this._sName = var2;
 		return this.__get__name();
 	}
-	function __set__gfx(loc2)
+	function __set__gfx(var2)
 	{
-		this._sGfx = loc2;
+		this._sGfx = var2;
 		return this.__get__gfx();
 	}
-	function __set__dialogID(loc2)
+	function __set__dialogID(var2)
 	{
-		this._nDialogID = loc2;
-		this.addToQueue({object:this,method:this.setDialog,params:[loc2]});
+		this._nDialogID = var2;
+		this.addToQueue({object:this,method:this.setDialog,params:[var2]});
 		return this.__get__dialogID();
 	}
 	function init()
@@ -48,65 +48,65 @@ class dofus.graphics.gapi.ui.PayZoneDialog extends dofus.graphics.gapi.core.Dofu
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 	}
 	function setNpcCharacteristics()
 	{
 		this._ldrArtwork.contentPath = dofus.Constants.ARTWORKS_BIG_PATH + this._sGfx + ".swf";
 		this._winBackgroundUp.title = this._sName;
 	}
-	function setDialog(loc2)
+	function setDialog(var2)
 	{
-		var loc3 = new Object();
-		loc3.responses = new ank.utils.();
-		if((var loc0 = loc2) !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_INFOS)
+		var var3 = new Object();
+		var3.responses = new ank.utils.();
+		if((var var0 = var2) !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_INFOS)
 		{
-			if(loc0 !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_DETAILS)
+			if(var0 !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_DETAILS)
 			{
-				loc3.label = this.api.lang.getText("PAYZONE_MSG_" + this._nDialogID) + "\n\n" + this.api.lang.getText("PAYZONE_BASE");
-				loc3.responses.push({label:this.api.lang.getText("PAYZONE_MORE_INFOS"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_MORE_INFOS});
+				var3.label = this.api.lang.getText("PAYZONE_MSG_" + this._nDialogID) + "\n\n" + this.api.lang.getText("PAYZONE_BASE");
+				var3.responses.push({label:this.api.lang.getText("PAYZONE_MORE_INFOS"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_MORE_INFOS});
 			}
 			else
 			{
-				loc3.label = this.api.lang.getText("PAYZONE_DETAILS");
-				loc3.responses.push({label:this.api.lang.getText("PAYZONE_BE_MEMBER"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_BE_MEMBER});
+				var3.label = this.api.lang.getText("PAYZONE_DETAILS");
+				var3.responses.push({label:this.api.lang.getText("PAYZONE_BE_MEMBER"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_BE_MEMBER});
 			}
 		}
 		else
 		{
-			loc3.label = this.api.lang.getText("PAYZONE_INFOS");
-			loc3.responses.push({label:this.api.lang.getText("YES"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_YES});
-			loc3.responses.push({label:this.api.lang.getText("NO"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_NO});
+			var3.label = this.api.lang.getText("PAYZONE_INFOS");
+			var3.responses.push({label:this.api.lang.getText("YES"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_YES});
+			var3.responses.push({label:this.api.lang.getText("NO"),id:dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_NO});
 		}
-		this.setQuestion(loc3);
+		this.setQuestion(var3);
 	}
-	function setQuestion(loc2)
+	function setQuestion(var2)
 	{
 		if(this._qvQuestionViewer == undefined)
 		{
-			this.attachMovie("QuestionViewer","_qvQuestionViewer",10,{_x:this._mcQuestionViewer._x,_y:this._mcQuestionViewer._y,question:loc2,isFirstQuestion:true});
+			this.attachMovie("QuestionViewer","_qvQuestionViewer",10,{_x:this._mcQuestionViewer._x,_y:this._mcQuestionViewer._y,question:var2,isFirstQuestion:true});
 			this._qvQuestionViewer.addEventListener("response",this);
 			this._qvQuestionViewer.addEventListener("resize",this);
 		}
 		else
 		{
 			this._qvQuestionViewer.isFirstQuestion = true;
-			this._qvQuestionViewer.question = loc2;
+			this._qvQuestionViewer.question = var2;
 		}
 	}
 	function closeDialog()
 	{
 		this.callClose();
 	}
-	function response(loc2)
+	function response(var2)
 	{
-		if((var loc0 = loc2.response.id) !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_YES)
+		if((var var0 = var2.response.id) !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_YES)
 		{
-			if(loc0 !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_NO)
+			if(var0 !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_NO)
 			{
-				if(loc0 !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_BE_MEMBER)
+				if(var0 !== dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_BE_MEMBER)
 				{
-					if(loc0 === dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_MORE_INFOS)
+					if(var0 === dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_MORE_INFOS)
 					{
 						this.getURL(this.api.lang.getConfigText("MEMBERS_LINK"),"_blank");
 						this.unloadThis();
@@ -128,9 +128,9 @@ class dofus.graphics.gapi.ui.PayZoneDialog extends dofus.graphics.gapi.core.Dofu
 			this.setDialog(dofus.graphics.gapi.ui.PayZoneDialog.PAYZONE_DETAILS);
 		}
 	}
-	function resize(loc2)
+	function resize(var2)
 	{
-		this._winBackground.setSize(undefined,loc2.target.height + (loc2.target._y - this._winBackground._y) + 12);
-		this._winBackgroundUp.setSize(undefined,loc2.target.height + (loc2.target._y - this._winBackground._y) + 10);
+		this._winBackground.setSize(undefined,var2.target.height + (var2.target._y - this._winBackground._y) + 12);
+		this._winBackgroundUp.setSize(undefined,var2.target.height + (var2.target._y - this._winBackground._y) + 10);
 	}
 }

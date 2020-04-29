@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.PlayerInfos extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._oData = loc2;
+		this._oData = var2;
 		return this.__get__data();
 	}
 	function __get__data()
@@ -44,7 +44,7 @@ class dofus.graphics.gapi.ui.PlayerInfos extends dofus.graphics.gapi.core.DofusA
 	{
 		this.unloadThis();
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this.unloadThis();
 	}

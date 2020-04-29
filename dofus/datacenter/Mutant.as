@@ -1,10 +1,10 @@
 class dofus.datacenter.Mutant extends dofus.datacenter.Character
 {
-	function Mutant(sID, clipClass, §\x1e\x13\x16§, cellNum, §\x11\x1d§, gfxID, bShowIsPlayer)
+	function Mutant(sID, clipClass, §\x1e\x13\x14§, cellNum, §\x11\x1b§, gfxID, bShowIsPlayer)
 	{
 		super();
 		this._bShowIsPlayer = bShowIsPlayer == undefined?false:bShowIsPlayer;
-		this.initialize(sID,clipClass,loc5,cellNum,loc7,gfxID);
+		this.initialize(sID,clipClass,var5,cellNum,var7,gfxID);
 	}
 	function __get__name()
 	{
@@ -14,18 +14,18 @@ class dofus.datacenter.Mutant extends dofus.datacenter.Character
 		}
 		return this._sPlayerName;
 	}
-	function __set__monsterID(loc2)
+	function __set__monsterID(var2)
 	{
-		this._nMonsterID = loc2;
+		this._nMonsterID = var2;
 		return this.__get__monsterID();
 	}
 	function __get__monsterID()
 	{
 		return this._nMonsterID;
 	}
-	function __set__playerName(loc2)
+	function __set__playerName(var2)
 	{
-		this._sPlayerName = loc2;
+		this._sPlayerName = var2;
 		return this.__get__playerName();
 	}
 	function __get__playerName()
@@ -40,9 +40,9 @@ class dofus.datacenter.Mutant extends dofus.datacenter.Character
 	{
 		return new dofus.datacenter.();
 	}
-	function __set__powerLevel(loc2)
+	function __set__powerLevel(var2)
 	{
-		this._nPowerLevel = Number(loc2);
+		this._nPowerLevel = Number(var2);
 		return this.__get__powerLevel();
 	}
 	function __get__powerLevel()
@@ -57,9 +57,9 @@ class dofus.datacenter.Mutant extends dofus.datacenter.Character
 	{
 		return this.api.lang.getMonstersText(this._nMonsterID)["g" + this._nPowerLevel].r;
 	}
-	function __set__showIsPlayer(loc2)
+	function __set__showIsPlayer(var2)
 	{
-		this._bShowIsPlayer = loc2;
+		this._bShowIsPlayer = var2;
 		return this.__get__showIsPlayer();
 	}
 	function __get__showIsPlayer()

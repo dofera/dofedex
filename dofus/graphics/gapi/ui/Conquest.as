@@ -6,22 +6,22 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 	{
 		super();
 	}
-	function __set__currentTab(loc2)
+	function __set__currentTab(var2)
 	{
-		this._sCurrentTab = loc2;
+		this._sCurrentTab = var2;
 		return this.__get__currentTab();
 	}
-	function sharePropertiesWithTab(loc2)
+	function sharePropertiesWithTab(var2)
 	{
-		for(var i in loc2)
+		for(var i in var2)
 		{
-			this._mcTabViewer[i] = loc2[i];
+			this._mcTabViewer[i] = var2[i];
 		}
 	}
-	function setBalance(loc2, loc3)
+	function setBalance(var2, var3)
 	{
-		this._nWorldBalance = loc2;
-		this._nAreaBalance = loc3;
+		this._nWorldBalance = var2;
+		this._nAreaBalance = var3;
 		this.addToQueue({object:this,method:this.updateBalance});
 	}
 	function init()
@@ -65,6 +65,7 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 		this._btnTabZones.addEventListener("click",this);
 		this._ctrAlignment.addEventListener("over",this);
 		this._ctrAlignment.addEventListener("out",this);
+		var ref = this;
 		this._mcBalanceInteractivity.onRollOver = function()
 		{
 			ref.over({target:this});
@@ -89,15 +90,15 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 		this.alignmentChanged({alignment:this.api.datacenter.Player.alignment});
 		this.api.network.Conquest.requestBalance();
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
 		this._mcComboBoxPopup.removeMovieClip();
-		var loc3 = this["_btnTab" + this._sCurrentTab];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
+		var var3 = this["_btnTab" + this._sCurrentTab];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
 		switch(this._sCurrentTab)
 		{
 			case "Zones":
@@ -110,13 +111,13 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 					break;
 				}
 		}
-		this._sCurrentTab = loc2;
+		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
 	function updateCurrentTabInformations()
 	{
 		this._mcTabViewer.removeMovieClip();
-		if((var loc0 = this._sCurrentTab) !== "Stats")
+		if((var var0 = this._sCurrentTab) !== "Stats")
 		{
 			switch(null)
 			{
@@ -136,17 +137,17 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 	}
 	function updateBalance()
 	{
-		var loc2 = this.api.lang.getAlignmentBalance();
-		var loc3 = new String();
-		for(var i in loc2)
+		var var2 = this.api.lang.getAlignmentBalance();
+		var var3 = new String();
+		for(var i in var2)
 		{
-			if(this._nWorldBalance >= loc2[i].s && this._nWorldBalance <= loc2[i].e)
+			if(this._nWorldBalance >= var2[i].s && this._nWorldBalance <= var2[i].e)
 			{
-				loc3 = String(loc2[i].n);
-				this._sBalanceDescription = String(loc2[i].d);
+				var3 = String(var2[i].n);
+				this._sBalanceDescription = String(var2[i].d);
 			}
 		}
-		this._lblBalanceValue.text = this._nWorldBalance + "%" + (loc3.length <= 0?"":" (" + loc3 + ")");
+		this._lblBalanceValue.text = this._nWorldBalance + "%" + (var3.length <= 0?"":" (" + var3 + ")");
 	}
 	function destroy()
 	{
@@ -159,33 +160,33 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 				this.api.network.Conquest.prismInfosLeave();
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._ctrAlignment:
-				this.gapi.showTooltip(this.api.datacenter.Player.alignment.name,loc2.target,loc2.target.height + 5);
+				this.gapi.showTooltip(this.api.datacenter.Player.alignment.name,var2.target,var2.target.height + 5);
 				break;
 			case this._mcBalanceInteractivity:
-				var loc3 = new String();
+				var var3 = new String();
 				if(this._sBalanceDescription.length > 0)
 				{
-					loc3 = loc3 + this._sBalanceDescription;
+					var3 = var3 + this._sBalanceDescription;
 				}
 				if(this._nAreaBalance != undefined && (!_global.isNaN(this._nAreaBalance) && this._nAreaBalance > 0))
 				{
-					loc3 = loc3 + ("\n\n" + this.api.lang.getText("CONQUEST_ZONE_BALANCE") + ": " + this._nAreaBalance + "%");
+					var3 = var3 + ("\n\n" + this.api.lang.getText("CONQUEST_ZONE_BALANCE") + ": " + this._nAreaBalance + "%");
 				}
-				this.gapi.showTooltip(loc3,loc2.target,-20);
+				this.gapi.showTooltip(var3,var2.target,-20);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnClose:
 				this.callClose();
@@ -193,22 +194,22 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 			case this._btnTabJoin:
 			case this._btnTabStats:
 			case this._btnTabZones:
-				this.setCurrentTab(loc2.target._name.substr(7));
+				this.setCurrentTab(var2.target._name.substr(7));
 		}
 	}
-	function rankChanged(loc2)
+	function rankChanged(var2)
 	{
-		this._rRank = (dofus.datacenter.Rank)loc2.rank;
+		this._rRank = (dofus.datacenter.Rank)var2.rank;
 		if(this._rRank.enable && this._lblStats.text != undefined)
 		{
-			var loc3 = this.api.datacenter.Player.alignment.index;
-			if(loc3 == 0)
+			var var3 = this.api.datacenter.Player.alignment.index;
+			if(var3 == 0)
 			{
 				this._lblGradeValue.text = this.api.lang.getRankLongName(0,0);
 			}
 			else
 			{
-				this._lblGradeValue.text = loc2.rank.value + " (" + this.api.lang.getRankLongName(loc3,this._rRank.value) + ")";
+				this._lblGradeValue.text = var2.rank.value + " (" + this.api.lang.getRankLongName(var3,this._rRank.value) + ")";
 			}
 			this._lblStats.text = this.api.lang.getText("PVP_MODE") + " (" + this.api.lang.getText("ACTIVE") + ")";
 			this._mcPvpActive._visible = true;
@@ -222,8 +223,8 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 			this._mcPvpInactive._visible = true;
 		}
 	}
-	function alignmentChanged(loc2)
+	function alignmentChanged(var2)
 	{
-		this._ctrAlignment.contentPath = loc2.alignment.iconFile;
+		this._ctrAlignment.contentPath = var2.alignment.iconFile;
 	}
 }

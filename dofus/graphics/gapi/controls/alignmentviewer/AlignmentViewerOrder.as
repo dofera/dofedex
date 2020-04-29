@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerOrder extends 
 	{
 		super();
 	}
-	function __set__specialization(loc2)
+	function __set__specialization(var2)
 	{
-		this._oSpec = loc2;
+		this._oSpec = var2;
 		if(this.initialized)
 		{
 			this.initData();

@@ -4,36 +4,36 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			loc4.sortName = loc4.name;
-			loc4.sortLevel = loc4.level;
-			var loc5 = this._mcList._parent._parent.api;
-			this._lblName.text = loc4.name;
-			this._lblLevel.text = loc5.lang.getText("LEVEL") + " " + loc4.level;
-			this._lblRange.text = (loc4.rangeMin == 0?"":loc4.rangeMin + "-") + loc4.rangeMax + " " + loc5.lang.getText("RANGE");
-			this._lblAP.text = loc4.apCost + " " + loc5.lang.getText("AP");
-			this._ldrIcon.contentPath = loc4.iconFile;
-			var loc6 = this._mcList._parent._parent.canBoost(loc4) && loc5.datacenter.Basics.canUseSeeAllSpell;
-			var loc7 = this._mcList._parent._parent.getCostForBoost(loc4);
+			this._oItem = var4;
+			var4.sortName = var4.name;
+			var4.sortLevel = var4.level;
+			var var5 = this._mcList._parent._parent.api;
+			this._lblName.text = var4.name;
+			this._lblLevel.text = var5.lang.getText("LEVEL") + " " + var4.level;
+			this._lblRange.text = (var4.rangeMin == 0?"":var4.rangeMin + "-") + var4.rangeMax + " " + var5.lang.getText("RANGE");
+			this._lblAP.text = var4.apCost + " " + var5.lang.getText("AP");
+			this._ldrIcon.contentPath = var4.iconFile;
+			var var6 = this._mcList._parent._parent.canBoost(var4) && var5.datacenter.Basics.canUseSeeAllSpell;
+			var var7 = this._mcList._parent._parent.getCostForBoost(var4);
 			this._btnBoost.enabled = true;
-			this._btnBoost._visible = loc6;
-			this._lblBoost.text = !(loc7 != -1 && loc5.datacenter.Basics.canUseSeeAllSpell)?"":loc5.lang.getText("POINT_NEED_TO_BOOST_SPELL",[loc7]);
-			if(loc5.datacenter.Player.Level < loc4._minPlayerLevel)
+			this._btnBoost._visible = var6;
+			this._lblBoost.text = !(var7 != -1 && var5.datacenter.Basics.canUseSeeAllSpell)?"":var5.lang.getText("POINT_NEED_TO_BOOST_SPELL",[var7]);
+			if(var5.datacenter.Player.Level < var4._minPlayerLevel)
 			{
-				var loc8 = 50;
-				this._lblName._alpha = loc8;
-				this._ldrIcon._alpha = loc8;
-				this._lblAP._alpha = loc8;
-				this._lblRange._alpha = loc8;
+				var var8 = 50;
+				this._lblName._alpha = var8;
+				this._ldrIcon._alpha = var8;
+				this._lblAP._alpha = var8;
+				this._lblRange._alpha = var8;
 				this._lblLevel._visible = false;
 				this._lblBoost._visible = false;
 				this._btnBoost._visible = false;
@@ -75,14 +75,14 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 		this._btnBoost.addEventListener("over",this);
 		this._btnBoost.addEventListener("out",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = this._mcList._parent._parent.api;
-		if((var loc0 = loc2.target) === this._btnBoost)
+		var var3 = this._mcList._parent._parent.api;
+		if((var var0 = var2.target) === this._btnBoost)
 		{
-			if(!loc3.datacenter.Player.isAuthorized)
+			if(!var3.datacenter.Player.isAuthorized)
 			{
-				loc3.kernel.showMessage(loc3.lang.getText("UPGRADE_SPELL"),loc3.lang.getText("UPGRADE_SPELL_WARNING",[this._mcList._parent._parent.getCostForBoost(this._oItem),this._oItem.name,String(this._oItem.level + 1)]),"CAUTION_YESNO",{name:"UpgradeSpellWarning",listener:this});
+				var3.kernel.showMessage(var3.lang.getText("UPGRADE_SPELL"),var3.lang.getText("UPGRADE_SPELL_WARNING",[this._mcList._parent._parent.getCostForBoost(this._oItem),this._oItem.name,String(this._oItem.level + 1)]),"CAUTION_YESNO",{name:"UpgradeSpellWarning",listener:this});
 			}
 			else
 			{
@@ -90,7 +90,7 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 			}
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
 		if(this._mcList._parent._parent.boostSpell(this._oItem))
 		{
@@ -101,20 +101,20 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 			}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this._mcList._parent._parent.api;
-		if((var loc0 = loc2.target) === this._btnBoost)
+		var var3 = this._mcList._parent._parent.api;
+		if((var var0 = var2.target) === this._btnBoost)
 		{
-			loc3.ui.showTooltip(loc3.lang.getText("CLICK_HERE_FOR_SPELL_BOOST",[this._mcList._parent._parent.getCostForBoost(this._oItem),this._oItem.name,String(this._oItem.level + 1)]),loc2.target,-30,{bXLimit:true,bYLimit:false});
+			var3.ui.showTooltip(var3.lang.getText("CLICK_HERE_FOR_SPELL_BOOST",[this._mcList._parent._parent.getCostForBoost(this._oItem),this._oItem.name,String(this._oItem.level + 1)]),var2.target,-30,{bXLimit:true,bYLimit:false});
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
-		var loc3 = this._mcList._parent._parent.api;
-		if((var loc0 = loc2.target) === this._btnBoost)
+		var var3 = this._mcList._parent._parent.api;
+		if((var var0 = var2.target) === this._btnBoost)
 		{
-			loc3.ui.hideTooltip();
+			var3.ui.hideTooltip();
 		}
 	}
 }

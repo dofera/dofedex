@@ -5,10 +5,11 @@ class dofus.graphics.gapi.controls.timeline.TimelinePointer extends ank.gapi.cor
 	{
 		super();
 	}
-	function moveTween(§\x12\x01§, destScale)
+	function moveTween(§\x11\x1c§, destScale)
 	{
-		var nDir = loc2 <= this._x?-1:1;
-		this._destX = loc2;
+		var nDir = var2 <= this._x?-1:1;
+		var i = 0;
+		this._destX = var2;
 		this.onEnterFrame = function()
 		{
 			i++;

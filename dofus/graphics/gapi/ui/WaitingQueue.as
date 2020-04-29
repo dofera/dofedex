@@ -6,9 +6,9 @@ class dofus.graphics.gapi.ui.WaitingQueue extends dofus.graphics.gapi.core.Dofus
 		super();
 		this._btnLeaveQueue._visible = false;
 	}
-	function __set__queueInfos(loc2)
+	function __set__queueInfos(var2)
 	{
-		this._oQueueInfos = loc2;
+		this._oQueueInfos = var2;
 		return this.__get__queueInfos();
 	}
 	function init()
@@ -39,10 +39,10 @@ class dofus.graphics.gapi.ui.WaitingQueue extends dofus.graphics.gapi.core.Dofus
 	}
 	function initData()
 	{
-		var loc2 = this.api.lang.getServerInfos(this._oQueueInfos.queueId).n;
-		if(loc2 != undefined)
+		var var2 = this.api.lang.getServerInfos(this._oQueueInfos.queueId).n;
+		if(var2 != undefined)
 		{
-			this._lblWhite3.text = this._lblBlackTL3.text = this._lblBlackTR3.text = this._lblBlackBL3.text = this._lblBlackBR3.text = this.api.lang.getText("WAITING_FOR_CONNECTION_ON",[loc2]);
+			this._lblWhite3.text = this._lblBlackTL3.text = this._lblBlackTR3.text = this._lblBlackBL3.text = this._lblBlackBR3.text = this.api.lang.getText("WAITING_FOR_CONNECTION_ON",[var2]);
 		}
 		else
 		{
@@ -68,9 +68,9 @@ class dofus.graphics.gapi.ui.WaitingQueue extends dofus.graphics.gapi.core.Dofus
 			this._btnLeaveQueue._visible = true;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnSubscribe":
 				_root.getURL(this.api.lang.getConfigText("PAY_LINK"),"_blank");

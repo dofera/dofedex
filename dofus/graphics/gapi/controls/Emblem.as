@@ -6,65 +6,65 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__shadow(loc2)
+	function __set__shadow(var2)
 	{
-		this._bShadow = loc2;
+		this._bShadow = var2;
 		return this.__get__shadow();
 	}
 	function __get__shadow()
 	{
 		return this._bShadow;
 	}
-	function __set__backID(loc2)
+	function __set__backID(var2)
 	{
-		if(loc2 < 1 || loc2 > dofus.Constants.EMBLEM_BACKS_COUNT)
+		if(var2 < 1 || var2 > dofus.Constants.EMBLEM_BACKS_COUNT)
 		{
-			loc2 = 1;
+			var2 = 1;
 		}
-		this._sBackFile = dofus.Constants.EMBLEMS_BACK_PATH + loc2 + ".swf";
+		this._sBackFile = dofus.Constants.EMBLEMS_BACK_PATH + var2 + ".swf";
 		if(this.initialized)
 		{
 			this.layoutBack();
 		}
 		return this.__get__backID();
 	}
-	function __set__backColor(loc2)
+	function __set__backColor(var2)
 	{
-		this._nBackColor = loc2;
+		this._nBackColor = var2;
 		if(this.initialized)
 		{
 			this.layoutBack();
 		}
 		return this.__get__backColor();
 	}
-	function __set__upID(loc2)
+	function __set__upID(var2)
 	{
-		if(loc2 < 1 || loc2 > dofus.Constants.EMBLEM_UPS_COUNT)
+		if(var2 < 1 || var2 > dofus.Constants.EMBLEM_UPS_COUNT)
 		{
-			loc2 = 1;
+			var2 = 1;
 		}
-		this._sUpFile = dofus.Constants.EMBLEMS_UP_PATH + loc2 + ".swf";
+		this._sUpFile = dofus.Constants.EMBLEMS_UP_PATH + var2 + ".swf";
 		if(this.initialized)
 		{
 			this.layoutUp();
 		}
 		return this.__get__upID();
 	}
-	function __set__upColor(loc2)
+	function __set__upColor(var2)
 	{
-		this._nUpColor = loc2;
+		this._nUpColor = var2;
 		if(this.initialized)
 		{
 			this.layoutUp();
 		}
 		return this.__get__upColor();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this._sBackFile = dofus.Constants.EMBLEMS_BACK_PATH + loc2.backID + ".swf";
-		this._nBackColor = loc2.backColor;
-		this._sUpFile = dofus.Constants.EMBLEMS_UP_PATH + loc2.upID + ".swf";
-		this._nUpColor = loc2.upColor;
+		this._sBackFile = dofus.Constants.EMBLEMS_BACK_PATH + var2.backID + ".swf";
+		this._nBackColor = var2.backColor;
+		this._sUpFile = dofus.Constants.EMBLEMS_UP_PATH + var2.upID + ".swf";
+		this._nUpColor = var2.upColor;
 		if(this.initialized)
 		{
 			this.layoutBack();
@@ -96,8 +96,8 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 			if(this._bShadow)
 			{
 				this._ldrEmblemShadow.contentPath = this._sBackFile;
-				var loc2 = new Color(this._ldrEmblemShadow);
-				loc2.setRGB(16777215);
+				var var2 = new Color(this._ldrEmblemShadow);
+				var2.setRGB(16777215);
 			}
 			this._ldrEmblemShadow._visible = this._bShadow;
 			this.layoutBack();
@@ -134,10 +134,10 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 	{
 		this.setMovieClipColor(this._ldrEmblemUp.content,this._nUpColor);
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.target;
-		switch(loc3._name)
+		var var3 = var2.target;
+		switch(var3._name)
 		{
 			case "_ldrEmblemBack":
 				this.applyBackColor();

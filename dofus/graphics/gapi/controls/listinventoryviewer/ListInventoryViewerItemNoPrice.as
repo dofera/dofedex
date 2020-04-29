@@ -4,14 +4,14 @@ class dofus.graphics.gapi.controls.listinventoryviewer.ListInventoryViewerItemNo
 	{
 		super();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._lblName.text = !loc2?"":(loc4.Quantity <= 1?"":"x" + loc4.Quantity + " ") + loc4.name;
-			this._ldrIcon.contentPath = !loc2?"":loc4.iconFile;
-			this._ldrIcon.contentParams = loc4.params;
-			this._lblName.styleName = loc4.style != ""?loc4.style + "LeftSmallLabel":"BrownLeftSmallLabel";
+			this._lblName.text = !var2?"":(var4.Quantity <= 1?"":"x" + var4.Quantity + " ") + var4.name;
+			this._ldrIcon.contentPath = !var2?"":var4.iconFile;
+			this._ldrIcon.contentParams = var4.params;
+			this._lblName.styleName = var4.style != ""?var4.style + "LeftSmallLabel":"BrownLeftSmallLabel";
 		}
 		else if(this._lblName.text != undefined)
 		{

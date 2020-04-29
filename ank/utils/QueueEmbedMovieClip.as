@@ -6,9 +6,9 @@ class ank.utils.QueueEmbedMovieClip extends MovieClip
 	{
 		super();
 	}
-	function addToQueue(loc2)
+	function addToQueue(var2)
 	{
-		ank.utils.QueueEmbedMovieClip._aQueue.push(loc2);
+		ank.utils.QueueEmbedMovieClip._aQueue.push(var2);
 		if(ank.utils.QueueEmbedMovieClip._mcEnterFrame.onEnterFrame == undefined)
 		{
 			ank.utils.QueueEmbedMovieClip._mcEnterFrame.onEnterFrame = this.runQueue;
@@ -16,9 +16,9 @@ class ank.utils.QueueEmbedMovieClip extends MovieClip
 	}
 	function runQueue()
 	{
-		for(var loc2 in ank.utils.QueueEmbedMovieClip._aQueue)
+		for(var var2 in ank.utils.QueueEmbedMovieClip._aQueue)
 		{
-			loc2.method.apply(loc2.object,loc2.params);
+			var2.method.apply(var2.object,var2.params);
 			if(ank.utils.QueueEmbedMovieClip._aQueue.length == 0)
 			{
 				delete ank.utils.QueueEmbedMovieClip._mcEnterFrame.onEnterFrame;

@@ -48,156 +48,149 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 	}
 	function initData()
 	{
-		this._eaItems = new ank.utils.();
+		this._eaItems = new ank.utils.();
 		this._tiQuantity.restrict = "0-9";
 		this._tiQuantity.text = "1";
-		var loc2 = new ank.utils.();
-		var loc3 = this.api.lang.getAllItemTypes();
-		§§enumerate(loc3);
-		while((var loc0 = §§enumeration()) != null)
+		var var2 = new ank.utils.();
+		var var3 = this.api.lang.getAllItemTypes();
+		for(var a in var3)
 		{
-			loc2.push({label:loc3[a].n,id:a});
+			var2.push({label:var3[a].n,id:a});
 		}
-		loc2.sortOn("label");
-		loc2.push({label:"All",id:-1});
-		this._cbType.dataProvider = loc2;
-		this._eaGridItems = new ank.utils.();
+		var2.sortOn("label");
+		var2.push({label:"All",id:-1});
+		this._cbType.dataProvider = var2;
+		this._eaGridItems = new ank.utils.();
 		this._cgGrid.dataProvider = this._eaGridItems;
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._winItemViewer._visible = !loc2;
-		this._itvItemViewer._visible = !loc2;
+		this._winItemViewer._visible = !var2;
+		this._itvItemViewer._visible = !var2;
 	}
-	function generateIndexes(loc2)
+	function generateIndexes(var2)
 	{
-		var loc3 = new Object();
+		var var3 = new Object();
 		for(var k in this._aTypes)
 		{
-			loc3[this._aTypes[k]] = true;
+			var3[this._aTypes[k]] = true;
 		}
-		var loc4 = this.api.lang.getItemUnics();
-		this._eaItems = new ank.utils.();
-		this._eaItemsOriginal = new ank.utils.();
-		for(var k in loc4)
+		var var4 = this.api.lang.getItemUnics();
+		this._eaItems = new ank.utils.();
+		this._eaItemsOriginal = new ank.utils.();
+		for(var k in var4)
 		{
-			var loc5 = loc4[k];
-			if(!(loc5.ep != undefined && loc5.ep > this.api.datacenter.Basics.aks_current_regional_version))
+			var var5 = var4[k];
+			if(!(var5.ep != undefined && var5.ep > this.api.datacenter.Basics.aks_current_regional_version))
 			{
-				if(loc3[loc5.t])
+				if(var3[var5.t])
 				{
-					var loc6 = loc5.n;
-					this._eaItems.push({id:k,name:loc6.toUpperCase()});
-					this._eaItemsOriginal.push(new dofus.datacenter.(0,Number(k)));
+					var var6 = var5.n;
+					this._eaItems.push({id:k,name:var6.toUpperCase()});
+					this._eaItemsOriginal.push(new dofus.datacenter.(0,Number(k)));
 				}
 			}
 		}
 		this._lblNumber.text = this._eaItemsOriginal.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",this._eaItemsOriginal.length < 2);
 	}
-	function searchItem(loc2)
+	function searchItem(var2)
 	{
-		var loc3 = loc2.split(" ");
-		var loc4 = new ank.utils.();
-		var loc5 = new Object();
-		var loc6 = 0;
-		var loc7 = 0;
-		while(loc7 < this._eaItems.length)
+		var var3 = var2.split(" ");
+		var var4 = new ank.utils.();
+		var var5 = new Object();
+		var var6 = 0;
+		var var7 = 0;
+		while(var7 < this._eaItems.length)
 		{
-			var loc8 = this._eaItems[loc7];
-			var loc9 = this.searchWordsInName(loc3,loc8.name,loc6);
-			if(loc9 != 0)
+			var var8 = this._eaItems[var7];
+			var var9 = this.searchWordsInName(var3,var8.name,var6);
+			if(var9 != 0)
 			{
-				loc5[loc8.id] = loc9;
-				loc6 = loc9;
+				var5[var8.id] = var9;
+				var6 = var9;
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		for(var k in loc5)
+		for(var k in var5)
 		{
-			if(loc5[k] >= loc6)
+			if(var5[k] >= var6)
 			{
-				loc4.push(new dofus.datacenter.(0,Number(k)));
+				var4.push(new dofus.datacenter.(0,Number(k)));
 			}
 		}
-		this._lst.dataProvider = loc4;
+		this._lst.dataProvider = var4;
 	}
-	function searchWordsInName(loc2, loc3, loc4)
+	function searchWordsInName(var2, var3, var4)
 	{
-		var loc5 = 0;
-		var loc6 = loc2.length;
-		while(loc6 >= 0)
+		var var5 = 0;
+		var var6 = var2.length;
+		while(var6 >= 0)
 		{
-			var loc7 = loc2[loc6];
-			if(loc3.indexOf(loc7) != -1)
+			var var7 = var2[var6];
+			if(var3.indexOf(var7) != -1)
 			{
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
-			else if(loc5 + loc6 < loc4)
+			else if(var5 + var6 < var4)
 			{
 				return 0;
 			}
-			loc6 = loc6 - 1;
+			var6 = var6 - 1;
 		}
-		return loc5;
+		return var5;
 	}
-	function validateDrop(loc2, loc3)
+	function validateDrop(var2, var3)
 	{
-		var loc4 = false;
-		§§enumerate(this._eaGridItems);
-		loop0:
-		while((var loc0 = §§enumeration()) != null)
+		var var4 = false;
+		for(var i in this._eaGridItems)
 		{
-			if(loc2.equals(this._eaGridItems[i]))
+			if(var2.equals(this._eaGridItems[i]))
 			{
-				this._eaGridItems[i].Quantity = this._eaGridItems[i].Quantity + loc3;
+				this._eaGridItems[i].Quantity = this._eaGridItems[i].Quantity + var3;
 				this._cgGrid.modelChanged();
-				loc4 = true;
-				while(true)
-				{
-					if(§§pop() == null)
-					{
-						break loop0;
-					}
-				}
-			}
-			else
-			{
-				continue;
+				var4 = true;
+				break;
 			}
 		}
-		if(!loc4)
+		if(!var4)
 		{
-			loc2.Quantity = loc3;
-			this._eaGridItems.push(loc2);
+			var2.Quantity = var3;
+			this._eaGridItems.push(var2);
 		}
 	}
 	function summonItems()
 	{
-		for(var loc2 in this._eaGridItems)
+		for(var i in this._eaGridItems)
 		{
-			this.api.network.Basics.autorisedCommand("getitem " + loc2.unicID + " " + loc2.Quantity);
+			var var2 = (dofus.datacenter.Item)this._eaGridItems[i];
+			this.api.network.Basics.autorisedCommand("getitem " + var2.unicID + " " + var2.Quantity);
 		}
-		this._eaGridItems = new ank.utils.();
+		this._eaGridItems = new ank.utils.();
 		this._cgGrid.dataProvider = this._eaGridItems;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnCancel":
 				this.dispatchEvent({type:"cancel"});
 				this.callClose();
-			case "_btnSelect":
-				if(this._eaGridItems.length == 0)
+				break;
+			default:
+				if(var0 !== "_btnSelect")
 				{
-					this.dispatchEvent({type:"cancel"});
-					this.callClose();
 				}
-				this.summonItems();
+				break;
 		}
+		if(this._eaGridItems.length == 0)
+		{
+			this.dispatchEvent({type:"cancel"});
+			this.callClose();
+		}
+		this.summonItems();
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		if(this._tiSearch.text.length >= 2)
 		{
@@ -208,9 +201,9 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 			this._lst.dataProvider = this._eaItemsOriginal;
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._cbType:
 				this._aTypes = new Array();
@@ -220,94 +213,94 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 				}
 				else
 				{
-					var loc3 = 0;
-					while(loc3 < this._cbType.dataProvider.length)
+					var var3 = 0;
+					while(var3 < this._cbType.dataProvider.length)
 					{
-						if(this._cbType.dataProvider[loc3].id != -1)
+						if(this._cbType.dataProvider[var3].id != -1)
 						{
-							this._aTypes.push(this._cbType.dataProvider[loc3].id);
+							this._aTypes.push(this._cbType.dataProvider[var3].id);
 						}
-						loc3 = loc3 + 1;
+						var3 = var3 + 1;
 					}
 				}
 				this.generateIndexes();
 				this.change();
 				break;
 			case this._lst:
-				var loc4 = this._lst.selectedItem;
-				if(loc4 == undefined)
+				var var4 = this._lst.selectedItem;
+				if(var4 == undefined)
 				{
 					this.hideItemViewer(true);
 					break;
 				}
 				if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY))
 				{
-					this.api.kernel.GameManager.insertItemInChat(loc4);
+					this.api.kernel.GameManager.insertItemInChat(var4);
 					return undefined;
 				}
 				this.hideItemViewer(false);
-				this._itvItemViewer.itemData = loc4;
+				this._itvItemViewer.itemData = var4;
 				break;
 		}
 	}
-	function itemRollOver(loc2)
+	function itemRollOver(var2)
 	{
-		this.gapi.showTooltip(loc2.row.item.name + " (" + loc2.row.item.unicID + ")",loc2.row,20,{bXLimit:true,bYLimit:false});
+		this.gapi.showTooltip(var2.row.item.name + " (" + var2.row.item.unicID + ")",var2.row,20,{bXLimit:true,bYLimit:false});
 	}
-	function itemRollOut(loc2)
+	function itemRollOut(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemDrag(loc2)
+	function itemDrag(var2)
 	{
-		if(loc2.row.item == undefined)
+		if(var2.row.item == undefined)
 		{
 			return undefined;
 		}
 		this.gapi.removeCursor();
-		this.gapi.setCursor(loc2.row.item);
+		this.gapi.setCursor(var2.row.item);
 	}
-	function dragItem(loc2)
+	function dragItem(var2)
 	{
 		this.gapi.removeCursor();
-		if(loc2.target.contentData == undefined)
+		if(var2.target.contentData == undefined)
 		{
 			return undefined;
 		}
-		this.gapi.setCursor(loc2.target.contentData);
+		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(loc2)
+	function dropItem(var2)
 	{
-		var loc3 = (dofus.datacenter.Item)this.gapi.getCursor();
-		if(loc3 == undefined)
+		var var3 = (dofus.datacenter.Item)this.gapi.getCursor();
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		if(String(loc2.target).indexOf("_cgGrid") > -1)
+		if(String(var2.target).indexOf("_cgGrid") > -1)
 		{
 			if(Key.isDown(Key.CONTROL))
 			{
-				var loc4 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:99,params:{targetType:"validateDrop",item:loc3}});
-				loc4.addEventListener("validate",this);
+				var var4 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:99,params:{targetType:"validateDrop",item:var3}});
+				var4.addEventListener("validate",this);
 			}
 			else
 			{
-				this.validateDrop(loc3,1);
+				this.validateDrop(var3,1);
 			}
 		}
 		this.gapi.removeCursor();
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		if((var loc0 = loc2.params.targetType) === "validateDrop")
+		if((var var0 = var2.params.targetType) === "validateDrop")
 		{
-			this.validateDrop((dofus.datacenter.Item)loc2.params.item,loc2.value);
+			this.validateDrop((dofus.datacenter.Item)var2.params.item,var2.value);
 		}
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		var loc3 = (dofus.datacenter.Item)loc2.target.contentData;
-		if(loc3 == undefined)
+		var var3 = (dofus.datacenter.Item)var2.target.contentData;
+		if(var3 == undefined)
 		{
 			this.hideItemViewer(true);
 		}
@@ -315,26 +308,26 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		{
 			if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY))
 			{
-				this.api.kernel.GameManager.insertItemInChat(loc3);
+				this.api.kernel.GameManager.insertItemInChat(var3);
 				return undefined;
 			}
 			if(Key.isDown(Key.CONTROL))
 			{
-				var loc4 = new ank.utils.();
+				var var4 = new ank.utils.();
 				for(var i in this._eaGridItems)
 				{
-					if(this._eaGridItems[i].unicID != loc3.unicID)
+					if(this._eaGridItems[i].unicID != var3.unicID)
 					{
-						loc4.push(this._eaGridItems[i]);
+						var4.push(this._eaGridItems[i]);
 					}
 				}
-				this._eaGridItems = loc4;
+				this._eaGridItems = var4;
 				this._cgGrid.modelChanged();
 			}
 			else
 			{
 				this.hideItemViewer(false);
-				this._itvItemViewer.itemData = loc3;
+				this._itvItemViewer.itemData = var3;
 			}
 		}
 	}

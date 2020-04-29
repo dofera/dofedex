@@ -7,23 +7,23 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__spriteList(loc2)
+	function __set__spriteList(var2)
 	{
-		this._aSpriteList = loc2;
+		this._aSpriteList = var2;
 		if(this.initialized)
 		{
 			this.initData();
 		}
 		return this.__get__spriteList();
 	}
-	function __set__characterCount(loc2)
+	function __set__characterCount(var2)
 	{
-		this._nCharacterCount = loc2;
+		this._nCharacterCount = var2;
 		return this.__get__characterCount();
 	}
-	function __set__setNewName(loc2)
+	function __set__setNewName(var2)
 	{
-		this._mcPlayer._itCharacterName.text = loc2;
+		this._mcPlayer._itCharacterName.text = var2;
 		return this.__get__setNewName();
 	}
 	function hideGenerateRandomName()
@@ -79,25 +79,25 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 	}
 	function updateCharactersList()
 	{
-		var loc2 = new ank.utils.();
+		var var2 = new ank.utils.();
 		for(var i in this._aSpriteList)
 		{
-			var loc3 = new Object();
-			loc3.level = this._aSpriteList[i].Level;
-			loc3.playerName = this._aSpriteList[i].name;
-			loc3.newPlayerName = loc3.playerName;
-			loc3.gfxID = this._aSpriteList[i].gfxID;
-			loc3.rowId = i;
-			loc3.list = this;
-			loc3.playerID = this._aSpriteList[i].id;
-			loc2.push(loc3);
+			var var3 = new Object();
+			var3.level = this._aSpriteList[i].Level;
+			var3.playerName = this._aSpriteList[i].name;
+			var3.newPlayerName = var3.playerName;
+			var3.gfxID = this._aSpriteList[i].gfxID;
+			var3.rowId = i;
+			var3.list = this;
+			var3.playerID = this._aSpriteList[i].id;
+			var2.push(var3);
 		}
-		this._lstCharacters.dataProvider = loc2;
+		this._lstCharacters.dataProvider = var2;
 		this._lstCharacters.selectedIndex = 0;
-		var loc4 = new Object();
-		loc4.row = new Object();
-		loc4.row.item = this._lstCharacters.selectedItem;
-		this.itemSelected(loc4);
+		var var4 = new Object();
+		var4.row = new Object();
+		var4.row.item = this._lstCharacters.selectedItem;
+		this.itemSelected(var4);
 	}
 	function initData()
 	{
@@ -118,14 +118,14 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		this._lblMigrationTitle.text = this.api.lang.getText("CHARACTER_MIGRATION_TITLE");
 		this._lstCharacters.columnsNames = ["",this.api.lang.getText("NAME").substr(0,1).toUpperCase() + this.api.lang.getText("NAME").substr(1),this.api.lang.getText("LEVEL"),this.api.lang.getText("STATE")];
 	}
-	function changeSpriteOrientation(loc2)
+	function changeSpriteOrientation(var2)
 	{
-		if(!loc2.attachMovie("staticF","mcAnim",10))
+		if(!var2.attachMovie("staticF","mcAnim",10))
 		{
-			loc2.attachMovie("staticR","mcAnim",10);
+			var2.attachMovie("staticR","mcAnim",10);
 		}
 	}
-	function checkName(loc2)
+	function checkName(var2)
 	{
 		return Math.random() * 2 > 1;
 	}
@@ -133,45 +133,44 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 	{
 		this._mcPlayer._svCharacterViewer.destroy();
 	}
-	function validateCreation(loc2, loc3)
+	function validateCreation(var2, var3)
 	{
-		if(loc2.length == 0 || loc2 == undefined)
+		if(var2.length == 0 || var2 == undefined)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("NEED_CHARACTER_NAME"),"ERROR_BOX",{name:"CREATENONAME"});
 			return undefined;
 		}
-		if(loc2.length > 20)
+		if(var2.length > 20)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("LONG_CHARACTER_NAME",[loc2,20]),"ERROR_BOX");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("LONG_CHARACTER_NAME",[var2,20]),"ERROR_BOX");
 			return undefined;
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var loc4 = new dofus.utils.nameChecker.
-(loc2);
-			var loc5 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
-			var loc6 = loc4.isValidAgainstWithDetails(loc5);
-			if(!loc6.IS_SUCCESS)
+			var var4 = new dofus.utils.nameChecker.	(var2);
+			var var5 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
+			var var6 = var4.isValidAgainstWithDetails(var5);
+			if(!var6.IS_SUCCESS)
 			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + "\r\n" + loc6.toString("\r\n"),"ERROR_BOX");
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + "\r\n" + var6.toString("\r\n"),"ERROR_BOX");
 				return undefined;
 			}
 		}
 		if(!this.api.lang.getConfigText("CHARACTER_MIGRATION_ASK_SERVER_CONFIRM"))
 		{
-			if(this._aConfirmedChatarcters[loc3] != undefined)
+			if(this._aConfirmedChatarcters[var3] != undefined)
 			{
-				this.api.network.Account.validCharacterMigration(loc3,loc2);
+				this.api.network.Account.validCharacterMigration(var3,var2);
 			}
 			else
 			{
-				var loc7 = {name:"ConfirmMigration",params:{nCharacterId:loc3,sCharacterName:loc2},listener:this};
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_MIGRATION",[loc2]),"CAUTION_YESNO",loc7);
+				var var7 = {name:"ConfirmMigration",params:{nCharacterId:var3,sCharacterName:var2},listener:this};
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_MIGRATION",[var2]),"CAUTION_YESNO",var7);
 			}
 		}
 		else
 		{
-			this.api.network.Account.askCharacterMigration(loc3,loc2);
+			this.api.network.Account.askCharacterMigration(var3,var2);
 		}
 	}
 	function callClose()
@@ -179,9 +178,9 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		this.unloadThis();
 		return true;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnSubscribe":
 				_root.getURL(this.api.lang.getConfigText("PAY_LINK"),"_blank");
@@ -192,33 +191,33 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 				this.callClose();
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		this._mcPlayer._svCharacterViewer.zoom = 200;
 		this._mcPlayer._svCharacterViewer.refreshDelay = 50;
 		this._mcPlayer._svCharacterViewer.useSingleLoader = true;
 		this._mcPlayer._svCharacterViewer.allowAnimations = false;
-		this._mcPlayer._svCharacterViewer.spriteData = this._aSpriteList[loc2.row.item.rowId];
-		this._mcPlayer._lblOldName.text = this.api.lang.getText("OLD_NAME") + " : " + loc2.row.item.playerName;
-		this._mcPlayer._itCharacterName.text = loc2.row.item.newPlayerName;
+		this._mcPlayer._svCharacterViewer.spriteData = this._aSpriteList[var2.row.item.rowId];
+		this._mcPlayer._lblOldName.text = this.api.lang.getText("OLD_NAME") + " : " + var2.row.item.playerName;
+		this._mcPlayer._itCharacterName.text = var2.row.item.newPlayerName;
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		this._mcSprite = loc2.clip;
+		this._mcSprite = var2.clip;
 		this.gapi.api.colors.addSprite(this._mcSprite,this._oCurrentPlayerData);
 		this._mcSprite._xscale = this._mcSprite._yscale = 180;
 		this.addToQueue({object:this,method:this.changeSpriteOrientation,params:[this._mcSprite]});
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesNoConfirmDelete":
 				this.api.network.Account.deleteCharacterMigration(this._lstCharacters.selectedItem.playerID);
 				break;
 			case "AskYesNoConfirmMigration":
-				this._aConfirmedChatarcters[loc2.params.nCharacterId] = true;
-				this.api.network.Account.validCharacterMigration(loc2.params.nCharacterId,loc2.params.sCharacterName);
+				this._aConfirmedChatarcters[var2.params.nCharacterId] = true;
+				this.api.network.Account.validCharacterMigration(var2.params.nCharacterId,var2.params.sCharacterName);
 		}
 	}
 }

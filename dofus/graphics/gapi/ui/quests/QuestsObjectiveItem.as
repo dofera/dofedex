@@ -4,20 +4,20 @@ class dofus.graphics.gapi.ui.quests.QuestsObjectiveItem extends ank.gapi.core.UI
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			this._txtDescription.text = loc4.description;
-			this._txtDescription.styleName = !loc4.isFinished?"BrownLeftSmallTextArea":"GreyLeftSmallTextArea";
-			this._mcCheckFinished._visible = loc4.isFinished;
-			this._mcCompass._visible = loc4.x != undefined && loc4.y != undefined && !loc4.isFinished;
+			this._oItem = var4;
+			this._txtDescription.text = var4.description;
+			this._txtDescription.styleName = !var4.isFinished?"BrownLeftSmallTextArea":"GreyLeftSmallTextArea";
+			this._mcCheckFinished._visible = var4.isFinished;
+			this._mcCompass._visible = var4.x != undefined && var4.y != undefined && !var4.isFinished;
 		}
 		else if(this._txtDescription.text != undefined)
 		{

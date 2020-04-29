@@ -6,11 +6,11 @@ class ank.utils.SWFLoader extends MovieClip
 		AsBroadcaster.initialize(this);
 		this.initialize(0);
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
 		this.clear();
-		this._frameStart = loc2;
-		this._aArgs = loc3;
+		this._frameStart = var2;
+		this._aArgs = var3;
 	}
 	function clear()
 	{
@@ -21,23 +21,23 @@ class ank.utils.SWFLoader extends MovieClip
 		this.swf_mc.__proto__ = MovieClip.prototype;
 		this.swf_mc.removeMovieClip();
 	}
-	function loadSWF(loc2, loc3, loc4)
+	function loadSWF(var2, var3, var4)
 	{
-		this.initialize(loc3,loc4);
-		var loc5 = new MovieClipLoader();
-		loc5.addListener(this);
-		loc5.loadClip(loc2,this.swf_mc);
+		this.initialize(var3,var4);
+		var var5 = new MovieClipLoader();
+		var5.addListener(this);
+		var5.loadClip(var2,this.swf_mc);
 	}
-	function onLoadComplete(loc2)
+	function onLoadComplete(var2)
 	{
-		this.broadcastMessage("onLoadComplete",loc2,this._aArgs);
+		this.broadcastMessage("onLoadComplete",var2,this._aArgs);
 	}
-	function onLoadInit(loc2)
+	function onLoadInit(var2)
 	{
 		if(this._frameStart != undefined)
 		{
-			loc2.gotoAndStop(this._frameStart);
+			var2.gotoAndStop(this._frameStart);
 		}
-		this.broadcastMessage("onLoadInit",loc2,this._aArgs);
+		this.broadcastMessage("onLoadInit",var2,this._aArgs);
 	}
 }

@@ -27,11 +27,11 @@ class ank.gapi.controls.StylizedRectangle extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		var loc3 = loc2.cornerradius;
-		var loc4 = loc2.bgcolor;
-		var loc5 = loc2.alpha;
+		var var2 = this.getStyle();
+		var var3 = var2.cornerradius;
+		var var4 = var2.bgcolor;
+		var var5 = var2.alpha;
 		this._mcBackground.clear();
-		this.drawRoundRect(this._mcBackground,0,0,this.__width,this.__height,loc3,loc4,loc5);
+		this.drawRoundRect(this._mcBackground,0,0,this.__width,this.__height,var3,var4,var5);
 	}
 }

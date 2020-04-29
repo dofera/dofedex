@@ -3,23 +3,23 @@ class ank.utils.MouseEvents
 	function MouseEvents()
 	{
 	}
-	static function addListener(loc2)
+	static function addListener(var2)
 	{
-		Mouse.addListener(loc2);
+		Mouse.addListener(var2);
 		ank.utils.MouseEvents.garbageCollector();
 	}
 	static function garbageCollector()
 	{
-		var loc2 = Mouse._listeners;
-		var loc3 = loc2.length;
-		while(loc3 >= 0)
+		var var2 = Mouse._listeners;
+		var var3 = var2.length;
+		while(var3 >= 0)
 		{
-			var loc4 = loc2[loc3];
-			if(loc4 == undefined || loc4._target == undefined)
+			var var4 = var2[var3];
+			if(var4 == undefined || var4._target == undefined)
 			{
-				loc2.splice(loc3,1);
+				var2.splice(var3,1);
 			}
-			loc3 = loc3 - 1;
+			var3 = var3 - 1;
 		}
 	}
 }

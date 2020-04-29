@@ -1,59 +1,59 @@
 class dofus.aks.Friends extends dofus.aks.Handler
 {
-	function Friends(loc3, loc4)
+	function Friends(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function getFriendsList()
 	{
 		this.aks.send("FL",true);
 	}
-	function addFriend(loc2)
+	function addFriend(var2)
 	{
-		if(loc2 == undefined || (loc2.length == 0 || loc2 == "*"))
+		if(var2 == undefined || (var2.length == 0 || var2 == "*"))
 		{
 			return undefined;
 		}
-		this.aks.send("FA" + loc2);
+		this.aks.send("FA" + var2);
 	}
-	function removeFriend(loc2)
+	function removeFriend(var2)
 	{
-		if(loc2 == undefined || (loc2.length == 0 || loc2 == "*"))
+		if(var2 == undefined || (var2.length == 0 || var2 == "*"))
 		{
 			return undefined;
 		}
-		this.aks.send("FD" + loc2);
+		this.aks.send("FD" + var2);
 	}
-	function join(loc2)
+	function join(var2)
 	{
-		this.aks.send("FJ" + loc2);
+		this.aks.send("FJ" + var2);
 	}
-	function joinFriend(loc2)
+	function joinFriend(var2)
 	{
-		this.aks.send("FJF" + loc2);
+		this.aks.send("FJF" + var2);
 	}
-	function compass(loc2)
+	function compass(var2)
 	{
-		this.aks.send("FJC" + (!loc2?"+":"-"));
+		this.aks.send("FJC" + (!var2?"+":"-"));
 	}
-	function setNotifyWhenConnect(loc2)
+	function setNotifyWhenConnect(var2)
 	{
-		this.aks.send("FO" + (!loc2?"-":"+"));
+		this.aks.send("FO" + (!var2?"-":"+"));
 	}
-	function onAddFriend(loc2, loc3)
+	function onAddFriend(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc4 = this.getFriendObjectFromData(loc3);
-			if(loc4 != undefined)
+			var var4 = this.getFriendObjectFromData(var3);
+			if(var4 != undefined)
 			{
-				this.api.datacenter.Player.Friends.push(loc4);
+				this.api.datacenter.Player.Friends.push(var4);
 			}
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("ADD_TO_FRIEND_LIST",[loc4.name]),"INFO_CHAT");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("ADD_TO_FRIEND_LIST",[var4.name]),"INFO_CHAT");
 		}
 		else
 		{
-			switch(loc3)
+			switch(var3)
 			{
 				case "f":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
@@ -69,54 +69,54 @@ class dofus.aks.Friends extends dofus.aks.Handler
 			}
 		}
 	}
-	function onRemoveFriend(loc2, loc3)
+	function onRemoveFriend(var2, var3)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("REMOVE_FRIEND_OK"),"INFO_CHAT");
 			this.getFriendsList();
 		}
-		else if((var loc0 = loc3) === "f")
+		else if((var var0 = var3) === "f")
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
 		}
 	}
-	function onFriendsList(loc2)
+	function onFriendsList(var2)
 	{
-		var loc3 = loc2.split("|");
+		var var3 = var2.split("|");
 		this.api.datacenter.Player.Friends = new Array();
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var loc5 = this.getFriendObjectFromData(loc3[loc4]);
-			if(loc5 != undefined)
+			var var5 = this.getFriendObjectFromData(var3[var4]);
+			if(var5 != undefined)
 			{
-				this.api.datacenter.Player.Friends.push(loc5);
+				this.api.datacenter.Player.Friends.push(var5);
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
-		var loc6 = this.api.ui.getUIComponent("Friends");
-		var loc7 = this.api.datacenter.Player.Friends;
-		if(loc6 != undefined)
+		var var6 = this.api.ui.getUIComponent("Friends");
+		var var7 = this.api.datacenter.Player.Friends;
+		if(var6 != undefined)
 		{
-			loc6.friendsList = loc7;
+			var6.friendsList = var7;
 		}
 		else
 		{
-			var loc8 = new String();
-			if(loc7.length != 0)
+			var var8 = new String();
+			if(var7.length != 0)
 			{
 				this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("YOUR_FRIEND_LIST") + " :</b>","INFO_CHAT");
-				var loc9 = 0;
-				while(loc9 < loc7.length)
+				var var9 = 0;
+				while(var9 < var7.length)
 				{
-					loc8 = " - " + loc7[loc9].account;
-					if(loc7[loc9].state != "DISCONNECT")
+					var8 = " - " + var7[var9].account;
+					if(var7[var9].state != "DISCONNECT")
 					{
-						loc8 = loc8 + (" (" + loc7[loc9].name + ") " + this.api.lang.getText("LEVEL") + ":" + loc7[loc9].level + ", " + this.api.lang.getText(loc7[loc9].state));
+						var8 = var8 + (" (" + var7[var9].name + ") " + this.api.lang.getText("LEVEL") + ":" + var7[var9].level + ", " + this.api.lang.getText(var7[var9].state));
 					}
-					this.api.kernel.showMessage(undefined,loc8,"INFO_CHAT");
-					loc9 = loc9 + 1;
+					this.api.kernel.showMessage(undefined,var8,"INFO_CHAT");
+					var9 = var9 + 1;
 				}
 			}
 			else
@@ -125,68 +125,72 @@ class dofus.aks.Friends extends dofus.aks.Handler
 			}
 		}
 	}
-	function onSpouse(loc2)
+	function onSpouse(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = new Object();
-		loc4.name = loc3[0];
-		loc4.gfx = loc3[1];
-		loc4.color1 = Number(loc3[2]);
-		loc4.color2 = Number(loc3[3]);
-		loc4.color3 = Number(loc3[4]);
-		loc4.mapID = Number(loc3[5]);
-		loc4.isConnected = !_global.isNaN(loc4.mapID);
-		loc4.level = Number(loc3[6]);
-		loc4.isInFight = loc3[7] != "1"?false:true;
-		loc4.sex = this.api.datacenter.Player.Sex != 0?"m":"f";
-		loc4.isFollow = loc3[8] != "1"?false:true;
-		var loc5 = this.api.ui.getUIComponent("Friends");
-		loc5.spouse = loc4;
+		var var3 = var2.split("|");
+		var var4 = new Object();
+		var4.name = var3[0];
+		var4.gfx = var3[1];
+		var4.color1 = Number(var3[2]);
+		var4.color2 = Number(var3[3]);
+		var4.color3 = Number(var3[4]);
+		var4.mapID = Number(var3[5]);
+		var4.isConnected = !_global.isNaN(var4.mapID);
+		var4.level = Number(var3[6]);
+		var4.isInFight = var3[7] != "1"?false:true;
+		var4.sex = this.api.datacenter.Player.Sex != 0?"m":"f";
+		var4.isFollow = var3[8] != "1"?false:true;
+		var var5 = this.api.ui.getUIComponent("Friends");
+		var5.spouse = var4;
 	}
-	function onNotifyChange(loc2)
+	function onNotifyChange(var2)
 	{
-		this.api.datacenter.Basics.aks_notify_on_friend_connexion = loc2 == "+";
-		var loc3 = (dofus.graphics.gapi.ui.Friends)this.api.ui.getUIComponent("Friends");
-		if(loc3 != null)
+		this.api.datacenter.Basics.aks_notify_on_friend_connexion = var2 == "+";
+		var var3 = (dofus.graphics.gapi.ui.Friends)this.api.ui.getUIComponent("Friends");
+		if(var3 != null)
 		{
-			loc3.notifyStateChanged(loc2 == "+");
+			var3.notifyStateChanged(var2 == "+");
 		}
 	}
-	function getFriendObjectFromData(loc2)
+	function getFriendObjectFromData(var2)
 	{
-		var loc3 = loc2.split(";");
-		var loc4 = new Object();
-		loc4.account = String(loc3[0]);
-		if(loc3[1] != undefined)
+		var var3 = var2.split(";");
+		var var4 = new Object();
+		var4.account = String(var3[0]);
+		if(var3[1] != undefined)
 		{
-			switch(loc3[1])
+			if((var var0 = var3[1]) !== "1")
 			{
-				case "1":
-					loc4.state = "IN_SOLO";
-					break;
-				case "2":
-					loc4.state = "IN_MULTI";
-					break;
-				case "?":
-					loc4.state = "IN_UNKNOW";
+				switch(null)
+				{
+					case "2":
+						var4.state = "IN_MULTI";
+						break;
+					case "?":
+						var4.state = "IN_UNKNOW";
+				}
 			}
-			loc4.name = loc3[2];
-			loc4.level = loc3[3];
-			loc4.sortLevel = loc4.level != "?"?Number(loc4.level):-1;
-			loc4.alignement = Number(loc3[4]);
-			loc4.guild = loc3[5];
-			loc4.sex = loc3[6];
-			loc4.gfxID = loc3[7];
+			else
+			{
+				var4.state = "IN_SOLO";
+			}
+			var4.name = var3[2];
+			var4.level = var3[3];
+			var4.sortLevel = var4.level != "?"?Number(var4.level):-1;
+			var4.alignement = Number(var3[4]);
+			var4.guild = var3[5];
+			var4.sex = var3[6];
+			var4.gfxID = var3[7];
 		}
 		else
 		{
-			loc4.name = loc4.account;
-			loc4.state = "DISCONNECT";
+			var4.name = var4.account;
+			var4.state = "DISCONNECT";
 		}
-		return loc4.account.length == 0?undefined:loc4;
+		return var4.account.length == 0?undefined:var4;
 	}
-	function setNotify(loc2)
+	function setNotify(var2)
 	{
-		this.aks.send("FO" + (!loc2?"-":"+"),false);
+		this.aks.send("FO" + (!var2?"-":"+"),false);
 	}
 }

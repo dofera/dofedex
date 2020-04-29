@@ -1,14 +1,14 @@
 class dofus.datacenter.Job extends Object
 {
-	function Job(§\x06\x02§, §\x10\x15§, options)
+	function Job(§\x05\x1d§, §\x10\x13§, options)
 	{
 		super();
-		this.initialize(loc3,loc4,options);
+		this.initialize(var3,var4,options);
 	}
-	function __set__options(loc2)
+	function __set__options(var2)
 	{
-		this._oOptions = loc2;
-		this.dispatchEvent({type:"optionsChanged",value:loc2});
+		this._oOptions = var2;
+		this.dispatchEvent({type:"optionsChanged",value:var2});
 		return this.__get__options();
 	}
 	function __get__options()
@@ -39,33 +39,33 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._eaCrafts;
 	}
-	function __set__level(loc2)
+	function __set__level(var2)
 	{
-		this._nLevel = loc2;
+		this._nLevel = var2;
 		return this.__get__level();
 	}
 	function __get__level()
 	{
 		return this._nLevel;
 	}
-	function __set__xpMin(loc2)
+	function __set__xpMin(var2)
 	{
-		this._nXPmin = loc2;
+		this._nXPmin = var2;
 		return this.__get__xpMin();
 	}
 	function __get__xpMin()
 	{
 		return this._nXPmin;
 	}
-	function __set__xp(loc2)
+	function __set__xp(var2)
 	{
-		this._nXP = loc2;
+		this._nXP = var2;
 		if(this.api.datacenter.Player.currentJobID == this.id)
 		{
-			var loc3 = this.api.ui.getUIComponent("Banner");
-			if(loc3 != undefined && this.api.kernel.OptionsManager.getOption("BannerGaugeMode") == "xpcurrentjob")
+			var var3 = this.api.ui.getUIComponent("Banner");
+			if(var3 != undefined && this.api.kernel.OptionsManager.getOption("BannerGaugeMode") == "xpcurrentjob")
 			{
-				loc3.showGaugeMode();
+				var3.showGaugeMode();
 			}
 		}
 		return this.__get__xp();
@@ -74,9 +74,9 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._nXP;
 	}
-	function __set__xpMax(loc2)
+	function __set__xpMax(var2)
 	{
-		this._nXPmax = loc2;
+		this._nXPmax = var2;
 		return this.__get__xpMax();
 	}
 	function __get__xpMax()
@@ -87,69 +87,69 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._oJobText.s;
 	}
-	function initialize(§\x06\x02§, §\x10\x15§, options)
+	function initialize(§\x05\x1d§, §\x10\x13§, options)
 	{
 		mx.events.EventDispatcher.initialize(this);
 		this.api = _global.API;
-		this._nID = loc2;
-		this._eaSkills = loc3;
+		this._nID = var2;
+		this._eaSkills = var3;
 		this._oOptions = options;
-		this._oJobText = this.api.lang.getJobText(loc2);
-		if(!_global.isNaN(loc3.length))
+		this._oJobText = this.api.lang.getJobText(var2);
+		if(!_global.isNaN(var3.length))
 		{
-			this._eaCrafts = new ank.utils.();
-			var loc5 = new ank.utils.();
-			var loc6 = 0;
-			while(loc6 < loc3.length)
+			this._eaCrafts = new ank.utils.();
+			var var5 = new ank.utils.();
+			var var6 = 0;
+			while(var6 < var3.length)
 			{
-				var loc7 = loc5.findFirstItem("id",loc3[loc6].id);
-				if(loc7.index == -1)
+				var var7 = var5.findFirstItem("id",var3[var6].id);
+				if(var7.index == -1)
 				{
-					loc5.push(loc3[loc6]);
+					var5.push(var3[var6]);
 				}
-				else if(loc7.item.param1 < loc3[loc6].param1)
+				else if(var7.item.param1 < var3[var6].param1)
 				{
-					loc5[loc7.index] = loc3[loc6];
+					var5[var7.index] = var3[var6];
 				}
-				loc6 = loc6 + 1;
+				var6 = var6 + 1;
 			}
-			var loc8 = 0;
-			while(loc8 < loc5.length)
+			var var8 = 0;
+			while(var8 < var5.length)
 			{
-				var loc9 = loc5[loc8];
-				var loc10 = loc9.craftsList;
-				if(loc10 != undefined)
+				var var9 = var5[var8];
+				var var10 = var9.craftsList;
+				if(var10 != undefined)
 				{
-					var loc11 = 0;
-					while(loc11 < loc10.length)
+					var var11 = 0;
+					while(var11 < var10.length)
 					{
-						var loc12 = loc10[loc11];
-						var loc13 = new dofus.datacenter.Craft(loc12,loc9);
-						if(loc13.itemsCount <= loc9.param1)
+						var var12 = var10[var11];
+						var var13 = new dofus.datacenter.Craft(var12,var9);
+						if(var13.itemsCount <= var9.param1)
 						{
-							this._eaCrafts.push(loc13);
+							this._eaCrafts.push(var13);
 						}
-						loc11 = loc11 + 1;
+						var11 = var11 + 1;
 					}
 				}
 				this._eaCrafts.sortOn("name");
-				loc8 = loc8 + 1;
+				var8 = var8 + 1;
 			}
 		}
 	}
 	function getMaxSkillSlot()
 	{
-		var loc2 = -1;
-		var loc3 = 0;
-		while(loc3 < this._eaSkills.length)
+		var var2 = -1;
+		var var3 = 0;
+		while(var3 < this._eaSkills.length)
 		{
-			var loc4 = this._eaSkills[loc3];
-			if(loc4.param1 > loc2)
+			var var4 = this._eaSkills[var3];
+			if(var4.param1 > var2)
 			{
-				loc2 = loc4.param1;
+				var2 = var4.param1;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 }

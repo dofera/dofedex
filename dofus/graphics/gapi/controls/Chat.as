@@ -15,50 +15,50 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._txtChat.selectable;
 	}
-	function __set__selectable(loc2)
+	function __set__selectable(var2)
 	{
-		this._txtChat.selectable = loc2;
+		this._txtChat.selectable = var2;
 		return this.__get__selectable();
 	}
-	function open(loc2)
+	function open(var2)
 	{
-		if(loc2 == !this._bOpened)
+		if(var2 == !this._bOpened)
 		{
 			return undefined;
 		}
-		this._btnOpenClose.selected = !loc2;
-		if(loc2)
+		this._btnOpenClose.selected = !var2;
+		if(var2)
 		{
-			var loc3 = -1;
+			var var3 = -1;
 		}
 		else
 		{
-			loc3 = 1;
+			var3 = 1;
 		}
-		this._txtChat.setSize(this._txtChat.width,this._txtChat.height + loc3 * dofus.graphics.gapi.controls.Chat.OPEN_OFFSET);
-		this._y = this._y - loc3 * dofus.graphics.gapi.controls.Chat.OPEN_OFFSET;
-		this._bOpened = !loc2;
+		this._txtChat.setSize(this._txtChat.width,this._txtChat.height + var3 * dofus.graphics.gapi.controls.Chat.OPEN_OFFSET);
+		this._y = this._y - var3 * dofus.graphics.gapi.controls.Chat.OPEN_OFFSET;
+		this._bOpened = !var2;
 	}
-	function setText(loc2)
+	function setText(var2)
 	{
-		this._txtChat.text = loc2;
+		this._txtChat.text = var2;
 	}
 	function updateSmileysEmotes()
 	{
 		this._sSmileys.update();
 	}
-	function hideSmileys(loc2)
+	function hideSmileys(var2)
 	{
-		this._sSmileys._visible = !loc2;
-		this._bSmileysOpened = !loc2;
+		this._sSmileys._visible = !var2;
+		this._bSmileysOpened = !var2;
 	}
-	function showSitDown(loc2)
+	function showSitDown(var2)
 	{
-		this._btnSitDown._visible = loc2;
+		this._btnSitDown._visible = var2;
 	}
-	function selectFilter(loc2, loc3)
+	function selectFilter(var2, var3)
 	{
-		this["_btnFilter" + loc2].selected = loc3;
+		this["_btnFilter" + var2].selected = var3;
 	}
 	function init()
 	{
@@ -67,15 +67,15 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 	}
 	function createChildren()
 	{
-		var loc2 = this.api.lang.getConfigText("CHAT_FILTERS");
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var2 = this.api.lang.getConfigText("CHAT_FILTERS");
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(loc2[loc3] != 1)
+			if(var2[var3] != 1)
 			{
-				this["_btnFilter" + (loc3 + 1)]._visible = false;
+				this["_btnFilter" + (var3 + 1)]._visible = false;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		this.addToQueue({object:this,method:this.addListeners});
 		this.hideSmileys(true);
@@ -121,72 +121,69 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 		this._sSmileys.addEventListener("selectSmiley",this);
 		this._sSmileys.addEventListener("selectEmote",this);
 		this._txtChat.addEventListener("href",this);
-		var loc2 = this._btnFilter0;
-		var loc3 = 0;
-		while(loc2 != undefined)
+		var var2 = this._btnFilter0;
+		var var3 = 0;
+		while(var2 != undefined)
 		{
-			loc2.selected = this.api.datacenter.Basics.chat_type_visible[loc3] == true;
-			this.api.kernel.ChatManager.setTypeVisible(loc3,loc2.selected);
-			loc3 = loc3 + 1;
-			loc2 = this["_btnFilter" + loc3];
+			var2.selected = this.api.datacenter.Basics.chat_type_visible[var3] == true;
+			this.api.kernel.ChatManager.setTypeVisible(var3,var2.selected);
+			var3 = var3 + 1;
+			var2 = this["_btnFilter" + var3];
 		}
 		this.api.kernel.ChatManager.setTypeVisible(1,true);
 		this.api.kernel.ChatManager.refresh();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnSitDown":
 				this.api.sounds.events.onBannerChatButtonClick();
-				var loc3 = this.api.lang.getEmoteID("sit");
-				if(loc3 != undefined)
+				var var3 = this.api.lang.getEmoteID("sit");
+				if(var3 != undefined)
 				{
-					this.api.network.Emotes.useEmote(loc3);
+					this.api.network.Emotes.useEmote(var3);
 				}
 				break;
 			case "_btnSmileys":
 				this.api.sounds.events.onBannerChatButtonClick();
 				this.hideSmileys(this._bSmileysOpened);
 				break;
-			default:
-				if(loc0 !== "_btnOpenClose")
-				{
-					this.dispatchEvent({type:"filterChanged",filter:Number(loc2.target._name.substr(10)),selected:loc2.target.selected});
-					break;
-				}
+			case "_btnOpenClose":
 				this.api.sounds.events.onBannerChatButtonClick();
-				this.open(!loc2.target.selected);
+				this.open(!var2.target.selected);
 				break;
+			default:
+				this.dispatchEvent({type:"filterChanged",filter:Number(var2.target._name.substr(10)),selected:var2.target.selected});
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnSmileys":
-				this.gapi.showTooltip(this.api.lang.getText("CHAT_SHOW_SMILEYS"),loc2.target,-20,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(this.api.lang.getText("CHAT_SHOW_SMILEYS"),var2.target,-20,{bXLimit:true,bYLimit:false});
 				break;
 			case "_btnOpenClose":
-				this.gapi.showTooltip(this.api.lang.getText("CHAT_SHOW_MORE"),loc2.target,-33,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(this.api.lang.getText("CHAT_SHOW_MORE"),var2.target,-33,{bXLimit:true,bYLimit:false});
 				break;
 			case "_btnSitDown":
-				this.gapi.showTooltip(this.api.lang.getText("SITDOWN_TOOLTIP"),loc2.target,-46,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(this.api.lang.getText("SITDOWN_TOOLTIP"),var2.target,-46,{bXLimit:true,bYLimit:false});
 				break;
 			default:
-				var loc3 = Number(loc2.target._name.substr(10));
-				this.gapi.showTooltip(this.api.lang.getText("CHAT_TYPE" + loc3),loc2.target,-20,{bXLimit:true,bYLimit:true});
+				var var3 = Number(var2.target._name.substr(10));
+				this.gapi.showTooltip(this.api.lang.getText("CHAT_TYPE" + var3),var2.target,-20,{bXLimit:true,bYLimit:true});
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function selectSmiley(loc2)
+	function selectSmiley(var2)
 	{
 		if(!this.api.datacenter.Player.data.isInMove)
 		{
-			this.dispatchEvent(loc2);
+			this.dispatchEvent(var2);
 			if(this.api.kernel.OptionsManager.getOption("AutoHideSmileys"))
 			{
 				this.hideSmileys(true);
@@ -194,11 +191,11 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 			}
 		}
 	}
-	function selectEmote(loc2)
+	function selectEmote(var2)
 	{
 		if(!this.api.datacenter.Player.data.isInMove)
 		{
-			this.dispatchEvent(loc2);
+			this.dispatchEvent(var2);
 			if(this.api.kernel.OptionsManager.getOption("AutoHideSmileys"))
 			{
 				this.hideSmileys(true);
@@ -206,8 +203,8 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 			this._btnSmileys.selected = false;
 		}
 	}
-	function href(loc2)
+	function href(var2)
 	{
-		this.dispatchEvent(loc2);
+		this.dispatchEvent(var2);
 	}
 }

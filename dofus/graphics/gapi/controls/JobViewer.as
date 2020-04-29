@@ -6,9 +6,9 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__job(loc2)
+	function __set__job(var2)
 	{
-		this._oJob = loc2;
+		this._oJob = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__job();
 	}
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 		}
 		this.setCurrentTab(this._sCurrentTab);
 		this._lstSkills.removeMovieClip();
-		var loc2 = this.api.datacenter.Player.currentJobID == this._oJob.id;
+		var var2 = this.api.datacenter.Player.currentJobID == this._oJob.id;
 		this._ldrIcon.contentPath = this._oJob.iconFile;
 		this._lblName.text = this._oJob.name;
 		this._lblLevel.text = this.api.lang.getText("LEVEL") + " " + this._oJob.level;
@@ -56,24 +56,24 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 		this._pbXP.value = this._oJob.xp;
 		this._mcXP.onRollOver = function()
 		{
-			this._parent._parent.gapi.showTooltip(new ank.utils.(this._parent._oJob.xp).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oJob.xpMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent._parent.gapi.showTooltip(new ank.utils.(this._parent._oJob.xp).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oJob.xpMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcXP.onRollOut = function()
 		{
 			this._parent._parent.gapi.hideTooltip();
 		};
-		var loc3 = this._oJob.skills;
-		if(loc3.length != 0)
+		var var3 = this._oJob.skills;
+		if(var3.length != 0)
 		{
-			loc3.sortOn("skillName");
-			this._lstSkills.dataProvider = loc3;
+			var3.sortOn("skillName");
+			this._lstSkills.dataProvider = var3;
 		}
-		if(loc2)
+		if(var2)
 		{
 			this._lblNoTool._visible = false;
 			this._itvItemViewer._visible = true;
-			var loc4 = this.api.datacenter.Player.Inventory.findFirstItem("position",1).item;
-			this._itvItemViewer.itemData = loc4;
+			var var4 = this.api.datacenter.Player.Inventory.findFirstItem("position",1).item;
+			this._itvItemViewer.itemData = var4;
 		}
 		else
 		{
@@ -81,28 +81,28 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 			this._itvItemViewer._visible = false;
 		}
 	}
-	function showCraftViewer(loc2)
+	function showCraftViewer(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc3 = this.attachMovie("CraftViewer","_cvCraftViewer",20);
-			loc3._x = this._mcPlacer._x;
-			loc3._y = this._mcPlacer._y;
-			loc3.job = this._oJob;
+			var var3 = this.attachMovie("CraftViewer","_cvCraftViewer",20);
+			var3._x = this._mcPlacer._x;
+			var3._y = this._mcPlacer._y;
+			var3.job = this._oJob;
 		}
 		else
 		{
 			this._cvCraftViewer.removeMovieClip();
 		}
 	}
-	function showOptionViewer(loc2)
+	function showOptionViewer(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
-			var loc3 = this.attachMovie("JobOptionsViewer","_jovJobOptionsViewer",20);
-			loc3._x = this._mcPlacer._x;
-			loc3._y = this._mcPlacer._y;
-			loc3.job = this._oJob;
+			var var3 = this.attachMovie("JobOptionsViewer","_jovJobOptionsViewer",20);
+			var3._x = this._mcPlacer._x;
+			var3._y = this._mcPlacer._y;
+			var3.job = this._oJob;
 		}
 		else
 		{
@@ -126,20 +126,20 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 				this.showOptionViewer(true);
 		}
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
-		var loc3 = this["_btnTab" + this._sCurrentTab];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
-		this._sCurrentTab = loc2;
+		var var3 = this["_btnTab" + this._sCurrentTab];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
+		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnTabCharacteristics":
 				this.setCurrentTab("Characteristics");

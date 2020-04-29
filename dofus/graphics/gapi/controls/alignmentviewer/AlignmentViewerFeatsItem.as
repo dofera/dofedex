@@ -4,18 +4,18 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerFeatsItem exte
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._ldrIcon.contentPath = loc4.iconFile;
-			this._lblName.text = loc4.name + (loc4.level != undefined?" (" + this._mcList.gapi.api.lang.getText("LEVEL_SMALL") + " " + loc4.level + ")":"");
-			this._lblEffect.text = loc4.effect.description != undefined?loc4.effect.description:"";
+			this._ldrIcon.contentPath = var4.iconFile;
+			this._lblName.text = var4.name + (var4.level != undefined?" (" + this._mcList.gapi.api.lang.getText("LEVEL_SMALL") + " " + var4.level + ")":"");
+			this._lblEffect.text = var4.effect.description != undefined?var4.effect.description:"";
 		}
 		else if(this._lblName.text != undefined)
 		{

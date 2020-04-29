@@ -1,418 +1,411 @@
 class dofus.aks.Chat extends dofus.aks.Handler
 {
-	function Chat(loc3, loc4)
+	function Chat(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function send(loc2, loc3, loc4)
+	function send(var2, var3, var4)
 	{
-		if(this.api.datacenter.Game.isSpectator && loc3 == "*")
+		if(this.api.datacenter.Game.isSpectator && var3 == "*")
 		{
-			loc3 = "#";
+			var3 = "#";
 		}
-		if(loc3.toLowerCase() == this.api.datacenter.Player.Name.toLowerCase())
+		if(var3.toLowerCase() == this.api.datacenter.Player.Name.toLowerCase())
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_WISP_YOURSELF"),"ERROR_CHAT");
 			return undefined;
 		}
-		if(this.api.kernel.ChatManager.isBlacklisted(loc3))
+		if(this.api.kernel.ChatManager.isBlacklisted(var3))
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_WISP_BLACKLISTED"),"ERROR_CHAT");
 			return undefined;
 		}
-		loc2 = new ank.utils.(loc2).replace(["<",">","|"],["&lt;","&gt;",""]);
-		var loc5 = this.api.kernel.ChatManager.applyOutputCensorship(loc2);
-		if(!loc5)
+		var2 = new ank.utils.(var2).replace(["<",">","|"],["&lt;","&gt;",""]);
+		var var5 = this.api.kernel.ChatManager.applyOutputCensorship(var2);
+		if(!var5)
 		{
 			return undefined;
 		}
-		if(loc2.indexOf(this.api.datacenter.Player.login) > -1 || loc2.indexOf(this.api.datacenter.Player.password) > -1)
+		if(this.api.datacenter.Player.zaapToken == undefined && (var2.indexOf(this.api.datacenter.Player.login) > -1 || var2.indexOf(this.api.datacenter.Player.password) > -1))
 		{
-			if(loc2 != undefined && (this.api.datacenter.Player.login != undefined && this.api.datacenter.Player.password != undefined))
+			if(var2 != undefined && (this.api.datacenter.Player.login != undefined && this.api.datacenter.Player.password != undefined))
 			{
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_SAY_YOUR_PASSWORD"),"ERROR_CHAT");
 				return undefined;
 			}
 		}
-		if(loc2.length == 0)
+		if(var2.length == 0)
 		{
 			return undefined;
 		}
-		var loc6 = new String();
-		var loc7 = loc4.items;
-		if(loc7.length > 0)
+		var var6 = new String();
+		var var7 = var4.items;
+		if(var7.length > 0)
 		{
-			var loc8 = 0;
-			var loc9 = 0;
-			while(loc9 < loc7.length)
+			var var8 = 0;
+			var var9 = 0;
+			while(var9 < var7.length)
 			{
-				var loc10 = loc7[loc9];
-				var loc11 = "[" + loc10.name + "]";
-				var loc12 = loc2.indexOf(loc11);
-				if(loc12 != -1)
+				var var10 = var7[var9];
+				var var11 = "[" + var10.name + "]";
+				var var12 = var2.indexOf(var11);
+				if(var12 != -1)
 				{
-					var loc13 = "°" + loc8;
-					loc8 = loc8 + 1;
-					var loc14 = loc2.split("");
-					loc14.splice(loc12,loc11.length,loc13);
-					loc2 = loc14.join("");
-					if(loc6.length > 0)
+					var var13 = "°" + var8;
+					var8 = var8 + 1;
+					var var14 = var2.split("");
+					var14.splice(var12,var11.length,var13);
+					var2 = var14.join("");
+					if(var6.length > 0)
 					{
-						loc6 = loc6 + "!";
+						var6 = var6 + "!";
 					}
-					var loc15 = loc10.compressedEffects;
-					loc6 = loc6 + (loc10.unicID + "!" + (loc15 == undefined?".":loc15));
+					var var15 = var10.compressedEffects;
+					var6 = var6 + (var10.unicID + "!" + (var15 == undefined?".":var15));
 				}
-				loc9 = loc9 + 1;
+				var9 = var9 + 1;
 			}
 		}
-		var loc16 = loc6;
-		if(loc16.length > dofus.Constants.MAX_DATA_LENGTH)
+		var var16 = var6;
+		if(var16.length > dofus.Constants.MAX_DATA_LENGTH)
 		{
-			loc16 = loc16.substring(0,dofus.Constants.MAX_DATA_LENGTH - 1);
+			var16 = var16.substring(0,dofus.Constants.MAX_DATA_LENGTH - 1);
 		}
-		if(loc2.length > dofus.Constants.MAX_MESSAGE_LENGTH)
+		if(var2.length > dofus.Constants.MAX_MESSAGE_LENGTH && !(dofus.Constants.ALPHA && this.api.datacenter.Player.isAuthorized))
 		{
-			loc2 = loc2.substring(0,dofus.Constants.MAX_MESSAGE_LENGTH - 1);
+			var2 = var2.substring(0,dofus.Constants.MAX_MESSAGE_LENGTH - 1);
 		}
-		this.aks.send("BM" + loc3 + "|" + loc2 + "|" + loc16,true,undefined,true);
+		this.aks.send("BM" + var3 + "|" + var2 + "|" + var16,true,undefined,true);
 	}
-	function reportMessage(loc2, loc3, loc4, loc5)
+	function reportMessage(var2, var3, var4, var5)
 	{
-		this.aks.send("BR" + loc2 + "|" + loc4 + "|" + loc3 + "|" + loc5,false);
+		this.aks.send("BR" + var2 + "|" + var4 + "|" + var3 + "|" + var5,false);
 	}
-	function subscribeChannels(loc2, loc3)
+	function subscribeChannels(var2, var3)
 	{
-		var loc4 = "";
-		loop0:
-		switch(loc2)
+		var var4 = "";
+		switch(var2)
 		{
 			case 0:
-				loc4 = "i";
+				var4 = "i";
 				break;
 			case 2:
-				loc4 = "*";
+				var4 = "*";
 				break;
 			case 3:
-				loc4 = "#$p";
+				var4 = "#$p";
 				break;
 			default:
 				switch(null)
 				{
 					case 4:
-						loc4 = "%";
-						break loop0;
+						var4 = "%";
+						break;
 					case 5:
-						loc4 = "!";
-						break loop0;
+						var4 = "!";
+						break;
 					case 6:
-						loc4 = "?";
-						break loop0;
+						var4 = "?";
+						break;
 					case 7:
-						loc4 = ":";
-						break loop0;
-					default:
-						if(loc0 !== 8)
-						{
-							break loop0;
-						}
-						loc4 = "^";
-						break loop0;
+						var4 = ":";
+						break;
+					case 8:
+						var4 = "^";
 				}
 		}
-		this.aks.send("cC" + (!loc3?"-":"+") + loc4,true);
+		this.aks.send("cC" + (!var3?"-":"+") + var4,true);
 	}
-	function useSmiley(loc2)
+	function useSmiley(var2)
 	{
 		if(getTimer() - this.api.datacenter.Basics.aks_chat_lastActionTime < dofus.Constants.CLICK_MIN_DELAY)
 		{
 			return undefined;
 		}
 		this.api.datacenter.Basics.aks_chat_lastActionTime = getTimer();
-		this.aks.send("BS" + loc2,true);
+		this.aks.send("BS" + var2,true);
 	}
-	function onSubscribeChannel(loc2)
+	function onSubscribeChannel(var2)
 	{
-		var loc3 = loc2.charAt(0) == "+";
-		var loc4 = loc2.substr(1).split("");
-		var loc5 = 0;
-		for(; loc5 < loc4.length; loc5 = loc5 + 1)
+		var var3 = var2.charAt(0) == "+";
+		var var4 = var2.substr(1).split("");
+		var var5 = 0;
+		for(; var5 < var4.length; var5 = var5 + 1)
 		{
-			var loc6 = 0;
+			var var6 = 0;
 			loop1:
-			switch(loc4[loc5])
+			switch(var4[var5])
 			{
 				case "i":
-					loc6 = 0;
+					var6 = 0;
 					break;
 				case "*":
-					loc6 = 2;
+					var6 = 2;
 					break;
 				case "#":
-					loc6 = 3;
+					var6 = 3;
 					break;
 				default:
 					switch(null)
 					{
 						case "$":
-							loc6 = 3;
+							var6 = 3;
 							break loop1;
 						case "p":
-							loc6 = 3;
+							var6 = 3;
 							break loop1;
 						case "%":
-							loc6 = 4;
+							var6 = 4;
 							break loop1;
 						case "!":
-							loc6 = 5;
+							var6 = 5;
+							break loop1;
+						case "?":
+							var6 = 6;
+							break loop1;
+						case ":":
+							var6 = 7;
 							break loop1;
 						default:
 							switch(null)
 							{
-								case "?":
-									loc6 = 6;
-									break loop1;
-								case ":":
-									loc6 = 7;
-									break loop1;
 								case "^":
-									loc6 = 8;
+									var6 = 8;
 									break loop1;
 								case "@":
-									loc6 = 9;
+									var6 = 9;
 									break loop1;
 								default:
 									continue;
 							}
 					}
 			}
-			this.api.ui.getUIComponent("Banner").chat.selectFilter(loc6,loc3);
-			this.api.kernel.ChatManager.setTypeVisible(loc6,loc3);
-			this.api.datacenter.Basics.chat_type_visible[loc6] = loc3;
+			this.api.ui.getUIComponent("Banner").chat.selectFilter(var6,var3);
+			this.api.kernel.ChatManager.setTypeVisible(var6,var3);
+			this.api.datacenter.Basics.chat_type_visible[var6] = var3;
 		}
 	}
-	function onMessage(loc2, loc3)
+	function onMessage(var2, var3)
 	{
-		if(!loc2)
+		if(!var2)
 		{
-			if((var loc0 = loc3.charAt(0)) !== "S")
+			switch(var3.charAt(0))
 			{
-				switch(null)
-				{
-					case "f":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED",[loc3.substr(1)]),"ERROR_CHAT");
-						break;
-					case "e":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_BUT_TRY_SEND_EXTERNAL",[loc3.substr(1)]),"ERROR_CHAT");
-						break;
-					case "n":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_EXTERNAL_NACK",[loc3.substr(1)]),"ERROR_CHAT");
-				}
-			}
-			else
-			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("SYNTAX_ERROR",[" /w <" + this.api.lang.getText("NAME") + "> <" + this.api.lang.getText("MSG") + ">"]),"ERROR_CHAT");
+				case "S":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("SYNTAX_ERROR",[" /w <" + this.api.lang.getText("NAME") + "> <" + this.api.lang.getText("MSG") + ">"]),"ERROR_CHAT");
+					break;
+				case "f":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED",[var3.substr(1)]),"ERROR_CHAT");
+					break;
+				default:
+					switch(null)
+					{
+						case "e":
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_BUT_TRY_SEND_EXTERNAL",[var3.substr(1)]),"ERROR_CHAT");
+							break;
+						case "n":
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_EXTERNAL_NACK",[var3.substr(1)]),"ERROR_CHAT");
+					}
 			}
 			return undefined;
 		}
-		var loc4 = loc3.charAt(0);
-		loc3 = loc4 != "|"?loc3.substr(2):loc3.substr(1);
-		var loc5 = loc3.split("|");
-		var loc6 = loc5[2];
-		var loc7 = loc5[1];
-		var loc8 = loc5[0];
-		var loc9 = loc5[3];
-		var loc10 = !(loc5[4] != undefined && (loc5[4].length > 0 && loc5[4] != ""))?null:loc5[4];
-		if(this.api.kernel.ChatManager.isBlacklisted(loc7))
+		var var4 = var3.charAt(0);
+		var3 = var4 != "|"?var3.substr(2):var3.substr(1);
+		var var5 = var3.split("|");
+		var var6 = var5[2];
+		var var7 = var5[1];
+		var var8 = var5[0];
+		var var9 = var5[3];
+		var var10 = !(var5[4] != undefined && (var5[4].length > 0 && var5[4] != ""))?null:var5[4];
+		if(this.api.kernel.ChatManager.isBlacklisted(var7))
 		{
 			return undefined;
 		}
-		var loc11 = loc6;
-		if(loc9.length > 0)
+		var var11 = var6;
+		if(var9.length > 0)
 		{
-			var loc12 = loc9.split("!");
-			loc6 = this.api.kernel.ChatManager.parseInlineItems(loc6,loc12);
+			var var12 = var9.split("!");
+			var6 = this.api.kernel.ChatManager.parseInlineItems(var6,var12);
 		}
-		loc6 = this.api.kernel.ChatManager.parseInlinePos(loc6);
-		loop1:
-		switch(loc4)
+		var6 = this.api.kernel.ChatManager.parseInlinePos(var6);
+		loop2:
+		switch(var4)
 		{
 			case "F":
-				var loc13 = "WHISP_CHAT";
-				loc6 = this.api.kernel.ChatManager.parseSecretsEmotes(loc6);
-				if(!loc6.length)
+				var var13 = "WHISP_CHAT";
+				var6 = this.api.kernel.ChatManager.parseSecretsEmotes(var6);
+				if(!var6.length)
 				{
 					return undefined;
 				}
-				var loc14 = this.api.lang.getText("FROM") + " " + loc7 + " : ";
-				this.api.electron.makeNotification(loc14 + this.api.kernel.ChatManager.applyInputCensorship(loc6));
-				loc6 = this.api.lang.getText("FROM") + " <i>" + this.getLinkName(loc7,loc10) + "</i> : " + this.getLinkMessage(loc7,loc14,loc11,loc6,loc10);
-				this.api.kernel.Console.pushWhisper("/w " + loc7 + " ");
+				var var14 = this.api.lang.getText("FROM") + " " + var7 + " : ";
+				this.api.electron.makeNotification(var14 + this.api.kernel.ChatManager.applyInputCensorship(var6));
+				var6 = this.api.lang.getText("FROM") + " <i>" + this.getLinkName(var7,var10) + "</i> : " + this.getLinkMessage(var7,var14,var11,var6,var10);
+				this.api.kernel.Console.pushWhisper("/w " + var7 + " ");
 				break;
 			case "T":
-				loc13 = "WHISP_CHAT";
-				var loc15 = this.api.lang.getText("TO_DESTINATION") + " " + loc7 + " : ";
-				loc6 = this.api.lang.getText("TO_DESTINATION") + " " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc15,loc11,loc6,loc10);
+				var13 = "WHISP_CHAT";
+				var var15 = this.api.lang.getText("TO_DESTINATION") + " " + var7 + " : ";
+				var6 = this.api.lang.getText("TO_DESTINATION") + " " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var15,var11,var6,var10);
 				break;
 			case "#":
 				if(this.api.datacenter.Game.isFight)
 				{
-					loc13 = "WHISP_CHAT";
+					var13 = "WHISP_CHAT";
 					if(this.api.datacenter.Game.isSpectator)
 					{
-						var loc16 = "(" + this.api.lang.getText("SPECTATOR") + ")";
+						var var16 = "(" + this.api.lang.getText("SPECTATOR") + ")";
 					}
 					else
 					{
-						loc16 = "(" + this.api.lang.getText("TEAM") + ")";
+						var16 = "(" + this.api.lang.getText("TEAM") + ")";
 					}
-					var loc17 = loc16 + " " + loc7 + " : ";
-					loc6 = loc16 + " " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc17,loc11,loc6,loc10);
+					var var17 = var16 + " " + var7 + " : ";
+					var6 = var16 + " " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var17,var11,var6,var10);
 				}
+				break;
+			case "%":
+				var13 = "GUILD_CHAT_SOUND";
+				var var18 = "(" + this.api.lang.getText("GUILD") + ") " + var7 + " : ";
+				var6 = "(" + this.api.lang.getText("GUILD") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var18,var11,var6,var10);
 				break;
 			default:
 				switch(null)
 				{
-					case "%":
-						loc13 = "GUILD_CHAT_SOUND";
-						var loc18 = "(" + this.api.lang.getText("GUILD") + ") " + loc7 + " : ";
-						loc6 = "(" + this.api.lang.getText("GUILD") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc18,loc11,loc6,loc10);
-						break loop1;
 					case "$":
-						loc13 = "PARTY_CHAT";
-						var loc19 = "(" + this.api.lang.getText("PARTY") + ") " + loc7 + " : ";
-						loc6 = "(" + this.api.lang.getText("PARTY") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc19,loc11,loc6,loc10);
-						break loop1;
+						var13 = "PARTY_CHAT";
+						var var19 = "(" + this.api.lang.getText("PARTY") + ") " + var7 + " : ";
+						var6 = "(" + this.api.lang.getText("PARTY") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var19,var11,var6,var10);
+						break loop2;
 					case "!":
-						loc13 = "PVP_CHAT";
-						var loc20 = "(" + this.api.lang.getText("ALIGNMENT") + ") " + loc7 + " : ";
-						loc6 = "(" + this.api.lang.getText("ALIGNMENT") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc20,loc11,loc6,loc10);
-						break loop1;
+						var13 = "PVP_CHAT";
+						var var20 = "(" + this.api.lang.getText("ALIGNMENT") + ") " + var7 + " : ";
+						var6 = "(" + this.api.lang.getText("ALIGNMENT") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var20,var11,var6,var10);
+						break loop2;
 					case "?":
-						loc13 = "RECRUITMENT_CHAT";
-						var loc21 = "(" + this.api.lang.getText("RECRUITMENT") + ") " + loc7 + " : ";
-						loc6 = "(" + this.api.lang.getText("RECRUITMENT") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc21,loc11,loc6,loc10);
-						break loop1;
+						var13 = "RECRUITMENT_CHAT";
+						var var21 = "(" + this.api.lang.getText("RECRUITMENT") + ") " + var7 + " : ";
+						var6 = "(" + this.api.lang.getText("RECRUITMENT") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var21,var11,var6,var10);
+						break loop2;
 					case ":":
-						loc13 = "TRADE_CHAT";
-						var loc22 = "(" + this.api.lang.getText("TRADE") + ") " + loc7 + " : ";
-						loc6 = "(" + this.api.lang.getText("TRADE") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc22,loc11,loc6,loc10);
-						break loop1;
+						var13 = "TRADE_CHAT";
+						var var22 = "(" + this.api.lang.getText("TRADE") + ") " + var7 + " : ";
+						var6 = "(" + this.api.lang.getText("TRADE") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var22,var11,var6,var10);
+						break loop2;
+					case "^":
+						var13 = "MEETIC_CHAT";
+						var var23 = "(" + this.api.lang.getText("MEETIC") + ") " + var7 + " : ";
+						var6 = "(" + this.api.lang.getText("MEETIC") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var23,var11,var6,var10);
+						break loop2;
 					default:
-						switch(null)
+						if(var0 !== "@")
 						{
-							case "^":
-								loc13 = "MEETIC_CHAT";
-								var loc23 = "(" + this.api.lang.getText("MEETIC") + ") " + loc7 + " : ";
-								loc6 = "(" + this.api.lang.getText("MEETIC") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc23,loc11,loc6,loc10);
-								break loop1;
-							case "@":
-								loc13 = "ADMIN_CHAT";
-								var loc24 = "(" + this.api.lang.getText("PRIVATE_CHANNEL") + ") " + loc7 + " : ";
-								loc6 = "(" + this.api.lang.getText("PRIVATE_CHANNEL") + ") " + this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc24,loc11,loc6,loc10);
-								break loop1;
-							default:
-								var loc25 = loc6.charAt(0) == dofus.Constants.EMOTE_CHAR && (loc6.charAt(1) == dofus.Constants.EMOTE_CHAR && (loc6.charAt(loc6.length - 1) == dofus.Constants.EMOTE_CHAR && loc6.charAt(loc6.length - 2) == dofus.Constants.EMOTE_CHAR));
-								if(this.api.lang.getConfigText("EMOTES_ENABLED") && (!loc25 && (loc6.charAt(0) == dofus.Constants.EMOTE_CHAR && loc6.charAt(loc6.length - 1) == dofus.Constants.EMOTE_CHAR)))
+							var var25 = var6.charAt(0) == dofus.Constants.EMOTE_CHAR && (var6.charAt(1) == dofus.Constants.EMOTE_CHAR && (var6.charAt(var6.length - 1) == dofus.Constants.EMOTE_CHAR && var6.charAt(var6.length - 2) == dofus.Constants.EMOTE_CHAR));
+							if(this.api.lang.getConfigText("EMOTES_ENABLED") && (!var25 && (var6.charAt(0) == dofus.Constants.EMOTE_CHAR && var6.charAt(var6.length - 1) == dofus.Constants.EMOTE_CHAR)))
+							{
+								if(!this.api.datacenter.Game.isRunning && this.api.kernel.ChatManager.isTypeVisible(2))
 								{
-									if(!this.api.datacenter.Game.isRunning && this.api.kernel.ChatManager.isTypeVisible(2))
-									{
-										var loc26 = !(loc6.charAt(loc6.length - 2) == "." && loc6.charAt(loc6.length - 3) != ".")?loc6:loc6.substr(0,loc6.length - 2) + dofus.Constants.EMOTE_CHAR;
-										loc26 = dofus.Constants.EMOTE_CHAR + loc26.charAt(1).toUpperCase() + loc26.substr(2);
-										this.api.gfx.addSpriteBubble(loc8,this.api.kernel.ChatManager.applyInputCensorship(loc26));
-									}
-									loc13 = "EMOTE_CHAT";
-									loc6 = loc6.substr(1,loc6.length - 2);
-									if(!dofus.managers.ChatManager.isPonctuation(loc6.charAt(loc6.length - 1)))
-									{
-										loc6 = loc6 + ".";
-									}
-									loc6 = "<i>" + this.getLinkName(loc7,loc10) + " " + loc6.charAt(0).toLowerCase() + loc6.substr(1) + "</i>";
-									break loop1;
+									var var26 = !(var6.charAt(var6.length - 2) == "." && var6.charAt(var6.length - 3) != ".")?var6:var6.substr(0,var6.length - 2) + dofus.Constants.EMOTE_CHAR;
+									var26 = dofus.Constants.EMOTE_CHAR + var26.charAt(1).toUpperCase() + var26.substr(2);
+									this.api.gfx.addSpriteBubble(var8,this.api.kernel.ChatManager.applyInputCensorship(var26));
 								}
-								if(loc6.substr(0,7) == "!THINK!")
+								var13 = "EMOTE_CHAT";
+								var6 = var6.substr(1,var6.length - 2);
+								if(!dofus.managers.ChatManager.isPonctuation(var6.charAt(var6.length - 1)))
 								{
-									loc6 = loc6.substr(7);
-									if(!this.api.datacenter.Game.isRunning && this.api.kernel.ChatManager.isTypeVisible(2))
-									{
-										this.api.gfx.addSpriteBubble(loc8,this.api.kernel.ChatManager.applyInputCensorship(loc6),ank.battlefield.TextHandler.BUBBLE_TYPE_THINK);
-									}
-									loc13 = "THINK_CHAT";
-									var loc27 = loc7 + " " + this.api.lang.getText("THINKS_WORD") + " : ";
-									loc6 = "<i>" + this.getLinkName(loc7,loc10) + " " + this.api.lang.getText("THINKS_WORD") + " : " + this.getLinkMessage(loc7,loc27,loc11,loc6,loc10) + "</i>";
-									break loop1;
+									var6 = var6 + ".";
 								}
-								if(loc25 && !_global.isNaN(loc6.substr(2,loc6.length - 4)))
+								var6 = "<i>" + this.getLinkName(var7,var10) + " " + var6.charAt(0).toLowerCase() + var6.substr(1) + "</i>";
+							}
+							else if(var6.substr(0,7) == "!THINK!")
+							{
+								var6 = var6.substr(7);
+								if(!this.api.datacenter.Game.isRunning && this.api.kernel.ChatManager.isTypeVisible(2))
+								{
+									this.api.gfx.addSpriteBubble(var8,this.api.kernel.ChatManager.applyInputCensorship(var6),ank.battlefield.TextHandler.BUBBLE_TYPE_THINK);
+								}
+								var13 = "THINK_CHAT";
+								var var27 = var7 + " " + this.api.lang.getText("THINKS_WORD") + " : ";
+								var6 = "<i>" + this.getLinkName(var7,var10) + " " + this.api.lang.getText("THINKS_WORD") + " : " + this.getLinkMessage(var7,var27,var11,var6,var10) + "</i>";
+							}
+							else
+							{
+								if(var25 && !_global.isNaN(var6.substr(2,var6.length - 4)))
 								{
 									if(!this.api.kernel.OptionsManager.getOption("UseSpeakingItems"))
 									{
 										return undefined;
 									}
-									var loc28 = _global.parseInt(loc6.substr(2,loc6.length - 4));
-									var loc29 = this.api.lang.getSpeakingItemsText(loc28 - Number(loc8));
-									if(loc29.m)
+									var var28 = _global.parseInt(var6.substr(2,var6.length - 4));
+									var var29 = this.api.lang.getSpeakingItemsText(var28 - Number(var8));
+									if(var29.m)
 									{
-										loc13 = "MESSAGE_CHAT";
-										loc6 = loc29.m;
+										var13 = "MESSAGE_CHAT";
+										var6 = var29.m;
 										if(!this.api.datacenter.Game.isRunning && this.api.kernel.ChatManager.isTypeVisible(2))
 										{
-											this.api.gfx.addSpriteBubble(loc8,this.api.kernel.ChatManager.applyInputCensorship(loc6));
+											this.api.gfx.addSpriteBubble(var8,this.api.kernel.ChatManager.applyInputCensorship(var6));
 										}
-										var loc30 = loc7 + " : ";
-										loc6 = this.getLinkName(loc7,loc10,true) + " : " + this.getLinkMessage(loc7,loc30,loc11,loc6,loc10);
-										break loop1;
+										var var30 = var7 + " : ";
+										var6 = this.getLinkName(var7,var10,true) + " : " + this.getLinkMessage(var7,var30,var11,var6,var10);
+										break loop2;
 									}
 									return undefined;
 								}
 								if(!this.api.datacenter.Game.isRunning && this.api.kernel.ChatManager.isTypeVisible(2))
 								{
-									this.api.gfx.addSpriteBubble(loc8,this.api.kernel.ChatManager.applyInputCensorship(loc6));
+									this.api.gfx.addSpriteBubble(var8,this.api.kernel.ChatManager.applyInputCensorship(var6));
 								}
-								loc13 = "MESSAGE_CHAT";
-								var loc31 = loc7 + " : ";
-								loc6 = this.getLinkName(loc7,loc10) + " : " + this.getLinkMessage(loc7,loc31,loc11,loc6,loc10);
-								break loop1;
+								var13 = "MESSAGE_CHAT";
+								var var31 = var7 + " : ";
+								var6 = this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var31,var11,var6,var10);
+							}
+							break loop2;
 						}
+						var13 = "ADMIN_CHAT";
+						var var24 = "(" + this.api.lang.getText("PRIVATE_CHANNEL") + ") " + var7 + " : ";
+						var6 = "(" + this.api.lang.getText("PRIVATE_CHANNEL") + ") " + this.getLinkName(var7,var10) + " : " + this.getLinkMessage(var7,var24,var11,var6,var10);
+						break loop2;
 				}
 		}
-		this.api.kernel.showMessage(undefined,loc6,loc13,undefined,loc10);
+		this.api.kernel.showMessage(undefined,var6,var13,undefined,var10);
 	}
-	function getLinkMessage(loc2, loc3, loc4, loc5, loc6)
+	function getLinkMessage(var2, var3, var4, var5, var6)
 	{
-		loc5 = this.api.kernel.ChatManager.applyInputCensorship(loc5);
-		if(loc6 != undefined && (loc6.length > 0 && loc6 != ""))
+		var5 = this.api.kernel.ChatManager.applyInputCensorship(var5);
+		if(var6 != undefined && (var6.length > 0 && var6 != ""))
 		{
-			return "<a href=\'asfunction:onHref,ShowMessagePopupMenu," + loc2 + "," + _global.escape(loc3 + loc4) + "," + loc6 + "\'>" + loc5 + "</a>";
+			return "<a href=\'asfunction:onHref,ShowMessagePopupMenu," + var2 + "," + _global.escape(var3 + var4) + "," + var6 + "\'>" + var5 + "</a>";
 		}
-		return "<a href=\'asfunction:onHref,ShowMessagePopupMenu," + loc2 + "," + _global.escape(loc3 + loc4) + "\'>" + loc5 + "</a>";
+		return "<a href=\'asfunction:onHref,ShowMessagePopupMenu," + var2 + "," + _global.escape(var3 + var4) + "\'>" + var5 + "</a>";
 	}
-	function getLinkName(loc2, loc3, loc4)
+	function getLinkName(var2, var3, var4)
 	{
-		var loc5 = "<b>";
-		var loc6 = "</b>";
-		if(loc4)
+		var var5 = "<b>";
+		var var6 = "</b>";
+		if(var4)
 		{
-			loc5 = "";
-			loc6 = "";
+			var5 = "";
+			var6 = "";
 		}
-		if(loc3 != undefined && (loc3.length > 0 && loc3 != ""))
+		if(var3 != undefined && (var3.length > 0 && var3 != ""))
 		{
-			return loc5 + "<a href=\'asfunction:onHref,ShowPlayerPopupMenu," + loc2 + "," + loc3 + "\'>" + loc2 + "</a>" + loc6;
+			return var5 + "<a href=\'asfunction:onHref,ShowPlayerPopupMenu," + var2 + "," + var3 + "\'>" + var2 + "</a>" + var6;
 		}
-		return loc5 + "<a href=\'asfunction:onHref,ShowPlayerPopupMenu," + loc2 + "\'>" + loc2 + "</a>" + loc6;
+		return var5 + "<a href=\'asfunction:onHref,ShowPlayerPopupMenu," + var2 + "\'>" + var2 + "</a>" + var6;
 	}
-	function onServerMessage(loc2)
+	function onServerMessage(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			this.api.kernel.showMessage(undefined,loc2,"INFO_CHAT");
+			this.api.kernel.showMessage(undefined,var2,"INFO_CHAT");
 		}
 	}
-	function onSmiley(loc2)
+	function onSmiley(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = loc3[0];
-		var loc5 = Number(loc3[1]);
-		this.api.gfx.addSpriteOverHeadItem(loc4,"smiley",dofus.graphics.battlefield.SmileyOverHead,[loc5],dofus.Constants.SMILEY_DELAY);
+		var var3 = var2.split("|");
+		var var4 = var3[0];
+		var var5 = Number(var3[1]);
+		this.api.gfx.addSpriteOverHeadItem(var4,"smiley",dofus.graphics.battlefield.SmileyOverHead,[var5],dofus.Constants.SMILEY_DELAY);
 	}
 }

@@ -1,18 +1,18 @@
 class dofus.datacenter.Specialization extends Object
 {
-	function Specialization(loc3)
+	function Specialization(var3)
 	{
 		super();
 		this.api = _global.API;
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
 	function __get__index()
 	{
 		return this._nIndex;
 	}
-	function __set__index(loc2)
+	function __set__index(var2)
 	{
-		this._nIndex = !(_global.isNaN(loc2) || loc2 == undefined)?loc2:0;
+		this._nIndex = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		return this.__get__index();
 	}
 	function __get__name()
@@ -25,7 +25,7 @@ class dofus.datacenter.Specialization extends Object
 	}
 	function __get__order()
 	{
-		return new dofus.datacenter.(this._oSpecInfos.o);
+		return new dofus.datacenter.(this._oSpecInfos.o);
 	}
 	function __get__alignment()
 	{
@@ -35,17 +35,17 @@ class dofus.datacenter.Specialization extends Object
 	{
 		return this._eaFeats;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this._nIndex = loc2;
-		this._oSpecInfos = this.api.lang.getAlignmentSpecialization(loc2);
-		this._eaFeats = new ank.utils.();
-		var loc3 = this._oSpecInfos.f;
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		this._nIndex = var2;
+		this._oSpecInfos = this.api.lang.getAlignmentSpecialization(var2);
+		this._eaFeats = new ank.utils.();
+		var var3 = this._oSpecInfos.f;
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			this._eaFeats.push(new dofus.datacenter.(loc3[loc4][0],loc3[loc4][1],loc3[loc4][2]));
-			loc4 = loc4 + 1;
+			this._eaFeats.push(new dofus.datacenter.(var3[var4][0],var3[var4][1],var3[var4][2]));
+			var4 = var4 + 1;
 		}
 	}
 }

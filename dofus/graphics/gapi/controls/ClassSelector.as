@@ -27,112 +27,112 @@ class dofus.graphics.gapi.controls.ClassSelector extends dofus.graphics.gapi.cor
 	{
 		return this._xRay;
 	}
-	function __set__xRay(loc2)
+	function __set__xRay(var2)
 	{
-		this._xRay = loc2;
+		this._xRay = var2;
 		return this.__get__xRay();
 	}
 	function __get__yRay()
 	{
 		return this._yRay;
 	}
-	function __set__yRay(loc2)
+	function __set__yRay(var2)
 	{
-		this._yRay = loc2;
+		this._yRay = var2;
 		return this.__get__yRay();
 	}
 	function __get__minScale()
 	{
 		return this._minScale;
 	}
-	function __set__minScale(loc2)
+	function __set__minScale(var2)
 	{
-		this._minScale = loc2;
+		this._minScale = var2;
 		return this.__get__minScale();
 	}
 	function __get__maxScale()
 	{
 		return this._maxScale;
 	}
-	function __set__maxScale(loc2)
+	function __set__maxScale(var2)
 	{
-		this._maxScale = loc2;
+		this._maxScale = var2;
 		return this.__get__maxScale();
 	}
 	function __get__minAlpha()
 	{
 		return this._minAlpha;
 	}
-	function __set__minAlpha(loc2)
+	function __set__minAlpha(var2)
 	{
-		this._minAlpha = loc2;
+		this._minAlpha = var2;
 		return this.__get__minAlpha();
 	}
 	function __get__maxAlpha()
 	{
 		return this._maxAlpha;
 	}
-	function __set__maxAlpha(loc2)
+	function __set__maxAlpha(var2)
 	{
-		this._maxAlpha = loc2;
+		this._maxAlpha = var2;
 		return this.__get__maxAlpha();
 	}
 	function __get__clipsList()
 	{
 		return this._aClipList;
 	}
-	function __set__clipsList(loc2)
+	function __set__clipsList(var2)
 	{
-		if(this._aClipList.length == loc2.length)
+		if(this._aClipList.length == var2.length)
 		{
 			this._nLoaded = 0;
-			var loc3 = 0;
-			while(loc3 < loc2.length)
+			var var3 = 0;
+			while(var3 < var2.length)
 			{
-				this._aLoaders[loc3] = new MovieClipLoader();
-				this._aLoaders[loc3].addListener(this);
-				this._aLoaders[loc3].loadClip(loc2[loc3 != 0?loc2.length - loc3:0],this._aClips[loc3]);
-				this._aClips[loc3]._visible = false;
-				loc3 = loc3 + 1;
+				this._aLoaders[var3] = new MovieClipLoader();
+				this._aLoaders[var3].addListener(this);
+				this._aLoaders[var3].loadClip(var2[var3 != 0?var2.length - var3:0],this._aClips[var3]);
+				this._aClips[var3]._visible = false;
+				var3 = var3 + 1;
 			}
 		}
-		this._aClipList = loc2;
+		this._aClipList = var2;
 		return this.__get__clipsList();
 	}
 	function __get__animation()
 	{
 		return this._bAnimation;
 	}
-	function __set__animation(loc2)
+	function __set__animation(var2)
 	{
-		this._bAnimation = loc2;
+		this._bAnimation = var2;
 		return this.__get__animation();
 	}
 	function __get__animationSpeed()
 	{
 		return this._nAnimationSpeed;
 	}
-	function __set__animationSpeed(loc2)
+	function __set__animationSpeed(var2)
 	{
-		this._nAnimationSpeed = loc2;
+		this._nAnimationSpeed = var2;
 		return this.__get__animationSpeed();
 	}
 	function __get__currentIndex()
 	{
 		return this._nCurrentIndex != this._aClipList.length?this._nCurrentIndex:0;
 	}
-	function __set__currentIndex(loc2)
+	function __set__currentIndex(var2)
 	{
-		this.swapTo(loc2,true);
+		this.swapTo(var2,true);
 		return this.__get__currentIndex();
 	}
 	function __get__clips()
 	{
 		return this._aClips;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this._aClipList = loc2;
+		this._aClipList = var2;
 		this.drawComponent();
 	}
 	function init()
@@ -144,130 +144,129 @@ class dofus.graphics.gapi.controls.ClassSelector extends dofus.graphics.gapi.cor
 	}
 	function drawComponent()
 	{
-		var loc2 = Math.PI / 180 * 90;
+		var var2 = Math.PI / 180 * 90;
 		this._nLoaded = 0;
-		var loc3 = 0;
-		while(loc3 < this._aClipList.length)
+		var var3 = 0;
+		while(var3 < this._aClipList.length)
 		{
-			this._aClips[loc3] = this.createEmptyMovieClip("node" + (this._aClipList.length - loc3),this._aClipList.length - loc3);
-			this._aLoaders[loc3] = new MovieClipLoader();
-			this._aLoaders[loc3].addListener(this);
-			this._aLoaders[loc3].loadClip(this._aClipList[loc3 != 0?this._aClipList.length - loc3:0],this._aClips[loc3]);
-			this._aClips[loc3]._visible = false;
-			loc3 = loc3 + 1;
+			this._aClips[var3] = this.createEmptyMovieClip("node" + (this._aClipList.length - var3),this._aClipList.length - var3);
+			this._aLoaders[var3] = new MovieClipLoader();
+			this._aLoaders[var3].addListener(this);
+			this._aLoaders[var3].loadClip(this._aClipList[var3 != 0?this._aClipList.length - var3:0],this._aClips[var3]);
+			this._aClips[var3]._visible = false;
+			var3 = var3 + 1;
 		}
 	}
 	function update()
 	{
-		var loc2 = Math.PI / 180 * 90;
-		var loc3 = 0;
-		while(loc3 < this._aClips.length)
+		var var2 = Math.PI / 180 * 90;
+		var var3 = 0;
+		while(var3 < this._aClips.length)
 		{
-			this._aClips[loc3]._x = Math.cos(loc2 + this._nCurrentPosition) * this._xRay;
-			this._aClips[loc3]._y = Math.sin(loc2 + this._nCurrentPosition) * this._yRay;
-			var loc4 = (this._aClips[loc3]._y + this._yRay) / (this._yRay * 2) * (this._maxScale - this._minScale) + this._minScale;
-			this._aClips[loc3]._xscale = this._aClips[loc3]._yscale = loc4 > 0?loc4:1;
-			this._aClips[loc3]._alpha = (this._aClips[loc3]._y + this._yRay) / (this._yRay * 2) * (this._maxAlpha - this._minAlpha) + this._minAlpha;
-			this._aClips[loc3]._visible = this._aClips[loc3]._y > 0;
-			if(this._aClips[loc3]._visible)
+			this._aClips[var3]._x = Math.cos(var2 + this._nCurrentPosition) * this._xRay;
+			this._aClips[var3]._y = Math.sin(var2 + this._nCurrentPosition) * this._yRay;
+			var var4 = (this._aClips[var3]._y + this._yRay) / (this._yRay * 2) * (this._maxScale - this._minScale) + this._minScale;
+			this._aClips[var3]._xscale = this._aClips[var3]._yscale = var4 > 0?var4:1;
+			this._aClips[var3]._alpha = (this._aClips[var3]._y + this._yRay) / (this._yRay * 2) * (this._maxAlpha - this._minAlpha) + this._minAlpha;
+			this._aClips[var3]._visible = this._aClips[var3]._y > 0;
+			if(this._aClips[var3]._visible)
 			{
-				var loc5 = Math.floor((loc2 + this._nCurrentPosition) * 180 / Math.PI % 360);
-				var loc6 = Math.floor(360 / this._aClips.length);
-				this._aClips[loc3].slideIter = - Math.ceil((loc5 - 90) / loc6);
-				var ref = this;
-				this._aClips[loc3].onRelease = function()
+				var var5 = Math.floor((var2 + this._nCurrentPosition) * 180 / Math.PI % 360);
+				var var6 = Math.floor(360 / this._aClips.length);
+				this._aClips[var3].slideIter = - Math.ceil((var5 - 90) / var6);
+				this._aClips[var3].onRelease = function()
 				{
 					ref.slide(this.slideIter);
 				};
 			}
-			loc2 = loc2 + Math.PI / 180 * (360 / this._aClips.length);
-			loc3 = loc3 + 1;
+			var2 = var2 + Math.PI / 180 * (360 / this._aClips.length);
+			var3 = var3 + 1;
 		}
 	}
 	function garbageCollector()
 	{
-		var loc2 = new Array();
-		var loc3 = 0;
-		while(loc3 < this._aRegisteredColors.length)
+		var var2 = new Array();
+		var var3 = 0;
+		while(var3 < this._aRegisteredColors.length)
 		{
-			if(this._aRegisteredColors[loc3].mc != undefined)
+			if(this._aRegisteredColors[var3].mc != undefined)
 			{
-				loc2.push(this._aRegisteredColors[loc3]);
+				var2.push(this._aRegisteredColors[var3]);
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		this._aRegisteredColors = loc2;
+		this._aRegisteredColors = var2;
 	}
-	function registerColor(loc2, loc3)
+	function registerColor(var2, var3)
 	{
-		this._aRegisteredColors.push({mc:loc2,z:loc3});
+		this._aRegisteredColors.push({mc:var2,z:var3});
 		this.garbageCollector();
 	}
-	function updateColor(loc2, loc3)
+	function updateColor(var2, var3)
 	{
 		if(this._nLoaded < this._aClipList.length)
 		{
-			this._aUpdateOnLoaded[loc2] = loc3;
+			this._aUpdateOnLoaded[var2] = var3;
 		}
 		else
 		{
-			var loc4 = 0;
-			while(loc4 < this._aRegisteredColors.length)
+			var var4 = 0;
+			while(var4 < this._aRegisteredColors.length)
 			{
-				if(this._aRegisteredColors[loc4].z == loc2)
+				if(this._aRegisteredColors[var4].z == var2)
 				{
-					this.applyColor(this._aRegisteredColors[loc4].mc,this._aRegisteredColors[loc4].z,loc3);
+					this.applyColor(this._aRegisteredColors[var4].mc,this._aRegisteredColors[var4].z,var3);
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
 		}
 	}
-	function applyColor(loc2, loc3, loc4)
+	function applyColor(var2, var3, var4)
 	{
-		if(loc4 == -1 || loc4 == undefined)
+		if(var4 == -1 || var4 == undefined)
 		{
-			var loc5 = new Color(loc2);
-			loc5.setTransform({ra:100,ga:100,ba:100,rb:0,gb:0,bb:0});
+			var var5 = new Color(var2);
+			var5.setTransform({ra:100,ga:100,ba:100,rb:0,gb:0,bb:0});
 			return undefined;
 		}
-		var loc6 = (loc4 & 16711680) >> 16;
-		var loc7 = (loc4 & 65280) >> 8;
-		var loc8 = loc4 & 255;
-		var loc9 = new Color(loc2);
-		var loc10 = new Object();
-		loc10 = {ra:0,ga:0,ba:0,rb:loc6,gb:loc7,bb:loc8};
-		loc9.setTransform(loc10);
+		var var6 = (var4 & 16711680) >> 16;
+		var var7 = (var4 & 65280) >> 8;
+		var var8 = var4 & 255;
+		var var9 = new Color(var2);
+		var var10 = new Object();
+		var10 = {ra:0,ga:0,ba:0,rb:var6,gb:var7,bb:var8};
+		var9.setTransform(var10);
 	}
-	function swapTo(loc2, loc3)
+	function swapTo(var2, var3)
 	{
-		if(loc2 > this._aClipList.length)
+		if(var2 > this._aClipList.length)
 		{
 			return undefined;
 		}
 		this._bMoving = false;
 		delete this.onEnterFrame;
-		var loc4 = Math.PI / 180 * 360 / this._aClipList.length;
-		this._nCurrentIndex = loc2;
-		this.setPosition(loc4 * loc2);
-		this.onMoveEnd(loc3);
+		var var4 = Math.PI / 180 * 360 / this._aClipList.length;
+		this._nCurrentIndex = var2;
+		this.setPosition(var4 * var2);
+		this.onMoveEnd(var3);
 	}
-	function slide(loc2)
+	function slide(var2)
 	{
 		if(this._bMoving)
 		{
 			return undefined;
 		}
-		if(this._nCurrentIndex + loc2 > this._aClipList.length)
+		if(this._nCurrentIndex + var2 > this._aClipList.length)
 		{
-			this._nCurrentIndex = this._nCurrentIndex + loc2 - this._aClipList.length;
+			this._nCurrentIndex = this._nCurrentIndex + var2 - this._aClipList.length;
 		}
-		else if(this._nCurrentIndex + loc2 < 0)
+		else if(this._nCurrentIndex + var2 < 0)
 		{
-			this._nCurrentIndex = this._nCurrentIndex + loc2 + this._aClipList.length;
+			this._nCurrentIndex = this._nCurrentIndex + var2 + this._aClipList.length;
 		}
 		else
 		{
-			this._nCurrentIndex = this._nCurrentIndex + loc2;
+			this._nCurrentIndex = this._nCurrentIndex + var2;
 		}
 		if(!this._bAnimation)
 		{
@@ -275,11 +274,11 @@ class dofus.graphics.gapi.controls.ClassSelector extends dofus.graphics.gapi.cor
 			return undefined;
 		}
 		this._bMoving = true;
-		var loc3 = Math.PI / 180 * 360 / this._aClipList.length;
+		var var3 = Math.PI / 180 * 360 / this._aClipList.length;
 		var t = 0;
 		var b = this._nCurrentPosition;
-		var c = this._nCurrentPosition + loc3 * loc2 - this._nCurrentPosition;
-		var d = Math.abs(loc2) * this._nAnimationSpeed;
+		var c = this._nCurrentPosition + var3 * var2 - this._nCurrentPosition;
+		var d = Math.abs(var2) * this._nAnimationSpeed;
 		var r = this;
 		this.onEnterFrame = function()
 		{
@@ -291,47 +290,47 @@ class dofus.graphics.gapi.controls.ClassSelector extends dofus.graphics.gapi.cor
 			}
 		};
 	}
-	function setPosition(loc2)
+	function setPosition(var2)
 	{
-		this._nCurrentPosition = loc2;
+		this._nCurrentPosition = var2;
 		this.update();
 	}
-	function ease(loc2, loc3, loc4, loc5)
+	function ease(var2, var3, var4, var5)
 	{
-		return loc4 * loc2 / loc5 + loc3;
+		return var4 * var2 / var5 + var3;
 	}
-	function onMoveEnd(loc2)
+	function onMoveEnd(var2)
 	{
 		this._bMoving = false;
-		if(!loc2)
+		if(!var2)
 		{
 			this.dispatchEvent({type:"change",value:this.currentIndex});
 		}
 	}
-	function onLoadComplete(loc2)
+	function onLoadComplete(var2)
 	{
-		this.onSubclipLoaded(loc2);
+		this.onSubclipLoaded(var2);
 	}
-	function onLoadError(loc2)
+	function onLoadError(var2)
 	{
-		this.onSubclipLoaded(loc2);
+		this.onSubclipLoaded(var2);
 	}
-	function onSubclipLoaded(loc2)
+	function onSubclipLoaded(var2)
 	{
 		this._nLoaded++;
-		delete this._aLoaders[Number(loc2._name.substr(4))];
+		delete this._aLoaders[Number(var2._name.substr(4))];
 		var ref = this;
-		loc2.registerColor = function(loc2, loc3)
+		var2.registerColor = function(var2, var3)
 		{
-			ref.registerColor(loc2,loc3);
+			ref.registerColor(var2,var3);
 		};
 		if(this._nLoaded == this._aClipList.length)
 		{
-			var loc3 = 1;
-			while(loc3 <= dofus.graphics.gapi.controls.ClassSelector.MAXIMUM_ZONES)
+			var var3 = 1;
+			while(var3 <= dofus.graphics.gapi.controls.ClassSelector.MAXIMUM_ZONES)
 			{
-				this.addToQueue({object:this,method:this.updateColor,params:[loc3,this._aUpdateOnLoaded[loc3]]});
-				loc3 = loc3 + 1;
+				this.addToQueue({object:this,method:this.updateColor,params:[var3,this._aUpdateOnLoaded[var3]]});
+				var3 = var3 + 1;
 			}
 			this.update();
 		}

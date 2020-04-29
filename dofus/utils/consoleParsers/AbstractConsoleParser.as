@@ -7,28 +7,28 @@ class dofus.utils.consoleParsers.AbstractConsoleParser
 	{
 		return this._oAPI;
 	}
-	function __set__api(loc2)
+	function __set__api(var2)
 	{
-		this._oAPI = loc2;
+		this._oAPI = var2;
 		return this.__get__api();
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this._oAPI = loc2;
+		this._oAPI = var2;
 		this._aConsoleHistory = new Array();
 		this._nConsoleHistoryPointer = 0;
 	}
-	function process(loc2, loc3)
+	function process(var2, var3)
 	{
-		this.pushHistory({value:loc2,params:loc3});
+		this.pushHistory({value:var2,params:var3});
 	}
-	function pushHistory(loc2)
+	function pushHistory(var2)
 	{
-		var loc3 = this._aConsoleHistory.slice(-1);
-		if(loc3[0].value != loc2.value)
+		var var3 = this._aConsoleHistory.slice(-1);
+		if(var3[0].value != var2.value)
 		{
-			var loc4 = this._aConsoleHistory.push(loc2);
-			if(loc4 > 50)
+			var var4 = this._aConsoleHistory.push(var2);
+			if(var4 > 50)
 			{
 				this._aConsoleHistory.shift();
 			}
@@ -41,8 +41,8 @@ class dofus.utils.consoleParsers.AbstractConsoleParser
 		{
 			this._nConsoleHistoryPointer--;
 		}
-		var loc2 = this._aConsoleHistory[this._nConsoleHistoryPointer];
-		return loc2;
+		var var2 = this._aConsoleHistory[this._nConsoleHistoryPointer];
+		return var2;
 	}
 	function getHistoryDown()
 	{
@@ -50,12 +50,12 @@ class dofus.utils.consoleParsers.AbstractConsoleParser
 		{
 			this._nConsoleHistoryPointer++;
 		}
-		var loc2 = this._aConsoleHistory[this._nConsoleHistoryPointer];
-		return loc2;
+		var var2 = this._aConsoleHistory[this._nConsoleHistoryPointer];
+		return var2;
 	}
-	function autoCompletion(loc2, loc3)
+	function autoCompletion(var2, var3)
 	{
-		return ank.utils.ConsoleUtils.autoCompletion(loc2,loc3);
+		return ank.utils.ConsoleUtils.autoCompletion(var2,var3);
 	}
 	function initializePointers()
 	{

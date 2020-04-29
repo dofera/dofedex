@@ -1,14 +1,14 @@
 class ank.battlefield.mc.Zone extends MovieClip
 {
 	static var ALPHA = 30;
-	function Zone(loc3)
+	function Zone(var3)
 	{
 		super();
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this._oMap = loc2;
+		this._oMap = var2;
 		this.clear();
 	}
 	function clear()
@@ -19,345 +19,345 @@ class ank.battlefield.mc.Zone extends MovieClip
 	{
 		this.removeMovieClip();
 	}
-	function drawCircle(loc2, loc3, loc4)
+	function drawCircle(var2, var3, var4)
 	{
-		var loc5 = this._mcZone;
-		loc5.beginFill(loc3,ank.battlefield.mc.Zone.ALPHA);
-		this.drawCircleBorder(loc2,loc3,loc4);
-		loc5.endFill();
+		var var5 = this._mcZone;
+		var5.beginFill(var3,ank.battlefield.mc.Zone.ALPHA);
+		this.drawCircleBorder(var2,var3,var4);
+		var5.endFill();
 	}
-	function drawRing(loc2, loc3, loc4, loc5)
+	function drawRing(var2, var3, var4, var5)
 	{
-		var loc6 = this._mcZone;
-		loc6.beginFill(loc4,ank.battlefield.mc.Zone.ALPHA);
-		this.drawCircleBorder(loc3,loc4,loc5);
-		this.drawCircleBorder(loc2,loc4,loc5);
-		loc6.endFill();
+		var var6 = this._mcZone;
+		var6.beginFill(var4,ank.battlefield.mc.Zone.ALPHA);
+		this.drawCircleBorder(var3,var4,var5);
+		this.drawCircleBorder(var2,var4,var5);
+		var6.endFill();
 	}
-	function drawRectangle(loc2, loc3, loc4, loc5)
+	function drawRectangle(var2, var3, var4, var5)
 	{
-		var loc6 = this._mcZone;
-		loc6.beginFill(loc4,ank.battlefield.mc.Zone.ALPHA);
-		this.drawRectangleBorder(loc2,loc3,loc4,loc5);
-		loc6.endFill();
+		var var6 = this._mcZone;
+		var6.beginFill(var4,ank.battlefield.mc.Zone.ALPHA);
+		this.drawRectangleBorder(var2,var3,var4,var5);
+		var6.endFill();
 	}
-	function drawCross(loc2, loc3, loc4)
+	function drawCross(var2, var3, var4)
 	{
-		var loc5 = ank.battlefield.Constants.CELL_COORD;
-		var loc6 = this._oMap.getWidth();
-		var loc7 = loc4;
-		var loc10 = this._mcZone;
-		loc10.beginFill(loc3,ank.battlefield.mc.Zone.ALPHA);
-		loc10.lineStyle(1,loc3,100);
-		var loc9 = this.getGroundData(loc7);
-		loc10.moveTo(loc5[loc9.gf][0][0],loc5[loc9.gf][0][1] - loc9.gl * 20);
-		var loc8 = 1;
-		while(loc8 <= loc2)
+		var var5 = ank.battlefield.Constants.CELL_COORD;
+		var var6 = this._oMap.getWidth();
+		var var7 = var4;
+		var var10 = this._mcZone;
+		var10.beginFill(var3,ank.battlefield.mc.Zone.ALPHA);
+		var10.lineStyle(1,var3,100);
+		var var9 = this.getGroundData(var7);
+		var10.moveTo(var5[var9.gf][0][0],var5[var9.gf][0][1] - var9.gl * 20);
+		var var8 = 1;
+		while(var8 <= var2)
 		{
-			loc7 = loc7 - loc6;
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][0][0] - loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][0][1] - loc9.gl * 20 - loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 + 1;
+			var7 = var7 - var6;
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][0][0] - var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][0][1] - var9.gl * 20 - var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 + 1;
 		}
-		loc8 = loc2;
-		while(loc8 >= 0)
+		var8 = var2;
+		while(var8 >= 0)
 		{
-			if(loc8 != loc2)
+			if(var8 != var2)
 			{
-				loc7 = loc7 + loc6;
+				var7 = var7 + var6;
 			}
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][1][0] - loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][1][1] - loc9.gl * 20 - loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 - 1;
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][1][0] - var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][1][1] - var9.gl * 20 - var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 - 1;
 		}
-		loc8 = 1;
-		while(loc8 <= loc2)
+		var8 = 1;
+		while(var8 <= var2)
 		{
-			loc7 = loc7 - (loc6 - 1);
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][1][0] + loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][1][1] - loc9.gl * 20 - loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 + 1;
+			var7 = var7 - (var6 - 1);
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][1][0] + var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][1][1] - var9.gl * 20 - var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 + 1;
 		}
-		loc8 = loc2;
-		while(loc8 >= 0)
+		var8 = var2;
+		while(var8 >= 0)
 		{
-			if(loc8 != loc2)
+			if(var8 != var2)
 			{
-				loc7 = loc7 + (loc6 - 1);
+				var7 = var7 + (var6 - 1);
 			}
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][2][0] + loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][2][1] - loc9.gl * 20 - loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 - 1;
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][2][0] + var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][2][1] - var9.gl * 20 - var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 - 1;
 		}
-		loc8 = 1;
-		while(loc8 <= loc2)
+		var8 = 1;
+		while(var8 <= var2)
 		{
-			loc7 = loc7 + loc6;
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][2][0] + loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][2][1] - loc9.gl * 20 + loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 + 1;
+			var7 = var7 + var6;
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][2][0] + var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][2][1] - var9.gl * 20 + var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 + 1;
 		}
-		loc8 = loc2;
-		while(loc8 >= 0)
+		var8 = var2;
+		while(var8 >= 0)
 		{
-			if(loc8 != loc2)
+			if(var8 != var2)
 			{
-				loc7 = loc7 - loc6;
+				var7 = var7 - var6;
 			}
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][3][0] + loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][3][1] - loc9.gl * 20 + loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 - 1;
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][3][0] + var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][3][1] - var9.gl * 20 + var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 - 1;
 		}
-		loc8 = 1;
-		while(loc8 <= loc2)
+		var8 = 1;
+		while(var8 <= var2)
 		{
-			loc7 = loc7 + (loc6 - 1);
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][3][0] - loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][3][1] - loc9.gl * 20 + loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 + 1;
+			var7 = var7 + (var6 - 1);
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][3][0] - var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][3][1] - var9.gl * 20 + var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 + 1;
 		}
-		loc8 = loc2;
-		while(loc8 > 0)
+		var8 = var2;
+		while(var8 > 0)
 		{
-			if(loc8 != loc2)
+			if(var8 != var2)
 			{
-				loc7 = loc7 - (loc6 - 1);
+				var7 = var7 - (var6 - 1);
 			}
-			loc9 = this.getGroundData(loc7);
-			loc10.lineTo(loc5[loc9.gf][0][0] - loc8 * ank.battlefield.Constants.CELL_HALF_WIDTH,loc5[loc9.gf][0][1] - loc9.gl * 20 + loc8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
-			loc8 = loc8 - 1;
+			var9 = this.getGroundData(var7);
+			var10.lineTo(var5[var9.gf][0][0] - var8 * ank.battlefield.Constants.CELL_HALF_WIDTH,var5[var9.gf][0][1] - var9.gl * 20 + var8 * ank.battlefield.Constants.CELL_HALF_HEIGHT);
+			var8 = var8 - 1;
 		}
-		loc10.endFill();
+		var10.endFill();
 	}
-	function drawLine(loc2, loc3, loc4, loc5, loc6, loc7)
+	function drawLine(var2, var3, var4, var5, var6, var7)
 	{
-		var loc8 = 0;
-		var loc9 = 0;
-		if(loc6 == true)
+		var var8 = 0;
+		var var9 = 0;
+		if(var6 == true)
 		{
-			var loc10 = this._oMap.getCellData(loc4);
-			var loc11 = this._oMap.getCellData(loc5);
-			loc8 = loc10.x - loc11.x;
-			loc9 = loc10.rootY - loc11.rootY;
+			var var10 = this._oMap.getCellData(var4);
+			var var11 = this._oMap.getCellData(var5);
+			var8 = var10.x - var11.x;
+			var9 = var10.rootY - var11.rootY;
 		}
-		var loc12 = ank.battlefield.Constants.CELL_COORD;
-		var loc13 = this._oMap.getWidth();
-		var loc14 = loc4;
-		var loc19 = [0,0,0,0,0,0,0,0];
-		if(loc5 != loc4)
+		var var12 = ank.battlefield.Constants.CELL_COORD;
+		var var13 = this._oMap.getWidth();
+		var var14 = var4;
+		var var19 = [0,0,0,0,0,0,0,0];
+		if(var5 != var4)
 		{
-			var loc20 = ank.battlefield.utils.Pathfinding.getDirection(this._oMap,loc5,loc4);
-			if(loc7 == true)
+			var var20 = ank.battlefield.utils.Pathfinding.getDirection(this._oMap,var5,var4);
+			if(var7 == true)
 			{
-				loc19[(loc20 + 6) % 8] = loc2;
-				loc19[(loc20 + 10) % 8] = loc2;
+				var19[(var20 + 6) % 8] = var2;
+				var19[(var20 + 10) % 8] = var2;
 			}
 			else
 			{
-				loc19[loc20] = loc2;
+				var19[var20] = var2;
 			}
 		}
-		var loc18 = this._mcZone;
-		loc18.beginFill(loc3,ank.battlefield.mc.Zone.ALPHA);
-		loc18.lineStyle(1,loc3,100);
-		var loc17 = this.getGroundData(loc14);
-		loc18.moveTo(loc12[loc17.gf][0][0] + loc8,loc12[loc17.gf][0][1] - loc17.gl * 20 + loc9);
-		var loc15 = 1;
-		while(loc15 <= loc19[5])
+		var var18 = this._mcZone;
+		var18.beginFill(var3,ank.battlefield.mc.Zone.ALPHA);
+		var18.lineStyle(1,var3,100);
+		var var17 = this.getGroundData(var14);
+		var18.moveTo(var12[var17.gf][0][0] + var8,var12[var17.gf][0][1] - var17.gl * 20 + var9);
+		var var15 = 1;
+		while(var15 <= var19[5])
 		{
-			loc14 = loc14 - loc13;
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][0][0] - loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][0][1] - loc17.gl * 20 - loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 + 1;
+			var14 = var14 - var13;
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][0][0] - var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][0][1] - var17.gl * 20 - var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 + 1;
 		}
-		loc15 = loc19[5];
-		while(loc15 >= 0)
+		var15 = var19[5];
+		while(var15 >= 0)
 		{
-			if(loc15 != loc19[5])
+			if(var15 != var19[5])
 			{
-				loc14 = loc14 + loc13;
+				var14 = var14 + var13;
 			}
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][1][0] - loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][1][1] - loc17.gl * 20 - loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 - 1;
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][1][0] - var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][1][1] - var17.gl * 20 - var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 - 1;
 		}
-		loc15 = 1;
-		while(loc15 <= loc19[7])
+		var15 = 1;
+		while(var15 <= var19[7])
 		{
-			loc14 = loc14 - (loc13 - 1);
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][1][0] + loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][1][1] - loc17.gl * 20 - loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 + 1;
+			var14 = var14 - (var13 - 1);
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][1][0] + var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][1][1] - var17.gl * 20 - var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 + 1;
 		}
-		loc15 = loc19[7];
-		while(loc15 >= 0)
+		var15 = var19[7];
+		while(var15 >= 0)
 		{
-			if(loc15 != loc19[7])
+			if(var15 != var19[7])
 			{
-				loc14 = loc14 + (loc13 - 1);
+				var14 = var14 + (var13 - 1);
 			}
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][2][0] + loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][2][1] - loc17.gl * 20 - loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 - 1;
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][2][0] + var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][2][1] - var17.gl * 20 - var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 - 1;
 		}
-		loc15 = 1;
-		while(loc15 <= loc19[1])
+		var15 = 1;
+		while(var15 <= var19[1])
 		{
-			loc14 = loc14 + loc13;
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][2][0] + loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][2][1] - loc17.gl * 20 + loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 + 1;
+			var14 = var14 + var13;
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][2][0] + var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][2][1] - var17.gl * 20 + var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 + 1;
 		}
-		loc15 = loc19[1];
-		while(loc15 >= 0)
+		var15 = var19[1];
+		while(var15 >= 0)
 		{
-			if(loc15 != loc19[1])
+			if(var15 != var19[1])
 			{
-				loc14 = loc14 - loc13;
+				var14 = var14 - var13;
 			}
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][3][0] + loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][3][1] - loc17.gl * 20 + loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 - 1;
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][3][0] + var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][3][1] - var17.gl * 20 + var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 - 1;
 		}
-		loc15 = 1;
-		while(loc15 <= loc19[3])
+		var15 = 1;
+		while(var15 <= var19[3])
 		{
-			loc14 = loc14 + (loc13 - 1);
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][3][0] - loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][3][1] - loc17.gl * 20 + loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 + 1;
+			var14 = var14 + (var13 - 1);
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][3][0] - var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][3][1] - var17.gl * 20 + var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 + 1;
 		}
-		loc15 = loc19[3];
-		while(loc15 > 0)
+		var15 = var19[3];
+		while(var15 > 0)
 		{
-			if(loc15 != loc19[3])
+			if(var15 != var19[3])
 			{
-				loc14 = loc14 - (loc13 - 1);
+				var14 = var14 - (var13 - 1);
 			}
-			loc17 = this.getGroundData(loc14);
-			loc18.lineTo(loc12[loc17.gf][0][0] - loc15 * ank.battlefield.Constants.CELL_HALF_WIDTH + loc8,loc12[loc17.gf][0][1] - loc17.gl * 20 + loc15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + loc9);
-			loc15 = loc15 - 1;
+			var17 = this.getGroundData(var14);
+			var18.lineTo(var12[var17.gf][0][0] - var15 * ank.battlefield.Constants.CELL_HALF_WIDTH + var8,var12[var17.gf][0][1] - var17.gl * 20 + var15 * ank.battlefield.Constants.CELL_HALF_HEIGHT + var9);
+			var15 = var15 - 1;
 		}
-		loc18.endFill();
+		var18.endFill();
 	}
-	function getGroundData(loc2)
+	function getGroundData(var2)
 	{
-		var loc3 = this._oMap.getCellData(loc2);
-		var loc4 = loc3.groundSlope != undefined?loc3.groundSlope:1;
-		var loc5 = loc3.groundLevel != undefined?loc3.groundLevel - 7:0;
-		return {gf:loc4,gl:loc5};
+		var var3 = this._oMap.getCellData(var2);
+		var var4 = var3.groundSlope != undefined?var3.groundSlope:1;
+		var var5 = var3.groundLevel != undefined?var3.groundLevel - 7:0;
+		return {gf:var4,gl:var5};
 	}
-	function drawCircleBorder(loc2, loc3, loc4)
+	function drawCircleBorder(var2, var3, var4)
 	{
-		var loc5 = ank.battlefield.Constants.CELL_COORD;
-		var loc6 = this._oMap.getWidth();
-		var loc7 = loc6 * 2 - 1;
-		var loc8 = loc4 - loc2 * loc6;
-		var loc13 = (- loc2) * ank.battlefield.Constants.CELL_HALF_WIDTH;
-		var loc14 = (- loc2) * ank.battlefield.Constants.CELL_HALF_HEIGHT;
-		var loc12 = this._mcZone;
-		loc12.lineStyle(1,loc3,100);
-		var loc11 = this.getGroundData(loc8);
-		loc12.moveTo(loc13 + loc5[loc11.gf][0][0],loc14 + loc5[loc11.gf][0][1] - loc11.gl * 20);
-		var loc9 = 0;
-		while(loc9 < loc2 + 1)
+		var var5 = ank.battlefield.Constants.CELL_COORD;
+		var var6 = this._oMap.getWidth();
+		var var7 = var6 * 2 - 1;
+		var var8 = var4 - var2 * var6;
+		var var13 = (- var2) * ank.battlefield.Constants.CELL_HALF_WIDTH;
+		var var14 = (- var2) * ank.battlefield.Constants.CELL_HALF_HEIGHT;
+		var var12 = this._mcZone;
+		var12.lineStyle(1,var3,100);
+		var var11 = this.getGroundData(var8);
+		var12.moveTo(var13 + var5[var11.gf][0][0],var14 + var5[var11.gf][0][1] - var11.gl * 20);
+		var var9 = 0;
+		while(var9 < var2 + 1)
 		{
-			if(loc9 != 0)
+			if(var9 != 0)
 			{
-				loc8 = loc8 + 1;
+				var8 = var8 + 1;
 			}
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc5[loc11.gf][1][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][1][1] - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc5[loc11.gf][2][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][2][1] - loc11.gl * 20);
-			loc9 = loc9 + 1;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var5[var11.gf][1][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][1][1] - var11.gl * 20);
+			var12.lineTo(var13 + var5[var11.gf][2][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][2][1] - var11.gl * 20);
+			var9 = var9 + 1;
 		}
-		loc9 = loc9 - 1;
-		var loc10 = 0;
-		while(loc10 < loc2)
+		var9 = var9 - 1;
+		var var10 = 0;
+		while(var10 < var2)
 		{
-			loc8 = loc8 + loc7;
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc5[loc11.gf][1][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][1][1] + (loc10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc5[loc11.gf][2][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][2][1] + (loc10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc10 = loc10 + 1;
+			var8 = var8 + var7;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var5[var11.gf][1][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][1][1] + (var10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var12.lineTo(var13 + var5[var11.gf][2][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][2][1] + (var10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var10 = var10 + 1;
 		}
-		loc9 = loc2;
-		while(loc9 >= 0)
+		var9 = var2;
+		while(var9 >= 0)
 		{
-			if(loc9 != loc2)
+			if(var9 != var2)
 			{
-				loc8 = loc8 - 1;
+				var8 = var8 - 1;
 			}
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc5[loc11.gf][3][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][3][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc5[loc11.gf][0][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][0][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc9 = loc9 - 1;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var5[var11.gf][3][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][3][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var12.lineTo(var13 + var5[var11.gf][0][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][0][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var9 = var9 - 1;
 		}
-		loc9 = loc9 + 1;
-		loc10 = loc2 - 1;
-		while(loc10 >= 0)
+		var9 = var9 + 1;
+		var10 = var2 - 1;
+		while(var10 >= 0)
 		{
-			loc8 = loc8 - loc7;
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc5[loc11.gf][3][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][3][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc5[loc11.gf][0][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc5[loc11.gf][0][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc10 = loc10 - 1;
+			var8 = var8 - var7;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var5[var11.gf][3][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][3][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var12.lineTo(var13 + var5[var11.gf][0][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var5[var11.gf][0][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var10 = var10 - 1;
 		}
 	}
-	function drawRectangleBorder(loc2, loc3, loc4, loc5)
+	function drawRectangleBorder(var2, var3, var4, var5)
 	{
-		var loc6 = ank.battlefield.Constants.CELL_COORD;
-		var loc7 = this._oMap.getWidth() * 2 - 1;
-		var loc8 = Number(loc5);
-		var loc13 = 0;
-		var loc14 = 0;
-		var loc12 = this._mcZone;
-		loc12.lineStyle(1,loc4,100);
-		var loc11 = this.getGroundData(loc8);
-		loc12.moveTo(loc13 + loc6[loc11.gf][0][0],loc14 + loc6[loc11.gf][0][1] - loc11.gl * 20);
-		var loc9 = 0;
-		while(loc9 < loc2)
+		var var6 = ank.battlefield.Constants.CELL_COORD;
+		var var7 = this._oMap.getWidth() * 2 - 1;
+		var var8 = Number(var5);
+		var var13 = 0;
+		var var14 = 0;
+		var var12 = this._mcZone;
+		var12.lineStyle(1,var4,100);
+		var var11 = this.getGroundData(var8);
+		var12.moveTo(var13 + var6[var11.gf][0][0],var14 + var6[var11.gf][0][1] - var11.gl * 20);
+		var var9 = 0;
+		while(var9 < var2)
 		{
-			if(loc9 != 0)
+			if(var9 != 0)
 			{
-				loc8 = loc8 + 1;
+				var8 = var8 + 1;
 			}
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc6[loc11.gf][1][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][1][1] - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc6[loc11.gf][2][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][2][1] - loc11.gl * 20);
-			loc9 = loc9 + 1;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var6[var11.gf][1][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][1][1] - var11.gl * 20);
+			var12.lineTo(var13 + var6[var11.gf][2][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][2][1] - var11.gl * 20);
+			var9 = var9 + 1;
 		}
-		loc9 = loc9 - 1;
-		var loc10 = 0;
-		while(loc10 < loc3 - 1)
+		var9 = var9 - 1;
+		var var10 = 0;
+		while(var10 < var3 - 1)
 		{
-			loc8 = loc8 + loc7;
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc6[loc11.gf][1][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][1][1] + (loc10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc6[loc11.gf][2][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][2][1] + (loc10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc10 = loc10 + 1;
+			var8 = var8 + var7;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var6[var11.gf][1][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][1][1] + (var10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var12.lineTo(var13 + var6[var11.gf][2][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][2][1] + (var10 + 1) * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var10 = var10 + 1;
 		}
-		loc9 = loc2 - 1;
-		while(loc9 >= 0)
+		var9 = var2 - 1;
+		while(var9 >= 0)
 		{
-			if(loc9 != loc2 - 1)
+			if(var9 != var2 - 1)
 			{
-				loc8 = loc8 - 1;
+				var8 = var8 - 1;
 			}
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc6[loc11.gf][3][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][3][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc6[loc11.gf][0][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][0][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc9 = loc9 - 1;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var6[var11.gf][3][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][3][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var12.lineTo(var13 + var6[var11.gf][0][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][0][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var9 = var9 - 1;
 		}
-		loc9 = loc9 + 1;
-		loc10 = loc3 - 2;
-		while(loc10 >= 0)
+		var9 = var9 + 1;
+		var10 = var3 - 2;
+		while(var10 >= 0)
 		{
-			loc8 = loc8 - loc7;
-			loc11 = this.getGroundData(loc8);
-			loc12.lineTo(loc13 + loc6[loc11.gf][3][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][3][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc12.lineTo(loc13 + loc6[loc11.gf][0][0] + loc9 * ank.battlefield.Constants.CELL_WIDTH,loc14 + loc6[loc11.gf][0][1] + loc10 * ank.battlefield.Constants.CELL_HEIGHT - loc11.gl * 20);
-			loc10 = loc10 - 1;
+			var8 = var8 - var7;
+			var11 = this.getGroundData(var8);
+			var12.lineTo(var13 + var6[var11.gf][3][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][3][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var12.lineTo(var13 + var6[var11.gf][0][0] + var9 * ank.battlefield.Constants.CELL_WIDTH,var14 + var6[var11.gf][0][1] + var10 * ank.battlefield.Constants.CELL_HEIGHT - var11.gl * 20);
+			var10 = var10 - 1;
 		}
 	}
 }

@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.AskLinkWarning extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		return this.__get__text();
 	}
 	function __get__text()
@@ -33,9 +33,9 @@ class dofus.graphics.gapi.ui.AskLinkWarning extends dofus.graphics.gapi.core.Dof
 		this._winBackground.title = this.api.lang.getText("CAUTION");
 		this._txtText.text = this._sText;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_btnOk")
+		if((var var0 = var2.target._name) === "_btnOk")
 		{
 			this.dispatchEvent({type:"ok",params:this.params});
 		}

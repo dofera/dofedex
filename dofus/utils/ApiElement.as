@@ -9,18 +9,18 @@ class dofus.utils.ApiElement extends Object
 	{
 		return _global.API;
 	}
-	function __set__api(loc2)
+	function __set__api(var2)
 	{
-		this._oAPI = loc2;
+		this._oAPI = var2;
 		return this.__get__api();
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this._oAPI = loc2;
+		this._oAPI = var2;
 	}
-	function addToQueue(loc2)
+	function addToQueue(var2)
 	{
-		dofus.utils.ApiElement._aQueue.push(loc2);
+		dofus.utils.ApiElement._aQueue.push(var2);
 		if(_root.onEnterFrame == undefined)
 		{
 			_root.onEnterFrame = this.runQueue;
@@ -28,8 +28,8 @@ class dofus.utils.ApiElement extends Object
 	}
 	function runQueue()
 	{
-		var loc2 = dofus.utils.ApiElement._aQueue.shift();
-		loc2.method.apply(loc2.object,loc2.params);
+		var var2 = dofus.utils.ApiElement._aQueue.shift();
+		var2.method.apply(var2.object,var2.params);
 		if(dofus.utils.ApiElement._aQueue.length == 0)
 		{
 			delete _root.onEnterFrame;

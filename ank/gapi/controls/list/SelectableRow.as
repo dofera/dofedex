@@ -5,9 +5,9 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 	{
 		super();
 	}
-	function __set__itemIndex(loc2)
+	function __set__itemIndex(var2)
 	{
-		this._nItemIndex = loc2;
+		this._nItemIndex = var2;
 		return this.__get__itemIndex();
 	}
 	function __get__itemIndex()
@@ -18,38 +18,39 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 	{
 		return this._oItem;
 	}
-	function __set__index(loc2)
+	function __set__index(var2)
 	{
-		this._nIndex = loc2;
+		this._nIndex = var2;
 		return this.__get__index();
 	}
 	function __get__index()
 	{
 		return this._nIndex;
 	}
-	function setCellRenderer(loc2)
+	function setCellRenderer(var2)
 	{
 		this.cellRenderer_mc.removeMovieClip();
-		this.attachMovie(loc2,"cellRenderer_mc",100,{styleName:this.getStyle().cellrendererstyle,list:this._parent._parent,row:this});
+		this.attachMovie(var2,"cellRenderer_mc",100,{styleName:this.getStyle().cellrendererstyle,list:this._parent._parent,row:this});
 	}
-	function setState(loc2)
+	function setState(var2)
 	{
-		this.cellRenderer_mc.setState(loc2);
-		switch(loc2)
+		this.cellRenderer_mc.setState(var2);
+		switch(var2)
 		{
 			case "selected":
+			default:
 				this.selected_mc._visible = true;
 				break;
 			case "normal":
 				this.selected_mc._visible = false;
 		}
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		this._bUsed = loc3 != undefined;
-		this._oItem = loc3;
-		this.cellRenderer_mc.setValue(this._bUsed,loc2,loc3);
-		this.setState(loc4);
+		this._bUsed = var3 != undefined;
+		this._oItem = var3;
+		this.cellRenderer_mc.setValue(this._bUsed,var2,var3);
+		this.setState(var4);
 	}
 	function select()
 	{
@@ -151,16 +152,16 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		var loc3 = loc2.cellbgcolor;
-		var loc4 = loc2.cellselectedcolor;
-		var loc5 = loc2.cellovercolor;
+		var var2 = this.getStyle();
+		var var3 = var2.cellbgcolor;
+		var var4 = var2.cellselectedcolor;
+		var var5 = var2.cellovercolor;
 		this.over_mc.clear();
 		this.selected_mc.clear();
 		this.bg_mc.clear();
-		this.drawRoundRect(this.over_mc,0,0,1,1,0,loc5,loc5 != -1?100:0);
-		this.drawRoundRect(this.selected_mc,0,0,1,1,0,loc4,loc4 != -1?100:0);
-		this.drawRoundRect(this.bg_mc,0,0,1,1,0,typeof loc3 != "object"?Number(loc3):Number(loc3[this._nIndex % loc3.length]),loc3 != -1?100:0);
-		this.cellRenderer_mc.styleName = loc2.cellrendererstyle;
+		this.drawRoundRect(this.over_mc,0,0,1,1,0,var5,var5 != -1?100:0);
+		this.drawRoundRect(this.selected_mc,0,0,1,1,0,var4,var4 != -1?100:0);
+		this.drawRoundRect(this.bg_mc,0,0,1,1,0,typeof var3 != "object"?Number(var3):Number(var3[this._nIndex % var3.length]),var3 != -1?100:0);
+		this.cellRenderer_mc.styleName = var2.cellrendererstyle;
 	}
 }

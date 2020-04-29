@@ -5,11 +5,11 @@ class dofus.graphics.gapi.controls.guildhousesviewer.GuildHousesViewerHouses ext
 		super();
 		this._mcIcon._visible = false;
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = (dofus.datacenter.House)loc4;
+			this._oItem = (dofus.datacenter.House)var4;
 			this._lblName.text = this._oItem.name;
 			this._lblOwner.text = this._oItem.ownerName;
 			this._mcIcon._visible = true;

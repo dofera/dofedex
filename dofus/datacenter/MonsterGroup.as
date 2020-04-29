@@ -4,27 +4,27 @@ class dofus.datacenter.MonsterGroup extends ank.battlefield.datacenter.Sprite
 	var _bAllDirections = false;
 	var _bForceWalk = true;
 	var _nAlignmentIndex = -1;
-	function MonsterGroup(sID, clipClass, §\x1e\x13\x16§, cellNum, §\x11\x1d§, bonus)
+	function MonsterGroup(sID, clipClass, §\x1e\x13\x14§, cellNum, §\x11\x1b§, bonus)
 	{
 		super();
 		this.api = _global.API;
 		this._nBonusValue = bonus;
-		this.initialize(sID,clipClass,loc5,cellNum,loc7,null);
+		this.initialize(sID,clipClass,var5,cellNum,var7,null);
 	}
-	function __set__name(loc2)
+	function __set__name(var2)
 	{
 		this._aNamesList = new Array();
-		var loc3 = loc2.split(",");
-		var loc4 = 0;
-		while(loc4 < loc3.length)
+		var var3 = var2.split(",");
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			var loc5 = this.api.lang.getMonstersText(loc3[loc4]);
-			this._aNamesList.push(loc5.n);
-			if(loc5.a != -1)
+			var var5 = this.api.lang.getMonstersText(var3[var4]);
+			this._aNamesList.push(var5.n);
+			if(var5.a != -1)
 			{
-				this._nAlignmentIndex = loc5.a;
+				this._nAlignmentIndex = var5.a;
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 		return this.__get__name();
 	}
@@ -32,47 +32,47 @@ class dofus.datacenter.MonsterGroup extends ank.battlefield.datacenter.Sprite
 	{
 		return this.getName();
 	}
-	function getName(loc2)
+	function getName(var2)
 	{
-		loc2 = loc2 != undefined?loc2:"\n";
-		var loc3 = new Array();
-		var loc4 = 0;
-		while(loc4 < this._aLevelsList.length)
+		var2 = var2 != undefined?var2:"\n";
+		var var3 = new Array();
+		var var4 = 0;
+		while(var4 < this._aLevelsList.length)
 		{
-			loc3.push({level:Number(this._aLevelsList[loc4]),name:this._aNamesList[loc4]});
-			loc4 = loc4 + 1;
+			var3.push({level:Number(this._aLevelsList[var4]),name:this._aNamesList[var4]});
+			var4 = var4 + 1;
 		}
-		loc3.sortOn(["level"],Array.DESCENDING | Array.NUMERIC);
-		var loc5 = new String();
-		var loc6 = 0;
-		while(loc6 < loc3.length)
+		var3.sortOn(["level"],Array.DESCENDING | Array.NUMERIC);
+		var var5 = new String();
+		var var6 = 0;
+		while(var6 < var3.length)
 		{
-			var loc7 = loc3[loc6];
-			loc5 = loc5 + (loc7.name + " (" + loc7.level + ")" + loc2);
-			loc6 = loc6 + 1;
+			var var7 = var3[var6];
+			var5 = var5 + (var7.name + " (" + var7.level + ")" + var2);
+			var6 = var6 + 1;
 		}
-		return loc5;
+		return var5;
 	}
 	function alertChatText()
 	{
-		var loc2 = this.api.datacenter.Map;
-		return "Groupe niveau " + this.totalLevel + " en " + loc2.x + "," + loc2.y + " : <br/>" + this.getName("<br/>");
+		var var2 = this.api.datacenter.Map;
+		return "Groupe niveau " + this.totalLevel + " en " + var2.x + "," + var2.y + " : <br/>" + this.getName("<br/>");
 	}
-	function __set__Level(loc2)
+	function __set__Level(var2)
 	{
-		this._aLevelsList = loc2.split(",");
+		this._aLevelsList = var2.split(",");
 		return this.__get__Level();
 	}
 	function __get__totalLevel()
 	{
-		var loc2 = 0;
-		var loc3 = 0;
-		while(loc3 < this._aLevelsList.length)
+		var var2 = 0;
+		var var3 = 0;
+		while(var3 < this._aLevelsList.length)
 		{
-			loc2 = loc2 + Number(this._aLevelsList[loc3]);
-			loc3 = loc3 + 1;
+			var2 = var2 + Number(this._aLevelsList[var3]);
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function __get__bonusValue()
 	{

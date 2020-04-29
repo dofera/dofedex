@@ -5,14 +5,14 @@ class dofus.graphics.gapi.controls.Heart extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__value(loc2)
+	function __set__value(var2)
 	{
-		loc2 = Number(loc2);
-		if(_global.isNaN(loc2))
+		var2 = Number(var2);
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		this._nValue = loc2;
+		this._nValue = var2;
 		if(this._nMax != undefined)
 		{
 			this.applyValue();
@@ -23,14 +23,14 @@ class dofus.graphics.gapi.controls.Heart extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nValue;
 	}
-	function __set__max(loc2)
+	function __set__max(var2)
 	{
-		loc2 = Number(loc2);
-		if(_global.isNaN(loc2))
+		var2 = Number(var2);
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		this._nMax = loc2;
+		this._nMax = var2;
 		if(this._nValue != undefined)
 		{
 			this.applyValue();

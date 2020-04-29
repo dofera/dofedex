@@ -51,149 +51,148 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 		this._dgSpells.columnsNames = [this.api.lang.getText("NAME_BIG"),this.api.lang.getText("LEVEL")];
 		this._lblBonusTitle.text = this.api.lang.getText("SPELL_BOOST_POINT");
 		this._lblSpellType.text = this.api.lang.getText("SPELL_TYPE");
-		var loc2 = new ank.utils.();
-		loc2.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),type:-2});
-		loc2.push({label:this.api.lang.getText("SPELL_TAB_GUILD"),type:0});
-		loc2.push({label:this.api.lang.getText("SPELL_TAB_WATER"),type:1});
-		loc2.push({label:this.api.lang.getText("SPELL_TAB_FIRE"),type:2});
-		loc2.push({label:this.api.lang.getText("SPELL_TAB_EARTH"),type:3});
-		loc2.push({label:this.api.lang.getText("SPELL_TAB_AIR"),type:4});
-		this._cbType.dataProvider = loc2;
+		var var2 = new ank.utils.();
+		var2.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),type:-2});
+		var2.push({label:this.api.lang.getText("SPELL_TAB_GUILD"),type:0});
+		var2.push({label:this.api.lang.getText("SPELL_TAB_WATER"),type:1});
+		var2.push({label:this.api.lang.getText("SPELL_TAB_FIRE"),type:2});
+		var2.push({label:this.api.lang.getText("SPELL_TAB_EARTH"),type:3});
+		var2.push({label:this.api.lang.getText("SPELL_TAB_AIR"),type:4});
+		this._cbType.dataProvider = var2;
 		this._cbType.selectedIndex = 1;
 	}
 	function updateSpells()
 	{
-		var loc2 = this.api.datacenter.Player.Spells;
-		var loc3 = new ank.utils.();
-		for(var k in loc2)
+		var var2 = this.api.datacenter.Player.Spells;
+		var var3 = new ank.utils.();
+		for(var var4 in var2)
 		{
-			var loc4 = loc2[k];
-			if(loc4.classID != -1 && (loc4.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
+			if(var4.classID != -1 && (var4.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
 			{
-				loc3.push(loc4);
+				var3.push(var4);
 			}
 		}
 		if(this.api.kernel.OptionsManager.getOption("SeeAllSpell") && this.api.datacenter.Basics.canUseSeeAllSpell)
 		{
-			var loc5 = this.api.lang.getClassText(this.api.datacenter.Player.Guild).s;
-			var loc6 = 0;
-			while(loc6 < loc5.length)
+			var var5 = this.api.lang.getClassText(this.api.datacenter.Player.Guild).s;
+			var var6 = 0;
+			while(var6 < var5.length)
 			{
-				var loc7 = loc5[loc6];
-				var loc8 = false;
-				var loc9 = 0;
-				while(loc9 < loc3.length && !loc8)
+				var var7 = var5[var6];
+				var var8 = false;
+				var var9 = 0;
+				while(var9 < var3.length && !var8)
 				{
-					loc8 = loc3[loc9].ID == loc7;
-					loc9 = loc9 + 1;
+					var8 = var3[var9].ID == var7;
+					var9 = var9 + 1;
 				}
-				var loc10 = new dofus.datacenter.(loc7,1);
-				if(!loc8 && (loc10.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
+				var var10 = new dofus.datacenter.(var7,1);
+				if(!var8 && (var10.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
 				{
-					loc3.push(loc10);
+					var3.push(var10);
 				}
-				loc6 = loc6 + 1;
+				var6 = var6 + 1;
 			}
 		}
-		loc3.sortOn("_minPlayerLevel",Array.NUMERIC);
-		this._dgSpells.dataProvider = loc3;
+		var3.sortOn("_minPlayerLevel",Array.NUMERIC);
+		this._dgSpells.dataProvider = var3;
 	}
-	function updateBonus(loc2)
+	function updateBonus(var2)
 	{
-		this._lblBonus.text = loc2 != undefined?String(loc2):String(this.api.datacenter.Player.BonusPointsSpell);
+		this._lblBonus.text = var2 != undefined?String(var2):String(this.api.datacenter.Player.BonusPointsSpell);
 		this.updateSpells();
 	}
-	function hideSpellBoostViewer(loc2, loc3)
+	function hideSpellBoostViewer(var2, var3)
 	{
-		this._sbvSpellBoostViewer._visible = !loc2;
-		if(loc3 != undefined)
+		this._sbvSpellBoostViewer._visible = !var2;
+		if(var3 != undefined)
 		{
-			this._sbvSpellBoostViewer.spell = loc3;
+			this._sbvSpellBoostViewer.spell = var3;
 		}
 	}
-	function showDetails(loc2)
+	function showDetails(var2)
 	{
 		this._sfivSpellFullInfosViewer.removeMovieClip();
-		if(loc2)
+		if(var2)
 		{
 			this.attachMovie("SpellFullInfosViewer","_sfivSpellFullInfosViewer",this.getNextHighestDepth(),{_x:this._mcSpellFullInfosPlacer._x,_y:this._mcSpellFullInfosPlacer._y});
 			this._sfivSpellFullInfosViewer.addEventListener("close",this);
 		}
 	}
-	function boostSpell(loc2)
+	function boostSpell(var2)
 	{
 		this.api.sounds.events.onSpellsBoostButtonClick();
-		if(this.canBoost(loc2) != undefined)
+		if(this.canBoost(var2) != undefined)
 		{
-			var loc3 = new dofus.datacenter.(loc2.ID,loc2.level + 1);
-			if(this.api.datacenter.Player.Level < loc3.minPlayerLevel)
+			var var3 = new dofus.datacenter.(var2.ID,var2.level + 1);
+			if(this.api.datacenter.Player.Level < var3.minPlayerLevel)
 			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("LEVEL_NEED_TO_BOOST",[loc3.minPlayerLevel]),"ERROR_BOX");
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("LEVEL_NEED_TO_BOOST",[var3.minPlayerLevel]),"ERROR_BOX");
 				return false;
 			}
 			this.hideSpellBoostViewer(true);
-			this.api.network.Spells.boost(loc2.ID);
-			this._sfivSpellFullInfosViewer.spell = loc3;
+			this.api.network.Spells.boost(var2.ID);
+			this._sfivSpellFullInfosViewer.spell = var3;
 			return true;
 		}
 		return false;
 	}
-	function getCostForBoost(loc2)
+	function getCostForBoost(var2)
 	{
-		return loc2.level >= loc2.maxLevel?-1:dofus.Constants.SPELL_BOOST_BONUS[loc2.level];
+		return var2.level >= var2.maxLevel?-1:dofus.Constants.SPELL_BOOST_BONUS[var2.level];
 	}
-	function canBoost(loc2)
+	function canBoost(var2)
 	{
-		if(loc2 != undefined)
+		if(var2 != undefined)
 		{
-			if(this.getCostForBoost(loc2) > this.api.datacenter.Player.BonusPointsSpell)
+			if(this.getCostForBoost(var2) > this.api.datacenter.Player.BonusPointsSpell)
 			{
 				return false;
 			}
-			if(loc2.level < loc2.maxLevel)
+			if(var2.level < var2.maxLevel)
 			{
 				return true;
 			}
 		}
 		return false;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_btnClose")
+		if((var var0 = var2.target._name) === "_btnClose")
 		{
 			this.callClose();
 		}
 	}
-	function itemDrag(loc2)
+	function itemDrag(var2)
 	{
-		if(loc2.row.item == undefined)
+		if(var2.row.item == undefined)
 		{
 			return undefined;
 		}
-		if(this.api.datacenter.Player.Level < loc2.row.item._minPlayerLevel)
+		if(this.api.datacenter.Player.Level < var2.row.item._minPlayerLevel)
 		{
 			return undefined;
 		}
 		this.gapi.removeCursor();
-		this.gapi.setCursor(loc2.row.item);
+		this.gapi.setCursor(var2.row.item);
 	}
-	function itemRollOver(loc2)
+	function itemRollOver(var2)
 	{
 	}
-	function itemRollOut(loc2)
+	function itemRollOut(var2)
 	{
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._dgSpells:
-				if(loc2.row.item != undefined)
+				if(var2.row.item != undefined)
 				{
-					if(this._sfivSpellFullInfosViewer.spell.ID != loc2.row.item.ID)
+					if(this._sfivSpellFullInfosViewer.spell.ID != var2.row.item.ID)
 					{
 						this.showDetails(true);
-						this._sfivSpellFullInfosViewer.spell = loc2.row.item;
+						this._sfivSpellFullInfosViewer.spell = var2.row.item;
 					}
 					else
 					{
@@ -202,21 +201,21 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 				}
 				break;
 			case this._cbType:
-				this._nSelectedSpellType = loc2.target.selectedItem.type;
+				this._nSelectedSpellType = var2.target.selectedItem.type;
 				this.updateSpells();
 		}
 	}
-	function bonusSpellsChanged(loc2)
+	function bonusSpellsChanged(var2)
 	{
-		this.updateBonus(loc2.value);
+		this.updateBonus(var2.value);
 	}
-	function close(loc2)
+	function close(var2)
 	{
 		this.showDetails(false);
 	}
-	function modelChanged(loc2)
+	function modelChanged(var2)
 	{
-		switch(loc2.eventName)
+		switch(var2.eventName)
 		{
 			case "updateOne":
 			case "updateAll":

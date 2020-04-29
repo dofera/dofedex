@@ -1,10 +1,10 @@
 class dofus.datacenter.Subarea extends Object
 {
-	function Subarea(loc3, loc4)
+	function Subarea(var3, var4)
 	{
 		super();
 		this.api = _global.API;
-		this.initialize(loc3,loc4);
+		this.initialize(var3,var4);
 	}
 	function __get__id()
 	{
@@ -14,9 +14,9 @@ class dofus.datacenter.Subarea extends Object
 	{
 		return this._oAlignment;
 	}
-	function __set__alignment(loc2)
+	function __set__alignment(var2)
 	{
-		this._oAlignment = loc2;
+		this._oAlignment = var2;
 		return this.__get__alignment();
 	}
 	function __get__name()
@@ -27,9 +27,9 @@ class dofus.datacenter.Subarea extends Object
 	{
 		return dofus.Constants.AREA_ALIGNMENT_COLOR[this._oAlignment.index];
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
-		this._nID = loc2;
-		this._oAlignment = new dofus.datacenter.(loc3);
+		this._nID = var2;
+		this._oAlignment = new dofus.datacenter.(var3);
 	}
 }

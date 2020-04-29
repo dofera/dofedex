@@ -1,18 +1,18 @@
 class dofus.datacenter.Feat extends Object
 {
-	function Feat(loc3, loc4, loc5)
+	function Feat(var3, var4, var5)
 	{
 		super();
 		this.api = _global.API;
-		this.initialize(loc3,loc4,loc5);
+		this.initialize(var3,var4,var5);
 	}
 	function __get__index()
 	{
 		return this._nIndex;
 	}
-	function __set__index(loc2)
+	function __set__index(var2)
 	{
-		this._nIndex = !(_global.isNaN(loc2) || loc2 == undefined)?loc2:0;
+		this._nIndex = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		return this.__get__index();
 	}
 	function __get__name()
@@ -25,17 +25,17 @@ class dofus.datacenter.Feat extends Object
 	}
 	function __get__effect()
 	{
-		return new dofus.datacenter.(this._oFeatInfos.e,this._aParams);
+		return new dofus.datacenter.(this._oFeatInfos.e,this._aParams);
 	}
 	function __get__iconFile()
 	{
 		return dofus.Constants.FEATS_PATH + this._oFeatInfos.g + ".swf";
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
-		this._nIndex = loc2;
-		this._nLevel = loc3;
-		this._aParams = loc4;
-		this._oFeatInfos = this.api.lang.getAlignmentFeat(loc2);
+		this._nIndex = var2;
+		this._nLevel = var3;
+		this._aParams = var4;
+		this._oFeatInfos = this.api.lang.getAlignmentFeat(var2);
 	}
 }

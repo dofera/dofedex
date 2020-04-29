@@ -1,14 +1,14 @@
 class ank.battlefield.datacenter.Map extends Object
 {
-	function Map(loc3)
+	function Map(var3)
 	{
 		super();
-		this.initialize(loc3);
+		this.initialize(var3);
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		this.id = loc2;
-		this.originalsCellsBackup = new ank.utils.();
+		this.id = var2;
+		this.originalsCellsBackup = new ank.utils.();
 	}
 	function cleanSpritesOn()
 	{

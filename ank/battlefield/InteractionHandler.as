@@ -1,95 +1,109 @@
 class ank.battlefield.InteractionHandler
 {
-	function InteractionHandler(loc3, loc4)
+	function InteractionHandler(var3, var4)
 	{
-		this.initialize(loc2,loc3);
+		this.initialize(var2,var3);
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
-		this._mcContainer = loc2;
-		this._oDatacenter = loc3;
+		this._mcContainer = var2;
+		this._oDatacenter = var3;
 		this._extraProto = new Object();
 		this.setEnabled(ank.battlefield.Constants.INTERACTION_NONE);
 		this._bIs8 = Number(System.capabilities.version.substr(0,1)) >= 8;
 	}
-	function setEnabled(loc2)
+	function setEnabled(var2)
 	{
-		if((var loc0 = loc2) !== ank.battlefield.Constants.INTERACTION_NONE)
+		if((var var0 = var2) !== ank.battlefield.Constants.INTERACTION_NONE)
 		{
-			if(loc0 !== ank.battlefield.Constants.INTERACTION_CELL_NONE)
+			if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_NONE)
 			{
-				if(loc0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE)
+				if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE)
 				{
-					if(loc0 !== ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT)
+					if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT)
 					{
-						switch(null)
+						if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT)
 						{
-							case ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT:
-								this.setEnabledProtoAll(ank.battlefield.mc.Cell.prototype,true);
-								break;
-							case ank.battlefield.Constants.INTERACTION_OBJECT_NONE:
-								this.setEnabledProtoRelease(ank.battlefield.mc.InteractiveObject.prototype,false);
-								this.setEnabledProtoOutOver(ank.battlefield.mc.InteractiveObject.prototype,false);
-								if(this._bIs8)
-								{
-									this.setEnabledObject2Release(false);
-									this.setEnabledObject2OutOver(false);
-								}
-								break;
-							default:
-								if(loc0 !== ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE)
-								{
-									if(loc0 !== ank.battlefield.Constants.INTERACTION_OBJECT_OVER_OUT)
-									{
-										if(loc0 !== ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE_OVER_OUT)
-										{
-											if(loc0 !== ank.battlefield.Constants.INTERACTION_SPRITE_NONE)
-											{
-												if(loc0 !== ank.battlefield.Constants.INTERACTION_SPRITE_RELEASE)
-												{
-													switch(null)
-													{
-														case ank.battlefield.Constants.INTERACTION_SPRITE_OVER_OUT:
-															this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,false);
-															this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,true);
-															break;
-														case ank.battlefield.Constants.INTERACTION_SPRITE_RELEASE_OVER_OUT:
-															this.setEnabledProtoAll(ank.battlefield.mc.Sprite.prototype,true);
-													}
-													break;
-												}
-												this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,true);
-												this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,false);
-												break;
-											}
-											this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,false);
-											this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,false);
-											break;
-										}
-										this.setEnabledProtoAll(ank.battlefield.mc.InteractiveObject.prototype,true);
-										if(this._bIs8)
-										{
-											this.setEnabledObject2All(true);
-										}
-										break;
-									}
+							loop0:
+							switch(null)
+							{
+								case ank.battlefield.Constants.INTERACTION_OBJECT_NONE:
 									this.setEnabledProtoRelease(ank.battlefield.mc.InteractiveObject.prototype,false);
-									this.setEnabledProtoOutOver(ank.battlefield.mc.InteractiveObject.prototype,true);
+									this.setEnabledProtoOutOver(ank.battlefield.mc.InteractiveObject.prototype,false);
 									if(this._bIs8)
 									{
 										this.setEnabledObject2Release(false);
-										this.setEnabledObject2OutOver(true);
+										this.setEnabledObject2OutOver(false);
 									}
 									break;
-								}
-								this.setEnabledProtoRelease(ank.battlefield.mc.InteractiveObject.prototype,true);
-								this.setEnabledProtoOutOver(ank.battlefield.mc.InteractiveObject.prototype,false);
-								if(this._bIs8)
-								{
-									this.setEnabledObject2Release(true);
-									this.setEnabledObject2OutOver(false);
-								}
-								break;
+								case ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE:
+									this.setEnabledProtoRelease(ank.battlefield.mc.InteractiveObject.prototype,true);
+									this.setEnabledProtoOutOver(ank.battlefield.mc.InteractiveObject.prototype,false);
+									if(this._bIs8)
+									{
+										this.setEnabledObject2Release(true);
+										this.setEnabledObject2OutOver(false);
+									}
+									break;
+								default:
+									if(var0 !== ank.battlefield.Constants.INTERACTION_OBJECT_OVER_OUT)
+									{
+										if(var0 !== ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE_OVER_OUT)
+										{
+											if(var0 !== ank.battlefield.Constants.INTERACTION_SPRITE_NONE)
+											{
+												switch(null)
+												{
+													case ank.battlefield.Constants.INTERACTION_SPRITE_RELEASE:
+														this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,true);
+														this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,false);
+														break loop0;
+													case ank.battlefield.Constants.INTERACTION_SPRITE_OVER_OUT:
+														this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,false);
+														this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,true);
+														break loop0;
+													default:
+														if(var0 !== ank.battlefield.Constants.INTERACTION_SPRITE_RELEASE_OVER_OUT)
+														{
+															break loop0;
+														}
+														this.setEnabledProtoAll(ank.battlefield.mc.Sprite.prototype,true);
+														break loop0;
+												}
+											}
+											else
+											{
+												this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,false);
+												this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,false);
+												break;
+											}
+										}
+										else
+										{
+											this.setEnabledProtoAll(ank.battlefield.mc.InteractiveObject.prototype,true);
+											if(this._bIs8)
+											{
+												this.setEnabledObject2All(true);
+											}
+											break;
+										}
+									}
+									else
+									{
+										this.setEnabledProtoRelease(ank.battlefield.mc.InteractiveObject.prototype,false);
+										this.setEnabledProtoOutOver(ank.battlefield.mc.InteractiveObject.prototype,true);
+										if(this._bIs8)
+										{
+											this.setEnabledObject2Release(false);
+											this.setEnabledObject2OutOver(true);
+										}
+										break;
+									}
+							}
+						}
+						else
+						{
+							this.setEnabledProtoAll(ank.battlefield.mc.Cell.prototype,true);
 						}
 					}
 					else
@@ -118,58 +132,59 @@ class ank.battlefield.InteractionHandler
 			this.setEnabledProtoAll(ank.battlefield.mc.Sprite.prototype,false);
 		}
 	}
-	function setEnabledCell(loc2, loc3)
+	function setEnabledCell(var2, var3)
 	{
-		var loc4 = this._mcContainer["cell" + loc2];
-		if(loc4 == undefined)
+		var var4 = this._mcContainer["cell" + var2];
+		if(var4 == undefined)
 		{
 			ank.utils.Logger.err("[setEnabledCell] Cell inexistante");
 			return undefined;
 		}
-		this._extraProto[loc4._name] = loc4;
-		if((var loc0 = loc3) !== ank.battlefield.Constants.INTERACTION_NONE)
+		this._extraProto[var4._name] = var4;
+		if((var var0 = var3) !== ank.battlefield.Constants.INTERACTION_NONE)
 		{
-			if(loc0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE)
+			if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE)
 			{
-				if(loc0 !== ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT)
+				if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT)
 				{
-					if(loc0 === ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT)
+					if(var0 === ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT)
 					{
-						this.setEnabledProtoAll(loc4,true);
+						this.setEnabledProtoAll(var4,true);
 					}
 				}
 				else
 				{
-					this.setEnabledProtoRelease(loc4,false);
-					this.setEnabledProtoOutOver(loc4,true);
+					this.setEnabledProtoRelease(var4,false);
+					this.setEnabledProtoOutOver(var4,true);
 				}
 			}
 			else
 			{
-				this.setEnabledProtoRelease(loc4,true);
-				this.setEnabledProtoOutOver(loc4,false);
+				this.setEnabledProtoRelease(var4,true);
+				this.setEnabledProtoOutOver(var4,false);
 			}
 		}
 		else
 		{
-			this.setEnabledProtoAll(loc4,false);
+			this.setEnabledProtoAll(var4,false);
 		}
 	}
-	function setEnabledOffAllExtraProto(loc2)
+	function setEnabledOffAllExtraProto(var2)
 	{
-		for(var loc3 in this._extraProto)
+		for(var p in this._extraProto)
 		{
-			this.setEnabledProtoAll(loc3,false);
+			var var3 = this._extraProto[p];
+			this.setEnabledProtoAll(var3,false);
 		}
 		this._extraProto = new Array();
 	}
-	function setEnabledProtoAll(loc2, loc3)
+	function setEnabledProtoAll(var2, var3)
 	{
-		if(loc3)
+		if(var3)
 		{
-			loc2.onRelease = loc2._release;
-			loc2.onRollOver = loc2._rollOver;
-			loc2.onRollOut = loc2.onReleaseOutside = loc2._rollOut;
+			var2.onRelease = var2._release;
+			var2.onRollOver = var2._rollOver;
+			var2.onRollOut = var2.onReleaseOutside = var2._rollOut;
 		}
 		else
 		{
@@ -179,24 +194,24 @@ class ank.battlefield.InteractionHandler
 			delete register2.onReleaseOutside;
 		}
 	}
-	function setEnabledProtoRelease(loc2, loc3)
+	function setEnabledProtoRelease(var2, var3)
 	{
-		if(loc3)
+		if(var3)
 		{
-			loc2.onRelease = loc2._release;
+			var2.onRelease = var2._release;
 		}
 		else
 		{
 			delete register2.onRelease;
 		}
 	}
-	function setEnabledProtoOutOver(loc2, loc3)
+	function setEnabledProtoOutOver(var2, var3)
 	{
-		if(loc3)
+		if(var3)
 		{
-			loc2.onRollOver = loc2._rollOver;
-			loc2.onRollOut = loc2._rollOut;
-			loc2.onRollOut = loc2.onReleaseOutside = loc2._rollOut;
+			var2.onRollOver = var2._rollOver;
+			var2.onRollOut = var2._rollOut;
+			var2.onRollOut = var2.onReleaseOutside = var2._rollOut;
 		}
 		else
 		{
@@ -205,21 +220,21 @@ class ank.battlefield.InteractionHandler
 			delete register2.onReleaseOutside;
 		}
 	}
-	function setEnabledObject2All(loc2)
+	function setEnabledObject2All(var2)
 	{
-		var loc3 = this._oDatacenter.Map.data;
-		for(var k in loc3)
+		var var3 = this._oDatacenter.Map.data;
+		for(var k in var3)
 		{
-			var loc4 = loc3[k].mcObject2;
-			if(loc3[k].layerObject2Interactive)
+			var var4 = var3[k].mcObject2;
+			if(var3[k].layerObject2Interactive)
 			{
-				if(loc4 != undefined)
+				if(var4 != undefined)
 				{
-					if(loc2)
+					if(var2)
 					{
-						loc4.onRelease = loc4._release;
-						loc4.onRollOver = loc4._rollOver;
-						loc4.onRollOut = loc4.onReleaseOutside = loc4._rollOut;
+						var4.onRelease = var4._release;
+						var4.onRollOver = var4._rollOver;
+						var4.onRollOut = var4.onReleaseOutside = var4._rollOut;
 					}
 					else
 					{
@@ -232,19 +247,19 @@ class ank.battlefield.InteractionHandler
 			}
 		}
 	}
-	function setEnabledObject2Release(loc2)
+	function setEnabledObject2Release(var2)
 	{
-		var loc3 = this._oDatacenter.Map.data;
-		for(var k in loc3)
+		var var3 = this._oDatacenter.Map.data;
+		for(var k in var3)
 		{
-			var loc4 = loc3[k].mcObject2;
-			if(loc3[k].layerObject2Interactive)
+			var var4 = var3[k].mcObject2;
+			if(var3[k].layerObject2Interactive)
 			{
-				if(loc4 != undefined)
+				if(var4 != undefined)
 				{
-					if(loc2)
+					if(var2)
 					{
-						loc4.onRelease = loc4._release;
+						var4.onRelease = var4._release;
 					}
 					else
 					{
@@ -254,20 +269,21 @@ class ank.battlefield.InteractionHandler
 			}
 		}
 	}
-	function setEnabledObject2OutOver(loc2)
+	function setEnabledObject2OutOver(var2)
 	{
-		var loc3 = this._oDatacenter.Map.data;
-		for(var loc4 in loc3)
+		var var3 = this._oDatacenter.Map.data;
+		for(var k in var3)
 		{
-			if(loc3[k].layerObject2Interactive)
+			var var4 = var3[k].mcObject2;
+			if(var3[k].layerObject2Interactive)
 			{
-				if(loc4 != undefined)
+				if(var4 != undefined)
 				{
-					if(loc2)
+					if(var2)
 					{
-						loc4.onRollOver = loc4._rollOver;
-						loc4.onRollOut = loc4._rollOut;
-						loc4.onRollOut = loc4.onReleaseOutside = loc4._rollOut;
+						var4.onRollOver = var4._rollOver;
+						var4.onRollOut = var4._rollOut;
+						var4.onRollOut = var4.onReleaseOutside = var4._rollOut;
 					}
 					else
 					{

@@ -5,18 +5,18 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		return this.__get__text();
 	}
 	function __get__text()
 	{
 		return this._sText;
 	}
-	function __set__player(loc2)
+	function __set__player(var2)
 	{
-		this._sPlayer = loc2;
+		this._sPlayer = var2;
 		return this.__get__player();
 	}
 	function __get__player()
@@ -30,20 +30,20 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 	}
 	function initWindowContent()
 	{
-		var loc2 = this._winBackground.content;
-		loc2._txtText.text = this._sText;
-		loc2._txtIgnore.text = "<u><font color=\'" + 255 + "\'><a href=\'asfunction:onHref,\'>" + this.api.lang.getText("POPUP_ADD_IGNORE",[this._sPlayer]) + "</a></font></u>";
-		loc2._txtIgnore.addEventListener("href",this);
-		loc2._btnYes.label = this.api.lang.getText("YES");
-		loc2._btnNo.label = this.api.lang.getText("NO");
-		loc2._btnYes.addEventListener("click",this);
-		loc2._btnNo.addEventListener("click",this);
-		loc2._txtText.addEventListener("change",this);
+		var var2 = this._winBackground.content;
+		var2._txtText.text = this._sText;
+		var2._txtIgnore.text = "<u><font color=\'" + 255 + "\'><a href=\'asfunction:onHref,\'>" + this.api.lang.getText("POPUP_ADD_IGNORE",[this._sPlayer]) + "</a></font></u>";
+		var2._txtIgnore.addEventListener("href",this);
+		var2._btnYes.label = this.api.lang.getText("YES");
+		var2._btnNo.label = this.api.lang.getText("NO");
+		var2._btnYes.addEventListener("click",this);
+		var2._btnNo.addEventListener("click",this);
+		var2._txtText.addEventListener("change",this);
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnYes":
 				this.dispatchEvent({type:"yes",params:this.params});
@@ -53,24 +53,24 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 		}
 		this.unloadThis();
 	}
-	function change(loc2)
+	function change(var2)
 	{
-		var loc3 = this._winBackground.content;
-		loc3._btnYes._y = loc3._txtText._y + loc3._txtText.height + 20;
-		loc3._btnNo._y = loc3._txtText._y + loc3._txtText.height + 20;
-		loc3._txtIgnore._y = loc3._btnNo._y + loc3._btnNo.height + 10;
+		var var3 = this._winBackground.content;
+		var3._btnYes._y = var3._txtText._y + var3._txtText.height + 20;
+		var3._btnNo._y = var3._txtText._y + var3._txtText.height + 20;
+		var3._txtIgnore._y = var3._btnNo._y + var3._btnNo.height + 10;
 		this._winBackground.setPreferedSize();
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG")
+		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
 			this.click({target:this._winBackground.content._btnYes});
 			return false;
 		}
 		return true;
 	}
-	function href(loc2)
+	function href(var2)
 	{
 		this.params.player = this._sPlayer;
 		this.dispatchEvent({type:"ignore",params:this.params});

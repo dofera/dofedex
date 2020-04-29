@@ -4,12 +4,12 @@ class dofus.graphics.gapi.controls.questionviewer.QuestionViewerAnswerItem exten
 	{
 		super();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this._mcRound._visible = true;
-			this._txtResponse.text = loc4.label;
+			this._txtResponse.text = var4.label;
 		}
 		else if(this._txtResponse.text != undefined)
 		{

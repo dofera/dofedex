@@ -5,16 +5,16 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 		super();
 		AsBroadcaster.initialize(this);
 	}
-	function load(loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+	function load(var2, var3, var4, var5, var6, var7, var8)
 	{
-		this._aServers = loc2;
-		this._sFile = loc3;
-		this._mc = loc4;
+		this._aServers = var2;
+		this._sFile = var3;
+		this._mc = var4;
 		this._urlIndex = -1;
-		this._sSharedObjectName = loc5;
-		this._sFileName = loc6;
-		this._sLang = loc7;
-		this._bUseMultiSO = loc8;
+		this._sSharedObjectName = var5;
+		this._sFileName = var6;
+		this._sLang = var7;
+		this._bUseMultiSO = var8;
 		this.loadWithNextURL();
 	}
 	function loadWithNextURL()
@@ -22,14 +22,14 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 		this._urlIndex++;
 		if(this._urlIndex < this._aServers.length && this._aServers.length > 0)
 		{
-			var loc2 = this._aServers[this._urlIndex].url;
-			var loc3 = loc2 + this._sFile;
-			System.security.allowDomain(loc2);
+			var var2 = this._aServers[this._urlIndex].url;
+			var var3 = var2 + this._sFile;
+			System.security.allowDomain(var2);
 			this._mcl = new MovieClipLoader();
 			this._mcl.addListener(this);
 			this._progressTimer = _global.setInterval(this.onTimedProgress,1000);
 			this._timerID = _global.setInterval(this.onEventNotCall,5000);
-			this._mcl.loadClip(loc3,this._mc);
+			this._mcl.loadClip(var3,this._mc);
 		}
 		else
 		{
@@ -40,42 +40,42 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._aServers[this._urlIndex];
 	}
-	function onEventNotCall(loc2)
+	function onEventNotCall(var2)
 	{
 		_global.clearInterval(this._timerID);
-		this.onLoadError(loc2,"unknown",-1);
+		this.onLoadError(var2,"unknown",-1);
 	}
-	function onLoadStart(loc2)
+	function onLoadStart(var2)
 	{
 		_global.clearInterval(this._timerID);
-		this.broadcastMessage("onLoadStart",loc2,this.getCurrentServer());
+		this.broadcastMessage("onLoadStart",var2,this.getCurrentServer());
 	}
-	function onLoadError(loc2, loc3, loc4)
+	function onLoadError(var2, var3, var4)
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
-		this.broadcastMessage("onLoadError",loc2,loc3,loc4,this.getCurrentServer());
+		this.broadcastMessage("onLoadError",var2,var3,var4,this.getCurrentServer());
 		this.loadWithNextURL();
 	}
 	function onTimedProgress()
 	{
-		var loc2 = this._mcl.getProgress(this._mc);
-		this.broadcastMessage("onLoadProgress",this._mc,loc2.bytesLoaded,loc2.bytesTotal,this.getCurrentServer());
+		var var2 = this._mcl.getProgress(this._mc);
+		this.broadcastMessage("onLoadProgress",this._mc,var2.bytesLoaded,var2.bytesTotal,this.getCurrentServer());
 	}
-	function onLoadComplete(loc2, loc3)
+	function onLoadComplete(var2, var3)
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
-		this.broadcastMessage("onLoadComplete",loc2,loc3,this.getCurrentServer());
+		this.broadcastMessage("onLoadComplete",var2,var3,this.getCurrentServer());
 	}
-	function onLoadInit(loc2)
+	function onLoadInit(var2)
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
 		this._so = ank.utils.SharedObjectFix.getLocal(this._sSharedObjectName);
-		if(loc2.FILE_BEGIN != true && loc2.FILE_END != true)
+		if(var2.FILE_BEGIN != true && var2.FILE_END != true)
 		{
-			this.broadcastMessage("onCorruptFile",loc2,loc2.getBytesTotal(),this.getCurrentServer());
+			this.broadcastMessage("onCorruptFile",var2,var2.getBytesTotal(),this.getCurrentServer());
 			this.loadWithNextURL();
 			return undefined;
 		}
@@ -83,26 +83,25 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 		{
 			this._so.data.VERSIONS = new Object();
 		}
-		this._so.data.VERSIONS[this._sFileName] = loc2.VERSION;
+		this._so.data.VERSIONS[this._sFileName] = var2.VERSION;
 		if(this._so.data.WEIGHTS == undefined)
 		{
 			this._so.data.WEIGHTS = new Object();
 		}
-		this._so.data.WEIGHTS[this._sFileName.toUpperCase()] = loc2.getBytesTotal();
+		this._so.data.WEIGHTS[this._sFileName.toUpperCase()] = var2.getBytesTotal();
 		this._aData = new Array();
-		§§enumerate(loc2);
-		while((var loc0 = §§enumeration()) != null)
+		for(var k in var2)
 		{
 			if(!(k == "VERSION" || (k == "FILE_BEGIN" || k == "FILE_END")))
 			{
-				this._aData.push({key:k,value:loc2[k]});
+				this._aData.push({key:k,value:var2[k]});
 				delete register2.k;
 			}
 		}
 		this._so.data.LANGUAGE = this._sLang;
 		if(this._so.flush(1000000000) == false)
 		{
-			this.broadcastMessage("onCantWrite",loc2);
+			this.broadcastMessage("onCantWrite",var2);
 			return undefined;
 		}
 		this._nStart = 0;
@@ -118,20 +117,20 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 	}
 	function processFile()
 	{
-		var loc2 = this._nStart;
-		while(loc2 < this._nStart + this._nStep)
+		var var2 = this._nStart;
+		while(var2 < this._nStart + this._nStep)
 		{
-			if(!this._aData[loc2])
+			if(!this._aData[var2])
 			{
 				break;
 			}
 			if(this._bUseMultiSO)
 			{
-				this._so = ank.utils.SharedObjectFix.getLocal(this._sSharedObjectName + "_" + this._aData[loc2].key);
+				this._so = ank.utils.SharedObjectFix.getLocal(this._sSharedObjectName + "_" + this._aData[var2].key);
 			}
-			this._so.data[this._aData[loc2].key] = this._aData[loc2].value;
+			this._so.data[this._aData[var2].key] = this._aData[var2].value;
 			delete this._aData.register2;
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
 		this._nStart = this._nStart + this._nStep;
 		if(this._so.flush(1000000000) == false)

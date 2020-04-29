@@ -7,33 +7,22 @@ class dofus.graphics.gapi.ui.bigstore.BigStoreSellFilter implements dofus.graphi
 		this._nMaximalLevel = maximalLevel;
 		this._aAllowedTypes = allowedTypes;
 	}
-	function isItemListed(loc2)
+	function isItemListed(var2)
 	{
-		if(this._nMaximalLevel != null && loc2.level > this._nMaximalLevel)
+		if(this._nMaximalLevel != null && var2.level > this._nMaximalLevel)
 		{
 			return false;
 		}
-		var loc3 = false;
-		loop0:
+		var var3 = false;
 		for(var i in this._aAllowedTypes)
 		{
-			if(loc2.type == Number(this._aAllowedTypes[i]))
+			if(var2.type == Number(this._aAllowedTypes[i]))
 			{
-				loc3 = true;
-				while(true)
-				{
-					if(§§pop() == null)
-					{
-						break loop0;
-					}
-				}
-			}
-			else
-			{
-				continue;
+				var3 = true;
+				break;
 			}
 		}
-		if(!loc3)
+		if(!var3)
 		{
 			return false;
 		}

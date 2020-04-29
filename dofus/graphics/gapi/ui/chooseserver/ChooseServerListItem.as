@@ -4,68 +4,70 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		var loc5 = this._mcList._parent._parent.api;
-		if(loc2)
+		var var5 = this._mcList._parent._parent.api;
+		if(var2)
 		{
-			this._oItem = loc4;
-			loc4.sortFlag = loc4.language;
-			loc4.sortName = loc4.label;
-			loc4.sortType = loc4.type;
-			loc4.sortOnline = loc4.stateStrShort;
-			loc4.sortCommunity = loc4.communityStr;
-			loc4.sortPopulation = loc4.population;
-			var loc6 = new String();
+			this._oItem = var4;
+			var4.sortFlag = var4.language;
+			var4.sortName = var4.label;
+			var4.sortType = var4.type;
+			var4.sortOnline = var4.stateStrShort;
+			var4.sortCommunity = var4.communityStr;
+			var4.sortPopulation = var4.population;
+			var var6 = new String();
 			loop0:
-			switch(loc4.community)
+			switch(var4.community)
 			{
 				case 0:
-					loc6 = "fr";
+					var6 = "fr";
 					break;
 				case 1:
-					loc6 = "en";
+					var6 = "en";
 					break;
 				case 3:
-					loc6 = "de";
+					var6 = "de";
 					break;
 				case 4:
-					loc6 = "es";
-					break;
-				case 5:
-					loc6 = "ru";
+					var6 = "es";
 					break;
 				default:
 					switch(null)
 					{
+						case 5:
+							var6 = "ru";
+							break loop0;
 						case 6:
-							loc6 = "pt";
+							var6 = "pt";
 							break loop0;
 						case 7:
-							loc6 = "nl";
+							var6 = "nl";
 							break loop0;
 						case 8:
-							loc6 = "jp";
+							var6 = "jp";
 							break loop0;
 						case 9:
-							loc6 = "it";
+							var6 = "it";
 							break loop0;
-						case 2:
 						default:
-							loc6 = "us";
+							if(var0 !== 2)
+							{
+							}
+							var6 = "us";
 					}
 			}
-			this._ldrFlag.contentPath = "Flag_" + loc6;
-			this._lblName.text = loc4.sortName;
-			this._lblCommunity.text = loc4.sortCommunity;
-			if((loc0 = loc4.state) !== dofus.datacenter.Server.SERVER_OFFLINE)
+			this._ldrFlag.contentPath = "Flag_" + var6;
+			this._lblName.text = var4.sortName;
+			this._lblCommunity.text = var4.sortCommunity;
+			if((var0 = var4.state) !== dofus.datacenter.Server.SERVER_OFFLINE)
 			{
-				if(loc0 !== dofus.datacenter.Server.SERVER_ONLINE)
+				if(var0 !== dofus.datacenter.Server.SERVER_ONLINE)
 				{
 					this._lblOnline.styleName = "BrownCenterSmallLabel";
 				}
@@ -78,8 +80,8 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 			{
 				this._lblOnline.styleName = "RedCenterSmallLabel";
 			}
-			this._lblOnline.text = loc4.sortOnline;
-			switch(loc4.sortPopulation)
+			this._lblOnline.text = var4.sortOnline;
+			switch(var4.sortPopulation)
 			{
 				case 0:
 					this._lblPopulation.styleName = "GreenCenterSmallLabel";
@@ -87,18 +89,15 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 				case 1:
 					this._lblPopulation.styleName = "BlueCenterSmallLabel";
 					break;
-				default:
-					if(loc0 !== 2)
-					{
-						this._lblPopulation.styleName = "BrownCenterSmallLabel";
-						break;
-					}
+				case 2:
 					this._lblPopulation.styleName = "RedCenterSmallLabel";
 					break;
+				default:
+					this._lblPopulation.styleName = "BrownCenterSmallLabel";
 			}
-			this._lblPopulation.text = loc4.populationStr;
-			this._lblType.text = loc4.type;
-			if(loc4.typeNum == dofus.datacenter.Server.SERVER_HARDCORE)
+			this._lblPopulation.text = var4.populationStr;
+			this._lblType.text = var4.type;
+			if(var4.typeNum == dofus.datacenter.Server.SERVER_HARDCORE)
 			{
 				this._lblName.styleName = "RedLeftSmallLabel";
 				this._lblType.styleName = "RedCenterSmallLabel";
@@ -139,11 +138,11 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 		{
 			return undefined;
 		}
-		var loc2 = this._mcList.gapi.api;
-		var loc3 = ank.utils.PatternDecoder.combine(loc2.lang.getText("A_POSSESS_CHARACTER",[this._oItem.search,this._oItem.friendCharactersCount]),null,this._oItem.friendCharactersCount == 1);
-		loc2.ui.showTooltip(loc3,this._mcOver,-20);
+		var var2 = this._mcList.gapi.api;
+		var var3 = ank.utils.PatternDecoder.combine(var2.lang.getText("A_POSSESS_CHARACTER",[this._oItem.search,this._oItem.friendCharactersCount]),null,this._oItem.friendCharactersCount == 1);
+		var2.ui.showTooltip(var3,this._mcOver,-20);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this._mcList.gapi.api.ui.hideTooltip();
 	}

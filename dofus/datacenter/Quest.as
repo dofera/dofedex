@@ -1,9 +1,9 @@
 class dofus.datacenter.Quest extends Object
 {
-	function Quest(loc3, loc4, loc5)
+	function Quest(var3, var4, var5)
 	{
 		super();
-		this.initialize(loc3,loc4,loc5);
+		this.initialize(var3,var4,var5);
 	}
 	function __get__id()
 	{
@@ -15,26 +15,31 @@ class dofus.datacenter.Quest extends Object
 	}
 	function __get__name()
 	{
-		return this.api.lang.getQuestText(this._nID);
+		var var2 = this.api.lang.getQuestText(this._nID);
+		if(var2 != null && dofus.Constants.DEBUG)
+		{
+			var2 = var2 + " (" + this._nID + ")";
+		}
+		return var2;
 	}
 	function __get__currentStep()
 	{
 		return this._oCurrentStep;
 	}
-	function addStep(loc2)
+	function addStep(var2)
 	{
-		this._eoSteps.addItemAt(loc2.id,loc2);
-		if(loc2.isCurrent)
+		this._eoSteps.addItemAt(var2.id,var2);
+		if(var2.isCurrent)
 		{
-			this._oCurrentStep = loc2;
+			this._oCurrentStep = var2;
 		}
 	}
-	function initialize(loc2, loc3, loc4)
+	function initialize(var2, var3, var4)
 	{
 		this.api = _global.API;
-		this._eoSteps = new ank.utils.();
-		this._nID = loc2;
-		this._bFinished = loc3;
-		this.sortOrder = loc4;
+		this._eoSteps = new ank.utils.();
+		this._nID = var2;
+		this._bFinished = var3;
+		this.sortOrder = var4;
 	}
 }

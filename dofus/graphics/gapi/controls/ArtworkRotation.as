@@ -5,10 +5,10 @@ class dofus.graphics.gapi.controls.ArtworkRotation extends ank.gapi.core.UIBasic
 	{
 		super();
 	}
-	function __set__classID(loc2)
+	function __set__classID(var2)
 	{
-		this._ariMan.loadArtwork(loc2);
-		this._ariWoman.loadArtwork(loc2);
+		this._ariMan.loadArtwork(var2);
+		this._ariWoman.loadArtwork(var2);
 		return this.__get__classID();
 	}
 	function init()
@@ -19,49 +19,49 @@ class dofus.graphics.gapi.controls.ArtworkRotation extends ank.gapi.core.UIBasic
 	{
 		this._i = 2.02;
 	}
-	function setPosition(loc2)
+	function setPosition(var2)
 	{
-		if(this._nCurrentSex == loc2)
+		if(this._nCurrentSex == var2)
 		{
 			return undefined;
 		}
-		this._nCurrentSex = loc2;
-		var loc3 = loc2 == 0;
-		this._ariWoman.colorize(loc3);
-		this._ariMan.colorize(!loc3);
-		if(!loc3)
+		this._nCurrentSex = var2;
+		var var3 = var2 == 0;
+		this._ariWoman.colorize(var3);
+		this._ariMan.colorize(!var3);
+		if(!var3)
 		{
 			this._ariMan.swapDepths(this._ariWoman);
 		}
-		this._i = !loc3?5.13:2;
-		var loc4 = -30.4 * (!loc3?1:-1);
-		var loc5 = 28.7 * (!loc3?1:-1);
-		var loc6 = -45.6 * (!loc3?1:-1);
-		this._ariMan._x = loc5;
-		this._ariMan._y = loc6;
-		this._ariWoman._x = - loc5;
-		this._ariWoman._y = - loc6;
-		this._ariMan._xscale = 100 + loc4;
-		this._ariMan._yscale = 100 + loc4;
-		this._ariWoman._xscale = 100 - loc4;
-		this._ariWoman._yscale = 100 - loc4;
+		this._i = !var3?5.13:2;
+		var var4 = -30.4 * (!var3?1:-1);
+		var var5 = 28.7 * (!var3?1:-1);
+		var var6 = -45.6 * (!var3?1:-1);
+		this._ariMan._x = var5;
+		this._ariMan._y = var6;
+		this._ariWoman._x = - var5;
+		this._ariWoman._y = - var6;
+		this._ariMan._xscale = 100 + var4;
+		this._ariMan._yscale = 100 + var4;
+		this._ariWoman._xscale = 100 - var4;
+		this._ariWoman._yscale = 100 - var4;
 	}
-	function rotate(loc2)
+	function rotate(var2)
 	{
-		if(this._nCurrentSex == loc2)
+		if(this._nCurrentSex == var2)
 		{
 			return undefined;
 		}
-		this._nCurrentSex = loc2;
+		this._nCurrentSex = var2;
 		var piy = 0;
 		var px = 0;
 		var py = 0;
 		var t = 0;
 		var bSwaped = false;
-		var loc3 = loc2 == 0;
-		this._ariWoman.colorize(loc3);
-		this._ariMan.colorize(!loc3);
-		this._di = !loc3?2 + Math.PI:2;
+		var var3 = var2 == 0;
+		this._ariWoman.colorize(var3);
+		this._ariMan.colorize(!var3);
+		this._di = !var3?2 + Math.PI:2;
 		this.onEnterFrame = function()
 		{
 			if(Math.abs(this._i - this._di) > 0.01)

@@ -5,24 +5,24 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 		super();
 		this.api = _global.API;
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		this._bUsed = loc2;
-		if(loc2)
+		this._bUsed = var2;
+		if(var2)
 		{
-			this._oItem = loc4;
-			var loc5 = this.api.lang.getMapText(Number(loc4.map)).x;
-			var loc6 = this.api.lang.getMapText(Number(loc4.map)).y;
-			this._lblSubArea.text = this.api.kernel.MapsServersManager.getMapName(loc4.map) + " (" + loc5 + ", " + loc6 + ")";
-			loc4.sortLocalisation = this._lblSubArea.text;
-			this._lblItems.text = this.api.lang.getText("MOUNTPARKS_MAX_ITEMS",[loc4.items]);
-			this._lblMounts.text = this.api.lang.getText("MOUNTPARKS_CURRENT_MOUNTS",[loc4.mounts.length,loc4.size]);
-			loc4.sortMounts = loc4.mounts.length;
+			this._oItem = var4;
+			var var5 = this.api.lang.getMapText(Number(var4.map)).x;
+			var var6 = this.api.lang.getMapText(Number(var4.map)).y;
+			this._lblSubArea.text = this.api.kernel.MapsServersManager.getMapName(var4.map) + " (" + var5 + ", " + var6 + ")";
+			var4.sortLocalisation = this._lblSubArea.text;
+			this._lblItems.text = this.api.lang.getText("MOUNTPARKS_MAX_ITEMS",[var4.items]);
+			this._lblMounts.text = this.api.lang.getText("MOUNTPARKS_CURRENT_MOUNTS",[var4.mounts.length,var4.size]);
+			var4.sortMounts = var4.mounts.length;
 			this._btnTeleport._visible = true;
 			this._btnTeleport.onRollOver = function()
 			{
@@ -65,33 +65,33 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 		};
 		this._btnTeleport.addEventListener("click",this);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this._mcList._parent._parent.api;
-		if((var loc0 = loc2.target) === this._lblMounts)
+		var var3 = this._mcList._parent._parent.api;
+		if((var var0 = var2.target) === this._lblMounts)
 		{
-			var loc4 = "";
-			var loc5 = this._oItem.mounts;
-			var loc6 = 0;
-			while(loc6 < loc5.length)
+			var var4 = "";
+			var var5 = this._oItem.mounts;
+			var var6 = 0;
+			while(var6 < var5.length)
 			{
-				if(loc6 > 0)
+				if(var6 > 0)
 				{
-					loc4 = loc4 + "\n\n";
+					var4 = var4 + "\n\n";
 				}
-				var loc7 = loc5[loc6];
-				loc4 = loc4 + (loc3.lang.getText("MOUNT_OF",[loc7.ownerName]) + " : " + loc7.name + "\n(" + loc7.modelName + ")");
-				loc6 = loc6 + 1;
+				var var7 = var5[var6];
+				var4 = var4 + (var3.lang.getText("MOUNT_OF",[var7.ownerName]) + " : " + var7.name + "\n(" + var7.modelName + ")");
+				var6 = var6 + 1;
 			}
-			if(loc4 != "")
+			if(var4 != "")
 			{
-				loc3.ui.showTooltip(loc4,loc2.target,-30,{bXLimit:true,bYLimit:false});
+				var3.ui.showTooltip(var4,var2.target,-30,{bXLimit:true,bYLimit:false});
 			}
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target) === this._btnTeleport)
+		if((var var0 = var2.target) === this._btnTeleport)
 		{
 			if(!this._bUsed)
 			{
@@ -100,9 +100,9 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 			this.api.network.Guild.teleportToGuildFarm(this._oItem.map);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
-		var loc3 = this._mcList._parent._parent.api;
-		loc3.ui.hideTooltip();
+		var var3 = this._mcList._parent._parent.api;
+		var3.ui.hideTooltip();
 	}
 }

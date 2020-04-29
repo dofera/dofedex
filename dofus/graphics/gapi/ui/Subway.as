@@ -9,21 +9,21 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		this.addToQueue({object:this,method:function(loc2)
+		this.addToQueue({object:this,method:function(var2)
 		{
-			this._eaData = loc2;
+			this._eaData = var2;
 			if(this.initialized)
 			{
 				this.initData();
 			}
-		},params:[loc2]});
+		},params:[var2]});
 		return this.__get__data();
 	}
-	function __set__type(loc2)
+	function __set__type(var2)
 	{
-		this._nType = loc2;
+		this._nType = var2;
 		return this.__get__type();
 	}
 	function init()
@@ -32,16 +32,13 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 	}
 	function callClose()
 	{
-		if((var loc0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
+		switch(this._nType)
 		{
-			if(loc0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
-			{
+			case dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY:
+				this.api.network.Subway.leave();
+				break;
+			case dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM:
 				this.api.network.Subway.prismLeave();
-			}
-		}
-		else
-		{
-			this.api.network.Subway.leave();
 		}
 		return true;
 	}
@@ -53,9 +50,9 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 	}
 	function initTexts()
 	{
-		if((var loc0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
+		if((var var0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
 		{
-			if(loc0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
+			if(var0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
 			{
 				this._winBg.title = this.api.lang.getText("PRISM_LIST");
 				this._lblPrismNotice._visible = true;
@@ -74,9 +71,9 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		this._lblCost.text = this.api.lang.getText("COST");
 		this._lblDescription.text = this.api.lang.getText("CLICK_ON_WAYPOINT");
 		this._btnClose2.label = this.api.lang.getText("CLOSE");
-		if((loc0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
+		if((var0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
 		{
-			if(loc0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
+			if(var0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
 			{
 				this._lstSubway.dataProvider = this._eaData;
 			}
@@ -85,18 +82,18 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			for(var a in this._eaData)
 			{
-				var loc2 = new Object();
-				loc2._y = this._mcTabPlacer._y;
-				loc2._height = 20;
-				loc2.backgroundDown = "ButtonTabDown";
-				loc2.backgroundUp = "ButtonTabUp";
-				loc2.styleName = "BrownTabButton";
-				loc2.toggle = true;
-				loc2.selected = true;
-				loc2.enabled = true;
-				loc2.label = " " + this._eaData[a][0].category + " ";
-				var loc3 = (ank.gapi.controls.Button)this.attachMovie("Button","_btnTab" + a,this.getNextHighestDepth(),loc2);
-				loc3.addEventListener("click",this);
+				var var2 = new Object();
+				var2._y = this._mcTabPlacer._y;
+				var2._height = 20;
+				var2.backgroundDown = "ButtonTabDown";
+				var2.backgroundUp = "ButtonTabUp";
+				var2.styleName = "BrownTabButton";
+				var2.toggle = true;
+				var2.selected = true;
+				var2.enabled = true;
+				var2.label = " " + this._eaData[a][0].category + " ";
+				var var3 = (ank.gapi.controls.Button)this.attachMovie("Button","_btnTab" + a,this.getNextHighestDepth(),var2);
+				var3.addEventListener("click",this);
 			}
 			this.setCurrentTab(0);
 		}
@@ -133,19 +130,19 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		this._eaData[this._nCurrentCategory].sortOn("fieldToSort",Array.CASEINSENSITIVE);
 		this._lstSubway.dataProvider = this._eaData[this._nCurrentCategory];
 	}
-	function setCurrentTab(loc2)
+	function setCurrentTab(var2)
 	{
 		if(this._nType != dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
 		{
 			return undefined;
 		}
-		var loc3 = this["_btnTab" + this._nCurrentCategory];
-		var loc4 = this["_btnTab" + loc2];
-		loc3.selected = true;
-		loc3.enabled = true;
-		loc4.selected = false;
-		loc4.enabled = false;
-		this._nCurrentCategory = loc2;
+		var var3 = this["_btnTab" + this._nCurrentCategory];
+		var var4 = this["_btnTab" + var2];
+		var3.selected = true;
+		var3.enabled = true;
+		var4.selected = false;
+		var4.enabled = false;
+		this._nCurrentCategory = var2;
 		this.updateCurrentTabInformations();
 		this.setTabsPreferedSize();
 	}
@@ -155,46 +152,46 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			return undefined;
 		}
-		var loc2 = this._mcTabPlacer._x;
+		var var2 = this._mcTabPlacer._x;
 		for(var a in this._eaData)
 		{
-			var loc3 = (ank.gapi.controls.Button)this["_btnTab" + a];
-			loc3._x = loc2;
-			loc3.setPreferedSize();
-			loc2 = loc2 + loc3.width;
+			var var3 = (ank.gapi.controls.Button)this["_btnTab" + a];
+			var3._x = var2;
+			var3.setPreferedSize();
+			var2 = var2 + var3.width;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = loc2.target._name;
-		switch(loc3)
+		var var3 = var2.target._name;
+		switch(var3)
 		{
 			case "_btnClose":
 			case "_btnClose2":
 				this.callClose();
 				break;
 			default:
-				this.setCurrentTab(Number(loc3.substr(7)));
+				this.setCurrentTab(Number(var3.substr(7)));
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		var loc3 = loc2.row.item;
-		var loc4 = loc3.cost;
-		if(this.api.datacenter.Player.Kama < loc4)
+		var var3 = var2.row.item;
+		var var4 = var3.cost;
+		if(this.api.datacenter.Player.Kama < var4)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGH_RICH"),"ERROR_BOX");
 		}
-		else if((var loc0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
+		else if((var var0 = this._nType) !== dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
 		{
-			if(loc0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
+			if(var0 === dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM)
 			{
-				this.api.network.Subway.prismUse(loc3.mapID);
+				this.api.network.Subway.prismUse(var3.mapID);
 			}
 		}
 		else
 		{
-			this.api.network.Subway.use(loc3.mapID);
+			this.api.network.Subway.use(var3.mapID);
 		}
 	}
 }

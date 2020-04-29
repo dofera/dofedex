@@ -5,28 +5,28 @@ class dofus.graphics.gapi.ui.charactersmigration.CharactersMigrationItem extends
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function updatePlayerName(loc2)
+	function updatePlayerName(var2)
 	{
-		this._lblName.text = loc2;
+		this._lblName.text = var2;
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
+			this._oItem = var4;
 			this._ldrFace._visible = true;
 			this._mcInputNickname._visible = true;
 			this._lblName._visible = true;
 			this._lblLevel._visible = true;
-			this._lblLevel.text = loc4.level;
-			this._lblName.text = loc4.newPlayerName;
-			this.list = loc4.list;
-			this._ldrFace.contentPath = dofus.Constants.GUILDS_MINI_PATH + loc4.gfxID + ".swf";
+			this._lblLevel.text = var4.level;
+			this._lblName.text = var4.newPlayerName;
+			this.list = var4.list;
+			this._ldrFace.contentPath = dofus.Constants.GUILDS_MINI_PATH + var4.gfxID + ".swf";
 			this._oItem.ref = this;
 		}
 		else
@@ -56,7 +56,7 @@ class dofus.graphics.gapi.ui.charactersmigration.CharactersMigrationItem extends
 	function initTexts()
 	{
 	}
-	function click(loc2)
+	function click(var2)
 	{
 	}
 }

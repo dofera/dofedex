@@ -14,10 +14,10 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__opened(loc2)
+	function __set__opened(var2)
 	{
-		this._bOpened = loc2;
-		this.layout_mc._visible = loc2;
+		this._bOpened = var2;
+		this.layout_mc._visible = var2;
 		return this.__get__opened();
 	}
 	function __get__opened()
@@ -28,48 +28,48 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 	{
 		this.generate();
 	}
-	function nextTurn(loc2, loc3)
+	function nextTurn(var2, var3)
 	{
-		if(loc3 = undefined)
+		if(var3 = undefined)
 		{
-			loc3 = false;
+			var3 = false;
 		}
-		var loc4 = this.layout_mc.items_mc["item" + loc2];
-		if(loc4 == undefined)
+		var var4 = this.layout_mc.items_mc["item" + var2];
+		if(var4 == undefined)
 		{
 			return undefined;
 		}
 		this.layout_mc.pointer_mc._visible = true;
 		this.stopChrono();
-		this._vcChrono = loc4.chrono;
-		if(loc3)
+		this._vcChrono = var4.chrono;
+		if(var3)
 		{
-			this.layout_mc.pointer_mc.move(loc4._x,0);
-			this.layout_mc.pointer_mc._xscale = loc4._xscale;
-			this.layout_mc.pointer_mc._yscale = loc4._yscale;
+			this.layout_mc.pointer_mc.move(var4._x,0);
+			this.layout_mc.pointer_mc._xscale = var4._xscale;
+			this.layout_mc.pointer_mc._yscale = var4._yscale;
 		}
 		else
 		{
-			this.layout_mc.pointer_mc.moveTween(loc4._x,loc4._xscale);
+			this.layout_mc.pointer_mc.moveTween(var4._x,var4._xscale);
 		}
-		this.layout_mc.pointer_mc._y = !loc4._oData.isSummoned?0:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_HEIGHT_DELTA;
-		this._currentDisplayIndex = loc2;
+		this.layout_mc.pointer_mc._y = !var4._oData.isSummoned?0:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_HEIGHT_DELTA;
+		this._currentDisplayIndex = var2;
 	}
-	function hideItem(loc2)
+	function hideItem(var2)
 	{
-		var loc3 = this.layout_mc.items_mc["item" + loc2];
-		var loc4 = new Color(loc3.sprite);
-		loc4.setRGB(dofus.graphics.gapi.controls.Timeline.HIDE_COLOR);
+		var var3 = this.layout_mc.items_mc["item" + var2];
+		var var4 = new Color(var3.sprite);
+		var4.setRGB(dofus.graphics.gapi.controls.Timeline.HIDE_COLOR);
 	}
-	function showItem(loc2)
+	function showItem(var2)
 	{
-		var loc3 = this.layout_mc.items_mc["item" + loc2];
-		var loc4 = new Color(loc3.sprite);
-		loc4.setTransform({ra:100,ga:100,ba:100,rb:0,gb:0,bb:0});
+		var var3 = this.layout_mc.items_mc["item" + var2];
+		var var4 = new Color(var3.sprite);
+		var4.setTransform({ra:100,ga:100,ba:100,rb:0,gb:0,bb:0});
 	}
-	function startChrono(loc2)
+	function startChrono(var2)
 	{
-		this._vcChrono.startTimer(loc2);
+		this._vcChrono.startTimer(var2);
 	}
 	function stopChrono()
 	{
@@ -77,22 +77,22 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 	}
 	function updateCharacters()
 	{
-		var loc2 = this.api.datacenter;
-		var loc3 = new Array();
-		var loc4 = 0;
-		while(loc4 < this._aTs.length)
+		var var2 = this.api.datacenter;
+		var var3 = new Array();
+		var var4 = 0;
+		while(var4 < this._aTs.length)
 		{
-			loc3.push(loc2.Sprites.getItemAt(this._aTs[loc4]));
-			loc4 = loc4 + 1;
+			var3.push(var2.Sprites.getItemAt(this._aTs[var4]));
+			var4 = var4 + 1;
 		}
-		var loc5 = loc3.length;
-		loc4 = 0;
-		while(loc4 < loc5)
+		var var5 = var3.length;
+		var4 = 0;
+		while(var4 < var5)
 		{
-			var loc7 = loc3[loc4];
-			var loc6 = loc7.id;
-			this.layout_mc.items_mc["item" + loc6].data = loc7;
-			loc4 = loc4 + 1;
+			var var7 = var3[var4];
+			var var6 = var7.id;
+			this.layout_mc.items_mc["item" + var6].data = var7;
+			var4 = var4 + 1;
 		}
 	}
 	function init()
@@ -103,94 +103,94 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 	{
 		this.createEmptyMovieClip("layout_mc",10);
 		this.layout_mc.createEmptyMovieClip("SummonedLayout",9);
-		var loc2 = this.layout_mc.attachMovie("TimelinePointer","pointer_mc",10);
-		loc2._visible = false;
+		var var2 = this.layout_mc.attachMovie("TimelinePointer","pointer_mc",10);
+		var2._visible = false;
 		this.generate();
 	}
-	function generate(loc2)
+	function generate(var2)
 	{
-		var loc3 = this.api.datacenter;
-		if(loc2 == undefined)
+		var var3 = this.api.datacenter;
+		if(var2 == undefined)
 		{
-			loc2 = loc3.Game.turnSequence;
+			var2 = var3.Game.turnSequence;
 		}
-		this._aTs = loc2;
-		var loc4 = new Array();
-		var loc5 = 0;
-		while(loc5 < loc2.length)
+		this._aTs = var2;
+		var var4 = new Array();
+		var var5 = 0;
+		while(var5 < var2.length)
 		{
-			loc4.push(loc3.Sprites.getItemAt(loc2[loc5]));
-			loc5 = loc5 + 1;
+			var4.push(var3.Sprites.getItemAt(var2[var5]));
+			var5 = var5 + 1;
 		}
-		var loc6 = loc4.length;
+		var var6 = var4.length;
 		if(this.layout_mc.items_mc == undefined)
 		{
 			this.layout_mc.createEmptyMovieClip("items_mc",20);
 		}
-		var loc7 = 20;
-		loc5 = 0;
-		while(loc5 < loc6)
+		var var7 = 20;
+		var5 = 0;
+		while(var5 < var6)
 		{
-			var loc8 = loc4[loc5];
-			loc7 = loc7 + (!loc8.isSummoned?dofus.graphics.gapi.controls.Timeline.ITEM_WIDTH:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_WIDTH);
-			loc5 = loc5 + 1;
+			var var8 = var4[var5];
+			var7 = var7 + (!var8.isSummoned?dofus.graphics.gapi.controls.Timeline.ITEM_WIDTH:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_WIDTH);
+			var5 = var5 + 1;
 		}
 		for(var k in this._previousCharacList)
 		{
-			var loc9 = this._previousCharacList[k].id;
-			var loc10 = false;
-			for(var kk in loc4)
+			var var9 = this._previousCharacList[k].id;
+			var var10 = false;
+			for(var kk in var4)
 			{
-				var loc11 = loc4[kk].id;
-				if(loc9 == loc11)
+				var var11 = var4[kk].id;
+				if(var9 == var11)
 				{
-					loc10 = true;
+					var10 = true;
 				}
 			}
-			if(!loc10)
+			if(!var10)
 			{
-				this.layout_mc.items_mc["item" + loc9].removeMovieClip();
+				this.layout_mc.items_mc["item" + var9].removeMovieClip();
 			}
 		}
-		var loc13 = - loc7;
-		loc5 = 0;
-		while(loc5 < loc6)
+		var var13 = - var7;
+		var5 = 0;
+		while(var5 < var6)
 		{
-			var loc16 = loc4[loc5];
-			var loc12 = loc16.id;
-			var loc17 = this.layout_mc.items_mc["item" + loc12];
-			if(loc17 == undefined)
+			var var16 = var4[var5];
+			var var12 = var16.id;
+			var var17 = this.layout_mc.items_mc["item" + var12];
+			if(var17 == undefined)
 			{
-				loc17 = this.layout_mc.items_mc.attachMovie("TimelineItem","item" + loc12,this._depth++,{index:loc5,data:loc16,api:this.api,gapi:this.gapi});
+				var17 = this.layout_mc.items_mc.attachMovie("TimelineItem","item" + var12,this._depth++,{index:var5,data:var16,api:this.api,gapi:this.gapi});
 			}
-			if(loc16.isSummoned)
+			if(var16.isSummoned)
 			{
-				loc17._xscale = 80;
-				loc17._yscale = 80;
+				var17._xscale = 80;
+				var17._yscale = 80;
 			}
-			loc17._x = loc13;
-			loc17._y = !loc16.isSummoned?0:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_HEIGHT_DELTA;
-			if(!loc16.isSummoned)
+			var17._x = var13;
+			var17._y = !var16.isSummoned?0:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_HEIGHT_DELTA;
+			if(!var16.isSummoned)
 			{
-				var loc14 = loc17;
-				this.layout_mc.SummonedLayout["TISB" + loc17.index].removeMovieClip();
+				var var14 = var17;
+				this.layout_mc.SummonedLayout["TISB" + var17.index].removeMovieClip();
 			}
 			else
 			{
-				var loc18 = this.layout_mc.SummonedLayout["TISB" + loc14.index];
-				if(loc18 == undefined)
+				var var18 = this.layout_mc.SummonedLayout["TISB" + var14.index];
+				if(var18 == undefined)
 				{
-					loc18 = this.layout_mc.SummonedLayout.attachMovie("TimelineItemSummonedBg","TISB" + loc14.index,loc14.index);
+					var18 = this.layout_mc.SummonedLayout.attachMovie("TimelineItemSummonedBg","TISB" + var14.index,var14.index);
 				}
-				loc18._x = loc14._x;
-				loc18._mcBody._width = loc17._x - loc14._x + loc17._width + 1;
-				loc18._mcEnd._x = loc18._mcBody._width;
+				var18._x = var14._x;
+				var18._mcBody._width = var17._x - var14._x + var17._width + 1;
+				var18._mcEnd._x = var18._mcBody._width;
 			}
-			loc13 = loc13 + (!loc16.isSummoned?dofus.graphics.gapi.controls.Timeline.ITEM_WIDTH:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_WIDTH);
-			var loc15 = loc17;
-			loc5 = loc5 + 1;
+			var13 = var13 + (!var16.isSummoned?dofus.graphics.gapi.controls.Timeline.ITEM_WIDTH:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_WIDTH);
+			var var15 = var17;
+			var5 = var5 + 1;
 		}
 		this.nextTurn(this._currentDisplayIndex,true);
-		this._previousCharacList = loc4;
+		this._previousCharacList = var4;
 	}
 }

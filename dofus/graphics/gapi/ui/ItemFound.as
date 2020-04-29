@@ -6,24 +6,24 @@ class dofus.graphics.gapi.ui.ItemFound extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__itemId(loc2)
+	function __set__itemId(var2)
 	{
-		this._nItemId = loc2;
+		this._nItemId = var2;
 		return this.__get__itemId();
 	}
-	function __set__qty(loc2)
+	function __set__qty(var2)
 	{
-		this._nQty = loc2;
+		this._nQty = var2;
 		return this.__get__qty();
 	}
-	function __set__ressourceId(loc2)
+	function __set__ressourceId(var2)
 	{
-		this._nRessourceId = loc2;
+		this._nRessourceId = var2;
 		return this.__get__ressourceId();
 	}
-	function __set__timer(loc2)
+	function __set__timer(var2)
 	{
-		this._nTimer = loc2;
+		this._nTimer = var2;
 		return this.__get__timer();
 	}
 	function init()
@@ -40,10 +40,10 @@ class dofus.graphics.gapi.ui.ItemFound extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function initTexts()
 	{
-		var loc2 = new dofus.datacenter.(0,this._nItemId,this._nQty);
-		var loc3 = new dofus.datacenter.(0,this._nRessourceId,1);
-		this._ldrItem.contentPath = loc2.iconFile;
-		this._txtDescription.text = this.api.lang.getText("ITEM_FOUND",[this._nQty,loc2.name,loc3.name]);
+		var var2 = new dofus.datacenter.(0,this._nItemId,this._nQty);
+		var var3 = new dofus.datacenter.(0,this._nRessourceId,1);
+		this._ldrItem.contentPath = var2.iconFile;
+		this._txtDescription.text = this.api.lang.getText("ITEM_FOUND",[this._nQty,var2.name,var3.name]);
 	}
 	function hide()
 	{

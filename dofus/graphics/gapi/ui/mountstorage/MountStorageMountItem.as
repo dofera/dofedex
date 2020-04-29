@@ -4,12 +4,12 @@ class dofus.graphics.gapi.ui.mountstorage.MountStorageMountItem extends ank.gapi
 	{
 		super();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._lbl.text = loc4.name;
-			this._oItem = (dofus.datacenter.Mount)loc4;
+			this._lbl.text = var4.name;
+			this._oItem = (dofus.datacenter.Mount)var4;
 			if(this._oItem.newBorn)
 			{
 				this._ldrNewMount.contentPath = "OeufCasse";
@@ -18,8 +18,8 @@ class dofus.graphics.gapi.ui.mountstorage.MountStorageMountItem extends ank.gapi
 			{
 				this._ldrNewMount.contentPath = "";
 			}
-			this._ldrIcon.contentPath = dofus.Constants.GUILDS_MINI_PATH + loc4.gfxID + ".swf";
-			this._mcSexMan._visible = !loc4.sex;
+			this._ldrIcon.contentPath = dofus.Constants.GUILDS_MINI_PATH + var4.gfxID + ".swf";
+			this._mcSexMan._visible = !var4.sex;
 			this._mcSexWoman._visible = !this._mcSexMan._visible;
 		}
 		else if(this._lbl.text != undefined)
@@ -53,27 +53,27 @@ class dofus.graphics.gapi.ui.mountstorage.MountStorageMountItem extends ank.gapi
 	{
 		this._lbl.setSize(this.__width,this.__height);
 	}
-	function applyRideColor(loc2, loc3)
+	function applyRideColor(var2, var3)
 	{
-		var loc4 = this._oItem["color" + loc3];
-		if(loc4 == -1 || loc4 == undefined)
+		var var4 = this._oItem["color" + var3];
+		if(var4 == -1 || var4 == undefined)
 		{
 			return undefined;
 		}
-		var loc5 = (loc4 & 16711680) >> 16;
-		var loc6 = (loc4 & 65280) >> 8;
-		var loc7 = loc4 & 255;
-		var loc8 = new Color(loc2);
-		var loc9 = new Object();
-		loc9 = {ra:0,ga:0,ba:0,rb:loc5,gb:loc6,bb:loc7};
-		loc8.setTransform(loc9);
+		var var5 = (var4 & 16711680) >> 16;
+		var var6 = (var4 & 65280) >> 8;
+		var var7 = var4 & 255;
+		var var8 = new Color(var2);
+		var var9 = new Object();
+		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
+		var8.setTransform(var9);
 	}
-	function complete(loc2)
+	function complete(var2)
 	{
 		var ref = this;
-		this._ldrIcon.content.applyRideColor = function(loc2, loc3)
+		this._ldrIcon.content.applyRideColor = function(var2, var3)
 		{
-			ref.applyRideColor(loc2,loc3);
+			ref.applyRideColor(var2,var3);
 		};
 	}
 }

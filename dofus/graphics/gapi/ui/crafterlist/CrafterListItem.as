@@ -4,33 +4,33 @@ class dofus.graphics.gapi.ui.crafterlist.CrafterListItem extends ank.gapi.core.U
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			loc4.sortName = loc4.name;
-			loc4.sortLevel = loc4.job.level;
-			loc4.sortIsNotFree = loc4.job.options.isNotFree;
-			loc4.sortMinSlots = Number(loc4.job.options.minSlots);
-			loc4.sortSubarea = loc4.subarea != undefined?loc4.subarea:"-";
-			var loc5 = loc4.coord;
-			loc4.sortCoord = loc5 == undefined?"-":loc5.x + "," + loc5.y;
-			loc4.sortInWorkshop = loc4.inWorkshop;
-			this._lblName.text = loc4.sortName;
-			this._lblLevel.text = loc4.sortLevel.toString();
-			this._lblPlace.text = loc4.subarea != undefined?loc4.subarea:" ";
-			var loc6 = this._mcList._parent._parent.api;
-			this._lblWorkshop.text = !loc4.sortInWorkshop?loc6.lang.getText("NO"):loc6.lang.getText("YES");
-			this._lblCoord.text = loc4.sortCoord;
-			this._lblNotFree.text = !loc4.sortIsNotFree?loc6.lang.getText("NO"):loc6.lang.getText("YES");
-			this._lblMinSlot.text = loc4.sortMinSlots.toString();
-			this._ldrGuild.contentPath = loc4.gfxBreedFile;
+			this._oItem = var4;
+			var4.sortName = var4.name;
+			var4.sortLevel = var4.job.level;
+			var4.sortIsNotFree = var4.job.options.isNotFree;
+			var4.sortMinSlots = Number(var4.job.options.minSlots);
+			var4.sortSubarea = var4.subarea != undefined?var4.subarea:"-";
+			var var5 = var4.coord;
+			var4.sortCoord = var5 == undefined?"-":var5.x + "," + var5.y;
+			var4.sortInWorkshop = var4.inWorkshop;
+			this._lblName.text = var4.sortName;
+			this._lblLevel.text = var4.sortLevel.toString();
+			this._lblPlace.text = var4.subarea != undefined?var4.subarea:" ";
+			var var6 = this._mcList._parent._parent.api;
+			this._lblWorkshop.text = !var4.sortInWorkshop?var6.lang.getText("NO"):var6.lang.getText("YES");
+			this._lblCoord.text = var4.sortCoord;
+			this._lblNotFree.text = !var4.sortIsNotFree?var6.lang.getText("NO"):var6.lang.getText("YES");
+			this._lblMinSlot.text = var4.sortMinSlots.toString();
+			this._ldrGuild.contentPath = var4.gfxBreedFile;
 		}
 		else if(this._lblName.text != undefined)
 		{
@@ -56,9 +56,9 @@ class dofus.graphics.gapi.ui.crafterlist.CrafterListItem extends ank.gapi.core.U
 	{
 		this._btnProfil.addEventListener("click",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target._name) === "_btnProfil")
+		if((var var0 = var2.target._name) === "_btnProfil")
 		{
 			this._mcList.gapi.loadUIComponent("CrafterCard","CrafterCard",{crafter:this._oItem});
 		}

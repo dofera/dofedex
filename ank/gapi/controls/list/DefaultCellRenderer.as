@@ -4,14 +4,14 @@ class ank.gapi.controls.list.DefaultCellRenderer extends ank.gapi.core.UIBasicCo
 	{
 		super();
 	}
-	function setState(loc2)
+	function setState(var2)
 	{
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._lblText.text = loc3;
+			this._lblText.text = var3;
 		}
 		else if(this._lblText.text != undefined)
 		{
@@ -33,7 +33,7 @@ class ank.gapi.controls.list.DefaultCellRenderer extends ank.gapi.core.UIBasicCo
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		this._lblText.styleName = loc2.defaultstyle;
+		var var2 = this.getStyle();
+		this._lblText.styleName = var2.defaultstyle;
 	}
 }

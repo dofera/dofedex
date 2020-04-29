@@ -6,22 +6,22 @@ class dofus.graphics.gapi.ui.ChallengeMenu extends dofus.graphics.gapi.core.Dofu
 	{
 		super();
 	}
-	function __set__labelReady(loc2)
+	function __set__labelReady(var2)
 	{
-		this._sLabelReady = loc2;
+		this._sLabelReady = var2;
 		return this.__get__labelReady();
 	}
-	function __set__labelCancel(loc2)
+	function __set__labelCancel(var2)
 	{
-		this._sLabelCancel = loc2;
+		this._sLabelCancel = var2;
 		return this.__get__labelCancel();
 	}
-	function __set__cancelButton(loc2)
+	function __set__cancelButton(var2)
 	{
-		this._bCancelButton = loc2;
-		this._btnCancel._visible = loc2;
-		this._lblCancel._visible = loc2;
-		if(!loc2)
+		this._bCancelButton = var2;
+		this._btnCancel._visible = var2;
+		this._lblCancel._visible = var2;
+		if(!var2)
 		{
 			this._mcBackground._x = this._mcBackground._x + dofus.graphics.gapi.ui.ChallengeMenu.X_OFFSET;
 			this._btnReady._x = this._btnReady._x + dofus.graphics.gapi.ui.ChallengeMenu.X_OFFSET;
@@ -30,10 +30,10 @@ class dofus.graphics.gapi.ui.ChallengeMenu extends dofus.graphics.gapi.core.Dofu
 		}
 		return this.__get__cancelButton();
 	}
-	function __set__ready(loc2)
+	function __set__ready(var2)
 	{
-		this._bReady = loc2;
-		this._mcTick._visible = loc2;
+		this._bReady = var2;
+		this._mcTick._visible = var2;
 		return this.__get__ready();
 	}
 	function init()

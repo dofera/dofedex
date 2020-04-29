@@ -14,18 +14,18 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 		this._mcPrismOpen._alpha = 0;
 		this._mcPrismInteractivity._alpha = 0;
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			this._lblVillage.text = this.api.lang.getMapAreaText(loc4.id).n;
-			if(loc4.alignment == -1)
+			this._oItem = var4;
+			this._lblVillage.text = this.api.lang.getMapAreaText(var4.id).n;
+			if(var4.alignment == -1)
 			{
 				this._ldrAlignment._alpha = 0;
 				this._mcNotAligned._alpha = 100;
@@ -34,9 +34,9 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 			{
 				this._mcNotAligned._alpha = 0;
 				this._ldrAlignment._alpha = 100;
-				this._ldrAlignment.contentPath = dofus.Constants.ALIGNMENTS_MINI_PATH + loc4.alignment + ".swf";
+				this._ldrAlignment.contentPath = dofus.Constants.ALIGNMENTS_MINI_PATH + var4.alignment + ".swf";
 			}
-			if(loc4.door)
+			if(var4.door)
 			{
 				this._mcDoorClose._alpha = 0;
 				this._mcDoorOpen._alpha = 100;
@@ -46,7 +46,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 				this._mcDoorClose._alpha = 100;
 				this._mcDoorOpen._alpha = 0;
 			}
-			if(loc4.prism)
+			if(var4.prism)
 			{
 				this._mcPrismClose._alpha = 0;
 				this._mcPrismOpen._alpha = 100;
@@ -56,7 +56,6 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 				this._mcPrismClose._alpha = 100;
 				this._mcPrismOpen._alpha = 0;
 			}
-			var ref = this;
 			this._mcAlignmentInteractivity.onRollOver = function()
 			{
 				ref.over({target:this});
@@ -97,9 +96,9 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 			this._mcPrismInteractivity._alpha = 0;
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._mcAlignmentInteractivity:
 				this.api.ui.showTooltip(this.api.lang.getText("ALIGNMENT") + ": " + (this._oItem.alignment <= 0?this._oItem.alignment != -1?this.api.lang.getText("NEUTRAL_WORD"):this.api.lang.getText("NON_ALIGNED"):new dofus.datacenter.(this._oItem.alignment,1).name),_root._xmouse,_root._ymouse - 20);
@@ -108,7 +107,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 				this.api.ui.showTooltip(!this._oItem.door?this.api.lang.getText("CONQUEST_VILLAGE_DOOR_CLOSE"):this.api.lang.getText("CONQUEST_VILLAGE_DOOR_OPEN"),_root._xmouse,_root._ymouse - 20);
 				break;
 			default:
-				if(loc0 !== this._mcPrismInteractivity)
+				if(var0 !== this._mcPrismInteractivity)
 				{
 					break;
 				}
@@ -116,7 +115,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerVillag
 				break;
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

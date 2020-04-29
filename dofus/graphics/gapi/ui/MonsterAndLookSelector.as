@@ -6,9 +6,9 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__monster(loc2)
+	function __set__monster(var2)
 	{
-		this._bMonster = loc2;
+		this._bMonster = var2;
 		return this.__get__monster();
 	}
 	function init()
@@ -64,8 +64,8 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		this._btnSearch.addEventListener("click",this);
 		var ref = this;
-		var loc2 = new Object();
-		loc2.onSetFocus = function(loc2, loc3)
+		var var2 = new Object();
+		var2.onSetFocus = function(var2, var3)
 		{
 			if(eval(Selection.getFocus())._parent == ref._tiSearch)
 			{
@@ -79,153 +79,155 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 				ref._tiSearch.text = "Recherche...";
 			}
 		};
-		Selection.addListener(loc2);
+		Selection.addListener(var2);
 	}
-	function initAnimList(loc2)
+	function initAnimList(var2)
 	{
-		var loc3 = new ank.utils.();
-		var loc4 = 0;
-		while(loc4 < dofus.graphics.gapi.ui.MonsterAndLookSelector.ANIM_LIST.length)
+		var var3 = new ank.utils.();
+		var var4 = 0;
+		while(var4 < dofus.graphics.gapi.ui.MonsterAndLookSelector.ANIM_LIST.length)
 		{
-			loc3.push({label:dofus.graphics.gapi.ui.MonsterAndLookSelector.ANIM_LIST[loc4]});
-			loc4 = loc4 + 1;
+			var3.push({label:dofus.graphics.gapi.ui.MonsterAndLookSelector.ANIM_LIST[var4]});
+			var4 = var4 + 1;
 		}
-		this._cbAnim.dataProvider = loc3;
+		this._cbAnim.dataProvider = var3;
 	}
-	function initData(loc2)
+	function initData(var2)
 	{
 		this._cciSprite.deleteButton = false;
-		this._eaTypes = loc2;
-		loc2.sortOn("label");
-		this._cbType.dataProvider = loc2;
+		this._eaTypes = var2;
+		var2.sortOn("label");
+		this._cbType.dataProvider = var2;
 	}
 	function loadLooks()
 	{
-		var loc2 = new XML();
-		loc2.ignoreWhite = true;
-		loc2.onLoad = function()
+		var ui = this;
+		var var2 = new XML();
+		var2.ignoreWhite = true;
+		var2.onLoad = function()
 		{
-			var loc2 = dofus.Constants.ARTWORKS_BIG_PATH;
-			var loc3 = new ank.utils.();
-			var loc4 = new ank.utils.();
-			var loc5 = this.firstChild.firstChild;
-			while(loc5 != undefined)
+			var var2 = dofus.Constants.ARTWORKS_BIG_PATH;
+			var var3 = new ank.utils.();
+			var var4 = new ank.utils.();
+			var var5 = this.firstChild.firstChild;
+			while(var5 != undefined)
 			{
-				var loc6 = loc5.attributes.name;
-				var loc7 = new ank.utils.();
-				var loc8 = loc5.firstChild;
-				while(loc8 != undefined)
+				var var6 = var5.attributes.name;
+				var var7 = new ank.utils.();
+				var var8 = var5.firstChild;
+				while(var8 != undefined)
 				{
-					var loc9 = loc8.attributes.id;
-					var loc10 = loc8.attributes.name;
-					var loc11 = {iconFile:loc2 + loc9 + ".swf",name:loc10,id:loc9,gfxId:loc9};
-					loc7.push(loc11);
-					loc4.push(loc11);
-					loc8 = loc8.nextSibling;
+					var var9 = var8.attributes.id;
+					var var10 = var8.attributes.name;
+					var var11 = {iconFile:var2 + var9 + ".swf",name:var10,id:var9,gfxId:var9};
+					var7.push(var11);
+					var4.push(var11);
+					var8 = var8.nextSibling;
 				}
-				loc3.push({label:loc6,data:loc7});
-				loc5 = loc5.nextSibling;
+				var3.push({label:var6,data:var7});
+				var5 = var5.nextSibling;
 			}
-			loc3.push({label:"-- ALL --",data:loc4});
-			ui.initData(loc3);
+			var3.push({label:"-- ALL --",data:var4});
+			ui.initData(var3);
 		};
-		loc2.load(dofus.Constants.XML_SPRITE_LIST);
+		var2.load(dofus.Constants.XML_SPRITE_LIST);
 	}
-	function loadMonsters(loc2)
+	function loadMonsters(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = "";
+			var2 = "";
 		}
-		var loc3 = this.api.lang.getMonsters();
-		var loc4 = dofus.Constants.ARTWORKS_BIG_PATH;
-		var loc5 = new ank.utils.();
-		var loc6 = new ank.utils.();
-		var loc7 = new Object();
-		for(var a in loc3)
+		var var3 = this.api.lang.getMonsters();
+		var var4 = dofus.Constants.ARTWORKS_BIG_PATH;
+		var var5 = new ank.utils.();
+		var var6 = new ank.utils.();
+		var var7 = new Object();
+		for(var a in var3)
 		{
-			var loc8 = loc3[a];
-			var loc9 = loc8.b;
-			var loc10 = loc7[loc9];
-			if(loc10 == undefined)
+			var var8 = var3[a];
+			var var9 = var8.b;
+			var var10 = var7[var9];
+			if(var10 == undefined)
 			{
-				loc10 = {label:this.api.lang.getMonstersRaceText(loc9).n,data:new ank.utils.()};
-				loc7[loc9] = loc10;
-				loc5.push(loc10);
+				var10 = {label:this.api.lang.getMonstersRaceText(var9).n,data:new ank.utils.()};
+				var7[var9] = var10;
+				var5.push(var10);
 			}
-			var loc11 = a;
-			var loc12 = loc8.n;
-			var loc13 = loc8.g;
-			var loc14 = {iconFile:loc4 + loc13 + ".swf",name:loc12,id:loc11,gfxId:loc13};
-			loc6.push(loc14);
-			loc10.data.push(loc14);
+			var var11 = a;
+			var var12 = var8.n;
+			var var13 = var8.g;
+			var var14 = {iconFile:var4 + var13 + ".swf",name:var12,id:var11,gfxId:var13};
+			var6.push(var14);
+			var10.data.push(var14);
 		}
-		loc5.push({label:"-- ALL --",data:loc6});
-		this.initData(loc5);
+		var5.push({label:"-- ALL --",data:var6});
+		this.initData(var5);
 	}
-	function select(loc2)
+	function select(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(loc3 != undefined)
+		var var3 = var2.target.contentData;
+		if(var3 != undefined)
 		{
 			if(this._bMonster)
 			{
-				this.dispatchEvent({type:"select",ui:"MonsterSelector",monsterId:loc3.id});
+				this.dispatchEvent({type:"select",ui:"MonsterSelector",monsterId:var3.id});
 			}
 			else
 			{
-				this.dispatchEvent({type:"select",ui:"LookSelector",lookId:loc3.id});
+				this.dispatchEvent({type:"select",ui:"LookSelector",lookId:var3.id});
 			}
 			this.callClose();
 		}
 	}
-	function filterResult(loc2)
+	function filterResult(var2)
 	{
-		var loc3 = this._cbType.selectedItem.data;
-		var loc4 = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var3 = this._cbType.selectedItem.data;
+		var var4 = new ank.utils.();
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = loc3[loc5].name;
-			if(!(loc2.length && (loc2 != "Recherche..." && (loc2.length && loc6.toUpperCase().indexOf(loc2.toUpperCase()) == -1))))
+			var var6 = var3[var5].name;
+			if(!(var2.length && (var2 != "Recherche..." && (var2.length && var6.toUpperCase().indexOf(var2.toUpperCase()) == -1))))
 			{
-				loc4.push(loc3[loc5]);
+				var4.push(var3[var5]);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		this._cg.dataProvider = loc4;
+		this._cg.dataProvider = var4;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		loop0:
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnCancel":
 				this.dispatchEvent({type:"cancel"});
 				this.callClose();
-			case "_btnSelect":
-				this.select({target:this._cg.selectedItem});
 				break;
 			default:
-				if(loc0 !== "_btnSearch")
+				switch(null)
 				{
-					break;
+					case "_btnSelect":
+						break loop0;
+					case "_btnSearch":
+						this._cbType.selectedIndex = 0;
+						this.filterResult(this._tiSearch.text);
 				}
-				this._cbType.selectedIndex = 0;
-				this.filterResult(this._tiSearch.text);
-				break;
 		}
+		this.select({target:this._cg.selectedItem});
 	}
-	function dblClickItem(loc2)
+	function dblClickItem(var2)
 	{
-		this.select(loc2);
+		this.select(var2);
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(loc3 != undefined)
+		var var3 = var2.target.contentData;
+		if(var3 != undefined)
 		{
-			this._cciSprite.data = {name:loc3.name,gfxFile:dofus.Constants.CLIPS_PERSOS_PATH + loc3.gfxId + ".swf",title:loc3.id};
+			this._cciSprite.data = {name:var3.name,gfxFile:dofus.Constants.CLIPS_PERSOS_PATH + var3.gfxId + ".swf",title:var3.id};
 			this._cciSprite.enabled = true;
 		}
 		else
@@ -234,33 +236,33 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 			this._cciSprite.enabled = false;
 		}
 	}
-	function overItem(loc2)
+	function overItem(var2)
 	{
-		if(loc2.target.contentData != undefined)
+		if(var2.target.contentData != undefined)
 		{
-			this.gapi.showTooltip(loc2.target.contentData.name + " (" + loc2.target.contentData.id + ", GFX: " + loc2.target.contentData.gfxId + ")",loc2.target,-20);
+			this.gapi.showTooltip(var2.target.contentData.name + " (" + var2.target.contentData.id + ", GFX: " + var2.target.contentData.gfxId + ")",var2.target,-20);
 		}
 	}
-	function outItem(loc2)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._cbType:
-				var loc3 = this._cbType.selectedItem.data;
-				this._cg.dataProvider = loc3;
-				this._lblNumber.text = loc3.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText(!this._bMonster?"LOOK":"MONSTER"),"m",loc3.length < 2);
+				var var3 = this._cbType.selectedItem.data;
+				this._cg.dataProvider = var3;
+				this._lblNumber.text = var3.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText(!this._bMonster?"LOOK":"MONSTER"),"m",var3.length < 2);
 				break;
 			case this._cbAnim:
 				this._cciSprite.setAnim(this._cbAnim.selectedItem.label,true);
 		}
 	}
-	function onShortcut(loc2)
+	function onShortcut(var2)
 	{
-		if(loc2 == "ACCEPT_CURRENT_DIALOG" && this._tiSearch.focused)
+		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._tiSearch.focused)
 		{
 			this.click({target:this._btnSearch});
 			return false;

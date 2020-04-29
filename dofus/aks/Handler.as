@@ -8,10 +8,10 @@ class dofus.aks.Handler extends dofus.utils.ApiElement
 	{
 		return this._oAKS;
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
-		super.initialize(loc4);
-		this._oAKS = loc3;
-		this._oAPI = loc4;
+		super.initialize(var4);
+		this._oAKS = var3;
+		this._oAPI = var4;
 	}
 }

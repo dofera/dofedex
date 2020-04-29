@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.SpouseViewer extends dofus.graphics.gapi.core
 	{
 		super();
 	}
-	function __set__spouse(loc2)
+	function __set__spouse(var2)
 	{
-		this._oSpouse = loc2;
+		this._oSpouse = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -76,9 +76,9 @@ class dofus.graphics.gapi.controls.SpouseViewer extends dofus.graphics.gapi.core
 			}
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnJoin:
 				if(!this.api.datacenter.Game.isFight)

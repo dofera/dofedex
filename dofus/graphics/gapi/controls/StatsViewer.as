@@ -26,26 +26,26 @@ class dofus.graphics.gapi.controls.StatsViewer extends dofus.graphics.gapi.core.
 	}
 	function initData()
 	{
-		var loc2 = this.api.datacenter.Player.FullStats;
-		var loc3 = new ank.utils.();
-		for(var k in loc2)
+		var var2 = this.api.datacenter.Player.FullStats;
+		var var3 = new ank.utils.();
+		for(var k in var2)
 		{
-			loc3.push({isCat:true,name:this.api.lang.getText("FULL_STATS_CAT" + k)});
-			var loc4 = new ank.utils.();
-			var loc5 = 0;
-			while(loc5 < loc2[k].length)
+			var3.push({isCat:true,name:this.api.lang.getText("FULL_STATS_CAT" + k)});
+			var var4 = new ank.utils.();
+			var var5 = 0;
+			while(var5 < var2[k].length)
 			{
-				loc4.push({name:this.api.lang.getText("FULL_STATS_ID" + loc2[k][loc5].id),s:loc2[k][loc5].s,i:loc2[k][loc5].i,d:loc2[k][loc5].d,b:loc2[k][loc5].b,o:Number(loc2[k][loc5].o),c:k,p:loc2[k][loc5].p});
-				loc5 = loc5 + 1;
+				var4.push({name:this.api.lang.getText("FULL_STATS_ID" + var2[k][var5].id),s:var2[k][var5].s,i:var2[k][var5].i,d:var2[k][var5].d,b:var2[k][var5].b,o:Number(var2[k][var5].o),c:k,p:var2[k][var5].p});
+				var5 = var5 + 1;
 			}
-			loc4.sortOn("o",Array.NUMERIC);
-			var loc6 = loc3.concat(loc4);
-			loc3 = new ank.utils.();
-			loc3.createFromArray(loc6);
+			var4.sortOn("o",Array.NUMERIC);
+			var var6 = var3.concat(var4);
+			var3 = new ank.utils.();
+			var3.createFromArray(var6);
 		}
-		this._dgStats.dataProvider = loc3;
+		this._dgStats.dataProvider = var3;
 	}
-	function fullStatsChanged(loc2)
+	function fullStatsChanged(var2)
 	{
 		this.initData();
 	}

@@ -5,9 +5,9 @@ class dofus.graphics.gapi.controls.SpellBoostViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__spell(loc2)
+	function __set__spell(var2)
 	{
-		this._oSpell = loc2;
+		this._oSpell = var2;
 		if(this.initialized)
 		{
 			this.initData();

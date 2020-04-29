@@ -5,19 +5,19 @@ class dofus.graphics.gapi.ui.AskCustomShortcut extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__ShortcutCode(loc2)
+	function __set__ShortcutCode(var2)
 	{
-		this._sShortcutCode = loc2;
+		this._sShortcutCode = var2;
 		return this.__get__ShortcutCode();
 	}
-	function __set__IsAlt(loc2)
+	function __set__IsAlt(var2)
 	{
-		this._bIsAlt = loc2;
+		this._bIsAlt = var2;
 		return this.__get__IsAlt();
 	}
-	function __set__Description(loc2)
+	function __set__Description(var2)
 	{
-		this._sDescription = loc2;
+		this._sDescription = var2;
 		this._winBackground.content._txtHelp.text = this._sDescription;
 		return this.__get__Description();
 	}
@@ -28,30 +28,30 @@ class dofus.graphics.gapi.ui.AskCustomShortcut extends ank.gapi.ui.FlyWindow
 	}
 	function initWindowContent()
 	{
-		var loc2 = this._winBackground.content;
-		loc2._txtHelp.text = this.api.lang.getText("SHORTCUTS_CUSTOM_HELP",[this._sDescription]);
-		loc2._btnOk.label = this.api.lang.getText("OK");
-		loc2._btnCancel.label = this.api.lang.getText("CANCEL_SMALL");
-		loc2._btnReset.label = this.api.lang.getText("DEFAUT");
-		loc2._btnOk.addEventListener("click",this);
-		loc2._btnCancel.addEventListener("click",this);
-		loc2._btnReset.addEventListener("click",this);
-		loc2._btnNone.addEventListener("click",this);
-		var loc3 = this.api.kernel.KeyManager.getCurrentShortcut(this._sShortcutCode);
+		var var2 = this._winBackground.content;
+		var2._txtHelp.text = this.api.lang.getText("SHORTCUTS_CUSTOM_HELP",[this._sDescription]);
+		var2._btnOk.label = this.api.lang.getText("OK");
+		var2._btnCancel.label = this.api.lang.getText("CANCEL_SMALL");
+		var2._btnReset.label = this.api.lang.getText("DEFAUT");
+		var2._btnOk.addEventListener("click",this);
+		var2._btnCancel.addEventListener("click",this);
+		var2._btnReset.addEventListener("click",this);
+		var2._btnNone.addEventListener("click",this);
+		var var3 = this.api.kernel.KeyManager.getCurrentShortcut(this._sShortcutCode);
 		if(this._bIsAlt)
 		{
-			loc2._lblShortcut.text = loc3.d2 != undefined?loc3.d2:this.api.lang.getText("KEY_UNDEFINED");
+			var2._lblShortcut.text = var3.d2 != undefined?var3.d2:this.api.lang.getText("KEY_UNDEFINED");
 		}
 		else
 		{
-			loc2._lblShortcut.text = loc3.d != undefined?loc3.d:this.api.lang.getText("KEY_UNDEFINED");
+			var2._lblShortcut.text = var3.d != undefined?var3.d:this.api.lang.getText("KEY_UNDEFINED");
 		}
 		this.api.kernel.KeyManager.Broadcasting = false;
 		Key.addListener(this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnOk":
 				if(this._nKeyCode != undefined && !_global.isNaN(this._nKeyCode))
@@ -63,66 +63,65 @@ class dofus.graphics.gapi.ui.AskCustomShortcut extends ank.gapi.ui.FlyWindow
 			case "_btnCancel":
 				this.unloadThis();
 				break;
-			case "_btnReset":
-				var loc3 = this._winBackground.content;
-				var loc4 = this.api.kernel.KeyManager.getDefaultShortcut(this._sShortcutCode);
-				if(!this._bIsAlt)
-				{
-					this._nKeyCode = loc4.k;
-					this._nCtrlCode = loc4.c;
-					loc3._lblShortcut.text = loc0 = loc4.s != undefined?loc4.s:this.api.lang.getText("KEY_UNDEFINED");
-					this._sAscii = loc0;
-				}
-				else
-				{
-					this._nKeyCode = loc4.k2;
-					this._nCtrlCode = loc4.c2;
-					loc3._lblShortcut.text = loc0 = loc4.s2 != undefined?loc4.s2:this.api.lang.getText("KEY_UNDEFINED");
-					this._sAscii = loc0;
-				}
-				break;
 			default:
-				if(loc0 !== "_btnNone")
+				switch(null)
 				{
-					break;
+					case "_btnReset":
+						var var3 = this._winBackground.content;
+						var var4 = this.api.kernel.KeyManager.getDefaultShortcut(this._sShortcutCode);
+						if(!this._bIsAlt)
+						{
+							this._nKeyCode = var4.k;
+							this._nCtrlCode = var4.c;
+							var3._lblShortcut.text = var0 = var4.s != undefined?var4.s:this.api.lang.getText("KEY_UNDEFINED");
+							this._sAscii = var0;
+						}
+						else
+						{
+							this._nKeyCode = var4.k2;
+							this._nCtrlCode = var4.c2;
+							var3._lblShortcut.text = var0 = var4.s2 != undefined?var4.s2:this.api.lang.getText("KEY_UNDEFINED");
+							this._sAscii = var0;
+						}
+						break;
+					case "_btnNone":
+						var var5 = this._winBackground.content;
+						this._nKeyCode = -1;
+						this._nCtrlCode = undefined;
+						var5._lblShortcut.text = var0 = this.api.lang.getText("KEY_UNDEFINED");
+						this._sAscii = var0;
 				}
-				var loc5 = this._winBackground.content;
-				this._nKeyCode = -1;
-				this._nCtrlCode = undefined;
-				loc5._lblShortcut.text = loc0 = this.api.lang.getText("KEY_UNDEFINED");
-				this._sAscii = loc0;
-				break;
 		}
 	}
 	function onKeyUp()
 	{
-		var loc2 = Key.getCode();
-		var loc3 = Key.getAscii();
-		if(loc2 == Key.CONTROL || loc2 == Key.SHIFT)
+		var var2 = Key.getCode();
+		var var3 = Key.getAscii();
+		if(var2 == Key.CONTROL || var2 == Key.SHIFT)
 		{
 			return undefined;
 		}
-		this._nKeyCode = loc2;
-		var loc4 = 0;
+		this._nKeyCode = var2;
+		var var4 = 0;
 		if(Key.isDown(Key.CONTROL))
 		{
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 		if(Key.isDown(Key.SHIFT))
 		{
-			loc4 = loc4 + 2;
+			var4 = var4 + 2;
 		}
-		this._nCtrlCode = loc4;
-		var loc5 = "";
-		if(loc3 > 32 && loc3 < 256)
+		this._nCtrlCode = var4;
+		var var5 = "";
+		if(var3 > 32 && var3 < 256)
 		{
-			loc5 = String.fromCharCode(loc3);
+			var5 = String.fromCharCode(var3);
 		}
 		else
 		{
-			loc5 = this.api.lang.getKeyStringFromKeyCode(loc2);
+			var5 = this.api.lang.getKeyStringFromKeyCode(var2);
 		}
-		loc5 = this.api.lang.getControlKeyString(loc4) + loc5;
-		this._sAscii = this._winBackground.content._lblShortcut.text = loc5;
+		var5 = this.api.lang.getControlKeyString(var4) + var5;
+		this._sAscii = this._winBackground.content._lblShortcut.text = var5;
 	}
 }

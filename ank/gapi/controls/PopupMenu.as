@@ -9,48 +9,48 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function addStaticItem(loc2)
+	function addStaticItem(var2)
 	{
-		var loc3 = new Object();
-		loc3.text = loc2;
-		loc3.bStatic = true;
-		loc3.bEnabled = false;
-		this._aItems.push(loc3);
+		var var3 = new Object();
+		var3.text = var2;
+		var3.bStatic = true;
+		var3.bEnabled = false;
+		this._aItems.push(var3);
 	}
-	function addItem(loc2, loc3, loc4, loc5, loc6)
+	function addItem(var2, var3, var4, var5, var6)
 	{
-		if(loc6 == undefined)
+		if(var6 == undefined)
 		{
-			loc6 = true;
+			var6 = true;
 		}
-		var loc7 = new Object();
-		loc7.text = loc2;
-		loc7.bStatic = false;
-		loc7.bEnabled = loc6;
-		loc7.obj = loc3;
-		loc7.fn = loc4;
-		loc7.args = loc5;
-		this._aItems.push(loc7);
+		var var7 = new Object();
+		var7.text = var2;
+		var7.bStatic = false;
+		var7.bEnabled = var6;
+		var7.obj = var3;
+		var7.fn = var4;
+		var7.args = var5;
+		this._aItems.push(var7);
 	}
 	function __get__items()
 	{
 		return this._aItems;
 	}
-	function show(loc2, loc3, loc4, loc5, loc6)
+	function show(var2, var3, var4, var5, var6)
 	{
 		ank.utils.Timer.removeTimer(this._name);
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = _root._xmouse;
+			var2 = _root._xmouse;
 		}
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = _root._ymouse;
+			var3 = _root._ymouse;
 		}
-		this.layoutContent(loc2,loc3,loc4,loc5);
-		if(!_global.isNaN(Number(loc6)))
+		this.layoutContent(var2,var3,var4,var5);
+		if(!_global.isNaN(Number(var6)))
 		{
-			ank.utils.Timer.setTimer(this,this._name,this,this.remove,loc6);
+			ank.utils.Timer.setTimer(this,this._name,this,this.remove,var6);
 			this._bCloseOnMouseUp = false;
 		}
 		this.addToQueue({object:Mouse,method:Mouse.addListener,params:[this]});
@@ -84,13 +84,13 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 			this._mcForeground._x = this._mcForeground._y = 2;
 			this._mcForeground._width = this.__width - 4;
 			this._mcForeground._height = this.__height - 4;
-			var loc2 = this._aItems.length;
+			var var2 = this._aItems.length;
 			while(true)
 			{
-				loc2;
-				if(loc2-- > 0)
+				var2;
+				if(var2-- > 0)
 				{
-					this.arrangeItem(loc2,this.__width - 4);
+					this.arrangeItem(var2,this.__width - 4);
 					continue;
 				}
 				break;
@@ -99,118 +99,118 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 		this._mcBorder.clear();
 		this._mcBackground.clear();
 		this._mcForeground.clear();
-		this.drawRoundRect(this._mcBorder,0,0,1,1,0,loc2.bordercolor);
-		this.drawRoundRect(this._mcBackground,0,0,1,1,0,loc2.backgroundcolor);
-		this.drawRoundRect(this._mcForeground,0,0,1,1,0,loc2.foregroundcolor);
+		this.drawRoundRect(this._mcBorder,0,0,1,1,0,var2.bordercolor);
+		this.drawRoundRect(this._mcBackground,0,0,1,1,0,var2.backgroundcolor);
+		this.drawRoundRect(this._mcForeground,0,0,1,1,0,var2.foregroundcolor);
 	}
-	function drawItem(i, §\r\x16§, §\x1e\x1c\x0b§)
+	function drawItem(i, §\r\x14§, §\x1e\x1c\t§)
 	{
-		var loc4 = this._mcItems.createEmptyMovieClip("item" + loc2,loc2);
-		var loc5 = (ank.gapi.controls.Label)loc4.attachMovie("Label","_lbl",20,{_width:ank.gapi.controls.PopupMenu.MAX_ITEM_WIDTH,styleName:this.getStyle().labelenabledstyle,wordWrap:true,text:i.text});
-		loc5.setPreferedSize("left");
-		var loc6 = Math.max(ank.gapi.controls.PopupMenu.ITEM_HEIGHT,loc5.textHeight + 6);
+		var var4 = this._mcItems.createEmptyMovieClip("item" + var2,var2);
+		var var5 = (ank.gapi.controls.Label)var4.attachMovie("Label","_lbl",20,{_width:ank.gapi.controls.PopupMenu.MAX_ITEM_WIDTH,styleName:this.getStyle().labelenabledstyle,wordWrap:true,text:i.text});
+		var5.setPreferedSize("left");
+		var var6 = Math.max(ank.gapi.controls.PopupMenu.ITEM_HEIGHT,var5.textHeight + 6);
 		if(i.bStatic)
 		{
-			loc5.styleName = this.getStyle().labelstaticstyle;
+			var5.styleName = this.getStyle().labelstaticstyle;
 		}
 		else if(!i.bEnabled)
 		{
-			loc5.styleName = this.getStyle().labeldisabledstyle;
+			var5.styleName = this.getStyle().labeldisabledstyle;
 		}
-		loc4.createEmptyMovieClip("bg",10);
-		this.drawRoundRect(loc4.bg,0,0,1,loc6,0,this.getStyle().itembgcolor);
-		loc4._y = loc3;
+		var4.createEmptyMovieClip("bg",10);
+		this.drawRoundRect(var4.bg,0,0,1,var6,0,this.getStyle().itembgcolor);
+		var4._y = var3;
 		if(i.bEnabled)
 		{
-			loc4.bg.onRelease = function()
+			var4.bg.onRelease = function()
 			{
 				i.fn.apply(i.obj,i.args);
 				this._parent._parent._parent.remove(true);
 			};
-			loc4.bg.onRollOver = function()
+			var4.bg.onRollOver = function()
 			{
-				var loc2 = new Color(this);
-				loc2.setRGB(this._parent._parent._parent.getStyle().itemovercolor);
+				var var2 = new Color(this);
+				var2.setRGB(this._parent._parent._parent.getStyle().itemovercolor);
 				this._parent._parent._parent.onItemOver();
 			};
-			loc4.bg.onRollOut = loc4.bg.onReleaseOutside = function()
+			var4.bg.onRollOut = var4.bg.onReleaseOutside = function()
 			{
-				var loc2 = new Color(this);
-				loc2.setRGB(this._parent._parent._parent.getStyle().itembgcolor);
+				var var2 = new Color(this);
+				var2.setRGB(this._parent._parent._parent.getStyle().itembgcolor);
 				this._parent._parent._parent.onItemOut();
 			};
 		}
 		else
 		{
-			loc4.bg.onPress = function()
+			var4.bg.onPress = function()
 			{
 			};
-			loc4.bg.useHandCursor = false;
-			var loc7 = new Color(loc4.bg);
+			var4.bg.useHandCursor = false;
+			var var7 = new Color(var4.bg);
 			if(i.bStatic)
 			{
-				loc7.setRGB(this.getStyle().itemstaticbgcolor);
+				var7.setRGB(this.getStyle().itemstaticbgcolor);
 			}
 			else
 			{
-				loc7.setRGB(this.getStyle().itembgcolor);
+				var7.setRGB(this.getStyle().itembgcolor);
 			}
 		}
-		return {w:loc5.textWidth,h:loc6};
+		return {w:var5.textWidth,h:var6};
 	}
-	function arrangeItem(loc2, loc3)
+	function arrangeItem(var2, var3)
 	{
-		var loc4 = this._mcItems["item" + loc2];
-		loc4._lbl.setSize(loc3,ank.gapi.controls.PopupMenu.ITEM_HEIGHT);
-		loc4.bg._width = loc3;
+		var var4 = this._mcItems["item" + var2];
+		var4._lbl.setSize(var3,ank.gapi.controls.PopupMenu.ITEM_HEIGHT);
+		var4.bg._width = var3;
 	}
-	function layoutContent(loc2, loc3, loc4, loc5)
+	function layoutContent(var2, var3, var4, var5)
 	{
-		var loc6 = this._aItems.length;
-		var loc7 = 0;
-		var loc8 = 0;
-		var loc9 = 0;
-		while(loc9 < this._aItems.length)
+		var var6 = this._aItems.length;
+		var var7 = 0;
+		var var8 = 0;
+		var var9 = 0;
+		while(var9 < this._aItems.length)
 		{
-			var loc10 = this.drawItem(this._aItems[loc9],loc9,loc8);
-			loc8 = loc8 + loc10.h;
-			loc7 = Math.max(loc7,loc10.w);
-			loc9 = loc9 + 1;
+			var var10 = this.drawItem(this._aItems[var9],var9,var8);
+			var8 = var8 + var10.h;
+			var7 = Math.max(var7,var10.w);
+			var9 = var9 + 1;
 		}
-		this.setSize(loc7 + 16,loc8 + 4);
-		var loc11 = !loc4?this.gapi.screenWidth:Stage.width;
-		var loc12 = !loc4?this.gapi.screenHeight:Stage.height;
-		if(loc5 == true)
+		this.setSize(var7 + 16,var8 + 4);
+		var var11 = !var4?this.gapi.screenWidth:Stage.width;
+		var var12 = !var4?this.gapi.screenHeight:Stage.height;
+		if(var5 == true)
 		{
-			loc2 = loc2 - this.__width;
+			var2 = var2 - this.__width;
 		}
-		if(loc2 > loc11 - this.__width)
+		if(var2 > var11 - this.__width)
 		{
-			this._x = loc11 - this.__width;
+			this._x = var11 - this.__width;
 		}
-		else if(loc2 < 0)
+		else if(var2 < 0)
 		{
 			this._x = 0;
 		}
 		else
 		{
-			this._x = loc2;
+			this._x = var2;
 		}
-		if(loc3 > loc12 - this.__height)
+		if(var3 > var12 - this.__height)
 		{
-			this._y = loc12 - this.__height;
+			this._y = var12 - this.__height;
 		}
-		else if(loc3 < 0)
+		else if(var3 < 0)
 		{
 			this._y = 0;
 		}
 		else
 		{
-			this._y = loc3;
+			this._y = var3;
 		}
 	}
 	function remove()

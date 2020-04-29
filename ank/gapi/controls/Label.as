@@ -9,9 +9,9 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__html(loc2)
+	function __set__html(var2)
 	{
-		this._bHTML = loc2;
+		this._bHTML = var2;
 		this.setTextFieldProperties();
 		return this.__get__html();
 	}
@@ -19,9 +19,9 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bHTML;
 	}
-	function __set__multiline(loc2)
+	function __set__multiline(var2)
 	{
-		this._bMultiline = loc2;
+		this._bMultiline = var2;
 		this.setTextFieldProperties();
 		return this.__get__multiline();
 	}
@@ -29,9 +29,9 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bMultiline;
 	}
-	function __set__wordWrap(loc2)
+	function __set__wordWrap(var2)
 	{
-		this._bWordWrap = loc2;
+		this._bWordWrap = var2;
 		this.setTextFieldProperties();
 		return this.__get__wordWrap();
 	}
@@ -39,9 +39,9 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bWordWrap;
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		this._bSettingNewText = true;
 		this.setTextFieldProperties();
 		return this.__get__text();
@@ -58,14 +58,14 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._tText.textWidth;
 	}
-	function __set__textColor(loc2)
+	function __set__textColor(var2)
 	{
-		this._tText.textColor = loc2;
+		this._tText.textColor = var2;
 		return this.__get__textColor();
 	}
-	function setPreferedSize(loc2)
+	function setPreferedSize(var2)
 	{
-		this._tText.autoSize = loc2;
+		this._tText.autoSize = var2;
 		this.setSize(this.textWidth + 5,this.textHeight);
 	}
 	function init()
@@ -121,19 +121,19 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 		this._tfFormatter = this._tText.getTextFormat();
-		this._tfFormatter.font = loc2.labelfont;
-		this._tfFormatter.align = loc2.labelalign;
-		this._tfFormatter.size = loc2.labelsize;
+		this._tfFormatter.font = var2.labelfont;
+		this._tfFormatter.align = var2.labelalign;
+		this._tfFormatter.size = var2.labelsize;
 		if(!this._bHTML)
 		{
-			this._tfFormatter.color = loc2.labelcolor;
+			this._tfFormatter.color = var2.labelcolor;
 		}
-		this._tfFormatter.bold = loc2.labelbold;
-		this._tfFormatter.italic = loc2.labelitalic;
-		this._tText.embedFonts = loc2.labelembedfonts;
-		this._tText.antiAliasType = loc2.antialiastype;
+		this._tfFormatter.bold = var2.labelbold;
+		this._tfFormatter.italic = var2.labelitalic;
+		this._tText.embedFonts = var2.labelembedfonts;
+		this._tText.antiAliasType = var2.antialiastype;
 		this.setTextFieldProperties();
 	}
 	function setTextFieldProperties()

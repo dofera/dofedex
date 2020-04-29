@@ -15,14 +15,14 @@ class dofus.graphics.battlefield.OfflineOverHead extends dofus.graphics.battlefi
 	}
 	function draw(oSprite)
 	{
-		var loc3 = oSprite.guildName != undefined && oSprite.guildName.length != 0;
+		var var3 = oSprite.guildName != undefined && oSprite.guildName.length != 0;
 		this._txtSpriteName.embedFonts = true;
 		this._txtSpriteName.autoSize = "left";
 		this._txtSpriteName.text = oSprite.name;
 		this._txtSpriteName.selectable = false;
 		this._txtSpriteName.setTextFormat(dofus.graphics.battlefield.AbstractTextOverHead.TEXT_FORMAT);
 		this._txtSpriteName.textColor = 0;
-		if(loc3)
+		if(var3)
 		{
 			this._txtGuildName.embedFonts = true;
 			this._txtGuildName.autoSize = "left";
@@ -31,14 +31,14 @@ class dofus.graphics.battlefield.OfflineOverHead extends dofus.graphics.battlefi
 			this._txtGuildName.setTextFormat(dofus.graphics.battlefield.AbstractTextOverHead.TEXT_SMALL_FORMAT);
 			this._txtGuildName.textColor = 0;
 		}
-		var loc4 = Math.ceil(30 + dofus.graphics.battlefield.AbstractTextOverHead.HEIGHT_SPACER * 2);
-		var loc5 = Math.ceil(Math.max(this._txtGuildName.textWidth,this._txtSpriteName.textWidth) + dofus.graphics.battlefield.AbstractTextOverHead.WIDTH_SPACER * 4) + 30;
-		this._txtGuildName._x = this._txtSpriteName._x = (- loc5) / 2 + 30 + dofus.graphics.battlefield.AbstractTextOverHead.WIDTH_SPACER * 2;
-		if(!loc3)
+		var var4 = Math.ceil(30 + dofus.graphics.battlefield.AbstractTextOverHead.HEIGHT_SPACER * 2);
+		var var5 = Math.ceil(Math.max(this._txtGuildName.textWidth,this._txtSpriteName.textWidth) + dofus.graphics.battlefield.AbstractTextOverHead.WIDTH_SPACER * 4) + 30;
+		this._txtGuildName._x = this._txtSpriteName._x = (- var5) / 2 + 30 + dofus.graphics.battlefield.AbstractTextOverHead.WIDTH_SPACER * 2;
+		if(!var3)
 		{
 			this._txtSpriteName._y = 9;
 		}
-		this.drawBackground(loc5,loc4,16777215);
-		this.attachMovie("Loader","_ldrIcon",100,{_x:Math.ceil((- loc5) / 2) + dofus.graphics.battlefield.AbstractTextOverHead.WIDTH_SPACER,_y:dofus.graphics.battlefield.AbstractTextOverHead.HEIGHT_SPACER,_height:30,_width:30,contentPath:dofus.Constants.EXTRA_PATH + oSprite.offlineType + ".swf",scaleContent:true});
+		this.drawBackground(var5,var4,16777215);
+		this.attachMovie("Loader","_ldrIcon",100,{_x:Math.ceil((- var5) / 2) + dofus.graphics.battlefield.AbstractTextOverHead.WIDTH_SPACER,_y:dofus.graphics.battlefield.AbstractTextOverHead.HEIGHT_SPACER,_height:30,_width:30,contentPath:dofus.Constants.EXTRA_PATH + oSprite.offlineType + ".swf",scaleContent:true});
 	}
 }

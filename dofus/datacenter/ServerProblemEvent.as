@@ -1,18 +1,18 @@
 class dofus.datacenter.ServerProblemEvent extends Object
 {
-	function ServerProblemEvent(nTimestamp, nEventID, bTranslated, §\x1e\x15\t§)
+	function ServerProblemEvent(nTimestamp, nEventID, bTranslated, §\x1e\x15\x07§)
 	{
 		super();
 		this._nTimestamp = nTimestamp;
 		this._nID = nEventID;
 		this._bTranslated = bTranslated;
-		this._sContent = loc6;
-		var loc7 = _global.API;
-		this._sTitle = loc7.lang.getText("STATUS_EVENT_" + this._nID);
-		var loc8 = loc7.lang.getConfigText("HOUR_FORMAT");
-		var loc9 = loc7.config.language;
-		var loc10 = new Date(this._nTimestamp);
-		this._sHour = org.utils.SimpleDateFormatter.formatDate(loc10,loc8,loc9);
+		this._sContent = var6;
+		var var7 = _global.API;
+		this._sTitle = var7.lang.getText("STATUS_EVENT_" + this._nID);
+		var var8 = var7.lang.getConfigText("HOUR_FORMAT");
+		var var9 = var7.config.language;
+		var var10 = new Date(this._nTimestamp);
+		this._sHour = org.utils.SimpleDateFormatter.formatDate(var10,var8,var9);
 	}
 	function __get__timestamp()
 	{

@@ -16,20 +16,20 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 	{
 		return this._bCheckMountPods;
 	}
-	function __set__checkPlayerPods(loc2)
+	function __set__checkPlayerPods(var2)
 	{
-		this._bCheckPlayerPods = loc2;
+		this._bCheckPlayerPods = var2;
 		return this.__get__checkPlayerPods();
 	}
-	function __set__checkMountPods(loc2)
+	function __set__checkMountPods(var2)
 	{
-		this._bCheckMountPods = loc2;
+		this._bCheckMountPods = var2;
 		return this.__get__checkMountPods();
 	}
-	function __set__showKamas(loc2)
+	function __set__showKamas(var2)
 	{
-		this._bShowKamas = loc2;
-		this._btnDragKama._visible = this._lblKama._visible = this._mcKamaSymbol._visible = this._mcKamaSymbol2._visible = loc2;
+		this._bShowKamas = var2;
+		this._btnDragKama._visible = this._lblKama._visible = this._mcKamaSymbol._visible = this._mcKamaSymbol2._visible = var2;
 		return this.__get__showKamas();
 	}
 	function init()
@@ -67,142 +67,142 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		this.modelChanged();
 		this.kamaChanged({value:this._oKamasProvider.Kama});
 	}
-	function validateDrop(loc2, loc3, loc4)
+	function validateDrop(var2, var3, var4)
 	{
-		loc4 = Number(loc4);
-		if(loc4 < 1 || _global.isNaN(loc4))
+		var4 = Number(var4);
+		if(var4 < 1 || _global.isNaN(var4))
 		{
 			return undefined;
 		}
-		if(loc4 > loc3.Quantity)
+		if(var4 > var3.Quantity)
 		{
-			loc4 = loc3.Quantity;
+			var4 = var3.Quantity;
 		}
-		this.dispatchEvent({type:"dropItem",item:loc3,quantity:loc4});
+		this.dispatchEvent({type:"dropItem",item:var3,quantity:var4});
 	}
-	function validateKama(loc2)
+	function validateKama(var2)
 	{
-		loc2 = Number(loc2);
-		if(loc2 < 1 || _global.isNaN(loc2))
+		var2 = Number(var2);
+		if(var2 < 1 || _global.isNaN(var2))
 		{
 			return undefined;
 		}
-		if(loc2 > this._oKamasProvider.Kama)
+		if(var2 > this._oKamasProvider.Kama)
 		{
-			loc2 = this._oKamasProvider.Kama;
+			var2 = this._oKamasProvider.Kama;
 		}
-		this.dispatchEvent({type:"dragKama",quantity:loc2});
+		this.dispatchEvent({type:"dragKama",quantity:var2});
 	}
 	function askKamaQuantity()
 	{
-		var loc2 = this._oKamasProvider.Kama == undefined?0:Number(this._oKamasProvider.Kama);
-		var loc3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:loc2,max:loc2,params:{targetType:"kama"}});
-		loc3.addEventListener("validate",this);
+		var var2 = this._oKamasProvider.Kama == undefined?0:Number(this._oKamasProvider.Kama);
+		var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:var2,max:var2,params:{targetType:"kama"}});
+		var3.addEventListener("validate",this);
 	}
-	function showOneItem(loc2)
+	function showOneItem(var2)
 	{
-		var loc3 = 0;
-		while(loc3 < this._cgGrid.dataProvider.length)
+		var var3 = 0;
+		while(var3 < this._cgGrid.dataProvider.length)
 		{
-			if(loc2 == this._cgGrid.dataProvider[loc3].unicID)
+			if(var2 == this._cgGrid.dataProvider[var3].unicID)
 			{
-				this._cgGrid.setVPosition(loc3 / this._cgGrid.visibleColumnCount);
-				this._cgGrid.selectedIndex = loc3;
+				this._cgGrid.setVPosition(var3 / this._cgGrid.visibleColumnCount);
+				this._cgGrid.selectedIndex = var3;
 				return true;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
 		return false;
 	}
-	function dragItem(loc2)
+	function dragItem(var2)
 	{
-		if(loc2.target.contentData == undefined)
+		if(var2.target.contentData == undefined)
 		{
 			return undefined;
 		}
 		this.gapi.removeCursor();
-		this.gapi.setCursor(loc2.target.contentData);
+		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(loc2)
+	function dropItem(var2)
 	{
-		var loc3 = this.gapi.getCursor();
-		if(loc3 == undefined)
+		var var3 = this.gapi.getCursor();
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
 		this.gapi.removeCursor();
-		var loc4 = loc3.Quantity;
+		var var4 = var3.Quantity;
 		if(this.checkPlayerPods)
 		{
-			loc4 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(loc3,false);
+			var4 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(var3,false);
 		}
 		else if(this.checkMountPods)
 		{
-			loc4 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(loc3,true);
+			var4 = this.api.datacenter.Player.getPossibleItemReceiveQuantity(var3,true);
 		}
-		if(loc4 <= 0)
+		if(var4 <= 0)
 		{
 			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("SRV_MSG_6"),"ERROR_BOX",{name:undefined});
 		}
-		else if(loc4 > 1)
+		else if(var4 > 1)
 		{
-			var loc5 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:loc4,params:{targetType:"item",oItem:loc3}});
-			loc5.addEventListener("validate",this);
+			var var5 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:var4,params:{targetType:"item",oItem:var3}});
+			var5.addEventListener("validate",this);
 		}
 		else
 		{
-			this.validateDrop(this._cgGrid,loc3,1);
+			this.validateDrop(this._cgGrid,var3,1);
 		}
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && loc2.target.contentData != undefined)
+		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var2.target.contentData != undefined)
 		{
-			this.api.kernel.GameManager.insertItemInChat(loc2.target.contentData);
+			this.api.kernel.GameManager.insertItemInChat(var2.target.contentData);
 			return undefined;
 		}
-		this.dispatchEvent({type:"selectedItem",item:loc2.target.contentData});
+		this.dispatchEvent({type:"selectedItem",item:var2.target.contentData});
 	}
-	function overItem(loc2)
+	function overItem(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		var loc4 = -20;
-		var loc5 = loc3.name;
-		var loc6 = true;
-		for(var s in loc3.effects)
+		var var3 = var2.target.contentData;
+		var var4 = -20;
+		var var5 = var3.name;
+		var var6 = true;
+		for(var s in var3.effects)
 		{
-			var loc7 = loc3.effects[s];
-			if(loc7.description.length > 0)
+			var var7 = var3.effects[s];
+			if(var7.description.length > 0)
 			{
-				if(loc6)
+				if(var6)
 				{
-					loc5 = loc5 + "\n";
-					loc4 = loc4 - 10;
-					loc6 = false;
+					var5 = var5 + "\n";
+					var4 = var4 - 10;
+					var6 = false;
 				}
-				loc5 = loc5 + "\n" + loc7.description;
-				loc4 = loc4 - 12;
+				var5 = var5 + "\n" + var7.description;
+				var4 = var4 - 12;
 			}
 		}
-		this.gapi.showTooltip(loc5,loc2.target,loc4,undefined,loc2.target.contentData.style + "ToolTip");
+		this.gapi.showTooltip(var5,var2.target,var4,undefined,var2.target.contentData.style + "ToolTip");
 	}
-	function outItem(loc2)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function dblClickItem(loc2)
+	function dblClickItem(var2)
 	{
-		this.dispatchEvent({type:loc2.type,item:loc2.target.contentData,target:this,index:loc2.target.id});
+		this.dispatchEvent({type:var2.type,item:var2.target.contentData,target:this,index:var2.target.id});
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		switch(loc2.params.targetType)
+		switch(var2.params.targetType)
 		{
 			case "item":
-				this.validateDrop(this._cgGrid,loc2.params.oItem,loc2.value);
+				this.validateDrop(this._cgGrid,var2.params.oItem,var2.value);
 				break;
 			case "kama":
-				this.validateKama(loc2.value);
+				this.validateKama(var2.value);
 		}
 	}
 }

@@ -6,9 +6,9 @@ class dofus.graphics.gapi.ui.CrafterCard extends dofus.graphics.gapi.core.DofusA
 		super();
 		this._bInit = false;
 	}
-	function __set__crafter(loc2)
+	function __set__crafter(var2)
 	{
-		this._oCrafter = loc2;
+		this._oCrafter = var2;
 		if(this._bInit)
 		{
 			this.updateData();
@@ -55,7 +55,7 @@ class dofus.graphics.gapi.ui.CrafterCard extends dofus.graphics.gapi.core.DofusA
 	function updateData()
 	{
 		this._bInit = true;
-		var loc2 = true;
+		var var2 = true;
 		if(this._oCrafter != undefined)
 		{
 			this._ldrSprite.forceNextLoad();
@@ -66,14 +66,14 @@ class dofus.graphics.gapi.ui.CrafterCard extends dofus.graphics.gapi.core.DofusA
 			this._lblJobLevelValue.text = this._oCrafter.job.level.toString();
 			this._lblSubareaValue.text = this._oCrafter.subarea != undefined?this._oCrafter.subarea:this.api.lang.getText("OUTSIDE_WORKSHOP");
 			this._lblWorkshopValue.text = !this._oCrafter.inWorkshop?this.api.lang.getText("NO"):this.api.lang.getText("YES");
-			var loc3 = this._oCrafter.coord;
-			this._lblCoordValue.text = loc3 != undefined?loc3.x + "," + loc3.y:"-";
-			var loc4 = this._oCrafter.job.options;
-			this._btnNotFree.selected = loc4.isNotFree;
-			this._btnFreeIfFailed.selected = loc4.isFreeIfFailed;
-			this._btnRessourcesNeeded.selected = loc4.ressourcesNeeded;
-			this._lblMinSlotsValue.text = loc4.minSlots.toString();
-			loc2 = this._oCrafter.subarea != undefined;
+			var var3 = this._oCrafter.coord;
+			this._lblCoordValue.text = var3 != undefined?var3.x + "," + var3.y:"-";
+			var var4 = this._oCrafter.job.options;
+			this._btnNotFree.selected = var4.isNotFree;
+			this._btnFreeIfFailed.selected = var4.isFreeIfFailed;
+			this._btnRessourcesNeeded.selected = var4.ressourcesNeeded;
+			this._lblMinSlotsValue.text = var4.minSlots.toString();
+			var2 = this._oCrafter.subarea != undefined;
 		}
 		else
 		{
@@ -89,34 +89,33 @@ class dofus.graphics.gapi.ui.CrafterCard extends dofus.graphics.gapi.core.DofusA
 			this._btnFreeIfFailed.selected = false;
 			this._btnRessourcesNeeded.selected = false;
 			this._lblMinSlotsValue.text = "-";
-			loc2 = false;
+			var2 = false;
 		}
-		this._btnLocate._visible = loc2;
+		this._btnLocate._visible = var2;
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.target.content;
-		loc3.attachMovie("staticF","anim",10);
+		var var3 = var2.target.content;
+		var3.attachMovie("staticF","anim",10);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose2":
 			case "_btnClose":
 				this.unloadThis();
 				break;
-			case "_btnPrivateMessage":
-				this.api.kernel.GameManager.askPrivateMessage(this._oCrafter.name);
-				break;
 			default:
-				if(loc0 !== "_btnLocate")
+				switch(null)
 				{
-					break;
+					case "_btnPrivateMessage":
+						this.api.kernel.GameManager.askPrivateMessage(this._oCrafter.name);
+						break;
+					case "_btnLocate":
+						var var3 = this._oCrafter.coord;
+						this.api.kernel.GameManager.updateCompass(var3.x,var3.y,true);
 				}
-				var loc3 = this._oCrafter.coord;
-				this.api.kernel.GameManager.updateCompass(loc3.x,loc3.y,true);
-				break;
 		}
 	}
 }

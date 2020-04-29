@@ -8,17 +8,17 @@ class dofus.datacenter.QuestBook
 	{
 		return this._eaQuests;
 	}
-	function getQuest(loc2)
+	function getQuest(var2)
 	{
-		var loc3 = this._eaQuests.findFirstItem("id",loc2);
-		if(loc3.index != -1)
+		var var3 = this._eaQuests.findFirstItem("id",var2);
+		if(var3.index != -1)
 		{
-			return loc3.item;
+			return var3.item;
 		}
 		return null;
 	}
 	function initialize()
 	{
-		this._eaQuests = new ank.utils.();
+		this._eaQuests = new ank.utils.();
 	}
 }

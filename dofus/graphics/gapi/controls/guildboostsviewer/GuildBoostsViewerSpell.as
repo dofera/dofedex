@@ -6,24 +6,24 @@ class dofus.graphics.gapi.controls.guildboostsviewer.GuildBoostsViewerSpell exte
 	{
 		super();
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			this._lblName.text = loc4.name;
-			this._lblLevel.text = loc4.level == 0?"-":loc4.level;
-			this._ldrIcon.contentPath = loc4.iconFile;
+			this._oItem = var4;
+			this._lblName.text = var4.name;
+			this._lblLevel.text = var4.level == 0?"-":var4.level;
+			this._ldrIcon.contentPath = var4.iconFile;
 			this._mcBorder._visible = true;
 			this._mcBack._visible = true;
-			var loc5 = this._mcList.gapi.api.datacenter.Player.guildInfos;
-			this._btnBoost._visible = loc5.playerRights.canManageBoost && loc5.canBoost("s",loc4.ID);
-			if(loc4.level == 0)
+			var var5 = this._mcList.gapi.api.datacenter.Player.guildInfos;
+			this._btnBoost._visible = var5.playerRights.canManageBoost && var5.canBoost("s",var4.ID);
+			if(var4.level == 0)
 			{
 				this.setMovieClipTransform(this._ldrIcon,dofus.graphics.gapi.controls.guildboostsviewer.GuildBoostsViewerSpell.COLOR_TRANSFORM);
 				this._mcCross._visible = true;
@@ -64,17 +64,17 @@ class dofus.graphics.gapi.controls.guildboostsviewer.GuildBoostsViewerSpell exte
 		this._btnBoost.addEventListener("over",this);
 		this._btnBoost.addEventListener("out",this);
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		this._mcList.gapi.api.network.Guild.boostSpell(this._oItem.ID);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = this._mcList.gapi.api;
-		var loc4 = loc3.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("s",this._oItem.ID);
-		this._mcList.gapi.showTooltip(loc3.lang.getText("COST") + " : " + loc4.cost,loc2.target,-20);
+		var var3 = this._mcList.gapi.api;
+		var var4 = var3.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("s",this._oItem.ID);
+		this._mcList.gapi.showTooltip(var3.lang.getText("COST") + " : " + var4.cost,var2.target,-20);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this._mcList.gapi.hideTooltip();
 	}

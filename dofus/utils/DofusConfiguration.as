@@ -8,149 +8,149 @@ class dofus.utils.DofusConfiguration
 			_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME] = ank.utils.SharedObjectFix.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
 		}
 	}
-	function __set__dataServers(loc2)
+	function __set__dataServers(var2)
 	{
-		this._aDataServers = loc2;
+		this._aDataServers = var2;
 		return this.__get__dataServers();
 	}
 	function __get__dataServers()
 	{
 		return this._aDataServers;
 	}
-	function __set__language(loc2)
+	function __set__language(var2)
 	{
-		var loc3 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME];
-		loc3.data.language = loc2;
-		loc3.flush();
+		var var3 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME];
+		var3.data.language = var2;
+		var3.flush();
 		return this.__get__language();
 	}
 	function __get__language()
 	{
-		var loc2 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME].data.language;
-		if(loc2 == undefined || (loc2 == "undefined" || _root.htmlLang != undefined))
+		var var2 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME].data.language;
+		if(var2 == undefined || (var2 == "undefined" || _root.htmlLang != undefined))
 		{
 			if(_root.htmlLang != undefined)
 			{
-				var loc3 = _root.htmlLang;
+				var var3 = _root.htmlLang;
 			}
 			else
 			{
-				loc3 = System.capabilities.language;
+				var3 = System.capabilities.language;
 			}
-			if((var loc0 = loc3) !== "fr")
+			switch(var3)
 			{
-				loop0:
-				switch(null)
-				{
-					default:
-						switch(null)
-						{
-							case "nl":
-							case "es":
-							case "it":
-								break loop0;
-							default:
+				default:
+					switch(null)
+					{
+						default:
+							if(var0 !== "it")
+							{
 								return "en";
-						}
-					case "en":
-					case "de":
-					case "pt":
-					case "ru":
-				}
+							}
+							break;
+						case "pt":
+						case "ru":
+						case "nl":
+						case "es":
+					}
+					break;
+				case "fr":
+				case "en":
+				case "de":
 			}
-			return loc3;
+			return var3;
 		}
-		return loc2.toLowerCase();
+		return var2.toLowerCase();
 	}
-	function __set__languages(loc2)
+	function __set__languages(var2)
 	{
-		this._aLanguages = loc2;
+		this._aLanguages = var2;
 		return this.__get__languages();
 	}
 	function __get__languages()
 	{
-		var loc2 = new Array();
+		var var2 = new Array();
 		if(this._aXmlLanguages != undefined)
 		{
-			var loc3 = 0;
-			while(loc3 < this._aXmlLanguages.length)
+			var var3 = 0;
+			while(var3 < this._aXmlLanguages.length)
 			{
-				loc2.push(this._aXmlLanguages[loc3]);
-				loc3 = loc3 + 1;
+				var2.push(this._aXmlLanguages[var3]);
+				var3 = var3 + 1;
 			}
 		}
 		if(this._aLanguages != undefined)
 		{
-			var loc4 = 0;
-			while(loc4 < this._aLanguages.length)
+			var var4 = 0;
+			while(var4 < this._aLanguages.length)
 			{
-				var loc5 = false;
-				var loc6 = 0;
-				while(loc6 < this._aXmlLanguages.length)
+				var var5 = false;
+				var var6 = 0;
+				while(var6 < this._aXmlLanguages.length)
 				{
-					if(this._aXmlLanguages[loc6] == this._aLanguages[loc4])
+					if(this._aXmlLanguages[var6] == this._aLanguages[var4])
 					{
-						loc5 = true;
+						var5 = true;
 					}
-					loc6 = loc6 + 1;
+					var6 = var6 + 1;
 				}
-				if(!loc5)
+				if(!var5)
 				{
-					loc2.push(this._aLanguages[loc4]);
+					var2.push(this._aLanguages[var4]);
 				}
-				loc4 = loc4 + 1;
+				var4 = var4 + 1;
 			}
 		}
-		return loc2;
+		return var2;
 	}
-	function __set__xmlLanguages(loc2)
+	function __set__xmlLanguages(var2)
 	{
-		this._aXmlLanguages = loc2;
+		this._aXmlLanguages = var2;
 		return this.__get__xmlLanguages();
 	}
 	function __get__xmlLanguages()
 	{
 		return this._aXmlLanguages;
 	}
-	function __set__skipLanguageVerification(loc2)
+	function __set__skipLanguageVerification(var2)
 	{
-		this._bSkipLanguageVerification = loc2;
+		this._bSkipLanguageVerification = var2;
 		return this.__get__skipLanguageVerification();
 	}
 	function __get__skipLanguageVerification()
 	{
 		return this._bSkipLanguageVerification;
 	}
-	function __set__cacheAsBitmap(loc2)
+	function __set__cacheAsBitmap(var2)
 	{
-		this._aCacheAsBitmap = loc2;
+		this._aCacheAsBitmap = var2;
 		return this.__get__cacheAsBitmap();
 	}
 	function __get__cacheAsBitmap()
 	{
 		return this._aCacheAsBitmap;
 	}
-	function __set__isExpo(loc2)
+	function __set__isExpo(var2)
 	{
-		this._bIsExpo = loc2;
+		this._bIsExpo = var2;
 		return this.__get__isExpo();
 	}
 	function __get__isExpo()
 	{
 		return this._bIsExpo;
 	}
-	function __set__isStreaming(loc2)
+	function __set__isStreaming(var2)
 	{
-		this._bIsStreaming = loc2;
+		this._bIsStreaming = var2;
 		return this.__get__isStreaming();
 	}
 	function __get__isStreaming()
 	{
 		return this._bIsStreaming;
 	}
-	function __set__streamingMethod(loc2)
+	function __set__streamingMethod(var2)
 	{
-		this._sStreamingMethod = loc2;
+		this._sStreamingMethod = var2;
 		return this.__get__streamingMethod();
 	}
 	function __get__streamingMethod()
@@ -169,8 +169,8 @@ class dofus.utils.DofusConfiguration
 	{
 		return String(System.capabilities.version).indexOf("MAC") > -1;
 	}
-	function getCustomIP(loc2)
+	function getCustomIP(var2)
 	{
-		return this.customServersIP[loc2];
+		return this.customServersIP[var2];
 	}
 }

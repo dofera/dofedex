@@ -6,9 +6,9 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 	{
 		super();
 	}
-	function __set__quitMode(loc2)
+	function __set__quitMode(var2)
 	{
-		this._sQuitMode = loc2;
+		this._sQuitMode = var2;
 		if(this.initialized)
 		{
 			this.setQuitButtonStatus();
@@ -85,9 +85,9 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 			this._btnSubscribe._visible = false;
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnQuit:
 				if(this._sQuitMode == "quit")
@@ -123,38 +123,38 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnQuit:
-				this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_QUIT"),loc2.target,20,{bXLimit:true,bYLimit:true});
+				this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_QUIT"),var2.target,20,{bXLimit:true,bYLimit:true});
 				break;
 			case this._btnOptions:
-				this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_OPTIONS"),loc2.target,20,{bXLimit:true,bYLimit:true});
-				break;
-			case this._btnHelp:
-				if(this.api.ui.getUIComponent("Banner") != undefined)
-				{
-					this.api.ui.showTooltip(this.api.lang.getText("KB_TITLE"),loc2.target,20,{bXLimit:true,bYLimit:true});
-				}
-				else
-				{
-					this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_HELP"),loc2.target,20,{bXLimit:true,bYLimit:true});
-				}
+				this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_OPTIONS"),var2.target,20,{bXLimit:true,bYLimit:true});
 				break;
 			default:
 				switch(null)
 				{
+					case this._btnHelp:
+						if(this.api.ui.getUIComponent("Banner") != undefined)
+						{
+							this.api.ui.showTooltip(this.api.lang.getText("KB_TITLE"),var2.target,20,{bXLimit:true,bYLimit:true});
+						}
+						else
+						{
+							this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_HELP"),var2.target,20,{bXLimit:true,bYLimit:true});
+						}
+						break;
 					case this._btnBugs:
-						this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_BUGS"),loc2.target,20,{bXLimit:true,bYLimit:true});
+						this.api.ui.showTooltip(this.api.lang.getText("MAIN_MENU_BUGS"),var2.target,20,{bXLimit:true,bYLimit:true});
 						break;
 					case this._btnSubscribe:
-						this.api.ui.showTooltip(this.api.lang.getText("SUBSCRIPTION"),loc2.target,20,{bXLimit:true,bYLimit:true});
+						this.api.ui.showTooltip(this.api.lang.getText("SUBSCRIPTION"),var2.target,20,{bXLimit:true,bYLimit:true});
 				}
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

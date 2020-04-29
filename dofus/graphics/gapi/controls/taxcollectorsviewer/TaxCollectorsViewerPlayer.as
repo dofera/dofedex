@@ -4,11 +4,11 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerPlayer
 	{
 		super();
 	}
-	function __set__data(loc2)
+	function __set__data(var2)
 	{
-		if(loc2 != this._oData)
+		if(var2 != this._oData)
 		{
-			this._oData = loc2;
+			this._oData = var2;
 			this.addToQueue({object:this,method:this.setSprite});
 		}
 		return this.__get__data();
@@ -29,12 +29,12 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerPlayer
 	{
 		this._ldrSprite.contentPath = this._oData.gfxFile != undefined?this._oData.gfxFile:"";
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		var loc3 = loc2.clip;
-		_global.GAC.addSprite(loc3,this._oData);
-		loc3.attachMovie("staticR","mcAnim",10);
-		loc3._xscale = -80;
-		loc3._yscale = 80;
+		var var3 = var2.clip;
+		_global.GAC.addSprite(var3,this._oData);
+		var3.attachMovie("staticR","mcAnim",10);
+		var3._xscale = -80;
+		var3._yscale = 80;
 	}
 }

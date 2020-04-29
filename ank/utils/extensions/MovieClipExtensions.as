@@ -4,26 +4,27 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 	{
 		super();
 	}
-	function attachClassMovie(className, instanceName, §\x12\x02§, §\x1d\x12§)
+	function attachClassMovie(className, instanceName, §\x11\x1d§, §\x1d\x12§)
 	{
-		var loc6 = this.createEmptyMovieClip(instanceName,loc4);
-		loc6.__proto__ = className.prototype;
-		className.apply(loc6,loc5);
-		return loc6;
+		var var6 = this.createEmptyMovieClip(instanceName,var4);
+		var6.__proto__ = className.prototype;
+		className.apply(var6,var5);
+		return var6;
 	}
 	function alignOnPixel()
 	{
-		var loc2 = new Object({x:0,y:0});
-		this.localToGlobal(loc2);
-		loc2.x = Math.floor(loc2.x);
-		loc2.y = Math.floor(loc2.y);
-		this.globalToLocal(loc2);
-		this._x = this._x - loc2.x;
-		this._y = this._y - loc2.y;
+		var var2 = new Object({x:0,y:0});
+		this.localToGlobal(var2);
+		var2.x = Math.floor(var2.x);
+		var2.y = Math.floor(var2.y);
+		this.globalToLocal(var2);
+		this._x = this._x - var2.x;
+		this._y = this._y - var2.y;
 	}
 	function playFirstChildren()
 	{
-		for(var a in this)
+		§§enumerate(this);
+		while((var var0 = §§enumeration()) != null)
 		{
 			if(this[a].__proto__ == MovieClip.prototype)
 			{
@@ -31,60 +32,60 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 			}
 		}
 	}
-	function end(loc2)
+	function end(var2)
 	{
-		var loc3 = this.getFirstParentProperty("_ACTION");
-		if(loc2 == undefined)
+		var var3 = this.getFirstParentProperty("_ACTION");
+		if(var2 == undefined)
 		{
-			loc2 = loc3.sequencer;
+			var2 = var3.sequencer;
 		}
-		loc2.onActionEnd();
+		var2.onActionEnd();
 	}
-	function getFirstParentProperty(loc2)
+	function getFirstParentProperty(var2)
 	{
-		var loc3 = 20;
-		var loc4 = this;
-		while(loc3 >= 0)
+		var var3 = 20;
+		var var4 = this;
+		while(var3 >= 0)
 		{
-			if(loc4[loc2] != undefined)
+			if(var4[var2] != undefined)
 			{
-				return loc4[loc2];
+				return var4[var2];
 			}
-			loc4 = loc4._parent;
-			loc3 = loc3 - 1;
+			var4 = var4._parent;
+			var3 = var3 - 1;
 		}
 	}
-	function getActionClip(loc2)
+	function getActionClip(var2)
 	{
 		return this.getFirstParentProperty("_ACTION");
 	}
-	function playAll(loc2)
+	function playAll(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this;
+			var2 = this;
 		}
-		loc2.gotoAndPlay(1);
-		for(var a in loc2)
+		var2.gotoAndPlay(1);
+		for(var a in var2)
 		{
-			if(loc2[a] instanceof MovieClip)
+			if(var2[a] instanceof MovieClip)
 			{
-				this.playAll(loc2[a]);
+				this.playAll(var2[a]);
 			}
 		}
 	}
-	function stopAll(loc2)
+	function stopAll(var2)
 	{
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
-			loc2 = this;
+			var2 = this;
 		}
-		loc2.gotoAndStop(1);
-		for(var a in loc2)
+		var2.gotoAndStop(1);
+		for(var a in var2)
 		{
-			if(loc2[a] instanceof MovieClip)
+			if(var2[a] instanceof MovieClip)
 			{
-				this.stopAll(loc2[a]);
+				this.stopAll(var2[a]);
 			}
 		}
 	}

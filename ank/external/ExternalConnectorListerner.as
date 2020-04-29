@@ -9,15 +9,15 @@ class ank.external.ExternalConnectorListerner
 	{
 		return this._oParams;
 	}
-	function setParams(loc2)
+	function setParams(var2)
 	{
-		this._oParams = loc2;
+		this._oParams = var2;
 	}
 	function removeListeners()
 	{
 		ank.external.ExternalConnector.getInstance().removeEventListener("onExternalConnectionFaild",this);
 	}
-	function onExternalConnectionFaild(loc2)
+	function onExternalConnectionFaild(var2)
 	{
 		this.dispatchEvent({type:"onExternalError"});
 	}

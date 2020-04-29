@@ -1,8 +1,8 @@
 class dofus.datacenter.QuestObjective
 {
-	function QuestObjective(loc3, loc4)
+	function QuestObjective(var3, var4)
 	{
-		this.initialize(loc2,loc3);
+		this.initialize(var2,var3);
 	}
 	function __get__id()
 	{
@@ -10,17 +10,17 @@ class dofus.datacenter.QuestObjective
 	}
 	function __get__description()
 	{
-		var loc2 = this.api.lang.getQuestObjectiveText(this._nID);
-		var loc3 = loc2.t;
-		var loc4 = loc2.p;
-		var loc5 = new Array();
-		var loc6 = this.api.lang.getQuestObjectiveTypeText(loc3);
+		var var2 = this.api.lang.getQuestObjectiveText(this._nID);
+		var var3 = var2.t;
+		var var4 = var2.p;
+		var var5 = new Array();
+		var var6 = this.api.lang.getQuestObjectiveTypeText(var3);
 		loop0:
-		switch(loc3)
+		switch(var3)
 		{
 			case 0:
 			case 4:
-				loc5 = [loc4[0]];
+				var5 = [var4[0]];
 				break;
 			default:
 				switch(null)
@@ -28,40 +28,46 @@ class dofus.datacenter.QuestObjective
 					case 1:
 					case 9:
 					case 10:
-						loc5 = [this.api.lang.getNonPlayableCharactersText(loc4[0]).n];
+						var5 = [this.api.lang.getNonPlayableCharactersText(var4[0]).n];
+						break loop0;
+					case 2:
+					case 3:
+						var5[0] = this.api.lang.getNonPlayableCharactersText(var4[0]).n;
+						var5[1] = this.api.lang.getItemUnicText(var4[1]).n;
+						var5[2] = var4[2];
 						break loop0;
 					default:
 						switch(null)
 						{
-							case 3:
 							case 5:
-								loc5[0] = this.api.lang.getMapSubAreaText(loc4[0]).n;
+								var5[0] = this.api.lang.getMapSubAreaText(var4[0]).n;
 								break loop0;
 							case 6:
 							case 7:
-								loc5[0] = this.api.lang.getMonstersText(loc4[0]).n;
-								loc5[1] = loc4[1];
+								var5[0] = this.api.lang.getMonstersText(var4[0]).n;
+								var5[1] = var4[1];
 								break loop0;
 							case 8:
-								loc5[0] = this.api.lang.getItemUnicText(loc4[0]).n;
+								var5[0] = this.api.lang.getItemUnicText(var4[0]).n;
 								break loop0;
 							default:
-								if(loc0 !== 12)
+								if(var0 !== 12)
 								{
 									break loop0;
 								}
-								loc5[0] = this.api.lang.getNonPlayableCharactersText(loc4[0]).n;
-								loc5[1] = this.api.lang.getMonstersText(loc4[1]).n;
-								loc5[2] = loc4[2];
+								var5[0] = this.api.lang.getNonPlayableCharactersText(var4[0]).n;
+								var5[1] = this.api.lang.getMonstersText(var4[1]).n;
+								var5[2] = var4[2];
 								break loop0;
 						}
-					case 2:
-						loc5[0] = this.api.lang.getNonPlayableCharactersText(loc4[0]).n;
-						loc5[1] = this.api.lang.getItemUnicText(loc4[1]).n;
-						loc5[2] = loc4[2];
 				}
 		}
-		return ank.utils.PatternDecoder.getDescription(loc6,loc5);
+		var var7 = ank.utils.PatternDecoder.getDescription(var6,var5);
+		if(var7 != null && dofus.Constants.DEBUG)
+		{
+			var7 = var7 + " (" + this._nID + ")";
+		}
+		return var7;
 	}
 	function __get__isFinished()
 	{
@@ -75,10 +81,10 @@ class dofus.datacenter.QuestObjective
 	{
 		return this.api.lang.getQuestObjectiveText(this._nID).y;
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
 		this.api = _global.API;
-		this._nID = loc2;
-		this._bFinished = loc3;
+		this._nID = var2;
+		this._bFinished = var3;
 	}
 }

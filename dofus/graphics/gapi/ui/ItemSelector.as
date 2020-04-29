@@ -44,98 +44,98 @@ class dofus.graphics.gapi.ui.ItemSelector extends dofus.graphics.gapi.core.Dofus
 	}
 	function initData()
 	{
-		this._eaItems = new ank.utils.();
+		this._eaItems = new ank.utils.();
 		this._tiQuantity.restrict = "0-9";
 		this._tiQuantity.text = "1";
-		var loc2 = new ank.utils.();
-		var loc3 = this.api.lang.getAllItemTypes();
-		for(var a in loc3)
+		var var2 = new ank.utils.();
+		var var3 = this.api.lang.getAllItemTypes();
+		for(var a in var3)
 		{
-			loc2.push({label:loc3[a].n,id:a});
+			var2.push({label:var3[a].n,id:a});
 		}
-		loc2.sortOn("label");
-		loc2.push({label:"All",id:-1});
-		this._cbType.dataProvider = loc2;
+		var2.sortOn("label");
+		var2.push({label:"All",id:-1});
+		this._cbType.dataProvider = var2;
 	}
-	function hideItemViewer(loc2)
+	function hideItemViewer(var2)
 	{
-		this._winItemViewer._visible = !loc2;
-		this._itvItemViewer._visible = !loc2;
+		this._winItemViewer._visible = !var2;
+		this._itvItemViewer._visible = !var2;
 	}
 	function generateIndexes()
 	{
-		var loc2 = new Object();
+		var var2 = new Object();
 		for(var k in this._aTypes)
 		{
-			loc2[this._aTypes[k]] = true;
+			var2[this._aTypes[k]] = true;
 		}
-		var loc3 = this.api.lang.getItemUnics();
-		this._eaItems = new ank.utils.();
-		this._eaItemsOriginal = new ank.utils.();
-		for(var k in loc3)
+		var var3 = this.api.lang.getItemUnics();
+		this._eaItems = new ank.utils.();
+		this._eaItemsOriginal = new ank.utils.();
+		for(var k in var3)
 		{
-			var loc4 = loc3[k];
-			if(!(loc4.ep != undefined && loc4.ep > this.api.datacenter.Basics.aks_current_regional_version))
+			var var4 = var3[k];
+			if(!(var4.ep != undefined && var4.ep > this.api.datacenter.Basics.aks_current_regional_version))
 			{
-				if(loc2[loc4.t])
+				if(var2[var4.t])
 				{
-					var loc5 = loc4.n;
-					this._eaItems.push({id:k,name:loc5.toUpperCase()});
-					this._eaItemsOriginal.push(new dofus.datacenter.(0,Number(k)));
+					var var5 = var4.n;
+					this._eaItems.push({id:k,name:var5.toUpperCase()});
+					this._eaItemsOriginal.push(new dofus.datacenter.(0,Number(k)));
 				}
 			}
 		}
 		this._lblNumber.text = this._eaItemsOriginal.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",this._eaItemsOriginal.length < 2);
 	}
-	function searchItem(loc2)
+	function searchItem(var2)
 	{
-		var loc3 = loc2.split(" ");
-		var loc4 = new ank.utils.();
-		var loc5 = new Object();
-		var loc6 = 0;
-		var loc7 = 0;
-		while(loc7 < this._eaItems.length)
+		var var3 = var2.split(" ");
+		var var4 = new ank.utils.();
+		var var5 = new Object();
+		var var6 = 0;
+		var var7 = 0;
+		while(var7 < this._eaItems.length)
 		{
-			var loc8 = this._eaItems[loc7];
-			var loc9 = this.searchWordsInName(loc3,loc8.name,loc6);
-			if(loc9 != 0)
+			var var8 = this._eaItems[var7];
+			var var9 = this.searchWordsInName(var3,var8.name,var6);
+			if(var9 != 0)
 			{
-				loc5[loc8.id] = loc9;
-				loc6 = loc9;
+				var5[var8.id] = var9;
+				var6 = var9;
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		for(var k in loc5)
+		for(var k in var5)
 		{
-			if(loc5[k] >= loc6)
+			if(var5[k] >= var6)
 			{
-				loc4.push(new dofus.datacenter.(0,Number(k)));
+				var4.push(new dofus.datacenter.(0,Number(k)));
 			}
 		}
-		this._lst.dataProvider = loc4;
+		this._lst.dataProvider = var4;
 	}
-	function searchWordsInName(loc2, loc3, loc4)
+	function searchWordsInName(var2, var3, var4)
 	{
-		var loc5 = 0;
-		var loc6 = loc2.length;
-		while(loc6 >= 0)
+		var var5 = 0;
+		var var6 = var2.length;
+		while(var6 >= 0)
 		{
-			var loc7 = loc2[loc6];
-			if(loc3.indexOf(loc7) != -1)
+			var var7 = var2[var6];
+			if(var3.indexOf(var7) != -1)
 			{
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
-			else if(loc5 + loc6 < loc4)
+			else if(var5 + var6 < var4)
 			{
 				return 0;
 			}
-			loc6 = loc6 - 1;
+			var6 = var6 - 1;
 		}
-		return loc5;
+		return var5;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnCancel":
@@ -150,7 +150,7 @@ class dofus.graphics.gapi.ui.ItemSelector extends dofus.graphics.gapi.core.Dofus
 				break;
 		}
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		if(this._tiSearch.text.length >= 2)
 		{
@@ -161,9 +161,9 @@ class dofus.graphics.gapi.ui.ItemSelector extends dofus.graphics.gapi.core.Dofus
 			this._lst.dataProvider = this._eaItemsOriginal;
 		}
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._cbType:
 				this._aTypes = new Array();
@@ -173,41 +173,41 @@ class dofus.graphics.gapi.ui.ItemSelector extends dofus.graphics.gapi.core.Dofus
 				}
 				else
 				{
-					var loc3 = 0;
-					while(loc3 < this._cbType.dataProvider.length)
+					var var3 = 0;
+					while(var3 < this._cbType.dataProvider.length)
 					{
-						if(this._cbType.dataProvider[loc3].id != -1)
+						if(this._cbType.dataProvider[var3].id != -1)
 						{
-							this._aTypes.push(this._cbType.dataProvider[loc3].id);
+							this._aTypes.push(this._cbType.dataProvider[var3].id);
 						}
-						loc3 = loc3 + 1;
+						var3 = var3 + 1;
 					}
 				}
 				this.generateIndexes();
 				this.change();
 				break;
 			case this._lst:
-				var loc4 = this._lst.selectedItem;
-				if(loc4 == undefined)
+				var var4 = this._lst.selectedItem;
+				if(var4 == undefined)
 				{
 					this.hideItemViewer(true);
 					break;
 				}
 				if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY))
 				{
-					this.api.kernel.GameManager.insertItemInChat(loc4);
+					this.api.kernel.GameManager.insertItemInChat(var4);
 					return undefined;
 				}
 				this.hideItemViewer(false);
-				this._itvItemViewer.itemData = loc4;
+				this._itvItemViewer.itemData = var4;
 				break;
 		}
 	}
-	function itemRollOver(loc2)
+	function itemRollOver(var2)
 	{
-		this.gapi.showTooltip(loc2.row.item.name + " (" + loc2.row.item.unicID + ")",loc2.row,20,{bXLimit:true,bYLimit:false});
+		this.gapi.showTooltip(var2.row.item.name + " (" + var2.row.item.unicID + ")",var2.row,20,{bXLimit:true,bYLimit:false});
 	}
-	function itemRollOut(loc2)
+	function itemRollOut(var2)
 	{
 		this.gapi.hideTooltip();
 	}

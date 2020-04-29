@@ -5,24 +5,24 @@ class dofus.graphics.gapi.ui.StringCourse extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__name(loc2)
+	function __set__name(var2)
 	{
-		this._sName = loc2;
+		this._sName = var2;
 		return this.__get__name();
 	}
-	function __set__level(loc2)
+	function __set__level(var2)
 	{
-		this._sLevel = loc2;
+		this._sLevel = var2;
 		return this.__get__level();
 	}
-	function __set__gfx(loc2)
+	function __set__gfx(var2)
 	{
-		this._sGfx = loc2;
+		this._sGfx = var2;
 		return this.__get__gfx();
 	}
-	function __set__colors(loc2)
+	function __set__colors(var2)
 	{
-		this._colors = loc2;
+		this._colors = var2;
 		return this.__get__colors();
 	}
 	function init()
@@ -45,33 +45,33 @@ class dofus.graphics.gapi.ui.StringCourse extends dofus.graphics.gapi.core.Dofus
 		this._lblName.text = "";
 		this._lblLevel.text = "";
 	}
-	function applyColor(loc2, loc3)
+	function applyColor(var2, var3)
 	{
-		var loc4 = this._colors[loc3];
-		if(loc4 == -1 || loc4 == undefined)
+		var var4 = this._colors[var3];
+		if(var4 == -1 || var4 == undefined)
 		{
 			return undefined;
 		}
-		var loc5 = (loc4 & 16711680) >> 16;
-		var loc6 = (loc4 & 65280) >> 8;
-		var loc7 = loc4 & 255;
-		var loc8 = new Color(loc2);
-		var loc9 = new Object();
-		loc9 = {ra:0,ga:0,ba:0,rb:loc5,gb:loc6,bb:loc7};
-		loc8.setTransform(loc9);
+		var var5 = (var4 & 16711680) >> 16;
+		var var6 = (var4 & 65280) >> 8;
+		var var7 = var4 & 255;
+		var var8 = new Color(var2);
+		var var9 = new Object();
+		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
+		var8.setTransform(var9);
 	}
-	function complete(loc2)
+	function complete(var2)
 	{
 		this._lblName.text = this._sName;
 		this._lblLevel.text = this._sLevel;
 		var ref = this;
-		this._ldrStringCourse.content.stringCourseColor = function(loc2, loc3)
+		this._ldrStringCourse.content.stringCourseColor = function(var2, var3)
 		{
-			ref.applyColor(loc2,loc3);
+			ref.applyColor(var2,var3);
 		};
 		this._mcAnim.play();
 	}
-	function error(loc2)
+	function error(var2)
 	{
 		this.unloadThis();
 	}

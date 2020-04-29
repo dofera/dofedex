@@ -1,16 +1,16 @@
 class dofus.aks.Fights extends dofus.aks.Handler
 {
-	function Fights(loc3, loc4)
+	function Fights(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function getList()
 	{
 		this.aks.send("fL");
 	}
-	function getDetails(loc2)
+	function getDetails(var2)
 	{
-		this.aks.send("fD" + loc2,false);
+		this.aks.send("fD" + var2,false);
 	}
 	function blockSpectators()
 	{
@@ -28,88 +28,88 @@ class dofus.aks.Fights extends dofus.aks.Handler
 	{
 		this.aks.send("fH");
 	}
-	function onCount(loc2)
+	function onCount(var2)
 	{
-		var loc3 = Number(loc2);
-		if(_global.isNaN(loc3) || (loc2.length == 0 || loc3 == 0))
+		var var3 = Number(var2);
+		if(_global.isNaN(var3) || (var2.length == 0 || var3 == 0))
 		{
 			this.api.ui.getUIComponent("Banner").fightsCount = 0;
 		}
-		else if(loc3 < 0)
+		else if(var3 < 0)
 		{
-			if(this.api.ui.getUIComponent("Banner").fightsCount >= loc3)
+			if(this.api.ui.getUIComponent("Banner").fightsCount >= var3)
 			{
-				this.api.ui.getUIComponent("Banner").fightsCount = this.api.ui.getUIComponent("Banner").fightsCount + loc3;
+				this.api.ui.getUIComponent("Banner").fightsCount = this.api.ui.getUIComponent("Banner").fightsCount + var3;
 			}
 		}
 		else
 		{
-			this.api.ui.getUIComponent("Banner").fightsCount = loc3;
+			this.api.ui.getUIComponent("Banner").fightsCount = var3;
 		}
 	}
-	function onList(loc2)
+	function onList(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = new Array();
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var3 = var2.split("|");
+		var var4 = new Array();
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			if(String(loc3[loc5]).length != 0)
+			if(String(var3[var5]).length != 0)
 			{
-				var loc6 = loc3[loc5].split(";");
-				var loc7 = Number(loc6[0]);
-				var loc8 = Number(loc6[1]);
-				var loc9 = loc8 != -1?this.api.kernel.NightManager.getDiffDate(loc8):-1;
-				var loc10 = new dofus.datacenter.(loc7,loc9);
-				var loc11 = String(loc6[2]).split(",");
-				var loc12 = Number(loc11[0]);
-				var loc13 = Number(loc11[1]);
-				var loc14 = Number(loc11[2]);
-				loc10.addTeam(1,loc12,loc13,loc14);
-				var loc15 = String(loc6[3]).split(",");
-				var loc16 = Number(loc15[0]);
-				var loc17 = Number(loc15[1]);
-				var loc18 = Number(loc15[2]);
-				loc10.addTeam(2,loc16,loc17,loc18);
-				loc4.push(loc10);
+				var var6 = var3[var5].split(";");
+				var var7 = Number(var6[0]);
+				var var8 = Number(var6[1]);
+				var var9 = var8 != -1?this.api.kernel.NightManager.getDiffDate(var8):-1;
+				var var10 = new dofus.datacenter.(var7,var9);
+				var var11 = String(var6[2]).split(",");
+				var var12 = Number(var11[0]);
+				var var13 = Number(var11[1]);
+				var var14 = Number(var11[2]);
+				var10.addTeam(1,var12,var13,var14);
+				var var15 = String(var6[3]).split(",");
+				var var16 = Number(var15[0]);
+				var var17 = Number(var15[1]);
+				var var18 = Number(var15[2]);
+				var10.addTeam(2,var16,var17,var18);
+				var4.push(var10);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		var loc19 = this.api.ui.getUIComponent("FightsInfos").fights;
-		if(loc19 != null)
+		var var19 = this.api.ui.getUIComponent("FightsInfos").fights;
+		if(var19 != null)
 		{
-			loc19.splice(0,loc19.length);
-			loc19.replaceAll(0,loc4);
+			var19.splice(0,var19.length);
+			var19.replaceAll(0,var4);
 		}
 	}
-	function onDetails(loc2)
+	function onDetails(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = new ank.utils.();
-		var loc6 = loc3[1].split(";");
-		var loc7 = 0;
-		while(loc7 < loc6.length)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = new ank.utils.();
+		var var6 = var3[1].split(";");
+		var var7 = 0;
+		while(var7 < var6.length)
 		{
-			if(loc6[loc7] != "")
+			if(var6[var7] != "")
 			{
-				var loc8 = loc6[loc7].split("~");
-				loc5.push({name:this.api.kernel.CharactersManager.getNameFromData(loc8[0]).name,level:Number(loc8[1]),type:this.api.kernel.CharactersManager.getNameFromData(loc8[0]).type});
+				var var8 = var6[var7].split("~");
+				var5.push({name:this.api.kernel.CharactersManager.getNameFromData(var8[0]).name,level:Number(var8[1]),type:this.api.kernel.CharactersManager.getNameFromData(var8[0]).type});
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		var loc9 = new ank.utils.();
-		var loc10 = loc3[2].split(";");
-		var loc11 = 0;
-		while(loc11 < loc10.length)
+		var var9 = new ank.utils.();
+		var var10 = var3[2].split(";");
+		var var11 = 0;
+		while(var11 < var10.length)
 		{
-			if(loc10[loc11] != "")
+			if(var10[var11] != "")
 			{
-				var loc12 = loc10[loc11].split("~");
-				loc9.push({name:this.api.kernel.CharactersManager.getNameFromData(loc12[0]).name,level:Number(loc12[1]),type:this.api.kernel.CharactersManager.getNameFromData(loc12[0]).type});
+				var var12 = var10[var11].split("~");
+				var9.push({name:this.api.kernel.CharactersManager.getNameFromData(var12[0]).name,level:Number(var12[1]),type:this.api.kernel.CharactersManager.getNameFromData(var12[0]).type});
 			}
-			loc11 = loc11 + 1;
+			var11 = var11 + 1;
 		}
-		this.api.ui.getUIComponent("FightsInfos").addFightTeams(loc4,loc5,loc9);
+		this.api.ui.getUIComponent("FightsInfos").addFightTeams(var4,var5,var9);
 	}
 }

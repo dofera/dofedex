@@ -12,14 +12,14 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__border(loc2)
+	function __set__border(var2)
 	{
-		this._bBorder = loc2;
+		this._bBorder = var2;
 		if(this.border_mc == undefined)
 		{
 			this.drawBorder();
 		}
-		this.border_mc._visible = loc2;
+		this.border_mc._visible = var2;
 		return this.__get__border();
 	}
 	function __get__border()
@@ -35,9 +35,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__url();
 	}
-	function __set__editable(loc2)
+	function __set__editable(var2)
 	{
-		this._bEditable = loc2;
+		this._bEditable = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -48,9 +48,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bEditable;
 	}
-	function __set__autoHeight(loc2)
+	function __set__autoHeight(var2)
 	{
-		this._bAutoHeight = loc2;
+		this._bAutoHeight = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -61,9 +61,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bAutoHeight;
 	}
-	function __set__selectable(loc2)
+	function __set__selectable(var2)
 	{
-		this._bSelectable = loc2;
+		this._bSelectable = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -74,9 +74,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelectable;
 	}
-	function __set__wordWrap(loc2)
+	function __set__wordWrap(var2)
 	{
-		this._bWordWrap = loc2;
+		this._bWordWrap = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -87,9 +87,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bWordWrap;
 	}
-	function __set__html(loc2)
+	function __set__html(var2)
 	{
-		this._bHTML = loc2;
+		this._bHTML = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -100,9 +100,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bHTML;
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		this._bSettingNewText = true;
 		this.addToQueue({object:this,method:this.setTextFieldProperties});
 		return this.__get__text();
@@ -111,32 +111,32 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._tText.text;
 	}
-	function __set__scrollBarRight(loc2)
+	function __set__scrollBarRight(var2)
 	{
-		this._bScrollBarRight = loc2;
+		this._bScrollBarRight = var2;
 		return this.__get__scrollBarRight();
 	}
 	function __get__scrollBarRight()
 	{
 		return this._bScrollBarRight;
 	}
-	function __set__scrollBarMargin(loc2)
+	function __set__scrollBarMargin(var2)
 	{
-		this._nScrollBarMargin = loc2;
+		this._nScrollBarMargin = var2;
 		return this.__get__scrollBarMargin();
 	}
 	function __get__scrollBarMargin()
 	{
 		return this._nScrollBarMargin;
 	}
-	function __set__styleSheet(loc2)
+	function __set__styleSheet(var2)
 	{
-		if(loc2 != "")
+		if(var2 != "")
 		{
 			var _owner = this;
 			this._cssStyles = new TextField.StyleSheet();
-			this._cssStyles.load(loc2);
-			this._cssStyles.onLoad = function(loc2)
+			this._cssStyles.load(var2);
+			this._cssStyles.onLoad = function(var2)
 			{
 				if(_owner._tText != undefined)
 				{
@@ -151,27 +151,27 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__styleSheet();
 	}
-	function __set__scrollPosition(loc2)
+	function __set__scrollPosition(var2)
 	{
-		this._tText.scroll = loc2;
+		this._tText.scroll = var2;
 		return this.__get__scrollPosition();
 	}
 	function __get__scrollPosition()
 	{
 		return this._tText.scroll;
 	}
-	function __set__maxscroll(loc2)
+	function __set__maxscroll(var2)
 	{
-		this._tText.maxscroll = loc2;
+		this._tText.maxscroll = var2;
 		return this.__get__maxscroll();
 	}
 	function __get__maxscroll()
 	{
 		return this._tText.maxscroll;
 	}
-	function __set__maxChars(loc2)
+	function __set__maxChars(var2)
 	{
-		this._tText.maxChars = loc2;
+		this._tText.maxChars = var2;
 		return this.__get__maxChars();
 	}
 	function __get__maxChars()
@@ -228,17 +228,17 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 		{
 			this.border_mc._visible = this._bBorder;
 		}
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 		this._tfFormatter = new TextFormat();
-		this._tfFormatter.font = loc2.font;
-		this._tfFormatter.align = loc2.align;
-		this._tfFormatter.size = loc2.size;
-		this._tfFormatter.color = loc2.color;
-		this._tfFormatter.bold = loc2.bold;
-		this._tfFormatter.italic = loc2.italic;
-		this._tText.embedFonts = loc2.embedfonts;
-		this._tText.antiAliasType = loc2.antialiastype;
-		this._sbVertical.styleName = loc2.scrollbarstyle;
+		this._tfFormatter.font = var2.font;
+		this._tfFormatter.align = var2.align;
+		this._tfFormatter.size = var2.size;
+		this._tfFormatter.color = var2.color;
+		this._tfFormatter.bold = var2.bold;
+		this._tfFormatter.italic = var2.italic;
+		this._tText.embedFonts = var2.embedfonts;
+		this._tText.antiAliasType = var2.antialiastype;
+		this._sbVertical.styleName = var2.scrollbarstyle;
 	}
 	function loadText()
 	{
@@ -248,9 +248,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 		}
 		this._lvText = new LoadVars();
 		this._lvText.parent = this;
-		this._lvText.onData = function(loc2)
+		this._lvText.onData = function(var2)
 		{
-			this.parent.text = loc2;
+			this.parent.text = var2;
 		};
 		this._lvText.load(this._sURL);
 	}
@@ -313,9 +313,9 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 			this._tText._x = !this._bScrollBarRight?this._sbVertical._width + this._nScrollBarMargin:0;
 			this._sbVertical.addEventListener("scroll",this);
 		}
-		var loc2 = this._tText.textHeight;
-		var loc3 = 0.9 * this._tText._height / loc2 * this._tText.maxscroll;
-		this._sbVertical.setScrollProperties(loc3,0,this._tText.maxscroll);
+		var var2 = this._tText.textHeight;
+		var var3 = 0.9 * this._tText._height / var2 * this._tText.maxscroll;
+		this._sbVertical.setScrollProperties(var3,0,this._tText.maxscroll);
 		this._sbVertical.scrollPosition = this._tText.scroll;
 		if(this._bSettingNewText)
 		{
@@ -348,23 +348,23 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 		}
 		this.dispatchEvent({type:"change"});
 	}
-	function scroll(loc2)
+	function scroll(var2)
 	{
-		if(loc2.target == this._sbVertical)
+		if(var2.target == this._sbVertical)
 		{
-			this._tText.scroll = loc2.target.scrollPosition;
+			this._tText.scroll = var2.target.scrollPosition;
 		}
 	}
-	function onMouseWheel(loc2, loc3)
+	function onMouseWheel(var2, var3)
 	{
-		if(String(loc3._target).indexOf(this._target) != -1)
+		if(String(var3._target).indexOf(this._target) != -1)
 		{
-			this._sbVertical.scrollPosition = this._sbVertical.scrollPosition - loc2;
+			this._sbVertical.scrollPosition = this._sbVertical.scrollPosition - var2;
 		}
 	}
-	function onHref(loc2)
+	function onHref(var2)
 	{
-		this.dispatchEvent({type:"href",params:loc2});
+		this.dispatchEvent({type:"href",params:var2});
 	}
 	function onSetFocus()
 	{

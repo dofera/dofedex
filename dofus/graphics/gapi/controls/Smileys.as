@@ -28,117 +28,118 @@ class dofus.graphics.gapi.controls.Smileys extends dofus.graphics.gapi.core.Dofu
 	}
 	function initData()
 	{
-		var loc2 = new ank.utils.();
+		var var2 = new ank.utils.();
 		if(this.api.config.isStreaming)
 		{
 			this._ldrStreaming.contentPath = dofus.Constants.SMILEYS_ICONS_PATH + "all.swf";
 		}
 		else
 		{
-			var loc3 = 1;
-			while(loc3 <= 15)
+			var var3 = 1;
+			while(var3 <= 15)
 			{
-				var loc4 = new Object();
-				loc4.iconFile = dofus.Constants.SMILEYS_ICONS_PATH + loc3 + ".swf";
-				loc4.index = loc3;
-				loc2.push(loc4);
-				loc3 = loc3 + 1;
+				var var4 = new Object();
+				var4.iconFile = dofus.Constants.SMILEYS_ICONS_PATH + var3 + ".swf";
+				var4.index = var3;
+				var2.push(var4);
+				var3 = var3 + 1;
 			}
-			this._cgSmileys.dataProvider = loc2;
+			this._cgSmileys.dataProvider = var2;
 		}
-		var loc5 = new ank.utils.();
-		var loc6 = this.api.datacenter.Player.Emotes.getItems();
-		for(var k in loc6)
+		var var5 = new ank.utils.();
+		var var6 = this.api.datacenter.Player.Emotes.getItems();
+		for(var k in var6)
 		{
-			var loc7 = new Object();
-			var loc8 = Number(k);
-			loc7.iconFile = dofus.Constants.EMOTES_ICONS_PATH + loc8 + ".swf";
-			loc7.index = loc8;
-			loc5.push(loc7);
-			loc5.sortOn("index",Array.NUMERIC);
+			var var7 = new Object();
+			var var8 = Number(k);
+			var7.iconFile = dofus.Constants.EMOTES_ICONS_PATH + var8 + ".swf";
+			var7.index = var8;
+			var5.push(var7);
+			var5.sortOn("index",Array.NUMERIC);
 		}
-		this._cgEmotes.dataProvider = loc5;
+		this._cgEmotes.dataProvider = var5;
 	}
 	function attachSmileys()
 	{
-		var loc2 = 0;
-		var loc3 = 0;
-		var loc4 = 16;
-		var loc5 = 4;
-		var loc7 = 1;
-		while(loc7 <= 15)
+		var var2 = 0;
+		var var3 = 0;
+		var var4 = 16;
+		var var5 = 4;
+		var var7 = 1;
+		while(var7 <= 15)
 		{
-			var loc8 = this._ldrStreaming.content.attachMovie(String(loc7),"smiley" + loc7,loc7);
-			if(loc8._width > loc8._height)
+			var var8 = this._ldrStreaming.content.attachMovie(String(var7),"smiley" + var7,var7);
+			if(var8._width > var8._height)
 			{
-				var loc6 = loc8._height / loc8._width;
-				loc8._height = loc6 * loc4;
-				loc8._width = loc4;
+				var var6 = var8._height / var8._width;
+				var8._height = var6 * var4;
+				var8._width = var4;
 			}
 			else
 			{
-				loc6 = loc8._width / loc8._height;
-				loc8._width = loc6 * loc4;
-				loc8._height = loc4;
+				var6 = var8._width / var8._height;
+				var8._width = var6 * var4;
+				var8._height = var4;
 			}
-			loc8._x = loc2 * (loc4 + loc5);
-			loc8._y = loc3 * (loc4 + loc5);
-			loc8.contentData = {index:loc7};
-			loc8.onRelease = function()
+			var8._x = var2 * (var4 + var5);
+			var8._y = var3 * (var4 + var5);
+			var8.contentData = {index:var7};
+			var ref = this;
+			var8.onRelease = function()
 			{
 				ref.selectItem({target:this,owner:{_name:"_cgSmileys"}});
 			};
-			loc8.onRollOver = function()
+			var8.onRollOver = function()
 			{
 				this._parent.attachMovie("over","over",-1);
 				this._parent.over._x = this._x;
 				this._parent.over._y = this._y;
 			};
-			loc8.onReleaseOutside = loc8.onRollOut = function()
+			var8.onReleaseOutside = var8.onRollOut = function()
 			{
 				this._parent.createEmptyMovieClip("over",-1);
 			};
-			loc2 = loc2 + 1;
-			if(loc2 == 5)
+			var2 = var2 + 1;
+			if(var2 == 5)
 			{
-				loc2 = 0;
-				loc3 = loc3 + 1;
+				var2 = 0;
+				var3 = var3 + 1;
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
 		this.attachSmileys();
 	}
-	function selectItem(loc2)
+	function selectItem(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(loc3 == undefined)
+		var var3 = var2.target.contentData;
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		switch(loc2.owner._name)
+		switch(var2.owner._name)
 		{
 			case "_cgSmileys":
-				this.dispatchEvent({type:"selectSmiley",index:loc3.index});
+				this.dispatchEvent({type:"selectSmiley",index:var3.index});
 				break;
 			case "_cgEmotes":
-				this.dispatchEvent({type:"selectEmote",index:loc3.index});
+				this.dispatchEvent({type:"selectEmote",index:var3.index});
 		}
 	}
-	function overItem(loc2)
+	function overItem(var2)
 	{
-		var loc3 = loc2.target.contentData;
-		if(loc3 != undefined)
+		var var3 = var2.target.contentData;
+		if(var3 != undefined)
 		{
-			var loc4 = this.api.lang.getEmoteText(loc3.index);
-			var loc5 = loc4.n;
-			var loc6 = loc4.s == undefined?"":" (/" + loc4.s + ")";
-			this.gapi.showTooltip(loc5 + loc6,loc2.target,-20);
+			var var4 = this.api.lang.getEmoteText(var3.index);
+			var var5 = var4.n;
+			var var6 = var4.s == undefined?"":" (/" + var4.s + ")";
+			this.gapi.showTooltip(var5 + var6,var2.target,-20);
 		}
 	}
-	function outItem(loc2)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}

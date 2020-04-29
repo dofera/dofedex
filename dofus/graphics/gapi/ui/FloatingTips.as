@@ -13,38 +13,38 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 	{
 		return this._oBounds;
 	}
-	function __set__bounds(loc2)
+	function __set__bounds(var2)
 	{
-		this._oBounds = loc2;
+		this._oBounds = var2;
 		return this.__get__bounds();
 	}
 	function __get__snap()
 	{
 		return this._nSnap;
 	}
-	function __set__snap(loc2)
+	function __set__snap(var2)
 	{
-		this._nSnap = loc2;
+		this._nSnap = var2;
 		return this.__get__snap();
 	}
 	function __get__tip()
 	{
 		return this._nTipID;
 	}
-	function __set__tip(loc2)
+	function __set__tip(var2)
 	{
-		this._nTipID = loc2;
+		this._nTipID = var2;
 		this.refreshData();
 		return this.__get__tip();
 	}
 	function __get__position()
 	{
-		return new com.ankamagames.types.(this._x,this._y);
+		return new com.ankamagames.types.(this._x,this._y);
 	}
-	function __set__position(loc2)
+	function __set__position(var2)
 	{
-		this._x = loc2.x;
-		this._y = loc2.y;
+		this._x = var2.x;
+		this._y = var2.y;
 		return this.__get__position();
 	}
 	function init()
@@ -94,44 +94,44 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 		}
 		this._taTipsContent.text = "<p class=\'body\'>" + this.api.lang.getKnownledgeBaseTip(this._nTipID).c + "</p>";
 	}
-	function move(loc2, loc3)
+	function move(var2, var3)
 	{
-		this._x = loc2;
-		this._y = loc3;
+		this._x = var2;
+		this._y = var3;
 		this.snapWindow();
-		this.api.kernel.OptionsManager.setOption("FloatingTipsCoord",new com.ankamagames.types.(this._x,this._y));
+		this.api.kernel.OptionsManager.setOption("FloatingTipsCoord",new com.ankamagames.types.(this._x,this._y));
 	}
 	function snapWindow()
 	{
-		var loc2 = this._x;
-		var loc3 = this._y;
-		var loc4 = this.getBounds();
-		var loc5 = loc3 + loc4.yMin - this._oBounds.top;
-		var loc6 = this._oBounds.bottom - loc3 - loc4.yMax;
-		var loc7 = loc2 + loc4.xMin - this._oBounds.left;
-		var loc8 = this._oBounds.right - loc2 - loc4.xMax;
-		if(loc5 < this._nSnap)
+		var var2 = this._x;
+		var var3 = this._y;
+		var var4 = this.getBounds();
+		var var5 = var3 + var4.yMin - this._oBounds.top;
+		var var6 = this._oBounds.bottom - var3 - var4.yMax;
+		var var7 = var2 + var4.xMin - this._oBounds.left;
+		var var8 = this._oBounds.right - var2 - var4.xMax;
+		if(var5 < this._nSnap)
 		{
-			loc3 = this._oBounds.top - loc4.yMin;
+			var3 = this._oBounds.top - var4.yMin;
 		}
-		if(loc6 < this._nSnap)
+		if(var6 < this._nSnap)
 		{
-			loc3 = this._oBounds.bottom - loc4.yMax;
+			var3 = this._oBounds.bottom - var4.yMax;
 		}
-		if(loc7 < this._nSnap)
+		if(var7 < this._nSnap)
 		{
-			loc2 = this._oBounds.left - loc4.xMin;
+			var2 = this._oBounds.left - var4.xMin;
 		}
-		if(loc8 < this._nSnap)
+		if(var8 < this._nSnap)
 		{
-			loc2 = this._oBounds.right - loc4.xMax;
+			var2 = this._oBounds.right - var4.xMax;
 		}
-		this._y = loc3;
-		this._x = loc2;
+		this._y = var3;
+		this._x = var2;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "_btnClose":
 				this.unloadThis();
@@ -157,8 +157,8 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 			this.move(_root._xmouse - this._nOffsetX,_root._ymouse - this._nOffsetY);
 		}
 	}
-	function href(loc2)
+	function href(var2)
 	{
-		this.api.kernel.TipsManager.onLink(loc2);
+		this.api.kernel.TipsManager.onLink(var2);
 	}
 }

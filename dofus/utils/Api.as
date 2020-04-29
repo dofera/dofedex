@@ -52,14 +52,15 @@ class dofus.utils.Api extends Object
 	function initialize()
 	{
 		this._oConfig = _global.CONFIG;
-		this._oLang = new dofus.utils.();
+		this._oLang = new dofus.utils.();
 		this._oUI = dofus.DofusCore.getClip().GAPI;
 		this._oUI.api = this;
-		this._oKernel = new dofus.(this);
-		this._oElectron = new dofus.	(this);
+		this._oKernel = new dofus.(this);
+		this._oElectron = new dofus.(this);
 		this._oSounds = dofus.sounds.AudioManager.getInstance();
 		_global.SOMA = this._oSounds;
-		this._oDatacenter = new dofus.datacenter.(this);
+		this._oDatacenter = new dofus.datacenter.
+(this);
 		this._oNetwork = new dofus.aks.(this);
 		this._oGfx = dofus.DofusCore.getClip().BATTLEFIELD;
 		if(this._oConfig.isStreaming && this._oConfig.streamingMethod == "explod")
@@ -75,70 +76,72 @@ class dofus.utils.Api extends Object
 	}
 	function checkFileSize(sFile, nCheckID)
 	{
-		var loc2 = sFile.split("*");
-		sFile = loc2[0];
-		if(loc2.length > 1)
+		var var2 = sFile.split("*");
+		sFile = var2[0];
+		var arg = "";
+		if(var2.length > 1)
 		{
-			arg = loc2[1];
+			arg = var2[1];
 		}
-		var loc3 = !this.datacenter.Player.isAuthorized && (!this.datacenter.Player.isSkippingFightAnimations && (!this.datacenter.Player.isSkippingLootPanel && this.ui.getUIComponent("Debug") == undefined));
-		if(loc3)
+		var var3 = !this.datacenter.Player.isAuthorized && (!this.datacenter.Player.isSkippingFightAnimations && (!this.datacenter.Player.isSkippingLootPanel && this.ui.getUIComponent("Debug") == undefined));
+		if(var3)
 		{
-			var loc4 = _global.CONFIG.connexionServer.ip;
-			if(loc4 == undefined)
+			var var4 = _global.CONFIG.connexionServer.ip;
+			if(var4 == undefined)
 			{
-				loc4 = this.datacenter.Basics.serverHost;
+				var4 = this.datacenter.Basics.serverHost;
 			}
-			if(loc4 != undefined && (loc4.indexOf("127.0.0.1") == 0 || loc4.indexOf("192.168") == 0))
+			if(var4 != undefined && (var4.indexOf("127.0.0.1") == 0 || var4.indexOf("192.168") == 0))
 			{
-				loc3 = !loc3;
+				var3 = !var3;
 			}
 		}
-		var nAddition = !!loc3?-10:0;
-		var loc5 = new Object();
-		loc5.onLoadInit = function(loc2, loc3)
+		var nAddition = !!var3?-10:0;
+		var var5 = new Object();
+		var ref = this;
+		var5.onLoadInit = function(var2, var3)
 		{
-			var loc4 = loc2.getBytesTotal() + nAddition;
-			var loc5 = "CHALLENGE";
-			var loc6 = loc2[loc5];
-			if(loc6 != undefined)
+			var var4 = var2.getBytesTotal() + nAddition;
+			var var5 = "CHALLENGE";
+			var var6 = var2[var5];
+			if(var6 != undefined)
 			{
-				var loc7 = false;
-				var loc8 = 0;
-				while(loc8 < ref.config.dataServers.length)
+				var var7 = false;
+				var var8 = 0;
+				while(var8 < ref.config.dataServers.length)
 				{
-					if(sFile.indexOf(ref.config.dataServers[loc8].url) == 0)
+					if(sFile.indexOf(ref.config.dataServers[var8].url) == 0)
 					{
-						loc7 = true;
+						var7 = true;
 					}
-					loc8 = loc8 + 1;
+					var8 = var8 + 1;
 				}
-				if(loc7)
+				if(var7)
 				{
-					var loc9 = Number(loc6.apply(ref,[sFile,arg]));
-					if(!_global.isNaN(loc9))
+					var var9 = Number(var6.apply(ref,[sFile,arg]));
+					if(!_global.isNaN(var9))
 					{
-						loc4 = loc9;
+						var4 = var9;
 					}
 				}
 			}
-			ref.onFileCheckFinished(true,loc4,nCheckID);
-			loc2.removeMovieClip();
+			ref.onFileCheckFinished(true,var4,nCheckID);
+			var2.removeMovieClip();
 		};
-		loc5.onLoadError = function(loc2, loc3, loc4)
+		var5.onLoadError = function(var2, var3, var4)
 		{
-			var loc5 = loc2.getBytesTotal() + nAddition;
-			ref.onFileCheckFinished(true,loc5,nCheckID);
-			loc2.removeMovieClip();
+			var var5 = var2.getBytesTotal() + nAddition;
+			ref.onFileCheckFinished(true,var5,nCheckID);
+			var2.removeMovieClip();
 		};
-		var loc6 = dofus.DofusCore.getInstance().getTemporaryContainer();
-		var loc7 = loc6.createEmptyMovieClip("FC" + nCheckID,loc6.getNextHighestDepth());
-		var loc8 = new MovieClipLoader();
-		loc8.addListener(loc5);
-		loc8.loadClip(sFile,loc7);
+		var var6 = dofus.DofusCore.getInstance().getTemporaryContainer();
+		var var7 = var6.createEmptyMovieClip("FC" + nCheckID,var6.getNextHighestDepth());
+		var var8 = new MovieClipLoader();
+		var8.addListener(var5);
+		var8.loadClip(sFile,var7);
 	}
-	function onFileCheckFinished(loc2, loc3, loc4)
+	function onFileCheckFinished(var2, var3, var4)
 	{
-		this.network.Basics.fileCheckAnswer(loc4,!loc2?-1:loc3);
+		this.network.Basics.fileCheckAnswer(var4,!var2?-1:var3);
 	}
 }

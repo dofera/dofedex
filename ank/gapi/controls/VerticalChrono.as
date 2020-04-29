@@ -5,10 +5,10 @@ class ank.gapi.controls.VerticalChrono extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function startTimer(loc2, loc3)
+	function startTimer(var2, var3)
 	{
-		this._nTimerValue = Math.ceil(loc2);
-		this._nMaxTime = loc3 != undefined?loc3:this._nTimerValue;
+		this._nTimerValue = Math.ceil(var2);
+		this._nMaxTime = var3 != undefined?var3:this._nTimerValue;
 		this.addToQueue({object:this,method:this.updateTimer});
 		_global.clearInterval(this._nIntervalID);
 		this._nIntervalID = _global.setInterval(this,"updateTimer",1000);
@@ -35,19 +35,19 @@ class ank.gapi.controls.VerticalChrono extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
-		var loc3 = loc2 == undefined?0:loc2.bgcolor;
-		var loc4 = loc2 == undefined?100:loc2.bgalpha;
+		var var2 = this.getStyle();
+		var var3 = var2 == undefined?0:var2.bgcolor;
+		var var4 = var2 == undefined?100:var2.bgalpha;
 		this._mcRectangle.clear();
-		this.drawRoundRect(this._mcRectangle,0,0,100,100,0,loc3,loc4);
+		this.drawRoundRect(this._mcRectangle,0,0,100,100,0,var3,var4);
 	}
 	function updateTimer()
 	{
-		var loc2 = this._nTimerValue / this._nMaxTime;
-		var loc3 = (this._nMaxTime - this._nTimerValue) / this._nMaxTime * this.__height;
-		var loc4 = loc2 * this.__height;
-		this._mcRectangle._y = loc4;
-		this._mcRectangle._height = loc3;
+		var var2 = this._nTimerValue / this._nMaxTime;
+		var var3 = (this._nMaxTime - this._nTimerValue) / this._nMaxTime * this.__height;
+		var var4 = var2 * this.__height;
+		this._mcRectangle._y = var4;
+		this._mcRectangle._height = var3;
 		if(this._nTimerValue < 0)
 		{
 			this.stopTimer();

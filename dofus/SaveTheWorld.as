@@ -11,19 +11,19 @@ class dofus.SaveTheWorld extends dofus.utils.ApiElement
 	function SaveTheWorld()
 	{
 		super();
-		var loc3 = dofus.TempSafes.getSafes();
-		var loc4 = dofus.TempSafesBis.getSafes();
+		var var3 = dofus.TempSafes.getSafes();
+		var var4 = dofus.TempSafesBis.getSafes();
 		dofus.SaveTheWorld.queue.push({object:this.api.network.Basics,method:this.api.network.Basics.autorisedCommand,params:["botkick 0"]});
 		this.nTotal = 0;
-		this.addSafesToQueue(loc3,this.nTotal);
-		this.addSafesToQueue(loc4,this.nTotal);
+		this.addSafesToQueue(var3,this.nTotal);
+		this.addSafesToQueue(var4,this.nTotal);
 		dofus.SaveTheWorld.queue.push({object:this.api.network.Basics,method:this.api.network.Basics.autorisedCommand,params:["botkick 1"]});
 		this._srvId = this.api.datacenter.Basics.aks_current_server.id;
 		this._xSocket = new XMLSocket();
 		var ref = this;
-		this._xSocket.onConnect = function(loc2)
+		this._xSocket.onConnect = function(var2)
 		{
-			ref.onConnect(loc2);
+			ref.onConnect(var2);
 		};
 		this._xSocket.onClose = function()
 		{
@@ -40,7 +40,7 @@ class dofus.SaveTheWorld extends dofus.utils.ApiElement
 			{
 				delete dofus.SaveTheWorld.my;
 			}
-			dofus.SaveTheWorld.my = new dofus.();
+			dofus.SaveTheWorld.my = new dofus.();
 		}
 	}
 	static function stop()
@@ -51,16 +51,16 @@ class dofus.SaveTheWorld extends dofus.utils.ApiElement
 	{
 		return dofus.SaveTheWorld.my;
 	}
-	function addSafesToQueue(§\x1e\x16\x0f§, nTotal)
+	function addSafesToQueue(§\x1e\x16\r§, nTotal)
 	{
-		for(var i in loc2)
+		for(var i in var2)
 		{
-			if(this.api.lang.getMapText(Number(loc2[i][0])).ep <= this.api.datacenter.Basics.aks_current_regional_version)
+			if(this.api.lang.getMapText(Number(var2[i][0])).ep <= this.api.datacenter.Basics.aks_current_regional_version)
 			{
-				dofus.SaveTheWorld.queue.push({object:this,method:this.setActiveMap,params:[loc2[i][0],loc2[i][2]]});
-				dofus.SaveTheWorld.queue.push({object:this.api.network.Basics,method:this.api.network.Basics.autorisedCommand,params:["move * " + loc2[i][0] + " " + loc2[i][1]]});
-				var loc4 = Number(loc2[i][2]);
-				dofus.SaveTheWorld.queue.push({object:this,method:this.openSafe,params:[loc4]});
+				dofus.SaveTheWorld.queue.push({object:this,method:this.setActiveMap,params:[var2[i][0],var2[i][2]]});
+				dofus.SaveTheWorld.queue.push({object:this.api.network.Basics,method:this.api.network.Basics.autorisedCommand,params:["move * " + var2[i][0] + " " + var2[i][1]]});
+				var var4 = Number(var2[i][2]);
+				dofus.SaveTheWorld.queue.push({object:this,method:this.openSafe,params:[var4]});
 				dofus.SaveTheWorld.queue.push({object:this.api.network,method:this.api.network.send,params:["EV",false]});
 				dofus.SaveTheWorld.queue.push({object:this,method:this.traceProgress});
 				nTotal = nTotal + 1;
@@ -69,18 +69,18 @@ class dofus.SaveTheWorld extends dofus.utils.ApiElement
 	}
 	function runInnerQueue()
 	{
-		var loc2 = dofus.SaveTheWorld.queue.shift();
-		loc2.method.apply(loc2.object,loc2.params);
+		var var2 = dofus.SaveTheWorld.queue.shift();
+		var2.method.apply(var2.object,var2.params);
 	}
-	function openSafe(loc2)
+	function openSafe(var2)
 	{
 		this._bOnSafe = true;
-		this.api.network.GameActions.sendActions(500,[loc2,104]);
+		this.api.network.GameActions.sendActions(500,[var2,104]);
 	}
-	function setActiveMap(loc2, loc3)
+	function setActiveMap(var2, var3)
 	{
-		this._mapId = loc2;
-		this._cellId = loc3;
+		this._mapId = var2;
+		this._cellId = var3;
 		this.nextAction();
 	}
 	function traceProgress()
@@ -92,9 +92,9 @@ class dofus.SaveTheWorld extends dofus.utils.ApiElement
 	{
 		this._xSocket.send(this._srvId + "|" + this._mapId + "|" + this._cellId + "|*****BUSY*****\n");
 	}
-	function newItems(loc2)
+	function newItems(var2)
 	{
-		this._xSocket.send(this._srvId + "|" + this._mapId + "|" + this._cellId + "|" + loc2 + "\n");
+		this._xSocket.send(this._srvId + "|" + this._mapId + "|" + this._cellId + "|" + var2 + "\n");
 	}
 	function skipNextAction()
 	{
@@ -114,9 +114,9 @@ class dofus.SaveTheWorld extends dofus.utils.ApiElement
 			this.nextAction();
 		}
 	}
-	function onConnect(loc2)
+	function onConnect(var2)
 	{
-		if(loc2)
+		if(var2)
 		{
 			this.runInnerQueue();
 		}

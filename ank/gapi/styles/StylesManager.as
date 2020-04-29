@@ -5,31 +5,31 @@ class ank.gapi.styles.StylesManager extends Object
 	{
 		super();
 	}
-	static function setStyle(loc2, loc3)
+	static function setStyle(var2, var3)
 	{
-		if(!(loc3 instanceof Object))
+		if(!(var3 instanceof Object))
 		{
 			return undefined;
 		}
-		if(loc2 == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
-		ank.gapi.styles.StylesManager._styles[loc2] = loc3;
+		ank.gapi.styles.StylesManager._styles[var2] = var3;
 	}
-	static function getStyle(loc2)
+	static function getStyle(var2)
 	{
-		return ank.gapi.styles.StylesManager._styles[loc2];
+		return ank.gapi.styles.StylesManager._styles[var2];
 	}
-	static function loadStylePackage(loc2)
+	static function loadStylePackage(var2)
 	{
-		for(var k in loc2)
+		for(var k in var2)
 		{
-			ank.gapi.styles.StylesManager.setStyle(k,loc2[k]);
+			ank.gapi.styles.StylesManager.setStyle(k,var2[k]);
 		}
 	}
 }

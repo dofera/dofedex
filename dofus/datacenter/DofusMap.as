@@ -1,13 +1,13 @@
 class dofus.datacenter.DofusMap extends ank.battlefield.datacenter.Map
 {
-	function DofusMap(loc3)
+	function DofusMap(var3)
 	{
-		super(loc3);
+		super(var3);
 	}
 	function __get__coordinates()
 	{
-		var loc2 = _global.API.lang.getMapText(this.id);
-		return _global.API.lang.getText("COORDINATES") + " : " + loc2.x + ", " + loc2.y;
+		var var2 = _global.API.lang.getMapText(this.id);
+		return _global.API.lang.getText("COORDINATES") + " : " + var2.x + ", " + var2.y;
 	}
 	function __get__x()
 	{
@@ -19,22 +19,22 @@ class dofus.datacenter.DofusMap extends ank.battlefield.datacenter.Map
 	}
 	function __get__superarea()
 	{
-		var loc2 = _global.API.lang;
-		return loc2.getMapAreaInfos(this.subarea).superareaID;
+		var var2 = _global.API.lang;
+		return var2.getMapAreaInfos(this.subarea).superareaID;
 	}
 	function __get__area()
 	{
-		var loc2 = _global.API.lang;
-		return loc2.getMapAreaInfos(this.subarea).areaID;
+		var var2 = _global.API.lang;
+		return var2.getMapAreaInfos(this.subarea).areaID;
 	}
 	function __get__subarea()
 	{
-		var loc2 = _global.API.lang;
-		return loc2.getMapText(this.id).sa;
+		var var2 = _global.API.lang;
+		return var2.getMapText(this.id).sa;
 	}
 	function __get__musics()
 	{
-		var loc2 = _global.API.lang;
-		return loc2.getMapSubAreaText(this.subarea).m;
+		var var2 = _global.API.lang;
+		return var2.getMapSubAreaText(this.subarea).m;
 	}
 }

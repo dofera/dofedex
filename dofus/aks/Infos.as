@@ -1,8 +1,8 @@
 class dofus.aks.Infos extends dofus.aks.Handler
 {
-	function Infos(loc3, loc4)
+	function Infos(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function getMaps()
 	{
@@ -10,242 +10,234 @@ class dofus.aks.Infos extends dofus.aks.Handler
 	}
 	function sendScreenInfo()
 	{
-		var loc2 = Stage.scaleMode;
+		var var2 = Stage.scaleMode;
 		Stage.scaleMode = "noScale";
 		switch(Stage.displayState)
 		{
 			case "normal":
-				var loc3 = "0";
+				var var3 = "0";
 				break;
 			case "fullscreen":
-				loc3 = "1";
+				var3 = "1";
 				break;
 			default:
-				loc3 = "2";
+				var3 = "2";
 		}
-		this.aks.send("Ir" + Stage.width + ";" + Stage.height + ";" + loc3);
-		Stage.scaleMode = loc2;
+		this.aks.send("Ir" + Stage.width + ";" + Stage.height + ";" + var3);
+		Stage.scaleMode = var2;
 	}
-	function onInfoMaps(loc2)
+	function onInfoMaps(var2)
 	{
-		var loc3 = loc2.split("|");
+		var var3 = var2.split("|");
 	}
-	function onInfoCompass(loc2)
+	function onInfoCompass(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		var loc6 = this.api.ui.getUIComponent("MapExplorer");
-		if(loc6 != undefined)
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		var var6 = this.api.ui.getUIComponent("MapExplorer");
+		if(var6 != undefined)
 		{
-			loc6.select({coordinates:{x:loc4,y:loc5}});
+			var6.select({coordinates:{x:var4,y:var5}});
 		}
-		if(_global.isNaN(loc4) && _global.isNaN(loc5))
+		if(_global.isNaN(var4) && _global.isNaN(var5))
 		{
 			this.api.kernel.GameManager.updateCompass(this.api.datacenter.Basics.banner_targetCoords[0],this.api.datacenter.Basics.banner_targetCoords[1],false);
 		}
 		else
 		{
-			this.api.kernel.GameManager.updateCompass(loc4,loc5,true);
+			this.api.kernel.GameManager.updateCompass(var4,var5,true);
 		}
 	}
-	function onInfoCoordinatespHighlight(loc2)
+	function onInfoCoordinatespHighlight(var2)
 	{
-		var loc3 = new Array();
-		if(String(loc2).length != 0)
+		var var3 = new Array();
+		if(String(var2).length != 0)
 		{
-			var loc4 = loc2.split("|");
-			var loc5 = 0;
-			while(loc5 < loc4.length)
+			var var4 = var2.split("|");
+			var var5 = 0;
+			while(var5 < var4.length)
 			{
-				var loc6 = loc4[loc5].split(";");
-				var loc7 = Number(loc6[0]);
-				var loc8 = Number(loc6[1]);
-				var loc9 = Number(loc6[2]);
-				var loc10 = Number(loc6[3]);
-				var loc11 = Number(loc6[4]);
-				var loc12 = String(loc6[5]);
-				loc3.push({x:loc7,y:loc8,mapID:loc9,type:loc10,playerID:loc11,playerName:loc12});
-				loc5 = loc5 + 1;
+				var var6 = var4[var5].split(";");
+				var var7 = Number(var6[0]);
+				var var8 = Number(var6[1]);
+				var var9 = Number(var6[2]);
+				var var10 = Number(var6[3]);
+				var var11 = Number(var6[4]);
+				var var12 = String(var6[5]);
+				var3.push({x:var7,y:var8,mapID:var9,type:var10,playerID:var11,playerName:var12});
+				var5 = var5 + 1;
 			}
 		}
-		var loc13 = this.api.ui.getUIComponent("MapExplorer");
-		if(loc13 != undefined)
+		var var13 = this.api.ui.getUIComponent("MapExplorer");
+		if(var13 != undefined)
 		{
-			loc13.multipleSelect(loc3);
+			var13.multipleSelect(var3);
 		}
-		this.api.datacenter.Basics.aks_infos_highlightCoords = String(loc2).length != 0?loc3:undefined;
+		this.api.datacenter.Basics.aks_infos_highlightCoords = String(var2).length != 0?var3:undefined;
 	}
-	function onMessage(loc2)
+	function onMessage(var2)
 	{
-		var loc3 = new Array();
-		var loc4 = loc2.charAt(0);
-		var loc5 = loc2.substr(1).split("|");
-		var loc7 = 0;
-		while(loc7 < loc5.length)
+		var var3 = new Array();
+		var var4 = var2.charAt(0);
+		var var5 = var2.substr(1).split("|");
+		var var7 = 0;
+		while(var7 < var5.length)
 		{
-			var loc8 = loc5[loc7].split(";");
-			var loc9 = loc8[0];
-			var loc10 = Number(loc9);
-			var loc11 = loc8[1].split("~");
-			switch(loc4)
+			var var8 = var5[var7].split(";");
+			var var9 = var8[0];
+			var var10 = Number(var9);
+			var var11 = var8[1].split("~");
+			switch(var4)
 			{
 				case "0":
-					var loc6 = "INFO_CHAT";
-					if(!_global.isNaN(loc10))
+					var var6 = "INFO_CHAT";
+					if(!_global.isNaN(var10))
 					{
-						var loc13 = true;
+						var var13 = true;
 						loop4:
-						switch(loc10)
+						switch(var10)
 						{
 							case 21:
 							case 22:
-								var loc14 = new dofus.datacenter.(0,loc11[1]);
-								loc11 = [loc11[0],loc14.name];
+								var var14 = new dofus.datacenter.(0,var11[1]);
+								var11 = [var11[0],var14.name];
+								break;
+							case 17:
+								var11 = [var11[0],this.api.lang.getJobText(var11[1]).n];
+								break;
+							case 2:
+								var11 = [this.api.lang.getJobText(Number(var11[0])).n];
+								break;
+							case 3:
+								var11 = [this.api.lang.getSpellText(Number(var11[0])).n];
 								break;
 							default:
 								switch(null)
 								{
-									case 17:
-										loc11 = [loc11[0],this.api.lang.getJobText(loc11[1]).n];
+									case 54:
+									case 55:
+									case 56:
+										var11[0] = this.api.lang.getQuestText(var11[0]);
 										break loop4;
-									case 2:
-										loc11 = [this.api.lang.getJobText(Number(loc11[0])).n];
-										break loop4;
-									case 3:
-										loc11 = [this.api.lang.getSpellText(Number(loc11[0])).n];
+									case 65:
+									case 73:
+										var var15 = new dofus.datacenter.(0,var11[1]);
+										var11[2] = var15.name;
 										break loop4;
 									default:
 										switch(null)
 										{
-											case 55:
-											case 56:
-											case 65:
-											case 73:
-												var loc15 = new dofus.datacenter.(0,loc11[1]);
-												loc11[2] = loc15.name;
+											case 82:
+											case 83:
+												this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("INFOS_" + var10,var11),"ERROR_BOX");
+												break loop4;
+											case 84:
+												break loop4;
+											case 120:
+												if(dofus.Constants.SAVING_THE_WORLD)
+												{
+													dofus.SaveTheWorld.getInstance().safeWasBusy();
+													dofus.SaveTheWorld.getInstance().nextAction();
+												}
+												break loop4;
+											case 123:
+												var var12 = this.api.kernel.ChatManager.parseInlineItems(this.api.lang.getText("INFOS_" + var10),var11);
+												var13 = false;
 												break loop4;
 											default:
 												switch(null)
 												{
-													case 82:
-													case 83:
-														this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("INFOS_" + loc10,loc11),"ERROR_BOX");
-														break loop4;
-													case 84:
-														break loop4;
-													case 120:
-														if(dofus.Constants.SAVING_THE_WORLD)
-														{
-															dofus.SaveTheWorld.getInstance().safeWasBusy();
-															dofus.SaveTheWorld.getInstance().nextAction();
-														}
-														break loop4;
-													case 123:
-														var loc12 = this.api.kernel.ChatManager.parseInlineItems(this.api.lang.getText("INFOS_" + loc10),loc11);
-														loc13 = false;
-														break loop4;
 													case 150:
-														loc6 = "MESSAGE_CHAT";
-														var loc16 = new dofus.datacenter.(0,loc11[0]);
-														var loc17 = new Array();
-														var loc18 = 3;
-														while(loc18 < loc11.length)
+														var6 = "MESSAGE_CHAT";
+														var var16 = new dofus.datacenter.(0,var11[0]);
+														var var17 = new Array();
+														var var18 = 3;
+														while(var18 < var11.length)
 														{
-															loc17.push(loc11[loc18]);
-															loc18 = loc18 + 1;
+															var17.push(var11[var18]);
+															var18 = var18 + 1;
 														}
-														loc11 = [loc16.name,loc11[1],this.api.lang.getText("OBJECT_CHAT_" + loc11[2],loc17)];
-														break loop4;
-													default:
-														if(loc0 !== 151)
+														var11 = [var16.name,var11[1],this.api.lang.getText("OBJECT_CHAT_" + var11[2],var17)];
+														break;
+													case 151:
+														var6 = "WHISP_CHAT";
+														var var19 = new dofus.datacenter.(0,var11[0]);
+														var var20 = new Array();
+														var var21 = 2;
+														while(var21 < var11.length)
 														{
-															break loop4;
+															var20.push(var11[var21]);
+															var21 = var21 + 1;
 														}
-														loc6 = "WHISP_CHAT";
-														var loc19 = new dofus.datacenter.(0,loc11[0]);
-														var loc20 = new Array();
-														var loc21 = 2;
-														while(loc21 < loc11.length)
-														{
-															loc20.push(loc11[loc21]);
-															loc21 = loc21 + 1;
-														}
-														loc11 = [loc19.name,this.api.lang.getText("OBJECT_CHAT_" + loc11[1],loc20)];
-														break loop4;
+														var11 = [var19.name,this.api.lang.getText("OBJECT_CHAT_" + var11[1],var20)];
 												}
 										}
-									case 54:
-										loc11[0] = this.api.lang.getQuestText(loc11[0]);
 								}
 						}
-						if(loc13)
+						if(var13)
 						{
-							loc12 = this.api.lang.getText("INFOS_" + loc10,loc11);
+							var12 = this.api.lang.getText("INFOS_" + var10,var11);
 						}
 					}
 					else
 					{
-						loc12 = this.api.lang.getText(loc9,loc11);
+						var12 = this.api.lang.getText(var9,var11);
 					}
-					if(loc12 != undefined)
+					if(var12 != undefined)
 					{
-						loc3.push(loc12);
+						var3.push(var12);
 					}
 					break;
 				case "1":
-					loc6 = "ERROR_CHAT";
-					if(!_global.isNaN(loc10))
+					var6 = "ERROR_CHAT";
+					if(!_global.isNaN(var10))
 					{
-						var loc23 = loc10.toString(10);
-						switch(loc10)
+						var var23 = var10.toString(10);
+						switch(var10)
 						{
 							case 16:
-								this.api.electron.makeNotification(loc22);
+								this.api.electron.makeNotification(var22);
 								break;
 							default:
 								switch(null)
 								{
+									case 46:
 									case 49:
 										break;
 									case 7:
-										loc11 = [this.api.lang.getSpellText(loc11[0]).n];
+										var11 = [this.api.lang.getSpellText(var11[0]).n];
 										break;
 									case 89:
 										if(this.api.config.isStreaming)
 										{
-											loc23 = "89_MINICLIP";
+											var23 = "89_MINICLIP";
 											break;
 										}
 								}
 								break;
 							case 6:
-							case 46:
-								loc11 = [this.api.lang.getJobText(loc11[0]).n];
+								var11 = [this.api.lang.getJobText(var11[0]).n];
 						}
-						var loc22 = this.api.lang.getText("ERROR_" + loc23,loc11);
+						var var22 = this.api.lang.getText("ERROR_" + var23,var11);
 					}
 					else
 					{
-						loc22 = this.api.lang.getText(loc9,loc11);
+						var22 = this.api.lang.getText(var9,var11);
 					}
-					if(loc22 != undefined)
+					if(var22 != undefined)
 					{
-						loc3.push(loc22);
+						var3.push(var22);
 					}
 					break;
-				default:
-					if(loc0 !== "2")
+				case "2":
+					var6 = "PVP_CHAT";
+					if(!_global.isNaN(var10))
 					{
-						break;
-					}
-					loc6 = "PVP_CHAT";
-					if(!_global.isNaN(loc10))
-					{
-						switch(loc10)
+						switch(var10)
 						{
 							case 41:
-								loc11 = [this.api.lang.getMapSubAreaText(loc11[0]).n,this.api.lang.getMapAreaText(loc11[1]).n];
+								var11 = [this.api.lang.getMapSubAreaText(var11[0]).n,this.api.lang.getMapAreaText(var11[1]).n];
 								break;
 							default:
 								switch(null)
@@ -257,65 +249,64 @@ class dofus.aks.Infos extends dofus.aks.Handler
 								}
 								break;
 							case 86:
-								loc11[0] = this.api.lang.getMapAreaText(loc11[0]).n;
+								var11[0] = this.api.lang.getMapAreaText(var11[0]).n;
 						}
-						var loc24 = this.api.lang.getText("PVP_" + loc10,loc11);
+						var var24 = this.api.lang.getText("PVP_" + var10,var11);
 					}
 					else
 					{
-						loc24 = this.api.lang.getText(loc9,loc11);
+						var24 = this.api.lang.getText(var9,var11);
 					}
-					if(loc24 != undefined)
+					if(var24 != undefined)
 					{
-						loc3.push(loc24);
+						var3.push(var24);
 						break;
 					}
-					break;
 			}
-			loc7 = loc7 + 1;
+			var7 = var7 + 1;
 		}
-		var loc25 = loc3.join(" ");
-		if(loc25 != "")
+		var var25 = var3.join(" ");
+		if(var25 != "")
 		{
-			this.api.kernel.showMessage(undefined,loc25,loc6);
+			this.api.kernel.showMessage(undefined,var25,var6);
 		}
 	}
-	function onQuantity(loc2)
+	function onQuantity(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = loc3[0];
-		var loc5 = loc3[1];
-		this.api.gfx.addSpritePoints(loc4,loc5,11552256);
+		var var3 = var2.split("|");
+		var var4 = var3[0];
+		var var5 = var3[1];
+		this.api.gfx.addSpritePoints(var4,var5,11552256);
 	}
-	function onObject(loc2)
+	function onObject(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = loc3[0];
-		var loc5 = loc3[1].charAt(0) == "+";
-		var loc6 = loc3[1].substr(1);
-		var loc7 = loc6 != ""?new dofus.datacenter.(0,loc6,1):undefined;
+		var var3 = var2.split("|");
+		var var4 = var3[0];
+		var var5 = var3[1].charAt(0) == "+";
+		var var6 = var3[1].substr(1);
+		var var7 = var6 != ""?new dofus.datacenter.(0,var6,1):undefined;
 		if(!this.api.datacenter.Basics.isCraftLooping)
 		{
-			this.api.gfx.addSpriteOverHeadItem(loc4,"craft",dofus.graphics.battlefield.CraftResultOverHead,[loc5,loc7],2000);
+			this.api.gfx.addSpriteOverHeadItem(var4,"craft",dofus.graphics.battlefield.CraftResultOverHead,[var5,var7],2000);
 		}
 	}
-	function onLifeRestoreTimerStart(loc2)
+	function onLifeRestoreTimerStart(var2)
 	{
-		var loc3 = Number(loc2);
+		var var3 = Number(var2);
 		_global.clearInterval(this.api.datacenter.Basics.aks_infos_lifeRestoreInterval);
-		if(!_global.isNaN(loc3))
+		if(!_global.isNaN(var3))
 		{
-			var loc4 = this.api.datacenter.Player;
-			this.api.datacenter.Basics.aks_infos_lifeRestoreInterval = _global.setInterval(loc4,"updateLP",loc3,1);
+			var var4 = this.api.datacenter.Player;
+			this.api.datacenter.Basics.aks_infos_lifeRestoreInterval = _global.setInterval(var4,"updateLP",var3,1);
 		}
 	}
-	function onLifeRestoreTimerFinish(loc2)
+	function onLifeRestoreTimerFinish(var2)
 	{
-		var loc3 = Number(loc2);
+		var var3 = Number(var2);
 		_global.clearInterval(this.api.datacenter.Basics.aks_infos_lifeRestoreInterval);
-		if(loc3 > 0)
+		if(var3 > 0)
 		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("YOU_RESTORE_LIFE",[loc3]),"INFO_CHAT");
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("YOU_RESTORE_LIFE",[var3]),"INFO_CHAT");
 		}
 	}
 }

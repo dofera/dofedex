@@ -17,146 +17,146 @@ class ank.utils.ExtendedArray extends Array
 	function dispatchQueue()
 	{
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
 		mx.events.EventDispatcher.initialize(this);
 	}
-	function createFromArray(loc2)
+	function createFromArray(var2)
 	{
 		this.splice(0,this.length);
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			this.push(loc2[loc3]);
-			loc3 = loc3 + 1;
+			this.push(var2[var3]);
+			var3 = var3 + 1;
 		}
 	}
-	function removeAll(loc2)
+	function removeAll(var2)
 	{
 		this.splice(0,this.length);
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function push(loc2)
+	function push(var2)
 	{
-		var loc4 = super.push(loc3);
+		var var4 = super.push(var3);
 		this.dispatchEvent({type:"modelChanged",eventName:"addItem"});
-		return loc4;
+		return var4;
 	}
 	function pop()
 	{
-		var loc3 = super.pop();
+		var var3 = super.pop();
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		return loc3;
+		return var3;
 	}
 	function shift()
 	{
-		var loc3 = super.shift();
+		var var3 = super.shift();
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		return loc3;
+		return var3;
 	}
-	function unshift(loc2)
+	function unshift(var2)
 	{
-		var loc4 = super.unshift(loc3);
+		var var4 = super.unshift(var3);
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		return loc4;
+		return var4;
 	}
 	function reverse()
 	{
 		super.reverse();
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function replaceAll(loc2, loc3)
+	function replaceAll(var2, var3)
 	{
-		var loc4 = [loc2,0];
-		for(var k in loc3)
+		var var4 = [var2,0];
+		for(var k in var3)
 		{
-			loc4.push(loc3[k]);
+			var4.push(var3[k]);
 		}
-		this.splice.apply(this,loc4);
+		this.splice.apply(this,var4);
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function removeItems(loc2, loc3)
+	function removeItems(var2, var3)
 	{
-		this.splice(loc2,loc3);
+		this.splice(var2,var3);
 		this.dispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function updateItem(loc2, loc3)
+	function updateItem(var2, var3)
 	{
-		this.splice(loc2,1,loc3);
-		this.dispatchEvent({type:"modelChanged",eventName:"updateOne",updateIndex:loc2});
+		this.splice(var2,1,var3);
+		this.dispatchEvent({type:"modelChanged",eventName:"updateOne",updateIndex:var2});
 	}
-	function findFirstItem(loc2, loc3)
+	function findFirstItem(var2, var3)
 	{
-		var loc4 = 0;
-		while(loc4 < this.length)
+		var var4 = 0;
+		while(var4 < this.length)
 		{
-			var loc5 = this[loc4];
-			if(loc5[loc2] == loc3)
+			var var5 = this[var4];
+			if(var5[var2] == var3)
 			{
-				return {index:loc4,item:loc5};
+				return {index:var4,item:var5};
 			}
-			loc4 = loc4 + 1;
+			var4 = var4 + 1;
 		}
 		return {index:-1};
 	}
 	function clone()
 	{
-		var loc2 = new ank.utils.();
-		var loc3 = 0;
-		while(loc3 < this.length)
+		var var2 = new ank.utils.();
+		var var3 = 0;
+		while(var3 < this.length)
 		{
-			loc2.push(this[loc3].clone());
-			loc3 = loc3 + 1;
+			var2.push(this[var3].clone());
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
 	function shuffle()
 	{
-		var loc2 = this.clone();
-		var loc3 = 0;
-		while(loc3 < loc2.length)
+		var var2 = this.clone();
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			var loc4 = loc2[loc3];
-			var loc5 = random(loc2.length);
-			loc2[loc3] = loc2[loc5];
-			loc2[loc5] = loc4;
-			loc3 = loc3 + 1;
+			var var4 = var2[var3];
+			var var5 = random(var2.length);
+			var2[var3] = var2[var5];
+			var2[var5] = var4;
+			var3 = var3 + 1;
 		}
-		return loc2;
+		return var2;
 	}
-	function bubbleSortOn(loc2, loc3)
+	function bubbleSortOn(var2, var3)
 	{
-		if((loc3 & Array.ASCENDING) == 0 && (loc3 & Array.DESCENDING) == 0)
+		if((var3 & Array.ASCENDING) == 0 && (var3 & Array.DESCENDING) == 0)
 		{
-			loc3 = loc3 | Array.ASCENDING;
+			var3 = var3 | Array.ASCENDING;
 		}
 		while(true)
 		{
-			var loc4 = false;
-			var loc5 = 1;
-			while(loc5 < this.length)
+			var var4 = false;
+			var var5 = 1;
+			while(var5 < this.length)
 			{
-				if((loc3 & Array.ASCENDING) > 0 && this[loc5 - 1][loc2] > this[loc5][loc2] || (loc3 & Array.DESCENDING) > 0 && this[loc5 - 1][loc2] < this[loc5][loc2])
+				if((var3 & Array.ASCENDING) > 0 && this[var5 - 1][var2] > this[var5][var2] || (var3 & Array.DESCENDING) > 0 && this[var5 - 1][var2] < this[var5][var2])
 				{
-					var loc6 = this[loc5 - 1];
-					this[loc5 - 1] = this[loc5];
-					this[loc5] = loc6;
-					loc4 = true;
+					var var6 = this[var5 - 1];
+					this[var5 - 1] = this[var5];
+					this[var5] = var6;
+					var4 = true;
 				}
-				loc5 = loc5 + 1;
+				var5 = var5 + 1;
 			}
-			if(loc4)
+			if(var4)
 			{
 				continue;
 			}
 			break;
 		}
 	}
-	function concat(loc2)
+	function concat(var2)
 	{
-		var loc4 = super.concat(loc3);
-		var loc5 = new ank.utils.();
-		loc5.createFromArray(loc4);
-		return loc5;
+		var var4 = super.concat(var3);
+		var var5 = new ank.utils.();
+		var5.createFromArray(var4);
+		return var5;
 	}
 }

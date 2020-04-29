@@ -1,12 +1,12 @@
 class dofus.datacenter.LaunchedSpell
 {
-	function LaunchedSpell(loc3, loc4)
+	function LaunchedSpell(var3, var4)
 	{
-		this.initialize(loc2,loc3);
+		this.initialize(var2,var3);
 	}
-	function __set__remainingTurn(loc2)
+	function __set__remainingTurn(var2)
 	{
-		this._nRemainingTurn = Number(loc2);
+		this._nRemainingTurn = Number(var2);
 		return this.__get__remainingTurn();
 	}
 	function __get__remainingTurn()
@@ -21,22 +21,22 @@ class dofus.datacenter.LaunchedSpell
 	{
 		return this._oSpell;
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
-		this._oSpell = _global.API.datacenter.Player.Spells.findFirstItem("ID",loc2).item;
-		this._sSpriteOnID = loc3;
-		var loc4 = this._oSpell.delayBetweenLaunch;
-		if(loc4 == undefined)
+		this._oSpell = _global.API.datacenter.Player.Spells.findFirstItem("ID",var2).item;
+		this._sSpriteOnID = var3;
+		var var4 = this._oSpell.delayBetweenLaunch;
+		if(var4 == undefined)
 		{
-			loc4 = 0;
+			var4 = 0;
 		}
-		if(loc4 >= 63)
+		if(var4 >= 63)
 		{
 			this._nRemainingTurn = Number.MAX_VALUE;
 		}
 		else
 		{
-			this._nRemainingTurn = loc4;
+			this._nRemainingTurn = var4;
 		}
 	}
 }

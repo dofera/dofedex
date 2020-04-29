@@ -6,23 +6,23 @@ class dofus.graphics.gapi.ui.ServersManagerRetry extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__timer(loc2)
+	function __set__timer(var2)
 	{
-		this.addToQueue({object:this,method:function(loc2)
+		this.addToQueue({object:this,method:function(var2)
 		{
-			this._nTimer = Number(loc2);
+			this._nTimer = Number(var2);
 			if(this.initialized)
 			{
 				this.updateLabel();
 			}
-		},params:[loc2]});
+		},params:[var2]});
 		return this.__get__timer();
 	}
 	function updateLabel()
 	{
-		var loc2 = this.api.lang.getText("SERVERS_MANAGER_RETRY",[this._nTimer]);
-		this._lblCounter.text = loc2;
-		this._lblCounterShadow.text = loc2;
+		var var2 = this.api.lang.getText("SERVERS_MANAGER_RETRY",[this._nTimer]);
+		this._lblCounter.text = var2;
+		this._lblCounterShadow.text = var2;
 	}
 	function init()
 	{

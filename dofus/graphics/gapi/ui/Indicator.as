@@ -9,19 +9,19 @@ class dofus.graphics.gapi.ui.Indicator extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__rotate(loc2)
+	function __set__rotate(var2)
 	{
-		this._bRotate = loc2;
+		this._bRotate = var2;
 		return this.__get__rotate();
 	}
-	function __set__coordinates(loc2)
+	function __set__coordinates(var2)
 	{
-		this._aCoordinates = loc2;
+		this._aCoordinates = var2;
 		return this.__get__coordinates();
 	}
-	function __set__offset(loc2)
+	function __set__offset(var2)
 	{
-		this._nOffset = loc2;
+		this._nOffset = var2;
 		return this.__get__offset();
 	}
 	function init()
@@ -30,36 +30,36 @@ class dofus.graphics.gapi.ui.Indicator extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function createChildren()
 	{
-		var loc2 = this._aCoordinates[0];
-		var loc3 = this._aCoordinates[1];
+		var var2 = this._aCoordinates[0];
+		var var3 = this._aCoordinates[1];
 		if(this._bRotate)
 		{
-			var loc5 = this.gapi.screenWidth / 2;
-			var loc6 = this.gapi.screenHeight / 2;
-			var loc7 = Math.atan2(this._aCoordinates[1] - loc6,this._aCoordinates[0] - loc5);
-			var loc4 = loc7 * 180 / Math.PI - 90;
-			loc2 = loc2 - (this._nOffset != undefined?this._nOffset * Math.cos(loc7):0);
-			loc3 = loc3 - (this._nOffset != undefined?this._nOffset * Math.sin(loc7):0);
+			var var5 = this.gapi.screenWidth / 2;
+			var var6 = this.gapi.screenHeight / 2;
+			var var7 = Math.atan2(this._aCoordinates[1] - var6,this._aCoordinates[0] - var5);
+			var var4 = var7 * 180 / Math.PI - 90;
+			var2 = var2 - (this._nOffset != undefined?this._nOffset * Math.cos(var7):0);
+			var3 = var3 - (this._nOffset != undefined?this._nOffset * Math.sin(var7):0);
 		}
 		else
 		{
-			loc3 = loc3 - (this._nOffset != undefined?this._nOffset:0);
+			var3 = var3 - (this._nOffset != undefined?this._nOffset:0);
 		}
-		this.attachMovie("UI_Indicatorlight","_mcLight",10,{_x:loc2,_y:loc3});
-		var loc8 = "UI_IndicatorArrow";
+		this.attachMovie("UI_Indicatorlight","_mcLight",10,{_x:var2,_y:var3});
+		var var8 = "UI_IndicatorArrow";
 		if(dofus.Constants.DOUBLEFRAMERATE)
 		{
-			loc8 = loc8 + "_DoubleFramerate";
+			var8 = var8 + "_DoubleFramerate";
 		}
-		this.attachMovie(loc8,"_mcArrowShadow",20,{_x:loc2 + dofus.graphics.gapi.ui.Indicator.SHADOW_OFFSET,_y:loc3 + dofus.graphics.gapi.ui.Indicator.SHADOW_OFFSET});
-		this.attachMovie(loc8,"_mcArrow",30,{_x:loc2,_y:loc3});
-		var loc9 = new Color(this._mcArrowShadow);
-		loc9.setTransform(dofus.graphics.gapi.ui.Indicator.SHADOW_TRANSFORM);
+		this.attachMovie(var8,"_mcArrowShadow",20,{_x:var2 + dofus.graphics.gapi.ui.Indicator.SHADOW_OFFSET,_y:var3 + dofus.graphics.gapi.ui.Indicator.SHADOW_OFFSET});
+		this.attachMovie(var8,"_mcArrow",30,{_x:var2,_y:var3});
+		var var9 = new Color(this._mcArrowShadow);
+		var9.setTransform(dofus.graphics.gapi.ui.Indicator.SHADOW_TRANSFORM);
 		if(this._bRotate)
 		{
-			this._mcLight._rotation = loc4;
-			this._mcArrow._rotation = loc4;
-			this._mcArrowShadow._rotation = loc4;
+			this._mcLight._rotation = var4;
+			this._mcArrow._rotation = var4;
+			this._mcArrowShadow._rotation = var4;
 		}
 	}
 }

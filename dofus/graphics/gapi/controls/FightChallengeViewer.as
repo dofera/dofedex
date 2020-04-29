@@ -18,21 +18,21 @@ class dofus.graphics.gapi.controls.FightChallengeViewer extends ank.gapi.core.UI
 	}
 	function initText()
 	{
-		var loc2 = (dofus.utils.Api)this.api;
-		var loc3 = loc2.lang.getFightChallenge(this.challenge.id);
-		this._winBg.title = loc2.lang.getText("CURRENT_FIGHT_CHALLENGE");
+		var var2 = (dofus.utils.Api)this.api;
+		var var3 = var2.lang.getFightChallenge(this.challenge.id);
+		this._winBg.title = var2.lang.getText("CURRENT_FIGHT_CHALLENGE");
 		if(this.challenge.targetId)
 		{
-			var loc4 = loc2.datacenter.Sprites.getItemAt(this.challenge.targetId).name + " (" + loc2.lang.getText("LEVEL_SMALL") + " " + loc2.datacenter.Sprites.getItemAt(this.challenge.targetId).mc.data.Level + ")";
-			this._taDesc.text = loc3.d.split("%1").join(loc4);
+			var var4 = var2.datacenter.Sprites.getItemAt(this.challenge.targetId).name + " (" + var2.lang.getText("LEVEL_SMALL") + " " + var2.datacenter.Sprites.getItemAt(this.challenge.targetId).mc.data.Level + ")";
+			this._taDesc.text = var3.d.split("%1").join(var4);
 		}
 		else
 		{
-			this._taDesc.text = loc3.d;
+			this._taDesc.text = var3.d;
 		}
-		this._lblTitleDrop.text = loc2.lang.getText("LOOT");
-		this._lblTitleXp.text = loc2.lang.getText("WORD_XP");
-		this._lblTitle.text = loc3.n;
+		this._lblTitleDrop.text = var2.lang.getText("LOOT");
+		this._lblTitleXp.text = var2.lang.getText("WORD_XP");
+		this._lblTitle.text = var3.n;
 		this._lblBonusDrop.text = "+" + (this.challenge.teamDropBonus + this.challenge.basicDropBonus) + "%";
 		this._lblBonusXp.text = "+" + (this.challenge.teamXpBonus + this.challenge.basicXpBonus) + "%";
 	}
@@ -63,9 +63,9 @@ class dofus.graphics.gapi.controls.FightChallengeViewer extends ank.gapi.core.UI
 			context[callback]({target:target});
 		};
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnClose:
 				this.unloadMovie();
@@ -80,50 +80,45 @@ class dofus.graphics.gapi.controls.FightChallengeViewer extends ank.gapi.core.UI
 				}
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnView:
-				this.gapi.showTooltip(this.api.lang.getText("VIEW_CHALENGE_TARGET"),loc2.target,40);
-				break;
-			case this._lblBonusXp:
-			case this._lblTitleXp:
-				this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicXpBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamXpBonus + "%",loc2.target,40);
+				this.gapi.showTooltip(this.api.lang.getText("VIEW_CHALENGE_TARGET"),var2.target,40);
 				break;
 			default:
-				loop1:
 				switch(null)
 				{
+					case this._lblTitleXp:
+						break;
 					case this._lblBonusDrop:
 					case this._lblTitleDrop:
-						this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicDropBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamDropBonus + "%",loc2.target,40);
+						this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicDropBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamDropBonus + "%",var2.target,40);
 						break;
 					case this._mcState:
 						switch(this.challenge.state)
 						{
 							case 0:
-								this.gapi.showTooltip(this.api.lang.getText("CURRENT_FIGHT_CHALLENGE"),loc2.target,40);
-								break loop1;
+								this.gapi.showTooltip(this.api.lang.getText("CURRENT_FIGHT_CHALLENGE"),var2.target,40);
+								break;
 							case 1:
-								this.gapi.showTooltip(this.api.lang.getText("FIGHT_CHALLENGE_DONE"),loc2.target,40);
-								break loop1;
-							default:
-								if(loc0 !== 2)
-								{
-									break loop1;
-								}
-								this.gapi.showTooltip(this.api.lang.getText("FIGHT_CHALLENGE_FAILED"),loc2.target,40);
-								break loop1;
+								this.gapi.showTooltip(this.api.lang.getText("FIGHT_CHALLENGE_DONE"),var2.target,40);
+								break;
+							case 2:
+								this.gapi.showTooltip(this.api.lang.getText("FIGHT_CHALLENGE_FAILED"),var2.target,40);
 						}
 				}
+				break;
+			case this._lblBonusXp:
+				this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicXpBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamXpBonus + "%",var2.target,40);
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function change(loc2)
+	function change(var2)
 	{
 		this._lblTitle._y = this._lblTitle._y + (this._lblTitle.height - this._lblTitle.textHeight) / 2;
 	}

@@ -18,14 +18,14 @@ class dofus.managers.UIdManager
 	{
 		if(!dofus.managers.UIdManager._self)
 		{
-			dofus.managers.UIdManager._self = new dofus.managers.();
+			dofus.managers.UIdManager._self = new dofus.managers.();
 		}
 		return dofus.managers.UIdManager._self;
 	}
 	function update()
 	{
-		var loc2 = this.receiving_lc.connect("_dofus");
-		if(this._status != dofus.managers.UIdManager.SERVER && loc2)
+		var var2 = this.receiving_lc.connect("_dofus");
+		if(this._status != dofus.managers.UIdManager.SERVER && var2)
 		{
 			this.makeServer();
 		}
@@ -42,24 +42,24 @@ class dofus.managers.UIdManager
 	function makeServer()
 	{
 		this._status = dofus.managers.UIdManager.SERVER;
-		this.receiving_lc.getUId = function(loc2)
+		this.receiving_lc.getUId = function(var2)
 		{
-			var loc3 = SharedObject.getLocal(dofus.Constants.GLOBAL_SO_IDENTITY_NAME);
-			if(loc3.data.identity)
+			var var3 = SharedObject.getLocal(dofus.Constants.GLOBAL_SO_IDENTITY_NAME);
+			if(var3.data.identity)
 			{
-				dofus.managers.UIdManager.getInstance().sending_lc.send(loc2,"setUId",loc3.data.identity);
+				dofus.managers.UIdManager.getInstance().sending_lc.send(var2,"setUId",var3.data.identity);
 			}
-			loc3.close();
+			var3.close();
 		};
 	}
 	function makeClient()
 	{
 		this._status = dofus.managers.UIdManager.CLIENT;
-		this.receiving_lc.setUId = function(loc2)
+		this.receiving_lc.setUId = function(var2)
 		{
-			var loc3 = SharedObject.getLocal(dofus.Constants.GLOBAL_SO_IDENTITY_NAME);
-			loc3.data.identity = loc2;
-			loc3.close();
+			var var3 = SharedObject.getLocal(dofus.Constants.GLOBAL_SO_IDENTITY_NAME);
+			var3.data.identity = var2;
+			var3.close();
 			dofus.managers.UIdManager.getInstance().receiving_lc.close();
 		};
 	}

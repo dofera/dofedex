@@ -15,9 +15,9 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__selectable(loc2)
+	function __set__selectable(var2)
 	{
-		this._bSelectable = loc2;
+		this._bSelectable = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -28,9 +28,9 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelectable;
 	}
-	function __set__wordWrap(loc2)
+	function __set__wordWrap(var2)
 	{
-		this._bWordWrap = loc2;
+		this._bWordWrap = var2;
 		if(this._bInitialized)
 		{
 			this.addToQueue({object:this,method:this.setTextFieldProperties});
@@ -41,9 +41,9 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bWordWrap;
 	}
-	function __set__text(loc2)
+	function __set__text(var2)
 	{
-		this._sText = loc2;
+		this._sText = var2;
 		if(this.initialized)
 		{
 			this.setTextFieldProperties();
@@ -58,36 +58,36 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._tText.htmlText;
 	}
-	function __set__scrollBarSide(loc2)
+	function __set__scrollBarSide(var2)
 	{
-		this._sScrollBarSide = loc2;
+		this._sScrollBarSide = var2;
 		return this.__get__scrollBarSide();
 	}
 	function __get__scrollBarSide()
 	{
 		return this._sScrollBarSide;
 	}
-	function __set__scrollBarMargin(loc2)
+	function __set__scrollBarMargin(var2)
 	{
-		this._nScrollBarMargin = loc2;
+		this._nScrollBarMargin = var2;
 		return this.__get__scrollBarMargin();
 	}
 	function __get__scrollBarMargin()
 	{
 		return this._nScrollBarMargin;
 	}
-	function __set__hideScrollBar(loc2)
+	function __set__hideScrollBar(var2)
 	{
-		this._bHideScrollBar = loc2;
+		this._bHideScrollBar = var2;
 		return this.__get__hideScrollBar();
 	}
 	function __get__hideScrollBar()
 	{
 		return this._bHideScrollBar;
 	}
-	function __set__useMouseWheel(loc2)
+	function __set__useMouseWheel(var2)
 	{
-		this._bUseMouseWheel = loc2;
+		this._bUseMouseWheel = var2;
 		return this.__get__useMouseWheel();
 	}
 	function __get__useMouseWheel()
@@ -131,20 +131,20 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	}
 	function draw()
 	{
-		var loc2 = this.getStyle();
+		var var2 = this.getStyle();
 		this._tfFormatter = new TextFormat();
-		this._tfFormatter.font = loc2.font;
-		this._tfFormatter.align = loc2.align;
-		this._tfFormatter.size = loc2.size;
-		this._tfFormatter.color = loc2.color;
-		this._tfFormatter.bold = loc2.bold;
-		this._tfFormatter.italic = loc2.italic;
-		this._tText.embedFonts = loc2.embedfonts;
-		this._tText.antiAliasType = loc2.antialiastype;
-		this._sbVertical.styleName = loc2.scrollbarstyle;
-		if(loc2.filters != undefined)
+		this._tfFormatter.font = var2.font;
+		this._tfFormatter.align = var2.align;
+		this._tfFormatter.size = var2.size;
+		this._tfFormatter.color = var2.color;
+		this._tfFormatter.bold = var2.bold;
+		this._tfFormatter.italic = var2.italic;
+		this._tText.embedFonts = var2.embedfonts;
+		this._tText.antiAliasType = var2.antialiastype;
+		this._sbVertical.styleName = var2.scrollbarstyle;
+		if(var2.filters != undefined)
 		{
-			this._tText.filters = loc2.filters;
+			this._tText.filters = var2.filters;
 		}
 	}
 	function setTextFieldProperties()
@@ -200,32 +200,32 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	}
 	function setScrollBarPosition()
 	{
-		var loc2 = this._tText.textHeight;
-		var loc3 = 0.9 * this._tText._height / loc2 * this._tText.maxscroll;
-		this._sbVertical.setScrollProperties(loc3,0,this._tText.maxscroll);
+		var var2 = this._tText.textHeight;
+		var var3 = 0.9 * this._tText._height / var2 * this._tText.maxscroll;
+		this._sbVertical.setScrollProperties(var3,0,this._tText.maxscroll);
 		this._tText.scroll = this._nScrollPosition;
 		this._sbVertical.scrollPosition = this._tText.scroll;
 	}
 	function setTextWithBottomStart()
 	{
 		this._tText.text = "";
-		var loc2 = 0;
-		while(this._tText.maxscroll == 1 && loc2 < 50)
+		var var2 = 0;
+		while(this._tText.maxscroll == 1 && var2 < 50)
 		{
 			this._tText.text = this._tText.text + "\n";
-			loc2 = loc2 + 1;
+			var2 = var2 + 1;
 		}
 		this._tText.htmlText = this._tText.htmlText + this._sText;
 	}
-	function onMouseWheel(loc2, loc3)
+	function onMouseWheel(var2, var3)
 	{
 		if(!this._bUseMouseWheel)
 		{
 			return undefined;
 		}
-		if(String(loc3._target).indexOf(this._target) != -1)
+		if(String(var3._target).indexOf(this._target) != -1)
 		{
-			this._sbVertical.scrollPosition = this._sbVertical.scrollPosition - loc2;
+			this._sbVertical.scrollPosition = this._sbVertical.scrollPosition - var2;
 		}
 	}
 	function onChanged()
@@ -236,17 +236,17 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		this.setScrollBarPosition();
 	}
-	function scroll(loc2)
+	function scroll(var2)
 	{
-		if(loc2.target == this._sbVertical)
+		if(var2.target == this._sbVertical)
 		{
-			this._tText.scroll = loc2.target.scrollPosition;
+			this._tText.scroll = var2.target.scrollPosition;
 			this._nScrollPosition = this._tText.scroll;
 		}
 	}
-	function onHref(loc2)
+	function onHref(var2)
 	{
-		this.dispatchEvent({type:"href",params:loc2});
+		this.dispatchEvent({type:"href",params:var2});
 	}
 	function onSetFocus()
 	{

@@ -8,56 +8,56 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__background(loc2)
+	function __set__background(var2)
 	{
-		this._sBackgroundLink = loc2;
+		this._sBackgroundLink = var2;
 		return this.__get__background();
 	}
-	function __set__finalCountDownTrigger(loc2)
+	function __set__finalCountDownTrigger(var2)
 	{
-		loc2 = Number(loc2);
-		if(_global.isNaN(loc2))
+		var2 = Number(var2);
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
 			return undefined;
 		}
-		this._nFinalCountDownTrigger = loc2;
+		this._nFinalCountDownTrigger = var2;
 		return this.__get__finalCountDownTrigger();
 	}
-	function setGaugeChrono(loc2, loc3)
+	function setGaugeChrono(var2, var3)
 	{
 		_global.clearInterval(this._nIntervalID);
 		this.dispatchEvent({type:"finish"});
-		if(loc2 > 100)
+		if(var2 > 100)
 		{
-			loc2 = 100;
+			var2 = 100;
 		}
-		else if(loc2 < 0)
+		else if(var2 < 0)
 		{
-			loc2 = 0;
+			var2 = 0;
 		}
 		this._nMaxTime = 100;
-		this._nTimerValue = 100 - loc2;
-		this.draw(loc3);
+		this._nTimerValue = 100 - var2;
+		this.draw(var3);
 		this.chronoUpdate();
 	}
-	function startTimer(loc2)
+	function startTimer(var2)
 	{
 		_global.clearInterval(this._nIntervalID);
-		loc2 = Number(loc2);
-		if(_global.isNaN(loc2))
+		var2 = Number(var2);
+		if(_global.isNaN(var2))
 		{
 			return undefined;
 		}
-		if(loc2 < 0)
+		if(var2 < 0)
 		{
 			return undefined;
 		}
-		this._nMaxTime = loc2;
-		this._nTimerValue = loc2;
+		this._nMaxTime = var2;
+		this._nTimerValue = var2;
 		this.updateTimer();
 		this._nIntervalID = _global.setInterval(this,"updateTimer",1000);
 	}
@@ -89,29 +89,29 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 		this._mcLeft._x = this._mcRight._x = this.__width / 2;
 		this._mcLeft._y = this._mcRight._y = this.__height / 2;
 	}
-	function draw(loc2)
+	function draw(var2)
 	{
-		var loc3 = loc2 == undefined?this.getStyle().bgcolor:loc2;
-		if(loc3 != undefined && this._nBackgroundColor != loc2)
+		var var3 = var2 == undefined?this.getStyle().bgcolor:var2;
+		if(var3 != undefined && this._nBackgroundColor != var2)
 		{
-			this._nBackgroundColor = loc3;
-			this.setMovieClipColor(this._mcLeft.bg_mc,loc3);
-			this.setMovieClipColor(this._mcRight.bg_mc,loc3);
+			this._nBackgroundColor = var3;
+			this.setMovieClipColor(this._mcLeft.bg_mc,var3);
+			this.setMovieClipColor(this._mcRight.bg_mc,var3);
 		}
 	}
 	function chronoUpdate()
 	{
-		var loc2 = this._nTimerValue / this._nMaxTime;
-		var loc3 = 360 * (1 - this._nTimerValue / this._nMaxTime);
-		if(loc3 < 180)
+		var var2 = this._nTimerValue / this._nMaxTime;
+		var var3 = 360 * (1 - this._nTimerValue / this._nMaxTime);
+		if(var3 < 180)
 		{
-			this.setRtation(this._mcRight,loc3);
+			this.setRtation(this._mcRight,var3);
 			this.setRtation(this._mcLeft,0);
 		}
 		else
 		{
 			this.setRtation(this._mcRight,180);
-			this.setRtation(this._mcLeft,loc3 - 180);
+			this.setRtation(this._mcLeft,var3 - 180);
 		}
 	}
 	function updateTimer()
@@ -137,8 +137,8 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 		this.setRtation(this._mcLeft,0);
 		this.setRtation(this._mcRight,0);
 	}
-	function setRtation(loc2, loc3)
+	function setRtation(var2, var3)
 	{
-		loc2._mcMask._rotation = loc3;
+		var2._mcMask._rotation = var3;
 	}
 }

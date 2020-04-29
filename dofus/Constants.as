@@ -15,11 +15,11 @@ class dofus.Constants extends Object
 	static var USING_UNPACKED_OBJECTS = true;
 	static var SAVING_THE_WORLD = false;
 	static var VERSION = 1;
-	static var SUBVERSION = 31;
-	static var SUBSUBVERSION = 3;
+	static var SUBVERSION = 32;
+	static var SUBSUBVERSION = 0;
 	static var BETAVERSION = 0;
 	static var ALPHA = false;
-	static var VERSIONDATE = "13/03/2019 10:55 GMT+1";
+	static var VERSIONDATE = "24/04/2020 16:18 GMT+1";
 	static var LANG_SHAREDOBJECT_NAME = "ANKLANGSO";
 	static var XTRA_SHAREDOBJECT_NAME = "ANKXTRASO";
 	static var OPTIONS_SHAREDOBJECT_NAME = "ANKOPTIONSSO";
@@ -199,43 +199,43 @@ class dofus.Constants extends Object
 	{
 		return dofus.utils.Api.getInstance().lang.getConfigText("ZONE_COLOR");
 	}
-	static function getTeamFileFromType(loc2, loc3)
+	static function getTeamFileFromType(var2, var3)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case 0:
-				if(loc3 == 1)
+				if(var3 == 1)
 				{
-					var loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_ANGEL;
+					var var4 = dofus.Constants.CHALLENGE_CLIP_FILE_ANGEL;
 					break;
 				}
-				if(loc3 == 2)
+				if(var3 == 2)
 				{
-					loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_DEMON;
+					var4 = dofus.Constants.CHALLENGE_CLIP_FILE_DEMON;
 					break;
 				}
-				loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_NORMAL;
+				var4 = dofus.Constants.CHALLENGE_CLIP_FILE_NORMAL;
 				break;
 			case 1:
-				if(loc3 == 1)
+				if(var3 == 1)
 				{
-					loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_ANGEL;
+					var4 = dofus.Constants.CHALLENGE_CLIP_FILE_ANGEL;
 				}
-				else if(loc3 == 2)
+				else if(var3 == 2)
 				{
-					loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_DEMON;
+					var4 = dofus.Constants.CHALLENGE_CLIP_FILE_DEMON;
 				}
 				else
 				{
-					loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_MONSTER;
+					var4 = dofus.Constants.CHALLENGE_CLIP_FILE_MONSTER;
 				}
 				break;
 			case 2:
-				loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_NORMAL;
+				var4 = dofus.Constants.CHALLENGE_CLIP_FILE_NORMAL;
 				break;
 			case 3:
-				loc4 = dofus.Constants.CHALLENGE_CLIP_FILE_TAXCOLLECTOR;
+				var4 = dofus.Constants.CHALLENGE_CLIP_FILE_TAXCOLLECTOR;
 		}
-		return loc4;
+		return var4;
 	}
 }

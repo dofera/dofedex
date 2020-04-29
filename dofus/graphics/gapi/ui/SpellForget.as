@@ -33,46 +33,42 @@ class dofus.graphics.gapi.ui.SpellForget extends dofus.graphics.gapi.core.DofusA
 	}
 	function initData()
 	{
-		var loc2 = this.api.datacenter.Player.Spells;
-		var loc3 = new ank.utils.();
-		for(var k in loc2)
+		var var2 = this.api.datacenter.Player.Spells;
+		var var3 = new ank.utils.();
+		for(var k in var2)
 		{
-			var loc4 = loc2[k];
-			if(loc4.classID != -1 && loc4.level > 1)
+			var var4 = var2[k];
+			if(var4.classID != -1 && var4.level > 1)
 			{
-				loc3.push(loc4);
+				var3.push(var4);
 			}
 		}
-		this._lstSpells.dataProvider = loc3;
+		this._lstSpells.dataProvider = var3;
 	}
-	function itemSelected(loc2)
+	function itemSelected(var2)
 	{
 		this._btnValidate.enabled = true;
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnValidate:
-				var loc3 = (dofus.datacenter.Spell)this._lstSpells.selectedItem;
-				this.api.kernel.showMessage(this.api.lang.getText("SPELL_FORGET"),this.api.lang.getText("SPELL_FORGET_CONFIRM",[loc3.name]),"CAUTION_YESNO",{name:"SpellForget",listener:this,params:{spell:loc3}});
+				var var3 = (dofus.datacenter.Spell)this._lstSpells.selectedItem;
+				this.api.kernel.showMessage(this.api.lang.getText("SPELL_FORGET"),this.api.lang.getText("SPELL_FORGET_CONFIRM",[var3.name]),"CAUTION_YESNO",{name:"SpellForget",listener:this,params:{spell:var3}});
 				break;
-			default:
-				if(loc0 !== this._btnCancel)
-				{
-					break;
-				}
 			case this._btnClose:
+			case this._btnCancel:
 				this.api.network.Spells.spellForget(-1);
 				this.unloadThis();
 		}
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		if((var loc0 = loc2.target._name) === "AskYesNoSpellForget")
+		if((var var0 = var2.target._name) === "AskYesNoSpellForget")
 		{
-			var loc3 = loc2.target.params.spell;
-			this.api.network.Spells.spellForget(loc3.ID);
+			var var3 = var2.target.params.spell;
+			this.api.network.Spells.spellForget(var3.ID);
 			this.unloadThis();
 		}
 	}

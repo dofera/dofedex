@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__item(loc2)
+	function __set__item(var2)
 	{
-		this._oItem = loc2;
+		this._oItem = var2;
 		if(this.initialized)
 		{
 			this.updateData();
@@ -51,19 +51,19 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 		this._btnValid.label = this.api.lang.getText("VALIDATE");
 		this._win.title = this.api.lang.getText("CHOOSE_SKIN");
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		if(!loc2)
+		if(!var2)
 		{
 			return undefined;
 		}
 		this.api.kernel.SpeakingItemsManager.triggerPrivateEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_CHANGE_SKIN);
-		this.api.network.Items.setSkin(this._oItem.ID,this._oItem.position,loc2.skin + 1);
+		this.api.network.Items.setSkin(this._oItem.ID,this._oItem.position,var2.skin + 1);
 		this.callClose();
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._bgh:
 			case this._btnClose:
@@ -73,8 +73,8 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 				this.validate(this._cisItem.selectedItem);
 		}
 	}
-	function dblClickItem(loc2)
+	function dblClickItem(var2)
 	{
-		this.validate(loc2.target.contentData);
+		this.validate(var2.target.contentData);
 	}
 }

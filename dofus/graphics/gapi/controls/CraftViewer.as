@@ -5,17 +5,17 @@ class dofus.graphics.gapi.controls.CraftViewer extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__job(loc2)
+	function __set__job(var2)
 	{
-		this._oJob = loc2;
+		this._oJob = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__job();
 	}
-	function __set__skill(loc2)
+	function __set__skill(var2)
 	{
-		var loc3 = new ank.utils.();
-		loc3.push(loc2);
-		this.job = new dofus.datacenter.Job(-1,loc3);
+		var var3 = new ank.utils.();
+		var3.push(var2);
+		this.job = new dofus.datacenter.Job(-1,var3);
 		return this.__get__skill();
 	}
 	function init()
@@ -62,36 +62,36 @@ class dofus.graphics.gapi.controls.CraftViewer extends dofus.graphics.gapi.core.
 	}
 	function layoutContent()
 	{
-		var loc2 = this.api.datacenter.Basics.craftViewer_filter;
-		this._btnSlot0.selected = loc2[0];
-		this._btnSlot1.selected = loc2[1];
-		this._btnSlot2.selected = loc2[2];
-		this._btnSlot3.selected = loc2[3];
-		this._btnSlot4.selected = loc2[4];
-		this._btnSlot5.selected = loc2[5];
-		this._btnSlot6.selected = loc2[6];
-		this._btnSlot7.selected = loc2[7];
+		var var2 = this.api.datacenter.Basics.craftViewer_filter;
+		this._btnSlot0.selected = var2[0];
+		this._btnSlot1.selected = var2[1];
+		this._btnSlot2.selected = var2[2];
+		this._btnSlot3.selected = var2[3];
+		this._btnSlot4.selected = var2[4];
+		this._btnSlot5.selected = var2[5];
+		this._btnSlot6.selected = var2[6];
+		this._btnSlot7.selected = var2[7];
 		if(this._oJob == undefined)
 		{
 			return undefined;
 		}
-		var loc3 = this._oJob.crafts;
-		var loc4 = new ank.utils.();
-		var loc5 = 0;
-		while(loc5 < loc3.length)
+		var var3 = this._oJob.crafts;
+		var var4 = new ank.utils.();
+		var var5 = 0;
+		while(var5 < var3.length)
 		{
-			var loc6 = loc3[loc5];
-			if(loc2[loc6.itemsCount - 1])
+			var var6 = var3[var5];
+			if(var2[var6.itemsCount - 1])
 			{
-				loc4.push(loc6);
+				var4.push(var6);
 			}
-			loc5 = loc5 + 1;
+			var5 = var5 + 1;
 		}
-		if(loc4.length != 0)
+		if(var4.length != 0)
 		{
 			this._lstCrafts._visible = true;
-			loc4.bubbleSortOn("itemsCount",Array.DESCENDING);
-			this._lstCrafts.dataProvider = loc4;
+			var4.bubbleSortOn("itemsCount",Array.DESCENDING);
+			this._lstCrafts.dataProvider = var4;
 			this._lblNoCraft.text = "";
 		}
 		else
@@ -100,23 +100,23 @@ class dofus.graphics.gapi.controls.CraftViewer extends dofus.graphics.gapi.core.
 			this._lblNoCraft.text = this.api.lang.getText("NO_CRAFT_AVAILABLE");
 		}
 	}
-	function craftItem(loc2)
+	function craftItem(var2)
 	{
-		this._parent.addCraft(loc2.unicID);
+		this._parent.addCraft(var2.unicID);
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		var loc3 = this.api.datacenter.Basics.craftViewer_filter;
-		var loc4 = Number(loc2.target._name.substr(8));
-		loc3[loc4] = loc2.target.selected;
+		var var3 = this.api.datacenter.Basics.craftViewer_filter;
+		var var4 = Number(var2.target._name.substr(8));
+		var3[var4] = var2.target.selected;
 		this.layoutContent();
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		var loc3 = Number(loc2.target._name.substr(8)) + 1;
-		this.gapi.showTooltip(this.api.lang.getText("CRAFT_SLOT_FILTER",[loc3]),loc2.target,-20);
+		var var3 = Number(var2.target._name.substr(8)) + 1;
+		this.gapi.showTooltip(this.api.lang.getText("CRAFT_SLOT_FILTER",[var3]),var2.target,-20);
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

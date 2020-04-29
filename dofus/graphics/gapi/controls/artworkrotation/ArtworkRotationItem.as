@@ -10,40 +10,40 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 		super();
 		this._mcAlphaMask._visible = false;
 	}
-	function __set__sex(loc2)
+	function __set__sex(var2)
 	{
-		this._nSex = Number(loc2);
+		this._nSex = Number(var2);
 		return this.__get__sex();
 	}
-	function __set__scale(loc2)
+	function __set__scale(var2)
 	{
-		this._nScale = Number(loc2);
+		this._nScale = Number(var2);
 		return this.__get__scale();
 	}
 	function init()
 	{
 		super.init(false,dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem.CLASS_NAME);
 	}
-	function loadArtwork(loc2)
+	function loadArtwork(var2)
 	{
-		var loc3 = dofus.Constants.GUILDS_BIG_PATH + loc2 + this._nSex + ".swf";
+		var var3 = dofus.Constants.GUILDS_BIG_PATH + var2 + this._nSex + ".swf";
 		this._ldrArtwork.addEventListener("initialization",this);
-		this._ldrArtwork.contentPath = loc3;
+		this._ldrArtwork.contentPath = var3;
 		this._mcAlphaMask.cacheAsBitmap = true;
 		this._mcAlphaMask._xscale = this._mcAlphaMask._yscale = 85;
 		this._ldrArtwork.setMask(this._mcAlphaMask);
 	}
-	function colorize(loc2, loc3)
+	function colorize(var2, var3)
 	{
-		if(loc3 == undefined)
+		if(var3 == undefined)
 		{
-			loc3 = false;
+			var3 = false;
 		}
 		var nLen = dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem.RED.length;
 		var cTmp = new Color(this._ldrArtwork);
 		var oTmp = new Object();
-		var nI = !loc2?0:nLen - 1;
-		if(!loc3)
+		var nI = !var2?0:nLen - 1;
+		if(!var3)
 		{
 			oTmp.ra = dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem.PERCENT[nI];
 			oTmp.rb = dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem.RED[nI];
@@ -55,7 +55,7 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 		}
 		else
 		{
-			var nInc = !loc2?1:-1;
+			var nInc = !var2?1:-1;
 			this.onEnterFrame = function()
 			{
 				oTmp.ra = dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem.PERCENT[nI];
@@ -74,8 +74,8 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 			};
 		}
 	}
-	function initialization(loc2)
+	function initialization(var2)
 	{
-		loc2.clip._xscale = loc2.clip._yscale = this._nScale;
+		var2.clip._xscale = var2.clip._yscale = this._nScale;
 	}
 }

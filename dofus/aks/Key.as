@@ -1,28 +1,28 @@
 class dofus.aks.Key extends dofus.aks.Handler
 {
-	function Key(loc3, loc4)
+	function Key(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
 	function leave()
 	{
 		this.aks.send("KV",false);
 	}
-	function sendKey(loc3, loc4)
+	function sendKey(var3, var4)
 	{
-		this.aks.send("KK" + loc2 + "|" + loc3);
+		this.aks.send("KK" + var2 + "|" + var3);
 	}
-	function onCreate(loc2)
+	function onCreate(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = Number(loc3[0]);
-		var loc5 = Number(loc3[1]);
-		this.api.ui.loadUIComponent("KeyCode","KeyCode",{title:this.api.lang.getText("TYPE_CODE"),changeType:loc4,slotsCount:loc5});
+		var var3 = var2.split("|");
+		var var4 = Number(var3[0]);
+		var var5 = Number(var3[1]);
+		this.api.ui.loadUIComponent("KeyCode","KeyCode",{title:this.api.lang.getText("TYPE_CODE"),changeType:var4,slotsCount:var5});
 	}
-	function onKey(loc2)
+	function onKey(var2)
 	{
-		var loc3 = !loc2?this.api.lang.getText("BAD_CODE"):this.api.lang.getText("CODE_CHANGED");
-		this.api.kernel.showMessage(this.api.lang.getText("CODE"),loc3,"ERROR_BOX",{name:"Key"});
+		var var3 = !var2?this.api.lang.getText("BAD_CODE"):this.api.lang.getText("CODE_CHANGED");
+		this.api.kernel.showMessage(this.api.lang.getText("CODE"),var3,"ERROR_BOX",{name:"Key"});
 	}
 	function onLeave()
 	{

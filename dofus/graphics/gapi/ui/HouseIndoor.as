@@ -5,18 +5,18 @@ class dofus.graphics.gapi.ui.HouseIndoor extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__house(loc2)
+	function __set__house(var2)
 	{
-		this._oHouse = loc2;
-		loc2.addEventListener("forsale",this);
-		loc2.addEventListener("locked",this);
-		this._mcForSale._visible = loc2.isForSale;
-		this._mcLock._visible = loc2.isLocked;
+		this._oHouse = var2;
+		var2.addEventListener("forsale",this);
+		var2.addEventListener("locked",this);
+		this._mcForSale._visible = var2.isForSale;
+		this._mcLock._visible = var2.isLocked;
 		return this.__get__house();
 	}
-	function __set__skills(loc2)
+	function __set__skills(var2)
 	{
-		this._aSkills = loc2;
+		this._aSkills = var2;
 		return this.__get__skills();
 	}
 	function init()
@@ -34,35 +34,34 @@ class dofus.graphics.gapi.ui.HouseIndoor extends dofus.graphics.gapi.core.DofusA
 	}
 	function click()
 	{
-		var loc2 = this._parent.gapi.createPopupMenu();
-		var loc3 = this._parent._oHouse;
-		var loc4 = this._parent.api;
-		loc2.addStaticItem(loc3.name);
-		for(var k in this._parent._aSkills)
+		var var2 = this._parent.gapi.createPopupMenu();
+		var var3 = this._parent._oHouse;
+		var var4 = this._parent.api;
+		var2.addStaticItem(var3.name);
+		for(var var5 in this._parent._aSkills)
 		{
-			var loc5 = this._parent._aSkills[k];
-			var loc6 = loc5.getState(true,loc3.localOwner,loc3.isForSale,loc3.isLocked,true);
-			if(loc6 != "X")
+			var var6 = var5.getState(true,var3.localOwner,var3.isForSale,var3.isLocked,true);
+			if(var6 != "X")
 			{
-				loc2.addItem(loc5.description,loc4.kernel.GameManager,loc4.kernel.GameManager.useSkill,[loc5.id],loc6 == "V");
+				var2.addItem(var5.description,var4.kernel.GameManager,var4.kernel.GameManager.useSkill,[var5.id],var6 == "V");
 			}
 		}
-		if(loc4.datacenter.Player.guildInfos != undefined && loc4.datacenter.Player.guildInfos.isValid)
+		if(var4.datacenter.Player.guildInfos != undefined && var4.datacenter.Player.guildInfos.isValid)
 		{
-			loc2.addItem(loc4.lang.getText("GUILD_HOUSE_CONFIGURATION"),this._parent,this._parent.guildHouse);
+			var2.addItem(var4.lang.getText("GUILD_HOUSE_CONFIGURATION"),this._parent,this._parent.guildHouse);
 		}
-		loc2.show(_root._xmouse,_root._ymouse);
+		var2.show(_root._xmouse,_root._ymouse);
 	}
 	function guildHouse()
 	{
 		this.api.ui.loadUIComponent("GuildHouseRights","GuildHouseRights",{house:this._oHouse});
 	}
-	function forsale(loc2)
+	function forsale(var2)
 	{
-		this._mcForSale._visible = loc2.value;
+		this._mcForSale._visible = var2.value;
 	}
-	function locked(loc2)
+	function locked(var2)
 	{
-		this._mcLock._visible = loc2.value;
+		this._mcLock._visible = var2.value;
 	}
 }

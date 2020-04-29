@@ -11,22 +11,22 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 		this._mcLocate._alpha = 0;
 		this._mcSubtitleBackground._alpha = 0;
 	}
-	function __set__list(loc2)
+	function __set__list(var2)
 	{
-		this._mcList = loc2;
+		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(loc2, loc3, loc4)
+	function setValue(var2, var3, var4)
 	{
-		if(loc2)
+		if(var2)
 		{
-			this._oItem = loc4;
-			if(this._oItem.area == undefined || (Number(loc4.area) < 0 || _global.isNaN(loc4.area)))
+			this._oItem = var4;
+			if(this._oItem.area == undefined || (Number(var4.area) < 0 || _global.isNaN(var4.area)))
 			{
-				var loc5 = this.api.lang.getMapSubAreaText(loc4.id).n;
-				this._lblArea.text = loc5.substr(0,2) != "//"?loc5:loc5.substr(2);
-				this._mcFighting._alpha = !loc4.fighting?0:100;
-				if(loc4.alignment == -1)
+				var var5 = this.api.lang.getMapSubAreaText(var4.id).n;
+				this._lblArea.text = var5.substr(0,2) != "//"?var5:var5.substr(2);
+				this._mcFighting._alpha = !var4.fighting?0:100;
+				if(var4.alignment == -1)
 				{
 					this._ldrAlignment._alpha = 0;
 					this._mcNotAligned._alpha = 100;
@@ -35,7 +35,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 				{
 					this._mcNotAligned._alpha = 0;
 					this._ldrAlignment._alpha = 100;
-					this._ldrAlignment.contentPath = dofus.Constants.ALIGNMENTS_MINI_PATH + loc4.alignment + ".swf";
+					this._ldrAlignment.contentPath = dofus.Constants.ALIGNMENTS_MINI_PATH + var4.alignment + ".swf";
 				}
 				var ref = this;
 				this._mcTooltip.onRollOver = function()
@@ -46,7 +46,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 				{
 					ref.out({target:this});
 				};
-				if(loc4.prism == 0)
+				if(var4.prism == 0)
 				{
 					delete this._oPrismData;
 					this._lblPrism.text = "-";
@@ -57,7 +57,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 				}
 				else
 				{
-					this._oPrismData = this.api.lang.getMapText(loc4.prism);
+					this._oPrismData = this.api.lang.getMapText(var4.prism);
 					this._lblPrism.text = this._oPrismData.x + ";" + this._oPrismData.y;
 					this._mcLocate._alpha = 100;
 					this._mcLocate.onRelease = function()
@@ -196,16 +196,16 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 			}
 		}
 	}
-	function click(loc2)
+	function click(var2)
 	{
-		if((var loc0 = loc2.target) === this._mcLocate)
+		if((var var0 = var2.target) === this._mcLocate)
 		{
 			this.api.kernel.GameManager.updateCompass(this._oPrismData.x,this._oPrismData.y,true);
 		}
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._mcAlignmentInteractivity:
 				this.api.ui.showTooltip(this.api.lang.getText("ALIGNMENT") + ": " + (this._oItem.alignment <= 0?this._oItem.alignment != -1?this.api.lang.getText("NEUTRAL_WORD"):this.api.lang.getText("NON_ALIGNED"):new dofus.datacenter.(this._oItem.alignment,1).name),_root._xmouse,_root._ymouse - 20);
@@ -213,47 +213,48 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 			case this._mcFightingInteractivity:
 				this.api.ui.showTooltip(this.api.lang.getText("FIGHTING_PRISM"),_root._xmouse,_root._ymouse - 20);
 				break;
+			case this._mcLocate:
+				this.api.ui.showTooltip(this.api.lang.getText("LOCATE"),_root._xmouse,_root._ymouse - 20);
+				break;
 			default:
-				switch(null)
+				if(var0 !== this._mcTooltip)
 				{
-					case this._mcLocate:
-						this.api.ui.showTooltip(this.api.lang.getText("LOCATE"),_root._xmouse,_root._ymouse - 20);
-						break;
-					case this._mcTooltip:
-						var loc3 = new String();
-						if(this._oItem.alignment == this.api.datacenter.Player.alignment.index)
-						{
-							loc3 = this.api.lang.getText("CONQUEST_AREA_OWNED") + "\n";
-							if(this._oItem.isVulnerable())
-							{
-								loc3 = loc3 + (this.api.lang.getText("CONQUEST_AREA_VULNERABLE") + "\n");
-							}
-							loc3 = loc3 + "\n";
-						}
-						else if(this._oItem.isCapturable())
-						{
-							loc3 = this.api.lang.getText("CONQUEST_AREA_CAN_BE_CAPTURED") + "\n\n";
-						}
-						else
-						{
-							loc3 = this.api.lang.getText("CONQUEST_AREA_CANT_BE_CAPTURED") + "\n\n";
-						}
-						loc3 = loc3 + (this.api.lang.getText("CONQUEST_NEAR_ZONES") + ":\n");
-						var loc4 = this._oItem.getNearZonesList();
-						for(var s in loc4)
-						{
-							var loc5 = this.api.lang.getMapSubAreaText(loc4[s]).n;
-							if(loc5.substr(0,2) == "//")
-							{
-								loc5 = loc5.substr(2);
-							}
-							loc3 = loc3 + (" - " + loc5 + "\n");
-						}
-						this.api.ui.showTooltip(loc3,_root._xmouse,_root._ymouse + 20);
+					break;
 				}
+				var var3 = new String();
+				if(this._oItem.alignment == this.api.datacenter.Player.alignment.index)
+				{
+					var3 = this.api.lang.getText("CONQUEST_AREA_OWNED") + "\n";
+					if(this._oItem.isVulnerable())
+					{
+						var3 = var3 + (this.api.lang.getText("CONQUEST_AREA_VULNERABLE") + "\n");
+					}
+					var3 = var3 + "\n";
+				}
+				else if(this._oItem.isCapturable())
+				{
+					var3 = this.api.lang.getText("CONQUEST_AREA_CAN_BE_CAPTURED") + "\n\n";
+				}
+				else
+				{
+					var3 = this.api.lang.getText("CONQUEST_AREA_CANT_BE_CAPTURED") + "\n\n";
+				}
+				var3 = var3 + (this.api.lang.getText("CONQUEST_NEAR_ZONES") + ":\n");
+				var var4 = this._oItem.getNearZonesList();
+				for(var s in var4)
+				{
+					var var5 = this.api.lang.getMapSubAreaText(var4[s]).n;
+					if(var5.substr(0,2) == "//")
+					{
+						var5 = var5.substr(2);
+					}
+					var3 = var3 + (" - " + var5 + "\n");
+				}
+				this.api.ui.showTooltip(var3,_root._xmouse,_root._ymouse + 20);
+				break;
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

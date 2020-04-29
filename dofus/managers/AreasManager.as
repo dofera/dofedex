@@ -10,38 +10,38 @@ class dofus.managers.AreasManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.AreasManager._sSelf;
 	}
-	function initialize(loc2)
+	function initialize(var2)
 	{
-		super.initialize(loc3);
+		super.initialize(var3);
 		this._oAreasCoords = new Object();
 		this._oSubAreasCoords = new Object();
-		var loc4 = this.api.lang.getAllMapsInfos();
-		for(var loc5 in loc4)
+		var var4 = this.api.lang.getAllMapsInfos();
+		for(var var5 in var4)
 		{
-			var loc6 = this.api.lang.getMapSubAreaText(loc5.sa).a;
-			var loc7 = this.api.lang.getMapAreaText(loc6).sua;
-			var loc8 = loc7 + "_" + loc5.x + "_" + loc5.y;
-			if(this._oAreasCoords[loc8] == undefined)
+			var var6 = this.api.lang.getMapSubAreaText(var5.sa).a;
+			var var7 = this.api.lang.getMapAreaText(var6).sua;
+			var var8 = var7 + "_" + var5.x + "_" + var5.y;
+			if(this._oAreasCoords[var8] == undefined)
 			{
-				this._oAreasCoords[loc8] = loc6;
-				this._oSubAreasCoords[loc8] = loc5.sa;
+				this._oAreasCoords[var8] = var6;
+				this._oSubAreasCoords[var8] = var5.sa;
 			}
 		}
 	}
-	function getAreaIDFromCoordinates(loc2, loc3, loc4)
+	function getAreaIDFromCoordinates(var2, var3, var4)
 	{
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = 0;
+			var4 = 0;
 		}
-		return this._oAreasCoords[loc4 + "_" + loc2 + "_" + loc3];
+		return this._oAreasCoords[var4 + "_" + var2 + "_" + var3];
 	}
-	function getSubAreaIDFromCoordinates(loc2, loc3, loc4)
+	function getSubAreaIDFromCoordinates(var2, var3, var4)
 	{
-		if(loc4 == undefined)
+		if(var4 == undefined)
 		{
-			loc4 = 0;
+			var4 = 0;
 		}
-		return this._oSubAreasCoords[loc4 + "_" + loc2 + "_" + loc3];
+		return this._oSubAreasCoords[var4 + "_" + var2 + "_" + var3];
 	}
 }

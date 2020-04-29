@@ -15,30 +15,30 @@ class ank.battlefield.Battlefield extends MovieClip
 		{
 			return true;
 		}
-		ank.utils.SharedObjectFix.err("[isMapBuild] Carte non chargée");
+		ank.utils.Logger.err("[isMapBuild] Carte non chargée");
 		return false;
 	}
-	function __set__screenWidth(_loc2_)
+	function __set__screenWidth(var2)
 	{
-		this._nScreenWidth = _loc2_;
+		this._nScreenWidth = var2;
 		return this.__get__screenWidth();
 	}
 	function __get__screenWidth()
 	{
 		return this._nScreenWidth != undefined?this._nScreenWidth:ank.battlefield.Constants.DISPLAY_WIDTH;
 	}
-	function __set__screenHeight(_loc2_)
+	function __set__screenHeight(var2)
 	{
-		this._nScreenHeight = _loc2_;
+		this._nScreenHeight = var2;
 		return this.__get__screenHeight();
 	}
 	function __get__screenHeight()
 	{
 		return this._nScreenHeight != undefined?this._nScreenHeight:ank.battlefield.Constants.DISPLAY_HEIGHT;
 	}
-	function __set__isJumpActivate(_loc2_)
+	function __set__isJumpActivate(var2)
 	{
-		this._bJumpActivate = _loc2_;
+		this._bJumpActivate = var2;
 		return this.__get__isJumpActivate();
 	}
 	function __get__isJumpActivate()
@@ -57,57 +57,57 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		return this._oDatacenter;
 	}
-	function initialize(_loc2_, _loc3_, _loc4_, _loc5_)
+	function initialize(var2, var3, var4, var5)
 	{
-		this._oDatacenter = _loc2_;
-		this._sGroundFile = _loc3_;
+		this._oDatacenter = var2;
+		this._sGroundFile = var3;
 		if(!this.initializeDatacenter())
 		{
-			ank.utils.SharedObjectFix.err("BattleField -> Init datacenter impossible");
+			ank.utils.Logger.err("BattleField -> Init datacenter impossible");
 			this.onInitError();
 		}
 		ank.utils.Extensions.addExtensions();
 		if(_global.GAC == undefined)
 		{
-			_global.GAC = new ank.battlefield.();
-			_global.GAC.setAccessoriesRoot(_loc5_);
+			_global.GAC = new ank.battlefield.();
+			_global.GAC.setAccessoriesRoot(var5);
 		}
-		this.attachClassMovie(ank.battlefield.mc.Container,"_mcMainContainer",10,[this,this._oDatacenter,_loc4_]);
+		this.attachClassMovie(ank.battlefield.mc.Container,"_mcMainContainer",10,[this,this._oDatacenter,var4]);
 		this._bMapBuild = false;
 		this.loadManager = new ank.battlefield.LoadManager(this.createEmptyMovieClip("LoadManager",this.getNextHighestDepth()));
 	}
-	function setStreaming(_loc2_, _loc3_, _loc4_)
+	function setStreaming(var2, var3, var4)
 	{
-		ank.battlefield.Constants.USE_STREAMING_FILES = _loc2_;
-		ank.battlefield.Constants.STREAMING_OBJECTS_DIR = _loc3_;
-		ank.battlefield.Constants.STREAMING_GROUNDS_DIR = _loc4_;
+		ank.battlefield.Constants.USE_STREAMING_FILES = var2;
+		ank.battlefield.Constants.STREAMING_OBJECTS_DIR = var3;
+		ank.battlefield.Constants.STREAMING_GROUNDS_DIR = var4;
 	}
-	function setStreamingMethod(_loc2_)
+	function setStreamingMethod(var2)
 	{
-		ank.battlefield.Constants.STREAMING_METHOD = _loc2_;
+		ank.battlefield.Constants.STREAMING_METHOD = var2;
 	}
-	function setCustomGfxFile(_loc2_, _loc3_)
+	function setCustomGfxFile(var2, var3)
 	{
-		if(_loc2_ && (_loc2_ != "" && this._sGroundFile != _loc2_))
+		if(var2 && (var2 != "" && this._sGroundFile != var2))
 		{
-			this._sGroundFile = _loc2_;
+			this._sGroundFile = var2;
 			this._bUseCustomGroundGfxFile = true;
 			this.bCustomFileLoaded = false;
 		}
-		if(_loc3_ && (_loc3_ != "" && this._sObjectFile != _loc3_))
+		if(var3 && (var3 != "" && this._sObjectFile != var3))
 		{
-			this._mcMainContainer.initialize(this._mcMainContainer,this._oDatacenter,_loc3_);
+			this._mcMainContainer.initialize(this._mcMainContainer,this._oDatacenter,var3);
 			this.bCustomFileLoaded = false;
-			this._sObjectFile = _loc3_;
+			this._sObjectFile = var3;
 		}
 	}
-	function activateTacticMode(_loc2_)
+	function activateTacticMode(var2)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.mapHandler.tacticMode(_loc2_);
+		this.mapHandler.tacticMode(var2);
 	}
 	function clear()
 	{
@@ -120,11 +120,11 @@ class ank.battlefield.Battlefield extends MovieClip
 		this.createHandlers();
 		this._bMapBuild = false;
 	}
-	function setColor(_loc2_)
+	function setColor(var2)
 	{
-		this._mcMainContainer.setColor(_loc2_);
+		this._mcMainContainer.setColor(var2);
 	}
-	function cleanMap(nPermanentLevel, §\x18\x14§)
+	function cleanMap(nPermanentLevel, §\x18\x13§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -143,7 +143,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		this.clearAllZones();
 		this.clearPointer();
 		this.removeGrid();
-		this.clearAllSprites(_loc3_);
+		this.clearAllSprites(var3);
 		this.overHeadHandler.clear();
 		this.textHandler.clear();
 		this.pointsHandler.clear();
@@ -154,23 +154,23 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		return this._mcMainContainer.getZoom();
 	}
-	function showContainer(_loc2_)
+	function showContainer(var2)
 	{
-		this._mcMainContainer._visible = _loc2_;
+		this._mcMainContainer._visible = var2;
 	}
-	function zoom(_loc2_)
+	function zoom(var2)
 	{
-		this._mcMainContainer.zoom(_loc2_);
+		this._mcMainContainer.zoom(var2);
 	}
-	function buildMapFromObject(_loc2_, _loc3_)
+	function buildMapFromObject(var2, var3)
 	{
 		this.clear();
-		if(_loc2_ == undefined)
+		if(var2 == undefined)
 		{
 			return undefined;
 		}
 		this.onMapBuilding();
-		this.mapHandler.build(_loc2_,undefined,_loc3_);
+		this.mapHandler.build(var2,undefined,var3);
 		if(this.mapHandler.LoaderRequestLeft == 0)
 		{
 			this.DispatchMapLoaded();
@@ -195,175 +195,175 @@ class ank.battlefield.Battlefield extends MovieClip
 		this._bMapBuild = true;
 		this.onMapLoaded();
 	}
-	function buildMap(_loc2_, _loc3_, _loc4_, _loc5_, _loc6_, _loc7_, _loc8_, _loc9_)
+	function buildMap(var2, var3, var4, var5, var6, var7, var8, var9)
 	{
-		if(_loc8_ == undefined)
+		if(var8 == undefined)
 		{
-			_loc8_ = new ank.battlefield.datacenter.Map();
+			var8 = new ank.battlefield.datacenter.Map();
 		}
-		ank.battlefield.utils.Compressor.uncompressMap(_loc2_,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,_loc9_);
-		this.buildMapFromObject(_loc8_,_loc9_);
+		ank.battlefield.utils.Compressor.uncompressMap(var2,var3,var4,var5,var6,var7,var8,var9);
+		this.buildMapFromObject(var8,var9);
 	}
-	function updateCell(§\b\x1a§, §\x1e\x15\f§, §\x1e\x12\x01§, nPermanentLevel)
+	function updateCell(§\b\x18§, §\x1e\x15\n§, §\x1e\x11\x1c§, nPermanentLevel)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		if(_loc3_ == undefined)
+		if(var3 == undefined)
 		{
-			this.mapHandler.initializeCell(_loc2_,Number.POSITIVE_INFINITY,true);
+			this.mapHandler.initializeCell(var2,Number.POSITIVE_INFINITY,true);
 		}
 		else
 		{
-			var _loc6_ = ank.battlefield.utils.Compressor.uncompressCell(_loc3_,true);
-			this.mapHandler.updateCell(_loc2_,_loc6_,_loc4_,nPermanentLevel);
+			var var6 = ank.battlefield.utils.Compressor.uncompressCell(var3,true);
+			this.mapHandler.updateCell(var2,var6,var4,nPermanentLevel);
 		}
 	}
-	function setObject2Frame(_loc2_, _loc3_)
+	function setObject2Frame(var2, var3)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.mapHandler.setObject2Frame(_loc2_,_loc3_);
+		this.mapHandler.setObject2Frame(var2,var3);
 	}
-	function setObject2Interactive(§\b\x1a§, §\x19\x06§, nPermanentLevel)
+	function setObject2Interactive(§\b\x18§, §\x19\x05§, nPermanentLevel)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.mapHandler.setObject2Interactive(_loc2_,_loc3_,nPermanentLevel);
+		this.mapHandler.setObject2Interactive(var2,var3,nPermanentLevel);
 	}
-	function updateCellObjectExternalWithExternalClip(_loc2_, _loc3_, _loc4_, _loc5_, _loc6_, _loc7_)
+	function updateCellObjectExternalWithExternalClip(var2, var3, var4, var5, var6, var7)
 	{
-		var _loc8_ = new ank.battlefield.datacenter.();
-		_loc8_.layerObjectExternal = _loc3_;
-		_loc8_.layerObjectExternalInteractive = _loc5_ != undefined?_loc5_:true;
-		_loc8_.layerObjectExternalAutoSize = _loc6_;
-		_loc8_.layerObjectExternalData = _loc7_;
-		this.mapHandler.updateCell(_loc2_,_loc8_,"1C000",nPermanentLevel);
+		var var8 = new ank.battlefield.datacenter.();
+		var8.layerObjectExternal = var3;
+		var8.layerObjectExternalInteractive = var5 != undefined?var5:true;
+		var8.layerObjectExternalAutoSize = var6;
+		var8.layerObjectExternalData = var7;
+		this.mapHandler.updateCell(var2,var8,"1C000",nPermanentLevel);
 	}
-	function setObjectExternalFrame(_loc2_, _loc3_)
-	{
-		if(!this.isMapBuild)
-		{
-			return undefined;
-		}
-		this.mapHandler.setObjectExternalFrame(_loc2_,_loc3_);
-	}
-	function initializeCell(§\b\x1a§, nPermanentLevel)
+	function setObjectExternalFrame(var2, var3)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.mapHandler.initializeCell(_loc2_,nPermanentLevel);
+		this.mapHandler.setObjectExternalFrame(var2,var3);
 	}
-	function select(_loc2_, _loc3_, _loc4_, _loc5_)
+	function initializeCell(§\b\x18§, nPermanentLevel)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		if(typeof _loc2_ == "object")
-		{
-			this.selectionHandler.selectMultiple(true,_loc2_,_loc3_,_loc4_,_loc5_);
-		}
-		else if(typeof _loc2_ == "number")
-		{
-			this.selectionHandler.select(true,_loc2_,_loc3_,_loc4_,_loc5_);
-		}
+		this.mapHandler.initializeCell(var2,nPermanentLevel);
 	}
-	function unSelect(_loc2_, _loc3_, _loc4_)
+	function select(var2, var3, var4, var5)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		if(_loc2_)
+		if(typeof var2 == "object")
+		{
+			this.selectionHandler.selectMultiple(true,var2,var3,var4,var5);
+		}
+		else if(typeof var2 == "number")
+		{
+			this.selectionHandler.select(true,var2,var3,var4,var5);
+		}
+	}
+	function unSelect(var2, var3, var4)
+	{
+		if(!this.isMapBuild)
+		{
+			return undefined;
+		}
+		if(var2)
 		{
 			this.selectionHandler.clear();
 		}
-		else if(typeof _loc3_ == "object")
+		else if(typeof var3 == "object")
 		{
-			this.selectionHandler.selectMultiple(false,_loc3_,undefined,_loc4_);
+			this.selectionHandler.selectMultiple(false,var3,undefined,var4);
 		}
-		else if(typeof _loc3_ == "number")
+		else if(typeof var3 == "number")
 		{
-			this.selectionHandler.select(false,_loc3_,undefined,_loc4_);
+			this.selectionHandler.select(false,var3,undefined,var4);
 		}
-		else if(_loc4_ != undefined)
+		else if(var4 != undefined)
 		{
-			this.selectionHandler.clearLayer(_loc4_);
+			this.selectionHandler.clearLayer(var4);
 		}
 	}
-	function unSelectAllButOne(_loc2_)
+	function unSelectAllButOne(var2)
 	{
-		var _loc3_ = this.selectionHandler.getLayers();
-		var _loc4_ = 0;
-		while(_loc4_ < _loc3_.length)
+		var var3 = this.selectionHandler.getLayers();
+		var var4 = 0;
+		while(var4 < var3.length)
 		{
-			if(_loc3_[_loc4_] != _loc2_)
+			if(var3[var4] != var2)
 			{
-				this.selectionHandler.clearLayer(_loc3_[_loc4_]);
+				this.selectionHandler.clearLayer(var3[var4]);
 			}
-			_loc4_ = _loc4_ + 1;
+			var4 = var4 + 1;
 		}
 	}
-	function setInteraction(_loc2_)
+	function setInteraction(var2)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.interactionHandler.setEnabled(_loc2_);
+		this.interactionHandler.setEnabled(var2);
 	}
-	function setInteractionOnCell(_loc2_, _loc3_)
+	function setInteractionOnCell(var2, var3)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.interactionHandler.setEnabledCell(_loc2_,_loc3_);
+		this.interactionHandler.setEnabledCell(var2,var3);
 	}
-	function setInteractionOnCells(_loc2_, _loc3_)
+	function setInteractionOnCells(var2, var3)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		for(var k in _loc2_)
+		for(var k in var2)
 		{
-			this.interactionHandler.setEnabledCell(_loc2_[k],_loc3_);
+			this.interactionHandler.setEnabledCell(var2[k],var3);
 		}
 	}
-	function drawZone(_loc2_, _loc3_, _loc4_, _loc5_, _loc6_, _loc7_)
+	function drawZone(var2, var3, var4, var5, var6, var7)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.zoneHandler.drawZone(_loc2_,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_);
+		this.zoneHandler.drawZone(var2,var3,var4,var5,var6,var7);
 	}
-	function clearZone(_loc2_, _loc3_, _loc4_)
+	function clearZone(var2, var3, var4)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.zoneHandler.clearZone(_loc2_,_loc3_,_loc4_);
+		this.zoneHandler.clearZone(var2,var3,var4);
 	}
-	function clearZoneLayer(_loc2_)
+	function clearZoneLayer(var2)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.zoneHandler.clearZoneLayer(_loc2_);
+		this.zoneHandler.clearZoneLayer(var2);
 	}
-	function clearAllZones(_loc2_)
+	function clearAllZones(var2)
 	{
 		if(!this.isMapBuild)
 		{
@@ -371,25 +371,25 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.zoneHandler.clear();
 	}
-	function clearPointer(_loc2_)
+	function clearPointer(var2)
 	{
 		this.pointerHandler.clear();
 	}
-	function hidePointer(_loc2_)
+	function hidePointer(var2)
 	{
 		this.pointerHandler.hide();
 	}
-	function addPointerShape(_loc2_, _loc3_, _loc4_, _loc5_)
+	function addPointerShape(var2, var3, var4, var5)
 	{
-		this.pointerHandler.addShape(_loc2_,_loc3_,_loc4_,_loc5_);
+		this.pointerHandler.addShape(var2,var3,var4,var5);
 	}
-	function drawPointer(_loc2_)
+	function drawPointer(var2)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.pointerHandler.draw(_loc2_);
+		this.pointerHandler.draw(var2);
 	}
 	function getSprite(sID)
 	{
@@ -407,37 +407,37 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.addSprite(sID,spriteData);
 	}
-	function addLinkedSprite(sID, §\x1e\x11\x04§, §\b\f§, oSprite)
+	function addLinkedSprite(sID, §\x1e\x11\x02§, §\b\n§, oSprite)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.addLinkedSprite(sID,_loc3_,_loc4_,oSprite);
+		this.spriteHandler.addLinkedSprite(sID,var3,var4,oSprite);
 	}
-	function carriedSprite(sID, §\x1e\x11\x04§)
+	function carriedSprite(sID, §\x1e\x11\x02§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.carriedSprite(sID,_loc3_);
+		this.spriteHandler.carriedSprite(sID,var3);
 	}
-	function uncarriedSprite(sID, §\b\x1a§, §\x14\x12§, §\x1e\x19\x11§)
+	function uncarriedSprite(sID, §\b\x18§, §\x14\x11§, §\x1e\x19\x0f§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.uncarriedSprite(sID,_loc3_,_loc4_,_loc5_);
+		this.spriteHandler.uncarriedSprite(sID,var3,var4,var5);
 	}
-	function mountSprite(sID, §\x1e\x1a\t§)
+	function mountSprite(sID, §\x1e\x1a\x07§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.mountSprite(sID,_loc3_);
+		this.spriteHandler.mountSprite(sID,var3);
 	}
 	function unmountSprite(sID)
 	{
@@ -447,85 +447,85 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.unmountSprite(sID);
 	}
-	function clearAllSprites(_loc2_)
+	function clearAllSprites(var2)
 	{
-		this.spriteHandler.clear(_loc2_);
+		this.spriteHandler.clear(var2);
 	}
-	function removeSprite(sID, §\x18\x14§)
+	function removeSprite(sID, §\x18\x13§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.removeSprite(sID,_loc3_);
+		this.spriteHandler.removeSprite(sID,var3);
 	}
-	function hideSprite(sID, §\x17\x0b§)
+	function hideSprite(sID, §\x17\n§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.hideSprite(sID,_loc3_);
+		this.spriteHandler.hideSprite(sID,var3);
 	}
-	function setSpritePosition(sID, §\b\x1a§, §\x11\x1d§)
+	function setSpritePosition(sID, §\b\x18§, §\x11\x1b§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpritePosition(sID,_loc3_,_loc4_);
+		this.spriteHandler.setSpritePosition(sID,var3,var4);
 	}
-	function setSpriteDirection(sID, §\x07\x12§)
+	function setSpriteDirection(sID, §\x07\x10§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteDirection(sID,_loc3_);
+		this.spriteHandler.setSpriteDirection(sID,var3);
 	}
-	function stopSpriteMove(sID, §\x1e\x19\x11§, §\b\x1a§)
+	function stopSpriteMove(sID, §\x1e\x19\x0f§, §\b\x18§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.stopSpriteMove(sID,_loc3_,_loc4_);
+		this.spriteHandler.stopSpriteMove(sID,var3,var4);
 	}
-	function moveSprite(sID, §\x13\r§, §\x1e\x19\x11§, §\x1b\x17§, §\x1a\x05§, §\x1a\x04§, §\x01\x11§)
+	function moveSprite(sID, §\x13\x0b§, §\x1e\x19\x0f§, §\x1b\x17§, §\x1a\x04§, §\x1a\x03§, §\x01\x0f§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		var _loc9_ = ank.battlefield.utils.Compressor.extractFullPath(this.mapHandler,_loc3_);
-		this.moveSpriteWithUncompressedPath(sID,_loc9_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_);
+		var var9 = ank.battlefield.utils.Compressor.extractFullPath(this.mapHandler,var3);
+		this.moveSpriteWithUncompressedPath(sID,var9,var4,var5,var6,var7,var8);
 	}
-	function moveSpriteWithUncompressedPath(sID, §\x1d\x1d§, §\x1e\x19\x11§, §\x1b\x17§, §\x1a\x05§, §\x1a\x04§, §\x01\x11§, §\x1e\x16\r§)
+	function moveSpriteWithUncompressedPath(sID, §\x1d\x1d§, §\x1e\x19\x0f§, §\x1b\x17§, §\x1a\x04§, §\x1a\x03§, §\x01\x0f§, §\x1e\x16\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		if(_loc3_ != undefined)
+		if(var3 != undefined)
 		{
-			this.spriteHandler.moveSprite(sID,_loc3_,_loc4_,_loc5_,_loc9_,_loc6_,_loc7_,_loc8_);
+			this.spriteHandler.moveSprite(sID,var3,var4,var5,var9,var6,var7,var8);
 		}
 	}
-	function slideSprite(sID, §\b\x1a§, §\x1e\x19\x11§, §\x1e\x16\r§)
+	function slideSprite(sID, §\b\x18§, §\x1e\x19\x0f§, §\x1e\x16\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.slideSprite(sID,_loc3_,_loc4_,_loc5_);
+		this.spriteHandler.slideSprite(sID,var3,var4,var5);
 	}
-	function autoCalculateSpriteDirection(sID, §\b\x1a§)
+	function autoCalculateSpriteDirection(sID, §\b\x18§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.autoCalculateSpriteDirection(sID,_loc3_);
+		this.spriteHandler.autoCalculateSpriteDirection(sID,var3);
 	}
 	function convertHeightToFourSpriteDirection(sID)
 	{
@@ -535,207 +535,207 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.convertHeightToFourSpriteDirection(sID);
 	}
-	function setForcedSpriteAnim(sID, §\x1e\x16\x0e§)
+	function setForcedSpriteAnim(sID, §\x1e\x16\f§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteAnim(sID,_loc3_,true);
+		this.spriteHandler.setSpriteAnim(sID,var3,true);
 	}
-	function setSpriteAnim(sID, §\x1e\x16\x0e§)
+	function setSpriteAnim(sID, §\x1e\x16\f§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteAnim(sID,_loc3_);
+		this.spriteHandler.setSpriteAnim(sID,var3);
 	}
-	function setSpriteLoopAnim(sID, §\x1e\x16\x0e§, §\x1e\x1d\x0f§)
+	function setSpriteLoopAnim(sID, §\x1e\x16\f§, §\x1e\x1d\r§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteLoopAnim(sID,_loc3_,_loc4_);
+		this.spriteHandler.setSpriteLoopAnim(sID,var3,var4);
 	}
-	function setSpriteTimerAnim(sID, §\x1e\x16\x0e§, §\x1a\x07§, §\x1e\x1d\x0f§)
+	function setSpriteTimerAnim(sID, §\x1e\x16\f§, §\x1a\x06§, §\x1e\x1d\r§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteTimerAnim(sID,_loc3_,_loc4_,_loc5_);
+		this.spriteHandler.setSpriteTimerAnim(sID,var3,var4,var5);
 	}
-	function setSpriteGfx(sID, §\x1e\x14\x04§)
+	function setSpriteGfx(sID, §\x1e\x14\x02§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteGfx(sID,_loc3_);
+		this.spriteHandler.setSpriteGfx(sID,var3);
 	}
-	function setSpriteColorTransform(sID, §\x1e\x19\x03§)
+	function setSpriteColorTransform(sID, §\x1e\x19\x01§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteColorTransform(sID,_loc3_);
+		this.spriteHandler.setSpriteColorTransform(sID,var3);
 	}
-	function setSpriteAlpha(sID, §\n\x03§)
+	function setSpriteAlpha(sID, §\n\x01§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.setSpriteAlpha(sID,_loc3_);
+		this.spriteHandler.setSpriteAlpha(sID,var3);
 	}
-	function spriteLaunchVisualEffect(sID, §\x1e\x1b\x06§, §\b\x1a§, §\x07\r§, §\n\x12§, §\x1e\x0f\x02§, §\x1e\x19\b§, §\x19\x19§, §\x1c\b§)
+	function spriteLaunchVisualEffect(sID, §\x1e\x1b\x04§, §\b\x18§, §\x07\x0b§, §\n\x10§, §\x1e\x0e\x1d§, §\x1e\x19\x06§, §\x19\x18§, §\x1c\b§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.launchVisualEffect(sID,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,_loc9_,_loc10_);
+		this.spriteHandler.launchVisualEffect(sID,var3,var4,var5,var6,var7,var8,var9,var10);
 	}
-	function spriteLaunchCarriedSprite(sID, §\x1e\x1b\x06§, §\b\x1a§, §\x07\r§)
+	function spriteLaunchCarriedSprite(sID, §\x1e\x1b\x04§, §\b\x18§, §\x07\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.launchCarriedSprite(sID,_loc3_,_loc4_,_loc5_);
+		this.spriteHandler.launchCarriedSprite(sID,var3,var4,var5);
 	}
-	function selectSprite(sID, §\x16\x0e§)
+	function selectSprite(sID, §\x16\r§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		this.spriteHandler.selectSprite(sID,_loc3_);
+		this.spriteHandler.selectSprite(sID,var3);
 	}
-	function addSpriteBubble(sID, §\x1e\x0e\x19§, §\x1e\x1d\b§)
+	function addSpriteBubble(sID, §\x1e\x0e\x17§, §\x1e\x1d\x06§)
 	{
-		var _loc5_ = this._oDatacenter.Sprites.getItemAt(sID);
-		if(_loc5_ == undefined)
+		var var5 = this._oDatacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			ank.utils.SharedObjectFix.err("[addSpriteBubble] Sprite inexistant (sprite Id : " + sID + ")");
+			ank.utils.Logger.err("[addSpriteBubble] Sprite inexistant (sprite Id : " + sID + ")");
 			return undefined;
 		}
-		if(_loc5_.isInMove)
-		{
-			return undefined;
-		}
-		if(!_loc5_.isVisible)
+		if(var5.isInMove)
 		{
 			return undefined;
 		}
-		var _loc6_ = _loc5_.mc;
-		var _loc7_ = _loc6_._x;
-		var _loc8_ = _loc6_._y;
-		if(_loc4_ == undefined)
+		if(!var5.isVisible)
 		{
-			_loc4_ = ank.battlefield.TextHandler.BUBBLE_TYPE_CHAT;
-		}
-		if(_loc7_ == 0 || _loc8_ == 0)
-		{
-			ank.utils.SharedObjectFix.err("[addSpriteBubble] le sprite n\'est pas encore placé");
 			return undefined;
 		}
-		this.textHandler.addBubble(sID,_loc7_,_loc8_,_loc3_,_loc4_);
+		var var6 = var5.mc;
+		var var7 = var6._x;
+		var var8 = var6._y;
+		if(var4 == undefined)
+		{
+			var4 = ank.battlefield.TextHandler.BUBBLE_TYPE_CHAT;
+		}
+		if(var7 == 0 || var8 == 0)
+		{
+			ank.utils.Logger.err("[addSpriteBubble] le sprite n\'est pas encore placé");
+			return undefined;
+		}
+		this.textHandler.addBubble(sID,var7,var8,var3,var4);
 	}
 	function removeSpriteBubble(sID)
 	{
-		var _loc3_ = this._oDatacenter.Sprites.getItemAt(sID);
-		if(_loc3_ == undefined)
+		var var3 = this._oDatacenter.Sprites.getItemAt(sID);
+		if(var3 == undefined)
 		{
 			return undefined;
 		}
 		this.textHandler.removeBubble(sID);
 	}
-	function addSpritePoints(sID, §\x1e\x0e\x04§, §\b\t§)
+	function addSpritePoints(sID, §\x1e\x0e\x02§, §\b\x07§)
 	{
-		var _loc5_ = this._oDatacenter.Sprites.getItemAt(sID);
-		if(_loc5_ == undefined)
+		var var5 = this._oDatacenter.Sprites.getItemAt(sID);
+		if(var5 == undefined)
 		{
-			ank.utils.SharedObjectFix.err("[addSpritePoints] Sprite inexistant");
+			ank.utils.Logger.err("[addSpritePoints] Sprite inexistant");
 			return undefined;
 		}
-		if(!_loc5_.isVisible)
+		if(!var5.isVisible)
 		{
 			return undefined;
 		}
-		var _loc6_ = _loc5_.mc;
-		var _loc7_ = _loc6_._x;
-		var _loc8_ = _loc6_._y - ank.battlefield.Constants.DEFAULT_SPRITE_HEIGHT;
-		if(_loc7_ == 0 || _loc8_ == 0)
+		var var6 = var5.mc;
+		var var7 = var6._x;
+		var var8 = var6._y - ank.battlefield.Constants.DEFAULT_SPRITE_HEIGHT;
+		if(var7 == 0 || var8 == 0)
 		{
-			ank.utils.SharedObjectFix.err("[addSpritePoints] le sprite n\'est pas encore placé");
+			ank.utils.Logger.err("[addSpritePoints] le sprite n\'est pas encore placé");
 			return undefined;
 		}
-		this.pointsHandler.addPoints(sID,_loc7_,_loc8_,_loc3_,_loc4_);
+		this.pointsHandler.addPoints(sID,var7,var8,var3,var4);
 	}
-	function addSpriteOverHeadItem(sID, §\x1e\x12\x0f§, className, §\x17§, §\x07\x16§, §\x1a\x14§)
+	function addSpriteOverHeadItem(sID, §\x1e\x12\r§, className, §\x17§, §\x07\x14§, §\x1a\x13§)
 	{
-		var _loc8_ = this._oDatacenter.Sprites.getItemAt(sID);
-		if(_loc8_ == undefined)
+		var var8 = this._oDatacenter.Sprites.getItemAt(sID);
+		if(var8 == undefined)
 		{
-			ank.utils.SharedObjectFix.err("[addSpriteOverHeadItem] Sprite inexistant");
+			ank.utils.Logger.err("[addSpriteOverHeadItem] Sprite inexistant");
 			return undefined;
 		}
-		if(_loc8_.isInMove && !_loc7_)
-		{
-			return undefined;
-		}
-		if(!_loc8_.isVisible)
+		if(var8.isInMove && !var7)
 		{
 			return undefined;
 		}
-		var _loc9_ = _loc8_.mc;
-		this.overHeadHandler.addOverHeadItem(sID,_loc9_._x,_loc9_._y,_loc9_,_loc3_,className,_loc5_,_loc6_);
+		if(!var8.isVisible)
+		{
+			return undefined;
+		}
+		var var9 = var8.mc;
+		this.overHeadHandler.addOverHeadItem(sID,var9._x,var9._y,var9,var3,className,var5,var6);
 	}
-	function removeSpriteOverHeadLayer(sID, §\x1e\x12\x0f§)
+	function removeSpriteOverHeadLayer(sID, §\x1e\x12\r§)
 	{
-		this.overHeadHandler.removeOverHeadLayer(sID,_loc3_);
+		this.overHeadHandler.removeOverHeadLayer(sID,var3);
 	}
 	function hideSpriteOverHead(sID)
 	{
 		this.overHeadHandler.removeOverHead(sID);
 	}
-	function addSpriteExtraClipOnTimer(sID, §\x1e\x14\x04§, §\b\t§, §\x15\x07§, §\x07\x07§)
+	function addSpriteExtraClipOnTimer(sID, §\x1e\x14\x02§, §\b\x07§, §\x15\x06§, §\x07\x05§)
 	{
-		this.addSpriteExtraClip(sID,_loc3_,_loc4_,_loc5_);
-		var _loc7_ = new Object();
-		_loc7_.timerId = _global.setInterval(this,"removeSpriteExtraClipOnTimer",_loc6_,_loc7_,sID,_loc5_);
+		this.addSpriteExtraClip(sID,var3,var4,var5);
+		var var7 = new Object();
+		var7.timerId = _global.setInterval(this,"removeSpriteExtraClipOnTimer",var6,var7,sID,var5);
 	}
-	function removeSpriteExtraClipOnTimer(_loc2_, _loc3_, _loc4_)
+	function removeSpriteExtraClipOnTimer(var2, var3, var4)
 	{
-		_global.clearInterval(_loc2_.timerId);
-		this.removeSpriteExtraClip(sID,_loc4_);
+		_global.clearInterval(var2.timerId);
+		this.removeSpriteExtraClip(sID,var4);
 	}
-	function addSpriteExtraClip(sID, §\x1e\x14\x04§, §\b\t§, §\x15\x07§)
+	function addSpriteExtraClip(sID, §\x1e\x14\x02§, §\b\x07§, §\x15\x06§)
 	{
-		this.spriteHandler.addSpriteExtraClip(sID,_loc3_,_loc4_,_loc5_);
+		this.spriteHandler.addSpriteExtraClip(sID,var3,var4,var5);
 	}
-	function removeSpriteExtraClip(sID, §\x15\x07§)
+	function removeSpriteExtraClip(sID, §\x15\x06§)
 	{
-		this.spriteHandler.removeSpriteExtraClip(sID,_loc3_);
+		this.spriteHandler.removeSpriteExtraClip(sID,var3);
 	}
-	function showSpritePoints(sID, §\x1e\x1c\x1c§, §\b\t§)
+	function showSpritePoints(sID, §\x1e\x1c\x1a§, §\b\x07§)
 	{
-		this.spriteHandler.showSpritePoints(sID,_loc3_,_loc4_);
+		this.spriteHandler.showSpritePoints(sID,var3,var4);
 	}
-	function setSpriteGhostView(_loc2_)
+	function setSpriteGhostView(var2)
 	{
-		this.bGhostView = _loc2_;
-		this.spriteHandler.setSpriteGhostView(_loc2_);
+		this.bGhostView = var2;
+		this.spriteHandler.setSpriteGhostView(var2);
 	}
-	function setSpriteScale(sID, §\x01\r§, §\x01\f§)
+	function setSpriteScale(sID, §\x01\x0b§, §\x01\n§)
 	{
-		this.spriteHandler.setSpriteScale(sID,_loc3_,_loc4_);
+		this.spriteHandler.setSpriteScale(sID,var3,var4);
 	}
-	function drawGrid(_loc2_)
+	function drawGrid(var2)
 	{
 		if(!this.isMapBuild)
 		{
@@ -747,10 +747,10 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		else
 		{
-			this.gridHandler.draw(_loc2_);
+			this.gridHandler.draw(var2);
 		}
 	}
-	function removeGrid(_loc2_)
+	function removeGrid(var2)
 	{
 		if(!this.isMapBuild)
 		{
@@ -758,17 +758,17 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.gridHandler.clear();
 	}
-	function addVisualEffectOnSprite(sID, §\x1e\x1b\x06§, §\b\x1a§, §\x07\r§, §\x1e\x0f\x02§)
+	function addVisualEffectOnSprite(sID, §\x1e\x1b\x04§, §\b\x18§, §\x07\x0b§, §\x1e\x0e\x1d§)
 	{
 		if(!this.isMapBuild)
 		{
 			return undefined;
 		}
-		var _loc7_ = this._oDatacenter.Sprites.getItemAt(sID);
-		var _loc8_ = this._oDatacenter.Sprites.getItemAt(_loc6_);
-		this.visualEffectHandler.addEffect(_loc7_,_loc3_,_loc4_,_loc5_,_loc8_);
+		var var7 = this._oDatacenter.Sprites.getItemAt(sID);
+		var var8 = this._oDatacenter.Sprites.getItemAt(var6);
+		this.visualEffectHandler.addEffect(var7,var3,var4,var5,var8);
 	}
-	function initializeDatacenter(_loc2_)
+	function initializeDatacenter(var2)
 	{
 		if(this._oDatacenter == undefined)
 		{
@@ -776,46 +776,45 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this._oDatacenter.Map.cleanSpritesOn();
 		this._oDatacenter.Map = new ank.battlefield.datacenter.Map();
-		this._oDatacenter.Sprites = new ank.utils.();
+		this._oDatacenter.Sprites = new ank.utils.();
 		return true;
 	}
-	function createHandlers(_loc2_)
+	function createHandlers(var2)
 	{
-		this.mapHandler = new ank.battlefield.(this,this._mcMainContainer,this._oDatacenter);
-		this.spriteHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Object2,this._oDatacenter.Sprites);
-		this.interactionHandler = new ank.battlefield.
-(this._mcMainContainer.ExternalContainer.InteractionCell,this._oDatacenter);
-		this.zoneHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Zone);
-		this.pointerHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Pointer);
-		this.selectionHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer,this._oDatacenter);
-		this.gridHandler = new ank.battlefield.(this._mcMainContainer.ExternalContainer.Grid,this._oDatacenter);
-		this.visualEffectHandler = new ank.battlefield.	(this,this._mcMainContainer.ExternalContainer.Object2);
-		this.textHandler = new ank.battlefield.
-(this,this._mcMainContainer.Text,this._oDatacenter);
-		this.pointsHandler = new ank.battlefield.(this,this._mcMainContainer.Points,this._oDatacenter);
-		this.overHeadHandler = new ank.battlefield.(this,this._mcMainContainer.OverHead);
+		this.mapHandler = new ank.battlefield.(this,this._mcMainContainer,this._oDatacenter);
+		this.spriteHandler = new ank.battlefield.
+(this,this._mcMainContainer.ExternalContainer.Object2,this._oDatacenter.Sprites);
+		this.interactionHandler = new ank.battlefield.(this._mcMainContainer.ExternalContainer.InteractionCell,this._oDatacenter);
+		this.zoneHandler = new ank.battlefield.	(this,this._mcMainContainer.ExternalContainer.Zone);
+		this.pointerHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Pointer);
+		this.selectionHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer,this._oDatacenter);
+		this.gridHandler = new ank.battlefield.(this._mcMainContainer.ExternalContainer.Grid,this._oDatacenter);
+		this.visualEffectHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Object2);
+		this.textHandler = new ank.battlefield.(this,this._mcMainContainer.Text,this._oDatacenter);
+		this.pointsHandler = new ank.battlefield.(this,this._mcMainContainer.Points,this._oDatacenter);
+		this.overHeadHandler = new ank.battlefield.(this,this._mcMainContainer.OverHead);
 	}
-	function onLoadInit(_loc2_)
+	function onLoadInit(var2)
 	{
-		if((var _loc0_ = _loc2_._name) !== "Ground")
+		if((var var0 = var2._name) !== "Ground")
 		{
-			_loc2_.__proto__ = ank.battlefield.mc.ExternalContainer.prototype;
-			_loc2_.initialize(this._sGroundFile);
+			var2.__proto__ = ank.battlefield.mc.ExternalContainer.prototype;
+			var2.initialize(this._sGroundFile);
 			this.createHandlers();
 		}
 		else
 		{
-			_loc2_._parent.useCustomGroundGfxFile(this._bUseCustomGroundGfxFile);
+			var2._parent.useCustomGroundGfxFile(this._bUseCustomGroundGfxFile);
 			this.bCustomFileLoaded = true;
 			this.onInitComplete();
 		}
 	}
-	function onLoadError(_loc2_)
+	function onLoadError(var2)
 	{
 		this.onInitError();
 	}
-	function onLoadProgress(_loc2_, _loc3_, _loc4_)
+	function onLoadProgress(var2, var3, var4)
 	{
-		this.onInitProgress(_loc3_,_loc4_);
+		this.onInitProgress(var3,var4);
 	}
 }

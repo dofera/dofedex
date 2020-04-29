@@ -58,22 +58,22 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 		this._lblPercentXP.text = this.api.lang.getText("MOUNT_PERCENT_XP");
 		this._lblInventory.text = this.api.lang.getText("MOUNT_INVENTORY_2");
 	}
-	function editName(loc2)
+	function editName(var2)
 	{
-		this._tiName._visible = loc2;
-		this._btnNameValid._visible = loc2;
-		this._mcTextInputBackground._visible = loc2;
-		this._lblNameValue._visible = !loc2;
-		this._btnName._visible = !loc2;
+		this._tiName._visible = var2;
+		this._btnNameValid._visible = var2;
+		this._mcTextInputBackground._visible = var2;
+		this._lblNameValue._visible = !var2;
+		this._btnName._visible = !var2;
 	}
-	function mountXPPercentChanged(loc2)
+	function mountXPPercentChanged(var2)
 	{
 		this._lblPercentXPValue.text = this.api.datacenter.Player.mountXPPercent + "%";
 	}
-	function click(loc2)
+	function click(var2)
 	{
 		loop0:
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnNameValid:
 				if(this._tiName.text != "")
@@ -84,13 +84,13 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 			case this._btnName:
 				this.editName(true);
 				break;
-			case this._btnXP:
-				var loc3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:this.api.datacenter.Player.mountXPPercent,max:90});
-				loc3.addEventListener("validate",this);
-				break;
 			default:
 				switch(null)
 				{
+					case this._btnXP:
+						var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:this.api.datacenter.Player.mountXPPercent,max:90});
+						var3.addEventListener("validate",this);
+						break loop0;
 					case this._btnClose:
 						this.callClose();
 						break loop0;
@@ -101,16 +101,16 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 						this.api.network.Exchange.request(15);
 						break loop0;
 					default:
-						if(loc0 !== this._btnAction)
+						if(var0 !== this._btnAction)
 						{
 							break loop0;
 						}
-						var loc4 = this.api.ui.createPopupMenu();
-						var loc5 = this.api.datacenter.Player.mount;
-						loc4.addStaticItem(loc5.name);
-						loc4.addItem(this.api.lang.getText("MOUNT_CASTRATE_TOOLTIP"),this,this.castrateMount);
-						loc4.addItem(this.api.lang.getText("MOUNT_KILL_TOOLTIP"),this,this.killMount);
-						loc4.show(_root._xmouse,_root._ymouse);
+						var var4 = this.api.ui.createPopupMenu();
+						var var5 = this.api.datacenter.Player.mount;
+						var4.addStaticItem(var5.name);
+						var4.addItem(this.api.lang.getText("MOUNT_CASTRATE_TOOLTIP"),this,this.castrateMount);
+						var4.addItem(this.api.lang.getText("MOUNT_KILL_TOOLTIP"),this,this.killMount);
+						var4.show(_root._xmouse,_root._ymouse);
 						break loop0;
 				}
 		}
@@ -123,20 +123,20 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_KILL_YOUR_MOUNT"),"CAUTION_YESNO",{name:"KillMount",listener:this});
 	}
-	function nameChanged(loc2)
+	function nameChanged(var2)
 	{
-		var loc3 = this.api.datacenter.Player.mount;
-		this._lblNameValue.text = loc3.name;
-		this._tiName.text = loc3.name;
+		var var3 = this.api.datacenter.Player.mount;
+		this._lblNameValue.text = var3.name;
+		this._tiName.text = var3.name;
 		this.editName(false);
 	}
-	function mountChanged(loc2)
+	function mountChanged(var2)
 	{
-		var loc3 = this.api.datacenter.Player.mount;
-		if(loc3 != undefined)
+		var var3 = this.api.datacenter.Player.mount;
+		if(var3 != undefined)
 		{
-			loc3.addEventListener("nameChanged",this);
-			this._mvMountViewer.mount = loc3;
+			var3.addEventListener("nameChanged",this);
+			this._mvMountViewer.mount = var3;
 			this.mountXPPercentChanged();
 			this.nameChanged();
 		}
@@ -145,54 +145,54 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 			this.callClose();
 		}
 	}
-	function validate(loc2)
+	function validate(var2)
 	{
-		var loc3 = loc2.value;
-		if(_global.isNaN(loc3))
+		var var3 = var2.value;
+		if(_global.isNaN(var3))
 		{
 			return undefined;
 		}
-		if(loc3 > 90)
+		if(var3 > 90)
 		{
 			return undefined;
 		}
-		if(loc3 < 0)
+		if(var3 < 0)
 		{
 			return undefined;
 		}
-		this.api.network.Mount.setXP(loc3);
+		this.api.network.Mount.setXP(var3);
 	}
-	function over(loc2)
+	function over(var2)
 	{
-		switch(loc2.target)
+		switch(var2.target)
 		{
 			case this._btnName:
-				this.gapi.showTooltip(this.api.lang.getText("MOUNT_RENAME_TOOLTIP"),loc2.target,-30,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(this.api.lang.getText("MOUNT_RENAME_TOOLTIP"),var2.target,-30,{bXLimit:true,bYLimit:false});
 				break;
 			case this._btnInventory:
-				this.gapi.showTooltip(this.api.lang.getText("MOUNT_INVENTORY_ACCES"),loc2.target,-30,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(this.api.lang.getText("MOUNT_INVENTORY_ACCES"),var2.target,-30,{bXLimit:true,bYLimit:false});
 				break;
 			case this._btnRide:
-				this.gapi.showTooltip(this.api.lang.getText("MOUNT_RIDE_TOOLTIP"),loc2.target,-30,{bXLimit:true,bYLimit:false});
+				this.gapi.showTooltip(this.api.lang.getText("MOUNT_RIDE_TOOLTIP"),var2.target,-30,{bXLimit:true,bYLimit:false});
 				break;
 			default:
 				switch(null)
 				{
 					case this._btnAction:
-						this.gapi.showTooltip(this.api.lang.getText("MOUNT_ACTION_TOOLTIP"),loc2.target,-30,{bXLimit:true,bYLimit:false});
+						this.gapi.showTooltip(this.api.lang.getText("MOUNT_ACTION_TOOLTIP"),var2.target,-30,{bXLimit:true,bYLimit:false});
 						break;
 					case this._btnXP:
-						this.gapi.showTooltip(this.api.lang.getText("MOUNT_XP_PERCENT_TOOLTIP"),loc2.target,-30,{bXLimit:true,bYLimit:false});
+						this.gapi.showTooltip(this.api.lang.getText("MOUNT_XP_PERCENT_TOOLTIP"),var2.target,-30,{bXLimit:true,bYLimit:false});
 				}
 		}
 	}
-	function out(loc2)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(loc2)
+	function yes(var2)
 	{
-		switch(loc2.target._name)
+		switch(var2.target._name)
 		{
 			case "AskYesNoKillMount":
 				this.api.network.Mount.kill();

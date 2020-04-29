@@ -1,55 +1,55 @@
 class dofus.aks.Dialog extends dofus.aks.Handler
 {
-	function Dialog(loc3, loc4)
+	function Dialog(var3, var4)
 	{
-		super.initialize(loc3,loc4);
+		super.initialize(var3,var4);
 	}
-	function begining(loc2)
+	function begining(var2)
 	{
-		this.aks.send("DB" + loc2,true);
+		this.aks.send("DB" + var2,true);
 	}
-	function create(loc2)
+	function create(var2)
 	{
-		this.aks.send("DC" + loc2,true);
+		this.aks.send("DC" + var2,true);
 	}
 	function leave()
 	{
 		this.aks.send("DV",true);
 	}
-	function response(loc2, loc3)
+	function response(var2, var3)
 	{
-		this.aks.send("DR" + loc2 + "|" + loc3,true);
+		this.aks.send("DR" + var2 + "|" + var3,true);
 	}
-	function onCustomAction(loc2)
+	function onCustomAction(var2)
 	{
-		if((var loc0 = loc2) === "1")
+		if((var var0 = var2) === "1")
 		{
 			getURL("javascript:DownloadOs()","_self");
 		}
 	}
-	function onCreate(loc2, loc3)
+	function onCreate(var2, var3)
 	{
-		if(!loc2)
+		if(!var2)
 		{
 			return undefined;
 		}
-		var loc4 = Number(loc3);
-		var loc5 = this.api.datacenter.Sprites.getItemAt(loc4);
-		var loc6 = new Array();
-		loc6[1] = loc5.color1 != undefined?loc5.color1:-1;
-		loc6[2] = loc5.color2 != undefined?loc5.color2:-1;
-		loc6[3] = loc5.color3 != undefined?loc5.color3:-1;
-		this.api.ui.loadUIComponent("NpcDialog","NpcDialog",{name:loc5.name,gfx:loc5.gfxID,id:loc4,customArtwork:loc5.customArtwork,colors:loc6});
+		var var4 = Number(var3);
+		var var5 = this.api.datacenter.Sprites.getItemAt(var4);
+		var var6 = new Array();
+		var6[1] = var5.color1 != undefined?var5.color1:-1;
+		var6[2] = var5.color2 != undefined?var5.color2:-1;
+		var6[3] = var5.color3 != undefined?var5.color3:-1;
+		this.api.ui.loadUIComponent("NpcDialog","NpcDialog",{name:var5.name,gfx:var5.gfxID,id:var4,customArtwork:var5.customArtwork,colors:var6});
 	}
-	function onQuestion(loc2)
+	function onQuestion(var2)
 	{
-		var loc3 = loc2.split("|");
-		var loc4 = loc3[0].split(";");
-		var loc5 = Number(loc4[0]);
-		var loc6 = loc4[1].split(",");
-		var loc7 = loc3[1].split(";");
-		var loc8 = new dofus.datacenter.(loc5,loc7,loc6);
-		this.api.ui.getUIComponent("NpcDialog").setQuestion(loc8);
+		var var3 = var2.split("|");
+		var var4 = var3[0].split(";");
+		var var5 = Number(var4[0]);
+		var var6 = var4[1].split(",");
+		var var7 = var3[1].split(";");
+		var var8 = new dofus.datacenter.(var5,var7,var6);
+		this.api.ui.getUIComponent("NpcDialog").setQuestion(var8);
 	}
 	function onPause()
 	{

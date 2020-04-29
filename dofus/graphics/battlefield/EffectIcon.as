@@ -9,34 +9,34 @@ class dofus.graphics.battlefield.EffectIcon extends MovieClip
 		_global.subtrace("yahoo");
 		this.initialize(this._sOperator,this._nQte);
 	}
-	function __set__operator(loc2)
+	function __set__operator(var2)
 	{
-		this._sOperator = loc2;
+		this._sOperator = var2;
 		return this.__get__operator();
 	}
-	function __set__qte(loc2)
+	function __set__qte(var2)
 	{
-		this._nQte = loc2;
+		this._nQte = var2;
 		return this.__get__qte();
 	}
-	function initialize(loc2, loc3)
+	function initialize(var2, var3)
 	{
-		switch(loc2)
+		switch(var2)
 		{
 			case "-":
 				this.attachMovie("Icon-","_mcOp",10,{_x:1,_y:1});
-				var loc4 = new Color(this._mcbackground);
-				loc4.setRGB(dofus.graphics.battlefield.EffectIcon.COLOR_MINUS);
+				var var4 = new Color(this._mcbackground);
+				var4.setRGB(dofus.graphics.battlefield.EffectIcon.COLOR_MINUS);
 				break;
 			case "+":
 				this.attachMovie("Icon+","_mcOp",10,{_x:1,_y:1});
-				var loc5 = new Color(this._mcbackground);
-				loc5.setRGB(dofus.graphics.battlefield.EffectIcon.COLOR_PLUS);
+				var var5 = new Color(this._mcbackground);
+				var5.setRGB(dofus.graphics.battlefield.EffectIcon.COLOR_PLUS);
 				break;
 			case "*":
 				this.attachMovie("Icon*","_mcOp",10,{_x:1,_y:1});
-				var loc6 = new Color(this._mcbackground);
-				loc6.setRGB(dofus.graphics.battlefield.EffectIcon.COLOR_FACTOR);
+				var var6 = new Color(this._mcbackground);
+				var6.setRGB(dofus.graphics.battlefield.EffectIcon.COLOR_FACTOR);
 		}
 	}
 }

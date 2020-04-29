@@ -1,14 +1,14 @@
 class dofus.managers.EffectsManager extends dofus.utils.ApiElement
 {
-	function EffectsManager(oSprite, §\x1e\x1b\x1d§)
+	function EffectsManager(oSprite, §\x1e\x1b\x1b§)
 	{
 		super();
-		var loc5 = new flash.display.BitmapData();
-		this.initialize(oSprite,loc4);
+		var var5 = new flash.display.BitmapData();
+		this.initialize(oSprite,var4);
 	}
-	function initialize(oSprite, §\x1e\x1b\x1d§)
+	function initialize(oSprite, §\x1e\x1b\x1b§)
 	{
-		super.initialize(loc4);
+		super.initialize(var4);
 		this._oSprite = oSprite;
 		this._aEffects = new Array();
 	}
@@ -16,40 +16,40 @@ class dofus.managers.EffectsManager extends dofus.utils.ApiElement
 	{
 		return this._aEffects;
 	}
-	function addEffect(loc2)
+	function addEffect(var2)
 	{
-		var loc3 = 0;
-		while(loc3 < this._aEffects.length)
+		var var3 = 0;
+		while(var3 < this._aEffects.length)
 		{
-			var loc4 = this._aEffects[loc3];
-			if(loc4.spellID == loc2.spellID && (loc4.type == loc2.type && loc4.remainingTurn == loc2.remainingTurn))
+			var var4 = this._aEffects[var3];
+			if(var4.spellID == var2.spellID && (var4.type == var2.type && var4.remainingTurn == var2.remainingTurn))
 			{
-				loc4.param1 = loc4.param1 + loc2.param1;
+				var4.param1 = var4.param1 + var2.param1;
 				return undefined;
 			}
-			loc3 = loc3 + 1;
+			var3 = var3 + 1;
 		}
-		this._aEffects.push(loc2);
+		this._aEffects.push(var2);
 	}
 	function terminateAllEffects()
 	{
-		var loc2 = this._aEffects.length;
-		while((loc2 = loc2 - 1) >= 0)
+		var var2 = this._aEffects.length;
+		while((var2 = var2 - 1) >= 0)
 		{
-			var loc3 = this._aEffects[loc2];
-			this._aEffects.splice(loc2,loc2 + 1);
+			var var3 = this._aEffects[var2];
+			this._aEffects.splice(var2,var2 + 1);
 		}
 	}
 	function nextTurn()
 	{
-		var loc2 = this._aEffects.length;
-		while((loc2 = loc2 - 1) >= 0)
+		var var2 = this._aEffects.length;
+		while((var2 = var2 - 1) >= 0)
 		{
-			var loc3 = this._aEffects[loc2];
-			loc3.remainingTurn--;
-			if(loc3.remainingTurn <= 0)
+			var var3 = this._aEffects[var2];
+			var3.remainingTurn--;
+			if(var3.remainingTurn <= 0)
 			{
-				this._aEffects.splice(loc2,1);
+				this._aEffects.splice(var2,1);
 			}
 		}
 	}
