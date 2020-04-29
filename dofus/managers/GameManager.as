@@ -7,7 +7,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	var _bIsAllowingScale = true;
 	var _nLastSpellLaunch = 0;
 	static var FIGHT_TYPE_CHALLENGE = 0;
-	static var FIGHT_TYPE_AGRESSION = 1;
+	static var FIGHT_TYPE_AGGRESSION = 1;
 	static var FIGHT_TYPE_PvMA = 2;
 	static var FIGHT_TYPE_MXvM = 3;
 	static var FIGHT_TYPE_PvM = 4;
