@@ -12,6 +12,7 @@
 
 Releases
 -----
+- [1.32.0 (Remastered)](https://github.com/Dofera/dofedex/releases/tag/1.32.0-remastered)
 - [1.31.3 (Remastered)](https://github.com/Dofera/dofedex/releases/tag/1.31.3-remastered)
 - [1.31.2 (Remastered)](https://github.com/Dofera/dofedex/releases/tag/1.31.2-remastered)
 - [1.31.0](https://github.com/Dofera/dofedex/releases/tag/1.31.0)
