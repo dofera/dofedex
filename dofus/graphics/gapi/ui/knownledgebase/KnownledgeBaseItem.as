@@ -1,6 +1,6 @@
-class dofus.graphics.gapi.ui.Login["\f\x1d"] extends ank.gapi.core.UIBasicComponent
+class dofus.graphics.gapi.ui.Login.KnownledgeBaseItem extends ank.gapi.core.UIBasicComponent
 {
-	function §\f\x1d§()
+	function KnownledgeBaseItem()
 	{
 		super();
 	}

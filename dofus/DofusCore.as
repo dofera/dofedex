@@ -405,7 +405,7 @@ class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 		Object.registerClass("UI_ForgemagusCraft",dofus.graphics.gapi.ui.ForgemagusCraft);
 		Object.registerClass("UI_KnownledgeBase",dofus.graphics.gapi.ui.KnownledgeBase);
 		Object.registerClass("UI_KnownledgeBaseCategory",dofus.graphics.gapi.ui.Login.KnownledgeBaseCategoryItem);
-		Object.registerClass("UI_KnownledgeBaseItem",dofus.graphics.gapi.ui.Login["\f\x1d"]);
+		Object.registerClass("UI_KnownledgeBaseItem",dofus.graphics.gapi.ui.Login.KnownledgeBaseItem);
 		Object.registerClass("Helper",dofus.graphics.gapi.controls.Helper);
 		Object.registerClass("Helper_DoubleFramerate",dofus.graphics.gapi.controls.Helper);
 		Object.registerClass("UI_FloatingTips",dofus.graphics.gapi.ui.FloatingTips);
