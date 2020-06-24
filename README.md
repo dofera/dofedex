@@ -22,7 +22,7 @@ Releases
 - [1.30.17](https://github.com/dofera/dofedex/releases/tag/1.30.17)
 - [1.30.17 (Alpha)](https://github.com/dofera/dofedex/releases/tag/1.30.17-alpha)
 - [1.30.14](https://github.com/dofera/dofedex/releases/tag/1.30.14)
-- 1.30.10
+- [1.30.10](https://github.com/dofera/dofedex/releases/tag/1.30.10)
 - [1.30.9](https://github.com/dofera/dofedex/releases/tag/1.30.9)
 - [1.30.0](https://github.com/dofera/dofedex/releases/tag/1.30.0)
 - [1.29.1](https://github.com/dofera/dofedex/releases/tag/1.29.1)
@@ -74,9 +74,13 @@ Releases
 - 1.3.0
 - [1.2.1](https://github.com/dofera/dofedex/releases/tag/1.2.1)
 - 1.1.0
-- 1.0.0
+- [1.0.0](https://github.com/dofera/dofedex/releases/tag/1.0.0)
 - [0.0.0.7](https://github.com/dofera/dofedex/releases/tag/0.0.0.7)
 - [0.0.0.5](https://github.com/dofera/dofedex/releases/tag/0.0.0.5)
+
+Contributors
+-----
+- [Ygg](https://github.com/Yggdrasilife) (1.0.0)
 
 Contributing
 -----
