@@ -83,7 +83,7 @@
 #### <a id="1-32-1"></a>1.32.1
 - [Changelog](https://www.dofus.com/fr/forum/1747-actualite/2331667-maj-dofus-retro-1-32-1)
 - Classic
-  - Download
+  - [Download](https://github.com/dofera/dofedex/releases/download/1.32.1/Dofus-1.32.1.zip)
 - Remastered
   - [Download](https://github.com/dofera/dofedex/releases/download/1.32.1-remastered/Dofus-1.32.1-remastered.zip)
 
