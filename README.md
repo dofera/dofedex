@@ -67,12 +67,12 @@
 | [1.13.1](https://www.dofus.com/fr/forum/1750-dofus/28490-nouveau-client-1-13-1) | Download |
 | [1.13.0](https://www.dofus.com/fr/forum/1750-dofus/28043-mise-jour-14-mars) | [Download](https://github.com/dofera/dofedex/releases/download/1.13.0/Dofus-1.13.0.zip) |
 | [1.12.0](https://www.dofus.com/fr/forum/1750-dofus/27073-liste-ajouts-extension-pandala) | Download |
-| 1.11.1 | Download |
-| 1.11.0 | Download |
-| 1.10.0 | Download |
-| 1.9.1 | [Download](https://github.com/dofera/dofedex/releases/download/1.9.1/Dofus-1.9.1.zip) |
+| [1.11.1](https://www.dofus.com/fr/forum/1750-dofus/23337-mise-jour-noel) | Download |
+| [1.11.0](https://www.dofus.com/fr/forum/1750-dofus/22310-mise-jour-22-11-05) | Download |
+| [1.10.0](https://www.dofus.com/fr/forum/1750-dofus/20475-informations-mise-jour-25-10-05) | Download |
+| [1.9.1](https://www.dofus.com/fr/forum/1750-dofus/17464-petites-modifications-venir) | [Download](https://github.com/dofera/dofedex/releases/download/1.9.1/Dofus-1.9.1.zip) |
 | [1.8.0](https://www.dofus.com/fr/forum/1750-dofus/17140-modifications-version-1-8) | Download |
-| 1.7.0 | Download |
+| [1.7.0](https://www.dofus.com/fr/forum/1750-dofus/15913-mise-jour-28-06-05) | Download |
 | [1.6.0](https://web.archive.org/web/20050420234353/http://www.dofus.com/?page=news&rubrique=v1.6.0&contenu=v1.6.0) | Download |
 | [1.5.2](https://web.archive.org/web/20050310081157/http://www.dofus.com/?page=news&rubrique=v1.5.2&contenu=v1.5.2) | Download |
 | [1.5.1](https://web.archive.org/web/20050325035159/http://www.dofus.com/index.php?page=news&rubrique=v1.5.1&contenu=v1.5.1) | Download |
