@@ -58,7 +58,7 @@
 | [1.16.4](https://www.dofus.com/fr/forum/1750-dofus/66548-patch-facultatif-1-16-4) | [Download](https://github.com/dofera/dofedex/releases/download/1.16.4/dofus-1.16.4.zip) |
 | [1.16.3](https://www.dofus.com/fr/forum/1750-dofus/63692-patch-facultatif-1-16-3-client-1-16-2) | Download |
 | [1.16.2](https://www.dofus.com/fr/forum/1750-dofus/62128-details-informations-propos-prochaine-mise-jour-1-16-2-dofus) | [Download](https://github.com/dofera/dofedex/releases/download/1.16.2/dofus-1.16.2.zip) |
-| [1.15.4](https://www.dofus.com/fr/forum/1750-dofus/57000-nouveau-client-facultatif-1-15-4) | [Download](https://github.com/dofera/dofedex/releases/download/1.15.4/dofus-1.15.4.zi) |
+| [1.15.4](https://www.dofus.com/fr/forum/1750-dofus/57000-nouveau-client-facultatif-1-15-4) | [Download](https://github.com/dofera/dofedex/releases/download/1.15.4/dofus-1.15.4.zip) |
 | [1.15.3](https://www.dofus.com/fr/forum/1750-dofus/55914-prochaine-mise-jour-client-1-15-3) | Download |
 | [1.14.2](https://www.dofus.com/fr/forum/1750-dofus/51513-nouveau-client-dofus-1-14-2) | Download |
 | [1.14.1](https://www.dofus.com/fr/forum/1750-dofus/44277-nouvelle-version-1-14-1-maintenances) | Download |
