@@ -6,7 +6,7 @@
 	/>
 </p>
 <h1 align="center">Dofedex</h1>
-<p align="center">A Dofus Retro encylopedia</p>
+<p align="center">A Dofus Retro encyclopedia</p>
 
 ![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Latest releases sources will now (almost) be fully deobfuscated and available in the "loader" directory.**
 
