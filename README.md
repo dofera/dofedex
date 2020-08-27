@@ -6,9 +6,10 @@
 	/>
 </p>
 <h1 align="center">Dofedex</h1>
-<p align="center">A collection of Dofus Retro clients</p>
+<p align="center">A Dofus Retro encylopedia</p>
 
-![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Latest releases sources will now (almost) be fully deobfuscated and available in this repository.**
+![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Latest releases sources will now (almost) be fully deobfuscated and available in the "loader" directory.**
+![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Langfiles are now available in the "langs" directory.**
 
 ## Releases
 
