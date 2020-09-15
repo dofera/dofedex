@@ -38,6 +38,9 @@
 | [1.30.10](https://www.dofus.com/fr/forum/1751-dofus-retro/2319638-maj-dofus-retro-1-30-10) | [Download](https://github.com/dofera/dofedex/releases/download/1.30.10/dofus-1.30.10.zip) |
 | [1.30.9](https://www.dofus.com/fr/forum/1751-dofus-retro/2319637-maj-dofus-retro-1-30-9) | [Download](https://github.com/dofera/dofedex/releases/download/1.30.9/dofus-1.30.9.zip) |
 | [1.30.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2319636-maj-dofus-retro-1-30) | [Download](https://github.com/dofera/dofedex/releases/download/1.30.0/dofus-1.30.0.zip) |
+
+| Version | Legacy |
+| - | - |
 | [1.29.1](https://www.dofus.com/fr/forum/1750-dofus/330165-modifications-apportees-version-1-29-1-15-12-09) | [Download](https://github.com/dofera/dofedex/releases/download/1.29.1/dofus-1.29.1.zip) |
 | [1.29.0](https://www.dofus.com/fr/forum/1750-dofus/304987-version-1-29) | [Download](https://github.com/dofera/dofedex/releases/download/1.29.0/dofus-1.29.0.zip) |
 | [1.28.0](https://www.dofus.com/fr/forum/1750-dofus/286170-version-1-28) | Download |
