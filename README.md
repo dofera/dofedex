@@ -16,7 +16,7 @@
 
 | Version | Classic | Remastered |
 | - | - | - |
-| [1.33.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2341225-maj-dofus-retro-1-33) | Download | Download |
+| [1.33.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2341225-maj-dofus-retro-1-33) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.0/dofus-1.33.0.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.0-remastered/dofus-1.33.0-remastered.zip) |
 | [1.32.1](https://www.dofus.com/fr/forum/1747-actualite/2331667-maj-dofus-retro-1-32-1) | [Download](https://github.com/dofera/dofedex/releases/download/1.32.1/dofus-1.32.1.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.32.1-remastered/dofus-1.32.1-remastered.zip) |
 | [1.32.0](https://www.dofus.com/fr/mmorpg/actualites/news/1155616-maj-1-32-demain-serveurs-retro) | Download | [Download](https://github.com/dofera/dofedex/releases/download/1.32.0-remastered/dofus-1.32.0-remastered.zip) |
 | [1.31.3](https://www.dofus.com/fr/forum/1747-actualite/2323644-maj-dofus-retro-1-31-3) | Download | [Download](https://github.com/dofera/dofedex/releases/download/1.31.3-remastered/dofus-1.31.3-remastered.zip) |
