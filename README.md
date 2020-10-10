@@ -51,7 +51,7 @@
 | [1.27.1](https://www.dofus.com/fr/forum/1750-dofus/260877-patch-1-27-1-retour-boucliers) | Download |
 | [1.27.0](https://www.dofus.com/fr/forum/1750-dofus/242641-version-1-27) | [Download](https://github.com/dofera/dofedex/releases/download/1.27.0/dofus-1.27.0.zip) |
 | [1.26.0](https://www.dofus.com/fr/forum/1750-dofus/202463-version-1-26) | Download |
-| [1.25.0](https://www.dofus.com/fr/forum/1750-dofus/176947-version-1-25) | Download |
+| [1.25.0](https://www.dofus.com/fr/forum/1750-dofus/176947-version-1-25) | [Download](https://github.com/dofera/dofedex/releases/download/1.25.0/dofus-1.25.0.zip) |
 | [1.24.0](https://www.dofus.com/fr/forum/1750-dofus/151193-version-1-24) | [Download](https://github.com/dofera/dofedex/releases/download/1.24.0/dofus-1.24.0.zip) |
 | [1.23.0](https://www.dofus.com/fr/forum/1750-dofus/139210-nouvelle-version-1-23) | [Download](https://github.com/dofera/dofedex/releases/download/1.23.0/dofus-1.23.0.zip) |
 | [1.22.0](https://www.dofus.com/fr/forum/1750-dofus/132932-version-1-22-bientot-disponible) | [Download](https://github.com/dofera/dofedex/releases/download/1.22.0/dofus-1.22.0.zip) |
@@ -104,6 +104,7 @@
 
 ## Contributors
 
+- [Jisagi](https://github.com/Jisagi) (1.25.0)
 - [Ygg](https://github.com/Yggdrasilife) (1.0.0)
 
 ## Contributing
