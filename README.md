@@ -19,6 +19,7 @@
 | 1.33.6 | [Download](https://github.com/dofera/dofedex/releases/download/1.33.6/dofus-1.33.6.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.6-remastered/dofus-1.33.6-remastered.zip) |
 | [1.33.5](https://www.dofus.com/fr/forum/1751-dofus-retro/2341225-maj-dofus-retro-1-33?page=1#entry12845973) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.5/dofus-1.33.5.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.5-remastered/dofus-1.33.5-remastered.zip) |
 | 1.33.4 | [Download](https://github.com/dofera/dofedex/releases/download/1.33.4/dofus-1.33.4.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.4-remastered/dofus-1.33.4-remastered.zip) |
+| 1.33.3 | [Download](https://github.com/dofera/dofedex/releases/download/1.33.3/dofus-1.33.3.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.3-remastered/dofus-1.33.3-remastered.zip) |
 | 1.33.2 | [Download](https://github.com/dofera/dofedex/releases/download/1.33.2/dofus-1.33.2.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.2-remastered/dofus-1.33.2-remastered.zip) |
 | [1.33.1](https://www.dofus.com/fr/forum/1751-dofus-retro/2341225-maj-dofus-retro-1-33?page=1#entry12836429) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.1/dofus-1.33.1.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.1-remastered/dofus-1.33.1-remastered.zip) |
 | [1.33.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2341225-maj-dofus-retro-1-33) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.0/dofus-1.33.0.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.33.0-remastered/dofus-1.33.0-remastered.zip) |
@@ -106,7 +107,7 @@
 ## Contributors
 
 - [Jisagi](https://github.com/Jisagi) (1.25.0)
-- [Ygg](https://github.com/Yggdrasilife) (1.0.0)
+- [Ygg](https://github.com/Yggdrasilife) (1.0.0 - 1.33.3)
 
 ## Contributing
 
