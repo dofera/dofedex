@@ -123,7 +123,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 		{
 			return undefined;
 		}
-		ank.utils.ExtendedArray.removeTimer(this,"compass");
+		ank.utils.Timer.removeTimer(this,"compass");
 		var var2 = this._aTargetCoords[0] - this._aCurrentCoords[0];
 		var var3 = this._aTargetCoords[1] - this._aCurrentCoords[1];
 		if(var2 == 0 && var3 == 0)
@@ -148,7 +148,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 		var3 = (- this._mcArrow._ldrArrow.content._rotation) * 0.2 + var3 * 0.7;
 		if(Math.abs(var3) > 0.01)
 		{
-			ank.utils.ExtendedArray.setTimer(this,"compass",this,this.smoothRotation,50,[var2,var3]);
+			ank.utils.Timer.setTimer(this,"compass",this,this.smoothRotation,50,[var2,var3]);
 		}
 		else
 		{

@@ -1,6 +1,6 @@
 class dofus.aks.Friends extends dofus.aks.Handler
 {
-	function Friends(var3, var4)
+	function Friends(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

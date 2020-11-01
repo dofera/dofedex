@@ -55,7 +55,7 @@ class dofus.utils.consoleParsers.AbstractConsoleParser
 	}
 	function autoCompletion(var2, var3)
 	{
-		return ank.utils.Md5.autoCompletion(var2,var3);
+		return ank.utils.ConsoleUtils.autoCompletion(var2,var3);
 	}
 	function initializePointers()
 	{

@@ -35,7 +35,7 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 	}
 	function callClose()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"simulation");
+		ank.utils.Timer.removeTimer(this,"simulation");
 		this.api.network.Exchange.leave();
 		return true;
 	}

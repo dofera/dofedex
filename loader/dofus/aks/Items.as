@@ -2,7 +2,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 {
 	static var EFFECT_APPEND_CHAR = ":";
 	static var COMPRESSION_RADIX = 16;
-	function Items(var3, var4)
+	function Items(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

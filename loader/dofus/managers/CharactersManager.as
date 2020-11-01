@@ -1,7 +1,7 @@
 class dofus.managers.CharactersManager extends dofus.utils.ApiElement
 {
 	static var _sSelf = null;
-	function CharactersManager(var3)
+	function CharactersManager(var2)
 	{
 		dofus.managers.CharactersManager._sSelf = this;
 		super.initialize(var3);

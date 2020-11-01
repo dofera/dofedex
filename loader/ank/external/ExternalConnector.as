@@ -13,7 +13,7 @@ class ank.external.ExternalConnector extends LocalConnection
 		mx.events.EventDispatcher.initialize(this);
 		this._sConnectionName = ank.external.ExternalConnector.CONNECTION_NAME + new Date().getTime() + random(100000);
 		this.connect(this._sConnectionName);
-		ank.utils.ExtendedArray.setTimer(this,"externalconnector",this,this.initialize,100);
+		ank.utils.Timer.setTimer(this,"externalconnector",this,this.initialize,100);
 	}
 	static function getInstance()
 	{
@@ -76,7 +76,7 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		this._bInitializing = true;
 		this.call("Initialize");
-		ank.utils.ExtendedArray.setTimer(this,ank.external.ExternalConnector.TIME_OUT_LAYER,this,this.onInitializeFaild,ank.external.ExternalConnector.TIME_OUT);
+		ank.utils.Timer.setTimer(this,ank.external.ExternalConnector.TIME_OUT_LAYER,this,this.onInitializeFaild,ank.external.ExternalConnector.TIME_OUT);
 	}
 	function processQueue()
 	{
@@ -95,14 +95,14 @@ class ank.external.ExternalConnector extends LocalConnection
 	}
 	function onInitialize()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,ank.external.ExternalConnector.TIME_OUT_LAYER);
+		ank.utils.Timer.removeTimer(this,ank.external.ExternalConnector.TIME_OUT_LAYER);
 		this._bInitializing = false;
 		this._bInitialized = true;
 		this.processQueue();
 	}
 	function onInitializeFaild()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,ank.external.ExternalConnector.TIME_OUT_LAYER);
+		ank.utils.Timer.removeTimer(this,ank.external.ExternalConnector.TIME_OUT_LAYER);
 		this._bInitializing = false;
 		this._bInitialized = false;
 		this.dispatchEvent({type:"onExternalConnectionFaild"});

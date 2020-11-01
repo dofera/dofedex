@@ -288,8 +288,8 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var var3 = new dofus.utils.nameChecker.(var2);
-			var var4 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
+			var var3 = new dofus.utils["\b\x18"].(var2);
+			var var4 = new dofus.utils["\b\x18"].rules.NameCheckerCharacterNameRules();
 			var var5 = var3.isValidAgainstWithDetails(var4);
 			if(!var5.IS_SUCCESS)
 			{

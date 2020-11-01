@@ -144,7 +144,7 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 			return undefined;
 		}
 		var var2 = this._mcList.gapi.api;
-		var var3 = ank.utils.ExtendedObject.combine(var2.lang.getText("A_POSSESS_CHARACTER",[this._oItem.search,this._oItem.friendCharactersCount]),null,this._oItem.friendCharactersCount == 1);
+		var var3 = ank.utils.PatternDecoder.combine(var2.lang.getText("A_POSSESS_CHARACTER",[this._oItem.search,this._oItem.friendCharactersCount]),null,this._oItem.friendCharactersCount == 1);
 		var2.ui.showTooltip(var3,this._mcOver,-20);
 	}
 	function out(var2)

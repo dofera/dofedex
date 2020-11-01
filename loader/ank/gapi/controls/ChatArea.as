@@ -115,7 +115,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 		};
 		this._tText.mouseWheelEnabled = true;
 		this.addToQueue({object:this,method:this.setTextFieldProperties});
-		ank.utils.CustomDate.addListener(this);
+		ank.utils.MouseEvents.addListener(this);
 	}
 	function size()
 	{

@@ -6,7 +6,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 	var _bShiftDown = true;
 	static var _sSelf = null;
 	var _nLastTriggerShow = 0;
-	function KeyManager(var3)
+	function KeyManager(var2)
 	{
 		super();
 		dofus.managers.KeyManager._sSelf = this;

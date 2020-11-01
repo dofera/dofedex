@@ -449,7 +449,7 @@ class ank.battlefield.SpriteHandler
 				var var18 = ank.battlefield.utils.Pathfinding.pathFind(this.api,this._mcBattlefield.mapHandler,var16.cellNum,var17,{bAllDirections:var16.allDirections,bIgnoreSprites:true,bCellNumOnly:true,bWithBeginCellNum:true});
 				if(var18 != null)
 				{
-					ank.utils.ExtendedArray.setTimer(var16,"battlefield",this,this.moveSprite,200 + (var12.cellNum != var16.cellNum?0:200),[var16.id,var18,var16.sequencer,var5,var6,var16.forceRun || var7,var16.forceWalk || var8,var9]);
+					ank.utils.Timer.setTimer(var16,"battlefield",this,this.moveSprite,200 + (var12.cellNum != var16.cellNum?0:200),[var16.id,var18,var16.sequencer,var5,var6,var16.forceRun || var7,var16.forceWalk || var8,var9]);
 				}
 			}
 		}
@@ -753,7 +753,7 @@ class ank.battlefield.SpriteHandler
 			ank.utils.Logger.err("[setSpriteAnim(" + var3 + ")] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		ank.utils.ExtendedArray.removeTimer(var5.mc,"battlefield");
+		ank.utils.Timer.removeTimer(var5.mc,"battlefield");
 		var5.mc.setAnim(var3,false,var4);
 	}
 	function setSpriteLoopAnim(sID, §\x1e\x02§, §\x1e\x1b\x1d§)
@@ -764,9 +764,9 @@ class ank.battlefield.SpriteHandler
 			ank.utils.Logger.err("[setSpriteLoopAnim] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		ank.utils.ExtendedArray.removeTimer(var5.mc,"battlefield");
+		ank.utils.Timer.removeTimer(var5.mc,"battlefield");
 		var5.mc.setAnim(var3,true);
-		ank.utils.ExtendedArray.setTimer(var5.mc,"battlefield",var5.mc,var5.mc.setAnim,var4,["static"]);
+		ank.utils.Timer.setTimer(var5.mc,"battlefield",var5.mc,var5.mc.setAnim,var4,["static"]);
 	}
 	function setSpriteTimerAnim(sID, §\x1e\x02§, §\x19\x1a§, §\x1e\x1b\x1d§)
 	{
@@ -776,7 +776,7 @@ class ank.battlefield.SpriteHandler
 			ank.utils.Logger.err("[setSpriteTimerAnim] Sprite " + sID + " inexistant");
 			return undefined;
 		}
-		ank.utils.ExtendedArray.removeTimer(var6.mc,"battlefield");
+		ank.utils.Timer.removeTimer(var6.mc,"battlefield");
 		var6.mc.setAnimTimer(var3,false,var4,var5);
 	}
 	function setSpriteGfx(sID, §\x1e\x12\r§)

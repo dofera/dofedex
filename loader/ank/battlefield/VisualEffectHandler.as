@@ -49,7 +49,7 @@ if(!ank.battlefield.VisualEffectHandler)
 			var12.setTransform({ra:200,rb:0,ga:200,gb:0,ba:200,bb:0});
 		}
 		var11.loadClip(var3.file,var10.mc);
-		ank.utils.ExtendedArray.setTimer(var10,"battlefield",var10,var10.removeMovieClip,ank.battlefield.Constants.VISUAL_EFFECT_MAX_TIMER);
+		ank.utils.Timer.setTimer(var10,"battlefield",var10,var10.removeMovieClip,ank.battlefield.Constants.VISUAL_EFFECT_MAX_TIMER);
 	};
 	var1.onLoadInit = function onLoadInit(var2)
 	{

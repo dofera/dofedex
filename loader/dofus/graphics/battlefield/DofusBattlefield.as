@@ -919,13 +919,13 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				}
 			}
 			var6 = dofus.Constants.NPC_ALIGNMENT_COLOR[var5.alignment.index];
-			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextOverHead,[var9,var3,var6,var4]);
+			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield["\x1e\x0b\b"],[var9,var3,var6,var4]);
 		}
 		else if(var5 instanceof dofus.datacenter.ParkMount)
 		{
 			var6 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
 			var9 = this.api.lang.getText("MOUNT_PARK_OVERHEAD",[var5.modelName,var5.level,var5.ownerName]);
-			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextOverHead,[var9,var3,var6,var4]);
+			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield["\x1e\x0b\b"],[var9,var3,var6,var4]);
 		}
 		else if(var5 instanceof dofus.datacenter.OfflineCharacter)
 		{
@@ -964,7 +964,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		{
 			if(var9 != "")
 			{
-				this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextOverHead,[var9,var3,var6,var4,var5.pvpGain,var7]);
+				this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield["\x1e\x0b\b"],[var9,var3,var6,var4,var5.pvpGain,var7]);
 			}
 			this.selectSprite(var5.id,true);
 		}
@@ -1239,7 +1239,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			var var8 = new dofus.datacenter.("itemOnCell",ank.battlefield.mc.Sprite,"",var4.num,0,0);
 			this.api.datacenter.Sprites.addItemAt("itemOnCell",var8);
 			this.api.gfx.addSprite("itemOnCell");
-			this.addSpriteOverHeadItem("itemOnCell","text",dofus.graphics.battlefield.TextOverHead,[var7,"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
+			this.addSpriteOverHeadItem("itemOnCell","text",dofus.graphics.battlefield["\x1e\x0b\b"],[var7,"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
 		}
 		var var9 = this.api.lang.getInteractiveObjectDataByGfxText(var5);
 		var var10 = var9.n;
@@ -1255,11 +1255,11 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				this.api.gfx.addSprite("enclos");
 				if(var16.isPublic)
 				{
-					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield.TextOverHead,[this.api.lang.getText("MOUNTPARK_PUBLIC"),"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
+					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield["\x1e\x0b\b"],[this.api.lang.getText("MOUNTPARK_PUBLIC"),"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
 				}
 				else if(var16.hasNoOwner)
 				{
-					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield.TextOverHead,[this.api.lang.getText("MOUNTPARK_TO_BUY",[var16.price,var16.size,var16.items]),"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
+					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield["\x1e\x0b\b"],[this.api.lang.getText("MOUNTPARK_TO_BUY",[var16.price,var16.size,var16.items]),"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
 				}
 				else
 				{

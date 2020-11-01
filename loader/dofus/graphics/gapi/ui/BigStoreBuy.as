@@ -305,7 +305,7 @@ class dofus.graphics.gapi.ui.BigStoreBuy extends dofus.graphics.gapi.core.DofusA
 		{
 			this._mcArrowAnim._visible = true;
 			this._mcArrowAnim.play();
-			ank.utils.ExtendedArray.setTimer(this,"bigstore",this,this.showArrowAnim,800,[false]);
+			ank.utils.Timer.setTimer(this,"bigstore",this,this.showArrowAnim,800,[false]);
 		}
 		else
 		{
@@ -391,7 +391,7 @@ class dofus.graphics.gapi.ui.BigStoreBuy extends dofus.graphics.gapi.core.DofusA
 		this._lstItems.dataProvider = var3;
 		if(var3 != 0 && var3 != undefined)
 		{
-			this._lblItemsCount.text = var3.length + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("OBJECTS"),"m",var3.length < 2);
+			this._lblItemsCount.text = var3.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",var3.length < 2);
 		}
 		else
 		{
@@ -461,7 +461,7 @@ class dofus.graphics.gapi.ui.BigStoreBuy extends dofus.graphics.gapi.core.DofusA
 		var var3 = this.api.lang.getText("BIGSTORE_MAX_LEVEL") + " : " + this._oData.maxLevel;
 		var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_TAX") + " : " + this._oData.tax + "%");
 		var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_ITEM_PER_ACCOUNT") + " : " + this._oData.maxItemCount);
-		var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_SELL_TIME") + " : " + this._oData.maxSellTime + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("HOURS"),"m",this._oData.maxSellTime < 2));
+		var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_SELL_TIME") + " : " + this._oData.maxSellTime + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",this._oData.maxSellTime < 2));
 		var3 = var3 + ("\n\n" + this.api.lang.getText("BIGSTORE_TYPES") + " :");
 		var var4 = this._oData.types;
 		for(var k in var4)

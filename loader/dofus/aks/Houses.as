@@ -1,6 +1,6 @@
 class dofus.aks.Houses extends dofus.aks.Handler
 {
-	function Houses(var3, var4)
+	function Houses(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

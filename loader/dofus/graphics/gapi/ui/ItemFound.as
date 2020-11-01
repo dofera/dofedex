@@ -35,7 +35,7 @@ class dofus.graphics.gapi.ui.ItemFound extends dofus.graphics.gapi.core.DofusAdv
 		this.addToQueue({object:this,method:this.initTexts});
 		if(this._nTimer != 0)
 		{
-			ank.utils.ExtendedArray.setTimer(this,"itemFound",this,this.hide,this._nTimer);
+			ank.utils.Timer.setTimer(this,"itemFound",this,this.hide,this._nTimer);
 		}
 	}
 	function initTexts()

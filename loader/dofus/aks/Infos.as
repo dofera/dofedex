@@ -1,6 +1,6 @@
 class dofus.aks.Infos extends dofus.aks.Handler
 {
-	function Infos(var3, var4)
+	function Infos(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

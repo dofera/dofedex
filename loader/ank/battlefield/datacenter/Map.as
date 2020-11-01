@@ -1,6 +1,6 @@
 class ank.battlefield.datacenter.Map extends Object
 {
-	function Map(var3)
+	function Map(var2)
 	{
 		super();
 		this.initialize(var3);

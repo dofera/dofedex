@@ -26,7 +26,7 @@ class dofus.graphics.gapi.controls.TaxCollectorsViewer extends dofus.graphics.ga
 	}
 	function updateData(var2)
 	{
-		this._lblCount.text = String(var2.length) + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("TAXCOLLECTORS"),"m",var2.length < 2);
+		this._lblCount.text = String(var2.length) + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("TAXCOLLECTORS"),"m",var2.length < 2);
 		var2.sortOn("state",Array.NUMERIC | Array.DESCENDING);
 		this._dgTaxCollectors.dataProvider = var2;
 	}

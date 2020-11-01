@@ -544,7 +544,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			var var7 = Number(var2.attributes.delay);
 			if(!_global.isNaN(var7) && var2.attributes.delayCheck != true)
 			{
-				ank.utils.ExtendedArray.setTimer(this,"batch",this,this.onCommandDelay,var7);
+				ank.utils.Timer.setTimer(this,"batch",this,this.onCommandDelay,var7);
 				return false;
 			}
 			var var8 = var2.parentNode;
@@ -586,7 +586,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	}
 	function removeInterval()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"batch");
+		ank.utils.Timer.removeTimer(this,"batch");
 	}
 	function resumeExecute()
 	{

@@ -115,8 +115,8 @@ class ank.battlefield.Battlefield extends MovieClip
 		this._mcMainContainer.clear();
 		this._sGroundFile = "";
 		this._sObjectFile = "";
-		ank.utils.ExtendedArray.clear("battlefield");
-		ank.utils.SharedObjectFix.getInstance().clear();
+		ank.utils.Timer.clear("battlefield");
+		ank.utils.CyclicTimer.getInstance().clear();
 		this.initializeDatacenter();
 		this.createHandlers();
 		this._bMapBuild = false;
@@ -148,8 +148,8 @@ class ank.battlefield.Battlefield extends MovieClip
 		this.overHeadHandler.clear();
 		this.textHandler.clear();
 		this.pointsHandler.clear();
-		ank.utils.ExtendedArray.clean();
-		ank.utils.SharedObjectFix.getInstance().clear();
+		ank.utils.Timer.clean();
+		ank.utils.CyclicTimer.getInstance().clear();
 	}
 	function getZoom()
 	{

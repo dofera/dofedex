@@ -105,7 +105,7 @@ class dofus.graphics.gapi.ui.BigStoreSearch extends dofus.graphics.gapi.core.Dof
 			}
 		}
 		this._lstItems.dataProvider = var4;
-		this._lblSearchCount.text = var4.length == 0?this.api.lang.getText("NO_BIGSTORE_SEARCH_RESULT"):var4.length + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("OBJECTS"),"m",var4 < 2);
+		this._lblSearchCount.text = var4.length == 0?this.api.lang.getText("NO_BIGSTORE_SEARCH_RESULT"):var4.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",var4 < 2);
 		this._btnView.enabled = false;
 	}
 	function searchWordsInName(var2, var3)

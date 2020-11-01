@@ -52,7 +52,7 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 						this.api.kernel.GameManager.zoomGfx(var4[0],var4[1],var4[2]);
 						break;
 					case "TIMERSCOUNT":
-						this.api.kernel.showMessage(undefined,String(ank.utils.ExtendedArray.getTimersCount()),"DEBUG_LOG");
+						this.api.kernel.showMessage(undefined,String(ank.utils.Timer.getTimersCount()),"DEBUG_LOG");
 						break;
 					default:
 						switch(null)
@@ -127,7 +127,7 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 										}
 										break loop13;
 									case "DEBUGZAAP":
-										dofus.ZaapConnect.newInstance();
+										dofus["\x1e\t\b"].newInstance();
 										break loop13;
 									case "PRINTJAILDIALOG":
 										var var18 = this.api.kernel.ChatManager.getJailDialog();

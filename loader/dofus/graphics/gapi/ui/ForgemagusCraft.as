@@ -465,7 +465,7 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 	}
 	function nextCraft()
 	{
-		ank.utils.ExtendedArray.setTimer(this,"doNextCraft",this,this.doNextCraft,250);
+		ank.utils.Timer.setTimer(this,"doNextCraft",this,this.doNextCraft,250);
 	}
 	function doNextCraft()
 	{
@@ -476,7 +476,7 @@ class dofus.graphics.gapi.ui.ForgemagusCraft extends dofus.graphics.gapi.core.Do
 	}
 	function stopMakeAll()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"doNextCraft");
+		ank.utils.Timer.removeTimer(this,"doNextCraft");
 		this._bMakeAll = false;
 		this._cgLocal.dataProvider = this.api.datacenter.Exchange.localGarbage;
 		this.updateData();

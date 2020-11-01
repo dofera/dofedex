@@ -157,7 +157,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.createEmptyMovieClip("_mcMask",30);
 		this.drawRoundRect(this._mcMask,0,0,100,100,0,16711680);
 		this._mcContent.setMask(this._mcMask);
-		ank.utils.CustomDate.addListener(this);
+		ank.utils.MouseEvents.addListener(this);
 	}
 	function size()
 	{

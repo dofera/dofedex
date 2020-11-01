@@ -74,7 +74,7 @@ class dofus.datacenter.Item extends Object
 	}
 	function __get__name()
 	{
-		return ank.utils.ExtendedObject.getDescription(this.api.lang.fetchString(this._oUnicInfos.n),this.api.lang.getItemUnicStringText());
+		return ank.utils.PatternDecoder.getDescription(this.api.lang.fetchString(this._oUnicInfos.n),this.api.lang.getItemUnicStringText());
 	}
 	function __get__description()
 	{
@@ -89,7 +89,7 @@ class dofus.datacenter.Item extends Object
 		{
 			var3 = "<u>" + this.api.lang.getText("ITEM_TYPE") + " : " + var2 + "</u>\n";
 		}
-		return var3 + ank.utils.ExtendedObject.getDescription(this.api.lang.fetchString(this._oUnicInfos.d),this.api.lang.getItemUnicStringText());
+		return var3 + ank.utils.PatternDecoder.getDescription(this.api.lang.fetchString(this._oUnicInfos.d),this.api.lang.getItemUnicStringText());
 	}
 	function __get__type()
 	{

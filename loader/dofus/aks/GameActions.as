@@ -1,6 +1,6 @@
 class dofus.aks.GameActions extends dofus.aks.Handler
 {
-	function GameActions(var3, var4)
+	function GameActions(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}
@@ -332,7 +332,7 @@ class dofus.aks.GameActions extends dofus.aks.Handler
 												}
 												var57.isPendingClearing = true;
 												var var59 = var57.sex != 1?"m":"f";
-												var11.addAction(57,false,this.api.kernel,this.api.kernel.showMessage,[undefined,ank.utils.ExtendedObject.combine(this.api.lang.getText("DIE",[var57.name]),var59,true),"INFO_FIGHT_CHAT"]);
+												var11.addAction(57,false,this.api.kernel,this.api.kernel.showMessage,[undefined,ank.utils.PatternDecoder.combine(this.api.lang.getText("DIE",[var57.name]),var59,true),"INFO_FIGHT_CHAT"]);
 												var var60 = this.api.ui.getUIComponent("Timeline");
 												var11.addAction(58,false,var60,var60.hideItem,[var56]);
 												this.warning("You\'re not allowed to change the behaviour of the game animations. Please play legit !");
@@ -430,7 +430,7 @@ class dofus.aks.GameActions extends dofus.aks.Handler
 															case 130:
 																var var80 = Number(var7);
 																var var81 = this.api.datacenter.Sprites.getItemAt(var6);
-																var11.addAction(67,false,this.api.kernel,this.api.kernel.showMessage,[undefined,ank.utils.ExtendedObject.combine(this.api.lang.getText("STEAL_GOLD",[var81.name,var80]),"m",var80 < 2),"INFO_FIGHT_CHAT"]);
+																var11.addAction(67,false,this.api.kernel,this.api.kernel.showMessage,[undefined,ank.utils.PatternDecoder.combine(this.api.lang.getText("STEAL_GOLD",[var81.name,var80]),"m",var80 < 2),"INFO_FIGHT_CHAT"]);
 																break loop0;
 															case 132:
 																var var82 = this.api.datacenter.Sprites.getItemAt(var6);

@@ -7,7 +7,7 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 	}
 	function setPendingCount(nCount)
 	{
-		this._lblQuestCount.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("PENDING_QUEST",[nCount]),"m",nCount < 2);
+		this._lblQuestCount.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("PENDING_QUEST",[nCount]),"m",nCount < 2);
 	}
 	function setStep(var2)
 	{

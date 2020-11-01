@@ -27,15 +27,15 @@ class dofus.graphics.gapi.controls.jobviewer.JobViewerSkillItem extends ank.gapi
 				{
 					var5 = "(#4s)  #1{~2 " + this._mcList.gapi.api.lang.getText("TO_RANGE") + " }#2";
 				}
-				this._lblQuantity.text = ank.utils.ExtendedObject.getDescription(var5,new Array(var4.param1,var4.param2,var4.param3,Math.round(var4.param4 / 100) / 10));
+				this._lblQuantity.text = ank.utils.PatternDecoder.getDescription(var5,new Array(var4.param1,var4.param2,var4.param3,Math.round(var4.param4 / 100) / 10));
 				this._ctrIcon.contentData = var4.item;
 			}
 			else
 			{
 				var var6 = this._parent._parent._parent._parent;
-				var var7 = ank.utils.ExtendedObject.combine(this._mcList.gapi.api.lang.getText("SLOT"),"n",var4.param1 < 2);
+				var var7 = ank.utils.PatternDecoder.combine(this._mcList.gapi.api.lang.getText("SLOT"),"n",var4.param1 < 2);
 				var var8 = "#1 " + var7 + " (#2%)";
-				this._lblQuantity.text = ank.utils.ExtendedObject.getDescription(var8,new Array(var4.param1,var4.param4));
+				this._lblQuantity.text = ank.utils.PatternDecoder.getDescription(var8,new Array(var4.param1,var4.param4));
 				this._ctrIcon.contentData = undefined;
 			}
 		}

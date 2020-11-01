@@ -31,7 +31,7 @@ class dofus.graphics.battlefield.AbstractTextOverHead extends ank.gapi.core.UIBa
 	}
 	function drawGfx(var2, var3)
 	{
-		this._mcGfx.attachClassMovie(ank.utils.Timer,"_mcSwfLoader",10);
+		this._mcGfx.attachClassMovie(ank.utils.SWFLoader,"_mcSwfLoader",10);
 		this._mcGfx._mcSwfLoader.loadSWF(var2,var3);
 	}
 	function addPvpGfxEffect(var2, var3)

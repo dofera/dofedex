@@ -60,7 +60,7 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 	}
 	function refreshCraftComplexityLabel(var2)
 	{
-		this._lblCraftComplexityValue.text = var2.toString() + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("SLOT"),"m",var2 < 2);
+		this._lblCraftComplexityValue.text = var2.toString() + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("SLOT"),"m",var2 < 2);
 	}
 	function change(var2)
 	{

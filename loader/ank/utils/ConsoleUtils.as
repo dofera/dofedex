@@ -1,192 +1,92 @@
-class ank.utils.ConsoleUtils extends Array
+class ank.utils.ConsoleUtils
 {
 	function ConsoleUtils()
 	{
-		super();
-		this.initialize();
 	}
-	function removeEventListener()
+	static function autoCompletion(var2, var3)
 	{
-	}
-	function addEventListener()
-	{
-	}
-	function dispatchEvent()
-	{
-	}
-	function dispatchQueue()
-	{
-	}
-	function initialize(var2)
-	{
-		mx.events.EventDispatcher.initialize(this);
-	}
-	function isInNoEventDispatchsPeriod()
-	{
-		return this._bNoEventDispatchs;
-	}
-	function startNoEventDispatchsPeriod(var2)
-	{
-		this._bNoEventDispatchs = true;
-		if(this._nNoEventPeriodTimeout != undefined)
+		var var4 = ank.utils.ConsoleUtils.removeAndGetLastWord(var3);
+		var var5 = var4.lastWord;
+		var3 = var4.leftCmd;
+		var5 = var5.toLowerCase();
+		var var6 = ank.utils.ConsoleUtils.getStringsStartWith(var2,var5);
+		if(var6.length > 1)
 		{
-			_global.clearTimeout(this._nNoEventPeriodTimeout);
-		}
-		var var3 = _global.setTimeout(this,"endNoEventDispatchsPeriod",var2);
-		this._nNoEventPeriodTimeout = var3;
-	}
-	function endNoEventDispatchsPeriod()
-	{
-		this._bNoEventDispatchs = undefined;
-		this._nNoEventPeriodTimeout = undefined;
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		var var2 = _global.API;
-		var2.ui.getUIComponent("TaxCollectorStorage").refreshGetItemButton();
-	}
-	function createFromArray(var2)
-	{
-		this.splice(0,this.length);
-		var var3 = 0;
-		while(var3 < var2.length)
-		{
-			this.push(var2[var3]);
-			var3 = var3 + 1;
-		}
-	}
-	function removeAll(var2)
-	{
-		this.splice(0,this.length);
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-	}
-	function push(var2)
-	{
-		var var4 = super.push(var3);
-		this.doDispatchEvent({type:"modelChanged",eventName:"addItem"});
-		return var4;
-	}
-	function pop()
-	{
-		var var3 = super.pop();
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		return var3;
-	}
-	function shift()
-	{
-		var var3 = super.shift();
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		return var3;
-	}
-	function unshift(var2)
-	{
-		var var4 = super.unshift(var3);
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-		return var4;
-	}
-	function reverse()
-	{
-		super.reverse();
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-	}
-	function replaceAll(var2, var3)
-	{
-		var var4 = [var2,0];
-		for(var k in var3)
-		{
-			var4.push(var3[k]);
-		}
-		this.splice.apply(this,var4);
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-	}
-	function removeItems(var2, var3)
-	{
-		this.splice(var2,var3);
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
-	}
-	function updateItem(var2, var3)
-	{
-		this.splice(var2,1,var3);
-		this.doDispatchEvent({type:"modelChanged",eventName:"updateOne",updateIndex:var2});
-	}
-	function findFirstItem(var2, var3)
-	{
-		var var4 = 0;
-		while(var4 < this.length)
-		{
-			var var5 = this[var4];
-			if(var5[var2] == var3)
+			var var7 = "";
+			var var8 = 0;
+			while(var8 < var6.length)
 			{
-				return {index:var4,item:var5};
-			}
-			var4 = var4 + 1;
-		}
-		return {index:-1};
-	}
-	function clone()
-	{
-		var var2 = new ank.utils.();
-		var var3 = 0;
-		while(var3 < this.length)
-		{
-			var2.push(this[var3].clone());
-			var3 = var3 + 1;
-		}
-		return var2;
-	}
-	function shuffle()
-	{
-		var var2 = this.clone();
-		var var3 = 0;
-		while(var3 < var2.length)
-		{
-			var var4 = var2[var3];
-			var var5 = random(var2.length);
-			var2[var3] = var2[var5];
-			var2[var5] = var4;
-			var3 = var3 + 1;
-		}
-		return var2;
-	}
-	function doDispatchEvent(var2)
-	{
-		if(this.isInNoEventDispatchsPeriod())
-		{
-			return undefined;
-		}
-		this.dispatchEvent(var2);
-	}
-	function bubbleSortOn(var2, var3)
-	{
-		if((var3 & Array.ASCENDING) == 0 && (var3 & Array.DESCENDING) == 0)
-		{
-			var3 = var3 | Array.ASCENDING;
-		}
-		while(true)
-		{
-			var var4 = false;
-			var var5 = 1;
-			while(var5 < this.length)
-			{
-				if((var3 & Array.ASCENDING) > 0 && this[var5 - 1][var2] > this[var5][var2] || (var3 & Array.DESCENDING) > 0 && this[var5 - 1][var2] < this[var5][var2])
+				var7 = String(var6[var8]).charAt(var5.length);
+				if(var7 != "")
 				{
-					var var6 = this[var5 - 1];
-					this[var5 - 1] = this[var5];
-					this[var5] = var6;
-					var4 = true;
+					break;
 				}
-				var5 = var5 + 1;
+				var8 = var8 + 1;
 			}
-			if(var4)
+			if(var7 == "")
 			{
-				continue;
+				return {result:var3 + var5,full:false};
 			}
-			break;
+			return ank.utils.ConsoleUtils.autoCompletionRecurcive(var6,var3,var5 + var7);
 		}
+		if(var6.length != 0)
+		{
+			return {result:var3 + var6[0],isFull:true};
+		}
+		return {result:var3 + var5,list:var6,isFull:false};
 	}
-	function concat(var2)
+	static function removeAndGetLastWord(var2)
 	{
-		var var4 = super.concat(var3);
-		var var5 = new ank.utils.();
-		var5.createFromArray(var4);
-		return var5;
+		var var3 = var2.split(" ");
+		if(var3.length == 0)
+		{
+			return {leftCmd:"",lastWord:""};
+		}
+		var var4 = String(var3.pop());
+		return {leftCmd:(var3.length != 0?var3.join(" ") + " ":""),lastWord:var4};
+	}
+	static function autoCompletionRecurcive(var2, var3, var4)
+	{
+		var4 = var4.toLowerCase();
+		var var5 = ank.utils.ConsoleUtils.getStringsStartWith(var2,var4);
+		if(var5.length > 1 && var5.length == var2.length)
+		{
+			var var6 = "";
+			var var7 = 0;
+			while(var7 < var5.length)
+			{
+				var6 = String(var5[var7]).charAt(var4.length);
+				if(var6 != "")
+				{
+					break;
+				}
+				var7 = var7 + 1;
+			}
+			if(var6 == "")
+			{
+				return {result:var3 + var4,isFull:false};
+			}
+			return ank.utils.ConsoleUtils.autoCompletionRecurcive(var5,var3,var4 + var6);
+		}
+		if(var5.length != 0)
+		{
+			return {result:var3 + var4.substr(0,var4.length - 1),list:var2,isFull:false};
+		}
+		return {result:var3 + var4,list:var2,isFull:false};
+	}
+	static function getStringsStartWith(var2, var3)
+	{
+		var var4 = new Array();
+		var var5 = 0;
+		while(var5 < var2.length)
+		{
+			var var6 = String(var2[var5]).toLowerCase().split(var3);
+			if(var6[0] == "" && (var6.length != 0 && String(var2[var5]).length >= var3.length))
+			{
+				var4.push(var2[var5]);
+			}
+			var5 = var5 + 1;
+		}
+		return var4;
 	}
 }

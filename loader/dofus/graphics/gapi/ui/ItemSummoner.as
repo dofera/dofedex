@@ -92,7 +92,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 				}
 			}
 		}
-		this._lblNumber.text = this._eaItemsOriginal.length + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("OBJECTS"),"m",this._eaItemsOriginal.length < 2);
+		this._lblNumber.text = this._eaItemsOriginal.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",this._eaItemsOriginal.length < 2);
 	}
 	function searchItem(var2)
 	{

@@ -1,6 +1,6 @@
 class dofus.aks.Spells extends dofus.aks.Handler
 {
-	function Spells(var3, var4)
+	function Spells(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

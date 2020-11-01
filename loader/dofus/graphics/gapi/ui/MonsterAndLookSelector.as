@@ -256,7 +256,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 			case this._cbType:
 				var var3 = this._cbType.selectedItem.data;
 				this._cg.dataProvider = var3;
-				this._lblNumber.text = var3.length + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText(!this._bMonster?"LOOK":"MONSTER"),"m",var3.length < 2);
+				this._lblNumber.text = var3.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText(!this._bMonster?"LOOK":"MONSTER"),"m",var3.length < 2);
 				break;
 			case this._cbAnim:
 				this._cciSprite.setAnim(this._cbAnim.selectedItem.label,true);

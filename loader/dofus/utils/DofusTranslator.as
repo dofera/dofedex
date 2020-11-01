@@ -749,7 +749,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		var var3 = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2];
 		if(var3 == undefined)
 		{
-			_global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2] = ank.utils.Sequencer.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2);
+			_global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2] = ank.utils.SharedObjectFix.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2);
 			var3 = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2];
 		}
 		var var4 = var3.data[var2];

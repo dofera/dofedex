@@ -6,7 +6,7 @@ class ank.battlefield.LoadManager extends MovieClip
 	static var STATE_LOADED = 2;
 	static var STATE_ERROR = -1;
 	static var STATE_UNKNOWN = -1;
-	function LoadManager(var3)
+	function LoadManager(var2)
 	{
 		super();
 		this.initialize(var3);

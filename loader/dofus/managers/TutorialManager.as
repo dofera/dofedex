@@ -2,7 +2,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 {
 	var _bInTutorialMode = false;
 	static var _sSelf = null;
-	function TutorialManager(var3)
+	function TutorialManager(var2)
 	{
 		super();
 		dofus.managers.TutorialManager._sSelf = this;
@@ -33,7 +33,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 	function clear()
 	{
 		this._bInTutorialMode = false;
-		ank.utils.ExtendedArray.removeTimer(this,"tutorial");
+		ank.utils.Timer.removeTimer(this,"tutorial");
 		this._oVars = new Object();
 	}
 	function start(var2)
@@ -77,7 +77,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 	}
 	function executeBloc(var2)
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"tutorial");
+		ank.utils.Timer.removeTimer(this,"tutorial");
 		for(var i in var2.params)
 		{
 			if(typeof var2.params[i] == "string")
@@ -371,10 +371,10 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 					ank.utils.Logger.log("[executeBloc] le type ne correspond pas");
 					return undefined;
 				}
-				ank.utils.ExtendedArray.removeTimer(this,"tutorial");
+				ank.utils.Timer.removeTimer(this,"tutorial");
 				if(var2.timeout != 0)
 				{
-					ank.utils.ExtendedArray.setTimer(this,"tutorial",this,this.onWaitingTimeout,var2.timeout,[var2]);
+					ank.utils.Timer.setTimer(this,"tutorial",this,this.onWaitingTimeout,var2.timeout,[var2]);
 				}
 				break;
 			default:
@@ -424,7 +424,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 	}
 	function callNextBloc(var2)
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"tutorial");
+		ank.utils.Timer.removeTimer(this,"tutorial");
 		if(typeof var2 == "object")
 		{
 			var var3 = var2[random(var2.length)];

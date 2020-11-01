@@ -1,6 +1,6 @@
 class dofus.aks.Specialization extends dofus.aks.Handler
 {
-	function Specialization(var3, var4)
+	function Specialization(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

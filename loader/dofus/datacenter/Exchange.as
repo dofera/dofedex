@@ -2,7 +2,7 @@ class dofus.datacenter.Exchange extends Object
 {
 	var _nLocalKama = 0;
 	var _nDistantKama = 0;
-	function Exchange(var3)
+	function Exchange(var2)
 	{
 		super();
 		this.initialize(var3);

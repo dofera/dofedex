@@ -63,7 +63,7 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 		this._lblBoostWisdomValue.text = var2.taxWisdom + "";
 		this._lblBoostPopValue.text = var2.taxPopulation + "";
 		this._lblTaxCount.text = this.api.lang.getText("GUILD_TAX_COUNT",[var2.taxCount,var2.taxCountMax]);
-		this._lblBoostPointsValue.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("POINTS",[var2.boostPoints]),"m",var2.boostPoints < 2);
+		this._lblBoostPointsValue.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("POINTS",[var2.boostPoints]),"m",var2.boostPoints < 2);
 		this._lstSpells.dataProvider = var2.taxSpells;
 		var var3 = var2.playerRights.canManageBoost && var2.boostPoints > 0;
 		this._btnBoostPod._visible = var3 && var2.canBoost("w");

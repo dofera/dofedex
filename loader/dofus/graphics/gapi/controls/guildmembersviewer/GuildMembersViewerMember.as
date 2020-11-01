@@ -114,13 +114,13 @@ class dofus.graphics.gapi.controls.guildmembersviewer.GuildMembersViewerMember e
 		var var9 = "";
 		if(var5 > 0 && var6 != 0)
 		{
-			var var10 = ank.utils.ExtendedObject.combine(var3.lang.getText("MONTHS"),"m",var5 == 1);
-			var var11 = ank.utils.ExtendedObject.combine(var3.lang.getText("DAYS"),"m",var6 == 1);
+			var var10 = ank.utils.PatternDecoder.combine(var3.lang.getText("MONTHS"),"m",var5 == 1);
+			var var11 = ank.utils.PatternDecoder.combine(var3.lang.getText("DAYS"),"m",var6 == 1);
 			var9 = var9 + (var5 + " " + var10 + var8 + var6 + " " + var11);
 		}
 		else if(var6 != 0)
 		{
-			var var12 = ank.utils.ExtendedObject.combine(var3.lang.getText("DAYS"),"m",var6 == 1);
+			var var12 = ank.utils.PatternDecoder.combine(var3.lang.getText("DAYS"),"m",var6 == 1);
 			var9 = var9 + (var6 + " " + var12);
 		}
 		else

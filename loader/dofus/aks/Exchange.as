@@ -1,7 +1,7 @@
 class dofus.aks.Exchange extends dofus.aks.Handler
 {
 	var _lastMovedItemId = -1;
-	function Exchange(var3, var4)
+	function Exchange(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

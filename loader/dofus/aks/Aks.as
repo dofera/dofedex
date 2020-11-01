@@ -138,7 +138,7 @@ if(!dofus.aks.Aks)
 		}
 		else
 		{
-			ank.utils.ExtendedArray.setTimer(this.Deco,"disconnect",this,this.onClose,1000,[var2,var3,true]);
+			ank.utils.Timer.setTimer(this.Deco,"disconnect",this,this.onClose,1000,[var2,var3,true]);
 		}
 	};
 	var1.send = function send(var2, var3, var4, var5, var6)
@@ -159,7 +159,7 @@ if(!dofus.aks.Aks)
 			this._isWaitingForData = true;
 			if(this.api.datacenter.Basics.inGame && this._bAutoReco)
 			{
-				ank.utils.ExtendedArray.setTimer(this.Lag,"lag",this,this.onLag,Number(this.api.lang.getConfigText("DELAY_RECO_MESSAGE")));
+				ank.utils.Timer.setTimer(this.Lag,"lag",this,this.onLag,Number(this.api.lang.getConfigText("DELAY_RECO_MESSAGE")));
 			}
 		}
 		if(dofus.Constants.DEBUG_DATAS)
@@ -425,7 +425,7 @@ if(!dofus.aks.Aks)
 		this.api.ui.loadUIComponent("WaitingMessage","WaitingMessage",{text:this.api.lang.getText("WAIT_FOR_SERVER")},{bAlwaysOnTop:true,bForceLoad:true});
 		if(this._bAutoReco)
 		{
-			ank.utils.ExtendedArray.setTimer(this.Deco,"deco",this,this.onDeco,Number(this.api.lang.getConfigText("DELAY_RECO_START")));
+			ank.utils.Timer.setTimer(this.Deco,"deco",this,this.onDeco,Number(this.api.lang.getConfigText("DELAY_RECO_START")));
 		}
 	};
 	var1.onDeco = function onDeco()
@@ -446,7 +446,7 @@ if(!dofus.aks.Aks)
 			if(this.api.datacenter.Basics.aks_rescue_count > 0)
 			{
 				this.api.datacenter.Basics.aks_rescue_count--;
-				ank.utils.ExtendedArray.setTimer(this,"connect",this,this.connect,_global.CONFIG.rdelay,[this.api.datacenter.Basics.aks_gameserver_ip,this.api.datacenter.Basics.aks_gameserver_port,false]);
+				ank.utils.Timer.setTimer(this,"connect",this,this.connect,_global.CONFIG.rdelay,[this.api.datacenter.Basics.aks_gameserver_ip,this.api.datacenter.Basics.aks_gameserver_port,false]);
 				this.api.ui.loadUIComponent("WaitingMessage","WaitingMessage",{text:this.api.lang.getText("TRYING_TO_RECONNECT",[this.api.datacenter.Basics.aks_rescue_count])},{bAlwaysOnTop:true,bForceLoad:true});
 				return undefined;
 			}
@@ -458,7 +458,7 @@ if(!dofus.aks.Aks)
 			if(this.api.ui.getUIComponent("Login") && (this.api.datacenter.Basics.aks_connection_server && this.api.datacenter.Basics.aks_connection_server.length))
 			{
 				var var3 = String(this.api.datacenter.Basics.aks_connection_server.shift());
-				ank.utils.ExtendedArray.setTimer(this,"connect",this,this.connect,_global.CONFIG.rdelay,[var3,this.api.datacenter.Basics.aks_connection_server_port,false]);
+				ank.utils.Timer.setTimer(this,"connect",this,this.connect,_global.CONFIG.rdelay,[var3,this.api.datacenter.Basics.aks_connection_server_port,false]);
 				return undefined;
 			}
 			this.api.ui.unloadUIComponent("Waiting");
@@ -481,11 +481,11 @@ if(!dofus.aks.Aks)
 	};
 	var1.onData = function onData(var2)
 	{
-		ank.utils.ExtendedArray.removeTimer(this.Lag,"lag");
+		ank.utils.Timer.removeTimer(this.Lag,"lag");
 		if(this._bLag)
 		{
 			dofus.utils.Api.getInstance().ui.unloadUIComponent("WaitingMessage");
-			ank.utils.ExtendedArray.removeTimer(this.Deco,"deco");
+			ank.utils.Timer.removeTimer(this.Deco,"deco");
 			this._bLag = false;
 		}
 		if(dofus.Constants.DEBUG_DATAS && dofus.Constants.DEBUG_ENCRYPTION)
@@ -548,9 +548,9 @@ if(!dofus.aks.Aks)
 		this._bConnected = false;
 		if(this.api.datacenter.Basics.aks_current_server != undefined && (this.api.datacenter.Basics.aks_rescue_count == -1 && (!var4 && (this.api.lang.getConfigText("AUTO_RECONNECT") && !this.api.datacenter.Basics.aks_server_will_disconnect))))
 		{
-			ank.utils.ExtendedArray.removeTimer(this.Deco,"deco");
+			ank.utils.Timer.removeTimer(this.Deco,"deco");
 			this.api.datacenter.Basics.aks_rescue_count = _global.CONFIG.rcount;
-			ank.utils.ExtendedArray.setTimer(this,"connect",this,this.connect,_global.CONFIG.rdelay,[this.api.datacenter.Basics.aks_gameserver_ip,this.api.datacenter.Basics.aks_gameserver_port,false]);
+			ank.utils.Timer.setTimer(this,"connect",this,this.connect,_global.CONFIG.rdelay,[this.api.datacenter.Basics.aks_gameserver_ip,this.api.datacenter.Basics.aks_gameserver_port,false]);
 			this.api.ui.loadUIComponent("WaitingMessage","WaitingMessage",{text:this.api.lang.getText("TRYING_TO_RECONNECT",[this.api.datacenter.Basics.aks_rescue_count])},{bAlwaysOnTop:true,bForceLoad:true});
 			return undefined;
 		}
@@ -571,7 +571,7 @@ if(!dofus.aks.Aks)
 			this.api.ui.clear();
 			this.api.gfx.clear();
 			this.api.kernel.TutorialManager.clear();
-			ank.utils.ExtendedArray.clear();
+			ank.utils.Timer.clear();
 		}
 		else
 		{
@@ -706,7 +706,7 @@ if(!dofus.aks.Aks)
 			else
 			{
 				var var4 = var2.params.login;
-				if(var4 == dofus.ZaapConnect.LOGIN_TOKEN_NAME)
+				if(var4 == dofus["\x1e\t\b"].LOGIN_TOKEN_NAME)
 				{
 					var3.zaapAutoLogin(false);
 				}

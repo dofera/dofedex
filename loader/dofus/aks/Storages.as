@@ -1,6 +1,6 @@
 class dofus.aks.Storages extends dofus.aks.Handler
 {
-	function Storages(var3, var4)
+	function Storages(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

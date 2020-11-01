@@ -1,6 +1,6 @@
-class dofus.datacenter.Subarea extends Object
+class dofus.datacenter["\x1e\f\b"] extends Object
 {
-	function Subarea(var3, var4)
+	function §\x1e\f\b§(var2, var3)
 	{
 		super();
 		this.api = _global.API;

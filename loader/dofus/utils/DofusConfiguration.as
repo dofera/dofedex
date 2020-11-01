@@ -5,7 +5,7 @@ class dofus.utils.DofusConfiguration
 	{
 		if(_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME] == undefined)
 		{
-			_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME] = ank.utils.Sequencer.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
+			_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME] = ank.utils.SharedObjectFix.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
 		}
 	}
 	function __set__dataServers(var2)

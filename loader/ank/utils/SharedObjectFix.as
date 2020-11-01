@@ -1,104 +1,88 @@
 class ank.utils.SharedObjectFix extends Object
 {
-	static var _instance = new ank.utils.();
-	var _aFunctions = new Array();
-	var _bPlaying = false;
-	function SharedObjectFix()
+	static var _oLocalCache = new Object();
+	static var _oRemoteCache = new Object();
+	function SharedObjectFix(var3)
 	{
 		super();
-	}
-	static function getInstance()
-	{
-		return ank.utils.SharedObjectFix._instance;
-	}
-	function addFunction(var2, var3, var4, var5, var6, var7, var8)
-	{
-		var var9 = new Object();
-		var9.objRef = var2;
-		var9.objFn = var3;
-		var9.fn = var4;
-		var9.params = var5;
-		var9.objFnEnd = var6;
-		var9.fnEnd = var7;
-		var9.paramsEnd = var8;
-		this._aFunctions.push(var9);
-		this.play();
-	}
-	function removeFunction(var2)
-	{
-		var var3 = this._aFunctions.length - 1;
-		while(var3 >= 0)
+		this._so = !!var3.persistence?SharedObject.getRemote(var3.name,var3.remotePath,var3.persistence,var3.secure):SharedObject.getLocal(var3.name,var3.localPath,var3.secure);
+		if(this._so.data._Data == undefined)
 		{
-			var var4 = this._aFunctions[var3];
-			if(var2 == var4.objRef)
-			{
-				this._aFunctions.splice(var3,1);
-			}
-			var3 = var3 - 1;
+			this._so.data._Data = new Object();
 		}
+		this.data = this._so.data._Data;
+		this._so.onStatus = function(var2)
+		{
+			if(this.onStatus)
+			{
+				this.onStatus(var2);
+			}
+		};
+		this._so.onSync = function(var2)
+		{
+			if(this.onSync)
+			{
+				this.onSync(var2);
+			}
+		};
 	}
 	function clear()
 	{
-		this.stop();
-		this._aFunctions = new Array();
+		this.data = new Object();
+		this._so.clear();
 	}
-	function play()
+	function close()
 	{
-		if(this._bPlaying)
-		{
-			return undefined;
-		}
-		this._bPlaying = true;
-		if(this._mcCyclicGameLoop == undefined)
-		{
-			this._mcCyclicGameLoop = _root.createEmptyMovieClip("_mcCyclicGameLoop",_root.getNextHighestDepth());
-		}
-		if(this._mcCyclicGameLoop.onEnterFrame == undefined)
-		{
-			var thisObject = this;
-			var api = _global.API;
-			var FRAMES_TO_SKIP = !dofus.Constants.DOUBLEFRAMERATE?1:3;
-			var nCurrentFrameSkipState = 0;
-			this._mcCyclicGameLoop.onEnterFrame = function()
-			{
-				if(!api.electron.isWindowFocused)
-				{
-					if(nCurrentFrameSkipState > 0)
-					{
-						nCurrentFrameSkipState--;
-						return undefined;
-					}
-					nCurrentFrameSkipState = FRAMES_TO_SKIP;
-				}
-				thisObject.doCycle();
-			};
-		}
+		this._so.data._Data = this.data;
+		this._so.close();
 	}
-	function stop()
+	function flush(var2)
 	{
-		delete this._mcCyclicGameLoop.onEnterFrame;
-		this._bPlaying = false;
+		this._so.data._Data = this.data;
+		return this._so.flush(var2);
 	}
-	function doCycle()
+	function getSize()
 	{
-		var var2 = this._aFunctions.length - 1;
-		while(var2 >= 0)
-		{
-			var var3 = this._aFunctions[var2];
-			if(!var3.fn.apply(var3.objFn,var3.params))
-			{
-				this.onFunctionEnd(var2,var3);
-			}
-			var2 = var2 - 1;
-		}
-		if(this._aFunctions.length == 0)
-		{
-			this.stop();
-		}
+		this._so.data._Data = this.data;
+		return this._so.getSize;
 	}
-	function onFunctionEnd(var2, var3)
+	function connect(var2)
 	{
-		var3.fnEnd.apply(var3.objFnEnd,var3.paramsEnd);
-		this._aFunctions.splice(var2,1);
+		this._so.data._Data = this.data;
+		return this._so.connect(var2);
+	}
+	function send(var2)
+	{
+		this._so.data._Data = this.data;
+		this._so.send(var2);
+	}
+	function setFps(var2)
+	{
+		this._so.data._Data = this.data;
+		return this._so.setFps(var2);
+	}
+	static function getLocal(var2, var3, var4)
+	{
+		if(!ank.utils.SharedObjectFix._oLocalCache[var2])
+		{
+			ank.utils.SharedObjectFix._oLocalCache[var2] = new ank.utils.({name:var2,localPath:var3,secure:var4});
+		}
+		return ank.utils.SharedObjectFix._oLocalCache[var2];
+	}
+	static function getRemote(var2, var3, var4, var5)
+	{
+		if(!ank.utils.SharedObjectFix._oRemoteCache[var2])
+		{
+			ank.utils.SharedObjectFix._oRemoteCache[var2] = new ank.utils.({name:var2,remotePath:var3,persistence:var4,secure:var5});
+		}
+		return ank.utils.SharedObjectFix._oRemoteCache[var2];
+	}
+	static function deleteAll(var2)
+	{
+		SharedObject.deleteAll();
+	}
+	static function getDiskUsage(var2)
+	{
+		return SharedObject.getDiskUsage(var2);
 	}
 }

@@ -1,6 +1,6 @@
 class dofus.managers.SpellsManager
 {
-	function SpellsManager(var3)
+	function SpellsManager(var2)
 	{
 		this.initialize(var2);
 	}

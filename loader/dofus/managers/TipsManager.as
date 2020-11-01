@@ -15,7 +15,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 	static var _sSelf = null;
 	var _aIndicatorTimers = new Array();
 	var _nIndicatorIndex = 0;
-	function TipsManager(var3)
+	function TipsManager(var2)
 	{
 		super();
 		dofus.managers.TipsManager._sSelf = this;

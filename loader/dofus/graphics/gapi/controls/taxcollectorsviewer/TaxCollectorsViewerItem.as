@@ -275,7 +275,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 					{
 						var var11 = Math.floor(var10 / 1000 / 60 / 60);
 						var var12 = Math.floor(var10 / 1000 / 60 - var11 * 60);
-						var var13 = var11 + " " + ank.utils.ExtendedObject.combine(this._mcList.gapi.api.lang.getText("HOURS"),"m",var11 == 1);
+						var var13 = var11 + " " + ank.utils.PatternDecoder.combine(this._mcList.gapi.api.lang.getText("HOURS"),"m",var11 == 1);
 						if(var12 == 0)
 						{
 							var7 = var7 + ("\n" + this._mcList.gapi.api.lang.getText("TAX_COLLECTOR_CAN_BE_HARVEST_IN",[var13,""]));
@@ -283,7 +283,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 						else
 						{
 							var var14 = this._mcList.gapi.api.lang.getText("AND") + " ";
-							var var15 = var12 + " " + ank.utils.ExtendedObject.combine(this._mcList.gapi.api.lang.getText("MINUTES"),"m",var12 == 1);
+							var var15 = var12 + " " + ank.utils.PatternDecoder.combine(this._mcList.gapi.api.lang.getText("MINUTES"),"m",var12 == 1);
 							var7 = var7 + ("\n" + this._mcList.gapi.api.lang.getText("TAX_COLLECTOR_CAN_BE_HARVEST_IN",[var13,var14 + var15]));
 						}
 					}

@@ -45,7 +45,7 @@ class dofus.graphics.gapi.controls.GuildMembersViewer extends dofus.graphics.gap
 			}
 			var4 = var4 + 1;
 		}
-		this._lblCount.text = var3 + " / " + String(var2.length) + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("MEMBERS"),"m",var2.length < 2);
+		this._lblCount.text = var3 + " / " + String(var2.length) + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("MEMBERS"),"m",var2.length < 2);
 		var var5 = new ank.utils.();
 		if(!this._btnShowOfflineMembers.selected)
 		{

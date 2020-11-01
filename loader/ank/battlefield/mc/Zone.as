@@ -1,7 +1,7 @@
 class ank.battlefield.mc.Zone extends MovieClip
 {
 	static var ALPHA = 30;
-	function Zone(var3)
+	function Zone(var2)
 	{
 		super();
 		this.initialize(var3);

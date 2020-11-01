@@ -1,6 +1,6 @@
 class dofus.aks.Job extends dofus.aks.Handler
 {
-	function Job(var3, var4)
+	function Job(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

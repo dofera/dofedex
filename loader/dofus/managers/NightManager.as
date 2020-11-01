@@ -2,7 +2,7 @@ class dofus.managers.NightManager
 {
 	static var STATE_COLORS = [undefined,dofus.Constants.NIGHT_COLOR];
 	static var _sSelf = null;
-	function NightManager(var3)
+	function NightManager(var2)
 	{
 		dofus.managers.NightManager._sSelf = this;
 		this._oApi = var2;

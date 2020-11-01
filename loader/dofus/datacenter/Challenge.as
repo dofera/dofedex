@@ -1,6 +1,6 @@
 class dofus.datacenter.Challenge extends Object
 {
-	function Challenge(var3, var4)
+	function Challenge(var2, var3)
 	{
 		super();
 		this.initialize(var3,var4);

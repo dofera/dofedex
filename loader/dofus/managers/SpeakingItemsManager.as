@@ -29,7 +29,7 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	static var SPEAK_TRIGGER_ASSOCIATE = "SPEAK_TRIGGER_ASSOCIATE";
 	static var SPEAK_TRIGGER_DISSOCIATE = "SPEAK_TRIGGER_DISSOCIATE";
 	static var SPEAK_TRIGGER_CHANGE_SKIN = "SPEAK_TRIGGER_CHANGE_SKIN";
-	function SpeakingItemsManager(var3)
+	function SpeakingItemsManager(var2)
 	{
 		super();
 		dofus.managers.SpeakingItemsManager._sSelf = this;
@@ -57,8 +57,8 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	{
 		if(var2 == dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_ON_CONNECT)
 		{
-			ank.utils.ExtendedArray.removeTimer(this,"SpeakingItemsManager",dofus.managers.SpeakingItemsManager._nTimer);
-			ank.utils.ExtendedArray.setTimer(this,"SpeakingItemsManager",this,this.triggerEvent,dofus.managers.SpeakingItemsManager.MINUTE_DELAY,[dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_MINUTE],true);
+			ank.utils.Timer.removeTimer(this,"SpeakingItemsManager",dofus.managers.SpeakingItemsManager._nTimer);
+			ank.utils.Timer.setTimer(this,"SpeakingItemsManager",this,this.triggerEvent,dofus.managers.SpeakingItemsManager.MINUTE_DELAY,[dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_MINUTE],true);
 		}
 		if(!this.api.kernel.OptionsManager.getOption("UseSpeakingItems"))
 		{

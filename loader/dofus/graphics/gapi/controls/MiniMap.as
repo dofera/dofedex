@@ -547,7 +547,7 @@ class dofus.graphics.gapi.controls.MiniMap extends dofus.graphics.gapi.core.Dofu
 	}
 	function onClickTimer(var2)
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"minimap");
+		ank.utils.Timer.removeTimer(this,"minimap");
 		this._bTimerEnable = false;
 		if(var2)
 		{
@@ -650,7 +650,7 @@ class dofus.graphics.gapi.controls.MiniMap extends dofus.graphics.gapi.core.Dofu
 		if(this._bTimerEnable != true)
 		{
 			this._bTimerEnable = true;
-			ank.utils.ExtendedArray.setTimer(this,"minimap",this,this.onClickTimer,ank.gapi.Gapi.DBLCLICK_DELAY,[true]);
+			ank.utils.Timer.setTimer(this,"minimap",this,this.onClickTimer,ank.gapi.Gapi.DBLCLICK_DELAY,[true]);
 		}
 		else
 		{

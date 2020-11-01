@@ -1,6 +1,6 @@
 class dofus.aks.Conquest extends dofus.aks.Handler
 {
-	function Conquest(var3, var4)
+	function Conquest(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

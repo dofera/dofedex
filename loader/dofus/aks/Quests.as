@@ -1,6 +1,6 @@
 class dofus.aks.Quests extends dofus.aks.Handler
 {
-	function Quests(var3, var4)
+	function Quests(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

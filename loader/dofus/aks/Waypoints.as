@@ -1,6 +1,6 @@
 class dofus.aks.Waypoints extends dofus.aks.Handler
 {
-	function Waypoints(var3, var4)
+	function Waypoints(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

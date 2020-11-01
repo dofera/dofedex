@@ -1,4 +1,4 @@
-class dofus.utils.nameChecker.rules.INameCheckerRules
+class dofus.utils["\b\x18"].rules.INameCheckerRules
 {
 	function INameCheckerRules()
 	{

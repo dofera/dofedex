@@ -100,12 +100,12 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 				}
 				else if(getTimer() - this._parent._nLastClickTime < ank.gapi.Gapi.DBLCLICK_DELAY && !this._parent._bDblClickEnabled)
 				{
-					ank.utils.ExtendedArray.removeTimer(this._parent,"selectablerow");
+					ank.utils.Timer.removeTimer(this._parent,"selectablerow");
 					this._parent.dispatchEvent({type:"itemdblClick"});
 				}
 				else if(this._parent._bDblClickEnabled)
 				{
-					ank.utils.ExtendedArray.setTimer(this._parent,"selectablerow",this._parent,this._parent.dispatchEvent,ank.gapi.Gapi.DBLCLICK_DELAY,[{type:"itemSelected"}]);
+					ank.utils.Timer.setTimer(this._parent,"selectablerow",this._parent,this._parent.dispatchEvent,ank.gapi.Gapi.DBLCLICK_DELAY,[{type:"itemSelected"}]);
 				}
 				else
 				{

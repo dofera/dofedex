@@ -1,6 +1,6 @@
 class dofus.aks.Dialog extends dofus.aks.Handler
 {
-	function Dialog(var3, var4)
+	function Dialog(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

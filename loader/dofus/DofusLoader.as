@@ -528,27 +528,27 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 	}
 	function getLangSharedObject()
 	{
-		return ank.utils.Sequencer.getLocal(dofus.Constants.LANG_SHAREDOBJECT_NAME);
+		return ank.utils.SharedObjectFix.getLocal(dofus.Constants.LANG_SHAREDOBJECT_NAME);
 	}
 	function getXtraSharedObject()
 	{
-		return ank.utils.Sequencer.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME);
+		return ank.utils.SharedObjectFix.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME);
 	}
 	function getOptionsSharedObject()
 	{
-		return ank.utils.Sequencer.getLocal(dofus.Constants.GLOBAL_SO_OPTIONS_NAME);
+		return ank.utils.SharedObjectFix.getLocal(dofus.Constants.GLOBAL_SO_OPTIONS_NAME);
 	}
 	function getShortcutsSharedObject()
 	{
-		return ank.utils.Sequencer.getLocal(dofus.Constants.GLOBAL_SO_SHORTCUTS_NAME);
+		return ank.utils.SharedObjectFix.getLocal(dofus.Constants.GLOBAL_SO_SHORTCUTS_NAME);
 	}
 	function getOccurencesSharedObject()
 	{
-		return ank.utils.Sequencer.getLocal(dofus.Constants.GLOBAL_SO_OCCURENCES_NAME);
+		return ank.utils.SharedObjectFix.getLocal(dofus.Constants.GLOBAL_SO_OCCURENCES_NAME);
 	}
 	function getCacheDateSharedObject()
 	{
-		return ank.utils.Sequencer.getLocal(dofus.Constants.GLOBAL_SO_CACHEDATE_NAME);
+		return ank.utils.SharedObjectFix.getLocal(dofus.Constants.GLOBAL_SO_CACHEDATE_NAME);
 	}
 	function launchBannerAnim(var2)
 	{
@@ -810,8 +810,8 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 	}
 	function clearCache()
 	{
-		ank.utils.Sequencer.getLocal(dofus.Constants.LANG_SHAREDOBJECT_NAME).clear();
-		ank.utils.Sequencer.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME).clear();
+		ank.utils.SharedObjectFix.getLocal(dofus.Constants.LANG_SHAREDOBJECT_NAME).clear();
+		ank.utils.SharedObjectFix.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME).clear();
 	}
 	function showLoader(var2, var3)
 	{
@@ -911,7 +911,7 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 										var var9 = new Object();
 										var9.name = var7;
 										var var10 = Number(var4.attributes.zaapconnectport);
-										var9.zaapConnectPort = !(var10 == undefined || _global.isNaN(var10))?var10:dofus.ZaapConnect.TCP_DEFAULT_PORT;
+										var9.zaapConnectPort = !(var10 == undefined || _global.isNaN(var10))?var10:dofus["\x1e\t\b"].TCP_DEFAULT_PORT;
 										var9.debug = var4.attributes.boo == "1";
 										var9.debugRequests = var4.attributes.debugrequests == "1" || var4.attributes.debugrequests == "2";
 										var9.logRequests = var4.attributes.debugrequests == "2";
@@ -1096,7 +1096,7 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 		{
 			dofus.Constants.LOG_DATAS = true;
 		}
-		dofus.ZaapConnect.newInstance();
+		dofus["\x1e\t\b"].newInstance();
 		this.loadLocalFileList();
 	}
 	function startJsTimer()
@@ -1336,7 +1336,7 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 		this.log(this.TABULATION + this.getText("CHECK_LAST_VERSION"));
 		this._sStep = "XTRA";
 		this.moveProgressBar(-60);
-		_global[dofus.Constants.GLOBAL_SO_XTRA_NAME] = ank.utils.Sequencer.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME);
+		_global[dofus.Constants.GLOBAL_SO_XTRA_NAME] = ank.utils.SharedObjectFix.getLocal(dofus.Constants.XTRA_SHAREDOBJECT_NAME);
 		var var2 = dofus.utils.Api.getInstance();
 		if(var2 != undefined)
 		{

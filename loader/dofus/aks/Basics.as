@@ -1,6 +1,6 @@
 class dofus.aks.Basics extends dofus.aks.Handler
 {
-	function Basics(var3, var4)
+	function Basics(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

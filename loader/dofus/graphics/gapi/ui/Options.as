@@ -139,7 +139,7 @@ if(!dofus.graphics.gapi.ui.Options)
 		this._btnTabSound.addEventListener("click",this);
 		this._btnTabDisplay.addEventListener("click",this);
 		this.api.kernel.OptionsManager.addEventListener("optionChanged",this);
-		ank.utils.CustomDate.addListener(this);
+		ank.utils.MouseEvents.addListener(this);
 	};
 	var1.addTabListeners = function addTabListeners()
 	{

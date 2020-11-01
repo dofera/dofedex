@@ -346,7 +346,7 @@ class dofus.graphics.gapi.ui.BigStoreSell extends dofus.graphics.gapi.core.Dofus
 				var var3 = this.api.lang.getText("BIGSTORE_MAX_LEVEL") + " : " + this._oData.maxLevel;
 				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_TAX") + " : " + this._oData.tax + "%");
 				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_ITEM_PER_ACCOUNT") + " : " + this._oData.maxItemCount);
-				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_SELL_TIME") + " : " + this._oData.maxSellTime + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("HOURS"),"m",this._oData.maxSellTime < 2));
+				var3 = var3 + ("\n" + this.api.lang.getText("BIGSTORE_MAX_SELL_TIME") + " : " + this._oData.maxSellTime + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",this._oData.maxSellTime < 2));
 				var3 = var3 + ("\n\n" + this.api.lang.getText("BIGSTORE_TYPES") + " :");
 				var var4 = this._oData.types;
 				for(var var3 in var4)

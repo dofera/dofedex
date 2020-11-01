@@ -161,7 +161,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 			this.attachMovie("ScrollBar","_sbVertical",30);
 			this._sbVertical.addEventListener("scroll",this);
 		}
-		ank.utils.CustomDate.addListener(this);
+		ank.utils.MouseEvents.addListener(this);
 		this._aSelectedIndexes = new Array();
 	}
 	function size()

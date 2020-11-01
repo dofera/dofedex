@@ -1,130 +1,192 @@
-class ank.utils.ExtendedArray extends Object
+class ank.utils.ExtendedArray extends Array
 {
-	static var _nTimerIndex = 0;
-	static var _oIDs = new Object();
-	static var _tTimer = new ank.utils.();
 	function ExtendedArray()
 	{
 		super();
+		this.initialize();
 	}
-	static function setTimer(var2, var3, var4, var5, var6, var7, var8)
+	function removeEventListener()
 	{
-		ank.utils.ExtendedArray.garbageCollector();
-		var var9 = ank.utils.ExtendedArray.getNextTimerIndex();
-		var var10 = _global.setInterval(ank.utils.ExtendedArray.getInstance(),"onTimer",var6,var9,var2,var3,var4,var5,var7);
-		var2.__ANKTIMERID__ = var10;
-		var2.__ANKTIMERREPEAT__ = var8;
-		if(ank.utils.ExtendedArray._oIDs[var3] == undefined)
+	}
+	function addEventListener()
+	{
+	}
+	function dispatchEvent()
+	{
+	}
+	function dispatchQueue()
+	{
+	}
+	function initialize(var2)
+	{
+		mx.events.EventDispatcher.initialize(this);
+	}
+	function isInNoEventDispatchsPeriod()
+	{
+		return this._bNoEventDispatchs;
+	}
+	function startNoEventDispatchsPeriod(var2)
+	{
+		this._bNoEventDispatchs = true;
+		if(this._nNoEventPeriodTimeout != undefined)
 		{
-			ank.utils.ExtendedArray._oIDs[var3] = new Object();
+			_global.clearTimeout(this._nNoEventPeriodTimeout);
 		}
-		ank.utils.ExtendedArray._oIDs[var3][var9] = new Array(var2,var10,var3);
+		var var3 = _global.setTimeout(this,"endNoEventDispatchsPeriod",var2);
+		this._nNoEventPeriodTimeout = var3;
 	}
-	static function clear(var2)
+	function endNoEventDispatchsPeriod()
 	{
-		if(var2 != undefined)
-		{
-			var var3 = ank.utils.ExtendedArray._oIDs[var2];
-			§§enumerate(var3);
-			while((var var0 = §§enumeration()) != null)
-			{
-				ank.utils.ExtendedArray.removeTimer(var3[k][0],var2,var3[k][1]);
-			}
-		}
-		else
-		{
-			for(var var4 in ank.utils.ExtendedArray._oIDs)
-			{
-				§§enumerate(var4);
-				while((var var0 = §§enumeration()) != null)
-				{
-					ank.utils.ExtendedArray.removeTimer(var4[kk][0],var4[kk][2],var4[kk][1]);
-				}
-			}
-		}
-		ank.utils.ExtendedArray.garbageCollector();
+		this._bNoEventDispatchs = undefined;
+		this._nNoEventPeriodTimeout = undefined;
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+		var var2 = _global.API;
+		var2.ui.getUIComponent("TaxCollectorStorage").refreshGetItemButton();
 	}
-	static function clean()
+	function createFromArray(var2)
 	{
-		ank.utils.ExtendedArray.garbageCollector();
-	}
-	static function removeTimer(var2, var3, var4)
-	{
-		if(var4 == undefined)
+		this.splice(0,this.length);
+		var var3 = 0;
+		while(var3 < var2.length)
 		{
-			if(var2 == undefined)
-			{
-				return undefined;
-			}
-			if(var2.__ANKTIMERID__ == undefined)
-			{
-				return undefined;
-			}
-			var var5 = var2.__ANKTIMERID__;
-		}
-		else
-		{
-			var5 = ank.utils.ExtendedArray._oIDs[var3][var4][1];
-		}
-		_global.clearInterval(var5);
-		delete register2.__ANKTIMERID__;
-		delete ank.utils.ExtendedArray._oIDs[var3].register4;
-	}
-	static function getInstance()
-	{
-		return ank.utils.ExtendedArray._tTimer;
-	}
-	static function garbageCollector()
-	{
-		for(var k in ank.utils.ExtendedArray._oIDs)
-		{
-			var var2 = ank.utils.ExtendedArray._oIDs[k];
-			for(var kk in var2)
-			{
-				var var3 = var2[kk];
-				if(var3[0] == undefined || (typeof var3[0] == "movieclip" && var3[0]._name == undefined || var3[0].__ANKTIMERID__ != var3[1]))
-				{
-					_global.clearInterval(var3[1]);
-					delete register2.kk;
-				}
-			}
+			this.push(var2[var3]);
+			var3 = var3 + 1;
 		}
 	}
-	static function getTimersCount()
+	function removeAll(var2)
 	{
-		var var2 = 0;
-		for(var k in ank.utils.ExtendedArray._oIDs)
+		this.splice(0,this.length);
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+	}
+	function push(var2)
+	{
+		var var4 = super.push(var3);
+		this.doDispatchEvent({type:"modelChanged",eventName:"addItem"});
+		return var4;
+	}
+	function pop()
+	{
+		var var3 = super.pop();
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+		return var3;
+	}
+	function shift()
+	{
+		var var3 = super.shift();
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+		return var3;
+	}
+	function unshift(var2)
+	{
+		var var4 = super.unshift(var3);
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+		return var4;
+	}
+	function reverse()
+	{
+		super.reverse();
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+	}
+	function replaceAll(var2, var3)
+	{
+		var var4 = [var2,0];
+		for(var k in var3)
 		{
-			var var3 = ank.utils.ExtendedArray._oIDs[k];
-			for(var kk in var3)
+			var4.push(var3[k]);
+		}
+		this.splice.apply(this,var4);
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+	}
+	function removeItems(var2, var3)
+	{
+		this.splice(var2,var3);
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
+	}
+	function updateItem(var2, var3)
+	{
+		this.splice(var2,1,var3);
+		this.doDispatchEvent({type:"modelChanged",eventName:"updateOne",updateIndex:var2});
+	}
+	function findFirstItem(var2, var3)
+	{
+		var var4 = 0;
+		while(var4 < this.length)
+		{
+			var var5 = this[var4];
+			if(var5[var2] == var3)
 			{
-				var2 = var2 + 1;
+				return {index:var4,item:var5};
 			}
+			var4 = var4 + 1;
+		}
+		return {index:-1};
+	}
+	function clone()
+	{
+		var var2 = new ank.utils.();
+		var var3 = 0;
+		while(var3 < this.length)
+		{
+			var2.push(this[var3].clone());
+			var3 = var3 + 1;
 		}
 		return var2;
 	}
-	static function getNextTimerIndex()
+	function shuffle()
 	{
-		return ank.utils.ExtendedArray._nTimerIndex++;
+		var var2 = this.clone();
+		var var3 = 0;
+		while(var3 < var2.length)
+		{
+			var var4 = var2[var3];
+			var var5 = random(var2.length);
+			var2[var3] = var2[var5];
+			var2[var5] = var4;
+			var3 = var3 + 1;
+		}
+		return var2;
 	}
-	function onTimer(var2, var3, var4, var5, var6, var7)
+	function doDispatchEvent(var2)
 	{
-		if(var3 == undefined)
+		if(this.isInNoEventDispatchsPeriod())
 		{
-			ank.utils.ExtendedArray.removeTimer(undefined,var4,var2);
 			return undefined;
 		}
-		if(var3.__ANKTIMERID__ == undefined)
+		this.dispatchEvent(var2);
+	}
+	function bubbleSortOn(var2, var3)
+	{
+		if((var3 & Array.ASCENDING) == 0 && (var3 & Array.DESCENDING) == 0)
 		{
-			ank.utils.ExtendedArray.removeTimer(undefined,var4,var2);
-			return undefined;
+			var3 = var3 | Array.ASCENDING;
 		}
-		if(!var3.__ANKTIMERREPEAT__)
+		while(true)
 		{
-			ank.utils.ExtendedArray.removeTimer(var3,var4,var2);
-			delete register3.__ANKTIMERID__;
+			var var4 = false;
+			var var5 = 1;
+			while(var5 < this.length)
+			{
+				if((var3 & Array.ASCENDING) > 0 && this[var5 - 1][var2] > this[var5][var2] || (var3 & Array.DESCENDING) > 0 && this[var5 - 1][var2] < this[var5][var2])
+				{
+					var var6 = this[var5 - 1];
+					this[var5 - 1] = this[var5];
+					this[var5] = var6;
+					var4 = true;
+				}
+				var5 = var5 + 1;
+			}
+			if(var4)
+			{
+				continue;
+			}
+			break;
 		}
-		var6.apply(var5,var7);
-		ank.utils.ExtendedArray.garbageCollector();
+	}
+	function concat(var2)
+	{
+		var var4 = super.concat(var3);
+		var var5 = new ank.utils.();
+		var5.createFromArray(var4);
+		return var5;
 	}
 }

@@ -72,7 +72,7 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
-		this._so = ank.utils.Sequencer.getLocal(this._sSharedObjectName);
+		this._so = ank.utils.SharedObjectFix.getLocal(this._sSharedObjectName);
 		if(var2.FILE_BEGIN != true && var2.FILE_END != true)
 		{
 			this.broadcastMessage("onCorruptFile",var2,var2.getBytesTotal(),this.getCurrentServer());
@@ -126,7 +126,7 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 			}
 			if(this._bUseMultiSO)
 			{
-				this._so = ank.utils.Sequencer.getLocal(this._sSharedObjectName + "_" + this._aData[var2].key);
+				this._so = ank.utils.SharedObjectFix.getLocal(this._sSharedObjectName + "_" + this._aData[var2].key);
 			}
 			this._so.data[this._aData[var2].key] = this._aData[var2].value;
 			delete this._aData.register2;

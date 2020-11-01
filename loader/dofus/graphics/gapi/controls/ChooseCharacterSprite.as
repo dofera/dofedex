@@ -155,13 +155,13 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			};
 			this._mcInteraction.onPress = function()
 			{
-				ank.utils.ExtendedArray.setTimer(this,"AnimCharacter",this,this.launchAnimCharacter,500);
+				ank.utils.Timer.setTimer(this,"AnimCharacter",this,this.launchAnimCharacter,500);
 			};
 			this._mcInteraction.onRelease = function()
 			{
 				delete this._parent.onEnterFrame;
 				this._parent.innerRelease();
-				ank.utils.ExtendedArray.removeTimer(this,"AnimCharacter");
+				ank.utils.Timer.removeTimer(this,"AnimCharacter");
 			};
 			this._mcInteraction.onRollOver = this._mcInteraction.onDragOver = function()
 			{

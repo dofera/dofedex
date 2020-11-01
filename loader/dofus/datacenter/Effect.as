@@ -236,7 +236,7 @@ class dofus.datacenter.Effect extends Object
 										var var8 = String(Math.floor(this._nParam3) / 100).split(".");
 										var var9 = Number(var8[0]);
 										var var10 = this._nParam3 - var9 * 100;
-										var3[0] = ank.utils.ExtendedObject.getDescription(this.api.lang.getConfigText("DATE_FORMAT"),[this._nParam1,new ank.utils.(var6 + 1).addLeftChar("0",2),new ank.utils.(var7).addLeftChar("0",2),var9,new ank.utils.(var10).addLeftChar("0",2)]);
+										var3[0] = ank.utils.PatternDecoder.getDescription(this.api.lang.getConfigText("DATE_FORMAT"),[this._nParam1,new ank.utils.(var6 + 1).addLeftChar("0",2),new ank.utils.(var7).addLeftChar("0",2),var9,new ank.utils.(var10).addLeftChar("0",2)]);
 								}
 							case 628:
 								var3[2] = this.api.lang.getMonstersText(this._nParam3).n;
@@ -272,7 +272,7 @@ class dofus.datacenter.Effect extends Object
 		}
 		else
 		{
-			var var15 = ank.utils.ExtendedObject.getDescription(var2,var3);
+			var var15 = ank.utils.PatternDecoder.getDescription(var2,var3);
 			if(var15 == null || var15 == "null")
 			{
 				return new String();

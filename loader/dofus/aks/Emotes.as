@@ -1,6 +1,6 @@
 class dofus.aks.Emotes extends dofus.aks.Handler
 {
-	function Emotes(var3, var4)
+	function Emotes(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

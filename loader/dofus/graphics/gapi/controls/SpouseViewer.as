@@ -51,8 +51,8 @@ class dofus.graphics.gapi.controls.SpouseViewer extends dofus.graphics.gapi.core
 	{
 		if(this._oSpouse != undefined)
 		{
-			this._winBg.title = ank.utils.ExtendedObject.combine(this.api.lang.getText("SPOUSE"),this._oSpouse.sex,true);
-			this._lblSpouse.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("SPOUSE"),this._oSpouse.sex,true);
+			this._winBg.title = ank.utils.PatternDecoder.combine(this.api.lang.getText("SPOUSE"),this._oSpouse.sex,true);
+			this._lblSpouse.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("SPOUSE"),this._oSpouse.sex,true);
 			this._lblName.text = this._oSpouse.name;
 			this.api.colors.addSprite(this._ldrArtwork,this._oSpouse);
 			this._ldrArtwork.contentPath = dofus.Constants.GUILDS_FACES_PATH + this._oSpouse.gfx + ".swf";
@@ -69,7 +69,7 @@ class dofus.graphics.gapi.controls.SpouseViewer extends dofus.graphics.gapi.core
 			{
 				this._mcInFight._visible = false;
 				this._lblLevel.text = "";
-				this._lblArea.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("SPOUSE_NOT_CONNECTED"),this._oSpouse.sex,true);
+				this._lblArea.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("SPOUSE_NOT_CONNECTED"),this._oSpouse.sex,true);
 				this._lblCoordinates.text = "";
 				this._btnJoin.enabled = false;
 				this._btnCompass.enabled = false;

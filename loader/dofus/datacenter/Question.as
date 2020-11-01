@@ -21,7 +21,7 @@ class dofus.datacenter.Question extends Object
 	{
 		this.api = _global.API;
 		this._nQuestionID = var2;
-		this._sQuestionText = ank.utils.ExtendedObject.getDescription(this.api.lang.getDialogQuestionText(var2),var4);
+		this._sQuestionText = ank.utils.PatternDecoder.getDescription(this.api.lang.getDialogQuestionText(var2),var4);
 		this._eaResponsesObjects = new ank.utils.();
 		var var5 = 0;
 		while(var5 < var3.length)

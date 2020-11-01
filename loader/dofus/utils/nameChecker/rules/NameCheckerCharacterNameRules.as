@@ -1,4 +1,4 @@
-class dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules extends dofus.utils.ApiElement implements dofus.utils.nameChecker.rules.INameCheckerRules
+class dofus.utils["\b\x18"].rules.NameCheckerCharacterNameRules extends dofus.utils.ApiElement implements dofus.utils["\b\x18"].rules.INameCheckerRules
 {
 	var MIN_NAME_LENGTH = 2;
 	var MAX_NAME_LENGTH = 20;

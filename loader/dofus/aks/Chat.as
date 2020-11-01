@@ -1,6 +1,6 @@
 class dofus.aks.Chat extends dofus.aks.Handler
 {
-	function Chat(var3, var4)
+	function Chat(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

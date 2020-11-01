@@ -94,7 +94,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 		if(this._oUpdateFunction != undefined)
 		{
 			var var2 = this._oUpdateFunction.method.apply(this._oUpdateFunction.object);
-			ank.utils.ExtendedArray.setTimer(this,"clock",this,this.layoutContent,30000);
+			ank.utils.Timer.setTimer(this,"clock",this,this.layoutContent,30000);
 			this._nHours = var2[0];
 			this._nMinutes = var2[1];
 		}

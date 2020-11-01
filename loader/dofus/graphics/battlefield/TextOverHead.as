@@ -1,6 +1,6 @@
-class dofus.graphics.battlefield.TextOverHead extends dofus.graphics.battlefield.AbstractTextOverHead
+class dofus.graphics.battlefield["\x1e\x0b\b"] extends dofus.graphics.battlefield.AbstractTextOverHead
 {
-	function TextOverHead(var3, var4, var5, var6, var7, var8)
+	function §\x1e\x0b\b§(var2, var3, var4, var5, var6, var7)
 	{
 		super();
 		this.initialize(var8 != undefined);

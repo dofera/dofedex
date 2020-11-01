@@ -100,7 +100,7 @@ class dofus.graphics.gapi.ui.InventorySearch extends dofus.graphics.gapi.core.Do
 			}
 		}
 		this._lstItems.dataProvider = var4;
-		this._lblSearchCount.text = var4.length != 0?var4.length + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("OBJECTS"),"m",var4 < 2):this.api.lang.getText("NO_INVENTORY_SEARCH_RESULT");
+		this._lblSearchCount.text = var4.length != 0?var4.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",var4 < 2):this.api.lang.getText("NO_INVENTORY_SEARCH_RESULT");
 		this._btnView.enabled = false;
 	}
 	function searchWordsInName(var2, var3, var4)

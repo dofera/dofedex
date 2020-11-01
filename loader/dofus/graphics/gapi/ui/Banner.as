@@ -1359,7 +1359,7 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 							case "_btnFights":
 								if(this._nFightsCount != 0)
 								{
-									this.gapi.showTooltip(ank.utils.ExtendedObject.combine(this.api.lang.getText("FIGHTS_ON_MAP",[this._nFightsCount]),"m",this._nFightsCount < 2),var2.target,-20,{bYLimit:false});
+									this.gapi.showTooltip(ank.utils.PatternDecoder.combine(this.api.lang.getText("FIGHTS_ON_MAP",[this._nFightsCount]),"m",this._nFightsCount < 2),var2.target,-20,{bYLimit:false});
 								}
 								break loop0;
 							case "_btnNextTurn":

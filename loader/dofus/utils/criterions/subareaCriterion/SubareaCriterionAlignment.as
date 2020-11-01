@@ -8,7 +8,7 @@ class dofus.utils.criterions.subareaCriterion.SubareaCriterionAlignment extends 
 	{
 		this._sOperator = var2;
 		this._nAlignmentIndex = var3;
-		this._aSubarea = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(this.api.datacenter.Map.subarea);
+		this._aSubarea = (dofus.datacenter["\x1e\f\b"])this.api.datacenter.Subareas.getItemAt(this.api.datacenter.Map.subarea);
 	}
 	function isFilled()
 	{

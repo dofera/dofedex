@@ -1,6 +1,6 @@
 class dofus.datacenter.ItemSet extends Object
 {
-	function ItemSet(var3, var4, var5)
+	function ItemSet(var2, var3, var4)
 	{
 		super();
 		this.initialize(var3,var4,var5);

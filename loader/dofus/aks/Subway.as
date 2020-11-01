@@ -1,6 +1,6 @@
 class dofus.aks.Subway extends dofus.aks.Handler
 {
-	function Subway(var3, var4)
+	function Subway(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

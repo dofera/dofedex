@@ -92,7 +92,7 @@ class ank.battlefield.mc.OverHead extends MovieClip
 		var6.args = var4;
 		if(var5 != undefined)
 		{
-			ank.utils.ExtendedArray.setTimer(var6,"battlefield",this,this.removeItem,var5,[this._nCurrentItemID]);
+			ank.utils.Timer.setTimer(var6,"battlefield",this,this.removeItem,var5,[this._nCurrentItemID]);
 		}
 		this._oLayers[var2] = var6;
 		this._nCurrentItemID++;

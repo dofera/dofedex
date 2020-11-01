@@ -22,11 +22,11 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 	function initTexts()
 	{
 		this._lblFilter.text = this.api.lang.getText("FILTER");
-		this._lblAreas.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("CONQUEST_AREA_WORD"),null,false);
-		this._lblAreaTitle.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("CONQUEST_AREA_WORD"),null,true);
+		this._lblAreas.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_AREA_WORD"),null,false);
+		this._lblAreaTitle.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_AREA_WORD"),null,true);
 		this._lblAreaDetails.text = this.api.lang.getText("CONQUEST_STATE_WORD") + " / " + this.api.lang.getText("CONQUEST_PRISM_WORD");
-		this._lblVillages.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("CONQUEST_VILLAGE_WORD"),null,false);
-		this._lblVillageTitle.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("CONQUEST_VILLAGE_WORD"),null,true);
+		this._lblVillages.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_VILLAGE_WORD"),null,false);
+		this._lblVillageTitle.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_VILLAGE_WORD"),null,true);
 		this._lblVillageDetails.text = this.api.lang.getText("CONQUEST_STATE_WORD") + " / " + this.api.lang.getText("CONQUEST_DOOR_WORD") + " / " + this.api.lang.getText("CONQUEST_PRISM_WORD");
 	}
 	function addListeners()
@@ -84,8 +84,8 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 	function initData()
 	{
 		var var2 = this.api.datacenter.Conquest.worldDatas;
-		this._lblGotAreas.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"f",false) + " : " + var2.ownedAreas + " / " + var2.possibleAreas + " / " + var2.totalAreas;
-		this._lblGotVillages.text = ank.utils.ExtendedObject.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"m",false) + " : " + var2.ownedVillages + " / " + var2.totalVillages;
+		this._lblGotAreas.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"f",false) + " : " + var2.ownedAreas + " / " + var2.possibleAreas + " / " + var2.totalAreas;
+		this._lblGotVillages.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"m",false) + " : " + var2.ownedVillages + " / " + var2.totalVillages;
 		this.refreshAreaList();
 		this._lstVillages.dataProvider = var2.villages;
 		var var3 = new ank.utils.();

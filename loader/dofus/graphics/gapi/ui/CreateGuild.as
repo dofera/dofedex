@@ -135,8 +135,8 @@ class dofus.graphics.gapi.ui.CreateGuild extends dofus.graphics.gapi.core.DofusA
 				}
 				if(this.api.lang.getConfigText("GUILD_NAME_FILTER"))
 				{
-					var var4 = new dofus.utils.nameChecker.(var3);
-					var var5 = new dofus.utils.nameChecker.rules.();
+					var var4 = new dofus.utils["\b\x18"].(var3);
+					var var5 = new dofus.utils["\b\x18"].rules.();
 					var var6 = var4.isValidAgainstWithDetails(var5);
 					if(!var6.IS_SUCCESS)
 					{

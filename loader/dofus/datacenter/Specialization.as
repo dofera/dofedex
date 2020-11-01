@@ -1,6 +1,6 @@
 class dofus.datacenter.Specialization extends Object
 {
-	function Specialization(var3)
+	function Specialization(var2)
 	{
 		super();
 		this.api = _global.API;

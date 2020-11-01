@@ -17,7 +17,7 @@ class dofus.datacenter.FeatEffect extends Object
 	}
 	function __get__description()
 	{
-		return ank.utils.ExtendedObject.getDescription(this._sFeatEffectInfos,this._aParams);
+		return ank.utils.PatternDecoder.getDescription(this._sFeatEffectInfos,this._aParams);
 	}
 	function __set__params(var2)
 	{

@@ -150,7 +150,7 @@ if(!dofus.aks.Account)
 	var1.getQueuePosition = function getQueuePosition()
 	{
 		this.aks.send("Af",false);
-		ank.utils.ExtendedArray.setTimer(this.WaitQueueTimer,"WaitQueue",this,this.getQueuePosition,Number(this.api.lang.getConfigText("DELAY_WAIT_QUEUE_REFRESH")));
+		ank.utils.Timer.setTimer(this.WaitQueueTimer,"WaitQueue",this,this.getQueuePosition,Number(this.api.lang.getConfigText("DELAY_WAIT_QUEUE_REFRESH")));
 	};
 	var1.getRandomCharacterName = function getRandomCharacterName()
 	{
@@ -253,7 +253,7 @@ if(!dofus.aks.Account)
 	};
 	var1.onLogin = function onLogin(var2, var3)
 	{
-		ank.utils.ExtendedArray.removeTimer(this.WaitQueueTimer,"WaitQueue");
+		ank.utils.Timer.removeTimer(this.WaitQueueTimer,"WaitQueue");
 		this.api.ui.unloadUIComponent("CenterText");
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.unloadUIComponent("WaitingQueue");
@@ -308,7 +308,7 @@ if(!dofus.aks.Account)
 								}
 								var8 = var8 + 1;
 							}
-							var5 = ank.utils.ExtendedObject.getDescription(this.api.lang.getText("KICKED"),var7);
+							var5 = ank.utils.PatternDecoder.getDescription(this.api.lang.getText("KICKED"),var7);
 							break loop1;
 						default:
 							switch(null)
@@ -535,7 +535,7 @@ if(!dofus.aks.Account)
 		this.api.ui.unloadUIComponent("CreateCharacter");
 		this.api.ui.unloadUIComponent("ChooseServer");
 		this.api.ui.unloadUIComponent("AutomaticServer");
-		ank.utils.ExtendedArray.removeTimer(this.WaitQueueTimer,"WaitQueue");
+		ank.utils.Timer.removeTimer(this.WaitQueueTimer,"WaitQueue");
 		this.api.ui.getUIComponent("MainMenu").quitMode = "menu";
 		if(this.api.datacenter.Basics.hasCreatedCharacter)
 		{
@@ -711,7 +711,7 @@ if(!dofus.aks.Account)
 			this.api.network.Basics.onAuthorizedCommandPrompt(this.api.datacenter.Basics.aks_current_server.label);
 			if(_global.CONFIG.delay != undefined)
 			{
-				ank.utils.ExtendedArray.setTimer(this,"connect",this.aks,this.aks.connect,_global.CONFIG.delay,[var5,var6,false]);
+				ank.utils.Timer.setTimer(this,"connect",this.aks,this.aks.connect,_global.CONFIG.delay,[var5,var6,false]);
 			}
 			else
 			{
@@ -762,7 +762,7 @@ if(!dofus.aks.Account)
 		this.api.datacenter.Player.data.GameActionsManager.clear();
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.unloadUIComponent("WaitingQueue");
-		ank.utils.ExtendedArray.removeTimer(this.WaitQueueTimer,"WaitQueue");
+		ank.utils.Timer.removeTimer(this.WaitQueueTimer,"WaitQueue");
 		if(!var2)
 		{
 			this.api.datacenter.Basics.aks_rescue_count = -1;
@@ -810,7 +810,7 @@ if(!dofus.aks.Account)
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.unloadUIComponent("ChooseCharacter");
 		this.api.ui.unloadUIComponent("WaitingQueue");
-		ank.utils.ExtendedArray.removeTimer(this.WaitQueueTimer,"WaitQueue");
+		ank.utils.Timer.removeTimer(this.WaitQueueTimer,"WaitQueue");
 		if(var2)
 		{
 			var var4 = var3.split("|");

@@ -56,7 +56,7 @@ class dofus.datacenter.QuestObjective
 					var5[1] = this.api.lang.getItemUnicText(var4[1]).n;
 					var5[2] = var4[2];
 			}
-			var var7 = ank.utils.ExtendedObject.getDescription(var6,var5);
+			var var7 = ank.utils.PatternDecoder.getDescription(var6,var5);
 			if(var7 != null && dofus.Constants.DEBUG)
 			{
 				var7 = var7 + " (" + this._nID + ")";
@@ -64,7 +64,7 @@ class dofus.datacenter.QuestObjective
 			return var7;
 		}
 		var5 = [var4[0]];
-		var7 = ank.utils.ExtendedObject.getDescription(var6,var5);
+		var7 = ank.utils.PatternDecoder.getDescription(var6,var5);
 		if(var7 != null && dofus.Constants.DEBUG)
 		{
 			var7 = var7 + " (" + this._nID + ")";

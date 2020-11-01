@@ -26,7 +26,7 @@ class ank.battlefield.mc.Bubble extends MovieClip
 		this.drawBackground(var6,var5);
 		this.adjust(var6 + ank.battlefield.Constants.BUBBLE_MARGIN * 2,var5 + ank.battlefield.Constants.BUBBLE_MARGIN * 2 + ank.battlefield.Constants.BUBBLE_PIC_HEIGHT,var3,var4);
 		var var7 = ank.battlefield.Constants.BUBBLE_REMOVE_TIMER + var2.length * ank.battlefield.Constants.BUBBLE_REMOVE_CHAR_TIMER;
-		ank.utils.ExtendedArray.setTimer(this,"battlefield",this,this.remove,var7);
+		ank.utils.Timer.setTimer(this,"battlefield",this,this.remove,var7);
 	}
 	function remove()
 	{

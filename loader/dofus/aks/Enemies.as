@@ -1,6 +1,6 @@
 class dofus.aks.Enemies extends dofus.aks.Handler
 {
-	function Enemies(var3, var4)
+	function Enemies(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

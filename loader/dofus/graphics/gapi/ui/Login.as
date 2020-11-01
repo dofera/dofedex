@@ -56,13 +56,13 @@ class dofus.graphics.gapi.ui.Login extends dofus.graphics.gapi.core.DofusAdvance
 			return undefined;
 		}
 		this._nLastRegisterTime = getTimer();
-		var var3 = dofus.ZaapConnect.getInstance().consumeAuthToken();
+		var var3 = dofus["\x1e\t\b"].getInstance().consumeAuthToken();
 		if(var3 == undefined)
 		{
-			dofus.ZaapConnect.getInstance().renewAuthKey();
+			dofus["\x1e\t\b"].getInstance().renewAuthKey();
 			return undefined;
 		}
-		var var4 = dofus.ZaapConnect.LOGIN_TOKEN_NAME;
+		var var4 = dofus["\x1e\t\b"].LOGIN_TOKEN_NAME;
 		this.onLogin(var4,var3,true);
 	}
 	function refreshAutoLoginUi()
@@ -84,11 +84,11 @@ class dofus.graphics.gapi.ui.Login extends dofus.graphics.gapi.core.DofusAdvance
 	}
 	function usingZaapConnect()
 	{
-		if(!dofus.ZaapConnect.ENABLED)
+		if(!dofus["\x1e\t\b"].ENABLED)
 		{
 			return false;
 		}
-		var var2 = dofus.ZaapConnect.getInstance();
+		var var2 = dofus["\x1e\t\b"].getInstance();
 		return var2 != null && var2.getSessionToken() != null;
 	}
 	function init()

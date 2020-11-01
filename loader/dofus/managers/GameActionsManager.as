@@ -3,7 +3,7 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 	static var STATE_TRANSMITTING = 2;
 	static var STATE_IN_PROGRESS = 1;
 	static var STATE_READY = 0;
-	function GameActionsManager(var3, var4)
+	function GameActionsManager(var2, var3)
 	{
 		super();
 		this.initialize(var3,var4);

@@ -1,6 +1,6 @@
 class dofus.aks.Documents extends dofus.aks.Handler
 {
-	function Documents(var3, var4)
+	function Documents(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

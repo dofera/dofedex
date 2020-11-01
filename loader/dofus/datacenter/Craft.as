@@ -1,6 +1,6 @@
 class dofus.datacenter.Craft extends Object
 {
-	function Craft(var3, var4)
+	function Craft(var2, var3)
 	{
 		super();
 		this.initialize(var3,var4);

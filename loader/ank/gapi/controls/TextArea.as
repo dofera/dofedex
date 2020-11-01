@@ -209,7 +209,7 @@ class ank.gapi.controls.TextArea extends ank.gapi.core.UIBasicComponent
 		{
 			this._parent.onKillFocus();
 		};
-		ank.utils.CustomDate.addListener(this);
+		ank.utils.MouseEvents.addListener(this);
 	}
 	function size()
 	{

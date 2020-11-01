@@ -5,7 +5,7 @@ class dofus.aks.Tutorial extends dofus.aks.Handler
 	static var INTRO_CINEMATIC_PATH_LIGHT = "";
 	static var INTRO_CINEMATIC_MAX_LEN_LIGHT = 120;
 	static var NOOB_AREA_MUSIC_ID = 129;
-	function Tutorial(var3, var4)
+	function Tutorial(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

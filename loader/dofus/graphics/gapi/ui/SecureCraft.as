@@ -344,7 +344,7 @@ class dofus.graphics.gapi.ui.SecureCraft extends dofus.graphics.gapi.core.DofusA
 		this._cgLocal.dataProvider = this._eaLocalDataProvider;
 		this._bInvalidateCoop = true;
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function updateCoopData()
 	{
@@ -366,7 +366,7 @@ class dofus.graphics.gapi.ui.SecureCraft extends dofus.graphics.gapi.core.DofusA
 		}
 		this.switchToPayMode(true);
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function updatePayIfSuccessData(var2)
 	{
@@ -377,14 +377,14 @@ class dofus.graphics.gapi.ui.SecureCraft extends dofus.graphics.gapi.core.DofusA
 		}
 		this.switchToPayMode(true);
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function updateDistantData()
 	{
 		this._cgDistant.dataProvider = this._eaDistantDataProvider;
 		this._bInvalidateCoop = true;
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function updateReadyState()
 	{
@@ -1104,7 +1104,7 @@ class dofus.graphics.gapi.ui.SecureCraft extends dofus.graphics.gapi.core.DofusA
 	function localKamaChange(var2)
 	{
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function payKamaChange(var2)
 	{
@@ -1121,7 +1121,7 @@ class dofus.graphics.gapi.ui.SecureCraft extends dofus.graphics.gapi.core.DofusA
 		}
 		this._lblPayKama.text = new ank.utils.(var2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function payIfSuccessKamaChange(var2)
 	{
@@ -1138,7 +1138,7 @@ class dofus.graphics.gapi.ui.SecureCraft extends dofus.graphics.gapi.core.DofusA
 		}
 		this._lblPayIfSuccessKama.text = new ank.utils.(var2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
 		this.hideButtonValidate(true);
-		ank.utils.ExtendedArray.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
+		ank.utils.Timer.setTimer(this,"securecraft",this,this.hideButtonValidate,dofus.graphics.gapi.ui.SecureCraft.DELAY_BEFORE_VALIDATE,[false]);
 	}
 	function yes()
 	{

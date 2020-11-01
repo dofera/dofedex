@@ -1,6 +1,6 @@
 class dofus.aks.Key extends dofus.aks.Handler
 {
-	function Key(var3, var4)
+	function Key(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}
@@ -8,7 +8,7 @@ class dofus.aks.Key extends dofus.aks.Handler
 	{
 		this.aks.send("KV",false);
 	}
-	function sendKey(var3, var4)
+	function sendKey(var2, var3)
 	{
 		this.aks.send("KK" + var2 + "|" + var3);
 	}

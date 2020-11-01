@@ -1,6 +1,6 @@
 class dofus.aks.Mount extends dofus.aks.Handler
 {
-	function Mount(var3, var4)
+	function Mount(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

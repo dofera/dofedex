@@ -474,7 +474,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 			if(this._bTimerEnable != true)
 			{
 				this._bTimerEnable = true;
-				ank.utils.ExtendedArray.setTimer(this,"mapnavigator",this,this.onClickTimer,ank.gapi.Gapi.DBLCLICK_DELAY);
+				ank.utils.Timer.setTimer(this,"mapnavigator",this,this.onClickTimer,ank.gapi.Gapi.DBLCLICK_DELAY);
 			}
 			else
 			{
@@ -596,7 +596,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	}
 	function onClickTimer()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"mapnavigator");
+		ank.utils.Timer.removeTimer(this,"mapnavigator");
 		this._bTimerEnable = false;
 	}
 }

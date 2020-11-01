@@ -289,12 +289,12 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 				}
 				else if(getTimer() - this._parent._nLastClickTime < ank.gapi.Gapi.DBLCLICK_DELAY)
 				{
-					ank.utils.ExtendedArray.removeTimer(this._parent,"container");
+					ank.utils.Timer.removeTimer(this._parent,"container");
 					this._parent.dispatchEvent({type:"dblClick"});
 				}
 				else
 				{
-					ank.utils.ExtendedArray.setTimer(this._parent,"container",this._parent,this._parent.dispatchEvent,ank.gapi.Gapi.DBLCLICK_DELAY,[{type:"click"}]);
+					ank.utils.Timer.setTimer(this._parent,"container",this._parent,this._parent.dispatchEvent,ank.gapi.Gapi.DBLCLICK_DELAY,[{type:"click"}]);
 				}
 				this._parent._sLastMouseAction = "Release";
 				this._parent._nLastClickTime = getTimer();

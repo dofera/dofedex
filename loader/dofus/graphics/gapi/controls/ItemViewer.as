@@ -155,7 +155,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				this._btnTabCharacteristics._visible = false;
 			}
 			this._lblPrice.text = var2.price != undefined?new ank.utils.(var2.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3):"";
-			this._lblWeight.text = var2.weight + " " + ank.utils.ExtendedObject.combine(this._parent.api.lang.getText("PODS"),"m",var2.weight < 2);
+			this._lblWeight.text = var2.weight + " " + ank.utils.PatternDecoder.combine(this._parent.api.lang.getText("PODS"),"m",var2.weight < 2);
 			if(var2.isEthereal)
 			{
 				var var4 = var2.etherealResistance;

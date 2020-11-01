@@ -1,6 +1,6 @@
-class dofus.datacenter.ConquestWorldData extends Object
+class dofus.datacenter["\x12\b"] extends Object
 {
-	function ConquestWorldData()
+	function §\x12\b§()
 	{
 		super();
 	}

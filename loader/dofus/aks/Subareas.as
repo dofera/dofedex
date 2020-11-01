@@ -1,6 +1,6 @@
 class dofus.aks.Subareas extends dofus.aks.Handler
 {
-	function Subareas(var3, var4)
+	function Subareas(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}
@@ -25,7 +25,7 @@ class dofus.aks.Subareas extends dofus.aks.Handler
 		var var4 = Number(var3[0]);
 		var var5 = Number(var3[1]);
 		var var6 = Number(var3[2]) == 1;
-		var var7 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(var4);
+		var var7 = (dofus.datacenter["\x1e\f\b"])this.api.datacenter.Subareas.getItemAt(var4);
 		if(var7 == undefined)
 		{
 			var7 = new dofus.datacenter.(var4,var5);

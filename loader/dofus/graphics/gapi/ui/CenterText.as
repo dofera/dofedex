@@ -38,7 +38,7 @@ class dofus.graphics.gapi.ui.CenterText extends dofus.graphics.gapi.core.DofusAd
 		this._prgbGfxLoad._visible = false;
 		if(this._nTimer != 0)
 		{
-			ank.utils.ExtendedArray.setTimer(this,"centertext",this,this.unloadThis,this._nTimer);
+			ank.utils.Timer.setTimer(this,"centertext",this,this.unloadThis,this._nTimer);
 		}
 	}
 	function initText()

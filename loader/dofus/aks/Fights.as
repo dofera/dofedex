@@ -1,6 +1,6 @@
 class dofus.aks.Fights extends dofus.aks.Handler
 {
-	function Fights(var3, var4)
+	function Fights(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

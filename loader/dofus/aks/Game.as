@@ -5,7 +5,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 	var _bIsBusy = false;
 	var _aGameSpriteLeftHistory = new Array();
 	var nLastMapIdReceived = -1;
-	function Game(var3, var4)
+	function Game(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}
@@ -327,7 +327,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.api.ui.loadUIComponent("StringCourse","StringCourse",{gfx:var8.artworkFile,name:var8.name,level:this.api.lang.getText("LEVEL_SMALL") + " " + var8.Level,colors:var9},{bForceLoad:true});
 		}
 		this.api.kernel.GameManager.cleanUpGameArea(true);
-		ank.utils.ExtendedArray.setTimer(this.api.network.Ping,"GameDecoDetect",this.api.network,this.api.network.quickPing,var6 * 1000);
+		ank.utils.Timer.setTimer(this.api.network.Ping,"GameDecoDetect",this.api.network,this.api.network.quickPing,var6 * 1000);
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_START);
 	}
 	function onTurnFinish(var2)
@@ -1475,7 +1475,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		else
 		{
 			ank.utils.Logger.err("[AKS.Game.onEnd] Impossible de trouver le sequencer");
-			ank.utils.ExtendedArray.setTimer(this,"game",this.api.kernel.GameManager,this.api.kernel.GameManager.terminateFight,500);
+			ank.utils.Timer.setTimer(this,"game",this.api.kernel.GameManager,this.api.kernel.GameManager.terminateFight,500);
 		}
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_ENDFIGHT);
 	}

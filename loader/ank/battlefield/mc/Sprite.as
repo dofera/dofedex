@@ -308,7 +308,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			{
 				this.setDepth(var3);
 			}
-			ank.utils.SharedObjectFix.getInstance().addFunction(this,this,this.basicMove,[var14,var16,var17],this,this.basicMoveEnd,[var2,var10,var11,var3,var4,var5 == "slide",!var18]);
+			ank.utils.CyclicTimer.getInstance().addFunction(this,this,this.basicMove,[var14,var16,var17],this,this.basicMoveEnd,[var2,var10,var11,var3,var4,var5 == "slide",!var18]);
 		}
 		else
 		{
@@ -377,7 +377,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		{
 			return undefined;
 		}
-		ank.utils.ExtendedArray.setTimer(this,"battlefield",this,this.setAnim,var5,[this._oData.defaultAnimation]);
+		ank.utils.Timer.setTimer(this,"battlefield",this,this.setAnim,var5,[this._oData.defaultAnimation]);
 	}
 	function setAnim(var2, var3, var4)
 	{
@@ -523,11 +523,11 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		if(this._oData.hasCarriedChild())
 		{
-			ank.utils.SharedObjectFix.getInstance().addFunction(this,this,this.updateCarriedPosition);
+			ank.utils.CyclicTimer.getInstance().addFunction(this,this,this.updateCarriedPosition);
 		}
 		if(this._oData.isMounting)
 		{
-			ank.utils.SharedObjectFix.getInstance().addFunction(this,this,this.updateChevauchorPosition);
+			ank.utils.CyclicTimer.getInstance().addFunction(this,this,this.updateChevauchorPosition);
 		}
 	}
 	function updateCarriedPosition()

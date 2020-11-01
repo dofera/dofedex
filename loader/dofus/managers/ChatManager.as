@@ -30,7 +30,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 	static var LINK_FILTERS = ["WWW","HTTP","@",".COM",".FR",".INFO","HOTMAIL","MSN","GMAIL","FTP"];
 	static var WHITE_LIST = [".DOFUS.COM",".ANKAMA-GAMES.COM",".GOOGLE.COM",".DOFUS.FR",".DOFUS.DE",".DOFUS.ES",".DOFUS.CO.UK",".WAKFU.COM",".ANKAMA-SHOP.COM",".ANKAMA.COM",".ANKAMA-EDITIONS.COM",".ANKAMA-WEB.COM",".ANKAMA-EVENTS.COM",".DOFUS-ARENA.COM",".MUTAFUKAZ.COM",".MANGA-DOFUS.COM",".LABANDEPASSANTE.FR","@_@",".ANKAMA-PLAY.COM"];
 	var _nFileOutput = 0;
-	function ChatManager(var3)
+	function ChatManager(var2)
 	{
 		super();
 		dofus.managers.ChatManager._sSelf = this;

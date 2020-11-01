@@ -1,6 +1,6 @@
 class dofus.aks.Guild extends dofus.aks.Handler
 {
-	function Guild(var3, var4)
+	function Guild(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

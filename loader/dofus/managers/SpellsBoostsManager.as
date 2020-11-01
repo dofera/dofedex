@@ -13,7 +13,7 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 	static var ACTION_BOOST_SPELL_MAXPERTARGET = 291;
 	static var ACTION_BOOST_SPELL_SET_INTVL = 292;
 	static var _sSelf = null;
-	function SpellsBoostsManager(var3)
+	function SpellsBoostsManager(var2)
 	{
 		super();
 		dofus.managers.SpellsBoostsManager._sSelf = this;

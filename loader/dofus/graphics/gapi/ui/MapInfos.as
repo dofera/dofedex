@@ -30,7 +30,7 @@ class dofus.graphics.gapi.ui.MapInfos extends dofus.graphics.gapi.core.DofusAdva
 		}
 		else
 		{
-			var var3 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(var2.subarea);
+			var var3 = (dofus.datacenter["\x1e\f\b"])this.api.datacenter.Subareas.getItemAt(var2.subarea);
 			var var4 = var2.name + (var3 != undefined?var3.alignment.name != undefined?" - " + var3.alignment.name:"":"");
 			this._lblArea.text = var4;
 			this._lblCoordinates.text = var2.coordinates;

@@ -93,7 +93,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 				this._parent._nOffsetY = 0;
 				this._parent.dispatchEvent({type:"drop"});
 				this._parent._bTimerEnable = true;
-				ank.utils.ExtendedArray.setTimer(this._parent,"movablecontainerbar",this._parent,this._parent.onClickTimer,ank.gapi.Gapi.DBLCLICK_DELAY);
+				ank.utils.Timer.setTimer(this._parent,"movablecontainerbar",this._parent,this._parent.onClickTimer,ank.gapi.Gapi.DBLCLICK_DELAY);
 			}
 			else
 			{
@@ -279,7 +279,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	}
 	function onClickTimer()
 	{
-		ank.utils.ExtendedArray.removeTimer(this,"movablecontainerbar");
+		ank.utils.Timer.removeTimer(this,"movablecontainerbar");
 		this._bTimerEnable = false;
 	}
 	function onShortcut(var2)

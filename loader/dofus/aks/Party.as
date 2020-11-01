@@ -1,6 +1,6 @@
 class dofus.aks.Party extends dofus.aks.Handler
 {
-	function Party(var3, var4)
+	function Party(var2, var3)
 	{
 		super.initialize(var3,var4);
 	}

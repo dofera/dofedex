@@ -1,6 +1,6 @@
-class ank.battlefield.OverHeadHandler
+class ank.battlefield["\x1e\x17\b"]
 {
-	function OverHeadHandler(var3, var4)
+	function §\x1e\x17\b§(var2, var3)
 	{
 		this.initialize(var2,var3);
 	}

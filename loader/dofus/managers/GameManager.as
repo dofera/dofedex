@@ -14,7 +14,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	static var FIGHT_TYPE_PvT = 5;
 	static var FIGHT_TYPE_PvMU = 6;
 	var _nFightTurnInactivity = 0;
-	function GameManager(var3)
+	function GameManager(var2)
 	{
 		super();
 		dofus.managers.GameManager._sSelf = this;
@@ -383,7 +383,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			}
 			if(var3 != "")
 			{
-				var3 = this.api.lang.getText("DISGRACE_SANCTION",[ank.utils.ExtendedObject.combine(this.api.lang.getText("POINTS",[var2]),"m",var2 < 2)]) + var3;
+				var3 = this.api.lang.getText("DISGRACE_SANCTION",[ank.utils.PatternDecoder.combine(this.api.lang.getText("POINTS",[var2]),"m",var2 < 2)]) + var3;
 				this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),var3,"ERROR_BOX");
 			}
 		}
@@ -667,51 +667,51 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		var var10 = this.api.lang.getText("REMAINING_TIME") + " ";
 		if(var4 != 0 && var5 == 0)
 		{
-			var var11 = ank.utils.ExtendedObject.combine(this.api.lang.getText("YEARS"),"m",var4 == 1);
+			var var11 = ank.utils.PatternDecoder.combine(this.api.lang.getText("YEARS"),"m",var4 == 1);
 			var10 = var10 + (var4 + " " + var11);
 		}
 		else if(var4 != 0 && var5 != 0)
 		{
-			var var12 = ank.utils.ExtendedObject.combine(this.api.lang.getText("YEARS"),"m",var4 == 1);
-			var var13 = ank.utils.ExtendedObject.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
+			var var12 = ank.utils.PatternDecoder.combine(this.api.lang.getText("YEARS"),"m",var4 == 1);
+			var var13 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
 			var10 = var10 + (var4 + " " + var12 + var9 + var5 + " " + var13);
 		}
 		else if(var5 != 0 && var6 == 0)
 		{
-			var var14 = ank.utils.ExtendedObject.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
+			var var14 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
 			var10 = var10 + (var5 + " " + var14);
 		}
 		else if(var5 != 0 && var6 != 0)
 		{
-			var var15 = ank.utils.ExtendedObject.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
-			var var16 = ank.utils.ExtendedObject.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
+			var var15 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MONTHS"),"m",var5 == 1);
+			var var16 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
 			var10 = var10 + (var5 + " " + var15 + var9 + var6 + " " + var16);
 		}
 		else if(var6 != 0 && var7 == 0)
 		{
-			var var17 = ank.utils.ExtendedObject.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
+			var var17 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
 			var10 = var10 + (var6 + " " + var17);
 		}
 		else if(var6 != 0 && var7 != 0)
 		{
-			var var18 = ank.utils.ExtendedObject.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
-			var var19 = ank.utils.ExtendedObject.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
+			var var18 = ank.utils.PatternDecoder.combine(this.api.lang.getText("DAYS"),"m",var6 == 1);
+			var var19 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
 			var10 = var10 + (var6 + " " + var18 + var9 + var7 + " " + var19);
 		}
 		else if(var7 != 0 && var8 == 0)
 		{
-			var var20 = ank.utils.ExtendedObject.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
+			var var20 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
 			var10 = var10 + (var7 + " " + var20);
 		}
 		else if(var7 != 0 && var8 != 0)
 		{
-			var var21 = ank.utils.ExtendedObject.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
-			var var22 = ank.utils.ExtendedObject.combine(this.api.lang.getText("MINUTES"),"m",var8 == 1);
+			var var21 = ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var7 == 1);
+			var var22 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var8 == 1);
 			var10 = var10 + (var7 + " " + var21 + var9 + var8 + " " + var22);
 		}
 		else if(var8 != 0)
 		{
-			var var23 = ank.utils.ExtendedObject.combine(this.api.lang.getText("MINUTES"),"m",var8 == 1);
+			var var23 = ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var8 == 1);
 			var10 = var10 + (var8 + " " + var23);
 		}
 		return var10;
@@ -925,7 +925,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		{
 			return (var5 == 0?"":var5 + " " + this.api.lang.getText("HOURS_SMALL") + " ") + var6 + " " + this.api.lang.getText("MINUTES_SMALL") + " " + var7 + " " + this.api.lang.getText("SECONDS_SMALL");
 		}
-		return (var5 == 0?"":var5 + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("HOURS"),"m",var5 < 2) + " ") + var6 + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("MINUTES"),"m",var6 < 2) + " " + var7 + " " + ank.utils.ExtendedObject.combine(this.api.lang.getText("SECONDS"),"m",var7 < 2);
+		return (var5 == 0?"":var5 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var5 < 2) + " ") + var6 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var6 < 2) + " " + var7 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("SECONDS"),"m",var7 < 2);
 	}
 	function insertItemInChat(var2, var3, var4)
 	{

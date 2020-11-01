@@ -1,7 +1,7 @@
 class dofus.managers.DebugManager extends dofus.utils.ApiElement
 {
 	static var _sSelf = null;
-	function DebugManager(var3)
+	function DebugManager(var2)
 	{
 		super();
 		dofus.managers.DebugManager._sSelf = this;

@@ -1,7 +1,7 @@
 class dofus.datacenter.Document extends Object
 {
 	static var MAX_CHAPTER_ON_PAGE = 13;
-	function Document(var3)
+	function Document(var2)
 	{
 		super();
 		this.initialize(var3);
@@ -107,7 +107,7 @@ class dofus.datacenter.Document extends Object
 								var13 = "<br/><p class=\'chapter\'>" + var4[var12][0] + "</p><br/>";
 							}
 						}
-						var9[var12] = ank.utils.ExtendedObject.replace(var9[var12],var11);
+						var9[var12] = ank.utils.PatternDecoder.replace(var9[var12],var11);
 						var3;
 						this._aPages.push({type:"text",num:var3++,text:var13 + var9[var12],cssFile:this._sCSS});
 						var12 = var12 + 1;
@@ -123,7 +123,7 @@ class dofus.datacenter.Document extends Object
 			case "roadsignleft":
 				var var14 = var2.pages[0];
 				var var15 = this.api.kernel.DocumentsServersManager.getCurrentServer() + "#1/#2.#1";
-				var14 = ank.utils.ExtendedObject.replace(var14,var15);
+				var14 = ank.utils.PatternDecoder.replace(var14,var15);
 				this._aPages.push({text:var14,cssFile:this._sCSS});
 		}
 	}

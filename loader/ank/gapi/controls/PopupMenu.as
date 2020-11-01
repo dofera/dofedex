@@ -62,7 +62,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 	}
 	function show(var2, var3, var4, var5, var6)
 	{
-		ank.utils.ExtendedArray.removeTimer(this._name);
+		ank.utils.Timer.removeTimer(this._name);
 		if(var2 == undefined)
 		{
 			var2 = _root._xmouse;
@@ -76,7 +76,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		this.layoutContent(var2,var3,var4,var5);
 		if(!_global.isNaN(Number(var6)))
 		{
-			ank.utils.ExtendedArray.setTimer(this,this._name,this,this.remove,var6);
+			ank.utils.Timer.setTimer(this,this._name,this,this.remove,var6);
 			this._bCloseOnMouseUp = false;
 		}
 		this.addToQueue({object:Mouse,method:Mouse.addListener,params:[this]});
