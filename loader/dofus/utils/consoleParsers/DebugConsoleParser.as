@@ -127,7 +127,7 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 										}
 										break loop13;
 									case "DEBUGZAAP":
-										dofus["\x1e\t\b"].newInstance();
+										dofus.ZaapConnect.newInstance();
 										break loop13;
 									case "PRINTJAILDIALOG":
 										var var18 = this.api.kernel.ChatManager.getJailDialog();

@@ -1,9 +1,9 @@
-class dofus["\x0f\b"] extends dofus.utils.ApiElement
+class dofus.Electron extends dofus.utils.ApiElement
 {
 	var _bEnabled = _root.electron != undefined;
 	var _bUseRsaCrypto = _root.RSACrypto != undefined;
 	var _bFocused = true;
-	function §\x0f\b§(var2)
+	function Electron(var3)
 	{
 		super();
 		flash.external.ExternalInterface.addCallback("onRightClick",this,this.onRightClick);

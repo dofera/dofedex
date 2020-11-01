@@ -146,8 +146,8 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var var4 = new dofus.utils["\b\x18"].(var2);
-			var var5 = new dofus.utils["\b\x18"].rules.NameCheckerCharacterNameRules();
+			var var4 = new dofus.utils.nameChecker.(var2);
+			var var5 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
 			var var6 = var4.isValidAgainstWithDetails(var5);
 			if(!var6.IS_SUCCESS)
 			{

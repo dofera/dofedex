@@ -626,7 +626,7 @@ class dofus.graphics.gapi.ui.MapExplorer extends dofus.graphics.gapi.core.DofusA
 			if(var4 != undefined)
 			{
 				var var5 = this.api.lang.getMapSubAreaText(var4).n;
-				var var6 = (dofus.datacenter["\x1e\f\b"])this.api.datacenter.Subareas.getItemAt(var4);
+				var var6 = (dofus.datacenter.Subarea)this.api.datacenter.Subareas.getItemAt(var4);
 				if(var6 != undefined)
 				{
 					var var7 = var6.color;

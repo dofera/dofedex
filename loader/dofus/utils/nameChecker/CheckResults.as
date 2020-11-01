@@ -1,4 +1,4 @@
-class dofus.utils["\b\x18"].CheckResults extends dofus.utils.ApiElement
+class dofus.utils.nameChecker.CheckResults extends dofus.utils.ApiElement
 {
 	function CheckResults()
 	{

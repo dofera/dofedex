@@ -911,7 +911,7 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 										var var9 = new Object();
 										var9.name = var7;
 										var var10 = Number(var4.attributes.zaapconnectport);
-										var9.zaapConnectPort = !(var10 == undefined || _global.isNaN(var10))?var10:dofus["\x1e\t\b"].TCP_DEFAULT_PORT;
+										var9.zaapConnectPort = !(var10 == undefined || _global.isNaN(var10))?var10:dofus.ZaapConnect.TCP_DEFAULT_PORT;
 										var9.debug = var4.attributes.boo == "1";
 										var9.debugRequests = var4.attributes.debugrequests == "1" || var4.attributes.debugrequests == "2";
 										var9.logRequests = var4.attributes.debugrequests == "2";
@@ -1096,7 +1096,7 @@ class dofus.DofusLoader extends ank.utils.QueueEmbedMovieClip
 		{
 			dofus.Constants.LOG_DATAS = true;
 		}
-		dofus["\x1e\t\b"].newInstance();
+		dofus.ZaapConnect.newInstance();
 		this.loadLocalFileList();
 	}
 	function startJsTimer()

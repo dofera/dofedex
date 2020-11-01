@@ -706,7 +706,7 @@ if(!dofus.aks.Aks)
 			else
 			{
 				var var4 = var2.params.login;
-				if(var4 == dofus["\x1e\t\b"].LOGIN_TOKEN_NAME)
+				if(var4 == dofus.ZaapConnect.LOGIN_TOKEN_NAME)
 				{
 					var3.zaapAutoLogin(false);
 				}

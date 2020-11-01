@@ -1,8 +1,8 @@
-class dofus.utils["\b\x18"]["\b\x19"]
+class dofus.utils.nameChecker.NameChecker
 {
 	static var VOWELS = ["A","E","I","O","U","Y"];
 	static var CONSONANTS = ["B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Z"];
-	function §\b\x19§(var2)
+	function NameChecker(var3)
 	{
 		this.name = var2;
 		this.upperName = var2.toUpperCase();
@@ -59,11 +59,11 @@ class dofus.utils["\b\x18"]["\b\x19"]
 		{
 			return false;
 		}
-		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumVowelsCount(),dofus.utils["\b\x18"]["\b\x19"].VOWELS))
+		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumVowelsCount(),dofus.utils.nameChecker.NameChecker.VOWELS))
 		{
 			return false;
 		}
-		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumConsonantsCount(),dofus.utils["\b\x18"]["\b\x19"].CONSONANTS))
+		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumConsonantsCount(),dofus.utils.nameChecker.NameChecker.CONSONANTS))
 		{
 			return false;
 		}
@@ -75,7 +75,7 @@ class dofus.utils["\b\x18"]["\b\x19"]
 	}
 	function isValidAgainstWithDetails(rules)
 	{
-		var var3 = new dofus.utils["\b\x18"].();
+		var var3 = new dofus.utils.nameChecker.();
 		var3.IS_SUCCESS = true;
 		if(!this.checkLength(var2.getMinNameLength(),var2.getMaxNameLength()))
 		{
@@ -144,12 +144,12 @@ class dofus.utils["\b\x18"]["\b\x19"]
 			var3.FAILED_ON_ENDING_WITH_PROHIBED_WORDS_CHECK = true;
 			var3.IS_SUCCESS = false;
 		}
-		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumVowelsCount(),dofus.utils["\b\x18"]["\b\x19"].VOWELS))
+		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumVowelsCount(),dofus.utils.nameChecker.NameChecker.VOWELS))
 		{
 			var3.FAILED_ON_VOWELS_COUNT_CHECK = true;
 			var3.IS_SUCCESS = false;
 		}
-		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumConsonantsCount(),dofus.utils["\b\x18"]["\b\x19"].CONSONANTS))
+		if(!this.checkContainsAtLeastNFromArray(var2.getMinimumConsonantsCount(),dofus.utils.nameChecker.NameChecker.CONSONANTS))
 		{
 			var3.FAILED_ON_CONSONANTS_COUNT_CHECK = true;
 			var3.IS_SUCCESS = false;

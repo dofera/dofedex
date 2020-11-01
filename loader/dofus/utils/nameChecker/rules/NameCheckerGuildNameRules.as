@@ -1,4 +1,4 @@
-class dofus.utils["\b\x18"].rules["\b\x17"] implements dofus.utils["\b\x18"].rules.INameCheckerRules
+class dofus.utils.nameChecker.rules.NameCheckerGuildNameRules implements dofus.utils.nameChecker.rules.INameCheckerRules
 {
 	var MIN_NAME_LENGTH = 2;
 	var MAX_NAME_LENGTH = 30;
@@ -16,7 +16,7 @@ class dofus.utils["\b\x18"].rules["\b\x17"] implements dofus.utils["\b\x18"].rul
 	var AT_LEAST_X_VOWELS = 1;
 	var AT_LEAST_X_CONSONANTS = 0;
 	var REPETING_CHAR_MAX = 3;
-	function §\b\x17§()
+	function NameCheckerGuildNameRules()
 	{
 	}
 	function NameCheckerCharacterNameRules()
