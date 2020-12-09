@@ -11,22 +11,22 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__editColors(var2)
+	function __set__editColors(§\x1a\x14§)
 	{
 		this._bEditColors = var2;
 		return this.__get__editColors();
 	}
-	function __set__editName(var2)
+	function __set__editName(§\x1a\x13§)
 	{
 		this._bEditName = var2;
 		return this.__get__editName();
 	}
-	function __set__force(var2)
+	function __set__force(§\x1a\x02§)
 	{
 		this._bForce = var2;
 		return this.__get__force();
 	}
-	function __set__characterName(var2)
+	function __set__characterName(§\x1e\x10\x05§)
 	{
 		if(this._itCharacterName.text != undefined)
 		{
@@ -47,6 +47,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	}
 	function addListeners()
 	{
+		var ref = this;
 		this._mcRandomName.onPress = function()
 		{
 			ref.click({target:this});
@@ -61,6 +62,16 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 		};
 		this._btnCancel.addEventListener("click",this);
 		this._btnValidate.addEventListener("click",this);
+		this._btnHideStuff.addEventListener("click",this);
+		if(this.api.datacenter.Player.mount != undefined)
+		{
+			this._btnShowMount.addEventListener("click",this);
+		}
+		else
+		{
+			this._btnShowMount._visible = false;
+			this._lblShowMount._visible = false;
+		}
 		this._btnClose.addEventListener("click",this);
 		this._itCharacterName.addEventListener("change",this);
 		this._csColors.addEventListener("change",this);
@@ -88,6 +99,9 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		this._winBg.title = this.api.lang.getText("CUSTOMIZE");
 		this._lblTitle.text = this.api.lang.getText("CREATE_TITLE");
+		this._lblHideStuff.text = this.api.lang.getText("HIDE_STUFF");
+		this._lblShowMount.text = this.api.lang.getText("SHOW_MOUNT");
+		this._lblClickToAnim.text = this.api.lang.getText("CLICK_TO_ANIMATE");
 		this._lblCharacterColors.text = this.api.lang.getText("SPRITE_COLORS");
 		this._lblCharacterName.text = this.api.lang.getText("CREATE_CHARACTER_NAME");
 		this._btnCancel.label = this.api.lang.getText("BACK");
@@ -112,38 +126,80 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 			this._csColors._visible = false;
 		}
 		this.characterName = this.api.datacenter.Player.Name;
-		var var2 = this.api.datacenter.Player.data;
-		if(var2 == undefined)
+		this.showMyself();
+		this._btnValidate.label = this.api.lang.getText("VALIDATE");
+	}
+	function showMyself()
+	{
+		var var2 = this._btnHideStuff.selected;
+		var var3 = this._btnShowMount.selected;
+		var var4 = (ank.battlefield.datacenter.Sprite)this.api.datacenter.Player.data;
+		if(var4 == undefined)
 		{
 			this._svCharacter._visible = false;
 			this._csColors._visible = false;
+			return undefined;
+		}
+		if(this._svCharacter.spriteData == undefined)
+		{
+			var var5 = var4.color1;
+			var var6 = var4.color2;
+			var var7 = var4.color3;
 		}
 		else
 		{
-			this._oColors = {color1:var2.color1,color2:var2.color2,color3:var2.color3};
-			this._svCharacter.zoom = 250;
-			this._svCharacter.spriteAnims = ["StaticF","StaticR","StaticL","WalkF","RunF","Anim2R","Anim2L"];
-			this._svCharacter.refreshDelay = 50;
-			this._svCharacter.useSingleLoader = true;
-			var var3 = this.api.datacenter.Player.Guild;
-			var var4 = this.api.datacenter.Player.Sex;
-			this._csColors.breed = var3;
-			this._csColors.sex = var4;
-			this._csColors.colors = [var2.color1,var2.color2,var2.color3];
-			this._svCharacter.spriteData = new ank.battlefield.datacenter.("1",undefined,dofus.Constants.CLIPS_PERSOS_PATH + var3 + var4 + ".swf",undefined,5);
-			this._svCharacter.setColors(this._oColors);
+			var5 = this._svCharacter.getColor(1);
+			var6 = this._svCharacter.getColor(2);
+			var7 = this._svCharacter.getColor(3);
 		}
-		this._btnValidate.label = this.api.lang.getText("VALIDATE");
+		this._oColors = {color1:var5,color2:var6,color3:var7};
+		this._svCharacter.zoom = 200;
+		this._svCharacter.spriteAnims = ["StaticF","StaticR","StaticL","WalkF","RunF","Anim2R","Anim2L"];
+		this._svCharacter.refreshDelay = 50;
+		this._svCharacter.useSingleLoader = true;
+		var var8 = this.api.datacenter.Player.Guild;
+		var var9 = this.api.datacenter.Player.Sex;
+		this._csColors.breed = var8;
+		this._csColors.sex = var9;
+		this._csColors.colors = [var5,var6,var7];
+		var var10 = var8 + "" + var9;
+		var var11 = new ank.battlefield.datacenter.("viewer",ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var10 + ".swf",undefined,5);
+		if(!var2)
+		{
+			var11.accessories = var4.accessories;
+		}
+		if(var3)
+		{
+			var var12 = this.api.datacenter.Player.mount;
+			if(var12 != undefined)
+			{
+				var var13 = new dofus.datacenter.Mount(var12.modelID,Number(var10));
+				if(var12.isChameleon)
+				{
+					var13.capacities = var12.capacities;
+					var13.customColor1 = var6;
+					var13.customColor2 = var7;
+					var13.customColor3 = var7;
+				}
+				var11.mount = var13;
+			}
+		}
+		this._svCharacter.enableBlur = true;
+		this._svCharacter.refreshAccessories = !var2;
+		this._svCharacter.sourceSpriteData = var4;
+		this._svCharacter.spriteData = var11;
+		this._svCharacter.setColors(this._oColors);
 	}
 	function showColorPosition(nIndex)
 	{
+		var bWhite = true;
 		this._nSavedColor = this._svCharacter.getColor(nIndex);
 		this.onEnterFrame = function()
 		{
 			this._svCharacter.setColor(nIndex,!(bWhite = !bWhite)?16746632:16733525);
 		};
 	}
-	function hideColorPosition(var2)
+	function hideColorPosition(§\x04\x17§)
 	{
 		delete this.onEnterFrame;
 		this._svCharacter.setColor(var2,this._nSavedColor);
@@ -163,12 +219,12 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var var3 = new dofus.utils.nameChecker.(var2);
+			var var3 = new dofus.utils.nameChecker.	(var2);
 			var var4 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
 			var var5 = var3.isValidAgainstWithDetails(var4);
 			if(!var5.IS_SUCCESS)
 			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + GuildRights + var5.toString(GuildRights),"ERROR_BOX");
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + IComparable + var5.toString(IComparable),"ERROR_BOX");
 				return undefined;
 			}
 		}
@@ -178,7 +234,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		this.api.network.Account.editCharacterColors(this._oColors.color1,this._oColors.color2,this._oColors.color3);
 	}
-	function setColors(var2)
+	function setColors(§\x1e\x1a\t§)
 	{
 		this._oColors = var2;
 		this._svCharacter.setColors(this._oColors);
@@ -187,7 +243,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		this._mcRandomName._visible = false;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		loop0:
 		switch(var2.target)
@@ -213,14 +269,21 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 						{
 							this.api.network.Account.getRandomCharacterName();
 							this._nLastRegenerateTimer = getTimer();
+						}
+						break;
+					default:
+						if(var0 !== this._btnShowMount)
+						{
 							break;
 						}
+					case this._btnHideStuff:
+						this.showMyself();
 				}
 			case this._btnCancel:
 		}
 		this.unloadThis();
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -231,7 +294,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 				this.gapi.showTooltip(this.api.lang.getText("RANDOM_NICKNAME"),_root._xmouse,_root._ymouse - 20);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) !== this._csColors)
 		{
@@ -242,7 +305,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 			this.hideColorPosition(var2.index);
 		}
 	}
-	function change(var2)
+	function change(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{

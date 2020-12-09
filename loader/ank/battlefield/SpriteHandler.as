@@ -3,7 +3,7 @@ class ank.battlefield.SpriteHandler
 	static var DEFAULT_RUNLINIT = 6;
 	static var _bPlayerSpritesHidden = false;
 	static var _bShowMonstersTooltip = false;
-	function SpriteHandler(var3, var4, var5)
+	function SpriteHandler(§\x1d\x03§, §\x13\x14§, §\x11\x17§)
 	{
 		this.initialize(var2,var3,var4);
 	}
@@ -15,14 +15,14 @@ class ank.battlefield.SpriteHandler
 	{
 		return ank.battlefield.SpriteHandler._bPlayerSpritesHidden;
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x1d\x03§, §\x13\x14§, §\x11\x17§)
 	{
 		this._mcBattlefield = var2;
 		this._oSprites = var4;
 		this._mcContainer = var3;
 		this.api = _global.API;
 	}
-	function clear(var2)
+	function clear(§\x18\x0b§)
 	{
 		var var3 = this._oSprites.getItems();
 		for(var k in var3)
@@ -65,7 +65,7 @@ class ank.battlefield.SpriteHandler
 			oSprite.mc.setAlpha(ank.battlefield.Constants.GHOSTVIEW_SPRITE_ALPHA);
 		}
 	}
-	function addLinkedSprite(sID, §\x1e\x0f\b§, §\x07\x06§, oSprite)
+	function addLinkedSprite(sID, §\x1e\x0f\x12§, §\x07\x11§, oSprite)
 	{
 		var var6 = true;
 		var var7 = this._oSprites.getItemAt(var3);
@@ -103,7 +103,7 @@ class ank.battlefield.SpriteHandler
 		var7.linkedChilds.addItemAt(sID,oSprite);
 		this.addSprite(sID);
 	}
-	function carriedSprite(sID, §\x1e\x0f\b§)
+	function carriedSprite(sID, §\x1e\x0f\x12§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -134,7 +134,24 @@ class ank.battlefield.SpriteHandler
 			var4.mc.setNewCellNum(var5.cellNum);
 		}
 	}
-	function uncarriedSprite(sID, §\x07\x14§, §\x13\x16§, §\x1e\x17\x1d§)
+	function removeEffectsByCasterID(sCasterID)
+	{
+		if(!this.api.datacenter.Game.isFight || sCasterID == undefined)
+		{
+			return undefined;
+		}
+		var var3 = this.getSprites().getItems();
+		for(var sID in var3)
+		{
+			var var4 = var3[sID];
+			var var5 = var4.EffectsManager;
+			if(var5 != undefined)
+			{
+				var5.removeEffectsByCasterID(sCasterID);
+			}
+		}
+	}
+	function uncarriedSprite(sID, §\b\x02§, §\x13\x1b§, §\x1e\x18\t§)
 	{
 		var oSprite = this._oSprites.getItemAt(sID);
 		if(oSprite == undefined)
@@ -155,7 +172,7 @@ class ank.battlefield.SpriteHandler
 			}
 			else if(var4)
 			{
-				var5.addAction(1,false,this,function(var2, var3)
+				var5.addAction(1,false,this,function(§\x1e\x18\x14§, §\x1e\x18\b§)
 				{
 					var2.sequencer = var3;
 				}
@@ -171,7 +188,7 @@ class ank.battlefield.SpriteHandler
 					delete this.onEnterFrame;
 				};
 			}
-			var5.addAction(4,false,this,function(var2, var3)
+			var5.addAction(4,false,this,function(§\x1e\x1a\n§, §\x1e\x18\x14§)
 			{
 				oSprite.uncarryingSprite = false;
 				oSprite.carriedParent = undefined;
@@ -188,7 +205,7 @@ class ank.battlefield.SpriteHandler
 			}
 			if(var4)
 			{
-				var5.addAction(7,false,this,function(var2, var3)
+				var5.addAction(7,false,this,function(§\x1e\x18\x14§, §\x1e\x18\b§)
 				{
 					var2.sequencer = var3;
 				}
@@ -196,7 +213,7 @@ class ank.battlefield.SpriteHandler
 			}
 		}
 	}
-	function mountSprite(sID, §\x1e\x18\x15§)
+	function mountSprite(sID, §\x1e\x19\x01§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -224,7 +241,7 @@ class ank.battlefield.SpriteHandler
 			var3.mc.draw();
 		}
 	}
-	function removeSprite(sID, §\x18\b§)
+	function removeSprite(sID, §\x18\x0b§)
 	{
 		this._mcBattlefield.removeSpriteBubble(sID);
 		this._mcBattlefield.hideSpriteOverHead(sID);
@@ -268,7 +285,7 @@ class ank.battlefield.SpriteHandler
 			this._oSprites.removeItemAt(sID);
 		}
 	}
-	function hideSprite(sID, §\x19\x0b§)
+	function hideSprite(sID, §\x19\x0e§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4.hasChilds)
@@ -299,7 +316,7 @@ class ank.battlefield.SpriteHandler
 			var2[k].isHidden = true;
 		}
 	}
-	function setSpriteDirection(sID, §\x06\n§)
+	function setSpriteDirection(sID, §\x06\x14§)
 	{
 		if(var3 == undefined)
 		{
@@ -326,7 +343,7 @@ class ank.battlefield.SpriteHandler
 		var var6 = var4.mc;
 		var6.setDirection(var3);
 	}
-	function setSpritePosition(sID, §\x07\x14§, §\x06\n§)
+	function setSpritePosition(sID, §\b\x02§, §\x06\x14§)
 	{
 		var var5 = this._oSprites.getItemAt(sID);
 		if(var5 == undefined)
@@ -362,7 +379,7 @@ class ank.battlefield.SpriteHandler
 		var var8 = var5.mc;
 		var8.setPosition(var3);
 	}
-	function stopSpriteMove(sID, §\x1e\x17\x1d§, §\x07\x14§)
+	function stopSpriteMove(sID, §\x1e\x18\t§, §\b\x02§)
 	{
 		var3.clearAllNextActions();
 		var var5 = this._oSprites.getItemAt(sID);
@@ -371,7 +388,7 @@ class ank.battlefield.SpriteHandler
 		var3.addAction(8,false,var6,var6.setPosition,[var4]);
 		var3.addAction(9,false,var6,var6.setAnim,["static"]);
 	}
-	function slideSprite(sID, §\x13\x05§, §\x1e\x12\x17§, §\x1e\x14\x17§)
+	function slideSprite(sID, §\x13\n§, §\x1e\x13\x05§, §\x1e\x15\x04§)
 	{
 		if(var5 == undefined)
 		{
@@ -386,7 +403,7 @@ class ank.battlefield.SpriteHandler
 			this.moveSprite(sID,var9,var4,false,var5);
 		}
 	}
-	function moveSprite(sID, §\x1e\x16\x1c§, §\x1e\x12\x17§, §\x1b\x0e§, §\x1e\x14\x17§, §\x19\x18§, §\x19\x17§, §\x1e\x15\x01§)
+	function moveSprite(sID, §\x1e\x17\b§, §\x1e\x13\x05§, §\x1b\x12§, §\x1e\x15\x04§, §\x19\x1b§, §\x19\x1a§, §\x1e\x15\x0b§)
 	{
 		this._mcBattlefield.removeSpriteBubble(sID);
 		this._mcBattlefield.hideSpriteOverHead(sID);
@@ -486,7 +503,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var4.execute();
 	}
-	function setCreatureMode(var2)
+	function setCreatureMode(§\x1a\x11§)
 	{
 		var var3 = this.api.datacenter.Sprites.getItems();
 		for(var k in var3)
@@ -524,7 +541,7 @@ class ank.battlefield.SpriteHandler
 			}
 		}
 	}
-	function hidePlayerSprites(var2)
+	function hidePlayerSprites(§\x19\x0e§)
 	{
 		if(var2 == undefined)
 		{
@@ -558,7 +575,7 @@ class ank.battlefield.SpriteHandler
 			}
 		}
 	}
-	function showMonstersTooltip(var2)
+	function showMonstersTooltip(§\x15\x13§)
 	{
 		ank.battlefield.SpriteHandler._bShowMonstersTooltip = var2;
 		var var3 = this.api.gfx.spriteHandler.getSprites().getItems();
@@ -570,16 +587,16 @@ class ank.battlefield.SpriteHandler
 			{
 				if(var2)
 				{
-					var4._rollOver();
+					var4._rollOver(true);
 				}
 				else
 				{
-					var4._rollOut();
+					var4._rollOut(true);
 				}
 			}
 		}
 	}
-	function launchVisualEffect(sID, §\x1e\x19\x12§, §\x07\x14§, §\x06\x05§, §\t\r§, §\x1e\f\x1d§, §\x1e\x17\x14§, §\x19\x0f§, §\x1c\x01§)
+	function launchVisualEffect(sID, §\x1e\x19\x1b§, §\b\x02§, §\x06\x0f§, §\t\x19§, §\x1e\r\x0b§, §\x1e\x17\x1d§, §\x19\x12§, §\x1c\x05§)
 	{
 		if(var10 == undefined)
 		{
@@ -604,47 +621,52 @@ class ank.battlefield.SpriteHandler
 		var var13 = var11.mc;
 		var var14 = var11.sequencer;
 		var var15 = true;
-		loop0:
-		switch(var5)
+		if((var var0 = var5) !== 0)
 		{
-			case 0:
-				var var16 = false;
-				var15 = false;
-				break;
-			case 10:
-			case 11:
-				var16 = false;
-				break;
-			case 12:
-				var16 = true;
-				break;
-			default:
-				switch(null)
-				{
-					case 21:
-					case 30:
-					case 31:
-						var16 = true;
-						break loop0;
-					default:
-						switch(null)
-						{
-							case 41:
-							case 50:
-								var16 = false;
-								break loop0;
-							case 51:
-								var16 = true;
-								break loop0;
-							default:
-								var16 = false;
-								var15 = false;
-						}
-					case 40:
-						var16 = true;
-				}
-			case 20:
-				var16 = false;
+			loop0:
+			switch(null)
+			{
+				case 10:
+				case 11:
+					var var16 = false;
+					break;
+				case 12:
+					var16 = true;
+					break;
+				default:
+					switch(null)
+					{
+						case 21:
+						case 30:
+						case 31:
+							var16 = true;
+							break loop0;
+						case 40:
+						case 41:
+							var16 = true;
+							break loop0;
+						default:
+							switch(null)
+							{
+								case 50:
+									var16 = false;
+									break loop0;
+								case 51:
+									var16 = true;
+									break loop0;
+								default:
+									var16 = false;
+									var15 = false;
+							}
+					}
+				case 20:
+					var16 = false;
+			}
+		}
+		else
+		{
+			var16 = false;
+			var15 = false;
 		}
 		var13._ACTION = var11;
 		var13._OBJECT = var13;
@@ -702,7 +724,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var14.execute();
 	}
-	function launchCarriedSprite(sID, §\x1e\x19\x12§, §\x07\x14§, §\x06\x05§)
+	function launchCarriedSprite(sID, §\x1e\x19\x1b§, §\b\x02§, §\x06\x0f§)
 	{
 		var var6 = this._oSprites.getItemAt(sID);
 		var var7 = var6.sequencer;
@@ -718,7 +740,7 @@ class ank.battlefield.SpriteHandler
 		var7.addAction(23,false,this,this.setSpriteAnim,[sID,"static"]);
 		var7.execute();
 	}
-	function autoCalculateSpriteDirection(sID, §\x07\x14§)
+	function autoCalculateSpriteDirection(sID, §\b\x02§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -745,7 +767,7 @@ class ank.battlefield.SpriteHandler
 		}
 		this.setSpriteDirection(sID,ank.battlefield.utils.Pathfinding.convertHeightToFourDirection(var3.direction));
 	}
-	function setSpriteAnim(sID, §\x1e\x02§, §\x19\x1a§)
+	function setSpriteAnim(sID, §\x1e\x03§, §\x19\x1d§)
 	{
 		var var5 = this._oSprites.getItemAt(sID);
 		if(var5 == undefined)
@@ -756,7 +778,7 @@ class ank.battlefield.SpriteHandler
 		ank.utils.Timer.removeTimer(var5.mc,"battlefield");
 		var5.mc.setAnim(var3,false,var4);
 	}
-	function setSpriteLoopAnim(sID, §\x1e\x02§, §\x1e\x1b\x1d§)
+	function setSpriteLoopAnim(sID, §\x1e\x03§, §\x1e\x1c\n§)
 	{
 		var var5 = this._oSprites.getItemAt(sID);
 		if(var5 == undefined)
@@ -768,7 +790,7 @@ class ank.battlefield.SpriteHandler
 		var5.mc.setAnim(var3,true);
 		ank.utils.Timer.setTimer(var5.mc,"battlefield",var5.mc,var5.mc.setAnim,var4,["static"]);
 	}
-	function setSpriteTimerAnim(sID, §\x1e\x02§, §\x19\x1a§, §\x1e\x1b\x1d§)
+	function setSpriteTimerAnim(sID, §\x1e\x03§, §\x19\x1d§, §\x1e\x1c\n§)
 	{
 		var var6 = this._oSprites.getItemAt(sID);
 		if(var6 == undefined)
@@ -779,7 +801,7 @@ class ank.battlefield.SpriteHandler
 		ank.utils.Timer.removeTimer(var6.mc,"battlefield");
 		var6.mc.setAnimTimer(var3,false,var4,var5);
 	}
-	function setSpriteGfx(sID, §\x1e\x12\r§)
+	function setSpriteGfx(sID, §\x1e\x12\x18§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -797,7 +819,7 @@ class ank.battlefield.SpriteHandler
 			}
 		}
 	}
-	function setSpriteColorTransform(sID, §\x1e\x0b\x14§)
+	function setSpriteColorTransform(sID, §\x1e\f\x02§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -807,7 +829,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var4.mc.setColorTransform(var3);
 	}
-	function setSpriteAlpha(sID, §\b\x1b§)
+	function setSpriteAlpha(sID, §\t\n§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -817,7 +839,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var4.mc.setAlpha(var3);
 	}
-	function addSpriteExtraClip(sID, §\x12\x19§, §\x12\x15§, §\x14\x0e§)
+	function addSpriteExtraClip(sID, §\x13\x01§, §\x12\x1a§, §\x14\x12§)
 	{
 		var var6 = this._oSprites.getItemAt(sID);
 		if(var6 == undefined)
@@ -827,7 +849,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var6.mc.addExtraClip(var3,var4,var5);
 	}
-	function removeSpriteExtraClip(sID, §\x14\x0e§)
+	function removeSpriteExtraClip(sID, §\x14\x12§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -837,7 +859,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var4.mc.removeExtraClip(var3);
 	}
-	function showSpritePoints(sID, §\x1e\n\x04§, §\x12\x15§)
+	function showSpritePoints(sID, §\x1e\n\x0f§, §\x12\x1a§)
 	{
 		var var5 = this._oSprites.getItemAt(sID);
 		if(var5 == undefined)
@@ -847,7 +869,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var5.mc.showPoints(var3,var4);
 	}
-	function setSpriteGhostView(var2)
+	function setSpriteGhostView(§\x16\x1d§)
 	{
 		var var3 = this._oSprites.getItems();
 		for(var k in var3)
@@ -856,7 +878,7 @@ class ank.battlefield.SpriteHandler
 			var4.mc.setGhostView(var4.allowGhostMode && var2);
 		}
 	}
-	function selectSprite(sID, §\x15\x17§)
+	function selectSprite(sID, §\x15\x1b§)
 	{
 		var var4 = this._oSprites.getItemAt(sID);
 		if(var4 == undefined)
@@ -874,7 +896,7 @@ class ank.battlefield.SpriteHandler
 		}
 		var4.mc.select(var3);
 	}
-	function setSpriteScale(sID, §\x1e\x1d\x1c§, §\x1e\x1d\x1b§)
+	function setSpriteScale(sID, §\x1e\x1e\t§, §\x1e\x1e\b§)
 	{
 		var var5 = this._oSprites.getItemAt(sID);
 		if(var5 == undefined)

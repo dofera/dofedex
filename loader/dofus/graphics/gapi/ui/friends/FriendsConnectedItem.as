@@ -4,12 +4,12 @@ class dofus.graphics.gapi.ui.friends.FriendsConnectedItem extends ank.gapi.core.
 	{
 		super();
 	}
-	function __set__list(var2)
+	function __set__list(§\x0b\x05§)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{
@@ -66,7 +66,7 @@ class dofus.graphics.gapi.ui.friends.FriendsConnectedItem extends ank.gapi.core.
 	{
 		this._btnRemove.addEventListener("click",this);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if(this._oItem.account != undefined)
 		{

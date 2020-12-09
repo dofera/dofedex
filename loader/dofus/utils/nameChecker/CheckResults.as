@@ -4,7 +4,7 @@ class dofus.utils.nameChecker.CheckResults extends dofus.utils.ApiElement
 	{
 		super();
 	}
-	function toString(var2)
+	function toString(§\x1e\x11\x12§)
 	{
 		var var3 = new String();
 		if(this.IS_SUCCESS)

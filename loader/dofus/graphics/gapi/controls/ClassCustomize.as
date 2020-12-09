@@ -9,19 +9,19 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 	{
 		super();
 	}
-	function __set__classID(var2)
+	function __set__classID(§\x07\x0f§)
 	{
 		this._nClassID = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__classID();
 	}
-	function __set__sex(var2)
+	function __set__sex(§\x1e\x1d\x1c§)
 	{
 		this._nSex = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__sex();
 	}
-	function __set__colors(var2)
+	function __set__colors(§\f§)
 	{
 		this.addToQueue({object:this,method:this.applyColor,params:[var2[0],1]});
 		this.addToQueue({object:this,method:this.applyColor,params:[var2[1],2]});
@@ -134,7 +134,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 		}
 		this._ldrSprite.contentPath = dofus.Constants.CLIPS_PERSOS_PATH + this._nClassID + this._nSex + ".swf";
 	}
-	function applyColor(var2, var3)
+	function applyColor(§\x07\x0e§, §\x04\x17§)
 	{
 		if(var3 == undefined)
 		{
@@ -147,7 +147,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 		this._oBakColors["color" + var3] = var2;
 		this.updateSprite();
 	}
-	function setColorIndex(var2)
+	function setColorIndex(§\x04\x17§)
 	{
 		var var3 = this["_btnColor" + this._nSelectedColorIndex];
 		var var4 = this["_btnColor" + var2];
@@ -165,7 +165,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 			bWhite = !bWhite;
 		};
 	}
-	function hideColorPosition(var2)
+	function hideColorPosition(§\x04\x17§)
 	{
 		delete this.onEnterFrame;
 		this._oColors.color1 = this._oBakColors.color1;
@@ -184,7 +184,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 	{
 		this._mcRegenerateNickName._visible = false;
 	}
-	function change(var2)
+	function change(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -218,11 +218,11 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 				this.dispatchEvent({type:"colorsChange",value:this._oColors});
 		}
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		this.updateSprite();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -248,25 +248,25 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 				{
 					case "_btnColor2":
 					case "_btnColor3":
-					default:
-						switch(null)
-						{
-							case "_btnReset3":
-								break;
-							case "_mcRegenerateNickName":
-								if(this._nLastRegenerateTimer + dofus.graphics.gapi.controls.ClassCustomize.NAME_GENERATION_DELAY < getTimer())
-								{
-									this.api.network.Account.getRandomCharacterName();
-									this._nLastRegenerateTimer = dofus.graphics.gapi.controls.ClassCustomize.NAME_GENERATION_DELAY;
-									break;
-								}
-						}
-						break loop0;
 					case "_btnReset1":
 					case "_btnReset2":
+					case "_btnReset3":
 						var var5 = Number(var2.target._name.substr(9));
 						this.applyColor(-1,var5);
 						this.dispatchEvent({type:"colorsChange",value:this._oColors});
+						break loop0;
+					default:
+						if(var0 !== "_mcRegenerateNickName")
+						{
+							break loop0;
+						}
+						if(this._nLastRegenerateTimer + dofus.graphics.gapi.controls.ClassCustomize.NAME_GENERATION_DELAY < getTimer())
+						{
+							this.api.network.Account.getRandomCharacterName();
+							this._nLastRegenerateTimer = dofus.graphics.gapi.controls.ClassCustomize.NAME_GENERATION_DELAY;
+							break loop0;
+						}
+						break loop0;
 				}
 			case "_btnColor1":
 				var var3 = Number(var2.target._name.substr(9));
@@ -278,7 +278,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 				this.setColorIndex(var3);
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -299,7 +299,7 @@ class dofus.graphics.gapi.controls.ClassCustomize extends dofus.graphics.gapi.co
 				break;
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

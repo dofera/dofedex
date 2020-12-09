@@ -1,6 +1,6 @@
 class dofus.aks.Enemies extends dofus.aks.Handler
 {
-	function Enemies(var2, var3)
+	function Enemies(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -8,7 +8,7 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 	{
 		this.aks.send("iL",true);
 	}
-	function addEnemy(var2)
+	function addEnemy(§\x1e\x10\x06§)
 	{
 		if(var2 == undefined || (var2.length == 0 || var2 == "*"))
 		{
@@ -16,7 +16,7 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 		}
 		this.aks.send("iA" + var2);
 	}
-	function removeEnemy(var2)
+	function removeEnemy(§\x1e\x10\x06§)
 	{
 		if(var2 == undefined || (var2.length == 0 || var2 == "*"))
 		{
@@ -24,7 +24,7 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 		}
 		this.aks.send("iD" + var2);
 	}
-	function onAddEnemy(var2, var3)
+	function onAddEnemy(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -35,13 +35,10 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 			}
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("ADD_TO_ENEMY_LIST",[var4.name]),"INFO_CHAT");
 		}
-		else
+		else if((var var0 = var3) !== "f")
 		{
-			switch(var3)
+			switch(null)
 			{
-				case "f":
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
-					break;
 				case "y":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_YOU_AS_ENEMY"),"ERROR_CHAT");
 					break;
@@ -52,8 +49,12 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 					this.api.kernel.showMessage(this.api.lang.getText("ENEMIES"),this.api.lang.getText("ENEMIES_LIST_FULL"),"ERROR_BOX",{name:"EnemiesListFull"});
 			}
 		}
+		else
+		{
+			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
+		}
 	}
-	function onRemoveEnemy(var2, var3)
+	function onRemoveEnemy(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -65,7 +66,7 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_ADD_FRIEND_NOT_FOUND"),"ERROR_CHAT");
 		}
 	}
-	function onEnemiesList(var2)
+	function onEnemiesList(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		this.api.datacenter.Player.Enemies = new Array();
@@ -109,7 +110,7 @@ class dofus.aks.Enemies extends dofus.aks.Handler
 			}
 		}
 	}
-	function getEnemyObjectFromData(var2)
+	function getEnemyObjectFromData(§\x1e\x13\x10§)
 	{
 		var var3 = var2.split(";");
 		var var4 = new Object();

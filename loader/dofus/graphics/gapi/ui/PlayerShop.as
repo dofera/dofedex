@@ -6,12 +6,12 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__data(var2)
+	function __set__data(§\x1e\x1a\x02§)
 	{
 		this._oData = var2;
 		return this.__get__data();
 	}
-	function __set__colors(var2)
+	function __set__colors(§\f§)
 	{
 		this._colors = var2;
 		return this.__get__colors();
@@ -97,7 +97,7 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 		this._ldrArtwork.contentPath = dofus.Constants.ARTWORKS_BIG_PATH + this._oData.gfx + ".swf";
 		this.modelChanged();
 	}
-	function hideItemViewer(var2)
+	function hideItemViewer(§\x19\x0e§)
 	{
 		this._itvItemViewer._visible = !var2;
 		this._winItemViewer._visible = !var2;
@@ -106,12 +106,12 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 			this._oSelectedItem = undefined;
 		}
 	}
-	function setBuyMode(var2)
+	function setBuyMode(§\x1c\x1c§)
 	{
 		this._btnBuy._visible = var2;
 		this._mcBuyArrow._visible = var2;
 	}
-	function askQuantity(var2, var3)
+	function askQuantity(§\x01\x10§, §\x01\x14§)
 	{
 		var var4 = Math.floor(this.api.datacenter.Player.Kama / var3);
 		if(var4 > var2)
@@ -121,7 +121,7 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 		var var5 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:var4,min:1});
 		var5.addEventListener("validate",this);
 	}
-	function validateBuy(var2)
+	function validateBuy(§\x01\x0e§)
 	{
 		if(var2 <= 0)
 		{
@@ -137,7 +137,7 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 		this.hideItemViewer(true);
 		this.setBuyMode(false);
 	}
-	function applyColor(var2, var3)
+	function applyColor(§\x0b\r§, §\x1e\t\x10§)
 	{
 		var var4 = this._colors[var3];
 		if(var4 == -1 || var4 == undefined)
@@ -152,7 +152,7 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
 		var8.setTransform(var9);
 	}
-	function switchMerchant(var2)
+	function switchMerchant(§\x16\x13§)
 	{
 		var var3 = this.api.datacenter.Temporary.Shop.id;
 		var var4 = new Array();
@@ -209,11 +209,11 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 		this.api.network.Exchange.leave();
 		this.api.kernel.GameManager.startExchange(4,var7.id,var7.cellNum);
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		this._livInventory2.dataProvider = this._oData.inventory;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -223,12 +223,12 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 			case "_btnViewPreviousMerchant":
 				this.switchMerchant(true);
 				break;
-			case "_btnViewNextMerchant":
-				this.switchMerchant(false);
-				break;
 			default:
 				switch(null)
 				{
+					case "_btnViewNextMerchant":
+						this.switchMerchant(false);
+						break;
 					case "_btnBuy":
 						if(this._oSelectedItem.Quantity > 1)
 						{
@@ -244,7 +244,7 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 				}
 		}
 	}
-	function selectedItem(var2)
+	function selectedItem(§\x1e\x19\x18§)
 	{
 		if(var2.item == undefined)
 		{
@@ -268,14 +268,13 @@ class dofus.graphics.gapi.ui.PlayerShop extends dofus.graphics.gapi.core.DofusAd
 			}
 		}
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		this.validateBuy(var2.value);
 	}
-	function complete(var2)
+	function complete(§\x1e\x19\x18§)
 	{
-		var ref = this;
-		this._ldrArtwork.content.stringCourseColor = function(var2, var3)
+		this._ldrArtwork.content.stringCourseColor = function(§\x0b\r§, §\x1e\t\x14§)
 		{
 			ref.applyColor(var2,var3);
 		};

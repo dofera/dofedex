@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.ClassInfosViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__classID(var2)
+	function __set__classID(§\x07\x0f§)
 	{
 		this._nClassID = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
@@ -50,7 +50,7 @@ class dofus.graphics.gapi.controls.ClassInfosViewer extends dofus.graphics.gapi.
 		this._txtDescription.text = this.api.lang.getClassText(this._nClassID).d;
 		this.showSpellInfos(var3[0]);
 	}
-	function showSpellInfos(var2)
+	function showSpellInfos(§\x1e\x1d\r§)
 	{
 		var var3 = this.api.kernel.CharactersManager.getSpellObjectFromData(var2 + "~1~");
 		if(var3.name == undefined)
@@ -70,7 +70,7 @@ class dofus.graphics.gapi.controls.ClassInfosViewer extends dofus.graphics.gapi.
 			this._ldrSpellIcon.contentPath = var3.iconFile;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.showSpellInfos(var2.target.params.spellID);
 	}

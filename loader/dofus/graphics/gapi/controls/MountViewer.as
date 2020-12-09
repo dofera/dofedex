@@ -6,7 +6,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__mount(var2)
+	function __set__mount(§\x1e\x19\x01§)
 	{
 		this._oMount = var2;
 		if(this.initialized)
@@ -27,12 +27,12 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 	{
 		return this._sCurrentTab;
 	}
-	function __set__currentTab(var2)
+	function __set__currentTab(§\x1e\r\x10§)
 	{
 		this._sCurrentTab = var2;
 		return this.__get__currentTab();
 	}
-	function setCurrentTab(var2)
+	function setCurrentTab(§\x1e\x10\x04§)
 	{
 		if(var2 != undefined)
 		{
@@ -82,7 +82,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		this._btnAncestors.addEventListener("out",this);
 		this._mcXP.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.xp).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.xpMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.xp).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.xpMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcXP.onRollOut = function()
 		{
@@ -90,7 +90,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		};
 		this._mcEnergy.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.energy).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.energyMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.energy).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.energyMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcEnergy.onRollOut = function()
 		{
@@ -98,7 +98,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		};
 		this._mcTired.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.tired).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.tiredMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.tired).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.tiredMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcTired.onRollOut = function()
 		{
@@ -108,7 +108,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		{
 			if(this._parent._oMount.reprodMax > -1)
 			{
-				this._parent.gapi.showTooltip(this._parent.api.lang.getText("REPRODUCTIONS") + ": " + new ank.utils.(this._parent._oMount.reprod).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.reprodMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+				this._parent.gapi.showTooltip(this._parent.api.lang.getText("REPRODUCTIONS") + ": " + new ank.utils.(this._parent._oMount.reprod).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.reprodMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 			}
 			else
 			{
@@ -138,7 +138,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 			this._oMount.addEventListener("nameChanged",this);
 			this._ldrSprite.forceNextLoad();
 			this._ldrSprite.contentPath = this._oMount.gfxFile;
-			var var2 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
+			var var2 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
 			var2.mount = this._oMount;
 			this.api.colors.addSprite(this._ldrSprite,var2);
 			this._oMount.level = this._oMount.level;
@@ -209,7 +209,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 			this.addToQueue({object:this,method:this.setCurrentTab});
 		}
 	}
-	function selectTab(var2, var3)
+	function selectTab(§\x14\x14§, §\x17\t§)
 	{
 		switch(var2)
 		{
@@ -221,17 +221,18 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 				this.gotoAndStop("stats");
 				this.addToQueue({object:this,method:this.switchToStatsTab});
 				break;
+			case this._btnTabCapacities:
+				this.gotoAndStop("capacities");
+				this.addToQueue({object:this,method:this.switchToCapacitiesTab});
+				break;
 			default:
-				switch(null)
+				if(var0 !== this._btnTabEffects)
 				{
-					case this._btnTabCapacities:
-						this.gotoAndStop("capacities");
-						this.addToQueue({object:this,method:this.switchToCapacitiesTab});
-						break;
-					case this._btnTabEffects:
-						this.gotoAndStop("effects");
-						this.addToQueue({object:this,method:this.switchToEffectsTab});
+					break;
 				}
+				this.gotoAndStop("effects");
+				this.addToQueue({object:this,method:this.switchToEffectsTab});
+				break;
 		}
 	}
 	function switchToGeneralTab()
@@ -271,7 +272,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		this._pbStamina.value = this._oMount.stamina;
 		this._mcSerenity.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.serenityMin).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.serenity).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.serenityMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.serenityMin).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.serenity).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.serenityMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcSerenity.onRollOut = function()
 		{
@@ -279,7 +280,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		};
 		this._mcLove.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.love).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.loveMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.love).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.loveMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcLove.onRollOut = function()
 		{
@@ -287,7 +288,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		};
 		this._mcMaturity.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.maturity).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.maturityMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.maturity).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.maturityMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcMaturity.onRollOut = function()
 		{
@@ -295,7 +296,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		};
 		this._mcStamina.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.stamina).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.staminaMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oMount.stamina).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oMount.staminaMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcStamina.onRollOut = function()
 		{
@@ -369,7 +370,8 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		}
 		else
 		{
-			var var2 = new ank.utils.();
+			var var2 = new ank.utils.
+();
 			var2.push({label:this.api.lang.getText("NO_CONDITIONS")});
 			this._lstList.dataProvider = var2;
 		}
@@ -380,7 +382,8 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		this._lstList.removeEventListener("itemRollOut",this);
 		if(this._oMount.effects.length > 0)
 		{
-			var var2 = new ank.utils.();
+			var var2 = new ank.utils.
+();
 			var var3 = this._oMount.effects;
 			var var4 = 0;
 			while(var4 < var3.length)
@@ -392,18 +395,19 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 		}
 		else
 		{
-			var var5 = new ank.utils.();
+			var var5 = new ank.utils.
+();
 			var5.push({label:this.api.lang.getText("NONE")});
 			this._lstList.dataProvider = var5;
 		}
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.content;
 		var3.attachMovie("staticR_front","anim_front",11);
 		var3.attachMovie("staticR_back","anim_back",10);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) !== this._btnAncestors)
 		{
@@ -414,12 +418,12 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 			this.gapi.loadUIComponent("MountAncestorsViewer","MountAncestorsViewer",{mount:this._oMount});
 		}
 	}
-	function nameChanged(var2)
+	function nameChanged(§\x1e\x19\x18§)
 	{
 		var var3 = this.api.datacenter.Player.mount;
 		this._lblNameValue.text = var3.name;
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -431,11 +435,11 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 				this.gapi.showTooltip(var3,var2.target,-30,{bXLimit:true,bYLimit:false});
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemRollOver(var2)
+	function itemRollOver(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._lstList)
 		{
@@ -449,7 +453,7 @@ class dofus.graphics.gapi.controls.MountViewer extends dofus.graphics.gapi.core.
 			}
 		}
 	}
-	function itemRollOut(var2)
+	function itemRollOut(§\x1e\x19\x18§)
 	{
 		this.out();
 	}

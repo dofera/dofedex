@@ -63,7 +63,7 @@ class dofus.graphics.gapi.controls.FightChallengeViewer extends ank.gapi.core.UI
 			context[callback]({target:target});
 		};
 	}
-	function click(var2)
+	function click(§\x10\x1a§)
 	{
 		switch(var2.target)
 		{
@@ -80,27 +80,25 @@ class dofus.graphics.gapi.controls.FightChallengeViewer extends ank.gapi.core.UI
 				}
 		}
 	}
-	function over(var2)
+	function over(§\x10\x1a§)
 	{
-		loop0:
 		switch(var2.target)
 		{
 			case this._btnView:
 				this.gapi.showTooltip(this.api.lang.getText("VIEW_CHALENGE_TARGET"),var2.target,40);
 				break;
+			case this._lblBonusXp:
+			case this._lblTitleXp:
+				this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicXpBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamXpBonus + "%",var2.target,40);
+				break;
 			default:
 				switch(null)
 				{
-					case this._lblTitleXp:
 					case this._lblBonusDrop:
 					case this._lblTitleDrop:
 						this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicDropBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamDropBonus + "%",var2.target,40);
-						break loop0;
-					default:
-						if(var0 !== this._mcState)
-						{
-							break loop0;
-						}
+						break;
+					case this._mcState:
 						switch(this.challenge.state)
 						{
 							case 0:
@@ -112,17 +110,14 @@ class dofus.graphics.gapi.controls.FightChallengeViewer extends ank.gapi.core.UI
 							case 2:
 								this.gapi.showTooltip(this.api.lang.getText("FIGHT_CHALLENGE_FAILED"),var2.target,40);
 						}
-						break loop0;
 				}
-			case this._lblBonusXp:
-				this.gapi.showTooltip(this.api.lang.getText("BASIC_BONUS") + " : " + this.challenge.basicXpBonus + "%\n" + this.api.lang.getText("GROUP_BONUS") + " : " + this.challenge.teamXpBonus + "%",var2.target,40);
 		}
 	}
-	function out(var2)
+	function out(§\x10\x1a§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function change(var2)
+	function change(§\x10\x1a§)
 	{
 		this._lblTitle._y = this._lblTitle._y + (this._lblTitle.height - this._lblTitle.textHeight) / 2;
 	}

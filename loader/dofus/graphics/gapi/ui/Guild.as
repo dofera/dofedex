@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		super();
 	}
-	function __set__currentTab(var2)
+	function __set__currentTab(§\x1e\r\x10§)
 	{
 		this._sCurrentTab = var2;
 		return this.__get__currentTab();
@@ -75,36 +75,36 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 	function updateCurrentTabInformations()
 	{
 		this._mcTabViewer.removeMovieClip();
-		if((var var0 = this._sCurrentTab) !== "Members")
+		switch(this._sCurrentTab)
 		{
-			switch(null)
-			{
-				case "Boosts":
-					this.attachMovie("GuildBoostsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-					this.api.network.Guild.getInfosBoosts();
-					break;
-				case "TaxCollectors":
-					this.attachMovie("TaxCollectorsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-					this.api.datacenter.Player.guildInfos.taxCollectors.removeAll();
-					this.api.network.Guild.getInfosTaxCollector();
-					break;
-				case "MountParks":
-					this.attachMovie("GuildMountParkViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-					this.api.network.Guild.getInfosMountPark();
-					break;
-				case "GuildHouses":
-					this.attachMovie("GuildHousesViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-					this.api.network.Guild.getInfosGuildHouses();
-			}
-		}
-		else
-		{
-			this.attachMovie("GuildMembersViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
-			this.api.datacenter.Player.guildInfos.members.removeAll();
-			this.api.network.Guild.getInfosMembers();
+			case "Members":
+				this.attachMovie("GuildMembersViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+				this.api.datacenter.Player.guildInfos.members.removeAll();
+				this.api.network.Guild.getInfosMembers();
+				break;
+			case "Boosts":
+				this.attachMovie("GuildBoostsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+				this.api.network.Guild.getInfosBoosts();
+				break;
+			default:
+				switch(null)
+				{
+					case "TaxCollectors":
+						this.attachMovie("TaxCollectorsViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+						this.api.datacenter.Player.guildInfos.taxCollectors.removeAll();
+						this.api.network.Guild.getInfosTaxCollector();
+						break;
+					case "MountParks":
+						this.attachMovie("GuildMountParkViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+						this.api.network.Guild.getInfosMountPark();
+						break;
+					case "GuildHouses":
+						this.attachMovie("GuildHousesViewer","_mcTabViewer",this.getNextHighestDepth(),{_x:this._mcPlacer._x,_y:this._mcPlacer._y});
+						this.api.network.Guild.getInfosGuildHouses();
+				}
 		}
 	}
-	function setCurrentTab(var2)
+	function setCurrentTab(§\x1e\x10\x04§)
 	{
 		if(this._sCurrentTab == "TaxCollectors")
 		{
@@ -128,7 +128,7 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 			this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("AUTO_DISJOIN_TAX"),"ERROR_BOX");
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -138,20 +138,20 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 			case "_btnTabMembers":
 				this.setCurrentTab("Members");
 				break;
-			case "_btnTabBoosts":
-				if(this.api.datacenter.Player.guildInfos.isValid)
-				{
-					this.setCurrentTab("Boosts");
-				}
-				else
-				{
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
-					var2.target.selected = true;
-				}
-				break;
 			default:
 				switch(null)
 				{
+					case "_btnTabBoosts":
+						if(this.api.datacenter.Player.guildInfos.isValid)
+						{
+							this.setCurrentTab("Boosts");
+						}
+						else
+						{
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_MEMBERS_IN_GUILD"),"ERROR_BOX");
+							var2.target.selected = true;
+						}
+						break;
 					case "_btnTabTaxCollectors":
 						if(this.api.datacenter.Player.guildInfos.isValid)
 						{
@@ -186,18 +186,18 @@ class dofus.graphics.gapi.ui.Guild extends dofus.graphics.gapi.core.DofusAdvance
 				}
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "_pbXP")
 		{
-			this.gapi.showTooltip(new ank.utils.(this._pbXP.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._pbXP.maximum).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this._pbXP,-20);
+			this.gapi.showTooltip(new ank.utils.(this._pbXP.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._pbXP.maximum).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this._pbXP,-20);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		loop0:
 		switch(var2.eventName)

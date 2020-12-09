@@ -1,6 +1,6 @@
 class dofus.datacenter.Spell extends Object
 {
-	function Spell(var3, var4, var5)
+	function Spell(§\x05\x02§, §\x04\x01§, §\x1e\x14\x01§)
 	{
 		super();
 		this.initialize(var3,var4,var5);
@@ -17,7 +17,7 @@ class dofus.datacenter.Spell extends Object
 	{
 		return this._nMaxLevel;
 	}
-	function __set__level(var2)
+	function __set__level(§\x04\x01§)
 	{
 		this._nLevel = var2;
 		return this.__get__level();
@@ -26,7 +26,7 @@ class dofus.datacenter.Spell extends Object
 	{
 		return this._nLevel;
 	}
-	function __set__position(var2)
+	function __set__position(§\x01\x17§)
 	{
 		this._nPosition = var2;
 		return this.__get__position();
@@ -35,7 +35,7 @@ class dofus.datacenter.Spell extends Object
 	{
 		return this._nPosition;
 	}
-	function __set__animID(var2)
+	function __set__animID(§\t\x03§)
 	{
 		this._nAnimID = var2;
 		return this.__get__animID();
@@ -56,7 +56,7 @@ class dofus.datacenter.Spell extends Object
 	{
 		return this.searchIfTrap(this.getSpellLevelText(0));
 	}
-	function __set__inFrontOfSprite(var2)
+	function __set__inFrontOfSprite(§\x18\x1d§)
 	{
 		this._bInFrontOfSprite = var2;
 		return this.__get__inFrontOfSprite();
@@ -215,7 +215,8 @@ class dofus.datacenter.Spell extends Object
 	function __get__effectsNormalHitWithArea()
 	{
 		var var2 = this.api.kernel.GameManager.getSpellEffects(this.getSpellLevelText(0),this._nID);
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = 0;
 		var var5 = 0;
 		while(var5 < var2.length)
@@ -232,7 +233,8 @@ class dofus.datacenter.Spell extends Object
 	function __get__effectsCriticalHitWithArea()
 	{
 		var var2 = this.api.kernel.GameManager.getSpellEffects(this.getSpellLevelText(1),this._nID);
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = this.effectsNormalHit.length;
 		var var5 = 0;
 		while(var5 < var2.length)
@@ -274,32 +276,27 @@ class dofus.datacenter.Spell extends Object
 	{
 		var var2 = {none:false,neutral:false,earth:false,fire:false,water:false,air:false};
 		var var3 = this.effectsNormalHit;
-		for(var k in var3)
+		for(var var4 in var3)
 		{
-			var var4 = var3[k].element;
-			if((var var0 = var4) !== "N")
+			switch(var4)
 			{
-				switch(null)
-				{
-					case "E":
-						var2.earth = true;
-						break;
-					case "F":
-						var2.fire = true;
-						break;
-					case "W":
-						var2.water = true;
-						break;
-					case "A":
-						var2.air = true;
-						break;
-					default:
-						var2.none = true;
-				}
-			}
-			else
-			{
-				var2.neutral = true;
+				case "N":
+					var2.neutral = true;
+					break;
+				case "E":
+					var2.earth = true;
+					break;
+				case "F":
+					var2.fire = true;
+					break;
+				case "W":
+					var2.water = true;
+					break;
+				case "A":
+					var2.air = true;
+					break;
+				default:
+					var2.none = true;
 			}
 		}
 		return var2;
@@ -308,7 +305,7 @@ class dofus.datacenter.Spell extends Object
 	{
 		return this._aEffectZones;
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x05\x02§, §\x04\x01§, §\x1e\x14\x01§)
 	{
 		this.api = _global.API;
 		this._nID = var2;
@@ -344,7 +341,7 @@ class dofus.datacenter.Spell extends Object
 		this._aForbiddenStates = this.getSpellLevelText(17);
 		this._minPlayerLevel = this.normalMinPlayerLevel;
 	}
-	function getSpellLevelText(var2, var3)
+	function getSpellLevelText(§\x01\x12§, §\x04\x01§)
 	{
 		if(var3 == undefined)
 		{
@@ -352,7 +349,7 @@ class dofus.datacenter.Spell extends Object
 		}
 		return this._oSpellText["l" + var3][var2];
 	}
-	function searchIfSummon(var2)
+	function searchIfSummon(§\x1e\x1c§)
 	{
 		var var3 = var2.length;
 		if(typeof var2 == "object")
@@ -370,7 +367,7 @@ class dofus.datacenter.Spell extends Object
 		}
 		return false;
 	}
-	function searchIfGlyph(var2)
+	function searchIfGlyph(§\x1e\x1c§)
 	{
 		var var3 = var2.length;
 		if(typeof var2 == "object")
@@ -388,7 +385,7 @@ class dofus.datacenter.Spell extends Object
 		}
 		return false;
 	}
-	function searchIfTrap(var2)
+	function searchIfTrap(§\x1e\x1c§)
 	{
 		var var3 = var2.length;
 		if(typeof var2 == "object")

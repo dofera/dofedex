@@ -3,7 +3,6 @@ class ank.battlefield.datacenter.Sprite extends Object
 	var allowGhostMode = true;
 	var bAnimLoop = false;
 	var _nChildIndex = -1;
-	var _nLastCellNum = -1;
 	var _nFutureCellNum = -1;
 	var _sDefaultAnimation = "static";
 	var _sStartAnimation = "static";
@@ -16,26 +15,32 @@ class ank.battlefield.datacenter.Sprite extends Object
 	var _bIsPendingClearing = false;
 	var _bUncarryingSprite = false;
 	var bInCreaturesMode = false;
-	function Sprite(var3, var4, var5, var6, var7)
+	function Sprite(§\x05\x02§, §\x0e\x1d§, §\x1e\x12\f§, §\b\x02§, §\x06\x14§)
 	{
 		super();
 		this.initialize(var3,var4,var5,var6,var7);
 	}
-	function initialize(sID, §\x0e\x13§, §\x1e\x12\x01§, §\x07\x14§, §\x06\n§)
+	function initialize(sID, §\x0e\x1d§, §\x1e\x12\f§, §\b\x02§, §\x06\x14§)
 	{
 		this.id = sID;
 		this.clipClass = var3;
 		this._sGfxFile = var4;
+		this.refreshGfxFileName();
 		this._nCellNum = Number(var5);
 		this._nDirection = var6 != undefined?Number(var6):1;
-		this._oSequencer = new ank.utils.(1000);
+		this._oSequencer = new ank.utils.(1000);
 		this._bInMove = false;
 		this._bVisible = true;
 		this._bClear = false;
-		this._eoLinkedChilds = new ank.utils.();
+		this._eoLinkedChilds = new ank.utils.	();
 		mx.events.EventDispatcher.initialize(this);
 	}
-	function __set__uncarryingSprite(var2)
+	function refreshGfxFileName()
+	{
+		var var2 = this._sGfxFile.split(".")[0].split("/");
+		this._sGfxFileName = var2[var2.length - 1];
+	}
+	function __set__uncarryingSprite(§\x14\x0f§)
 	{
 		this._bUncarryingSprite = var2;
 		return this.__get__uncarryingSprite();
@@ -56,7 +61,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nChildIndex;
 	}
-	function __set__childIndex(var2)
+	function __set__childIndex(§\x07\x11§)
 	{
 		this._nChildIndex = var2;
 		return this.__get__childIndex();
@@ -69,7 +74,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._oLinkedParent;
 	}
-	function __set__linkedParent(var2)
+	function __set__linkedParent(§\x1e\x19\x07§)
 	{
 		this._oLinkedParent = var2;
 		return this.__get__linkedParent();
@@ -86,7 +91,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._oCarriedChild;
 	}
-	function __set__carriedChild(var2)
+	function __set__carriedChild(§\x1e\x1a\x1b§)
 	{
 		this._oCarriedChild = var2;
 		return this.__get__carriedChild();
@@ -95,7 +100,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._oCarriedParent;
 	}
-	function __set__carriedParent(var2)
+	function __set__carriedParent(§\x1e\x1a\x1b§)
 	{
 		this._oCarriedParent = var2;
 		return this.__get__carriedParent();
@@ -104,17 +109,22 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._sGfxFile;
 	}
-	function __set__gfxFile(var2)
+	function __set__gfxFile(§\x1e\x12\f§)
 	{
 		this.dispatchEvent({type:"gfxFileChanged",value:var2});
 		this._sGfxFile = var2;
+		this.refreshGfxFileName();
 		return this.__get__gfxFile();
+	}
+	function __get__gfxFileName()
+	{
+		return this._sGfxFileName;
 	}
 	function __get__defaultAnimation()
 	{
 		return this._sDefaultAnimation;
 	}
-	function __set__defaultAnimation(var2)
+	function __set__defaultAnimation(§\x1e\n\x0f§)
 	{
 		this._sDefaultAnimation = var2;
 		return this.__get__defaultAnimation();
@@ -123,7 +133,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._sStartAnimation;
 	}
-	function __set__startAnimation(var2)
+	function __set__startAnimation(§\x1e\n\x0f§)
 	{
 		this._sStartAnimation = var2;
 		return this.__get__startAnimation();
@@ -132,7 +142,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nStartAnimationTimer;
 	}
-	function __set__startAnimationTimer(var2)
+	function __set__startAnimationTimer(§\x1e\n\x0f§)
 	{
 		this._nStartAnimationTimer = var2;
 		return this.__get__startAnimationTimer();
@@ -141,7 +151,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nSpeedModerator;
 	}
-	function __set__speedModerator(var2)
+	function __set__speedModerator(§\x1e\n\x0f§)
 	{
 		this._nSpeedModerator = Number(var2);
 		return this.__get__speedModerator();
@@ -150,16 +160,16 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bVisible;
 	}
-	function __set__isVisible(var2)
+	function __set__isVisible(§\x1e\n\x0f§)
 	{
 		this._bVisible = var2;
 		return this.__get__isVisible();
 	}
-	function __get__isHidden(var2)
+	function __get__isHidden(§\x1e\n\f§)
 	{
 		return this._bHidden;
 	}
-	function __set__isHidden(var2)
+	function __set__isHidden(§\x1e\n\x0f§)
 	{
 		this.mc.isHidden = this._bHidden = var2;
 		return this.__get__isHidden();
@@ -168,7 +178,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bInMove;
 	}
-	function __set__isInMove(var2)
+	function __set__isInMove(§\x1e\n\x0f§)
 	{
 		if(!var2)
 		{
@@ -187,7 +197,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._sMoveSpeedType;
 	}
-	function __set__moveSpeedType(var2)
+	function __set__moveSpeedType(§\x1e\x10\b§)
 	{
 		this._sMoveSpeedType = var2;
 		return this.__get__moveSpeedType();
@@ -196,7 +206,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._sMoveAnimation;
 	}
-	function __set__moveAnimation(var2)
+	function __set__moveAnimation(§\x1e\x10\t§)
 	{
 		this._sMoveAnimation = var2;
 		return this.__get__moveAnimation();
@@ -205,22 +215,17 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bClear;
 	}
-	function __set__isClear(var2)
+	function __set__isClear(§\x1e\n\x0f§)
 	{
 		this._bClear = var2;
 		return this.__get__isClear();
-	}
-	function __get__lastCellNum()
-	{
-		return this._nLastCellNum;
 	}
 	function __get__cellNum()
 	{
 		return this._nCellNum;
 	}
-	function __set__cellNum(var2)
+	function __set__cellNum(§\x1e\n\x0f§)
 	{
-		this._nLastCellNum = this._nCellNum != undefined?this._nCellNum:var2;
 		this._nCellNum = Number(var2);
 		return this.__get__cellNum();
 	}
@@ -228,7 +233,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nFutureCellNum;
 	}
-	function __set__futureCellNum(var2)
+	function __set__futureCellNum(§\x05\f§)
 	{
 		this._nFutureCellNum = var2;
 		return this.__get__futureCellNum();
@@ -237,7 +242,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nDirection;
 	}
-	function __set__direction(var2)
+	function __set__direction(§\x1e\n\x0f§)
 	{
 		this._nDirection = Number(var2);
 		return this.__get__direction();
@@ -246,7 +251,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nColor1;
 	}
-	function __set__color1(var2)
+	function __set__color1(§\x1e\n\x0f§)
 	{
 		this._nColor1 = Number(var2);
 		return this.__get__color1();
@@ -255,7 +260,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nColor2;
 	}
-	function __set__color2(var2)
+	function __set__color2(§\x1e\n\x0f§)
 	{
 		this._nColor2 = Number(var2);
 		return this.__get__color2();
@@ -264,7 +269,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._nColor3;
 	}
-	function __set__color3(var2)
+	function __set__color3(§\x1e\n\x0f§)
 	{
 		this._nColor3 = Number(var2);
 		return this.__get__color3();
@@ -273,7 +278,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._aAccessories;
 	}
-	function __set__accessories(var2)
+	function __set__accessories(§\x1e\n\x0f§)
 	{
 		this.dispatchEvent({type:"accessoriesChanged",value:var2});
 		this._aAccessories = var2;
@@ -283,7 +288,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._oSequencer;
 	}
-	function __set__sequencer(var2)
+	function __set__sequencer(§\x1e\n\x0f§)
 	{
 		this._oSequencer = var2;
 		return this.__get__sequencer();
@@ -292,7 +297,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bAllDirections;
 	}
-	function __set__allDirections(var2)
+	function __set__allDirections(§\x1c\x15§)
 	{
 		this._bAllDirections = var2;
 		return this.__get__allDirections();
@@ -301,7 +306,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bForceWalk;
 	}
-	function __set__forceWalk(var2)
+	function __set__forceWalk(§\x19\x11§)
 	{
 		this._bForceWalk = var2;
 		return this.__get__forceWalk();
@@ -310,7 +315,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bForceRun;
 	}
-	function __set__forceRun(var2)
+	function __set__forceRun(§\x19\x15§)
 	{
 		this._bForceRun = var2;
 		return this.__get__forceRun();
@@ -319,7 +324,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bNoFlip;
 	}
-	function __set__noFlip(var2)
+	function __set__noFlip(§\x17\x0e§)
 	{
 		this._bNoFlip = var2;
 		return this.__get__noFlip();
@@ -328,7 +333,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._oMount;
 	}
-	function __set__mount(var2)
+	function __set__mount(§\x1e\n\x13§)
 	{
 		this._oMount = var2;
 		return this.__get__mount();
@@ -341,7 +346,7 @@ class ank.battlefield.datacenter.Sprite extends Object
 	{
 		return this._bIsPendingClearing;
 	}
-	function __set__isPendingClearing(var2)
+	function __set__isPendingClearing(§\x18\x10§)
 	{
 		this._bIsPendingClearing = var2;
 		return this.__get__isPendingClearing();

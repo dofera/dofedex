@@ -17,7 +17,7 @@ class ank.utils.ExtendedArray extends Array
 	function dispatchQueue()
 	{
 	}
-	function initialize(var2)
+	function initialize(§\x1e\n\f§)
 	{
 		mx.events.EventDispatcher.initialize(this);
 	}
@@ -25,7 +25,7 @@ class ank.utils.ExtendedArray extends Array
 	{
 		return this._bNoEventDispatchs;
 	}
-	function startNoEventDispatchsPeriod(var2)
+	function startNoEventDispatchsPeriod(§\x06\t§)
 	{
 		this._bNoEventDispatchs = true;
 		if(this._nNoEventPeriodTimeout != undefined)
@@ -43,7 +43,7 @@ class ank.utils.ExtendedArray extends Array
 		var var2 = _global.API;
 		var2.ui.getUIComponent("TaxCollectorStorage").refreshGetItemButton();
 	}
-	function createFromArray(var2)
+	function createFromArray(§\x03§)
 	{
 		this.splice(0,this.length);
 		var var3 = 0;
@@ -53,12 +53,12 @@ class ank.utils.ExtendedArray extends Array
 			var3 = var3 + 1;
 		}
 	}
-	function removeAll(var2)
+	function removeAll(§\x1e\n\f§)
 	{
 		this.splice(0,this.length);
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function push(var2)
+	function push(§\x1e\n\x0f§)
 	{
 		var var4 = super.push(var3);
 		this.doDispatchEvent({type:"modelChanged",eventName:"addItem"});
@@ -76,7 +76,7 @@ class ank.utils.ExtendedArray extends Array
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
 		return var3;
 	}
-	function unshift(var2)
+	function unshift(§\x1e\n\x0f§)
 	{
 		var var4 = super.unshift(var3);
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
@@ -87,27 +87,28 @@ class ank.utils.ExtendedArray extends Array
 		super.reverse();
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function replaceAll(var2, var3)
+	function replaceAll(§\x1e\x1d\n§, §\x1e\x05§)
 	{
 		var var4 = [var2,0];
-		for(var k in var3)
+		§§enumerate(var3);
+		while((var var0 = §§enumeration()) != null)
 		{
 			var4.push(var3[k]);
 		}
 		this.splice.apply(this,var4);
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function removeItems(var2, var3)
+	function removeItems(§\x04\x17§, §\x11\f§)
 	{
 		this.splice(var2,var3);
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateAll"});
 	}
-	function updateItem(var2, var3)
+	function updateItem(§\x04\x17§, §\x05\x1b§)
 	{
 		this.splice(var2,1,var3);
 		this.doDispatchEvent({type:"modelChanged",eventName:"updateOne",updateIndex:var2});
 	}
-	function findFirstItem(var2, var3)
+	function findFirstItem(§\x1e\x0e\x17§, §\x1e\x16\x0f§)
 	{
 		var var4 = 0;
 		while(var4 < this.length)
@@ -123,7 +124,8 @@ class ank.utils.ExtendedArray extends Array
 	}
 	function clone()
 	{
-		var var2 = new ank.utils.();
+		var var2 = new ank.utils.
+();
 		var var3 = 0;
 		while(var3 < this.length)
 		{
@@ -146,7 +148,7 @@ class ank.utils.ExtendedArray extends Array
 		}
 		return var2;
 	}
-	function doDispatchEvent(var2)
+	function doDispatchEvent(§\x1e\x19\x18§)
 	{
 		if(this.isInNoEventDispatchsPeriod())
 		{
@@ -154,7 +156,7 @@ class ank.utils.ExtendedArray extends Array
 		}
 		this.dispatchEvent(var2);
 	}
-	function bubbleSortOn(var2, var3)
+	function bubbleSortOn(§\x1e\x16\x11§, §\x0e\x10§)
 	{
 		if((var3 & Array.ASCENDING) == 0 && (var3 & Array.DESCENDING) == 0)
 		{
@@ -182,10 +184,11 @@ class ank.utils.ExtendedArray extends Array
 			break;
 		}
 	}
-	function concat(var2)
+	function concat(§\x1e\x1a\x14§)
 	{
 		var var4 = super.concat(var3);
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		var5.createFromArray(var4);
 		return var5;
 	}

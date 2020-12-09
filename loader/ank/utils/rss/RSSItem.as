@@ -3,7 +3,7 @@ class ank.utils.rss.RSSItem
 	function RSSItem()
 	{
 	}
-	function parse(var2)
+	function parse(§\x1e\t\x1d§)
 	{
 		this.initialize();
 		if(var2.nodeName.toLowerCase() != "item")
@@ -35,13 +35,8 @@ class ank.utils.rss.RSSItem
 				case "guid":
 					this._sGuid = var3.childNodes.join("");
 					break;
-				default:
-					if(var0 !== "icon")
-					{
-						break;
-					}
+				case "icon":
 					this._sIcon = var3.childNodes.join("");
-					break;
 			}
 			var3 = var3.nextSibling;
 		}
@@ -63,7 +58,7 @@ class ank.utils.rss.RSSItem
 	{
 		return this._dPubDate;
 	}
-	function getPubDateStr(var2, var3)
+	function getPubDateStr(§\x1e\x12\x11§, §\x1e\x11\x06§)
 	{
 		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,var2,var3):this._sPubDate;
 	}

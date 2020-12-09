@@ -28,12 +28,12 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bAdminPopupMenu;
 	}
-	function __set__adminPopupMenu(var2)
+	function __set__adminPopupMenu(§\x1c\x19§)
 	{
 		this._bAdminPopupMenu = var2;
 		return this.__get__adminPopupMenu();
 	}
-	function addStaticItem(var2)
+	function addStaticItem(§\x1e\x0b\x15§)
 	{
 		var var3 = new Object();
 		var3.text = var2;
@@ -41,7 +41,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		var3.bEnabled = false;
 		this._aItems.push(var3);
 	}
-	function addItem(var2, var3, var4, var5, var6)
+	function addItem(§\x1e\x0b\x15§, §\x1e\x1a\x13§, §\x0e\r§, §\x1d\x13§, §\x1a\x11§)
 	{
 		if(var6 == undefined)
 		{
@@ -60,7 +60,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 	{
 		return this._aItems;
 	}
-	function show(var2, var3, var4, var5, var6)
+	function show(§\x1e\x1b\r§, §\x1e\x1b\x05§, §\x17\x1c§, §\x14\x05§, §\x1e\x1c\n§)
 	{
 		ank.utils.Timer.removeTimer(this._name);
 		if(var2 == undefined)
@@ -133,7 +133,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		this.drawRoundRect(this._mcBackground,0,0,1,1,0,var2.backgroundcolor);
 		this.drawRoundRect(this._mcForeground,0,0,1,1,0,var2.foregroundcolor);
 	}
-	function drawItem(i, §\f\x14§, §\x1e\x1a\x18§)
+	function drawItem(i, §\r\x01§, §\x1e\x1b\x05§)
 	{
 		var var4 = this._mcItems.createEmptyMovieClip("item" + var2,var2);
 		var var5 = (ank.gapi.controls.Label)var4.attachMovie("Label","_lbl",20,{_width:ank.gapi.controls.PopupMenu.MAX_ITEM_WIDTH,styleName:this.getStyle().labelenabledstyle,wordWrap:true,text:i.text});
@@ -186,13 +186,13 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		}
 		return {w:var5.textWidth,h:var6};
 	}
-	function arrangeItem(var2, var3)
+	function arrangeItem(§\x04\x17§, §\x1e\x1b\x0f§)
 	{
 		var var4 = this._mcItems["item" + var2];
 		var4._lbl.setSize(var3,ank.gapi.controls.PopupMenu.ITEM_HEIGHT);
 		var4.bg._width = var3;
 	}
-	function layoutContent(var2, var3, var4, var5)
+	function layoutContent(§\x1e\n\x04§, §\x1e\t\x18§, §\x17\x1c§, §\x14\x05§)
 	{
 		var var6 = this._aItems.length;
 		var var7 = 0;
@@ -266,7 +266,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		}
 		return var2;
 	}
-	function selectFirstEnabled(var2)
+	function selectFirstEnabled(§\x1e\x1a§)
 	{
 		if(var2 == undefined)
 		{
@@ -286,7 +286,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 			break;
 		}
 	}
-	function selectLastEnabled(var2)
+	function selectLastEnabled(§\x1e\x1a§)
 	{
 		if(var2 == undefined)
 		{
@@ -355,11 +355,12 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 							var6 = var6 + 1;
 							continue;
 						}
-						var var8 = this._mcItems["item" + var6];
-						this.onItemOver(var8.bg);
-						return undefined;
+						break;
 					}
 					break;
+					var var8 = this._mcItems["item" + var6];
+					this.onItemOver(var8.bg);
+					return undefined;
 				}
 			}
 			var3 = var3 + 1;
@@ -399,7 +400,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		}
 		this.selectLastEnabled(var2);
 	}
-	function onItemOver(var2, var3)
+	function onItemOver(§\x0b\x0b§, §\x16\x10§)
 	{
 		if(var3)
 		{
@@ -414,7 +415,7 @@ class ank.gapi.controls.PopupMenu extends ank.gapi.core.UIBasicComponent
 		var var4 = new Color(var2);
 		var4.setRGB(this.getStyle().itemovercolor);
 	}
-	function onItemOut(var2, var3)
+	function onItemOut(§\x0b\x0b§, §\x16\x10§)
 	{
 		if(var3)
 		{

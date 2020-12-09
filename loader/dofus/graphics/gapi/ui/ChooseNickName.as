@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__nickAlreadyUsed(var2)
+	function __set__nickAlreadyUsed(§\x14\t§)
 	{
 		this._lblError._visible = var2;
 		if(var2)
@@ -19,7 +19,7 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 		}
 		return this.__get__nickAlreadyUsed();
 	}
-	function __set__state(var2)
+	function __set__state(§\x1e\x1d\x07§)
 	{
 		this._nState = var2;
 		switch(this._nState)
@@ -42,13 +42,18 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 				this._tiNickName.setFocus();
 				this._txtHelp.text = this.api.lang.getText("CHOOSE_NICKNAME_HELP");
 				break;
-			case 2:
+			default:
+				if(var0 !== 2)
+				{
+					break;
+				}
 				this._mcNickBg._visible = false;
 				this._lblError._visible = false;
 				this._tiNickName._visible = false;
 				this._txtHelp._visible = false;
 				this._txtHelp2._visible = true;
 				this._txtHelp2.text = this.api.lang.getText("DO_CHOOSE_NICKNAME",[this._tiNickName.text]);
+				break;
 		}
 		return this.__get__state();
 	}
@@ -80,14 +85,16 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 	{
 		this.state = 0;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
 			case "_btnOk":
 				var var3 = this._tiNickName.text;
+				org.flashdevelop.utils.FlashConnect.mtrace(this._tiNickName.text,"dofus.graphics.gapi.ui.ChooseNickName::click","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/ChooseNickName.as",146);
 				if(var3.length > 2)
 				{
+					org.flashdevelop.utils.FlashConnect.mtrace("oua","dofus.graphics.gapi.ui.ChooseNickName::click","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/ChooseNickName.as",149);
 					if(var3.toUpperCase() == this.api.datacenter.Player.login.toUpperCase())
 					{
 						this.api.kernel.showMessage(undefined,this.api.lang.getText("NICKNAME_EQUALS_LOGIN"),"ERROR_BOX");
@@ -116,10 +123,11 @@ class dofus.graphics.gapi.ui.ChooseNickName extends dofus.graphics.gapi.core.Dof
 				break;
 		}
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" || var2 == "CTRL_STATE_CHANGED_OFF")
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(this,"dofus.graphics.gapi.ui.ChooseNickName::onShortcut","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/ChooseNickName.as",190);
 			this.click({target:this._btnOk});
 			return false;
 		}

@@ -5,7 +5,7 @@ class dofus.datacenter.PlayerShop extends Object
 		super();
 		this.initialize();
 	}
-	function __set__inventory(var2)
+	function __set__inventory(§\x10\x0f§)
 	{
 		this._eaInventory = var2;
 		this.dispatchEvent({type:"modelChanged"});

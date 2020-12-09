@@ -1,7 +1,7 @@
 class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 {
 	var xtraClipTopAnimations = {staticF:true};
-	function Character(sID, clipClass, §\x1e\x12\x01§, §\x13\x05§, §\x10\x1c§, gfxID, §\x1e\x0b\x02§)
+	function Character(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, gfxID, §\x1e\x0b\r§)
 	{
 		super();
 		this._title = var9;
@@ -24,7 +24,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._nGuild;
 	}
-	function __set__Guild(var2)
+	function __set__Guild(§\x1e\n\x0f§)
 	{
 		this._nGuild = Number(var2);
 		return this.__get__Guild();
@@ -33,7 +33,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._nSex;
 	}
-	function __set__Sex(var2)
+	function __set__Sex(§\x1e\n\x0f§)
 	{
 		this._nSex = Number(var2);
 		return this.__get__Sex();
@@ -42,7 +42,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._nAura;
 	}
-	function __set__Aura(var2)
+	function __set__Aura(§\x1e\n\x0f§)
 	{
 		this._nAura = Number(var2);
 		return this.__get__Aura();
@@ -51,7 +51,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._oAlignment;
 	}
-	function __set__alignment(var2)
+	function __set__alignment(§\x1e\n\x0f§)
 	{
 		this._oAlignment = var2;
 		return this.__get__alignment();
@@ -60,7 +60,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._bMerchant;
 	}
-	function __set__Merchant(var2)
+	function __set__Merchant(§\x1e\n\x0f§)
 	{
 		this._bMerchant = var2;
 		return this.__get__Merchant();
@@ -69,7 +69,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._nServerID;
 	}
-	function __set__serverID(var2)
+	function __set__serverID(§\x1e\n\x0f§)
 	{
 		this._nServerID = var2;
 		return this.__get__serverID();
@@ -78,7 +78,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._bDied;
 	}
-	function __set__Died(var2)
+	function __set__Died(§\x1e\n\x0f§)
 	{
 		this._bDied = var2;
 		return this.__get__Died();
@@ -87,7 +87,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._oRank;
 	}
-	function __set__rank(var2)
+	function __set__rank(§\x1e\n\x0f§)
 	{
 		this._oRank = var2;
 		return this.__get__rank();
@@ -96,12 +96,12 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._aMultiCraftSkillsID;
 	}
-	function __set__multiCraftSkillsID(var2)
+	function __set__multiCraftSkillsID(§\x1e\n\x0f§)
 	{
 		this._aMultiCraftSkillsID = var2;
 		return this.__get__multiCraftSkillsID();
 	}
-	function __set__guildName(var2)
+	function __set__guildName(§\x1e\x12\b§)
 	{
 		this._sGuildName = var2;
 		return this.__get__guildName();
@@ -114,7 +114,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._title;
 	}
-	function __set__emblem(var2)
+	function __set__emblem(§\x1e\x19\x1a§)
 	{
 		this._oEmblem = var2;
 		return this.__get__emblem();
@@ -123,7 +123,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return this._oEmblem;
 	}
-	function __set__restrictions(var2)
+	function __set__restrictions(§\x1e\x1e\x13§)
 	{
 		this._nRestrictions = Number(var2);
 		return this.__get__restrictions();
@@ -164,7 +164,7 @@ class dofus.datacenter.Character extends dofus.datacenter.PlayableCharacter
 	{
 		return (this._nRestrictions & 256) == 256;
 	}
-	function __set__resistances(var2)
+	function __set__resistances(§\x1d\x16§)
 	{
 		this._aResistances = var2;
 		return this.__get__resistances();

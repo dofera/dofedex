@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.BigStoreSearchFullSoul extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__oParent(var2)
+	function __set__oParent(§\x1e\x1a\x1b§)
 	{
 		this._oParent = var2;
 		return this.__get__oParent();
@@ -41,7 +41,7 @@ class dofus.graphics.gapi.ui.BigStoreSearchFullSoul extends dofus.graphics.gapi.
 		this._tiSearch.text = "";
 		this._tiSearch.setFocus();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

@@ -15,7 +15,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	{
 		return this._bExecutingBatch != undefined && this._bExecutingBatch;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3);
 		this._nUICounter = 0;
@@ -27,7 +27,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		var var3 = var2.firstChild.firstChild;
 		this.createAndShowPopupMenuWithSearch(var3,this._bRightClick);
 	}
-	function updateSearch(var2, var3)
+	function updateSearch(§\b\x1d§, §\x04\t§)
 	{
 		var var4 = this.api.ui.currentPopupMenu;
 		if(var4.removed == undefined || (var4.removed || !var4.adminPopupMenu))
@@ -46,51 +46,56 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			}
 			return true;
 		}
-		switch(var2)
+		if((var0 = var2) !== 8)
 		{
-			case 8:
-				if(this._sCurrentSearch.length > 0)
-				{
-					this._sCurrentSearch = this._sCurrentSearch.substring(0,this._sCurrentSearch.length - 1);
-				}
-				if(this._nSearchRefreshTimeout != undefined)
-				{
-					_global.clearTimeout(this._nSearchRefreshTimeout);
-				}
-				this._nSearchRefreshTimeout = _global.setTimeout(this,"refreshVisually",dofus.managers.AdminManager.DELAYED_REFRESH_DURATION);
-				return true;
-			case 127:
-			case 27:
-				if(this._sCurrentSearch.length == 0)
-				{
-					var4.removePopupMenu();
+			switch(null)
+			{
+				case 127:
+				case 27:
+					if(this._sCurrentSearch.length == 0)
+					{
+						var4.removePopupMenu();
+						return true;
+					}
+					this._sCurrentSearch = "";
+					if(this._nSearchRefreshTimeout != undefined)
+					{
+						_global.clearTimeout(this._nSearchRefreshTimeout);
+					}
+					this._nSearchRefreshTimeout = _global.setTimeout(this,"refreshVisually",dofus.managers.AdminManager.DELAYED_REFRESH_DURATION);
 					return true;
-				}
-				this._sCurrentSearch = "";
-				if(this._nSearchRefreshTimeout != undefined)
-				{
-					_global.clearTimeout(this._nSearchRefreshTimeout);
-				}
-				this._nSearchRefreshTimeout = _global.setTimeout(this,"refreshVisually",dofus.managers.AdminManager.DELAYED_REFRESH_DURATION);
-				return true;
-			case 13:
-				if(!var4.executeSelectedItem())
-				{
-					var4.selectFirstEnabled();
-				}
-				return true;
-			default:
-				var var5 = String.fromCharCode(var2);
-				this._sCurrentSearch = this._sCurrentSearch + var5;
-				if(this._nSearchRefreshTimeout != undefined)
-				{
-					_global.clearTimeout(this._nSearchRefreshTimeout);
-				}
-				this._nSearchRefreshTimeout = _global.setTimeout(this,"refreshVisually",dofus.managers.AdminManager.DELAYED_REFRESH_DURATION);
-				return true;
+				case 13:
+					if(!var4.executeSelectedItem())
+					{
+						var4.selectFirstEnabled();
+					}
+					return true;
+				default:
+					var var5 = String.fromCharCode(var2);
+					this._sCurrentSearch = this._sCurrentSearch + var5;
+					if(this._nSearchRefreshTimeout != undefined)
+					{
+						_global.clearTimeout(this._nSearchRefreshTimeout);
+					}
+					this._nSearchRefreshTimeout = _global.setTimeout(this,"refreshVisually",dofus.managers.AdminManager.DELAYED_REFRESH_DURATION);
+					return true;
+			}
+		}
+		else
+		{
+			if(this._sCurrentSearch.length > 0)
+			{
+				this._sCurrentSearch = this._sCurrentSearch.substring(0,this._sCurrentSearch.length - 1);
+			}
+			if(this._nSearchRefreshTimeout != undefined)
+			{
+				_global.clearTimeout(this._nSearchRefreshTimeout);
+			}
+			this._nSearchRefreshTimeout = _global.setTimeout(this,"refreshVisually",dofus.managers.AdminManager.DELAYED_REFRESH_DURATION);
+			return true;
 		}
 	}
-	function loadXMLs(var2)
+	function loadXMLs(§\x15\x13§)
 	{
 		this.loadXml(var2);
 		this.loadRightClickXml(false);
@@ -99,7 +104,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	{
 		var var2 = new XML();
 		var2.parent = this;
-		var2.onLoad = function(var2)
+		var2.onLoad = function(§\x14\x1b§)
 		{
 			if(var2)
 			{
@@ -123,7 +128,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	{
 		var var2 = new XML();
 		var2.parent = this;
-		var2.onLoad = function(var2)
+		var2.onLoad = function(§\x14\x1b§)
 		{
 			if(var2)
 			{
@@ -142,7 +147,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		var2.ignoreWhite = true;
 		var2.load(dofus.Constants.XML_ADMIN_RIGHT_CLICK_MENU_PATH);
 	}
-	function getAdminPopupMenu(var2, var3)
+	function getAdminPopupMenu(§\x1e\x0f\x04§, §\x16\b§)
 	{
 		this._bRightClick = var3;
 		Selection.setFocus(null);
@@ -228,7 +233,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		this.generateDateString();
 		this.generateHourString();
 	}
-	function createPopupMenuWithSearch(var2, var3)
+	function createPopupMenuWithSearch(§\x02\x10§, §\x16\b§)
 	{
 		if(this._sCurrentSearch == undefined || this._sCurrentSearch.length == 0)
 		{
@@ -242,7 +247,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			return var4;
 		}
 		var sSearch = this._sCurrentSearch.toLowerCase();
-		var var5 = function(var2)
+		var var5 = function(§\x1e\x11\x0b§)
 		{
 			var var3 = var2 != undefined && var2.removeAccents().toLowerCase().indexOf(sSearch) != -1;
 			return var3;
@@ -273,16 +278,16 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 						}
 					}
 					break;
+				case "loadXML":
+					if(var5.call(this,var2.attributes.label))
+					{
+						var var12 = this.replace(var2.attributes.label);
+						var7.push([var12,this,!var3?this.loadXml:this.loadRightClickXml,[true]]);
+					}
+					break;
 				default:
 					switch(null)
 					{
-						case "loadXML":
-							if(var5.call(this,var2.attributes.label))
-							{
-								var var12 = this.replace(var2.attributes.label);
-								var7.push([var12,this,!var3?this.loadXml:this.loadRightClickXml,[true]]);
-							}
-							break loop4;
 						case "startup":
 						case "prestartup":
 							var9 = false;
@@ -290,14 +295,14 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 						default:
 							switch(null)
 							{
-								case "sendCommand":
-								case "prepareCommand":
 								case "sendChat":
 								case "prepareChat":
 								case "copyCommand":
 							}
 							break loop4;
 						case "batch":
+						case "sendCommand":
+						case "prepareCommand":
 							var9 = false;
 							if(var5.call(this,var2.attributes.label))
 							{
@@ -350,7 +355,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		}
 		return var4;
 	}
-	function createPopupMenu(var2, var3)
+	function createPopupMenu(§\x02\x10§, §\x16\b§)
 	{
 		this._sCurrentSearch = "";
 		var var4 = this.api.ui.createPopupMenu(undefined,true);
@@ -358,40 +363,39 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		while(var2 != null && var2 != undefined)
 		{
 			var var5 = this.replace(var2.attributes.label);
-			loop1:
-			switch(var2.attributes.type)
+			if((var var0 = var2.attributes.type) !== "static")
 			{
-				case "static":
-					var4.addStaticItem(var5);
-					break;
-				case "menu":
-					var4.addItem(var5 + " >>",this,this.createAndShowPopupMenu,[var2.firstChild,var3]);
-					break;
-				case "menuDebug":
-					if(dofus.Constants.DEBUG)
-					{
+				switch(null)
+				{
+					case "menu":
 						var4.addItem(var5 + " >>",this,this.createAndShowPopupMenu,[var2.firstChild,var3]);
-					}
-					break;
-				case "loadXML":
-					var4.addItem(var5,this,!var3?this.loadXml:this.loadRightClickXml,[true]);
-					break;
-				default:
-					switch(null)
-					{
-						case "startup":
-							break loop1;
-						case "prestartup":
-							break loop1;
-						default:
-							var4.addItem(var5,this,this.executeFirst,[var2]);
-					}
+						break;
+					case "menuDebug":
+						if(dofus.Constants.DEBUG)
+						{
+							var4.addItem(var5 + " >>",this,this.createAndShowPopupMenu,[var2.firstChild,var3]);
+						}
+						break;
+					case "loadXML":
+						var4.addItem(var5,this,!var3?this.loadXml:this.loadRightClickXml,[true]);
+						break;
+					case "startup":
+						break;
+					case "prestartup":
+						break;
+					default:
+						var4.addItem(var5,this,this.executeFirst,[var2]);
+				}
+			}
+			else
+			{
+				var4.addStaticItem(var5);
 			}
 			var2 = var2.nextSibling;
 		}
 		return var4;
 	}
-	function createAndShowPopupMenu(var2, var3)
+	function createAndShowPopupMenu(§\x02\x10§, §\x16\b§)
 	{
 		var var4 = this.api.ui.currentPopupMenu;
 		var var5 = var4.x;
@@ -406,7 +410,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			var7.show(_root._xmouse,_root._ymouse,true);
 		}
 	}
-	function createAndShowPopupMenuWithSearch(var2, var3)
+	function createAndShowPopupMenuWithSearch(§\x02\x10§, §\x16\b§)
 	{
 		var var4 = this.api.ui.currentPopupMenu;
 		var var5 = var4.x;
@@ -421,7 +425,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			var7.show(_root._xmouse,_root._ymouse,true);
 		}
 	}
-	function initStartup(var2)
+	function initStartup(§\x02\x10§)
 	{
 		var var3 = var2;
 		while(var2 != null && var2 != undefined)
@@ -444,13 +448,13 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			var2 = var2.nextSibling;
 		}
 	}
-	function executeFirst(var2)
+	function executeFirst(§\x02\x10§)
 	{
 		this.removeInterval();
 		this._sSaveNode = var2.cloneNode(true);
 		this.execute(this._sSaveNode,false);
 	}
-	function execute(var2)
+	function execute(§\x02\x10§)
 	{
 		if(var2.attributes.check != true)
 		{
@@ -465,63 +469,67 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 					return false;
 				}
 			}
-			loop0:
-			switch(var2.attributes.type)
+			if((var var0 = var2.attributes.type) !== "copyCommand")
 			{
-				case "copyCommand":
-					this.copyCommand(var3);
-					break;
-				case "sendCommand":
-					this.sendCommand(var3);
-					break;
-				case "sendChat":
-					this.sendChat(var3);
-					break;
-				case "prepareCommand":
-					this.prepareCommand(var3);
-					break;
-				case "prepareChat":
-					this.prepareChat(var3);
-					break;
-				default:
-					switch(null)
-					{
-						case "clearConsole":
-							this.clearConsole();
-							break loop0;
-						case "openConsole":
-							this.openConsole();
-							break loop0;
-						case "closeConsole":
-							this.closeConsole();
-							break loop0;
-						case "move":
-							this.move(Number(var2.attributes.cell),!!var2.attributes.dirs);
-							break loop0;
-						default:
-							switch(null)
-							{
-								case "emote":
-									this.emote(Number(var2.attributes.num));
-									break loop0;
-								case "smiley":
-									this.smiley(Number(var2.attributes.num));
-									break loop0;
-								case "direction":
-									this.direction(Number(var2.attributes.num));
-									break loop0;
-								case "batch":
-									return this.batch(var2.firstChild);
-								case "summoner":
-									this.itemSummoner();
-							}
-					}
+				loop0:
+				switch(null)
+				{
+					case "sendCommand":
+						this.sendCommand(var3);
+						break;
+					case "sendChat":
+						this.sendChat(var3);
+						break;
+					case "prepareCommand":
+						this.prepareCommand(var3);
+						break;
+					case "prepareChat":
+						this.prepareChat(var3);
+						break;
+					case "clearConsole":
+						this.clearConsole();
+						break;
+					default:
+						switch(null)
+						{
+							case "openConsole":
+								this.openConsole();
+								break loop0;
+							case "closeConsole":
+								this.closeConsole();
+								break loop0;
+							case "move":
+								this.move(Number(var2.attributes.cell),!!var2.attributes.dirs);
+								break loop0;
+							case "emote":
+								this.emote(Number(var2.attributes.num));
+								break loop0;
+							default:
+								switch(null)
+								{
+									case "smiley":
+										this.smiley(Number(var2.attributes.num));
+										break loop0;
+									case "direction":
+										this.direction(Number(var2.attributes.num));
+										break loop0;
+									case "batch":
+										return this.batch(var2.firstChild);
+									case "summoner":
+										this.itemSummoner();
+								}
+						}
+				}
+			}
+			else
+			{
+				this.copyCommand(var3);
 			}
 			var2.attributes.check = true;
 		}
 		return true;
 	}
-	function batch(var2)
+	function batch(§\x02\x10§)
 	{
 		var var3 = false;
 		this._bExecutingBatch = true;
@@ -600,23 +608,23 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	{
 		this.api.ui.unloadUIComponent("Debug");
 	}
-	function prepareCommand(var2)
+	function prepareCommand(§\x1e\x14\x06§)
 	{
 		this.api.ui.loadUIComponent("Debug","Debug",{command:var2},{bStayIfPresent:true,bAlwaysOnTop:true});
 	}
-	function sendCommand(var2)
+	function sendCommand(§\x1e\x14\x06§)
 	{
 		this.api.kernel.DebugConsole.process(var2);
 	}
-	function prepareChat(var2)
+	function prepareChat(§\x1e\x14\x06§)
 	{
 		this.api.ui.getUIComponent("Banner").txtConsole = var2;
 	}
-	function sendChat(var2)
+	function sendChat(§\x1e\x14\x06§)
 	{
 		this.api.kernel.Console.process(var2);
 	}
-	function copyCommand(var2)
+	function copyCommand(§\x1e\x14\x06§)
 	{
 		System.setClipboard(var2);
 	}
@@ -624,7 +632,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	{
 		this.api.ui.getUIComponent("Debug").clear();
 	}
-	function move(var2, var3)
+	function move(§\b\x02§, §\x1c\x15§)
 	{
 		this.api.datacenter.Player.InteractionsManager.calculatePath(this.api.gfx.mapHandler,var2,true,this.api.datacenter.Game.isFight,true,var3);
 		if(this.api.datacenter.Basics.interactionsManager_path.length != 0)
@@ -638,15 +646,15 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function smiley(var2)
+	function smiley(§\x04\x17§)
 	{
 		this.api.network.Chat.useSmiley(var2);
 	}
-	function emote(var2)
+	function emote(§\x04\x17§)
 	{
 		this.api.network.Emotes.useEmote(var2);
 	}
-	function direction(var2)
+	function direction(§\x04\x17§)
 	{
 		this.api.network.Emotes.setDirection(var2);
 	}
@@ -654,7 +662,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 	{
 		this.api.ui.loadUIComponent("ItemSummoner","ItemSummoner");
 	}
-	function replace(var2)
+	function replace(§\x1e\r\x02§)
 	{
 		var var3 = new Array();
 		var3.push({f:"%g",t:this.playerObject.guildName});
@@ -675,7 +683,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function replaceCommand(var2)
+	function replaceCommand(§\x1e\r\x02§)
 	{
 		var var3 = new Array();
 		var3.push({f:"#item",ui:"ItemSelector"});
@@ -695,7 +703,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		}
 		return this.replace(var2);
 	}
-	function replaceUI(var2, var3, var4)
+	function replaceUI(§\x1e\r\x02§, §\x1e\f\x18§, §\x1e\x0e\x11§)
 	{
 		var var5 = var2.indexOf(var3);
 		var var6 = var2.split("");
@@ -703,7 +711,7 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		var var7 = var6.join("");
 		return var7;
 	}
-	function cancel(var2)
+	function cancel(§\x1e\x19\x18§)
 	{
 	}
 	function characterSelected()
@@ -726,11 +734,12 @@ class dofus.managers.AdminManager extends dofus.utils.ApiElement
 		this.playerName = (dofus.datacenter.LocalPlayer)this.playerObject.Name;
 		this.batch(this._startupNode.firstChild);
 	}
-	function select(var2)
+	function select(§\x1e\x19\x18§)
 	{
 		switch(var2.ui)
 		{
 			case "ItemSelector":
+			default:
 				var var3 = this.replaceUI(this._sCurrentNode.attributes.command,"#item",var2.itemId + " " + var2.itemQuantity);
 				if(var3 != undefined)
 				{

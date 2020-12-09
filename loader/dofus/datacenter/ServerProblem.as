@@ -1,6 +1,6 @@
 class dofus.datacenter.ServerProblem extends Object
 {
-	function ServerProblem(§\x04\x15§, nDate, §\x1e\x1b\x16§, nStatus, §\x1d\r§, aHistory)
+	function ServerProblem(§\x05\x02§, nDate, §\x1e\x1c\x03§, nStatus, §\x1d\x0f§, aHistory)
 	{
 		super();
 		this._nID = var3;

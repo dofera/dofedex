@@ -1,6 +1,6 @@
 class dofus.aks.Documents extends dofus.aks.Handler
 {
-	function Documents(var2, var3)
+	function Documents(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -8,7 +8,7 @@ class dofus.aks.Documents extends dofus.aks.Handler
 	{
 		this.aks.send("dV");
 	}
-	function onCreate(var2, var3)
+	function onCreate(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{

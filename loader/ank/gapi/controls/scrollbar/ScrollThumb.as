@@ -4,7 +4,7 @@ class ank.gapi.controls.scrollbar.ScrollThumb extends MovieClip
 	{
 		super();
 	}
-	function __set__height(var2)
+	function __set__height(§\x05\x07§)
 	{
 		this.top_mc._y = 0;
 		this.middle_mc._y = this.top_mc._height;

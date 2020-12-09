@@ -1,10 +1,10 @@
 class ank.battlefield.InteractionHandler
 {
-	function InteractionHandler(var3, var4)
+	function InteractionHandler(§\x13\x14§, §\x11\x17§)
 	{
 		this.initialize(var2,var3);
 	}
-	function initialize(var2, var3)
+	function initialize(§\x13\x14§, §\x11\x17§)
 	{
 		this._mcContainer = var2;
 		this._oDatacenter = var3;
@@ -12,18 +12,26 @@ class ank.battlefield.InteractionHandler
 		this.setEnabled(ank.battlefield.Constants.INTERACTION_NONE);
 		this._bIs8 = Number(System.capabilities.version.substr(0,1)) >= 8;
 	}
-	function setEnabled(var2)
+	function setEnabled(§\x1e\x1d\x07§)
 	{
+		org.flashdevelop.utils.FlashConnect.mtrace("setEnabled : " + var2 + " on " + ank.battlefield.mc.Sprite,"ank.battlefield.InteractionHandler::setEnabled","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/InteractionHandler.as",59);
 		if((var var0 = var2) !== ank.battlefield.Constants.INTERACTION_NONE)
 		{
 			if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_NONE)
 			{
 				if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE)
 				{
-					if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT)
+					loop0:
+					switch(null)
 					{
-						if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT)
-						{
+						case ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT:
+							this.setEnabledProtoRelease(ank.battlefield.mc.Cell.prototype,false);
+							this.setEnabledProtoOutOver(ank.battlefield.mc.Cell.prototype,true);
+							break;
+						case ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT:
+							this.setEnabledProtoAll(ank.battlefield.mc.Cell.prototype,true);
+							break;
+						default:
 							if(var0 !== ank.battlefield.Constants.INTERACTION_OBJECT_NONE)
 							{
 								if(var0 !== ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE)
@@ -38,14 +46,14 @@ class ank.battlefield.InteractionHandler
 												this.setEnabledObject2Release(false);
 												this.setEnabledObject2OutOver(true);
 											}
-											break;
+											break loop0;
 										case ank.battlefield.Constants.INTERACTION_OBJECT_RELEASE_OVER_OUT:
 											this.setEnabledProtoAll(ank.battlefield.mc.InteractiveObject.prototype,true);
 											if(this._bIs8)
 											{
 												this.setEnabledObject2All(true);
 											}
-											break;
+											break loop0;
 										default:
 											if(var0 !== ank.battlefield.Constants.INTERACTION_SPRITE_NONE)
 											{
@@ -55,22 +63,22 @@ class ank.battlefield.InteractionHandler
 													{
 														if(var0 !== ank.battlefield.Constants.INTERACTION_SPRITE_RELEASE_OVER_OUT)
 														{
-															break;
+															break loop0;
 														}
 														this.setEnabledProtoAll(ank.battlefield.mc.Sprite.prototype,true);
-														break;
+														break loop0;
 													}
 													this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,false);
 													this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,true);
-													break;
+													break loop0;
 												}
 												this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,true);
 												this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,false);
-												break;
+												break loop0;
 											}
 											this.setEnabledProtoRelease(ank.battlefield.mc.Sprite.prototype,false);
 											this.setEnabledProtoOutOver(ank.battlefield.mc.Sprite.prototype,false);
-											break;
+											break loop0;
 									}
 								}
 								else
@@ -82,6 +90,7 @@ class ank.battlefield.InteractionHandler
 										this.setEnabledObject2Release(true);
 										this.setEnabledObject2OutOver(false);
 									}
+									break;
 								}
 							}
 							else
@@ -93,17 +102,8 @@ class ank.battlefield.InteractionHandler
 									this.setEnabledObject2Release(false);
 									this.setEnabledObject2OutOver(false);
 								}
+								break;
 							}
-						}
-						else
-						{
-							this.setEnabledProtoAll(ank.battlefield.mc.Cell.prototype,true);
-						}
-					}
-					else
-					{
-						this.setEnabledProtoRelease(ank.battlefield.mc.Cell.prototype,false);
-						this.setEnabledProtoOutOver(ank.battlefield.mc.Cell.prototype,true);
 					}
 				}
 				else
@@ -126,7 +126,7 @@ class ank.battlefield.InteractionHandler
 			this.setEnabledProtoAll(ank.battlefield.mc.Sprite.prototype,false);
 		}
 	}
-	function setEnabledCell(var2, var3)
+	function setEnabledCell(§\b\x02§, §\x1e\x1d\x07§)
 	{
 		var var4 = this._mcContainer["cell" + var2];
 		if(var4 == undefined)
@@ -135,31 +135,35 @@ class ank.battlefield.InteractionHandler
 			return undefined;
 		}
 		this._extraProto[var4._name] = var4;
-		switch(var3)
+		if((var var0 = var3) !== ank.battlefield.Constants.INTERACTION_NONE)
 		{
-			case ank.battlefield.Constants.INTERACTION_NONE:
-				this.setEnabledProtoAll(var4,false);
-				break;
-			case ank.battlefield.Constants.INTERACTION_CELL_RELEASE:
-				this.setEnabledProtoRelease(var4,true);
-				this.setEnabledProtoOutOver(var4,false);
-				break;
-			default:
+			if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE)
+			{
 				if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_OVER_OUT)
 				{
-					if(var0 !== ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT)
+					if(var0 === ank.battlefield.Constants.INTERACTION_CELL_RELEASE_OVER_OUT)
 					{
-						break;
+						this.setEnabledProtoAll(var4,true);
 					}
-					this.setEnabledProtoAll(var4,true);
-					break;
 				}
-				this.setEnabledProtoRelease(var4,false);
-				this.setEnabledProtoOutOver(var4,true);
-				break;
+				else
+				{
+					this.setEnabledProtoRelease(var4,false);
+					this.setEnabledProtoOutOver(var4,true);
+				}
+			}
+			else
+			{
+				this.setEnabledProtoRelease(var4,true);
+				this.setEnabledProtoOutOver(var4,false);
+			}
+		}
+		else
+		{
+			this.setEnabledProtoAll(var4,false);
 		}
 	}
-	function setEnabledOffAllExtraProto(var2)
+	function setEnabledOffAllExtraProto(§\x1e\n\f§)
 	{
 		for(var p in this._extraProto)
 		{
@@ -168,49 +172,50 @@ class ank.battlefield.InteractionHandler
 		}
 		this._extraProto = new Array();
 	}
-	function setEnabledProtoAll(var2, var3)
+	function setEnabledProtoAll(proto, §\x16\x1d§)
 	{
 		if(var3)
 		{
-			var2.onRelease = var2._release;
-			var2.onRollOver = var2._rollOver;
-			var2.onRollOut = var2.onReleaseOutside = var2._rollOut;
+			proto.onRelease = proto._release;
 		}
 		else
 		{
-			delete register2.onRelease;
-			delete register2.onRollOver;
-			delete register2.onRollOut;
-			delete register2.onReleaseOutside;
+			delete proto.onRelease;
 		}
+		this.setEnabledProtoOutOver(proto,var3);
 	}
-	function setEnabledProtoRelease(var2, var3)
+	function setEnabledProtoRelease(proto, §\x16\x1d§)
 	{
 		if(var3)
 		{
-			var2.onRelease = var2._release;
+			proto.onRelease = proto._release;
 		}
 		else
 		{
-			delete register2.onRelease;
+			delete proto.onRelease;
 		}
 	}
-	function setEnabledProtoOutOver(var2, var3)
+	function setEnabledProtoOutOver(proto, §\x16\x1d§)
 	{
 		if(var3)
 		{
-			var2.onRollOver = var2._rollOver;
-			var2.onRollOut = var2._rollOut;
-			var2.onRollOut = var2.onReleaseOutside = var2._rollOut;
+			proto.onRollOver = proto._rollOver;
+			proto.onRollOut = proto._rollOut;
+			proto.onRollOut = proto.onReleaseOutside = proto._rollOut;
 		}
 		else
 		{
-			delete register2.onRollOver;
-			delete register2.onRollOut;
-			delete register2.onReleaseOutside;
+			delete proto.onRollOver;
+			delete proto.onRollOut;
+			delete proto.onReleaseOutside;
+			var var4 = _global.API;
+			if(var4.gfx.rollOverMcObject == proto || var4.gfx.rollOverMcSprite == proto)
+			{
+				proto._rollOut();
+			}
 		}
 	}
-	function setEnabledObject2All(var2)
+	function setEnabledObject2All(§\x16\x1d§)
 	{
 		var var3 = this._oDatacenter.Map.data;
 		for(var k in var3)
@@ -223,21 +228,17 @@ class ank.battlefield.InteractionHandler
 					if(var2)
 					{
 						var4.onRelease = var4._release;
-						var4.onRollOver = var4._rollOver;
-						var4.onRollOut = var4.onReleaseOutside = var4._rollOut;
 					}
 					else
 					{
 						delete register4.onRelease;
-						delete register4.onRollOver;
-						delete register4.onRollOut;
-						delete register4.onReleaseOutside;
 					}
+					this.setEnabledProtoOutOver(var4,var2);
 				}
 			}
 		}
 	}
-	function setEnabledObject2Release(var2)
+	function setEnabledObject2Release(§\x16\x1d§)
 	{
 		var var3 = this._oDatacenter.Map.data;
 		for(var k in var3)
@@ -259,7 +260,7 @@ class ank.battlefield.InteractionHandler
 			}
 		}
 	}
-	function setEnabledObject2OutOver(var2)
+	function setEnabledObject2OutOver(§\x16\x1d§)
 	{
 		var var3 = this._oDatacenter.Map.data;
 		for(var k in var3)
@@ -269,18 +270,7 @@ class ank.battlefield.InteractionHandler
 			{
 				if(var4 != undefined)
 				{
-					if(var2)
-					{
-						var4.onRollOver = var4._rollOver;
-						var4.onRollOut = var4._rollOut;
-						var4.onRollOut = var4.onReleaseOutside = var4._rollOut;
-					}
-					else
-					{
-						delete register4.onRollOver;
-						delete register4.onRollOut;
-						delete register4.onReleaseOutside;
-					}
+					this.setEnabledProtoOutOver(var4,var2);
 				}
 			}
 		}

@@ -1,12 +1,12 @@
 class ank.battlefield.mc.Points extends MovieClip
 {
 	var _bFinished = false;
-	function Points(pointsHandler, §\x04\x15§, §\x1e\x1e\x0f§, §\x1e\x0b\x1b§, §\x07\x03§)
+	function Points(pointsHandler, §\x05\x02§, §\x1e\x1e\x19§, §\x1e\f\t§, §\x07\x0e§)
 	{
 		super();
 		this.initialize(pointsHandler,var4,var5,var6,var7);
 	}
-	function initialize(pointsHandler, §\x04\x15§, §\x1e\x1e\x0f§, §\x1e\x0b\x1b§, §\x07\x03§)
+	function initialize(pointsHandler, §\x05\x02§, §\x1e\x1e\x19§, §\x1e\f\t§, §\x07\x0e§)
 	{
 		this._pointsHandler = pointsHandler;
 		this._nRefY = var4;

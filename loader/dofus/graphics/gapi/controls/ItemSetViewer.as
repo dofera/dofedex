@@ -7,9 +7,9 @@ class dofus.graphics.gapi.controls.ItemSetViewer extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__itemSet(var2)
+	function __set__itemSet(§\x1e\x19\f§)
 	{
-		this.addToQueue({object:this,method:function(var2)
+		this.addToQueue({object:this,method:function(§\x1e\x18\x07§)
 		{
 			this._oItemSet = var2;
 			if(this.initialized)
@@ -79,21 +79,20 @@ class dofus.graphics.gapi.controls.ItemSetViewer extends dofus.graphics.gapi.cor
 			this._visible = false;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "_btnClose")
 		{
 			this.dispatchEvent({type:"close"});
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
 			default:
 				switch(null)
 				{
-					case "_ctr3":
 					case "_ctr4":
 					case "_ctr5":
 					case "_ctr6":
@@ -102,11 +101,12 @@ class dofus.graphics.gapi.controls.ItemSetViewer extends dofus.graphics.gapi.cor
 				}
 			case "_ctr1":
 			case "_ctr2":
+			case "_ctr3":
 		}
 		var var3 = var2.target.contentData;
 		this.gapi.showTooltip(var3.name,var2.target,-20,undefined,var3.style + "ToolTip");
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

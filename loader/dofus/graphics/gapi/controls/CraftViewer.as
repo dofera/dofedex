@@ -5,15 +5,16 @@ class dofus.graphics.gapi.controls.CraftViewer extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__job(var2)
+	function __set__job(§\x1e\x19\x0b§)
 	{
 		this._oJob = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
 		return this.__get__job();
 	}
-	function __set__skill(var2)
+	function __set__skill(§\x1e\x18\x06§)
 	{
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var3.push(var2);
 		this.job = new dofus.datacenter.Job(-1,var3);
 		return this.__get__skill();
@@ -76,7 +77,8 @@ class dofus.graphics.gapi.controls.CraftViewer extends dofus.graphics.gapi.core.
 			return undefined;
 		}
 		var var3 = this._oJob.crafts;
-		var var4 = new ank.utils.();
+		var var4 = new ank.utils.
+();
 		var var5 = 0;
 		while(var5 < var3.length)
 		{
@@ -100,23 +102,23 @@ class dofus.graphics.gapi.controls.CraftViewer extends dofus.graphics.gapi.core.
 			this._lblNoCraft.text = this.api.lang.getText("NO_CRAFT_AVAILABLE");
 		}
 	}
-	function craftItem(var2)
+	function craftItem(§\x1e\x19\r§)
 	{
 		this._parent.addCraft(var2.unicID);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		var var3 = this.api.datacenter.Basics.craftViewer_filter;
 		var var4 = Number(var2.target._name.substr(8));
 		var3[var4] = var2.target.selected;
 		this.layoutContent();
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		var var3 = Number(var2.target._name.substr(8)) + 1;
 		this.gapi.showTooltip(this.api.lang.getText("CRAFT_SLOT_FILTER",[var3]),var2.target,-20);
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

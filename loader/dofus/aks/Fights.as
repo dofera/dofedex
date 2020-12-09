@@ -1,6 +1,6 @@
 class dofus.aks.Fights extends dofus.aks.Handler
 {
-	function Fights(var2, var3)
+	function Fights(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -8,7 +8,7 @@ class dofus.aks.Fights extends dofus.aks.Handler
 	{
 		this.aks.send("fL");
 	}
-	function getDetails(var2)
+	function getDetails(§\x05\x02§)
 	{
 		this.aks.send("fD" + var2,false);
 	}
@@ -28,7 +28,7 @@ class dofus.aks.Fights extends dofus.aks.Handler
 	{
 		this.aks.send("fH");
 	}
-	function onCount(var2)
+	function onCount(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		if(_global.isNaN(var3) || (var2.length == 0 || var3 == 0))
@@ -47,7 +47,7 @@ class dofus.aks.Fights extends dofus.aks.Handler
 			this.api.ui.getUIComponent("Banner").fightsCount = var3;
 		}
 	}
-	function onList(var2)
+	function onList(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = new Array();
@@ -60,7 +60,7 @@ class dofus.aks.Fights extends dofus.aks.Handler
 				var var7 = Number(var6[0]);
 				var var8 = Number(var6[1]);
 				var var9 = var8 != -1?this.api.kernel.NightManager.getDiffDate(var8):-1;
-				var var10 = new dofus.datacenter.(var7,var9);
+				var var10 = new dofus.datacenter.(var7,var9);
 				var var11 = String(var6[2]).split(",");
 				var var12 = Number(var11[0]);
 				var var13 = Number(var11[1]);
@@ -82,11 +82,12 @@ class dofus.aks.Fights extends dofus.aks.Handler
 			var19.replaceAll(0,var4);
 		}
 	}
-	function onDetails(var2)
+	function onDetails(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		var var6 = var3[1].split(";");
 		var var7 = 0;
 		while(var7 < var6.length)
@@ -98,7 +99,8 @@ class dofus.aks.Fights extends dofus.aks.Handler
 			}
 			var7 = var7 + 1;
 		}
-		var var9 = new ank.utils.();
+		var var9 = new ank.utils.
+();
 		var var10 = var3[2].split(";");
 		var var11 = 0;
 		while(var11 < var10.length)

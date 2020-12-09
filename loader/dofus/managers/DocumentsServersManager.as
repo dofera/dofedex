@@ -10,7 +10,7 @@ class dofus.managers.DocumentsServersManager extends dofus.managers.ServersManag
 	{
 		return dofus.managers.DocumentsServersManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3,"docs","docs/");
 	}
@@ -18,11 +18,11 @@ class dofus.managers.DocumentsServersManager extends dofus.managers.ServersManag
 	{
 		this.loadData(sID + ".swf");
 	}
-	function getDocumentObject(var2)
+	function getDocumentObject(§\x0b\r§)
 	{
 		return new dofus.datacenter.Document(var2);
 	}
-	function onComplete(var2)
+	function onComplete(§\x0b\r§)
 	{
 		var var3 = this.getDocumentObject(var2);
 		this.addToQueue({object:this.api.ui,method:this.api.ui.loadUIComponent,params:[var3.uiType,"Document",{document:var3}]});

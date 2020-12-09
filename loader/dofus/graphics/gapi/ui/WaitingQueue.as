@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.WaitingQueue extends dofus.graphics.gapi.core.Dofus
 		super();
 		this._btnLeaveQueue._visible = false;
 	}
-	function __set__queueInfos(var2)
+	function __set__queueInfos(§\x1e\x18\x10§)
 	{
 		this._oQueueInfos = var2;
 		return this.__get__queueInfos();
@@ -68,7 +68,7 @@ class dofus.graphics.gapi.ui.WaitingQueue extends dofus.graphics.gapi.core.Dofus
 			this._btnLeaveQueue._visible = true;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

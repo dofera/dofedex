@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.guildhousesviewer.GuildHousesViewerHouses ext
 		super();
 		this._mcIcon._visible = false;
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{

@@ -6,27 +6,27 @@ class ank.utils.Md5
 	function Md5()
 	{
 	}
-	function hex_md5(var2)
+	function hex_md5(§\x1e\x15\n§)
 	{
 		return this.binl2hex(this.core_md5(this.str2binl(var2),var2.length * this.chrsz));
 	}
-	function b64_md5(var2)
+	function b64_md5(§\x1e\x15\n§)
 	{
 		return this.binl2b64(this.core_md5(this.str2binl(var2),var2.length * this.chrsz));
 	}
-	function str_md5(var2)
+	function str_md5(§\x1e\x15\n§)
 	{
 		return this.binl2str(this.core_md5(this.str2binl(var2),var2.length * this.chrsz));
 	}
-	function hex_hmac_md5(var2, var3)
+	function hex_hmac_md5(§\f\x0e§, §\x11\x15§)
 	{
 		return this.binl2hex(this.core_hmac_md5(var2,var3));
 	}
-	function b64_hmac_md5(var2, var3)
+	function b64_hmac_md5(§\f\x0e§, §\x11\x15§)
 	{
 		return this.binl2b64(this.core_hmac_md5(var2,var3));
 	}
-	function str_hmac_md5(var2, var3)
+	function str_hmac_md5(§\f\x0e§, §\x11\x15§)
 	{
 		return this.binl2str(this.core_hmac_md5(var2,var3));
 	}
@@ -34,7 +34,7 @@ class ank.utils.Md5
 	{
 		return this.hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
 	}
-	function core_md5(var2, var3)
+	function core_md5(§\x1e\n\x04§, §\f\x03§)
 	{
 		var2[var3 >> 5] = var2[var3 >> 5] | 128 << var3 % 32;
 		var2[(var3 + 64 >>> 9 << 4) + 14] = var3;
@@ -121,27 +121,27 @@ class ank.utils.Md5
 		}
 		return [var4,var5,var6,var7];
 	}
-	function md5_cmn(var2, var3, var4, var5, var6, var7)
+	function md5_cmn(§\x1e\x16\x0b§, §\x1c§, §\x1d\x03§, §\x1e\n\x04§, §\x1e\x15\n§, §\x1e\f\x02§)
 	{
 		return this.safe_add(this.bit_rol(this.safe_add(this.safe_add(var3,var2),this.safe_add(var5,var7)),var6),var4);
 	}
-	function md5_ff(var2, var3, var4, var5, var6, var7, var8)
+	function md5_ff(§\x1c§, §\x1d\x03§, §\x13\x14§, §\x11\x17§, §\x1e\n\x04§, §\x1e\x15\n§, §\x1e\f\x02§)
 	{
 		return this.md5_cmn(var3 & var4 | (var3 ^ -1) & var5,var2,var3,var6,var7,var8);
 	}
-	function md5_gg(var2, var3, var4, var5, var6, var7, var8)
+	function md5_gg(§\x1c§, §\x1d\x03§, §\x13\x14§, §\x11\x17§, §\x1e\n\x04§, §\x1e\x15\n§, §\x1e\f\x02§)
 	{
 		return this.md5_cmn(var3 & var5 | var4 & (var5 ^ -1),var2,var3,var6,var7,var8);
 	}
-	function md5_hh(var2, var3, var4, var5, var6, var7, var8)
+	function md5_hh(§\x1c§, §\x1d\x03§, §\x13\x14§, §\x11\x17§, §\x1e\n\x04§, §\x1e\x15\n§, §\x1e\f\x02§)
 	{
 		return this.md5_cmn(var3 ^ var4 ^ var5,var2,var3,var6,var7,var8);
 	}
-	function md5_ii(var2, var3, var4, var5, var6, var7, var8)
+	function md5_ii(§\x1c§, §\x1d\x03§, §\x13\x14§, §\x11\x17§, §\x1e\n\x04§, §\x1e\x15\n§, §\x1e\f\x02§)
 	{
 		return this.md5_cmn(var4 ^ (var3 | var5 ^ -1),var2,var3,var6,var7,var8);
 	}
-	function core_hmac_md5(var2, var3)
+	function core_hmac_md5(§\f\x0e§, §\x11\x15§)
 	{
 		var var4 = this.str2binl(var2);
 		if(var4.length > 16)
@@ -160,17 +160,17 @@ class ank.utils.Md5
 		var var8 = this.core_md5(var5.concat(this.str2binl(var3)),512 + var3.length * this.chrsz);
 		return this.core_md5(var6.concat(var8),512 + 128);
 	}
-	function safe_add(var2, var3)
+	function safe_add(§\x1e\n\x04§, §\x1e\t\x18§)
 	{
 		var var4 = (var2 & 65535) + (var3 & 65535);
 		var var5 = (var2 >> 16) + (var3 >> 16) + (var4 >> 16);
 		return var5 << 16 | var4 & 65535;
 	}
-	function bit_rol(var2, var3)
+	function bit_rol(§\x1e\x1c\x01§, §\x12\x1c§)
 	{
 		return var2 << var3 | var2 >>> 32 - var3;
 	}
-	function str2binl(var2)
+	function str2binl(§\x1e\f\x17§)
 	{
 		var var3 = new Array();
 		var var4 = (1 << this.chrsz) - 1;
@@ -182,7 +182,7 @@ class ank.utils.Md5
 		}
 		return var3;
 	}
-	function binl2str(var2)
+	function binl2str(§\x19\x04§)
 	{
 		var var3 = "";
 		var var4 = (1 << this.chrsz) - 1;
@@ -194,7 +194,7 @@ class ank.utils.Md5
 		}
 		return var3;
 	}
-	function binl2hex(var2)
+	function binl2hex(§\x19\x03§)
 	{
 		var var3 = !this.hexcase?"0123456789abcdef":"0123456789ABCDEF";
 		var var4 = "";
@@ -206,7 +206,7 @@ class ank.utils.Md5
 		}
 		return var4;
 	}
-	function binl2b64(var2)
+	function binl2b64(§\x19\x03§)
 	{
 		var var3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 		var var4 = "";

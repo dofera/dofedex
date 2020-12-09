@@ -1,10 +1,10 @@
 class dofus.aks.Chat extends dofus.aks.Handler
 {
-	function Chat(var2, var3)
+	function Chat(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function send(var2, var3, var4)
+	function send(§\x1e\x10\x0f§, §\x1e\x13\r§, §\x1e\x18\x15§)
 	{
 		if(this.api.datacenter.Game.isSpectator && var3 == "*")
 		{
@@ -20,7 +20,7 @@ class dofus.aks.Chat extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_WISP_BLACKLISTED"),"ERROR_CHAT");
 			return undefined;
 		}
-		var2 = new ank.utils.(var2).replace(["<",">","|"],["&lt;","&gt;",""]);
+		var2 = new ank.utils.(var2).replace(["<",">","|"],["&lt;","&gt;",""]);
 		var var5 = this.api.kernel.ChatManager.applyOutputCensorship(var2);
 		if(!var5)
 		{
@@ -77,11 +77,11 @@ class dofus.aks.Chat extends dofus.aks.Handler
 		}
 		this.aks.send("BM" + var3 + "|" + var2 + "|" + var16,true,undefined,true);
 	}
-	function reportMessage(var2, var3, var4, var5)
+	function reportMessage(§\x1e\x14\x0e§, §\x1e\x10\r§, §\x1e\x10\x0f§, §\x1e\x1e\x1a§)
 	{
 		this.aks.send("BR" + var2 + "|" + var4 + "|" + var3 + "|" + var5,false);
 	}
-	function subscribeChannels(var2, var3)
+	function subscribeChannels(§\x07\x19§, §\x14\x1c§)
 	{
 		var var4 = "";
 		loop0:
@@ -108,21 +108,20 @@ class dofus.aks.Chat extends dofus.aks.Handler
 					case 6:
 						var4 = "?";
 						break loop0;
-					case 7:
-						var4 = ":";
-						break loop0;
 					default:
-						if(var0 !== 8)
+						switch(null)
 						{
-							break loop0;
+							case 7:
+								var4 = ":";
+								break;
+							case 8:
+								var4 = "^";
 						}
-						var4 = "^";
-						break loop0;
 				}
 		}
 		this.aks.send("cC" + (!var3?"-":"+") + var4,true);
 	}
-	function useSmiley(var2)
+	function useSmiley(§\x1e\x1d\x11§)
 	{
 		if(getTimer() - this.api.datacenter.Basics.aks_chat_lastActionTime < dofus.Constants.CLICK_MIN_DELAY)
 		{
@@ -131,7 +130,7 @@ class dofus.aks.Chat extends dofus.aks.Handler
 		this.api.datacenter.Basics.aks_chat_lastActionTime = getTimer();
 		this.aks.send("BS" + var2,true);
 	}
-	function onSubscribeChannel(var2)
+	function onSubscribeChannel(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("");
@@ -151,12 +150,12 @@ class dofus.aks.Chat extends dofus.aks.Handler
 				case "#":
 					var6 = 3;
 					break;
+				case "$":
+					var6 = 3;
+					break;
 				default:
 					switch(null)
 					{
-						case "$":
-							var6 = 3;
-							break loop1;
 						case "p":
 							var6 = 3;
 							break loop1;
@@ -169,12 +168,12 @@ class dofus.aks.Chat extends dofus.aks.Handler
 						case "?":
 							var6 = 6;
 							break loop1;
+						case ":":
+							var6 = 7;
+							break loop1;
 						default:
 							switch(null)
 							{
-								case ":":
-									var6 = 7;
-									break loop1;
 								case "^":
 									var6 = 8;
 									break loop1;
@@ -191,27 +190,28 @@ class dofus.aks.Chat extends dofus.aks.Handler
 			this.api.datacenter.Basics.chat_type_visible[var6] = var3;
 		}
 	}
-	function onMessage(var2, var3)
+	function onMessage(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(!var2)
 		{
-			if((var var0 = var3.charAt(0)) !== "S")
+			switch(var3.charAt(0))
 			{
-				switch(null)
-				{
-					case "f":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED",[var3.substr(1)]),"ERROR_CHAT");
+				case "S":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("SYNTAX_ERROR",[" /w <" + this.api.lang.getText("NAME") + "> <" + this.api.lang.getText("MSG") + ">"]),"ERROR_CHAT");
+					break;
+				case "f":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED",[var3.substr(1)]),"ERROR_CHAT");
+					break;
+				case "e":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_BUT_TRY_SEND_EXTERNAL",[var3.substr(1)]),"ERROR_CHAT");
+					break;
+				default:
+					if(var0 !== "n")
+					{
 						break;
-					case "e":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_BUT_TRY_SEND_EXTERNAL",[var3.substr(1)]),"ERROR_CHAT");
-						break;
-					case "n":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_EXTERNAL_NACK",[var3.substr(1)]),"ERROR_CHAT");
-				}
-			}
-			else
-			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("SYNTAX_ERROR",[" /w <" + this.api.lang.getText("NAME") + "> <" + this.api.lang.getText("MSG") + ">"]),"ERROR_CHAT");
+					}
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("USER_NOT_CONNECTED_EXTERNAL_NACK",[var3.substr(1)]),"ERROR_CHAT");
+					break;
 			}
 			return undefined;
 		}
@@ -383,11 +383,11 @@ class dofus.aks.Chat extends dofus.aks.Handler
 		}
 		this.api.kernel.showMessage(undefined,var6,var13,undefined,var10);
 	}
-	function getRawFullMessage(var2, var3)
+	function getRawFullMessage(§\x1e\x0f\x01§, §\x1e\x0e\x13§)
 	{
 		return var2 + var3;
 	}
-	function getLinkMessage(var2, var3, var4, var5, var6)
+	function getLinkMessage(§\x1e\x0f\x04§, §\x1e\x0f\x01§, §\x1e\x0e\x13§, §\x1e\x10\x0f§, §\x1e\f\f§)
 	{
 		var var7 = this.api.kernel.DebugManager.getTimestamp() + " ";
 		var5 = this.api.kernel.ChatManager.applyInputCensorship(var5);
@@ -397,7 +397,7 @@ class dofus.aks.Chat extends dofus.aks.Handler
 		}
 		return "<a href=\'asfunction:onHref,ShowMessagePopupMenu," + var2 + "," + _global.escape(var7 + var3 + var4) + "\'>" + var5 + "</a>";
 	}
-	function getLinkName(var2, var3, var4)
+	function getLinkName(§\x1e\x10\x19§, §\x1e\f\f§, §\x17\x11§)
 	{
 		var var5 = "<b>";
 		var var6 = "</b>";
@@ -412,14 +412,14 @@ class dofus.aks.Chat extends dofus.aks.Handler
 		}
 		return var5 + "<a href=\'asfunction:onHref,ShowPlayerPopupMenu," + var2 + "\'>" + var2 + "</a>" + var6;
 	}
-	function onServerMessage(var2)
+	function onServerMessage(§\x1e\x12\x1a§)
 	{
 		if(var2 != undefined)
 		{
 			this.api.kernel.showMessage(undefined,var2,"INFO_CHAT");
 		}
 	}
-	function onSmiley(var2)
+	function onSmiley(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];

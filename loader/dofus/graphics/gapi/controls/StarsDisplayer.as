@@ -11,7 +11,7 @@ class dofus.graphics.gapi.controls.StarsDisplayer extends dofus.graphics.gapi.co
 	{
 		return this._nValue;
 	}
-	function __set__value(var2)
+	function __set__value(§\x1e\n\x0f§)
 	{
 		this._nValue = var2;
 		if(this.initialized)

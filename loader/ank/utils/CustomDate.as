@@ -1,7 +1,7 @@
 class ank.utils.CustomDate
 {
 	static var MS_PER_DAY = 86400000;
-	function CustomDate(nRefTime, §\x1e\x06§, §\x1e\x1a\x16§)
+	function CustomDate(nRefTime, §\x1e\x07§, §\x1e\x1b\x03§)
 	{
 		this._nRefTime = nRefTime;
 		this._aMonths = var3;
@@ -40,7 +40,7 @@ class ank.utils.CustomDate
 		var var3 = new Date(Date.UTC(1970,0,1,var2.getUTCHours(),var2.getUTCMinutes(),var2.getUTCSeconds(),var2.getUTCMilliseconds()));
 		return var3.getTime();
 	}
-	function getDiffDate(var2)
+	function getDiffDate(§\x1e\x1c\r§)
 	{
 		var var3 = this.getCurrentRealDate();
 		var var4 = new Date();

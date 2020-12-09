@@ -1,6 +1,6 @@
 class dofus.aks.Waypoints extends dofus.aks.Handler
 {
-	function Waypoints(var2, var3)
+	function Waypoints(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -8,22 +8,24 @@ class dofus.aks.Waypoints extends dofus.aks.Handler
 	{
 		this.aks.send("WV",true);
 	}
-	function use(var2)
+	function use(§\x1e\x1b\x11§)
 	{
 		this.aks.send("WU" + var2,true);
 	}
-	function onCreate(var2)
+	function onCreate(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		var var6 = 1;
 		while(var6 < var3.length)
 		{
 			var var7 = var3[var6].split(";");
 			var var8 = Number(var7[0]);
 			var var9 = Number(var7[1]);
-			var var10 = new dofus.datacenter.	(var8,var8 == this.api.datacenter.Map.id,var8 == var4,var9);
+			var var10 = new dofus.datacenter.
+	(var8,var8 == this.api.datacenter.Map.id,var8 == var4,var9);
 			var5.push(var10);
 			var6 = var6 + 1;
 		}

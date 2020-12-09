@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.WaitingMessage extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__text(var2)
+	function __set__text(§\x1e\r\x02§)
 	{
 		this._sText = var2;
 		return this.__get__text();

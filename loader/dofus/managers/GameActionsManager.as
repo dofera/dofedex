@@ -3,25 +3,25 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 	static var STATE_TRANSMITTING = 2;
 	static var STATE_IN_PROGRESS = 1;
 	static var STATE_READY = 0;
-	function GameActionsManager(var2, var3)
+	function GameActionsManager(§\x11\x17§, §\x1e\x1a\x16§)
 	{
 		super();
 		this.initialize(var3,var4);
 	}
-	function initialize(var2, var3)
+	function initialize(§\x11\x17§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var4);
 		this._data = var3;
 		this.clear();
 	}
-	function clear(var2)
+	function clear(§\x1e\n\f§)
 	{
 		this._id = undefined;
 		this._bNextAction = false;
 		this._state = dofus.managers.GameActionsManager.STATE_READY;
 		this._currentType = null;
 	}
-	function transmittingMove(var2, var3)
+	function transmittingMove(§\x1e\n\x1b§, §\x1e\x17\f§)
 	{
 		if(!this.isWaiting())
 		{
@@ -31,7 +31,7 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 		}
 		else if(this.canCancel(var2))
 		{
-			this.cancel(this._data.lastCellNum);
+			this.cancel(this._data.cellNum);
 			this.transmittingMove(var2,var3);
 		}
 		else
@@ -39,7 +39,11 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 			ank.utils.Logger.err("L\'état de l\'action ne permet pas de faire ceci");
 		}
 	}
-	function transmittingOther(var2, var3)
+	function isOnUncancelableAction(§\x1e\n\x1b§)
+	{
+		return this.isWaiting() && !this.canCancel(var2);
+	}
+	function transmittingOther(§\x1e\n\x1b§, §\x1e\x17\f§)
 	{
 		if(!this.isWaiting())
 		{
@@ -52,12 +56,12 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 			ank.utils.Logger.err("L\'état de l\'action ne permet pas de faire ceci " + var2 + " " + var3);
 		}
 	}
-	function onServerResponse(var2)
+	function onServerResponse(§\r\b§)
 	{
 		this._id = var2;
 		this._state = dofus.managers.GameActionsManager.STATE_IN_PROGRESS;
 	}
-	function cancel(var2, var3)
+	function cancel(§\x1e\x17\f§, §\x19\x14§)
 	{
 		this._currentType = null;
 		if(this.canCancel())
@@ -73,7 +77,7 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 			this.clear();
 		}
 	}
-	function end(var2)
+	function end(§\x19\b§)
 	{
 		if(this._bNextAction == false || !var2)
 		{
@@ -85,27 +89,30 @@ class dofus.managers.GameActionsManager extends dofus.utils.ApiElement
 			this._id = undefined;
 		}
 	}
-	function ack(var2)
+	function ack(§\r\x07§)
 	{
 		this.api.network.GameActions.actionAck(var2);
 		this.end(true);
 	}
-	function isWaiting(var2)
+	function isWaiting(§\x1e\n\f§)
 	{
 		if((var var0 = this._state) !== dofus.managers.GameActionsManager.STATE_READY)
 		{
-			if(var0 !== dofus.managers.GameActionsManager.STATE_TRANSMITTING)
+			switch(null)
 			{
-				if(var0 !== dofus.managers.GameActionsManager.STATE_IN_PROGRESS)
-				{
+				case dofus.managers.GameActionsManager.STATE_TRANSMITTING:
+				case dofus.managers.GameActionsManager.STATE_IN_PROGRESS:
+					return true;
+				default:
 					return false;
-				}
 			}
-			return true;
 		}
-		return false;
+		else
+		{
+			return false;
+		}
 	}
-	function canCancel(var2)
+	function canCancel(§\x1e\n\x1b§)
 	{
 		if(var2 != this._currentType)
 		{

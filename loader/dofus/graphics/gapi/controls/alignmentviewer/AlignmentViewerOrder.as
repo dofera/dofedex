@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerOrder extends 
 	{
 		super();
 	}
-	function __set__specialization(var2)
+	function __set__specialization(§\x1e\x18\x05§)
 	{
 		this._oSpec = var2;
 		if(this.initialized)

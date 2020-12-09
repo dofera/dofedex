@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__monster(var2)
+	function __set__monster(§\x17\x1b§)
 	{
 		this._bMonster = var2;
 		return this.__get__monster();
@@ -66,7 +66,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		this._btnSearch.addEventListener("click",this);
 		var ref = this;
 		var var2 = new Object();
-		var2.onSetFocus = function(var2, var3)
+		var2.onSetFocus = function(§\x1e\x19\b§, §\x06\x01§)
 		{
 			if(eval(Selection.getFocus())._parent == ref._tiSearch)
 			{
@@ -82,9 +82,10 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		};
 		Selection.addListener(var2);
 	}
-	function initAnimList(var2)
+	function initAnimList(§\x0f\x17§)
 	{
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = 0;
 		while(var4 < dofus.graphics.gapi.ui.MonsterAndLookSelector.ANIM_LIST.length)
 		{
@@ -93,7 +94,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		}
 		this._cbAnim.dataProvider = var3;
 	}
-	function initData(var2)
+	function initData(§\x0f\x17§)
 	{
 		this._cciSprite.deleteButton = false;
 		this._eaTypes = var2;
@@ -104,19 +105,21 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 	}
 	function loadLooks()
 	{
-		var ui = this;
 		var var2 = new XML();
 		var2.ignoreWhite = true;
 		var2.onLoad = function()
 		{
 			var var2 = dofus.Constants.ARTWORKS_BIG_PATH;
-			var var3 = new ank.utils.();
-			var var4 = new ank.utils.();
+			var var3 = new ank.utils.
+();
+			var var4 = new ank.utils.
+();
 			var var5 = this.firstChild.firstChild;
 			while(var5 != undefined)
 			{
 				var var6 = var5.attributes.name;
-				var var7 = new ank.utils.();
+				var var7 = new ank.utils.
+();
 				var var8 = var5.firstChild;
 				while(var8 != undefined)
 				{
@@ -135,7 +138,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		};
 		var2.load(dofus.Constants.XML_SPRITE_LIST);
 	}
-	function loadMonsters(var2)
+	function loadMonsters(§\x1e\x12\x15§)
 	{
 		if(var2 == undefined)
 		{
@@ -143,17 +146,19 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		}
 		var var3 = this.api.lang.getMonsters();
 		var var4 = dofus.Constants.ARTWORKS_BIG_PATH;
-		var var5 = new ank.utils.();
-		var var6 = new ank.utils.();
+		var var5 = new ank.utils.
+();
+		var var6 = new ank.utils.
+();
 		var var7 = new Object();
-		for(var a in var3)
+		for(var var8 in var3)
 		{
-			var var8 = var3[a];
 			var var9 = var8.b;
 			var var10 = var7[var9];
 			if(var10 == undefined)
 			{
-				var10 = {label:this.api.lang.getMonstersRaceText(var9).n,data:new ank.utils.()};
+				var10 = {label:this.api.lang.getMonstersRaceText(var9).n,data:new ank.utils.
+()};
 				var7[var9] = var10;
 				var5.push(var10);
 			}
@@ -167,7 +172,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		var5.push({label:"-- ALL --",data:var6});
 		this.initData(var5);
 	}
-	function select(var2)
+	function select(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 != undefined)
@@ -183,10 +188,11 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 			this.callClose();
 		}
 	}
-	function filterResult(var2)
+	function filterResult(§\x1e\x12\x15§)
 	{
 		var var3 = this._cbType.selectedItem.data;
-		var var4 = new ank.utils.();
+		var var4 = new ank.utils.
+();
 		var var5 = 0;
 		while(var5 < var3.length)
 		{
@@ -199,32 +205,33 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 		}
 		this._cg.dataProvider = var4;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
+		loop0:
 		switch(var2.target._name)
 		{
 			case "_btnClose":
 			case "_btnCancel":
 				this.dispatchEvent({type:"cancel"});
 				this.callClose();
-			case "_btnSelect":
-				this.select({target:this._cg.selectedItem});
 				break;
 			default:
-				if(var0 !== "_btnSearch")
+				switch(null)
 				{
-					break;
+					case "_btnSelect":
+						break loop0;
+					case "_btnSearch":
+						this._cbType.selectedIndex = 0;
+						this.filterResult(this._tiSearch.text);
 				}
-				this._cbType.selectedIndex = 0;
-				this.filterResult(this._tiSearch.text);
-				break;
 		}
+		this.select({target:this._cg.selectedItem});
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		this.select(var2);
 	}
-	function selectItem(var2)
+	function selectItem(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 != undefined)
@@ -238,18 +245,18 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 			this._cciSprite.enabled = false;
 		}
 	}
-	function overItem(var2)
+	function overItem(§\x1e\x19\x18§)
 	{
 		if(var2.target.contentData != undefined)
 		{
 			this.gapi.showTooltip(var2.target.contentData.name + " (" + var2.target.contentData.id + ", GFX: " + var2.target.contentData.gfxId + ")",var2.target,-20);
 		}
 	}
-	function outItem(var2)
+	function outItem(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -262,7 +269,7 @@ class dofus.graphics.gapi.ui.MonsterAndLookSelector extends dofus.graphics.gapi.
 				this._cciSprite.setAnim(this._cbAnim.selectedItem.label,true);
 		}
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._tiSearch.focused)
 		{

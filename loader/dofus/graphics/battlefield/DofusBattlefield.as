@@ -21,13 +21,13 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		this._rollOverMcObject = rollOverMcObject;
 		return this.__get__rollOverMcObject();
 	}
-	function initialize(var2, var3, var4, var5, var6)
+	function initialize(§\x1e\x1a\x01§, §\x1e\x12\t§, §\x1e\x0f\x1c§, §\x1e\x15\b§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4,var5,var6);
 		mx.events.EventDispatcher.initialize(this);
 		this._oAPI = var7;
 	}
-	function addSpritePoints(sID, §\x1e\x0b\x1b§, §\x07\x03§)
+	function addSpritePoints(sID, §\x1e\f\t§, §\x07\x0e§)
 	{
 		if(this.api.kernel.OptionsManager.getOption("PointsOverHead") && this.api.electron.isWindowFocused)
 		{
@@ -107,7 +107,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			var var10 = 0;
 			while(var10 < var9.length)
 			{
-				var var11 = new dofus.datacenter.(var9[var10]);
+				var var11 = new dofus.datacenter.(var9[var10]);
 				var8.push(var11);
 				var10 = var10 + 1;
 			}
@@ -144,6 +144,10 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		{
 			this.api.kernel.NightManager.noEffects();
 		}
+		else
+		{
+			this.api.kernel.NightManager.setState();
+		}
 		var var14 = (Array)this.api.lang.getMapText(var2.id).p;
 		var var15 = 0;
 		while(var14.length > var15)
@@ -172,7 +176,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		}
 		this.dispatchEvent({type:"mapLoaded"});
 	}
-	function onCellRelease(var2)
+	function onCellRelease(§\x0b\n§)
 	{
 		if(this.api.kernel.TutorialManager.isTutorialMode)
 		{
@@ -186,10 +190,10 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				case 2:
 					if(this.api.datacenter.Player.currentUseObject != null && this.api.datacenter.Basics.gfx_canLaunch == true)
 					{
-						var var9 = this.api.datacenter.Player.data;
-						var var10 = var9.sequencer;
-						var10.addAction(123,false,var9.GameActionsManager,var9.GameActionsManager.transmittingOther,[300,[this.api.datacenter.Player.currentUseObject.ID,var2.num]]);
-						var10.execute();
+						var var8 = this.api.datacenter.Player.data;
+						var var9 = var8.sequencer;
+						var9.addAction(123,false,var8.GameActionsManager,var8.GameActionsManager.transmittingOther,[300,[this.api.datacenter.Player.currentUseObject.ID,var2.num]]);
+						var9.execute();
 						this.api.datacenter.Player.currentUseObject = null;
 					}
 					else if(this.api.datacenter.Basics.spellManager_errorMsg != undefined)
@@ -204,10 +208,10 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				case 3:
 					if(this.api.datacenter.Player.currentUseObject != null && this.api.datacenter.Basics.gfx_canLaunch == true)
 					{
-						var var11 = this.api.datacenter.Player.data;
-						var var12 = var11.sequencer;
-						var12.addAction(124,false,var11.GameActionsManager,var11.GameActionsManager.transmittingOther,[303,[var2.num]]);
-						var12.execute();
+						var var10 = this.api.datacenter.Player.data;
+						var var11 = var10.sequencer;
+						var11.addAction(124,false,var10.GameActionsManager,var10.GameActionsManager.transmittingOther,[303,[var2.num]]);
+						var11.execute();
 						this.api.datacenter.Player.currentUseObject = null;
 					}
 					this.api.ui.removeCursor();
@@ -215,8 +219,8 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 					this.api.datacenter.Game.setInteractionType("move");
 					break;
 				case 4:
-					var var13 = this.mapHandler.getCellData(var2.num).spriteOnID;
-					if(var13 != undefined)
+					var var12 = this.mapHandler.getCellData(var2.num).spriteOnID;
+					if(var12 != undefined)
 					{
 						break;
 					}
@@ -259,8 +263,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		var var3 = this.api.datacenter.Player.data;
 		var var4 = false;
 		var var5 = this.api.datacenter.Player.canMoveInAllDirections;
-		var var6 = this.api.datacenter.Player.data.isInMove;
-		if(this.api.datacenter.Player.InteractionsManager.calculatePath(this.mapHandler,var2.num,true,this.api.datacenter.Game.isFight,false,var5,var6))
+		if(this.api.datacenter.Player.InteractionsManager.calculatePath(this.mapHandler,var2.num,true,this.api.datacenter.Game.isFight,false,var5))
 		{
 			if(this.api.datacenter.Game.isFight)
 			{
@@ -273,7 +276,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		}
 		if(!this.api.datacenter.Game.isFight && !var4)
 		{
-			if(this.api.datacenter.Player.InteractionsManager.calculatePath(this.mapHandler,var2.num,true,this.api.datacenter.Game.isFight,true,var5,var6))
+			if(this.api.datacenter.Player.InteractionsManager.calculatePath(this.mapHandler,var2.num,true,this.api.datacenter.Game.isFight,true,var5))
 			{
 				var4 = true;
 			}
@@ -288,18 +291,18 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			this.api.datacenter.Basics.gfx_lastActionTime = getTimer();
 			if(this.api.datacenter.Basics.interactionsManager_path.length != 0)
 			{
-				var var7 = ank.battlefield.utils.Compressor.compressPath(this.api.datacenter.Basics.interactionsManager_path);
-				if(var7 != undefined)
+				var var6 = ank.battlefield.utils.Compressor.compressPath(this.api.datacenter.Basics.interactionsManager_path);
+				if(var6 != undefined)
 				{
 					if(this.api.datacenter.Game.isFight && this.api.datacenter.Game.isRunning)
 					{
-						var var8 = var3.sequencer;
-						var8.addAction(122,false,var3.GameActionsManager,var3.GameActionsManager.transmittingMove,[1,[var7]]);
-						var8.execute();
+						var var7 = var3.sequencer;
+						var7.addAction(122,false,var3.GameActionsManager,var3.GameActionsManager.transmittingMove,[1,[var6]]);
+						var7.execute();
 					}
 					else
 					{
-						var3.GameActionsManager.transmittingMove(1,[var7]);
+						var3.GameActionsManager.transmittingMove(1,[var6]);
 					}
 					delete this.api.datacenter.Basics.interactionsManager_path;
 				}
@@ -308,7 +311,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		}
 		return false;
 	}
-	function onCellRollOver(var2)
+	function onCellRollOver(§\x0b\n§)
 	{
 		if(this.api.kernel.TutorialManager.isTutorialMode)
 		{
@@ -340,14 +343,26 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 					delete this.api.datacenter.Basics.interactionsManager_path;
 				}
 				break;
+			default:
+				switch(null)
+				{
+					case 3:
+						break;
+					case 5:
+					case 6:
+						this.api.datacenter.Basics.gfx_canLaunch = true;
+						this.api.ui.setCursorForbidden(false);
+						this.drawPointer(var2.num);
+				}
+				break;
 			case 2:
-			case 3:
 				var var7 = this.api.datacenter.Player;
 				var var8 = var7.data;
 				var var9 = var8.cellNum;
 				var var10 = var7.currentUseObject;
 				var var11 = var7.SpellsManager;
 				var var12 = !var10.canBoostRange?0:var8.CharacteristicsManager.getModeratorValue(19) + var7.RangeModerator;
+				this.api.gfx.mapHandler.resetEmptyCells();
 				this.api.datacenter.Basics.gfx_canLaunch = var11.checkCanLaunchSpellOnCell(this.mapHandler,var10,this.mapHandler.getCellData(var2.num),var12);
 				if(this.api.datacenter.Basics.gfx_canLaunch)
 				{
@@ -358,19 +373,9 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				{
 					this.api.ui.setCursorForbidden(true,dofus.Constants.FORBIDDEN_FILE);
 				}
-				break;
-			default:
-				switch(null)
-				{
-					case 5:
-					case 6:
-						this.api.datacenter.Basics.gfx_canLaunch = true;
-						this.api.ui.setCursorForbidden(false);
-						this.drawPointer(var2.num);
-				}
 		}
 	}
-	function onCellRollOut(var2)
+	function onCellRollOut(§\x0b\n§)
 	{
 		if(this.api.kernel.TutorialManager.isTutorialMode)
 		{
@@ -387,26 +392,25 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				this.hideSpriteInfos();
 				this.unSelect(true);
 				break;
-			default:
-				switch(null)
-				{
-					case 3:
-						break;
-					case 5:
-					case 6:
-						this.api.ui.setCursorForbidden(true,dofus.Constants.FORBIDDEN_FILE);
-						this.api.datacenter.Basics.gfx_canLaunch = false;
-						this.hidePointer();
-				}
-				break;
 			case 2:
+			case 3:
 				this.api.ui.setCursorForbidden(true,dofus.Constants.FORBIDDEN_FILE);
 				this.hidePointer();
 				this.api.datacenter.Basics.gfx_canLaunch = false;
 				this.hideSpriteInfos();
+				break;
+			default:
+				if(var0 !== 6)
+				{
+					break;
+				}
+			case 5:
+				this.api.ui.setCursorForbidden(true,dofus.Constants.FORBIDDEN_FILE);
+				this.api.datacenter.Basics.gfx_canLaunch = false;
+				this.hidePointer();
 		}
 	}
-	function onSpriteRelease(var2, var3)
+	function onSpriteRelease(§\n\x1b§, §\x16\b§)
 	{
 		if(var3 == undefined)
 		{
@@ -503,82 +507,78 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 				var var21 = var4.enemyTeam.alignment.index;
 				var var22 = var4.challenge.fightType;
 				var var23 = false;
-				if((var0 = var22) !== 0)
+				switch(var22)
 				{
-					switch(null)
-					{
-						case 1:
-						case 2:
-							switch(var4.type)
+					case 0:
+						if((var0 = var4.type) !== 0)
+						{
+							if(var0 !== 2)
 							{
-								case 0:
-								case 1:
-									if(var19 == var20)
-									{
-										var23 = !this.api.datacenter.Player.isMutant;
-										break;
-									}
-									var23 = this.api.lang.getAlignmentCanJoin(var19,var20) && (this.api.lang.getAlignmentCanAttack(var19,var21) && !this.api.datacenter.Player.isMutant);
-									break;
 							}
+							addr708:
 							break;
-						case 3:
-							if((var0 = var4.type) !== 0)
-							{
-								if(var0 === 1)
+						}
+						var23 = this.api.datacenter.Player.canChallenge && (!this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant);
+						§§goto(addr708);
+						break;
+					case 1:
+					case 2:
+						switch(var4.type)
+						{
+							case 0:
+							case 1:
+								if(var19 == var20)
 								{
-									var23 = false;
+									var23 = !this.api.datacenter.Player.isMutant;
+									break;
+								}
+								var23 = this.api.lang.getAlignmentCanJoin(var19,var20) && (this.api.lang.getAlignmentCanAttack(var19,var21) && !this.api.datacenter.Player.isMutant);
+								break;
+						}
+						break;
+					case 3:
+						switch(var4.type)
+						{
+							case 0:
+								var23 = !this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant;
+								break;
+							case 1:
+								var23 = false;
+						}
+						break;
+					case 4:
+						switch(var4.type)
+						{
+							case 0:
+								var23 = !this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant;
+								break;
+							case 1:
+								var23 = false;
+						}
+						break;
+					default:
+						switch(null)
+						{
+							case 5:
+								switch(var4.type)
+								{
+									case 0:
+										var23 = !this.api.datacenter.Player.isMutant && !this.api.datacenter.Player.cantInteractWithTaxCollector;
+										break;
+									case 3:
+										var23 = false;
 								}
 								break;
-							}
-							var23 = !this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant;
-							break;
-						case 4:
-							switch(var4.type)
-							{
-								case 0:
-									var23 = !this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant;
-									break;
-								case 1:
-									var23 = false;
-							}
-							break;
-						default:
-							switch(null)
-							{
-								case 5:
-									switch(var4.type)
-									{
-										case 0:
-											var23 = !this.api.datacenter.Player.isMutant && !this.api.datacenter.Player.cantInteractWithTaxCollector;
-											break;
-										case 3:
-											var23 = false;
-									}
-									break;
-								case 6:
-									switch(var4.type)
-									{
-										case 0:
-											var23 = !this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant;
-											break;
-										case 2:
-											var23 = this.api.datacenter.Player.isMutant && !this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant == true;
-									}
-							}
-					}
-				}
-				else
-				{
-					if((var0 = var4.type) !== 0)
-					{
-						if(var0 !== 2)
-						{
+							case 6:
+								switch(var4.type)
+								{
+									case 0:
+										var23 = !this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant;
+										break;
+									case 2:
+										var23 = this.api.datacenter.Player.isMutant && !this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant == true;
+								}
 						}
-						addr703:
-					}
-					var23 = this.api.datacenter.Player.canChallenge && (!this.api.datacenter.Player.isMutant || this.api.datacenter.Player.canAttackDungeonMonstersWhenMutant);
-					§§goto(addr703);
 				}
 				if(var23)
 				{
@@ -779,220 +779,226 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			this.api.datacenter.Game.setInteractionType("move");
 		}
 	}
-	function onSpriteRollOver(var2)
+	function onSpriteRollOver(§\n\x1b§, §\x1a\f§)
 	{
-		this._rollOverMcSprite = var2;
-		if(this.api.ui.getUIComponent("Zoom") != undefined)
+		if(!var3)
+		{
+			this._rollOverMcSprite = var2;
+		}
+		if(_root._xscale != 100)
 		{
 			return undefined;
 		}
-		var var5 = var2.data;
-		var var6 = dofus.Constants.OVERHEAD_TEXT_OTHER;
-		if(var5.isClear)
+		var var6 = var2.data;
+		var var7 = dofus.Constants.OVERHEAD_TEXT_OTHER;
+		if(var6.isClear)
 		{
 			return undefined;
 		}
-		if(var5.hasParent)
+		if(var6.hasParent)
 		{
-			this.onSpriteRollOver(var5.linkedParent.mc);
+			this.onSpriteRollOver(var6.linkedParent.mc,var3);
 			return undefined;
 		}
 		if(this.api.datacenter.Game.isRunning || this.api.datacenter.Game.interactionType == 5)
 		{
-			var var8 = this.mapHandler.getCellData(var5.cellNum).mc;
-			if(var5.isVisible)
+			var var9 = this.mapHandler.getCellData(var6.cellNum).mc;
+			if(var6.isVisible)
 			{
-				this.onCellRollOver(var8);
+				this.onCellRollOver(var9);
 			}
 		}
-		var var9 = var5.name;
-		if(var5 instanceof dofus.datacenter.Mutant && var5.showIsPlayer)
+		var var10 = var6.name;
+		if(var6 instanceof dofus.datacenter.Mutant && var6.showIsPlayer)
 		{
 			if(this.api.datacenter.Game.isRunning)
 			{
-				var9 = var5.playerName + " (" + var5.LP + ")";
-				this.showSpriteInfosIfWeNeed(var5);
+				var10 = var6.playerName + " (" + var6.LP + ")";
+				this.showSpriteInfosIfWeNeed(var6);
 			}
 			else
 			{
-				var9 = var5.playerName + " [" + var5.monsterName + " (" + var5.Level + ")]";
+				var10 = var6.playerName + " [" + var6.monsterName + " (" + var6.Level + ")]";
 			}
 		}
-		else if(var5 instanceof dofus.datacenter.Mutant || (var5 instanceof dofus.datacenter.Creature || var5 instanceof dofus.datacenter.Monster))
+		else if(var6 instanceof dofus.datacenter.Mutant || (var6 instanceof dofus.datacenter.Creature || var6 instanceof dofus.datacenter.Monster))
 		{
-			var6 = dofus.Constants.NPC_ALIGNMENT_COLOR[var5.alignment.index];
+			var7 = dofus.Constants.NPC_ALIGNMENT_COLOR[var6.alignment.index];
 			if(this.api.datacenter.Game.isRunning)
 			{
-				var9 = var9 + (" (" + var5.LP + ")");
-				this.showSpriteInfosIfWeNeed(var5);
+				var10 = var10 + (" (" + var6.LP + ")");
+				this.showSpriteInfosIfWeNeed(var6);
 			}
 			else
 			{
-				var9 = var9 + (" (" + var5.Level + ")");
+				var10 = var10 + (" (" + var6.Level + ")");
 			}
 		}
-		else if(var5 instanceof dofus.datacenter.Character)
+		else if(var6 instanceof dofus.datacenter.Character)
 		{
-			var6 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
+			var7 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
 			if(this.api.datacenter.Game.isRunning)
 			{
-				var9 = var9 + (" (" + var5.LP + ")");
-				if(var5.isVisible)
+				var10 = var10 + (" (" + var6.LP + ")");
+				if(var6.isVisible)
 				{
-					var var10 = var5.EffectsManager.getEffects();
-					if(var10.length != 0)
+					var var11 = var6.EffectsManager.getEffects();
+					if(var11.length != 0)
 					{
-						this.addSpriteOverHeadItem(var5.id,"effects",dofus.graphics.battlefield.EffectsOverHead,[var10]);
+						this.addSpriteOverHeadItem(var6.id,"effects",dofus.graphics.battlefield.EffectsOverHead,[var11]);
 					}
 				}
-				this.showSpriteInfosIfWeNeed(var5);
+				this.showSpriteInfosIfWeNeed(var6);
 			}
 			else if(this.api.datacenter.Game.isFight)
 			{
-				var9 = var9 + (" (" + var5.Level + ")");
+				var10 = var10 + (" (" + var6.Level + ")");
 			}
-			if(!var5.isVisible)
+			if(!var6.isVisible)
 			{
 				return undefined;
 			}
-			var var3 = dofus.Constants.DEMON_ANGEL_FILE;
-			if(var5.alignment.fallenAngelDemon)
+			var var4 = dofus.Constants.DEMON_ANGEL_FILE;
+			if(var6.alignment.fallenAngelDemon)
 			{
-				var3 = dofus.Constants.FALLEN_DEMON_ANGEL_FILE;
+				var4 = dofus.Constants.FALLEN_DEMON_ANGEL_FILE;
 			}
-			var var11 = !var5.haveFakeAlignement?var5.alignment.index:var5.fakeAlignment.index;
-			if(var5.rank.value > 0)
+			var var12 = !var6.haveFakeAlignement?var6.alignment.index:var6.fakeAlignment.index;
+			if(var6.rank.value > 0)
 			{
-				if(var11 == 1)
+				if(var12 == 1)
 				{
-					var var4 = var5.rank.value;
+					var var5 = var6.rank.value;
 				}
-				else if(var11 == 2)
+				else if(var12 == 2)
 				{
-					var4 = 10 + var5.rank.value;
+					var5 = 10 + var6.rank.value;
 				}
-				else if(var11 == 3)
+				else if(var12 == 3)
 				{
-					var4 = 20 + var5.rank.value;
+					var5 = 20 + var6.rank.value;
 				}
 			}
-			var var7 = var5.title;
-			if(var5.guildName != undefined && var5.guildName.length != 0)
+			var var8 = var6.title;
+			if(var6.guildName != undefined && var6.guildName.length != 0)
 			{
-				var9 = "";
-				this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.GuildOverHead,[var5.guildName,var5.name,var5.emblem,var3,var4,var5.pvpGain,var7],undefined,true);
+				var10 = "";
+				this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.GuildOverHead,[var6.guildName,var6.name,var6.emblem,var4,var5,var6.pvpGain,var8],undefined,true);
 			}
 		}
-		else if(var5 instanceof dofus.datacenter.TaxCollector)
+		else if(var6 instanceof dofus.datacenter.TaxCollector)
 		{
 			if(this.api.datacenter.Game.isRunning)
 			{
-				var9 = var9 + (" (" + var5.LP + ")");
-				this.showSpriteInfosIfWeNeed(var5);
+				var10 = var10 + (" (" + var6.LP + ")");
+				this.showSpriteInfosIfWeNeed(var6);
 			}
 			else if(this.api.datacenter.Game.isFight)
 			{
-				var9 = var9 + (" (" + var5.Level + ")");
+				var10 = var10 + (" (" + var6.Level + ")");
 			}
 			else
 			{
-				var9 = "";
-				this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.GuildOverHead,[var5.guildName,var5.name,var5.emblem]);
+				var10 = "";
+				this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.GuildOverHead,[var6.guildName,var6.name,var6.emblem]);
 			}
 		}
-		else if(var5 instanceof dofus.datacenter.PrismSprite)
+		else if(var6 instanceof dofus.datacenter.PrismSprite)
 		{
-			var3 = dofus.Constants.DEMON_ANGEL_FILE;
-			if(var5.alignment.value > 0)
+			var4 = dofus.Constants.DEMON_ANGEL_FILE;
+			if(var6.alignment.value > 0)
 			{
-				if(var5.alignment.index == 1)
+				if(var6.alignment.index == 1)
 				{
-					var4 = var5.alignment.value;
+					var5 = var6.alignment.value;
 				}
-				else if(var5.alignment.index == 2)
+				else if(var6.alignment.index == 2)
 				{
-					var4 = 10 + var5.alignment.value;
+					var5 = 10 + var6.alignment.value;
 				}
-				else if(var5.alignment.index == 3)
+				else if(var6.alignment.index == 3)
 				{
-					var4 = 20 + var5.alignment.value;
+					var5 = 20 + var6.alignment.value;
 				}
 			}
-			var6 = dofus.Constants.NPC_ALIGNMENT_COLOR[var5.alignment.index];
-			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextOverHead,[var9,var3,var6,var4]);
+			var7 = dofus.Constants.NPC_ALIGNMENT_COLOR[var6.alignment.index];
+			this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.TextOverHead,[var10,var4,var7,var5]);
 		}
-		else if(var5 instanceof dofus.datacenter.ParkMount)
+		else if(var6 instanceof dofus.datacenter.ParkMount)
 		{
-			var6 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
-			var9 = this.api.lang.getText("MOUNT_PARK_OVERHEAD",[var5.modelName,var5.level,var5.ownerName]);
-			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextOverHead,[var9,var3,var6,var4]);
+			var7 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
+			var10 = this.api.lang.getText("MOUNT_PARK_OVERHEAD",[var6.modelName,var6.level,var6.ownerName]);
+			this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.TextOverHead,[var10,var4,var7,var5]);
 		}
-		else if(var5 instanceof dofus.datacenter.OfflineCharacter)
+		else if(var6 instanceof dofus.datacenter.OfflineCharacter)
 		{
-			var6 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
-			var9 = "";
-			this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.OfflineOverHead,[var5]);
+			var7 = dofus.Constants.OVERHEAD_TEXT_CHARACTER;
+			var10 = "";
+			this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.OfflineOverHead,[var6]);
 		}
-		else if(var5 instanceof dofus.datacenter.NonPlayableCharacter)
+		else if(var6 instanceof dofus.datacenter.NonPlayableCharacter)
 		{
-			var var12 = this.api.datacenter.Map;
-			var var13 = this.api.datacenter.Subareas.getItemAt(var12.subarea);
-			if(var13 != undefined)
+			var var13 = this.api.datacenter.Map;
+			var var14 = this.api.datacenter.Subareas.getItemAt(var13.subarea);
+			if(var14 != undefined)
 			{
-				var6 = dofus.Constants.NPC_ALIGNMENT_COLOR[var13.alignment.index];
+				var7 = dofus.Constants.NPC_ALIGNMENT_COLOR[var14.alignment.index];
 			}
 		}
-		else if(var5 instanceof dofus.datacenter.MonsterGroup || var5 instanceof dofus.datacenter.Team)
+		else if(var6 instanceof dofus.datacenter.MonsterGroup || var6 instanceof dofus.datacenter.Team)
 		{
-			if(var5.alignment.index != -1)
+			if(var6.alignment.index != -1)
 			{
-				var6 = dofus.Constants.NPC_ALIGNMENT_COLOR[var5.alignment.index];
+				var7 = dofus.Constants.NPC_ALIGNMENT_COLOR[var6.alignment.index];
 			}
-			var var14 = var5.challenge.fightType;
-			if(var5.isVisible && (var5 instanceof dofus.datacenter.MonsterGroup || var5.type == 1 && (var14 == 2 || (var14 == 3 || var14 == 4))))
+			var var15 = var6.challenge.fightType;
+			if(var6.isVisible && (var6 instanceof dofus.datacenter.MonsterGroup || var6.type == 1 && (var15 == 2 || (var15 == 3 || var15 == 4))))
 			{
-				if(var9 != "")
+				if(var10 != "")
 				{
-					var var15 = dofus.Constants.OVERHEAD_TEXT_TITLE;
-					this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextWithTitleOverHead,[var9,var3,var6,var4,this.api.lang.getText("LEVEL") + " " + var5.totalLevel,var15,var5.bonusValue]);
+					var var16 = dofus.Constants.OVERHEAD_TEXT_TITLE;
+					this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.TextWithTitleOverHead,[var10,var4,var7,var5,this.api.lang.getText("LEVEL") + " " + var6.totalLevel,var16,var6.bonusValue]);
 				}
-				this.selectSprite(var5.id,true);
+				this.selectSprite(var6.id,true);
 				return undefined;
 			}
 		}
-		if(var5.isVisible)
+		if(var6.isVisible)
 		{
-			if(var9 != "")
+			if(var10 != "")
 			{
-				this.addSpriteOverHeadItem(var5.id,"text",dofus.graphics.battlefield.TextOverHead,[var9,var3,var6,var4,var5.pvpGain,var7]);
+				this.addSpriteOverHeadItem(var6.id,"text",dofus.graphics.battlefield.TextOverHead,[var10,var4,var7,var5,var6.pvpGain,var8]);
 			}
-			this.selectSprite(var5.id,true);
+			this.selectSprite(var6.id,true);
 		}
 	}
-	function onSpriteRollOut(var2)
+	function onSpriteRollOut(§\n\x1b§, §\x1a\f§)
 	{
-		this._rollOverMcSprite = undefined;
-		var var3 = var2.data;
-		if(this.api.gfx.spriteHandler.isShowingMonstersTooltip && var3 instanceof dofus.datacenter.MonsterGroup)
+		if(!var3)
+		{
+			this._rollOverMcSprite = undefined;
+		}
+		var var4 = var2.data;
+		if(this.api.gfx.spriteHandler.isShowingMonstersTooltip && var4 instanceof dofus.datacenter.MonsterGroup)
 		{
 			return undefined;
 		}
-		if(var3.hasParent)
+		if(var4.hasParent)
 		{
-			this.onSpriteRollOut(var3.linkedParent.mc);
+			this.onSpriteRollOut(var4.linkedParent.mc);
 			return undefined;
 		}
 		if(this.api.datacenter.Game.isRunning || this.api.datacenter.Game.interactionType == 5)
 		{
 			this.hideSpriteInfos();
-			var var4 = this.mapHandler.getCellData(var3.cellNum).mc;
-			this.onCellRollOut(var4);
+			var var5 = this.mapHandler.getCellData(var4.cellNum).mc;
+			this.onCellRollOut(var5);
 		}
-		this.removeSpriteOverHeadLayer(var3.id,"text");
-		this.removeSpriteOverHeadLayer(var3.id,"effects");
-		this.selectSprite(var3.id,false);
+		this.removeSpriteOverHeadLayer(var4.id,"text");
+		this.removeSpriteOverHeadLayer(var4.id,"effects");
+		this.selectSprite(var4.id,false);
 	}
-	function onObjectRelease(var2, var3)
+	function onObjectRelease(§\x0b\x03§, §\x16\b§)
 	{
 		if(var3 == undefined)
 		{
@@ -1028,145 +1034,137 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			var var10 = var9.n;
 			var var11 = var9.sk;
 			var var12 = var9.t;
-			if((var var0 = var12) !== 1)
+			switch(var12)
 			{
-				loop4:
-				switch(null)
-				{
-					default:
-						loop5:
-						switch(null)
-						{
-							case 10:
-							case 12:
-							case 14:
-							case 15:
-								break loop4;
-							case 5:
-								var var23 = true;
-								var var24 = this.api.ui.createPopupMenu();
-								var var25 = this.api.lang.getHousesDoorText(this.api.datacenter.Map.id,var5.num);
-								var var26 = this.api.datacenter.Houses.getItemAt(var25);
-								var24.addStaticItem(var10 + " " + var26.name);
-								if(var26.localOwner)
-								{
-									var24.addStaticItem(this.api.lang.getText("MY_HOME"));
-								}
-								else if(var26.ownerName != undefined)
-								{
-									if(var26.ownerName == "?")
+				default:
+					loop6:
+					switch(null)
+					{
+						default:
+							switch(null)
+							{
+								case 12:
+								case 14:
+								case 15:
+									break loop6;
+								case 5:
+									var var23 = true;
+									var var24 = this.api.ui.createPopupMenu();
+									var var25 = this.api.lang.getHousesDoorText(this.api.datacenter.Map.id,var5.num);
+									var var26 = this.api.datacenter.Houses.getItemAt(var25);
+									var24.addStaticItem(var10 + " " + var26.name);
+									if(var26.localOwner)
 									{
-										var24.addStaticItem(this.api.lang.getText("HOUSE_WITH_NO_OWNER"));
+										var24.addStaticItem(this.api.lang.getText("MY_HOME"));
 									}
-									else
+									else if(var26.ownerName != undefined)
 									{
-										var24.addStaticItem(this.api.lang.getText("HOME_OF",[var26.ownerName]));
-									}
-								}
-								if(this.api.datacenter.Player.isAuthorized && (var26.ownerName != undefined && var26.ownerName != "?"))
-								{
-									var24.addItem(this.api.lang.getText("HOME_OF",[var26.ownerName]),this.api.kernel.GameManager,this.api.kernel.GameManager.showPlayerPopupMenu,[undefined,"*" + var26.ownerName]);
-								}
-								for(var k in var11)
-								{
-									var var27 = var11[k];
-									var var28 = new dofus.datacenter.(var27);
-									var var29 = var28.getState(true,var26.localOwner,var26.isForSale,var26.isLocked);
-									if(var29 != "X")
-									{
-										var var30 = var29 == "V";
-										if(var30 && ((Key.isDown(Key.SHIFT) || var3) && var27 == 84))
+										if(var26.ownerName == "?")
 										{
-											this.api.kernel.GameManager.useRessource(var5,var5.num,var27);
-											var23 = false;
-											break;
+											var24.addStaticItem(this.api.lang.getText("HOUSE_WITH_NO_OWNER"));
 										}
-										var24.addItem(var28.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var27],var30);
-									}
-								}
-								if(var23)
-								{
-									var24.show(_root._xmouse,_root._ymouse);
-								}
-								break;
-							default:
-								switch(null)
-								{
-									case 6:
-										var var31 = this.api.datacenter.Map.id + "_" + var5.num;
-										var var32 = this.api.datacenter.Storages.getItemAt(var31);
-										var var33 = var32.isLocked;
-										var var34 = this.api.datacenter.Player.isAtHome(this.api.datacenter.Map.id);
-										var var35 = true;
-										var var36 = this.api.ui.createPopupMenu();
-										var36.addStaticItem(var10);
-										for(var k in var11)
+										else
 										{
-											var var37 = var11[k];
-											var var38 = new dofus.datacenter.(var37);
-											var var39 = var38.getState(true,var34,true,var33);
-											if(var39 != "X")
+											var24.addStaticItem(this.api.lang.getText("HOME_OF",[var26.ownerName]));
+										}
+									}
+									if(this.api.datacenter.Player.isAuthorized && (var26.ownerName != undefined && var26.ownerName != "?"))
+									{
+										var24.addItem(this.api.lang.getText("HOME_OF",[var26.ownerName]),this.api.kernel.GameManager,this.api.kernel.GameManager.showPlayerPopupMenu,[undefined,"*" + var26.ownerName]);
+									}
+									for(var k in var11)
+									{
+										var var27 = var11[k];
+										var var28 = new dofus.datacenter.(var27);
+										var var29 = var28.getState(true,var26.localOwner,var26.isForSale,var26.isLocked);
+										if(var29 != "X")
+										{
+											var var30 = var29 == "V";
+											if(var30 && ((Key.isDown(Key.SHIFT) || var3) && var27 == 84))
 											{
-												var var40 = var39 == "V";
-												if(var40 && (Key.isDown(Key.SHIFT) || var3))
-												{
-													this.api.kernel.GameManager.useRessource(var5,var5.num,var37);
-													var35 = false;
-													break;
-												}
-												var36.addItem(var38.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var37],var40);
+												this.api.kernel.GameManager.useRessource(var5,var5.num,var27);
+												var23 = false;
+												break;
 											}
+											var24.addItem(var28.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var27],var30);
 										}
-										if(var35)
+									}
+									if(var23)
+									{
+										var24.show(_root._xmouse,_root._ymouse);
+									}
+									break;
+								case 6:
+									var var31 = this.api.datacenter.Map.id + "_" + var5.num;
+									var var32 = this.api.datacenter.Storages.getItemAt(var31);
+									var var33 = var32.isLocked;
+									var var34 = this.api.datacenter.Player.isAtHome(this.api.datacenter.Map.id);
+									var var35 = true;
+									var var36 = this.api.ui.createPopupMenu();
+									var36.addStaticItem(var10);
+									for(var k in var11)
+									{
+										var var37 = var11[k];
+										var var38 = new dofus.datacenter.(var37);
+										var var39 = var38.getState(true,var34,true,var33);
+										if(var39 != "X")
 										{
-											var36.show(_root._xmouse,_root._ymouse);
-										}
-										break loop5;
-									case 13:
-										var var41 = this.api.datacenter.Map.mountPark;
-										var var42 = true;
-										var var43 = this.api.ui.createPopupMenu();
-										var43.addStaticItem(var10);
-										for(var k in var11)
-										{
-											var var44 = var11[k];
-											var var45 = new dofus.datacenter.(var44);
-											var var46 = var45.getState(true,var41.isMine(this.api),var41.price > 0,var41.isPublic || var41.isMine(this.api),false,var41.isPublic);
-											if(var46 != "X")
+											var var40 = var39 == "V";
+											if(var40 && (Key.isDown(Key.SHIFT) || var3))
 											{
-												var var47 = var46 == "V";
-												if(var47 && (Key.isDown(Key.SHIFT) || var3))
-												{
-													this.api.kernel.GameManager.useRessource(var5,var5.num,var44);
-													var42 = false;
-													_ymouse.isDown();
-													var47 = "description";
-													!var47;
-													var46 = var45.getState(true,1.Key(),var47,var45,this.api.kernel.GameManager,this.api.kernel.kernel.GameManager.useRessource);
-													var46 == "X"[var46 == "V"].GameManager.useRessource(var5,var5.num,var44);
-													var42 = false;
-													§§push(!var42);
-													§§push(_ymouse.isDown());
-													§§push(!var3);
-													break;
-												}
-												var43.addItem(var45.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var44],var47);
+												this.api.kernel.GameManager.useRessource(var5,var5.num,var37);
+												var35 = false;
+												break;
 											}
+											var36.addItem(var38.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var37],var40);
 										}
-										if(var42)
-										{
-											var43.show(_root._xmouse,_root._ymouse);
-										}
-										break loop5;
-									default:
+									}
+									if(var35)
+									{
+										var36.show(_root._xmouse,_root._ymouse);
+									}
+									break;
+								default:
+									if(§§enum_assign() !== 13)
+									{
 										this.onCellRelease(var5);
-								}
-						}
-					case 2:
-					case 3:
-					case 4:
-					case 7:
-				}
+										break;
+									}
+									var var41 = this.api.datacenter.Map.mountPark;
+									var var42 = true;
+									var var43 = this.api.ui.createPopupMenu();
+									var43.addStaticItem(var10);
+									for(var k in var11)
+									{
+										var var44 = var11[k];
+										var var45 = new dofus.datacenter.(var44);
+										var var46 = var45.getState(true,var41.isMine(this.api),var41.price > 0,var41.isPublic || var41.isMine(this.api),false,var41.isPublic);
+										if(var46 != "X")
+										{
+											var var47 = var46 == "V";
+											if(var47 && (Key.isDown(Key.SHIFT) || var3))
+											{
+												this.api.kernel.GameManager.useRessource(var5,var5.num,var44);
+												var42 = false;
+												break;
+											}
+											var43.addItem(var45.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var44],var47);
+										}
+									}
+									if(var42)
+									{
+										var43.show(_root._xmouse,_root._ymouse);
+									}
+									break;
+							}
+						case 3:
+						case 4:
+						case 7:
+						case 10:
+					}
+					break;
+				case 1:
+				case 2:
 			}
 			var var13 = this.api.datacenter.Player.currentJobID != undefined;
 			if(var13)
@@ -1175,28 +1173,39 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			}
 			else
 			{
-				var14 = new ank.utils.();
+				var14 = new ank.utils.
+();
 			}
 			var var15 = true;
 			var var16 = this.api.ui.createPopupMenu();
 			var16.addStaticItem(var10);
+			loop3:
 			for(var k in var11)
 			{
 				var var17 = var11[k];
-				var var18 = new dofus.datacenter.(var17);
+				var var18 = new dofus.datacenter.(var17);
 				var var19 = var14.findFirstItem("id",var17).index != -1;
 				var var20 = this.api.datacenter.Player.Level <= dofus.Constants.NOVICE_LEVEL;
 				var var21 = var18.getState(var19,false,false,false,false,var20);
 				if(var21 != "X")
 				{
 					var var22 = var21 == "V";
-					if(var22 && ((Key.isDown(Key.SHIFT) || var3) && var17 != 44))
+					if(var22 && ((Key.isDown(Key.SHIFT) || var3) && (var17 != 44 && var12 != 1)))
 					{
 						this.api.kernel.GameManager.useRessource(var5,var5.num,var17);
 						var15 = false;
-						break;
+						while(true)
+						{
+							if(§§pop() == null)
+							{
+								break loop3;
+							}
+						}
 					}
-					var16.addItem(var18.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var17],var22);
+					else
+					{
+						var16.addItem(var18.description,this.api.kernel.GameManager,this.api.kernel.GameManager.useRessource,[var5,var5.num,var17],var22);
+					}
 				}
 			}
 			if(var15)
@@ -1209,10 +1218,10 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 			this.onCellRelease(var5);
 		}
 	}
-	function onObjectRollOver(var2)
+	function onObjectRollOver(§\x0b\x03§)
 	{
 		this._rollOverMcObject = var2;
-		if(this.api.ui.getUIComponent("Zoom") != undefined)
+		if(_root._xscale != 100)
 		{
 			return undefined;
 		}
@@ -1236,7 +1245,7 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 					var7 = var7 + ("\n" + this.api.lang.getText("DURABILITY") + " : " + var6.durability + "/" + var6.durabilityMax);
 				}
 			}
-			var var8 = new dofus.datacenter.("itemOnCell",ank.battlefield.mc.Sprite,"",var4.num,0,0);
+			var var8 = new dofus.datacenter.("itemOnCell",ank.battlefield.mc.Sprite,"",var4.num,0,0);
 			this.api.datacenter.Sprites.addItemAt("itemOnCell",var8);
 			this.api.gfx.addSprite("itemOnCell");
 			this.addSpriteOverHeadItem("itemOnCell","text",dofus.graphics.battlefield.TextOverHead,[var7,"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
@@ -1245,50 +1254,47 @@ class dofus.graphics.battlefield.DofusBattlefield extends ank.battlefield.Battle
 		var var10 = var9.n;
 		var var11 = var9.sk;
 		var var12 = var9.t;
-		if((var var0 = var12) !== 5)
+		switch(var12)
 		{
-			if(var0 === 13)
-			{
+			case 5:
+				var var13 = this.api.lang.getHousesDoorText(this.api.datacenter.Map.id,var4.num);
+				var var14 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var13);
+				if(var14.guildName.length > 0)
+				{
+					var var15 = new dofus.datacenter.("porte",ank.battlefield.mc.Sprite,"",var4.num,0,0);
+					this.api.datacenter.Sprites.addItemAt("porte",var15);
+					this.api.gfx.addSprite("porte");
+					this.addSpriteOverHeadItem("porte","text",dofus.graphics.battlefield.GuildOverHead,[this.api.lang.getText("GUILD_HOUSE"),var14.guildName,var14.guildEmblem]);
+				}
+				break;
+			case 13:
 				var var16 = this.api.datacenter.Map.mountPark;
-				var var17 = new dofus.datacenter.("enclos",ank.battlefield.mc.Sprite,"",var4.num,0,0);
+				var var17 = new dofus.datacenter.("enclos",ank.battlefield.mc.Sprite,"",var4.num,0,0);
 				this.api.datacenter.Sprites.addItemAt("enclos",var17);
 				this.api.gfx.addSprite("enclos");
 				if(var16.isPublic)
 				{
 					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield.TextOverHead,[this.api.lang.getText("MOUNTPARK_PUBLIC"),"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
+					break;
 				}
-				else if(var16.hasNoOwner)
+				if(var16.hasNoOwner)
 				{
 					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield.TextOverHead,[this.api.lang.getText("MOUNTPARK_TO_BUY",[var16.price,var16.size,var16.items]),"",dofus.Constants.OVERHEAD_TEXT_CHARACTER]);
+					break;
+				}
+				if(var16.price > 0)
+				{
+					var var18 = this.api.lang.getText("MOUNTPARK_PRIVATE_TO_BUY",[var16.price]);
 				}
 				else
 				{
-					if(var16.price > 0)
-					{
-						var var18 = this.api.lang.getText("MOUNTPARK_PRIVATE_TO_BUY",[var16.price]);
-					}
-					else
-					{
-						var18 = this.api.lang.getText("MOUNTPARK_PRIVATE");
-					}
-					this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield.GuildOverHead,[var16.guildName,var18,var16.guildEmblem]);
+					var18 = this.api.lang.getText("MOUNTPARK_PRIVATE");
 				}
-			}
-		}
-		else
-		{
-			var var13 = this.api.lang.getHousesDoorText(this.api.datacenter.Map.id,var4.num);
-			var var14 = (dofus.datacenter.House)this.api.datacenter.Houses.getItemAt(var13);
-			if(var14.guildName.length > 0)
-			{
-				var var15 = new dofus.datacenter.("porte",ank.battlefield.mc.Sprite,"",var4.num,0,0);
-				this.api.datacenter.Sprites.addItemAt("porte",var15);
-				this.api.gfx.addSprite("porte");
-				this.addSpriteOverHeadItem("porte","text",dofus.graphics.battlefield.GuildOverHead,[this.api.lang.getText("GUILD_HOUSE"),var14.guildName,var14.guildEmblem]);
-			}
+				this.addSpriteOverHeadItem("enclos","text",dofus.graphics.battlefield.GuildOverHead,[var16.guildName,var18,var16.guildEmblem]);
+				break;
 		}
 	}
-	function onObjectRollOut(var2)
+	function onObjectRollOut(§\x0b\x03§)
 	{
 		this._rollOverMcObject = undefined;
 		this.api.ui.hideTooltip();

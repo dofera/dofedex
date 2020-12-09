@@ -17,7 +17,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 	{
 		return this._sCurrentTab;
 	}
-	function __set__meleeVisible(var2)
+	function __set__meleeVisible(§\x1d\x03§)
 	{
 		this._ctrCC._visible = var2;
 		return this.__get__meleeVisible();
@@ -32,11 +32,11 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 		this.addToQueue({object:this,method:this.initTexts});
 		this.addToQueue({object:this,method:this.addListeners});
 	}
-	function getContainer(var2)
+	function getContainer(§\x05\x02§)
 	{
 		return this["_ctr" + var2];
 	}
-	function setContainer(var2, var3)
+	function setContainer(§\x05\x02§, §\x13\x10§)
 	{
 		this["_ctr" + var2] = var3;
 	}
@@ -100,8 +100,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			return undefined;
 		}
 		var var2 = this.api.datacenter.Player.Spells;
-		§§enumerate(var2);
-		while((var var0 = §§enumeration()) != null)
+		for(var k in var2)
 		{
 			if(!_global.isNaN(var2[k].position))
 			{
@@ -117,8 +116,9 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			return undefined;
 		}
 		var var2 = this.api.datacenter.Player.Inventory;
-		for(var var3 in var2)
+		for(var k in var2)
 		{
+			var var3 = var2[k].position - dofus.graphics.gapi.controls.MouseShortcuts.ITEM_OFFSET;
 			if(!(_global.isNaN(var3) && var3 < 1))
 			{
 				this.setItemStateOnContainer(var3);
@@ -140,8 +140,9 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			var3 = var3 + 1;
 		}
 		var var4 = this.api.datacenter.Player.Spells;
-		for(var var5 in var4)
+		for(var k in var4)
 		{
+			var var5 = var4[k];
 			var var6 = var5.position;
 			if(!_global.isNaN(var6))
 			{
@@ -180,8 +181,9 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			var3 = var3 + 1;
 		}
 		var var4 = this.api.datacenter.Player.Inventory;
-		for(var var5 in var4)
+		for(var k in var4)
 		{
+			var var5 = var4[k];
 			if(!_global.isNaN(var5.position))
 			{
 				if(var5.position < dofus.graphics.gapi.controls.MouseShortcuts.ITEM_OFFSET + 1)
@@ -209,7 +211,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 		}
 		this.addToQueue({object:this,method:this.setItemStateOnAllContainers});
 	}
-	function setSpellStateOnContainer(var2)
+	function setSpellStateOnContainer(§\x04\x17§)
 	{
 		var var3 = var2 != 0?this["_ctr" + var2]:this._ctrCC;
 		var var4 = var2 != 0?var3.contentData:this.api.datacenter.Player.Spells[0];
@@ -227,6 +229,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 		}
 		if(var5.can == false)
 		{
+			loop0:
 			switch(var5.type)
 			{
 				case "NOT_IN_REQUIRED_STATE":
@@ -243,20 +246,25 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 					}
 					break;
 				default:
+					loop1:
 					switch(null)
 					{
+						default:
+							switch(null)
+							{
+								case "NOT_IN_FIGHT":
+									break loop1;
+								case "CANT_LAUNCH_BEFORE":
+									this.setMovieClipTransform(var3.content,dofus.graphics.gapi.controls.MouseShortcuts.INACTIVE_TRANSFORM);
+									var3.showLabel = true;
+									var3.label = var5.params[0];
+							}
+							break loop0;
+						case "NOT_ENOUGH_AP":
+						case "CANT_SUMMON_MORE_CREATURE":
 						case "CANT_LAUNCH_MORE":
 						case "CANT_RELAUNCH":
-						case "NOT_IN_FIGHT":
-							break;
-						case "CANT_LAUNCH_BEFORE":
-							this.setMovieClipTransform(var3.content,dofus.graphics.gapi.controls.MouseShortcuts.INACTIVE_TRANSFORM);
-							var3.showLabel = true;
-							var3.label = var5.params[0];
 					}
-					break;
-				case "NOT_ENOUGH_AP":
-				case "CANT_SUMMON_MORE_CREATURE":
 					var3.showLabel = false;
 					this.setMovieClipTransform(var3.content,dofus.graphics.gapi.controls.MouseShortcuts.INACTIVE_TRANSFORM);
 			}
@@ -267,7 +275,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			this.setMovieClipTransform(var3.content,dofus.graphics.gapi.controls.MouseShortcuts.NO_TRANSFORM);
 		}
 	}
-	function setItemStateOnContainer(var2)
+	function setItemStateOnContainer(§\x04\x17§)
 	{
 		var var3 = this["_ctr" + var2];
 		var var4 = var3.contentData;
@@ -298,7 +306,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 				this._ctrCC._visible = false;
 		}
 	}
-	function setCurrentTab(var2)
+	function setCurrentTab(§\x1e\x10\x04§)
 	{
 		if(var2 != this._sCurrentTab)
 		{
@@ -312,7 +320,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			this.updateCurrentTabInformations();
 		}
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		var var3 = true;
 		loop0:
@@ -396,7 +404,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 		}
 		return var3;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -408,69 +416,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 				this.api.sounds.events.onBannerSpellItemButtonClick();
 				this.setCurrentTab("Items");
 				break;
-			default:
-				if(var0 !== "_ctrCC")
-				{
-					switch(this._sCurrentTab)
-					{
-						case "Spells":
-							this.api.sounds.events.onBannerSpellSelect();
-							if(this.api.kernel.TutorialManager.isTutorialMode)
-							{
-								this.api.kernel.TutorialManager.onWaitingCase({code:"SPELL_CONTAINER_SELECT",params:[Number(var2.target._name.substr(4))]});
-								break;
-							}
-							if(this.gapi.getUIComponent("Spells") != undefined)
-							{
-								return undefined;
-							}
-							var var3 = var2.target.contentData;
-							if(var3 == undefined)
-							{
-								return undefined;
-							}
-							this.api.kernel.GameManager.switchToSpellLaunch(var3,true);
-							break;
-						case "Items":
-							if(this.api.kernel.TutorialManager.isTutorialMode)
-							{
-								this.api.kernel.TutorialManager.onWaitingCase({code:"OBJECT_CONTAINER_SELECT",params:[Number(var2.target._name.substr(4))]});
-								break;
-							}
-							if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var2.target.contentData != undefined)
-							{
-								this.api.kernel.GameManager.insertItemInChat(var2.target.contentData);
-								return undefined;
-							}
-							var var4 = this.gapi.getUIComponent("Inventory");
-							if(var4 != undefined)
-							{
-								var4.showItemInfos(var2.target.contentData);
-								break;
-							}
-							var var5 = var2.target.contentData;
-							if(var5 == undefined)
-							{
-								return undefined;
-							}
-							if(this.api.datacenter.Player.canUseObject)
-							{
-								if(var5.canTarget)
-								{
-									this.api.kernel.GameManager.switchToItemTarget(var5);
-									break;
-								}
-								if(var5.canUse && var2.keyBoard)
-								{
-									this.api.network.Items.use(var5.ID);
-									break;
-								}
-								break;
-							}
-							break;
-					}
-					break;
-				}
+			case "_ctrCC":
 				if(this._ctrCC._visible)
 				{
 					if(this.api.kernel.TutorialManager.isTutorialMode)
@@ -481,9 +427,68 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 					this.api.kernel.GameManager.switchToSpellLaunch(this.api.datacenter.Player.Spells[0],false);
 				}
 				break;
+			default:
+				switch(this._sCurrentTab)
+				{
+					case "Spells":
+						this.api.sounds.events.onBannerSpellSelect();
+						if(this.api.kernel.TutorialManager.isTutorialMode)
+						{
+							this.api.kernel.TutorialManager.onWaitingCase({code:"SPELL_CONTAINER_SELECT",params:[Number(var2.target._name.substr(4))]});
+							break;
+						}
+						if(this.gapi.getUIComponent("Spells") != undefined)
+						{
+							return undefined;
+						}
+						var var3 = var2.target.contentData;
+						if(var3 == undefined)
+						{
+							return undefined;
+						}
+						this.api.kernel.GameManager.switchToSpellLaunch(var3,true);
+						break;
+					case "Items":
+						if(this.api.kernel.TutorialManager.isTutorialMode)
+						{
+							this.api.kernel.TutorialManager.onWaitingCase({code:"OBJECT_CONTAINER_SELECT",params:[Number(var2.target._name.substr(4))]});
+							break;
+						}
+						if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var2.target.contentData != undefined)
+						{
+							this.api.kernel.GameManager.insertItemInChat(var2.target.contentData);
+							return undefined;
+						}
+						var var4 = this.gapi.getUIComponent("Inventory");
+						if(var4 != undefined)
+						{
+							var4.showItemInfos(var2.target.contentData);
+							break;
+						}
+						var var5 = var2.target.contentData;
+						if(var5 == undefined)
+						{
+							return undefined;
+						}
+						if(this.api.datacenter.Player.canUseObject)
+						{
+							if(var5.canTarget)
+							{
+								this.api.kernel.GameManager.switchToItemTarget(var5);
+								break;
+							}
+							if(var5.canUse && var2.keyBoard)
+							{
+								this.api.network.Items.use(var5.ID);
+								break;
+							}
+							break;
+						}
+						break;
+				}
 		}
 	}
-	function dblClick(var2)
+	function dblClick(§\x1e\x19\x18§)
 	{
 		switch(this._sCurrentTab)
 		{
@@ -515,7 +520,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 				}
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if(!this.gapi.isCursorHidden())
 		{
@@ -567,11 +572,11 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			this.gapi.showTooltip(var3.name + "\n" + var3.descriptionVisibleEffects + " (" + var3.apCost + " " + this.api.lang.getText("AP") + (!!_global.isNaN(var4)?"":", " + this.api.lang.getText("ACTUAL_CRITICAL_CHANCE") + ": 1/" + var4) + ")",var2.target,-30,{bXLimit:true,bYLimit:false});
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function drag(var2)
+	function drag(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 == undefined)
@@ -596,7 +601,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 		this.gapi.removeCursor();
 		this.gapi.setCursor(var3,undefined,this._sCurrentTab == "Spells");
 	}
-	function onContentLoaded(var2)
+	function onContentLoaded(§\x1e\x19\x18§)
 	{
 		if(!dofus.Constants.DOUBLEFRAMERATE)
 		{
@@ -610,13 +615,43 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 		var var4 = this.api.kernel.OptionsManager.getOption("RemasteredSpellIconsPack");
 		var3.gotoAndStop(var4);
 	}
-	function drop(var2)
+	function drop(§\x1e\x19\x18§)
 	{
-		§§push(var var0 = var2.target);
-		if((var0 = this._sCurrentTab) !== "Spells")
+		switch(this._sCurrentTab)
 		{
-			if(var0 === "Items")
-			{
+			case "Spells":
+				§§push(var var0 = var2.target);
+				if(this.gapi.getUIComponent("Spells") == undefined && !Key.isDown(Key.SHIFT))
+				{
+					return undefined;
+				}
+				var var3 = this.gapi.getCursor();
+				if(var3 == undefined)
+				{
+					return undefined;
+				}
+				this.gapi.removeCursor();
+				var var4 = var3.position;
+				var var5 = var2.target.params.position;
+				if(var4 == var5)
+				{
+					return undefined;
+				}
+				if(var4 != undefined)
+				{
+					this["_ctr" + var4].contentData = undefined;
+				}
+				var var6 = this["_ctr" + var5].contentData;
+				if(var6 != undefined)
+				{
+					var6.position = undefined;
+				}
+				var3.position = var5;
+				var2.target.contentData = var3;
+				this.api.network.Spells.moveToUsed(var3.ID,var5);
+				this.addToQueue({object:this,method:this.setSpellStateOnAllContainers});
+				break;
+			case "Items":
 				if(this.gapi.getUIComponent("Inventory") == undefined && !Key.isDown(Key.SHIFT))
 				{
 					return undefined;
@@ -646,43 +681,11 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 				{
 					this.api.network.Items.movement(var7.ID,var8,1);
 				}
-			}
-		}
-		else
-		{
-			if(this.gapi.getUIComponent("Spells") == undefined && !Key.isDown(Key.SHIFT))
-			{
-				return undefined;
-			}
-			var var3 = this.gapi.getCursor();
-			if(var3 == undefined)
-			{
-				return undefined;
-			}
-			this.gapi.removeCursor();
-			var var4 = var3.position;
-			var var5 = var2.target.params.position;
-			if(var4 == var5)
-			{
-				return undefined;
-			}
-			if(var4 != undefined)
-			{
-				this["_ctr" + var4].contentData = undefined;
-			}
-			var var6 = this["_ctr" + var5].contentData;
-			if(var6 != undefined)
-			{
-				var6.position = undefined;
-			}
-			var3.position = var5;
-			var2.target.contentData = var3;
-			this.api.network.Spells.moveToUsed(var3.ID,var5);
-			this.addToQueue({object:this,method:this.setSpellStateOnAllContainers});
+				break;
 		}
 		§§pop();
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		switch(var2.eventName)
 		{
@@ -698,7 +701,7 @@ class dofus.graphics.gapi.controls.MouseShortcuts extends dofus.graphics.gapi.co
 			this.updateItems();
 		}
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.params.type) === "drop")
 		{

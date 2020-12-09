@@ -1,10 +1,10 @@
 class dofus.aks.Party extends dofus.aks.Handler
 {
-	function Party(var2, var3)
+	function Party(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function invite(var2)
+	function invite(§\x1e\r\x1a§)
 	{
 		this.aks.send("PI" + var2);
 	}
@@ -16,12 +16,12 @@ class dofus.aks.Party extends dofus.aks.Handler
 	{
 		this.aks.send("PA");
 	}
-	function leave(var2)
+	function leave(§\x1e\r\x1b§)
 	{
 		this.aks.send("PV" + (var2 == undefined?"":var2));
 		this.api.ui.getUIComponent("Banner").illustration.updateFlags();
 	}
-	function follow(var2, var3)
+	function follow(§\x15\x01§, §\x1e\r\x1b§)
 	{
 		this.aks.send("PF" + (!var2?"+":"-") + var3);
 	}
@@ -29,11 +29,11 @@ class dofus.aks.Party extends dofus.aks.Handler
 	{
 		this.aks.send("PW");
 	}
-	function followAll(var2, var3)
+	function followAll(§\x15\x01§, §\x1e\r\x1b§)
 	{
 		this.aks.send("PG" + (!var2?"+":"-") + var3);
 	}
-	function onInvite(var2, var3)
+	function onInvite(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -82,7 +82,7 @@ class dofus.aks.Party extends dofus.aks.Handler
 			}
 		}
 	}
-	function onLeader(var2)
+	function onLeader(§\x1e\x12\x1a§)
 	{
 		var var3 = var2;
 		var var4 = this.api.ui.getUIComponent("Party");
@@ -93,17 +93,17 @@ class dofus.aks.Party extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("NEW_GROUP_LEADER",[var5]),"INFO_CHAT");
 		}
 	}
-	function onRefuse(var2)
+	function onRefuse(§\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("AskYesNoIgnoreParty");
 		this.api.ui.unloadUIComponent("AskCancelParty");
 	}
-	function onAccept(var2)
+	function onAccept(§\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("AskYesNoIgnoreParty");
 		this.api.ui.unloadUIComponent("AskCancelParty");
 	}
-	function onCreate(var2, var3)
+	function onCreate(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -128,7 +128,7 @@ class dofus.aks.Party extends dofus.aks.Handler
 			}
 		}
 	}
-	function onLeave(var2)
+	function onLeave(§\x1e\x12\x1a§)
 	{
 		var var3 = this.api.ui.getUIComponent("Party");
 		if(var3.followID != undefined)
@@ -150,7 +150,7 @@ class dofus.aks.Party extends dofus.aks.Handler
 		this.api.datacenter.Player.inParty = false;
 		this.api.datacenter.Basics.aks_infos_highlightCoords_clear(2);
 	}
-	function onFollow(var2, var3)
+	function onFollow(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -163,7 +163,7 @@ class dofus.aks.Party extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("PARTY_NOT_IN_IN_GROUP"),"ERROR_BOX",{name:"PartyError"});
 		}
 	}
-	function onMovement(var2)
+	function onMovement(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = this.api.ui.getUIComponent("Party");
@@ -205,7 +205,11 @@ class dofus.aks.Party extends dofus.aks.Handler
 				case "-":
 					var4.removeMember(var8,true);
 					break;
-				case "~":
+				default:
+					if(var0 !== "~")
+					{
+						break;
+					}
 					var var21 = var7[1];
 					var var22 = var7[2];
 					var var23 = Number(var7[3]);
@@ -231,33 +235,34 @@ class dofus.aks.Party extends dofus.aks.Handler
 					var32.side = var31;
 					this.api.kernel.CharactersManager.setSpriteAccessories(var32,var26);
 					var4.updateData(var32);
+					break;
 			}
 			var6 = var6 + 1;
 		}
 		var4.refresh();
 	}
-	function cancel(var2)
+	function cancel(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskCancelParty")
 		{
 			this.refuseInvitation();
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoIgnoreParty")
 		{
 			this.acceptInvitation();
 		}
 	}
-	function no(var2)
+	function no(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoIgnoreParty")
 		{
 			this.refuseInvitation();
 		}
 	}
-	function ignore(var2)
+	function ignore(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoIgnoreParty")
 		{

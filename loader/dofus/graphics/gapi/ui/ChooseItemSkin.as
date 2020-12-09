@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__item(var2)
+	function __set__item(§\x1e\x19\r§)
 	{
 		this._oItem = var2;
 		if(this.initialized)
@@ -51,7 +51,7 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 		this._btnValid.label = this.api.lang.getText("VALIDATE");
 		this._win.title = this.api.lang.getText("CHOOSE_SKIN");
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\r§)
 	{
 		if(!var2)
 		{
@@ -61,7 +61,7 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 		this.api.network.Items.setSkin(this._oItem.ID,this._oItem.position,var2.skin + 1);
 		this.callClose();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -73,7 +73,7 @@ class dofus.graphics.gapi.ui.ChooseItemSkin extends dofus.graphics.gapi.core.Dof
 				this.validate(this._cisItem.selectedItem);
 		}
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		this.validate(var2.target.contentData);
 	}

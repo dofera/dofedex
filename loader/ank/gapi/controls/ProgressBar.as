@@ -9,7 +9,7 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__renderer(var2)
+	function __set__renderer(§\x1e\x0e\x12§)
 	{
 		if(this._bInitialized)
 		{
@@ -18,7 +18,7 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 		this._sRenderer = var2;
 		return this.__get__renderer();
 	}
-	function __set__minimum(var2)
+	function __set__minimum(§\x03\x01§)
 	{
 		this._nMinimum = Number(var2);
 		return this.__get__minimum();
@@ -27,7 +27,7 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMinimum;
 	}
-	function __set__maximum(var2)
+	function __set__maximum(§\x03\x10§)
 	{
 		this._nMaximum = Number(var2);
 		return this.__get__maximum();
@@ -36,7 +36,7 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMaximum;
 	}
-	function __set__value(var2)
+	function __set__value(§\x1e\x1b\x17§)
 	{
 		if(var2 > this._nMaximum)
 		{
@@ -122,7 +122,7 @@ class ank.gapi.controls.ProgressBar extends ank.gapi.core.UIBasicComponent
 			this.setMovieClipColor(var2[k],var3[var9 + "color"]);
 		}
 	}
-	function hideUp(var2)
+	function hideUp(§\x19\x0e§)
 	{
 		this._mcRenderer._mcUpLeft._visible = !var2;
 		this._mcRenderer._mcUpMiddle._visible = !var2;

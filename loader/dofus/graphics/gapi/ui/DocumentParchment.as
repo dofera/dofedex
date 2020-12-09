@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.DocumentParchment extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__document(var2)
+	function __set__document(§\x1e\x19\x1d§)
 	{
 		this._oDoc = var2;
 		return this.__get__document();
@@ -48,7 +48,7 @@ class dofus.graphics.gapi.ui.DocumentParchment extends dofus.graphics.gapi.core.
 			this._lblTitle.text = this._oDoc.title;
 		}
 	}
-	function setCssStyle(var2)
+	function setCssStyle(§\x1e\x13\x14§)
 	{
 		var var3 = new TextField.StyleSheet();
 		var3.owner = this;
@@ -58,12 +58,12 @@ class dofus.graphics.gapi.ui.DocumentParchment extends dofus.graphics.gapi.core.
 		};
 		var3.load(var2);
 	}
-	function layoutContent(var2)
+	function layoutContent(§\x1e\r\x17§)
 	{
 		this._txtCore.styleSheet = var2;
 		this._txtCore.htmlText = this._oDoc.getPage(0).text;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -72,7 +72,7 @@ class dofus.graphics.gapi.ui.DocumentParchment extends dofus.graphics.gapi.core.
 				this.callClose();
 		}
 	}
-	function onHref(var2)
+	function onHref(§\x1e\x0f\x13§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);

@@ -4,17 +4,17 @@ class dofus.graphics.gapi.ui.bigstore.BigStorePriceItem extends ank.gapi.core.UI
 	{
 		super();
 	}
-	function __set__list(var2)
+	function __set__list(§\x0b\x05§)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function __set__row(var2)
+	function __set__row(§\n\x1c§)
 	{
 		this._mcRow = var2;
 		return this.__get__row();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		delete this._nSelectedSet;
 		if(var2)
@@ -66,9 +66,9 @@ class dofus.graphics.gapi.ui.bigstore.BigStorePriceItem extends ank.gapi.core.UI
 			this._btnPriceSet1.enabled = !_global.isNaN(var4.priceSet1);
 			this._btnPriceSet2.enabled = !_global.isNaN(var4.priceSet2);
 			this._btnPriceSet3.enabled = !_global.isNaN(var4.priceSet3);
-			this._btnPriceSet1.label = !_global.isNaN(var4.priceSet1)?new ank.utils.(var4.priceSet1).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
-			this._btnPriceSet2.label = !_global.isNaN(var4.priceSet2)?new ank.utils.(var4.priceSet2).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
-			this._btnPriceSet3.label = !_global.isNaN(var4.priceSet3)?new ank.utils.(var4.priceSet3).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
+			this._btnPriceSet1.label = !_global.isNaN(var4.priceSet1)?new ank.utils.(var4.priceSet1).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
+			this._btnPriceSet2.label = !_global.isNaN(var4.priceSet2)?new ank.utils.(var4.priceSet2).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
+			this._btnPriceSet3.label = !_global.isNaN(var4.priceSet3)?new ank.utils.(var4.priceSet3).addMiddleChar(this._mcList.gapi.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + "  ":"-  ";
 			this._ldrIcon.contentParams = var4.item.params;
 			this._ldrIcon.contentPath = var4.item.iconFile;
 		}
@@ -105,41 +105,40 @@ class dofus.graphics.gapi.ui.bigstore.BigStorePriceItem extends ank.gapi.core.UI
 	{
 		this._btnBuy.label = this._mcList.gapi.api.lang.getText("BUY");
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
-		loop0:
 		switch(var2.target._name)
 		{
-			default:
-				switch(null)
-				{
-					case "_btnPriceSet3":
-						break loop0;
-					case "_btnBuy":
-						if(!this._nSelectedSet || _global.isNaN(this._nSelectedSet))
-						{
-							this._btnBuy.enabled = false;
-							return undefined;
-						}
-						this._mcList._parent._parent.askBuy(this._oItem.item,this._nSelectedSet,this._oItem["priceSet" + this._nSelectedSet]);
-						this._mcList._parent._parent.askMiddlePrice(this._oItem.item);
-						break;
-				}
 			case "_btnPriceSet1":
 			case "_btnPriceSet2":
-		}
-		var var3 = Number(var2.target._name.substr(12));
-		this._mcList._parent._parent.selectPrice(this._oItem,var3,var2.target,this._btnBuy);
-		if(var2.target.selected)
-		{
-			this._nSelectedSet = var3;
-			this._mcRow.select();
-			this._btnBuy.enabled = true;
-		}
-		else
-		{
-			delete this._nSelectedSet;
-			this._btnBuy.enabled = false;
+			case "_btnPriceSet3":
+				var var3 = Number(var2.target._name.substr(12));
+				this._mcList._parent._parent.selectPrice(this._oItem,var3,var2.target,this._btnBuy);
+				if(var2.target.selected)
+				{
+					this._nSelectedSet = var3;
+					this._mcRow.select();
+					this._btnBuy.enabled = true;
+				}
+				else
+				{
+					delete this._nSelectedSet;
+					this._btnBuy.enabled = false;
+				}
+				break;
+			default:
+				if(var0 !== "_btnBuy")
+				{
+					break;
+				}
+				if(!this._nSelectedSet || _global.isNaN(this._nSelectedSet))
+				{
+					this._btnBuy.enabled = false;
+					return undefined;
+				}
+				this._mcList._parent._parent.askBuy(this._oItem.item,this._nSelectedSet,this._oItem["priceSet" + this._nSelectedSet]);
+				this._mcList._parent._parent.askMiddlePrice(this._oItem.item);
+				break;
 		}
 	}
 }

@@ -66,7 +66,7 @@ class dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules extends dofus.
 		var var3 = 0;
 		while(var3 < dofus.Constants.GUILD_ORDER.length)
 		{
-			var var4 = new ank.utils.(this.api.lang.getClassText(dofus.Constants.GUILD_ORDER[var3]).sn);
+			var var4 = new ank.utils.(this.api.lang.getClassText(dofus.Constants.GUILD_ORDER[var3]).sn);
 			var var5 = var4.replace(["é","à","â"],["e","a","a"]).toUpperCase();
 			if(var5 == undefined)
 			{

@@ -4,7 +4,7 @@ class ank.utils.rss.RSSChannel
 	{
 		this.initialize();
 	}
-	function parse(var2)
+	function parse(§\x1e\n\x01§)
 	{
 		this.initialize();
 		if(var2.nodeName.toLowerCase() != "channel")
@@ -43,20 +43,20 @@ class ank.utils.rss.RSSChannel
 						case "docs":
 							this._sDocs = var3.childNodes.join("");
 							break loop1;
-						case "generator":
-							this._sGenerator = var3.childNodes.join("");
-							break loop1;
-						case "managingeditor":
-							this._sManagingEditor = var3.childNodes.join("");
-							break loop1;
 						default:
 							switch(null)
 							{
+								case "generator":
+									this._sGenerator = var3.childNodes.join("");
+									break;
+								case "managingeditor":
+									this._sManagingEditor = var3.childNodes.join("");
+									break;
 								case "webmaster":
 									this._sWebMaster = var3.childNodes.join("");
 									break;
 								case "item":
-									var var4 = new ank.utils.rss.();
+									var var4 = new ank.utils.rss.();
 									if(var4.parse(var3))
 									{
 										this._aItems.push(var4);
@@ -93,7 +93,7 @@ class ank.utils.rss.RSSChannel
 	{
 		return this._dPubDate;
 	}
-	function getPubDateStr(var2, var3)
+	function getPubDateStr(§\x1e\x12\x11§, §\x1e\x11\x06§)
 	{
 		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,var2,var3):this._sPubDate;
 	}
@@ -101,7 +101,7 @@ class ank.utils.rss.RSSChannel
 	{
 		return this._dLastBuildDate;
 	}
-	function getLastBuildDateStr(var2, var3)
+	function getLastBuildDateStr(§\x1e\x12\x11§, §\x1e\x11\x06§)
 	{
 		return this._dLastBuildDate != null?org.utils.SimpleDateFormatter.formatDate(this._dLastBuildDate,var2,var3):this._sLastBuildDate;
 	}
@@ -139,7 +139,7 @@ class ank.utils.rss.RSSChannel
 		this._sWebMaster = "";
 		this._aItems = new Array();
 	}
-	function parseDate(var2)
+	function parseDate(§\x1e\x13\x0f§)
 	{
 		return new Date();
 	}

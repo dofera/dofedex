@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__itemsType(var2)
+	function __set__itemsType(§\x1d\x06§)
 	{
 		this._aFiltersType = var2;
 		if(this._eaDataProvider)
@@ -14,7 +14,7 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 		}
 		return this.__get__itemsType();
 	}
-	function __set__item(var2)
+	function __set__item(§\x1e\x1a\x02§)
 	{
 		this._oItem = var2;
 		return this.__get__item();
@@ -51,9 +51,11 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 		this._eaDataProvider = this.api.datacenter.Player.Inventory;
 		this._itvItemViewer._visible = false;
 		this._mcItvIconBg._visible = false;
-		var var2 = new ank.utils.();
-		for(var var3 in this._eaDataProvider)
+		var var2 = new ank.utils.
+();
+		for(var k in this._eaDataProvider)
 		{
+			var var3 = this._eaDataProvider[k];
 			var var4 = 0;
 			while(var4 < this._aFiltersType.length)
 			{
@@ -80,7 +82,7 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 		this.unloadThis();
 		return true;
 	}
-	function validate(var2, var3)
+	function validate(§\x1e\x19\r§, §\x02\x11§)
 	{
 		if(!var2.ID)
 		{
@@ -96,7 +98,7 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 		this.api.network.Items.feed(this._oItem.ID,this._oItem.position,var2.ID);
 		this.callClose();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -108,26 +110,26 @@ class dofus.graphics.gapi.ui.ChooseFeed extends dofus.graphics.gapi.core.DofusAd
 				this.validate(this._cgGrid.selectedItem.contentData);
 		}
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		this.validate(var2.target.contentData);
 	}
-	function selectItem(var2)
+	function selectItem(§\x1e\x19\x18§)
 	{
 		this._itvItemViewer.itemData = var2.target.contentData;
 		this._itvItemViewer._visible = true;
 		this._mcItvIconBg._visible = true;
 		this._lblNoItem._visible = false;
 	}
-	function overItem(var2)
+	function overItem(§\x1e\x19\x18§)
 	{
 		this.gapi.showTooltip(var2.target.contentData.name,var2.target,-20,undefined,var2.target.contentData.style + "ToolTip");
 	}
-	function outItem(var2)
+	function outItem(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoConfirm")
 		{

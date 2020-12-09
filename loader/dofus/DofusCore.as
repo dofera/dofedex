@@ -1,6 +1,6 @@
 class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 {
-	function DofusCore(var3)
+	function DofusCore(§\n\x1d§)
 	{
 		super();
 		System.security.allowDomain("*");
@@ -34,7 +34,8 @@ class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 	}
 	function initApi()
 	{
-		_global.API = new dofus.utils.();
+		org.flashdevelop.utils.FlashConnect.mtrace("Etape 3","dofus.DofusCore::initApi","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/DofusCore.as",97);
+		_global.API = new dofus.utils.Api();
 		_global.API.initialize();
 		this.addToQueue({object:this,method:this.checkNodesAndContinue});
 	}
@@ -67,6 +68,7 @@ class dofus.DofusCore extends ank.utils.QueueEmbedMovieClip
 	}
 	function startGame()
 	{
+		org.flashdevelop.utils.FlashConnect.mtrace("Etape 5, fin","dofus.DofusCore::startGame","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/DofusCore.as",152);
 		_global.API.kernel.start();
 	}
 	function forceMouseOver()

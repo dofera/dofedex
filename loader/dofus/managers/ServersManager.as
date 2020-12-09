@@ -4,14 +4,14 @@ class dofus.managers.ServersManager extends dofus.utils.ApiElement
 	{
 		super();
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x1e\x1a\x16§, §\x1e\x0f\x1b§, §\x1e\x12\x13§)
 	{
 		super.initialize(var3);
 		this._sObjectName = var4;
 		this._sFolder = var5;
 		this._oFailedURL = new Object();
 	}
-	function loadData(var2)
+	function loadData(§\x1e\x12\x18§)
 	{
 		if(this._sFile == var2)
 		{
@@ -70,7 +70,7 @@ class dofus.managers.ServersManager extends dofus.utils.ApiElement
 	{
 		this.clearTimer();
 	}
-	function onLoadError(var2)
+	function onLoadError(§\x0b\r§)
 	{
 		this.api.kernel.showMessage(undefined,"Erreur au chargement du fichier \'" + this._sCurrentFileURL + "\'","DEBUG_LOG");
 		this.clearTimer();
@@ -85,14 +85,14 @@ class dofus.managers.ServersManager extends dofus.utils.ApiElement
 	{
 		this.clearTimer();
 	}
-	function onLoadInit(var2)
+	function onLoadInit(§\x0b\r§)
 	{
 		this.clearTimer();
 		this._sFile = undefined;
 		this.clearUI();
 		this.onComplete(var2);
 	}
-	function onAllLoadFailed(var2)
+	function onAllLoadFailed(§\x0b\r§)
 	{
 		this.api.kernel.showMessage(undefined,"Chargement du fichier \'" + this._sFile + "\' impossible ","DEBUG_LOG");
 		this.clearTimer();

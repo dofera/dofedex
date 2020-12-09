@@ -3,7 +3,7 @@ class dofus.graphics.gapi.ui.banner.Gauge
 	function Gauge()
 	{
 	}
-	static function showGaugeMode(var2)
+	static function showGaugeMode(§\x0b\f§)
 	{
 		if(var2.api.datacenter.Player.XP == undefined || var2.api.datacenter.Game.isFight)
 		{
@@ -16,57 +16,61 @@ class dofus.graphics.gapi.ui.banner.Gauge
 			return undefined;
 		}
 		var2.setXtraFightMask(true);
-		switch(var3)
+		if((var var0 = var3) !== "xp")
 		{
-			case "xp":
-				var var4 = Math.floor((var2.api.datacenter.Player.XP - var2.api.datacenter.Player.XPlow) / (var2.api.datacenter.Player.XPhigh - var2.api.datacenter.Player.XPlow) * 100);
-				var var5 = 8298148;
-				break;
-			case "xpmount":
-				if(var2.api.datacenter.Player.mount == undefined)
-				{
-					var4 = 0;
-				}
-				else
-				{
-					var4 = Math.floor((var2.api.datacenter.Player.mount.xp - var2.api.datacenter.Player.mount.xpMin) / (var2.api.datacenter.Player.mount.xpMax - var2.api.datacenter.Player.mount.xpMin) * 100);
-				}
-				var5 = 8298148;
-				break;
-			case "pods":
-				var4 = Math.floor(var2.api.datacenter.Player.currentWeight / var2.api.datacenter.Player.maxWeight * 100);
-				var5 = 6340148;
-				break;
-			case "energy":
-				if(var2.api.datacenter.Player.EnergyMax == -1)
-				{
-					var4 = 0;
-				}
-				else
-				{
-					var4 = Math.floor(var2.api.datacenter.Player.Energy / var2.api.datacenter.Player.EnergyMax * 100);
-				}
-				var5 = 10994717;
-				break;
-			case "xpcurrentjob":
-				var var6 = var2.api.datacenter.Player.currentJobID;
-				if(var6 != undefined)
-				{
-					var var7 = var2.api.datacenter.Player.Jobs.findFirstItem("id",var6).item;
-					if(var7.xpMax != -1)
+			switch(null)
+			{
+				case "xpmount":
+					if(var2.api.datacenter.Player.mount == undefined)
 					{
-						var4 = Math.floor((var7.xp - var7.xpMin) / (var7.xpMax - var7.xpMin) * 100);
+						var var4 = 0;
+					}
+					else
+					{
+						var4 = Math.floor((var2.api.datacenter.Player.mount.xp - var2.api.datacenter.Player.mount.xpMin) / (var2.api.datacenter.Player.mount.xpMax - var2.api.datacenter.Player.mount.xpMin) * 100);
+					}
+					var var5 = 8298148;
+					break;
+				case "pods":
+					var4 = Math.floor(var2.api.datacenter.Player.currentWeight / var2.api.datacenter.Player.maxWeight * 100);
+					var5 = 6340148;
+					break;
+				case "energy":
+					if(var2.api.datacenter.Player.EnergyMax == -1)
+					{
+						var4 = 0;
+					}
+					else
+					{
+						var4 = Math.floor(var2.api.datacenter.Player.Energy / var2.api.datacenter.Player.EnergyMax * 100);
+					}
+					var5 = 10994717;
+					break;
+				case "xpcurrentjob":
+					var var6 = var2.api.datacenter.Player.currentJobID;
+					if(var6 != undefined)
+					{
+						var var7 = var2.api.datacenter.Player.Jobs.findFirstItem("id",var6).item;
+						if(var7.xpMax != -1)
+						{
+							var4 = Math.floor((var7.xp - var7.xpMin) / (var7.xpMax - var7.xpMin) * 100);
+						}
+						else
+						{
+							var4 = 0;
+						}
 					}
 					else
 					{
 						var4 = 0;
 					}
-				}
-				else
-				{
-					var4 = 0;
-				}
-				var5 = 10441125;
+					var5 = 10441125;
+			}
+		}
+		else
+		{
+			var4 = Math.floor((var2.api.datacenter.Player.XP - var2.api.datacenter.Player.XPlow) / (var2.api.datacenter.Player.XPhigh - var2.api.datacenter.Player.XPlow) * 100);
+			var5 = 8298148;
 		}
 		if(!_global.isNaN(var5))
 		{
@@ -78,7 +82,7 @@ class dofus.graphics.gapi.ui.banner.Gauge
 			var2._ccChrono.setGaugeChrono(var4,var5);
 		}
 	}
-	static function setGaugeMode(var2, var3)
+	static function setGaugeMode(§\x0b\f§, §\x1e\x12\x0e§)
 	{
 		var2._mcCurrentXtraMask = var3 != "none"?var2._mcCircleXtraMask:var2._mcCircleXtraMaskBig;
 		var var4 = var2.api.kernel.OptionsManager.getOption("BannerGaugeMode");
@@ -123,7 +127,7 @@ class dofus.graphics.gapi.ui.banner.Gauge
 		}
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(var2);
 	}
-	static function showGaugeModeSelectMenu(var2)
+	static function showGaugeModeSelectMenu(§\x0b\f§)
 	{
 		var var3 = var2.api.kernel.OptionsManager.getOption("BannerGaugeMode");
 		var var4 = var2.api.ui.createPopupMenu();

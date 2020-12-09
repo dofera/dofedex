@@ -18,7 +18,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		ank.utils.Logger.err("[isMapBuild] Carte non chargée");
 		return false;
 	}
-	function __set__screenWidth(var2)
+	function __set__screenWidth(§\x1e\x1e\x06§)
 	{
 		this._nScreenWidth = var2;
 		return this.__get__screenWidth();
@@ -27,7 +27,7 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		return this._nScreenWidth != undefined?this._nScreenWidth:ank.battlefield.Constants.DISPLAY_WIDTH;
 	}
-	function __set__screenHeight(var2)
+	function __set__screenHeight(§\x1e\x1e\x07§)
 	{
 		this._nScreenHeight = var2;
 		return this.__get__screenHeight();
@@ -36,7 +36,7 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		return this._nScreenHeight != undefined?this._nScreenHeight:ank.battlefield.Constants.DISPLAY_HEIGHT;
 	}
-	function __set__isJumpActivate(var2)
+	function __set__isJumpActivate(§\x18\f§)
 	{
 		this._bJumpActivate = var2;
 		return this.__get__isJumpActivate();
@@ -57,7 +57,7 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		return this._oDatacenter;
 	}
-	function initialize(var2, var3, var4, var5)
+	function initialize(§\x1e\x1a\x01§, §\x1e\x12\t§, §\x1e\x0f\x1c§, §\x1e\x15\b§)
 	{
 		this._oDatacenter = var2;
 		this._sGroundFile = var3;
@@ -70,24 +70,24 @@ class ank.battlefield.Battlefield extends MovieClip
 		if(_global.GAC == undefined)
 		{
 			_global.GAC = new ank.battlefield.
-();
+();
 			_global.GAC.setAccessoriesRoot(var5);
 		}
 		this.attachClassMovie(ank.battlefield.mc.Container,"_mcMainContainer",10,[this,this._oDatacenter,var4]);
 		this._bMapBuild = false;
 		this.loadManager = new ank.battlefield.LoadManager(this.createEmptyMovieClip("LoadManager",this.getNextHighestDepth()));
 	}
-	function setStreaming(var2, var3, var4)
+	function setStreaming(§\x1e\r\x06§, §\x1e\x1a\x10§, §\r\x1a§)
 	{
 		ank.battlefield.Constants.USE_STREAMING_FILES = var2;
 		ank.battlefield.Constants.STREAMING_OBJECTS_DIR = var3;
 		ank.battlefield.Constants.STREAMING_GROUNDS_DIR = var4;
 	}
-	function setStreamingMethod(var2)
+	function setStreamingMethod(§\x1e\x10\x06§)
 	{
 		ank.battlefield.Constants.STREAMING_METHOD = var2;
 	}
-	function setCustomGfxFile(var2, var3)
+	function setCustomGfxFile(§\x1e\x0f\x0f§, §\x1e\x0f\x0e§)
 	{
 		if(var2 && (var2 != "" && this._sGroundFile != var2))
 		{
@@ -102,7 +102,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			this._sObjectFile = var3;
 		}
 	}
-	function activateTacticMode(var2)
+	function activateTacticMode(§\x16\x1a§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -121,11 +121,11 @@ class ank.battlefield.Battlefield extends MovieClip
 		this.createHandlers();
 		this._bMapBuild = false;
 	}
-	function setColor(var2)
+	function setColor(§\x1e\f\x02§)
 	{
 		this._mcMainContainer.setColor(var2);
 	}
-	function cleanMap(nPermanentLevel, §\x18\b§)
+	function cleanMap(nPermanentLevel, §\x18\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -155,15 +155,15 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		return this._mcMainContainer.getZoom();
 	}
-	function showContainer(var2)
+	function showContainer(§\x16\x1d§)
 	{
 		this._mcMainContainer._visible = var2;
 	}
-	function zoom(var2)
+	function zoom(§\x05\x18§)
 	{
 		this._mcMainContainer.zoom(var2);
 	}
-	function buildMapFromObject(var2, var3)
+	function buildMapFromObject(§\x1e\x19\x04§, §\x1c\x02§)
 	{
 		this.clear();
 		if(var2 == undefined)
@@ -196,7 +196,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		this._bMapBuild = true;
 		this.onMapLoaded();
 	}
-	function buildMap(var2, var3, var4, var5, var6, var7, var8, var9)
+	function buildMap(§\x05\x02§, §\x1e\x10\x06§, §\x1e\x1b\x0f§, §\x05\x07§, §\b\x17§, §\x1e\x14\x02§, §\x1e\x19\x04§, §\x1c\x02§)
 	{
 		if(var8 == undefined)
 		{
@@ -205,7 +205,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		ank.battlefield.utils.Compressor.uncompressMap(var2,var3,var4,var5,var6,var7,var8,var9);
 		this.buildMapFromObject(var8,var9);
 	}
-	function updateCell(§\x07\x14§, §\x1e\x13\x15§, §\x1e\x10\b§, nPermanentLevel)
+	function updateCell(§\b\x02§, §\x1e\x14\x03§, §\x1e\x10\x12§, nPermanentLevel)
 	{
 		if(!this.isMapBuild)
 		{
@@ -221,7 +221,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			this.mapHandler.updateCell(var2,var6,var4,nPermanentLevel);
 		}
 	}
-	function setObject2Frame(var2, var3)
+	function setObject2Frame(§\b\x02§, §\x0e\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -229,7 +229,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.mapHandler.setObject2Frame(var2,var3);
 	}
-	function setObject2Interactive(§\x07\x14§, §\x18\x19§, nPermanentLevel)
+	function setObject2Interactive(§\b\x02§, §\x18\x1c§, nPermanentLevel)
 	{
 		if(!this.isMapBuild)
 		{
@@ -237,17 +237,16 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.mapHandler.setObject2Interactive(var2,var3,nPermanentLevel);
 	}
-	function updateCellObjectExternalWithExternalClip(var2, var3, var4, var5, var6, var7)
+	function updateCellObjectExternalWithExternalClip(§\b\x02§, §\x1e\x12\x18§, nPermanentLevel, §\x18\x1c§, §\x1c\b§, §\x1e\x19\x17§)
 	{
-		var var8 = new ank.battlefield.datacenter.
-();
+		var var8 = new ank.battlefield.datacenter.();
 		var8.layerObjectExternal = var3;
 		var8.layerObjectExternalInteractive = var5 != undefined?var5:true;
 		var8.layerObjectExternalAutoSize = var6;
 		var8.layerObjectExternalData = var7;
 		this.mapHandler.updateCell(var2,var8,"1C000",nPermanentLevel);
 	}
-	function setObjectExternalFrame(var2, var3)
+	function setObjectExternalFrame(§\b\x02§, §\x0e\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -255,7 +254,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.mapHandler.setObjectExternalFrame(var2,var3);
 	}
-	function initializeCell(§\x07\x14§, nPermanentLevel)
+	function initializeCell(§\b\x02§, nPermanentLevel)
 	{
 		if(!this.isMapBuild)
 		{
@@ -263,7 +262,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.mapHandler.initializeCell(var2,nPermanentLevel);
 	}
-	function select(var2, var3, var4, var5)
+	function select(§\x13\x0b§, §\x07\x0e§, §\x1e\x11\x04§, §\t\n§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -278,7 +277,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			this.selectionHandler.select(true,var2,var3,var4,var5);
 		}
 	}
-	function unSelect(var2, var3, var4)
+	function unSelect(§\x1c\x18§, §\x13\x0b§, §\x1e\x11\x04§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -301,7 +300,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			this.selectionHandler.clearLayer(var4);
 		}
 	}
-	function unSelectAllButOne(var2)
+	function unSelectAllButOne(§\x1e\x11\x04§)
 	{
 		var var3 = this.selectionHandler.getLayers();
 		var var4 = 0;
@@ -314,7 +313,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			var4 = var4 + 1;
 		}
 	}
-	function setInteraction(var2)
+	function setInteraction(§\x1e\x1d\x07§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -322,7 +321,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.interactionHandler.setEnabled(var2);
 	}
-	function setInteractionOnCell(var2, var3)
+	function setInteractionOnCell(§\b\x02§, §\x1e\x1d\x07§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -330,7 +329,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.interactionHandler.setEnabledCell(var2,var3);
 	}
-	function setInteractionOnCells(var2, var3)
+	function setInteractionOnCells(§\x0e§, §\x1e\x1d\x07§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -341,7 +340,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			this.interactionHandler.setEnabledCell(var2[k],var3);
 		}
 	}
-	function drawZone(var2, var3, var4, var5, var6, var7)
+	function drawZone(§\b\x02§, §\x01\x05§, §\x01\x04§, §\x1e\x11\x04§, §\x07\x0e§, §\x1e\x0e\x06§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -349,7 +348,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.zoneHandler.drawZone(var2,var3,var4,var5,var6,var7);
 	}
-	function clearZone(var2, var3, var4)
+	function clearZone(§\b\x02§, §\x01\x06§, §\x1e\x11\x04§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -357,7 +356,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.zoneHandler.clearZone(var2,var3,var4);
 	}
-	function clearZoneLayer(var2)
+	function clearZoneLayer(§\x1e\x11\x04§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -365,7 +364,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.zoneHandler.clearZoneLayer(var2);
 	}
-	function clearAllZones(var2)
+	function clearAllZones(§\x1e\n\f§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -373,19 +372,19 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.zoneHandler.clear();
 	}
-	function clearPointer(var2)
+	function clearPointer(§\x1e\n\f§)
 	{
 		this.pointerHandler.clear();
 	}
-	function hidePointer(var2)
+	function hidePointer(§\x1e\n\f§)
 	{
 		this.pointerHandler.hide();
 	}
-	function addPointerShape(var2, var3, var4, var5)
+	function addPointerShape(§\x1e\x0e\x06§, §\t\x1b§, §\x07\x0e§, §\b\x01§)
 	{
 		this.pointerHandler.addShape(var2,var3,var4,var5);
 	}
-	function drawPointer(var2)
+	function drawPointer(§\b\x02§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -409,7 +408,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.addSprite(sID,spriteData);
 	}
-	function addLinkedSprite(sID, §\x1e\x0f\b§, §\x07\x06§, oSprite)
+	function addLinkedSprite(sID, §\x1e\x0f\x12§, §\x07\x11§, oSprite)
 	{
 		if(!this.isMapBuild)
 		{
@@ -417,7 +416,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.addLinkedSprite(sID,var3,var4,oSprite);
 	}
-	function carriedSprite(sID, §\x1e\x0f\b§)
+	function carriedSprite(sID, §\x1e\x0f\x12§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -425,7 +424,15 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.carriedSprite(sID,var3);
 	}
-	function uncarriedSprite(sID, §\x07\x14§, §\x13\x16§, §\x1e\x17\x1d§)
+	function removeEffectsByCasterID(sCasterID)
+	{
+		if(!this.isMapBuild)
+		{
+			return undefined;
+		}
+		this.spriteHandler.removeEffectsByCasterID(sCasterID);
+	}
+	function uncarriedSprite(sID, §\b\x02§, §\x13\x1b§, §\x1e\x18\t§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -433,7 +440,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.uncarriedSprite(sID,var3,var4,var5);
 	}
-	function mountSprite(sID, §\x1e\x18\x15§)
+	function mountSprite(sID, §\x1e\x19\x01§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -449,11 +456,11 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.unmountSprite(sID);
 	}
-	function clearAllSprites(var2)
+	function clearAllSprites(§\x18\x0b§)
 	{
 		this.spriteHandler.clear(var2);
 	}
-	function removeSprite(sID, §\x18\b§)
+	function removeSprite(sID, §\x18\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -461,7 +468,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.removeSprite(sID,var3);
 	}
-	function hideSprite(sID, §\x16\x19§)
+	function hideSprite(sID, §\x16\x1d§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -469,7 +476,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.hideSprite(sID,var3);
 	}
-	function setSpritePosition(sID, §\x07\x14§, §\x10\x1c§)
+	function setSpritePosition(sID, §\b\x02§, §\x11\b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -477,7 +484,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpritePosition(sID,var3,var4);
 	}
-	function setSpriteDirection(sID, §\x06\n§)
+	function setSpriteDirection(sID, §\x06\x14§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -485,7 +492,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteDirection(sID,var3);
 	}
-	function stopSpriteMove(sID, §\x1e\x17\x1d§, §\x07\x14§)
+	function stopSpriteMove(sID, §\x1e\x18\t§, §\b\x02§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -493,7 +500,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.stopSpriteMove(sID,var3,var4);
 	}
-	function moveSprite(sID, §\x12\x0e§, §\x1e\x17\x1d§, §\x1b\x0e§, §\x19\x18§, §\x19\x17§, §\x1e\x1e\x03§)
+	function moveSprite(sID, §\x12\x13§, §\x1e\x18\t§, §\x1b\x12§, §\x19\x1b§, §\x19\x1a§, §\x1e\x1e\r§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -502,7 +509,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		var var9 = ank.battlefield.utils.Compressor.extractFullPath(this.mapHandler,var3);
 		this.moveSpriteWithUncompressedPath(sID,var9,var4,var5,var6,var7,var8);
 	}
-	function moveSpriteWithUncompressedPath(sID, §\x1d\x1c§, §\x1e\x17\x1d§, §\x1b\x0e§, §\x19\x18§, §\x19\x17§, §\x1e\x1e\x03§, §\x1e\x14\x17§)
+	function moveSpriteWithUncompressedPath(sID, §\x1d\x1d§, §\x1e\x18\t§, §\x1b\x12§, §\x19\x1b§, §\x19\x1a§, §\x1e\x1e\r§, §\x1e\x15\x04§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -513,7 +520,7 @@ class ank.battlefield.Battlefield extends MovieClip
 			this.spriteHandler.moveSprite(sID,var3,var4,var5,var9,var6,var7,var8);
 		}
 	}
-	function slideSprite(sID, §\x07\x14§, §\x1e\x17\x1d§, §\x1e\x14\x17§)
+	function slideSprite(sID, §\b\x02§, §\x1e\x18\t§, §\x1e\x15\x04§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -521,7 +528,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.slideSprite(sID,var3,var4,var5);
 	}
-	function autoCalculateSpriteDirection(sID, §\x07\x14§)
+	function autoCalculateSpriteDirection(sID, §\b\x02§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -537,7 +544,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.convertHeightToFourSpriteDirection(sID);
 	}
-	function setForcedSpriteAnim(sID, §\x1e\x14\x18§)
+	function setForcedSpriteAnim(sID, §\x1e\x15\x05§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -545,7 +552,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteAnim(sID,var3,true);
 	}
-	function setSpriteAnim(sID, §\x1e\x14\x18§)
+	function setSpriteAnim(sID, §\x1e\x15\x05§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -553,7 +560,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteAnim(sID,var3);
 	}
-	function setSpriteLoopAnim(sID, §\x1e\x14\x18§, §\x1e\x1b\x1d§)
+	function setSpriteLoopAnim(sID, §\x1e\x15\x05§, §\x1e\x1c\n§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -561,7 +568,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteLoopAnim(sID,var3,var4);
 	}
-	function setSpriteTimerAnim(sID, §\x1e\x14\x18§, §\x19\x1a§, §\x1e\x1b\x1d§)
+	function setSpriteTimerAnim(sID, §\x1e\x15\x05§, §\x19\x1d§, §\x1e\x1c\n§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -569,7 +576,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteTimerAnim(sID,var3,var4,var5);
 	}
-	function setSpriteGfx(sID, §\x1e\x12\r§)
+	function setSpriteGfx(sID, §\x1e\x12\x18§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -577,7 +584,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteGfx(sID,var3);
 	}
-	function setSpriteColorTransform(sID, §\x1e\x17\x0f§)
+	function setSpriteColorTransform(sID, §\x1e\x17\x18§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -585,7 +592,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteColorTransform(sID,var3);
 	}
-	function setSpriteAlpha(sID, §\b\x1b§)
+	function setSpriteAlpha(sID, §\t\n§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -593,7 +600,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.setSpriteAlpha(sID,var3);
 	}
-	function spriteLaunchVisualEffect(sID, §\x1e\x19\x12§, §\x07\x14§, §\x06\x05§, §\t\r§, §\x1e\f\x1d§, §\x1e\x17\x14§, §\x19\x0f§, §\x1c\x01§)
+	function spriteLaunchVisualEffect(sID, §\x1e\x19\x1b§, §\b\x02§, §\x06\x0f§, §\t\x19§, §\x1e\r\x0b§, §\x1e\x17\x1d§, §\x19\x12§, §\x1c\x05§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -601,7 +608,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.launchVisualEffect(sID,var3,var4,var5,var6,var7,var8,var9,var10);
 	}
-	function spriteLaunchCarriedSprite(sID, §\x1e\x19\x12§, §\x07\x14§, §\x06\x05§)
+	function spriteLaunchCarriedSprite(sID, §\x1e\x19\x1b§, §\b\x02§, §\x06\x0f§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -609,7 +616,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.launchCarriedSprite(sID,var3,var4,var5);
 	}
-	function selectSprite(sID, §\x15\x17§)
+	function selectSprite(sID, §\x15\x1b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -617,7 +624,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.spriteHandler.selectSprite(sID,var3);
 	}
-	function addSpriteBubble(sID, §\x1e\f\x14§, §\x1e\x1b\x16§)
+	function addSpriteBubble(sID, §\x1e\r\x02§, §\x1e\x1c\x03§)
 	{
 		var var5 = this._oDatacenter.Sprites.getItemAt(sID);
 		if(var5 == undefined)
@@ -656,7 +663,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.textHandler.removeBubble(sID);
 	}
-	function addSpritePoints(sID, §\x1e\x0b\x1b§, §\x07\x03§)
+	function addSpritePoints(sID, §\x1e\f\t§, §\x07\x0e§)
 	{
 		var var5 = this._oDatacenter.Sprites.getItemAt(sID);
 		if(var5 == undefined)
@@ -678,7 +685,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.pointsHandler.addPoints(sID,var7,var8,var3,var4);
 	}
-	function addSpriteOverHeadItem(sID, §\x1e\x10\x16§, className, §\x17§, §\x06\x0e§, §\x1a\n§)
+	function addSpriteOverHeadItem(sID, §\x1e\x11\x03§, className, §\x17§, §\x06\x18§, §\x1a\x0e§)
 	{
 		var var8 = this._oDatacenter.Sprites.getItemAt(sID);
 		if(var8 == undefined)
@@ -697,7 +704,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		var var9 = var8.mc;
 		this.overHeadHandler.addOverHeadItem(sID,var9._x,var9._y,var9,var3,className,var5,var6);
 	}
-	function removeSpriteOverHeadLayer(sID, §\x1e\x10\x16§)
+	function removeSpriteOverHeadLayer(sID, §\x1e\x11\x03§)
 	{
 		this.overHeadHandler.removeOverHeadLayer(sID,var3);
 	}
@@ -705,39 +712,39 @@ class ank.battlefield.Battlefield extends MovieClip
 	{
 		this.overHeadHandler.removeOverHead(sID);
 	}
-	function addSpriteExtraClipOnTimer(sID, §\x1e\x12\r§, §\x07\x03§, §\x14\x0e§, §\x05\x1c§)
+	function addSpriteExtraClipOnTimer(sID, §\x1e\x12\x18§, §\x07\x0e§, §\x14\x12§, §\x06\t§)
 	{
 		this.addSpriteExtraClip(sID,var3,var4,var5);
 		var var7 = new Object();
 		var7.timerId = _global.setInterval(this,"removeSpriteExtraClipOnTimer",var6,var7,sID,var5);
 	}
-	function removeSpriteExtraClipOnTimer(var2, var3, var4)
+	function removeSpriteExtraClipOnTimer(§\x1e\x17\x19§, sID, §\x14\x12§)
 	{
 		_global.clearInterval(var2.timerId);
 		this.removeSpriteExtraClip(sID,var4);
 	}
-	function addSpriteExtraClip(sID, §\x1e\x12\r§, §\x07\x03§, §\x14\x0e§)
+	function addSpriteExtraClip(sID, §\x1e\x12\x18§, §\x07\x0e§, §\x14\x12§)
 	{
 		this.spriteHandler.addSpriteExtraClip(sID,var3,var4,var5);
 	}
-	function removeSpriteExtraClip(sID, §\x14\x0e§)
+	function removeSpriteExtraClip(sID, §\x14\x12§)
 	{
 		this.spriteHandler.removeSpriteExtraClip(sID,var3);
 	}
-	function showSpritePoints(sID, §\x1e\x1b\r§, §\x07\x03§)
+	function showSpritePoints(sID, §\x1e\x1b\x17§, §\x07\x0e§)
 	{
 		this.spriteHandler.showSpritePoints(sID,var3,var4);
 	}
-	function setSpriteGhostView(var2)
+	function setSpriteGhostView(§\x16\x1d§)
 	{
 		this.bGhostView = var2;
 		this.spriteHandler.setSpriteGhostView(var2);
 	}
-	function setSpriteScale(sID, §\x1e\x1d\x1c§, §\x1e\x1d\x1b§)
+	function setSpriteScale(sID, §\x1e\x1e\t§, §\x1e\x1e\b§)
 	{
 		this.spriteHandler.setSpriteScale(sID,var3,var4);
 	}
-	function drawGrid(var2)
+	function drawGrid(§\x1c\x18§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -745,14 +752,16 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		if(this.gridHandler.bGridVisible)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace("Effacage de la grille","ank.battlefield.Battlefield::drawGrid","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/Battlefield.as",1082);
 			this.removeGrid();
 		}
 		else
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace("Dessin de la grille","ank.battlefield.Battlefield::drawGrid","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/Battlefield.as",1087);
 			this.gridHandler.draw(var2);
 		}
 	}
-	function removeGrid(var2)
+	function removeGrid(§\x1e\n\f§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -760,7 +769,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this.gridHandler.clear();
 	}
-	function addVisualEffectOnSprite(sID, §\x1e\x19\x12§, §\x07\x14§, §\x06\x05§, §\x1e\f\x1d§)
+	function addVisualEffectOnSprite(sID, §\x1e\x19\x1b§, §\b\x02§, §\x06\x0f§, §\x1e\r\x0b§)
 	{
 		if(!this.isMapBuild)
 		{
@@ -770,7 +779,7 @@ class ank.battlefield.Battlefield extends MovieClip
 		var var8 = this._oDatacenter.Sprites.getItemAt(var6);
 		this.visualEffectHandler.addEffect(var7,var3,var4,var5,var8);
 	}
-	function initializeDatacenter(var2)
+	function initializeDatacenter(§\x1e\n\f§)
 	{
 		if(this._oDatacenter == undefined)
 		{
@@ -778,27 +787,27 @@ class ank.battlefield.Battlefield extends MovieClip
 		}
 		this._oDatacenter.Map.cleanSpritesOn();
 		this._oDatacenter.Map = new ank.battlefield.datacenter.Map();
-		this._oDatacenter.Sprites = new ank.utils.();
+		this._oDatacenter.Sprites = new ank.utils.	();
 		return true;
 	}
-	function createHandlers(var2)
+	function createHandlers(§\x1e\n\f§)
 	{
-		this.mapHandler = new ank.battlefield.(this,this._mcMainContainer,this._oDatacenter);
-		this.spriteHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Object2,this._oDatacenter.Sprites);
-		this.interactionHandler = new ank.battlefield.(this._mcMainContainer.ExternalContainer.InteractionCell,this._oDatacenter);
-		this.zoneHandler = new ank.battlefield.	(this,this._mcMainContainer.ExternalContainer.Zone);
-		this.pointerHandler = new ank.battlefield.
-(this,this._mcMainContainer.ExternalContainer.Pointer);
-		this.selectionHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer,this._oDatacenter);
+		this.mapHandler = new ank.battlefield.MapHandler(this,this._mcMainContainer,this._oDatacenter);
+		this.spriteHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Object2,this._oDatacenter.Sprites);
+		this.interactionHandler = new ank.battlefield.InteractionHandler(this._mcMainContainer.ExternalContainer.InteractionCell,this._oDatacenter);
+		this.zoneHandler = new ank.battlefield.	(this,this._mcMainContainer.ExternalContainer.Zone);
+		this.pointerHandler = new ank.battlefield.(this,this._mcMainContainer.ExternalContainer.Pointer);
+		this.selectionHandler = new ank.battlefield.SelectionHandler(this,this._mcMainContainer.ExternalContainer,this._oDatacenter);
 		this.gridHandler = new ank.battlefield.
-(this._mcMainContainer.ExternalContainer.Grid,this._oDatacenter);
+(this._mcMainContainer.ExternalContainer.Grid,this._oDatacenter);
 		this.visualEffectHandler = new ank.battlefield.
-(this,this._mcMainContainer.ExternalContainer.Object2);
-		this.textHandler = new ank.battlefield.	(this,this._mcMainContainer.Text,this._oDatacenter);
-		this.pointsHandler = new ank.battlefield.(this,this._mcMainContainer.Points,this._oDatacenter);
-		this.overHeadHandler = new ank.battlefield.(this,this._mcMainContainer.OverHead);
+
+(this,this._mcMainContainer.ExternalContainer.Object2);
+		this.textHandler = new ank.battlefield.(this,this._mcMainContainer.Text,this._oDatacenter);
+		this.pointsHandler = new ank.battlefield.(this,this._mcMainContainer.Points,this._oDatacenter);
+		this.overHeadHandler = new ank.battlefield.(this,this._mcMainContainer.OverHead);
 	}
-	function onLoadInit(var2)
+	function onLoadInit(§\x0b\r§)
 	{
 		if((var var0 = var2._name) !== "Ground")
 		{
@@ -813,11 +822,11 @@ class ank.battlefield.Battlefield extends MovieClip
 			this.onInitComplete();
 		}
 	}
-	function onLoadError(var2)
+	function onLoadError(§\x0b\r§)
 	{
 		this.onInitError();
 	}
-	function onLoadProgress(var2, var3, var4)
+	function onLoadProgress(§\x0b\r§, §\b\x14§, §\b\x0e§)
 	{
 		this.onInitProgress(var3,var4);
 	}

@@ -1,6 +1,6 @@
 class dofus.datacenter.FeatEffect extends Object
 {
-	function FeatEffect(var3, var4)
+	function FeatEffect(§\x04\x17§, §\x1e\x02§)
 	{
 		super();
 		this.api = _global.API;
@@ -10,7 +10,7 @@ class dofus.datacenter.FeatEffect extends Object
 	{
 		return this._nIndex;
 	}
-	function __set__index(var2)
+	function __set__index(§\x04\x17§)
 	{
 		this._nIndex = var2;
 		return this.__get__index();
@@ -19,7 +19,7 @@ class dofus.datacenter.FeatEffect extends Object
 	{
 		return ank.utils.PatternDecoder.getDescription(this._sFeatEffectInfos,this._aParams);
 	}
-	function __set__params(var2)
+	function __set__params(§\x1e\x02§)
 	{
 		this._aParams = var2;
 		return this.__get__params();
@@ -28,7 +28,7 @@ class dofus.datacenter.FeatEffect extends Object
 	{
 		return this._aParams;
 	}
-	function initialize(var2, var3)
+	function initialize(§\x04\x17§, §\x1e\x02§)
 	{
 		this._nIndex = var2;
 		this._aParams = var3;

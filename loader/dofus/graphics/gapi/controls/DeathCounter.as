@@ -6,7 +6,7 @@ class dofus.graphics.gapi.controls.DeathCounter extends dofus.graphics.gapi.core
 	{
 		super();
 	}
-	function __set__death(var2)
+	function __set__death(§\x06\x1b§)
 	{
 		this._nDeath = var2;
 		this.draw();

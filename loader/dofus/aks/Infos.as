@@ -1,6 +1,6 @@
 class dofus.aks.Infos extends dofus.aks.Handler
 {
-	function Infos(var2, var3)
+	function Infos(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -23,14 +23,16 @@ class dofus.aks.Infos extends dofus.aks.Handler
 			default:
 				var3 = "2";
 		}
+		org.flashdevelop.utils.FlashConnect.mtrace("fuck","dofus.aks.Infos::sendScreenInfo","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Infos.as",58);
+		org.flashdevelop.utils.FlashConnect.mtrace("[wtf]" + "Ir" + Stage.width + ";" + Stage.height + ";" + var3 + "," + Stage.displayState,"dofus.aks.Infos::sendScreenInfo","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Infos.as",59);
 		this.aks.send("Ir" + Stage.width + ";" + Stage.height + ";" + var3);
 		Stage.scaleMode = var2;
 	}
-	function onInfoMaps(var2)
+	function onInfoMaps(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 	}
-	function onInfoCompass(var2)
+	function onInfoCompass(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -49,7 +51,7 @@ class dofus.aks.Infos extends dofus.aks.Handler
 			this.api.kernel.GameManager.updateCompass(var4,var5,true);
 		}
 	}
-	function onInfoCoordinatespHighlight(var2)
+	function onInfoCoordinatespHighlight(§\x1e\x12\x1a§)
 	{
 		var var3 = new Array();
 		if(String(var2).length != 0)
@@ -76,7 +78,7 @@ class dofus.aks.Infos extends dofus.aks.Handler
 		}
 		this.api.datacenter.Basics.aks_infos_highlightCoords = String(var2).length != 0?var3:undefined;
 	}
-	function onMessage(var2)
+	function onMessage(§\x1e\x12\x1a§)
 	{
 		var var3 = new Array();
 		var var4 = var2.charAt(0);
@@ -102,11 +104,14 @@ class dofus.aks.Infos extends dofus.aks.Handler
 								case 16:
 									this.api.electron.makeNotification(var22);
 									break;
+								case 6:
+								case 46:
+								case 49:
+									var11 = [this.api.lang.getJobText(var11[0]).n];
+									break;
 								default:
 									switch(null)
 									{
-										case 49:
-											break;
 										case 7:
 											var11 = [this.api.lang.getSpellText(var11[0]).n];
 											break;
@@ -121,10 +126,6 @@ class dofus.aks.Infos extends dofus.aks.Handler
 												break;
 											}
 									}
-									break;
-								case 6:
-								case 46:
-									var11 = [this.api.lang.getJobText(var11[0]).n];
 							}
 							var var22 = this.api.lang.getText("ERROR_" + var23,var11);
 						}
@@ -196,39 +197,38 @@ class dofus.aks.Infos extends dofus.aks.Handler
 							default:
 								switch(null)
 								{
+									case 54:
 									case 55:
 									case 56:
-									case 65:
-									case 73:
-										var var15 = new dofus.datacenter.(0,var11[1]);
-										var11[2] = var15.name;
+										var11[0] = this.api.lang.getQuestText(var11[0]);
 										break loop8;
 									default:
 										switch(null)
 										{
+											case 73:
 											case 82:
 											case 83:
 												this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("INFOS_" + var10,var11),"ERROR_BOX");
 												break loop8;
 											case 84:
 												break loop8;
-											case 120:
-												if(dofus.Constants.SAVING_THE_WORLD)
-												{
-													dofus.SaveTheWorld.getInstance().safeWasBusy();
-													dofus.SaveTheWorld.getInstance().nextAction();
-												}
-												break loop8;
 											default:
 												switch(null)
 												{
+													case 120:
+														if(dofus.Constants.SAVING_THE_WORLD)
+														{
+															dofus.SaveTheWorld.getInstance().safeWasBusy();
+															dofus.SaveTheWorld.getInstance().nextAction();
+														}
+														break;
 													case 123:
 														var var12 = this.api.kernel.ChatManager.parseInlineItems(this.api.lang.getText("INFOS_" + var10),var11);
 														var13 = false;
 														break;
 													case 150:
 														var6 = "MESSAGE_CHAT";
-														var var16 = new dofus.datacenter.(0,var11[0]);
+														var var16 = new dofus.datacenter.(0,var11[0]);
 														var var17 = new Array();
 														var var18 = 3;
 														while(var18 < var11.length)
@@ -240,7 +240,7 @@ class dofus.aks.Infos extends dofus.aks.Handler
 														break;
 													case 151:
 														var6 = "WHISP_CHAT";
-														var var19 = new dofus.datacenter.(0,var11[0]);
+														var var19 = new dofus.datacenter.(0,var11[0]);
 														var var20 = new Array();
 														var var21 = 2;
 														while(var21 < var11.length)
@@ -251,16 +251,17 @@ class dofus.aks.Infos extends dofus.aks.Handler
 														var11 = [var19.name,this.api.lang.getText("OBJECT_CHAT_" + var11[1],var20)];
 												}
 										}
+									case 65:
+										var var15 = new dofus.datacenter.(0,var11[1]);
+										var11[2] = var15.name;
 								}
-							case 54:
-								var11[0] = this.api.lang.getQuestText(var11[0]);
 						}
 						if(var13)
 						{
 							var12 = this.api.lang.getText("INFOS_" + var10,var11);
 						}
 					}
-					var var14 = new dofus.datacenter.(0,var11[1]);
+					var var14 = new dofus.datacenter.(0,var11[1]);
 					var11 = [var11[0],var14.name];
 					if(var13)
 					{
@@ -284,26 +285,26 @@ class dofus.aks.Infos extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,var25,var6);
 		}
 	}
-	function onQuantity(var2)
+	function onQuantity(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
 		var var5 = var3[1];
 		this.api.gfx.addSpritePoints(var4,var5,11552256);
 	}
-	function onObject(var2)
+	function onObject(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
 		var var5 = var3[1].charAt(0) == "+";
 		var var6 = var3[1].substr(1);
-		var var7 = var6 != ""?new dofus.datacenter.(0,var6,1):undefined;
+		var var7 = var6 != ""?new dofus.datacenter.(0,var6,1):undefined;
 		if(!this.api.datacenter.Basics.isCraftLooping)
 		{
 			this.api.gfx.addSpriteOverHeadItem(var4,"craft",dofus.graphics.battlefield.CraftResultOverHead,[var5,var7],2000);
 		}
 	}
-	function onLifeRestoreTimerStart(var2)
+	function onLifeRestoreTimerStart(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		_global.clearInterval(this.api.datacenter.Basics.aks_infos_lifeRestoreInterval);
@@ -313,7 +314,7 @@ class dofus.aks.Infos extends dofus.aks.Handler
 			this.api.datacenter.Basics.aks_infos_lifeRestoreInterval = _global.setInterval(var4,"updateLP",var3,1);
 		}
 	}
-	function onLifeRestoreTimerFinish(var2)
+	function onLifeRestoreTimerFinish(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		_global.clearInterval(this.api.datacenter.Basics.aks_infos_lifeRestoreInterval);

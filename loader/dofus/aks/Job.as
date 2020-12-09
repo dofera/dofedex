@@ -1,14 +1,14 @@
 class dofus.aks.Job extends dofus.aks.Handler
 {
-	function Job(var2, var3)
+	function Job(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function changeJobStats(§\x04\x05§, §\x1e\x17\x03§, minSlots)
+	function changeJobStats(§\x04\x0f§, §\x1e\x17\f§, minSlots)
 	{
 		this.aks.send("JO" + var2 + "|" + var3 + "|" + minSlots);
 	}
-	function onSkills(var2)
+	function onSkills(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = this.api.datacenter.Player.Jobs;
@@ -17,7 +17,8 @@ class dofus.aks.Job extends dofus.aks.Handler
 		{
 			var var6 = var3[var5].split(";");
 			var var7 = Number(var6[0]);
-			var var8 = new ank.utils.();
+			var var8 = new ank.utils.
+();
 			var var9 = var6[1].split(",");
 			var var10 = var9.length;
 			while(true)
@@ -26,7 +27,7 @@ class dofus.aks.Job extends dofus.aks.Handler
 				if(var10-- > 0)
 				{
 					var var11 = var9[var10].split("~");
-					var8.push(new dofus.datacenter.(var11[0],var11[1],var11[2],var11[3],var11[4]));
+					var8.push(new dofus.datacenter.(var11[0],var11[1],var11[2],var11[3],var11[4]));
 					continue;
 				}
 				break;
@@ -44,7 +45,7 @@ class dofus.aks.Job extends dofus.aks.Handler
 			var5 = var5 + 1;
 		}
 	}
-	function onXP(var2)
+	function onXP(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = this.api.datacenter.Player.Jobs;
@@ -75,14 +76,14 @@ class dofus.aks.Job extends dofus.aks.Handler
 			break;
 		}
 	}
-	function onLevel(var2)
+	function onLevel(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = Number(var3[1]);
 		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("NEW_JOB_LEVEL",[this.api.lang.getJobText(var4).n,var5]),"ERROR_BOX",{name:"NewJobLevel"});
 	}
-	function onRemove(var2)
+	function onRemove(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		var var4 = this.api.datacenter.Player.Jobs;
@@ -93,12 +94,12 @@ class dofus.aks.Job extends dofus.aks.Handler
 			var4.removeItems(var5.index,1);
 		}
 	}
-	function onOptions(var2)
+	function onOptions(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = Number(var3[1]);
 		var var6 = Number(var3[2]);
-		this.api.datacenter.Player.Jobs[var4].options = new dofus.datacenter.(var5,var6);
+		this.api.datacenter.Player.Jobs[var4].options = new dofus.datacenter.(var5,var6);
 	}
 }

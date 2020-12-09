@@ -22,6 +22,7 @@ class dofus.graphics.gapi.ui.GameOver extends dofus.graphics.gapi.core.DofusAdva
 	}
 	function addListeners()
 	{
+		var ref = this;
 		this._btnReplay.onRelease = function()
 		{
 			ref.api.kernel.changeServer(true);
@@ -40,7 +41,7 @@ class dofus.graphics.gapi.ui.GameOver extends dofus.graphics.gapi.core.DofusAdva
 			this._mcLol._y = this._mcPlacer._y;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.callClose();
 	}

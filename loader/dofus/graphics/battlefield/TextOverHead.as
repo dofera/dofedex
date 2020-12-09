@@ -1,12 +1,12 @@
 class dofus.graphics.battlefield.TextOverHead extends dofus.graphics.battlefield.AbstractTextOverHead
 {
-	function TextOverHead(var3, var4, var5, var6, var7, var8)
+	function TextOverHead(§\x1e\r\x02§, §\x1e\x12\x18§, §\x07\x0e§, §\x05\r§, §\x01\x11§, §\x1e\x0b\r§)
 	{
 		super();
 		this.initialize(var8 != undefined);
 		this.draw(var3,var4,var5,var6,var7,var8);
 	}
-	function initialize(var2)
+	function initialize(§\x11\x07§)
 	{
 		super.initialize();
 		this.createTextField("_txtText",30,0,-3 + dofus.graphics.battlefield.AbstractTextOverHead.HEIGHT_SPACER,0,0);
@@ -17,7 +17,7 @@ class dofus.graphics.battlefield.TextOverHead extends dofus.graphics.battlefield
 		}
 		this._txtText.embedFonts = true;
 	}
-	function draw(var2, var3, var4, var5, var6, var7)
+	function draw(§\x1e\r\x02§, §\x1e\x12\x18§, §\x07\x0e§, §\x05\r§, §\x01\x11§, §\x1e\x0b\r§)
 	{
 		var var8 = var3 != undefined && var5 != undefined;
 		if(var6 == undefined)

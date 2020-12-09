@@ -2,7 +2,7 @@ class dofus.utils.nameChecker.NameChecker
 {
 	static var VOWELS = ["A","E","I","O","U","Y"];
 	static var CONSONANTS = ["B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","W","X","Z"];
-	function NameChecker(var3)
+	function NameChecker(§\x1e\x10\x06§)
 	{
 		this.name = var2;
 		this.upperName = var2.toUpperCase();
@@ -75,7 +75,7 @@ class dofus.utils.nameChecker.NameChecker
 	}
 	function isValidAgainstWithDetails(rules)
 	{
-		var var3 = new dofus.utils.nameChecker.();
+		var var3 = new dofus.utils.nameChecker.();
 		var3.IS_SUCCESS = true;
 		if(!this.checkLength(var2.getMinNameLength(),var2.getMaxNameLength()))
 		{
@@ -161,7 +161,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return var3;
 	}
-	function checkLength(var2, var3)
+	function checkLength(§\x02\x1d§, §\x03\r§)
 	{
 		if(this.name.length < var2 || this.name.length > var3)
 		{
@@ -182,7 +182,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return false;
 	}
-	function checkBorderingDashes(var2)
+	function checkBorderingDashes(§\x04\x17§)
 	{
 		if(this.name.charAt(var2) == "-" || this.name.charAt(this.name.length - 1 - var2) == "-")
 		{
@@ -190,7 +190,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkDashesCount(var2)
+	function checkDashesCount(§\x03\x11§)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -215,7 +215,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkUpperCaseElsewhere(var2)
+	function checkUpperCaseElsewhere(§\x1e\x18§)
 	{
 		var var3 = 1;
 		while(var3 < this.name.length)
@@ -249,7 +249,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkCannotBeEqualTo(var2)
+	function checkCannotBeEqualTo(§\x1d\x19§)
 	{
 		if(var2 == null)
 		{
@@ -266,7 +266,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkCannotContain(var2)
+	function checkCannotContain(§\x1d\x19§)
 	{
 		if(var2 == null)
 		{
@@ -283,7 +283,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkCannotStartWith(var2)
+	function checkCannotStartWith(§\x1d\x19§)
 	{
 		if(var2 == null)
 		{
@@ -300,7 +300,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkCannotEndWith(var2)
+	function checkCannotEndWith(§\x1d\x19§)
 	{
 		if(var2 == null)
 		{
@@ -317,7 +317,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return true;
 	}
-	function checkContainsAtLeastNFromArray(var2, var3)
+	function checkContainsAtLeastNFromArray(§\x07\x07§, §\r§)
 	{
 		var var4 = 0;
 		var var5 = 0;
@@ -339,7 +339,7 @@ class dofus.utils.nameChecker.NameChecker
 		}
 		return false;
 	}
-	function checkMaximumRepetitionOfSimultaneousLetters(var2)
+	function checkMaximumRepetitionOfSimultaneousLetters(§\x03\t§)
 	{
 		var var3 = new String();
 		var var4 = 0;

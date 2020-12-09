@@ -15,7 +15,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 		this.size();
 		this._bInitialized = true;
 	}
-	function __set__gapi(var2)
+	function __set__gapi(§\x0b\x06§)
 	{
 		this._mcGAPI = var2;
 		return this.__get__gapi();
@@ -32,7 +32,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._sClassName;
 	}
-	function __set__enabled(var2)
+	function __set__enabled(§\x1a\x11§)
 	{
 		this._bEnabled = var2;
 		this.addToQueue({object:this,method:this.setEnabled});
@@ -42,7 +42,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._bEnabled;
 	}
-	function __set__styleName(var2)
+	function __set__styleName(§\x1e\r\x14§)
 	{
 		this._sStyleName = var2;
 		if(this._bInitialized && (var2 != "none" && var2 != undefined))
@@ -69,7 +69,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 		}
 		return var2;
 	}
-	function __set__width(var2)
+	function __set__width(§\x1e\x1b\x0f§)
 	{
 		this.setSize(var2,null);
 		return this.__get__width();
@@ -78,7 +78,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this.__width;
 	}
-	function __set__height(var2)
+	function __set__height(§\x05\x07§)
 	{
 		this.setSize(null,var2);
 		return this.__get__height();
@@ -87,7 +87,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this.__height;
 	}
-	function __set__params(var2)
+	function __set__params(§\x1e\x18\x15§)
 	{
 		this._oParams = var2;
 		return this.__get__params();
@@ -100,7 +100,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._bInitialized;
 	}
-	function setSize(var2, var3)
+	function setSize(§\x1e\n\x0b§, §\r\x13§)
 	{
 		if(Math.abs(this._rotation) == 90)
 		{
@@ -118,7 +118,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 		}
 		this.size();
 	}
-	function move(var2, var3)
+	function move(§\x1e\n\x04§, §\x1e\t\x18§)
 	{
 		if(var2 != undefined)
 		{
@@ -129,7 +129,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 			this._y = var3;
 		}
 	}
-	function init(var2, var3)
+	function init(§\x1a\x1c§, §\x1e\x14\t§)
 	{
 		this._sClassName = var3;
 		if(Math.ceil(this._rotation % 180) > 45)
@@ -186,7 +186,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 		this.border_mc.lineStyle(ank.gapi.core.UIBasicComponent.BORDER_TICKNESS,14015965,ank.gapi.core.UIBasicComponent.BORDER_ALPHA);
 		this.border_mc.lineTo(1,1);
 	}
-	function drawRoundRect(var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12)
+	function drawRoundRect(§\x0b\r§, §\x1e\n\x04§, §\x1e\t\x18§, §\x1e\n\x0b§, §\r\x13§, §\x1e\x15\x1a§, §\x13\x14§, §\x1e\b§, rot, §\r\x1c§, §\x1e\x15\x15§)
 	{
 		if(typeof var7 == "object")
 		{
@@ -307,7 +307,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 			var2.endFill();
 		}
 	}
-	function setMovieClipColor(var2, var3)
+	function setMovieClipColor(§\x0b\r§, §\x07\x0e§)
 	{
 		var var4 = new Color(var2);
 		var4.setRGB(var3);
@@ -316,7 +316,7 @@ class ank.gapi.core.UIBasicComponent extends ank.utils.QueueEmbedMovieClip
 			var2._alpha = 0;
 		}
 	}
-	function setMovieClipTransform(var2, var3)
+	function setMovieClipTransform(§\x0b\r§, §\x1e\x17\x17§)
 	{
 		var var4 = new Color(var2);
 		var4.setTransform(var3);

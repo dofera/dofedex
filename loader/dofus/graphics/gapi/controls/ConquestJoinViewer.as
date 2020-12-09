@@ -10,7 +10,7 @@ class dofus.graphics.gapi.controls.ConquestJoinViewer extends dofus.graphics.gap
 	{
 		super();
 	}
-	function __set__error(var2)
+	function __set__error(§\x1e\n\x0f§)
 	{
 		if(var2 != 0 && this._lblJoinFightDetails.text == undefined)
 		{
@@ -30,47 +30,51 @@ class dofus.graphics.gapi.controls.ConquestJoinViewer extends dofus.graphics.gap
 				this._mcErrorBackground._visible = var0;
 				this._bNoUnsubscribe = true;
 				break;
-			case -2:
-				this._lblJoinFightDetails.text = this.api.lang.getText("CONQUEST_JOIN_FIGHT_INFIGHT");
-				this._lblJoinFightDetails._visible = var0 = true;
-				this._lblJoinFight._visible = var0;
-				this._mcErrorBackground._visible = var0;
-				this._bNoUnsubscribe = true;
-				break;
-			case -3:
-				this._lblJoinFightDetails.text = this.api.lang.getText("CONQUEST_JOIN_FIGHT_NONE");
-				this._lblJoinFightDetails._visible = var0 = true;
-				this._lblJoinFight._visible = var0;
-				this._mcErrorBackground._visible = var0;
-				this._bNoUnsubscribe = true;
+			default:
+				switch(null)
+				{
+					case -2:
+						this._lblJoinFightDetails.text = this.api.lang.getText("CONQUEST_JOIN_FIGHT_INFIGHT");
+						this._lblJoinFightDetails._visible = var0 = true;
+						this._lblJoinFight._visible = var0;
+						this._mcErrorBackground._visible = var0;
+						this._bNoUnsubscribe = true;
+						break;
+					case -3:
+						this._lblJoinFightDetails.text = this.api.lang.getText("CONQUEST_JOIN_FIGHT_NONE");
+						this._lblJoinFightDetails._visible = var0 = true;
+						this._lblJoinFight._visible = var0;
+						this._mcErrorBackground._visible = var0;
+						this._bNoUnsubscribe = true;
+				}
 		}
 		return this.__get__error();
 	}
-	function __set__timer(var2)
+	function __set__timer(§\x1e\n\x0f§)
 	{
 		this._nTimer = var2;
 		this.updateTimer();
 		return this.__get__timer();
 	}
-	function __set__maxTimer(var2)
+	function __set__maxTimer(§\x1e\n\x0f§)
 	{
 		this._nMaxTimer = var2;
 		this.updateTimer();
 		return this.__get__maxTimer();
 	}
-	function __set__timerReference(var2)
+	function __set__timerReference(§\x1e\n\x0f§)
 	{
 		this._nTimerReference = var2;
 		this.updateTimer();
 		return this.__get__timerReference();
 	}
-	function __set__maxTeamPositions(var2)
+	function __set__maxTeamPositions(§\x1e\n\x0f§)
 	{
 		this._nMaxPlayerCount = var2;
 		this.showButtonsJoin(var2);
 		return this.__get__maxTeamPositions();
 	}
-	function __set__noUnsubscribe(var2)
+	function __set__noUnsubscribe(§\x1e\n\x0f§)
 	{
 		this._bNoUnsubscribe = var2;
 		return this.__get__noUnsubscribe();
@@ -208,7 +212,7 @@ class dofus.graphics.gapi.controls.ConquestJoinViewer extends dofus.graphics.gap
 			this.showButtonsJoin(0);
 		}
 	}
-	function showButtonsJoin(var2)
+	function showButtonsJoin(§\x01\x1c§)
 	{
 		var var3 = 0;
 		while(var3 < var2)
@@ -223,7 +227,7 @@ class dofus.graphics.gapi.controls.ConquestJoinViewer extends dofus.graphics.gap
 			var4 = var4 + 1;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if(this.api.datacenter.Player.cantInteractWithPrism)
 		{
@@ -272,13 +276,13 @@ class dofus.graphics.gapi.controls.ConquestJoinViewer extends dofus.graphics.gap
 			this.api.network.Conquest.prismFightJoin();
 		}
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x0f\r§)
 	{
 		this.api.ui.hideTooltip();
 		this.updateAttackers();
 		this.updatePlayers();
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) !== this._btnAttackers)
 		{
@@ -310,11 +314,11 @@ class dofus.graphics.gapi.controls.ConquestJoinViewer extends dofus.graphics.gap
 			this.api.ui.showTooltip(this.api.lang.getText("ATTACKERS") + " : " + var4,var2.target,40);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.api.ui.hideTooltip();
 	}
-	function endTimer(var2)
+	function endTimer(§\x1e\x19\x18§)
 	{
 		this._vcTimer.stopTimer();
 		this.showButtonsJoin(0);

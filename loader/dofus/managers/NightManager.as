@@ -2,7 +2,7 @@ class dofus.managers.NightManager
 {
 	static var STATE_COLORS = [undefined,dofus.Constants.NIGHT_COLOR];
 	static var _sSelf = null;
-	function NightManager(var2)
+	function NightManager(§\x1e\x1a\x15§)
 	{
 		dofus.managers.NightManager._sSelf = this;
 		this._oApi = var2;
@@ -10,30 +10,29 @@ class dofus.managers.NightManager
 	function __get__time()
 	{
 		var var2 = this.getCurrentTime();
-		if(new ank.utils.(var2[1]).addLeftChar("0",2) == "undefined")
+		if(new ank.utils.(var2[1]).addLeftChar("0",2) == "undefined")
 		{
 			return "";
 		}
-		return new ank.utils.(var2[0]).addLeftChar("0",2) + ":" + new ank.utils.(var2[1]).addLeftChar("0",2);
+		return new ank.utils.(var2[0]).addLeftChar("0",2) + ":" + new ank.utils.(var2[1]).addLeftChar("0",2);
 	}
 	function __get__date()
 	{
 		return this.getCurrentDateString();
 	}
-	function initialize(var2, var3, var4, var5)
+	function initialize(§\x1e\n\x1a§, §\x1e\x07§, §\x1e\x1b\x03§, §\x1d\x03§)
 	{
 		this._aSequence = var2;
 		this._aMonths = var3;
 		this._nYearOffset = var4;
 		this._mcBattlefield = var5;
 	}
-	function setReferenceTime(var2)
+	function setReferenceTime(§\x1e\x1c\b§)
 	{
-		this._cdDate = new ank.utils.(var2,this._aMonths,this._nYearOffset);
+		this._cdDate = new ank.utils.(var2,this._aMonths,this._nYearOffset);
 		this.clear();
-		this.setState();
 	}
-	function setReferenceDate(var2, var3, var4)
+	function setReferenceDate(§\x1e\x1b\x04§, §\x02\x18§, §\x06\x1c§)
 	{
 		this._nYear = var2;
 		this._nMonth = var3;
@@ -62,7 +61,7 @@ class dofus.managers.NightManager
 		var var3 = this._nYear == undefined?var2[2] + " " + var2[1] + " " + var2[0]:this._nDay + " " + this._aMonths[11 - this._nMonth][1] + " " + this._nYear;
 		return var3;
 	}
-	function getDiffDate(var2)
+	function getDiffDate(§\x1e\x1c\r§)
 	{
 		return this._cdDate.getDiffDate(var2);
 	}
@@ -87,7 +86,7 @@ class dofus.managers.NightManager
 		}
 		ank.utils.Logger.err("[setState] ... heu la date " + var2 + " n\'est pas dans la séquence");
 	}
-	function applyState(var2, var3, var4)
+	function applyState(§\x1e\x17\x1c§, §\x06\x18§, §\x06\x04§)
 	{
 		this._mcBattlefield.setColor(var2);
 		this.clear();

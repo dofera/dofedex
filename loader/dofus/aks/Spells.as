@@ -1,22 +1,22 @@
 class dofus.aks.Spells extends dofus.aks.Handler
 {
-	function Spells(var2, var3)
+	function Spells(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function moveToUsed(var2, var3)
+	function moveToUsed(§\x05\x02§, §\x01\x17§)
 	{
 		this.aks.send("SM" + var2 + "|" + var3,false);
 	}
-	function boost(var2)
+	function boost(§\x05\x02§)
 	{
 		this.aks.send("SB" + var2);
 	}
-	function spellForget(var2)
+	function spellForget(§\x05\x02§)
 	{
 		this.aks.send("SF" + var2);
 	}
-	function onUpgradeSpell(var2, var3)
+	function onUpgradeSpell(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -28,7 +28,7 @@ class dofus.aks.Spells extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_BOOST_SPELL"),"ERROR_BOX");
 		}
 	}
-	function onList(var2)
+	function onList(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split(";");
 		var var4 = this.api.datacenter.Player;
@@ -50,11 +50,11 @@ class dofus.aks.Spells extends dofus.aks.Handler
 		}
 		var4.Spells.replaceAll(1,var5);
 	}
-	function onChangeOption(var2)
+	function onChangeOption(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Basics.canUseSeeAllSpell = var2.charAt(0) == "+";
 	}
-	function onSpellBoost(var2)
+	function onSpellBoost(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split(";");
 		var var4 = Number(var3[0]);
@@ -62,7 +62,7 @@ class dofus.aks.Spells extends dofus.aks.Handler
 		var var6 = Number(var3[2]);
 		this.api.kernel.SpellsBoostsManager.setSpellModificator(var4,var5,var6);
 	}
-	function onSpellForget(var2)
+	function onSpellForget(§\x1e\x12\x1a§)
 	{
 		if(var2 == "+")
 		{

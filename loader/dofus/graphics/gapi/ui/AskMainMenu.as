@@ -20,17 +20,17 @@ class dofus.graphics.gapi.ui.AskMainMenu extends ank.gapi.ui.FlyWindow
 		this.setEnabledBtnQuit(System.capabilities.playerType == "StandAlone" || this.api.electron.enabled);
 		this.setEnabledBtnChange(this.api.ui.getUIComponent("Banner") != undefined);
 	}
-	function setEnabledBtnChange(var2)
+	function setEnabledBtnChange(§\x1a\x12§)
 	{
 		var var3 = this._winBackground.content._btnChange;
 		var3.enabled = var2;
 	}
-	function setEnabledBtnQuit(var2)
+	function setEnabledBtnQuit(§\x1a\x12§)
 	{
 		var var3 = this._winBackground.content._btnQuit;
 		var3.enabled = var2;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

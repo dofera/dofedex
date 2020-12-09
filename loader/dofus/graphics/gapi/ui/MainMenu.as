@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 	{
 		super();
 	}
-	function __set__quitMode(var2)
+	function __set__quitMode(§\x1e\x0e\x15§)
 	{
 		this._sQuitMode = var2;
 		if(this.initialized)
@@ -85,7 +85,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 			this._btnSubscribe._visible = false;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -123,7 +123,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 				}
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -154,7 +154,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 				}
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.api.ui.hideTooltip();
 	}

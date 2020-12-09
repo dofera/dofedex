@@ -11,7 +11,7 @@ class dofus.datacenter.Mount extends Object
 		this.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + this._lang.g + ".swf";
 		this.chevauchorGfxID = nChevauchorGfxID;
 	}
-	function __set__name(var2)
+	function __set__name(§\x1e\n\x0f§)
 	{
 		this._sName = var2;
 		this.dispatchEvent({type:"nameChanged",name:var2});
@@ -21,7 +21,7 @@ class dofus.datacenter.Mount extends Object
 	{
 		return this._sName;
 	}
-	function __set__pods(var2)
+	function __set__pods(§\x1e\n\x0f§)
 	{
 		this._nPods = var2;
 		this.dispatchEvent({type:"podsChanged",pods:var2});
@@ -43,7 +43,7 @@ class dofus.datacenter.Mount extends Object
 	{
 		return this._lang.g;
 	}
-	function __set__chevauchorGfxID(var2)
+	function __set__chevauchorGfxID(§\x05\x02§)
 	{
 		this._nChevauchorGfxID = var2;
 		this.chevauchorGfxFile = dofus.Constants.CHEVAUCHOR_PATH + var2 + ".swf";
@@ -52,6 +52,17 @@ class dofus.datacenter.Mount extends Object
 	function __get__chevauchorGfxID()
 	{
 		return this._nChevauchorGfxID;
+	}
+	function __get__isChameleon()
+	{
+		for(var var2 in this.capacities)
+		{
+			if(var2 == 9)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	function __get__color1()
 	{
@@ -85,7 +96,7 @@ class dofus.datacenter.Mount extends Object
 	{
 		return dofus.datacenter.Item.getItemDescriptionEffects(this._aEffects);
 	}
-	function setEffects(var2)
+	function setEffects(§\x12\x14§)
 	{
 		this._sEffects = var2;
 		this._aEffects = new Array();

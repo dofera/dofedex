@@ -11,16 +11,16 @@ class ank.battlefield.GlobalSpriteHandler
 		this._mclLoader.addListener(this);
 		this._aFrameToGo = new Array();
 	}
-	function setAccessoriesRoot(var2)
+	function setAccessoriesRoot(§\x1e\x17\b§)
 	{
 		this._sAccessoriesPath = var2;
 	}
-	function addSprite(var2, var3)
+	function addSprite(§\n\x1b§, §\x1e\x18\x02§)
 	{
 		this._oSprites[var2._target] = {mc:var2,data:var3};
 		this.garbageCollector();
 	}
-	function setColors(var2, var3, var4, var5)
+	function setColors(§\x0b\r§, §\x12\x18§, §\x12\x17§, §\x12\x16§)
 	{
 		var var6 = this._oSprites[var2._target].data;
 		if(var3 != -1)
@@ -36,7 +36,7 @@ class ank.battlefield.GlobalSpriteHandler
 			var6.color3 = var5;
 		}
 	}
-	function setAccessories(var2, var3)
+	function setAccessories(§\x0b\r§, §\x19§)
 	{
 		var var4 = this._oSprites[var2._target].data;
 		if(var3 != undefined)
@@ -44,7 +44,7 @@ class ank.battlefield.GlobalSpriteHandler
 			var4.accessories = var3;
 		}
 	}
-	function applyColor(var2, var3, var4)
+	function applyColor(§\x0b\r§, §\x1e\x1a\x1d§, §\f\x17§)
 	{
 		var var5 = this.getSpriteData(var2);
 		if(var5 != undefined)
@@ -62,7 +62,255 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function applyAccessory(var2, var3, var4, var5, var6)
+	function getColorIndex(§\x1e\x12\x0b§, §\b\x16§)
+	{
+		loop0:
+		switch(var2)
+		{
+			case "10":
+			case "11":
+				switch(var3)
+				{
+					case 1:
+						var var4 = 3;
+						break loop0;
+					case 2:
+						var4 = 1;
+					case 3:
+						var4 = 2;
+				}
+				break;
+			case "20":
+			case "21":
+				switch(var3)
+				{
+					case 1:
+						var4 = 2;
+						break;
+					case 2:
+						var4 = 3;
+						break;
+					case 3:
+						var4 = 1;
+				}
+				break;
+			default:
+				switch(null)
+				{
+					case "30":
+					case "31":
+						if((var0 = var3) !== 1)
+						{
+							switch(null)
+							{
+								case 2:
+									var4 = 1;
+									break;
+								case 3:
+									var4 = 2;
+							}
+						}
+						else
+						{
+							var4 = 3;
+						}
+						break loop0;
+					case "40":
+					case "41":
+						switch(var3)
+						{
+							case 1:
+								var4 = 2;
+								break;
+							case 2:
+								var4 = 3;
+								break;
+							case 3:
+								var4 = 1;
+						}
+						break loop0;
+					default:
+						switch(null)
+						{
+							case "51":
+							case "60":
+								switch(var3)
+								{
+									case 1:
+										var4 = 2;
+										break;
+									case 2:
+										var4 = 3;
+										break;
+									case 3:
+										var4 = 1;
+								}
+								break loop0;
+							case "61":
+								switch(var3)
+								{
+									case 1:
+										var4 = 1;
+										break;
+									case 2:
+										var4 = 3;
+										break;
+									default:
+										if(var0 !== 3)
+										{
+											break;
+										}
+										var4 = 2;
+										break;
+								}
+								break loop0;
+							default:
+								switch(null)
+								{
+									case "80":
+									case "81":
+									case "90":
+									case "91":
+										var4 = var3;
+										break loop0;
+									case "100":
+										switch(var3)
+										{
+											case 1:
+												var4 = 3;
+												break;
+											case 2:
+												var4 = 2;
+												break;
+											case 3:
+												var4 = 1;
+										}
+										break loop0;
+									default:
+										loop11:
+										switch(null)
+										{
+											case "101":
+												switch(var3)
+												{
+													case 1:
+														var4 = 1;
+														break;
+													case 2:
+														var4 = 3;
+														break;
+													case 3:
+														var4 = 2;
+												}
+												break;
+											case "110":
+											case "111":
+												switch(var3)
+												{
+													case 1:
+														var4 = 2;
+													case 2:
+														var4 = 3;
+														break loop11;
+													case 3:
+														var4 = 1;
+												}
+												break;
+											case "120":
+											case "121":
+												if((var0 = var3) !== 1)
+												{
+													switch(null)
+													{
+														case 2:
+															var4 = 3;
+															break;
+														case 3:
+															var4 = 2;
+													}
+													break;
+												}
+												var4 = 1;
+												break;
+										}
+								}
+							case "70":
+							case "71":
+								switch(var3)
+								{
+									case 1:
+										var4 = 2;
+										break;
+									case 2:
+										var4 = 3;
+										break;
+									case 3:
+										var4 = 1;
+								}
+						}
+					case "50":
+						switch(var3)
+						{
+							case 1:
+								var4 = 2;
+								break;
+							case 2:
+								var4 = 3;
+								break;
+							case 3:
+								var4 = 1;
+						}
+				}
+		}
+		if(!var4)
+		{
+			var4 = -1;
+		}
+		return var4;
+	}
+	function applyBottomColor(§\x0b\r§)
+	{
+		var var3 = (ank.battlefield.datacenter.Sprite)this.getSpriteData(var2);
+		if(var3 == undefined)
+		{
+			return undefined;
+		}
+		var var4 = this.getColorIndex(var3.gfxFileName,3);
+		if(var4 == -1)
+		{
+			return undefined;
+		}
+		this.applyColor(var2,var4);
+	}
+	function applyBodyColor(§\x0b\r§)
+	{
+		var var3 = (ank.battlefield.datacenter.Sprite)this.getSpriteData(var2);
+		if(var3 == undefined)
+		{
+			return undefined;
+		}
+		var var4 = this.getColorIndex(var3.gfxFileName,2);
+		if(var4 == -1)
+		{
+			return undefined;
+		}
+		this.applyColor(var2,var4);
+	}
+	function applyHeadColor(§\x0b\r§)
+	{
+		var var3 = (ank.battlefield.datacenter.Sprite)this.getSpriteData(var2);
+		if(var3 == undefined)
+		{
+			return undefined;
+		}
+		var var4 = this.getColorIndex(var3.gfxFileName,1);
+		if(var4 == -1)
+		{
+			return undefined;
+		}
+		this.applyColor(var2,var4);
+	}
+	function applyAccessory(§\x0b\r§, §\x10§, §\x1e\x11\x1a§, §\n\x18§, §\x1a\x04§)
 	{
 		if(var6 == undefined)
 		{
@@ -124,7 +372,7 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function applyAnim(var2, var3)
+	function applyAnim(§\x0b\r§, §\x1e\x15\x05§)
 	{
 		var var4 = this.getSpriteData(var2);
 		if(var4 != undefined)
@@ -139,7 +387,7 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function applyEnd(var2)
+	function applyEnd(§\x0b\r§)
 	{
 		var var3 = this.getSpriteData(var2);
 		if(var3 != undefined)
@@ -150,7 +398,7 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function applySprite(var2)
+	function applySprite(§\x0b\r§)
 	{
 		var var3 = this.getSpriteData(var2);
 		loop0:
@@ -170,32 +418,32 @@ class ank.battlefield.GlobalSpriteHandler
 					case 2:
 						var2.attachMovie(var3.animation + "F","clip",1);
 						break loop0;
-					case 5:
-					case 7:
-						var2.attachMovie(var3.animation + "L","clip",1);
-						break loop0;
 					default:
-						if(var0 !== 6)
+						switch(null)
 						{
-							break loop0;
+							case 7:
+								break;
+							case 6:
+								var2.attachMovie(var3.animation + "B","clip",1);
 						}
-						var2.attachMovie(var3.animation + "B","clip",1);
 						break loop0;
+					case 5:
+						var2.attachMovie(var3.animation + "L","clip",1);
 				}
 		}
 	}
-	function registerCarried(var2)
+	function registerCarried(§\x0b\r§)
 	{
 		var var3 = this.getSpriteData(var2);
 		var3.mc.mcCarried = var2;
 	}
-	function registerChevauchor(var2)
+	function registerChevauchor(§\x0b\r§)
 	{
 		var var3 = this.getSpriteData(var2);
 		var3.mc.mcChevauchorPos = var2;
 		var3.mc.updateChevauchorPosition();
 	}
-	function getSpriteData(var2)
+	function getSpriteData(§\x0b\r§)
 	{
 		var var3 = var2._target;
 		for(var name in this._oSprites)
@@ -213,7 +461,7 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function garbageCollector(var2)
+	function garbageCollector(§\x1e\n\f§)
 	{
 		for(var o in this._oSprites)
 		{
@@ -223,12 +471,11 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function recursiveGotoAndStop(var2, var3)
+	function recursiveGotoAndStop(§\x0b\r§, §\x0e\x0b§)
 	{
 		var2.stop();
 		var2.gotoAndStop(var3);
-		§§enumerate(var2);
-		while((var var0 = §§enumeration()) != null)
+		for(var i in var2)
 		{
 			if(var2[i] instanceof MovieClip)
 			{
@@ -236,7 +483,7 @@ class ank.battlefield.GlobalSpriteHandler
 			}
 		}
 	}
-	function onLoadInit(var2)
+	function onLoadInit(§\x0b\r§)
 	{
 		this.recursiveGotoAndStop(var2,this._aFrameToGo[var2]);
 		delete this._aFrameToGo.register2;

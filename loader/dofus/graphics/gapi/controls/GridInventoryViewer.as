@@ -24,17 +24,17 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 	{
 		return this._bCheckMountPods;
 	}
-	function __set__checkPlayerPods(var2)
+	function __set__checkPlayerPods(§\x1b\x13§)
 	{
 		this._bCheckPlayerPods = var2;
 		return this.__get__checkPlayerPods();
 	}
-	function __set__checkMountPods(var2)
+	function __set__checkMountPods(§\x1b\x14§)
 	{
 		this._bCheckMountPods = var2;
 		return this.__get__checkMountPods();
 	}
-	function __set__showKamas(var2)
+	function __set__showKamas(§\x15\r§)
 	{
 		this._bShowKamas = var2;
 		this._btnDragKama._visible = this._lblKama._visible = this._mcKamaSymbol._visible = this._mcKamaSymbol2._visible = var2;
@@ -75,7 +75,7 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		this.modelChanged();
 		this.kamaChanged({value:this._oKamasProvider.Kama});
 	}
-	function validateDrop(var2, var3, var4)
+	function validateDrop(§\x1e\x0b\x1d§, §\x1e\x19\r§, §\x01\x0e§)
 	{
 		var4 = Number(var4);
 		if(var4 < 1 || _global.isNaN(var4))
@@ -88,7 +88,7 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		}
 		this.dispatchEvent({type:"dropItem",item:var3,quantity:var4});
 	}
-	function validateKama(var2)
+	function validateKama(§\x01\x0e§)
 	{
 		var2 = Number(var2);
 		if(var2 < 1 || _global.isNaN(var2))
@@ -107,7 +107,7 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:var2,max:var2,params:{targetType:"kama"}});
 		var3.addEventListener("validate",this);
 	}
-	function showOneItem(var2)
+	function showOneItem(§\x1e\x1b\x1d§)
 	{
 		var var3 = 0;
 		while(var3 < this._cgGrid.dataProvider.length)
@@ -122,7 +122,7 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		}
 		return false;
 	}
-	function dragItem(var2)
+	function dragItem(§\x1e\x19\x18§)
 	{
 		if(var2.target.contentData == undefined)
 		{
@@ -131,7 +131,7 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		this.gapi.removeCursor();
 		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(var2)
+	function dropItem(§\x1e\x19\x18§)
 	{
 		var var3 = this.gapi.getCursor();
 		if(var3 == undefined)
@@ -162,7 +162,7 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 			this.validateDrop(this._cgGrid,var3,1);
 		}
 	}
-	function selectItem(var2)
+	function selectItem(§\x1e\x19\x18§)
 	{
 		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var2.target.contentData != undefined)
 		{
@@ -171,22 +171,22 @@ class dofus.graphics.gapi.controls.GridInventoryViewer extends dofus.graphics.ga
 		}
 		this.dispatchEvent({type:"selectedItem",item:var2.target.contentData});
 	}
-	function overItem(var2)
+	function overItem(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		var3.showStatsTooltip(var2.target,var2.target.contentData.style);
 		this._oOverItem = var3;
 	}
-	function outItem(var2)
+	function outItem(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 		this._oOverItem = undefined;
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:var2.type,item:var2.target.contentData,target:this,targets:var2.targets,index:var2.target.id});
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		switch(var2.params.targetType)
 		{

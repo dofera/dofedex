@@ -5,14 +5,13 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__member(var2)
+	function __set__member(§\x1e\x19\x03§)
 	{
 		this._oMember = var2;
 		this._oMemberClone = new Object();
 		this._oMemberClone.rank = this._oMember.rank;
 		this._oMemberClone.percentxp = this._oMember.percentxp;
-		this._oMemberClone.rights = new dofus.datacenter.
-(this._oMember.rights.value);
+		this._oMemberClone.rights = new dofus.datacenter.(this._oMember.rights.value);
 		return this.__get__member();
 	}
 	function init()
@@ -107,7 +106,8 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 		{
 			this._cbRanks._visible = true;
 			var var5 = this.api.lang.getRanks().slice();
-			var var6 = new ank.utils.();
+			var var6 = new ank.utils.
+();
 			var5.sortOn("o",Array.NUMERIC);
 			if(this.api.datacenter.Player.guildInfos.playerRights.isBoss)
 			{
@@ -134,7 +134,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 			this._lblRankValue.text = this.api.lang.getRankInfos(this._oMemberClone.rank).n;
 		}
 	}
-	function setRank(var2)
+	function setRank(§\x1e\x1e\x1d§)
 	{
 		this._oMemberClone.rank = var2;
 		this._oMemberClone.rankOrder = this.api.lang.getRankInfos(var2).o;
@@ -144,7 +144,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 	{
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_GIVERIGHTS",[this._oMember.name]),"CAUTION_YESNO",{name:"GuildSetBoss",listener:this});
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		if(this._cbRanks.selectedItem.id == 1)
 		{
@@ -155,7 +155,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 			this.setRank(this._cbRanks.selectedItem.id);
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -164,22 +164,22 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 			case "_btnClose":
 				this.unloadThis();
 				break;
-			case "_btnModify":
-				if(this._oMember.rank == this._oMemberClone.rank && (this._oMember.percentxp == this._oMemberClone.percentxp && this._oMember.rights.value == this._oMemberClone.rights.value))
-				{
-					return undefined;
-				}
-				this._oMember.rank = this._oMemberClone.rank;
-				this._oMember.rankOrder = this._oMemberClone.rankOrder;
-				this._oMember.percentxp = this._oMemberClone.percentxp;
-				this._oMember.rights.value = this._oMemberClone.rights.value;
-				this.api.network.Guild.changeMemberProfil(this._oMember);
-				this.api.datacenter.Player.guildInfos.setMembers();
-				this.unloadThis();
-				break;
 			default:
 				switch(null)
 				{
+					case "_btnModify":
+						if(this._oMember.rank == this._oMemberClone.rank && (this._oMember.percentxp == this._oMemberClone.percentxp && this._oMember.rights.value == this._oMemberClone.rights.value))
+						{
+							return undefined;
+						}
+						this._oMember.rank = this._oMemberClone.rank;
+						this._oMember.rankOrder = this._oMemberClone.rankOrder;
+						this._oMember.percentxp = this._oMemberClone.percentxp;
+						this._oMember.rights.value = this._oMemberClone.rights.value;
+						this.api.network.Guild.changeMemberProfil(this._oMember);
+						this.api.datacenter.Player.guildInfos.setMembers();
+						this.unloadThis();
+						break loop0;
 					case "_btnPercentXP":
 						var var3 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:this._oMember.percentxp,max:90,min:0});
 						var3.addEventListener("validate",this);
@@ -313,7 +313,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 				}
 		}
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		var var3 = var2.value;
 		if(_global.isNaN(var3))
@@ -331,7 +331,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 		this._oMemberClone.percentxp = var3;
 		this.updateData();
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		this.setRank(1);
 	}

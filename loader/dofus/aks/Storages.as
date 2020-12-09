@@ -1,10 +1,10 @@
 class dofus.aks.Storages extends dofus.aks.Handler
 {
-	function Storages(var2, var3)
+	function Storages(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function onList(var2)
+	function onList(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -32,7 +32,7 @@ class dofus.aks.Storages extends dofus.aks.Handler
 			var5 = var5 + 1;
 		}
 	}
-	function onLockedProperty(var2)
+	function onLockedProperty(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];

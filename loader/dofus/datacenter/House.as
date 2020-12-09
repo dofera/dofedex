@@ -15,7 +15,7 @@ class dofus.datacenter.House extends Object
 	var _bForSale = false;
 	var _bLocked = false;
 	var _bShared = false;
-	function House(var3)
+	function House(§\x05\x02§)
 	{
 		super();
 		this.initialize(var3);
@@ -32,7 +32,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this.api.lang.fetchString(this._sDescription);
 	}
-	function __set__price(var2)
+	function __set__price(§\x01\x14§)
 	{
 		this._nPrice = Number(var2);
 		return this.__get__price();
@@ -41,7 +41,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._nPrice;
 	}
-	function __set__localOwner(var2)
+	function __set__localOwner(§\x18\x05§)
 	{
 		this._bLocalOwner = var2;
 		return this.__get__localOwner();
@@ -50,7 +50,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._bLocalOwner;
 	}
-	function __set__ownerName(var2)
+	function __set__ownerName(§\x1e\x0f\x16§)
 	{
 		this._sOwnerName = var2;
 		return this.__get__ownerName();
@@ -66,7 +66,7 @@ class dofus.datacenter.House extends Object
 		}
 		return null;
 	}
-	function __set__guildName(var2)
+	function __set__guildName(§\x1e\x12\b§)
 	{
 		this._sGuildName = var2;
 		this.dispatchEvent({type:"guild",value:this});
@@ -83,7 +83,7 @@ class dofus.datacenter.House extends Object
 		}
 		return null;
 	}
-	function __set__guildEmblem(var2)
+	function __set__guildEmblem(§\x1e\x19\x10§)
 	{
 		this._oGuildEmblem = var2;
 		this.dispatchEvent({type:"guild",value:this});
@@ -93,7 +93,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._oGuildEmblem;
 	}
-	function __set__guildRights(var2)
+	function __set__guildRights(§\x1e\x1e\x11§)
 	{
 		this._nGuildRights = Number(var2);
 		this.dispatchEvent({type:"guild",value:this});
@@ -103,7 +103,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._nGuildRights;
 	}
-	function __set__isForSale(var2)
+	function __set__isForSale(§\x19\x10§)
 	{
 		this._bForSale = var2;
 		this.dispatchEvent({type:"forsale",value:var2});
@@ -113,7 +113,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._bForSale;
 	}
-	function __set__isLocked(var2)
+	function __set__isLocked(§\x18\x04§)
 	{
 		this._bLocked = var2;
 		this.dispatchEvent({type:"locked",value:var2});
@@ -123,7 +123,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._bLocked;
 	}
-	function __set__isShared(var2)
+	function __set__isShared(§\x15\x15§)
 	{
 		this._bShared = var2;
 		this.dispatchEvent({type:"shared",value:var2});
@@ -133,7 +133,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._bShared;
 	}
-	function __set__coords(var2)
+	function __set__coords(§\x1e\x17\x05§)
 	{
 		this._pCoords = var2;
 		return this.__get__coords();
@@ -142,7 +142,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._pCoords;
 	}
-	function __set__skills(var2)
+	function __set__skills(§\x1d\f§)
 	{
 		this._aSkills = var2;
 		return this.__get__skills();
@@ -151,7 +151,7 @@ class dofus.datacenter.House extends Object
 	{
 		return this._aSkills;
 	}
-	function initialize(var2)
+	function initialize(§\x05\x02§)
 	{
 		this.api = _global.API;
 		mx.events.EventDispatcher.initialize(this);
@@ -160,13 +160,14 @@ class dofus.datacenter.House extends Object
 		this._sName = var3.n;
 		this._sDescription = var3.d;
 	}
-	function hasRight(var2)
+	function hasRight(§\x1e\x1e\x12§)
 	{
 		return (this._nGuildRights & var2) == var2;
 	}
 	function getHumanReadableRightsList()
 	{
-		var var2 = new ank.utils.();
+		var var2 = new ank.utils.
+();
 		var var3 = 1;
 		while(var3 < 8192)
 		{

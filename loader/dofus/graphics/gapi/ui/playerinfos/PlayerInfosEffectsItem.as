@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 		super();
 		this.api = _global.API;
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{
@@ -47,14 +47,14 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 	{
 		this._ldrIcon.addEventListener("initialization",this);
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		var var3 = this._ldrIcon.content.attachMovie("Icon_" + this._oItem.characteristic,"_mcIcon",10,{operator:this._oItem.operator});
 		var3.__proto__ = dofus.graphics.battlefield.EffectIcon.prototype;
 		var var4 = (dofus.graphics.battlefield.EffectIcon)var3;
 		var4.initialize(this._oItem.operator,1);
 	}
-	function over(var2)
+	function over(§\x0f\r§)
 	{
 		if((var var0 = var2.target) === this._mcInteractivity)
 		{
@@ -64,7 +64,7 @@ class dofus.graphics.gapi.ui.playerinfos.PlayerInfosEffectsItem extends dofus.gr
 			}
 		}
 	}
-	function out(var2)
+	function out(§\x0f\r§)
 	{
 		this.api.ui.hideTooltip();
 	}

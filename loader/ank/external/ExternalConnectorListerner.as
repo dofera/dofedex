@@ -9,7 +9,7 @@ class ank.external.ExternalConnectorListerner
 	{
 		return this._oParams;
 	}
-	function setParams(var2)
+	function setParams(§\x1e\x18\x15§)
 	{
 		this._oParams = var2;
 	}
@@ -17,7 +17,7 @@ class ank.external.ExternalConnectorListerner
 	{
 		ank.external.ExternalConnector.getInstance().removeEventListener("onExternalConnectionFaild",this);
 	}
-	function onExternalConnectionFaild(var2)
+	function onExternalConnectionFaild(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:"onExternalError"});
 	}

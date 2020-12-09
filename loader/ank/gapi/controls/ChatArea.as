@@ -15,7 +15,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__selectable(var2)
+	function __set__selectable(§\x15\x1a§)
 	{
 		this._bSelectable = var2;
 		if(this._bInitialized)
@@ -28,7 +28,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelectable;
 	}
-	function __set__wordWrap(var2)
+	function __set__wordWrap(§\x13\x17§)
 	{
 		this._bWordWrap = var2;
 		if(this._bInitialized)
@@ -41,7 +41,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bWordWrap;
 	}
-	function __set__text(var2)
+	function __set__text(§\x1e\r\x02§)
 	{
 		this._sText = var2;
 		if(this.initialized)
@@ -58,7 +58,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._tText.htmlText;
 	}
-	function __set__scrollBarSide(var2)
+	function __set__scrollBarSide(§\x1e\x0e\x0b§)
 	{
 		this._sScrollBarSide = var2;
 		return this.__get__scrollBarSide();
@@ -67,7 +67,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sScrollBarSide;
 	}
-	function __set__scrollBarMargin(var2)
+	function __set__scrollBarMargin(§\x1e\x1e\x05§)
 	{
 		this._nScrollBarMargin = var2;
 		return this.__get__scrollBarMargin();
@@ -76,7 +76,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nScrollBarMargin;
 	}
-	function __set__hideScrollBar(var2)
+	function __set__hideScrollBar(§\x19\f§)
 	{
 		this._bHideScrollBar = var2;
 		return this.__get__hideScrollBar();
@@ -85,7 +85,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bHideScrollBar;
 	}
-	function __set__useMouseWheel(var2)
+	function __set__useMouseWheel(§\x14\x07§)
 	{
 		this._bUseMouseWheel = var2;
 		return this.__get__useMouseWheel();
@@ -220,8 +220,12 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 		}
 		this._tText.htmlText = this._tText.htmlText + this._sText;
 	}
-	function onMouseWheel(var2, var3)
+	function onMouseWheel(§\x06\x17§, §\x0b\r§)
 	{
+		if(Key.isDown(Key.CONTROL))
+		{
+			return undefined;
+		}
 		if(!this._bUseMouseWheel)
 		{
 			return undefined;
@@ -239,7 +243,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 	{
 		this.setScrollBarPosition();
 	}
-	function scroll(var2)
+	function scroll(§\x1e\x19\x18§)
 	{
 		if(var2.target == this._sbVertical)
 		{
@@ -247,7 +251,7 @@ class ank.gapi.controls.ChatArea extends ank.gapi.core.UIBasicComponent
 			this._nScrollPosition = this._tText.scroll;
 		}
 	}
-	function onHref(var2)
+	function onHref(§\x1e\x0f\x13§)
 	{
 		this.dispatchEvent({type:"href",params:var2});
 	}

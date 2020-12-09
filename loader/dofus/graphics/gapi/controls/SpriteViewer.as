@@ -10,7 +10,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	var _bNoDelay = false;
 	var _nSpriteAnimIndex = 0;
 	var _bCurrentSprite = false;
-	var _nAttempts = 10;
+	var _bRefreshAccessories = true;
 	function SpriteViewer()
 	{
 		super();
@@ -19,8 +19,12 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._oSpriteData;
 	}
-	function __set__spriteData(var2)
+	function __set__spriteData(§\x1e\x1a\x02§)
 	{
+		if(var2.isMounting)
+		{
+			this.enableBlur = false;
+		}
 		this._oSpriteData = var2;
 		if(this.initialized)
 		{
@@ -29,11 +33,20 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		}
 		return this.__get__spriteData();
 	}
+	function __get__sourceSpriteData()
+	{
+		return this._oSourceSpriteData;
+	}
+	function __set__sourceSpriteData(§\x1e\x1a\x02§)
+	{
+		this._oSourceSpriteData = var2;
+		return this.__get__sourceSpriteData();
+	}
 	function __get__enableBlur()
 	{
 		return this._bEnableBlur;
 	}
-	function __set__enableBlur(var2)
+	function __set__enableBlur(§\x15\x02§)
 	{
 		this._bEnableBlur = var2;
 		this._mcSpriteA.onEnterFrame = this._mcSpriteB.onEnterFrame = undefined;
@@ -41,11 +54,20 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		!!this._bCurrentSprite?this._mcSpriteB:this._mcSpriteA._alpha = 0;
 		return this.__get__enableBlur();
 	}
+	function __get__refreshAccessories()
+	{
+		return this._bRefreshAccessories;
+	}
+	function __set__refreshAccessories(§\x15\x02§)
+	{
+		this._bRefreshAccessories = var2;
+		return this.__get__refreshAccessories();
+	}
 	function __get__zoom()
 	{
 		return this._nZoom;
 	}
-	function __set__zoom(var2)
+	function __set__zoom(§\x1e\x1b\x17§)
 	{
 		this._nZoom = var2;
 		if(this.initialized)
@@ -58,7 +80,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._bAllowAnimations;
 	}
-	function __set__allowAnimations(var2)
+	function __set__allowAnimations(§\x15\x02§)
 	{
 		this._bAllowAnimations = var2;
 		this._mcInteraction._visible = var2;
@@ -68,7 +90,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._bNoDelay;
 	}
-	function __set__noDelay(var2)
+	function __set__noDelay(§\x15\x02§)
 	{
 		this._bNoDelay = var2;
 		return this.__get__noDelay();
@@ -77,7 +99,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this.SPRITE_ANIMS;
 	}
-	function __set__spriteAnims(var2)
+	function __set__spriteAnims(§\x1c§)
 	{
 		this.SPRITE_ANIMS = var2;
 		return this.__get__spriteAnims();
@@ -86,7 +108,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this.REFRESH_DELAY;
 	}
-	function __set__refreshDelay(var2)
+	function __set__refreshDelay(§\t\x10§)
 	{
 		this.REFRESH_DELAY = var2;
 		return this.__get__refreshDelay();
@@ -95,7 +117,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	{
 		return this._bUseSingleLoader;
 	}
-	function __set__useSingleLoader(var2)
+	function __set__useSingleLoader(§\x1d\x03§)
 	{
 		this._bUseSingleLoader = var2;
 		return this.__get__useSingleLoader();
@@ -115,20 +137,26 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 			this._nInterval = _global.setInterval(this,"beginDisplay",this.REFRESH_DELAY);
 		}
 	}
-	function getColor(var2)
+	function getColor(§\x04\x17§)
 	{
 		return this._oSpriteData["color" + var2] != undefined?this._oSpriteData["color" + var2]:-1;
 	}
-	function setColor(var2, var3)
+	function setColor(§\x04\x17§, §\x1e\x1b\x17§)
 	{
 		this._oSpriteData["color" + var2] = var3;
 		this.updateSprite();
 	}
-	function setColors(var2)
+	function setColors(§\x1e\x1a\t§)
 	{
 		this._oSpriteData.color1 = var2.color1;
 		this._oSpriteData.color2 = var2.color2;
 		this._oSpriteData.color3 = var2.color3;
+		if(this._oSpriteData.isMounting && this._oSpriteData.mount.isChameleon)
+		{
+			this._oSpriteData.mount.customColor1 = var2.color2;
+			this._oSpriteData.mount.customColor2 = var2.color3;
+			this._oSpriteData.mount.customColor3 = var2.color3;
+		}
 		this.updateSprite();
 	}
 	function init()
@@ -152,8 +180,12 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 	}
 	function addSpriteListeners()
 	{
-		this._oSpriteData.addEventListener("gfxFileChanged",this);
-		this._oSpriteData.addEventListener("accessoriesChanged",this);
+		if(this._oSourceSpriteData == undefined)
+		{
+			return undefined;
+		}
+		this._oSourceSpriteData.addEventListener("gfxFileChanged",this);
+		this._oSourceSpriteData.addEventListener("accessoriesChanged",this);
 	}
 	function beginDisplay()
 	{
@@ -179,13 +211,24 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 			var2 = !this._bCurrentSprite?this._ldrSpriteB:this._ldrSpriteA;
 		}
 		var2.forceReload = true;
-		var2.contentPath = this._oSpriteData.gfxFile;
+		var2.content.removeMovieClip();
+		var var4 = var2.holder.createEmptyMovieClip("content_mc",1);
+		this._oSpriteData.mc = var4.attachClassMovie(this._oSpriteData.clipClass,"sprite" + this._oSpriteData.id,1,[undefined,undefined,this._oSpriteData]);
+		var2.content = this._oSpriteData.mc;
+		this._oSpriteData.mc.addEventListener("onLoadInit",var2);
 	}
-	function attachAnimation(var2)
+	function attachAnimation(§\x04\x17§)
 	{
-		var var3 = this._mcSpriteA != undefined?!!this._mcSpriteA.attachMovie(this.SPRITE_ANIMS[var2],"mcAnim",10):true;
-		var var4 = this._mcSpriteB != undefined?!!this._mcSpriteB.attachMovie(this.SPRITE_ANIMS[var2],"mcAnim",10):true;
-		return var3 && var4;
+		if(var2 < 0)
+		{
+			var2 = 0;
+		}
+		var var3 = this.SPRITE_ANIMS[var2];
+		var var4 = ank.battlefield.mc.Sprite.getDirNumByChar(var3.charAt(var3.length - 1));
+		this._oSpriteData.direction = var4;
+		var3 = var3.substring(0,var3.length - 1);
+		this._mcSpriteA.setAnim(var3,true,true);
+		this._mcSpriteB.setAnim(var3,true,true);
 	}
 	function applyZoom()
 	{
@@ -198,38 +241,23 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 			this._mcSpriteB._xscale = this._mcSpriteB._yscale = this._nZoom;
 		}
 	}
-	function playNextAnim(var2)
+	function playNextAnim(§\x1e\x1d\b§)
 	{
 		if(var2 == undefined || _global.isNaN(var2))
 		{
 			var2 = this._nSpriteAnimIndex;
 		}
 		this._nSpriteAnimIndex = var2;
-		this._mcSpriteA.mcAnim.removeMovieClip();
-		this._mcSpriteB.mcAnim.removeMovieClip();
-		var var3 = this.attachAnimation(this._nSpriteAnimIndex);
-		if(!var3 && --this._nAttempts)
-		{
-			this.addToQueue({object:this,method:this.playNextAnim,params:[this._nSpriteAnimIndex]});
-			return undefined;
-		}
+		this.attachAnimation(this._nSpriteAnimIndex);
 		this._nSpriteAnimIndex++;
-		if(this._nSpriteAnimIndex > this.SPRITE_ANIMS.length)
+		if(this._nSpriteAnimIndex >= this.SPRITE_ANIMS.length)
 		{
 			this._nSpriteAnimIndex = 0;
-		}
-		this._nAttempts = 10;
-		if(!var3)
-		{
-			this.playNextAnim(this._nSpriteAnimIndex);
-			return undefined;
 		}
 		this.applyZoom();
 	}
 	function updateSprite()
 	{
-		this._mcSpriteA.mcAnim.removeMovieClip();
-		this._mcSpriteB.mcAnim.removeMovieClip();
 		this.attachAnimation(this._nSpriteAnimIndex - 1);
 		this.applyZoom();
 	}
@@ -238,7 +266,7 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		_global.clearInterval(this._nInterval);
 		this._nInterval = 0;
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -252,7 +280,6 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 				this._mcCurrentSprite = var0;
 				this._mcOtherSprite = this._mcSpriteA;
 		}
-		this.api.colors.addSprite(var2.target,this._oSpriteData);
 		this.applyZoom();
 		if(this._bEnableBlur)
 		{
@@ -281,16 +308,22 @@ class dofus.graphics.gapi.controls.SpriteViewer extends dofus.graphics.gapi.core
 		}
 		this.addToQueue({object:this,method:this.playNextAnim,params:[this._nSpriteAnimIndex - 1]});
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.playNextAnim();
 	}
-	function gfxFileChanged(var2)
+	function gfxFileChanged(§\x1e\x19\x18§)
 	{
+		this._oSpriteData.gfxFile = var2.value;
 		this.refreshDisplay();
 	}
-	function accessoriesChanged(var2)
+	function accessoriesChanged(§\x1e\x19\x18§)
 	{
+		if(!this._bRefreshAccessories)
+		{
+			return undefined;
+		}
+		this._oSpriteData.accessories = var2.value;
 		this.refreshDisplay();
 	}
 }

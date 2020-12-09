@@ -1,6 +1,6 @@
 class dofus.datacenter.Crafter extends Object
 {
-	function Crafter(sId, §\x1e\x0f\x19§)
+	function Crafter(sId, §\x1e\x10\x06§)
 	{
 		super();
 		this.api = _global.API;
@@ -11,7 +11,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._sName;
 	}
-	function __set__name(var2)
+	function __set__name(§\x1e\x10\x06§)
 	{
 		this._sName = var2;
 		return this.__get__name();
@@ -20,7 +20,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._oJob;
 	}
-	function __set__job(var2)
+	function __set__job(§\x1e\n\x0f§)
 	{
 		this._oJob = var2;
 		return this.__get__job();
@@ -29,7 +29,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._nBreedId;
 	}
-	function __set__breedId(var2)
+	function __set__breedId(§\b\x0f§)
 	{
 		this._nBreedId = var2;
 		return this.__get__breedId();
@@ -47,7 +47,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._nSex;
 	}
-	function __set__sex(var2)
+	function __set__sex(§\x1e\n\x0f§)
 	{
 		this._nSex = Number(var2);
 		return this.__get__sex();
@@ -56,7 +56,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._nColor1;
 	}
-	function __set__color1(var2)
+	function __set__color1(§\x1e\n\x0f§)
 	{
 		this._nColor1 = Number(var2);
 		return this.__get__color1();
@@ -65,7 +65,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._nColor2;
 	}
-	function __set__color2(var2)
+	function __set__color2(§\x1e\n\x0f§)
 	{
 		this._nColor2 = Number(var2);
 		return this.__get__color2();
@@ -74,7 +74,7 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._nColor3;
 	}
-	function __set__color3(var2)
+	function __set__color3(§\x1e\n\x0f§)
 	{
 		this._nColor3 = Number(var2);
 		return this.__get__color3();
@@ -83,12 +83,12 @@ class dofus.datacenter.Crafter extends Object
 	{
 		return this._aAccessories;
 	}
-	function __set__accessories(var2)
+	function __set__accessories(§\x1e\n\x0f§)
 	{
 		this._aAccessories = var2;
 		return this.__get__accessories();
 	}
-	function __set__mapId(var2)
+	function __set__mapId(§\x03\x19§)
 	{
 		this._nMapId = var2;
 		return this.__get__mapId();

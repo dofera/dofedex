@@ -1,6 +1,6 @@
 class dofus.datacenter.ParkMount extends dofus.datacenter.PlayableCharacter
 {
-	function ParkMount(sID, clipClass, §\x1e\x12\x01§, §\x13\x05§, §\x10\x1c§, gfxID, nModelID)
+	function ParkMount(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, gfxID, nModelID)
 	{
 		super();
 		this.initialize(sID,clipClass,var5,var6,var7,gfxID);

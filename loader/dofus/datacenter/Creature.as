@@ -1,12 +1,12 @@
 class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 {
 	var _sStartAnimation = "appear";
-	function Creature(sID, clipClass, §\x1e\x12\x01§, §\x13\x05§, §\x10\x1c§, gfxID)
+	function Creature(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, gfxID)
 	{
 		super();
 		this.initialize(sID,clipClass,var5,var6,var7,gfxID);
 	}
-	function __set__name(var2)
+	function __set__name(§\x02\x14§)
 	{
 		this._nNameID = Number(var2);
 		return this.__get__name();
@@ -15,7 +15,7 @@ class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 	{
 		return this.api.lang.getMonstersText(this._nNameID).n;
 	}
-	function __set__powerLevel(var2)
+	function __set__powerLevel(§\x01\x16§)
 	{
 		this._nPowerLevel = Number(var2);
 		return this.__get__powerLevel();
@@ -28,7 +28,7 @@ class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 	{
 		return this.api.lang.getMonstersText(this._nNameID)["g" + this._nPowerLevel].l;
 	}
-	function __set__resistances(var2)
+	function __set__resistances(§\x1c§)
 	{
 		this._resistances = var2;
 		return this.__get__resistances();
@@ -46,6 +46,6 @@ class dofus.datacenter.Creature extends dofus.datacenter.PlayableCharacter
 	}
 	function __get__alignment()
 	{
-		return new dofus.datacenter.(this.api.lang.getMonstersText(this._nNameID).a,0);
+		return new dofus.datacenter.(this.api.lang.getMonstersText(this._nNameID).a,0);
 	}
 }

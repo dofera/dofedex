@@ -15,7 +15,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 	static var _sSelf = null;
 	var _aIndicatorTimers = new Array();
 	var _nIndicatorIndex = 0;
-	function TipsManager(var2)
+	function TipsManager(§\x1e\x1a\x16§)
 	{
 		super();
 		dofus.managers.TipsManager._sSelf = this;
@@ -25,13 +25,13 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 	{
 		return dofus.managers.TipsManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		this.api = var2;
 		this._aTipsList = new Array();
 		this.addToQueue({object:this,method:this.loadTipsStates});
 	}
-	function showNewTip(var2)
+	function showNewTip(§\x1e\x1c\x07§)
 	{
 		if(!this.getIsDisplayingFreshTips())
 		{
@@ -73,7 +73,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		this._aTipsStates = new Array();
 		this.saveTipsStates();
 	}
-	function pointGUI(var2, var3)
+	function pointGUI(§\x1e\x14\x04§, §\x1e\x1b§)
 	{
 		var var4 = this.api.ui.getUIComponent(var2);
 		var var5 = var3[0];
@@ -107,13 +107,14 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[var11,var12],offset:var14},{bAlwaysOnTop:true});
 		this._aIndicatorTimers[this._nIndicatorIndex] = _global.setInterval(this,"onIndicatorHide",dofus.managers.TipsManager.INDICATOR_SHOWUP_TIME * 1000,this._nIndicatorIndex++);
 	}
-	function pointCell(var2, var3, var4)
+	function pointCell(§\x03\x18§, §\b\x03§, §\x02\x0f§)
 	{
 		if(this.api.datacenter.Basics.aks_current_map_id == var2 || var2 == -1)
 		{
 			var var5 = this.api.gfx.mapHandler.getCellData(var3).mc;
 			if(var5 == undefined)
 			{
+				org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.NullPointerException(this,"TipsManager","pointCell","mcCell"),"dofus.managers.TipsManager::pointCell","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/TipsManager.as",238);
 				return undefined;
 			}
 			var var6 = {x:var5._x,y:var5._y};
@@ -123,15 +124,15 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 			this.api.ui.loadUIComponent("Indicator","Indicator" + this._nIndicatorIndex,{coordinates:[var7,var8],offset:var4,rotate:false},{bAlwaysOnTop:true});
 			this._aIndicatorTimers[this._nIndicatorIndex] = _global.setInterval(this,"onIndicatorHide",dofus.managers.TipsManager.INDICATOR_SHOWUP_TIME * 1000,this._nIndicatorIndex++);
 		}
+		org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.InvalidOperationException(this,"TipsManager","pointCell","We are no more on the right map."),"dofus.managers.TipsManager::pointCell","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/TipsManager.as",258);
 		return undefined;
 	}
-	function pointSprite(var2, var3)
+	function pointSprite(§\x03\x18§, §\x05\t§)
 	{
 		if(this.api.datacenter.Basics.aks_current_map_id == var2 || var2 == -1)
 		{
 			var var4 = this.api.gfx.spriteHandler.getSprites().getItems();
-			§§enumerate(var4);
-			while((var var0 = §§enumeration()) != null)
+			for(var k in var4)
 			{
 				if(var4[k].gfxFile == dofus.Constants.CLIPS_PERSOS_PATH + var3 + ".swf")
 				{
@@ -145,15 +146,15 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 				}
 			}
 		}
+		org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.InvalidOperationException(this,"TipsManager","pointCell","We are no more on the right map."),"dofus.managers.TipsManager::pointSprite","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/TipsManager.as",298);
 		return undefined;
 	}
-	function pointPicto(var2, var3)
+	function pointPicto(§\x03\x18§, §\x01\x1d§)
 	{
 		if(this.api.datacenter.Basics.aks_current_map_id == var2 || var2 == -1)
 		{
 			var var4 = this.api.gfx.mapHandler.getCellsData();
-			§§enumerate(var4);
-			while((var var0 = §§enumeration()) != null)
+			for(var k in var4)
 			{
 				if(var4[k].layerObject1Num != undefined && (!_global.isNaN(var4[k].layerObject1Num) && var4[k].layerObject1Num > 0))
 				{
@@ -171,6 +172,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 				}
 			}
 		}
+		org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.InvalidOperationException(this,"TipsManager","pointCell","We are no more on the right map."),"dofus.managers.TipsManager::pointPicto","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/TipsManager.as",329);
 		return undefined;
 	}
 	function getTipToDisplay()
@@ -178,21 +180,21 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		var var2 = Number(this._aTipsList.pop());
 		return var2;
 	}
-	function showFloatingTips(var2)
+	function showFloatingTips(§\x1e\x1c\x07§)
 	{
 		var var3 = this.api.kernel.OptionsManager.getOption("FloatingTipsCoord");
 		var var4 = this.api.ui.loadUIComponent("FloatingTips","FloatingTips",{tip:var2,position:var3},{bStayIfPresent:true,bAlwaysOnTop:true});
 	}
-	function addTipToList(var2)
+	function addTipToList(§\x1e\x1c\x07§)
 	{
 		this._aTipsList.push(var2);
 		this.saveTipsList();
 	}
-	function getHasBeenDisplayed(var2)
+	function getHasBeenDisplayed(§\x1e\x1c\x07§)
 	{
 		return this._aTipsStates[var2] == true;
 	}
-	function setHasBeenDisplayed(var2, var3)
+	function setHasBeenDisplayed(§\x1e\x1c\x07§, §\x1b\b§)
 	{
 		if(var3 == undefined)
 		{
@@ -216,7 +218,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		}
 		return this.api.kernel.OptionsManager.getOption("DisplayingFreshTips");
 	}
-	function setIsDisplayingFreshTips(var2)
+	function setIsDisplayingFreshTips(§\x1b\x07§)
 	{
 		this.api.kernel.OptionsManager.setOption("DisplayingFreshTips",var2);
 	}
@@ -319,12 +321,12 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 		}
 		return this._aMapsTriggers;
 	}
-	function onIndicatorHide(var2)
+	function onIndicatorHide(§\x04\x16§)
 	{
 		_global.clearInterval(this._aIndicatorTimers[var2]);
 		this.api.ui.unloadUIComponent("Indicator" + var2);
 	}
-	function onNewMap(var2)
+	function onNewMap(§\x03\x18§)
 	{
 		var var3 = String(this.getMapsTriggers()["MAP" + var2]);
 		if(var3 != undefined && var3.length > 0)
@@ -341,7 +343,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 			}
 		}
 	}
-	function onNewInterface(var2)
+	function onNewInterface(§\x1e\x10\x1a§)
 	{
 		var var3 = this.getInterfaceTriggers()["GUI" + var2];
 		if(var3 != undefined && !_global.isNaN(var3))
@@ -349,7 +351,7 @@ class dofus.managers.TipsManager extends ank.utils.QueueEmbedMovieClip
 			this.showNewTip(var3);
 		}
 	}
-	function onLink(var2)
+	function onLink(§\x1e\x19\x18§)
 	{
 		var var3 = var2.params.split(",");
 		if((var var0 = var3[0]) !== "CellIndicator")

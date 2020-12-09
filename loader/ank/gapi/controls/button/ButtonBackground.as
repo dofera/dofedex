@@ -4,7 +4,7 @@ class ank.gapi.controls.button.ButtonBackground extends ank.gapi.core.UIBasicCom
 	{
 		super();
 	}
-	function setSize(var2, var3, var4)
+	function setSize(§\x1e\x1b\x0f§, §\x05\x07§, §\x1c\x03§)
 	{
 		this.left_mc._x = this.left_mc._y = this.middle_mc._y = this.right_mc._y = 0;
 		this.left_mc._height = this.middle_mc._height = this.right_mc._height = var3;
@@ -17,7 +17,7 @@ class ank.gapi.controls.button.ButtonBackground extends ank.gapi.core.UIBasicCom
 		this.middle_mc._width = var2 - (this.left_mc != undefined?this.left_mc._width:0) - (this.right_mc != undefined?this.right_mc._width:0);
 		this.right_mc._x = var2 - this.right_mc._width;
 	}
-	function setStyleColor(var2, var3)
+	function setStyleColor(§\x1e\x17\x1a§, §\x1e\r\x12§)
 	{
 		var var4 = this.left_mc;
 		for(var k in var4)

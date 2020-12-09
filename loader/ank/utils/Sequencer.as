@@ -6,25 +6,25 @@ class ank.utils.Sequencer extends Object
 		super();
 		this.initialize(timeout);
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1c\x0b§)
 	{
 		this._nTimeout = var2 != undefined?var2:10000;
 		this._unicID = String(getTimer()) + random(10000);
 		this._nActionIndex = 0;
 		this.clear();
 	}
-	function clear(var2)
+	function clear()
 	{
 		this._aActions = new Array();
 		this._bPlaying = false;
 		this._nTimeModerator = 1;
 		ank.utils.Timer.removeTimer(this,"sequencer");
 	}
-	function setTimeModerator(var2)
+	function setTimeModerator(§\x1e\x1c\f§)
 	{
 		this._nTimeModerator = var2;
 	}
-	function addAction(var2, var3, var4, var5, var6, var7, var8)
+	function addAction(§\x06\x1a§, §\x13\x1d§, §\n\x01§, §\x0e\x1a§, §\x1e\x02§, §\x06\t§, §\x19\x13§)
 	{
 		var var9 = new Object();
 		var9.debugId = var2;
@@ -50,7 +50,7 @@ class ank.utils.Sequencer extends Object
 		}
 		var2.kernel.showMessage(undefined,var3,"DEBUG_LOG");
 	}
-	function containsAction(var2, var3)
+	function containsAction(§\n\x01§, §\x0e\x1a§)
 	{
 		var var4 = 0;
 		while(var4 < this._aActions.length)
@@ -64,9 +64,9 @@ class ank.utils.Sequencer extends Object
 		}
 		return false;
 	}
-	function execute(var2)
+	function execute(§\x19\x1d§)
 	{
-		if(this._bPlaying && var2 == undefined)
+		if(this._bPlaying && !var2)
 		{
 			return undefined;
 		}
@@ -89,7 +89,7 @@ class ank.utils.Sequencer extends Object
 				else
 				{
 					var3 = false;
-					ank.utils.Timer.setTimer(var4.object,"sequencer",this,this.onActionTimeOut,var4.duration == undefined?this._nTimeout:var4.duration * this._nTimeModerator,[var4.id]);
+					ank.utils.Timer.setTimer(var4.object,"sequencer",this,this.onActionTimeOut,var4.duration == undefined?this._nTimeout:var4.duration * this._nTimeModerator,[var4]);
 				}
 			}
 			else
@@ -107,20 +107,20 @@ class ank.utils.Sequencer extends Object
 	{
 		return this._bPlaying;
 	}
-	function clearAllNextActions(var2)
+	function clearAllNextActions(§\x1e\n\f§)
 	{
 		this._aActions.splice(1);
 		ank.utils.Timer.removeTimer(this,"sequencer");
 	}
-	function onActionTimeOut(var2)
+	function onActionTimeOut(§\x1e\x1a\x1a§)
 	{
-		if(var2 != undefined && this._aActions[0].id != var2)
+		if(var2 != undefined && this._aActions[0].id != var2.id)
 		{
 			return undefined;
 		}
 		this.onActionEnd(false,true);
 	}
-	function onActionEnd(var2, var3)
+	function onActionEnd(§\x1a\x1d§, §\x14\x17§)
 	{
 		if(var3 == undefined)
 		{
@@ -156,7 +156,7 @@ class ank.utils.Sequencer extends Object
 	{
 		return "Sequencer unicID:" + this._unicID + " playing:" + this._bPlaying + " actionsCount:" + this._aActions.length + " currentActionID:" + this._aActions[0].id + " currentActionObject:" + this._aActions[0].object + " currentActionParam:" + this._aActions[0].parameters.toString() + " currentActionBlocking:" + this._aActions[0].waitEnd + " currentActionForceTimeout:" + this._aActions[0].forceTimeout;
 	}
-	function getActionIndex(var2)
+	function getActionIndex(§\x1e\n\f§)
 	{
 		this._nActionIndex++;
 		if(this._nActionIndex > 10000)

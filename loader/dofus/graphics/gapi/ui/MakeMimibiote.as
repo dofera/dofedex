@@ -52,19 +52,23 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 	{
 		this._ivInventoryViewer.showKamas = false;
 		this._ivInventoryViewer.dataProvider = this.api.datacenter.Player.Inventory;
-		this._cgItemToAttach.dataProvider = new ank.utils.();
-		this._cgItemToEat.dataProvider = new ank.utils.();
-		this._cgResult.dataProvider = new ank.utils.();
+		this._cgItemToAttach.dataProvider = new ank.utils.
+();
+		this._cgItemToEat.dataProvider = new ank.utils.
+();
+		this._cgResult.dataProvider = new ank.utils.
+();
 		this.refreshPreview();
 	}
-	function putItem(var2, var3, var4)
+	function putItem(§\x11\x1c§, §\x1e\x19\r§, §\x16\x17§)
 	{
 		if(var3 != undefined && !this.canPutItem(var3,var2))
 		{
 			this.refreshPreview();
 			return undefined;
 		}
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		var3 = var3.clone();
 		var3.Quantity = 1;
 		if(!(!var4 && var2.dataProvider.length > 0))
@@ -77,11 +81,11 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		var2.dataProvider = var5;
 		this.refreshPreview();
 	}
-	function removeItem(var2)
+	function removeItem(§\x11\x1c§)
 	{
 		this.putItem(var2,undefined,false);
 	}
-	function canPutItem(var2, var3)
+	function canPutItem(§\x1e\x19\r§, §\x13\b§)
 	{
 		if(!dofus.Constants.isItemSuperTypeSkinable(var2.superType))
 		{
@@ -171,7 +175,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		this._mcFiligrane._visible = var2;
 		this._ctrResult._visible = var2;
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoCreateMimibiote")
 		{
@@ -184,7 +188,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			}
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) !== this._btnValidate)
 		{
@@ -196,7 +200,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			var3.addEventListener("yes",this);
 		}
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		if(var2.owner != undefined)
 		{
@@ -235,7 +239,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			}
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._ctrResult)
 		{
@@ -246,20 +250,20 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			}
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.api.ui.hideTooltip();
 	}
-	function overItem(var2)
+	function overItem(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		var3.showStatsTooltip(var2.target,var2.target.contentData.style);
 	}
-	function outItem(var2)
+	function outItem(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function dragItem(var2)
+	function dragItem(§\x1e\x19\x18§)
 	{
 		this.gapi.removeCursor();
 		if(var2.target.contentData == undefined)
@@ -268,7 +272,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		}
 		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(var2)
+	function dropItem(§\x1e\x19\x18§)
 	{
 		if(var2.item != undefined)
 		{

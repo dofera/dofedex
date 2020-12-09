@@ -9,17 +9,17 @@ class dofus.graphics.battlefield.EffectIcon extends MovieClip
 		_global.subtrace("yahoo");
 		this.initialize(this._sOperator,this._nQte);
 	}
-	function __set__operator(var2)
+	function __set__operator(§\x1e\x0f\x18§)
 	{
 		this._sOperator = var2;
 		return this.__get__operator();
 	}
-	function __set__qte(var2)
+	function __set__qte(§\x01\x10§)
 	{
 		this._nQte = var2;
 		return this.__get__qte();
 	}
-	function initialize(var2, var3)
+	function initialize(§\x1e\x0f\x18§, §\x01\x10§)
 	{
 		switch(var2)
 		{

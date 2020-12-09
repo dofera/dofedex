@@ -5,18 +5,18 @@ class ank.utils.ExtendedObject extends Object
 		super();
 		this.initialize();
 	}
-	function initialize(var2)
+	function initialize(§\x1e\n\f§)
 	{
 		this.clear();
 		mx.events.EventDispatcher.initialize(this);
 	}
-	function clear(var2)
+	function clear(§\x1e\n\f§)
 	{
 		this._items = new Object();
 		this._count = 0;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function addItemAt(var2, var3)
+	function addItemAt(§\f\x0e§, §\f\x15§)
 	{
 		if(this._items[var2] == undefined)
 		{
@@ -25,7 +25,7 @@ class ank.utils.ExtendedObject extends Object
 		this._items[var2] = var3;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function removeItemAt(var2)
+	function removeItemAt(§\f\x0e§)
 	{
 		var var3 = this._items[var2];
 		delete this._items.register2;
@@ -33,13 +33,14 @@ class ank.utils.ExtendedObject extends Object
 		this.dispatchEvent({type:"modelChanged"});
 		return var3;
 	}
-	function removeAll(var2)
+	function removeAll(§\x1e\n\f§)
 	{
 		this.clear();
 	}
-	function removeAllExcept(var2)
+	function removeAllExcept(§\f\x0e§)
 	{
-		for(var k in this._items)
+		§§enumerate(this._items);
+		while((var var0 = §§enumeration()) != null)
 		{
 			if(k != var2)
 			{
@@ -49,7 +50,7 @@ class ank.utils.ExtendedObject extends Object
 		this._count = 1;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function replaceItemAt(var2, var3)
+	function replaceItemAt(§\f\x0e§, §\f\x15§)
 	{
 		if(this._items[var2] == undefined)
 		{
@@ -58,31 +59,33 @@ class ank.utils.ExtendedObject extends Object
 		this._items[var2] = var3;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function getLength(var2)
+	function getLength(§\x1e\n\f§)
 	{
 		return this._count;
 	}
-	function getItemAt(var2)
+	function getItemAt(§\f\x0e§)
 	{
 		return this._items[var2];
 	}
-	function getItems(var2)
+	function getItems(§\x1e\n\f§)
 	{
 		return this._items;
 	}
 	function getKeys()
 	{
 		var var2 = new Array();
-		for(var k in this._items)
+		§§enumerate(this._items);
+		while((var var0 = §§enumeration()) != null)
 		{
 			var2.push(k);
 		}
 		return var2;
 	}
-	function getPropertyValues(var2)
+	function getPropertyValues(§\x1e\x0e\x18§)
 	{
 		var var3 = new Array();
-		for(var k in this._items)
+		§§enumerate(this._items);
+		while((var var0 = §§enumeration()) != null)
 		{
 			var3.push(this._items[k][var2]);
 		}

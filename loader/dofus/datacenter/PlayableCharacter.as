@@ -1,7 +1,7 @@
 class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Sprite
 {
 	var _summoned = false;
-	function PlayableCharacter(sID, clipClass, §\x1e\x12\x01§, §\x13\x05§, §\x10\x1c§, gfxID)
+	function PlayableCharacter(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, gfxID)
 	{
 		super();
 		if(this.__proto__ == dofus.datacenter.PlayableCharacter.prototype)
@@ -9,7 +9,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 			this.initialize(sID,clipClass,var5,var6,var7,gfxID);
 		}
 	}
-	function initialize(sID, clipClass, §\x1e\x12\x01§, §\x13\x05§, §\x10\x1c§, gfxID)
+	function initialize(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, gfxID)
 	{
 		super.initialize(sID,clipClass,var5,var6,var7);
 		this.api = _global.API;
@@ -26,7 +26,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 		mx.events.EventDispatcher.initialize(this);
 		this._states = new Object();
 	}
-	function updateLP(var2)
+	function updateLP(§\x11\x06§)
 	{
 		this.LP = this.LP + Number(var2);
 		if(var2 < 0 && this.api.datacenter.Game.isFight)
@@ -46,11 +46,11 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 			this.mc.setAnim("Hit");
 		}
 	}
-	function initLP(var2)
+	function initLP(§\x1e\n\f§)
 	{
 		this.LP = this.LPmax;
 	}
-	function updateAP(var2, var3)
+	function updateAP(§\x11\x16§, §\x14\t§)
 	{
 		if(var3 == undefined)
 		{
@@ -64,7 +64,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 		this.AP = Math.max(0,this.AP);
 		this.api.gfx.addSpritePoints(this.id,String(var2),255);
 	}
-	function initAP(var2)
+	function initAP(§\x13\x19§)
 	{
 		if(var2 == undefined)
 		{
@@ -80,7 +80,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 			this.AP = Number(this.APinit);
 		}
 	}
-	function updateMP(var2, var3)
+	function updateMP(§\x11\x05§, §\x14\t§)
 	{
 		if(var3 == undefined)
 		{
@@ -94,7 +94,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 		this.MP = Math.max(0,this.MP);
 		this.api.gfx.addSpritePoints(this.id,String(var2),26112);
 	}
-	function initMP(var2)
+	function initMP(§\x13\x19§)
 	{
 		if(var2 == undefined)
 		{
@@ -110,11 +110,11 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 			this.MP = Number(this.MPinit);
 		}
 	}
-	function isInState(var2)
+	function isInState(§\x1e\r\b§)
 	{
 		return this._states[var2] == true;
 	}
-	function setState(var2, var3)
+	function setState(§\x1e\r\b§, §\x1d\x01§)
 	{
 		this._states[var2] = var3;
 	}
@@ -122,7 +122,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._gfxID;
 	}
-	function __set__gfxID(var2)
+	function __set__gfxID(§\x1e\n\x0f§)
 	{
 		this._gfxID = var2;
 		return this.__get__gfxID();
@@ -131,7 +131,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._name;
 	}
-	function __set__name(var2)
+	function __set__name(§\x1e\n\x0f§)
 	{
 		this._name = var2;
 		return this.__get__name();
@@ -140,7 +140,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._level;
 	}
-	function __set__Level(var2)
+	function __set__Level(§\x1e\n\x0f§)
 	{
 		this._level = Number(var2);
 		this.broadcastMessage("onSetLevel",var2);
@@ -150,7 +150,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._xp;
 	}
-	function __set__XP(var2)
+	function __set__XP(§\x1e\n\x0f§)
 	{
 		this._xp = Number(var2);
 		this.broadcastMessage("onSetXP",var2);
@@ -160,7 +160,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._lp;
 	}
-	function __set__LP(var2)
+	function __set__LP(§\x1e\n\x0f§)
 	{
 		this._lp = Number(var2) <= 0?0:Number(var2);
 		this.dispatchEvent({type:"lpChanged",value:var2});
@@ -171,7 +171,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._lpmax;
 	}
-	function __set__LPmax(var2)
+	function __set__LPmax(§\x1e\n\x0f§)
 	{
 		this._lpmax = Number(var2);
 		this.broadcastMessage("onSetLP",this.LP,var2);
@@ -181,7 +181,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._ap;
 	}
-	function __set__AP(var2)
+	function __set__AP(§\x1e\n\x0f§)
 	{
 		this._ap = Number(var2);
 		this.dispatchEvent({type:"apChanged",value:var2});
@@ -192,7 +192,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._apinit;
 	}
-	function __set__APinit(var2)
+	function __set__APinit(§\x1e\n\x0f§)
 	{
 		this._apinit = Number(var2);
 		return this.__get__APinit();
@@ -201,7 +201,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._mp;
 	}
-	function __set__MP(var2)
+	function __set__MP(§\x1e\n\x0f§)
 	{
 		this._mp = Number(var2);
 		this.dispatchEvent({type:"mpChanged",value:var2});
@@ -212,7 +212,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._mpinit;
 	}
-	function __set__MPinit(var2)
+	function __set__MPinit(§\x1e\n\x0f§)
 	{
 		this._mpinit = Number(var2);
 		return this.__get__MPinit();
@@ -221,7 +221,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._kama;
 	}
-	function __set__Kama(var2)
+	function __set__Kama(§\x1e\n\x0f§)
 	{
 		this._kama = Number(var2);
 		this.broadcastMessage("onSetKama",var2);
@@ -231,7 +231,7 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._team;
 	}
-	function __set__Team(var2)
+	function __set__Team(§\x1e\n\x0f§)
 	{
 		this._team = Number(var2);
 		return this.__get__Team();
@@ -262,12 +262,12 @@ class dofus.datacenter.PlayableCharacter extends ank.battlefield.datacenter.Spri
 	{
 		return this._states;
 	}
-	function __set__isSummoned(var2)
+	function __set__isSummoned(§\x18\x0f§)
 	{
 		this._summoned = var2;
 		return this.__get__isSummoned();
 	}
-	function __get__isSummoned(var2)
+	function __get__isSummoned(§\x18\x0f§)
 	{
 		return this._summoned;
 	}

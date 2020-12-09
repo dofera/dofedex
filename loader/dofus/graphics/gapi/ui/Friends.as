@@ -6,14 +6,16 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		super();
 	}
-	function __set__enemiesList(var2)
+	function __set__enemiesList(§\x1e\x19§)
 	{
 		if(this._sCurrentTab != "Enemies")
 		{
 			return undefined;
 		}
-		var var3 = new ank.utils.();
-		var var4 = new ank.utils.();
+		var var3 = new ank.utils.
+();
+		var var4 = new ank.utils.
+();
 		var var5 = 0;
 		while(var5 < var2.length)
 		{
@@ -35,14 +37,16 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 		this._dgOffLine.dataProvider = var4;
 		return this.__get__enemiesList();
 	}
-	function __set__friendsList(var2)
+	function __set__friendsList(§\x1e\x16§)
 	{
 		if(this._sCurrentTab != "Friends")
 		{
 			return undefined;
 		}
-		var var3 = new ank.utils.();
-		var var4 = new ank.utils.();
+		var var3 = new ank.utils.
+();
+		var var4 = new ank.utils.
+();
 		var var5 = 0;
 		while(var5 < var2.length)
 		{
@@ -67,7 +71,7 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		return this.__get__friendsList();
 	}
-	function __set__spouse(var2)
+	function __set__spouse(§\x1e\x18\x03§)
 	{
 		if(this._svSpouse != undefined)
 		{
@@ -78,7 +82,7 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 		this._svSpouse.swapDepths(this._mcSpousePlacer);
 		return this.__get__spouse();
 	}
-	function removeFriend(var2)
+	function removeFriend(§\x1e\x10\x06§)
 	{
 		switch(this._sCurrentTab)
 		{
@@ -100,7 +104,8 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 			return undefined;
 		}
 		var var2 = this.api.kernel.ChatManager.getBlacklist();
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		for(var i in var2)
 		{
 			if(var2[i] != undefined)
@@ -111,7 +116,8 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 				var3.push(var4);
 			}
 		}
-		this._dgOffLine.dataProvider = new ank.utils.();
+		this._dgOffLine.dataProvider = new ank.utils.
+();
 		this._dgOnLine.dataProvider = var3;
 	}
 	function init()
@@ -205,7 +211,7 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		this._itAddFriend.setFocus();
 	}
-	function setCurrentTab(var2)
+	function setCurrentTab(§\x1e\x10\x04§)
 	{
 		var var3 = this["_btnTab" + this._sCurrentTab];
 		var var4 = this["_btnTab" + var2];
@@ -231,7 +237,7 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this.addToQueue({object:this,method:this.initTexts});
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._itAddFriend.focused)
 		{
@@ -240,7 +246,7 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		return true;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -278,12 +284,12 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 			case this._btnClose:
 				this.callClose();
 				break;
-			case this._btnTabFriends:
-				this.setCurrentTab("Friends");
-				break;
 			default:
 				switch(null)
 				{
+					case this._btnTabFriends:
+						this.setCurrentTab("Friends");
+						break;
 					case this._btnTabEnemies:
 						this.setCurrentTab("Enemies");
 						break;
@@ -296,26 +302,26 @@ class dofus.graphics.gapi.ui.Friends extends dofus.graphics.gapi.core.DofusAdvan
 				}
 		}
 	}
-	function notifyStateChanged(var2)
+	function notifyStateChanged(§\x17\x06§)
 	{
 		this._btnShowFriendsWarning.selected = var2;
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		this.api.kernel.GameManager.showPlayerPopupMenu(undefined,var2.row.item.name,undefined,true,undefined,undefined,true);
 	}
-	function itemdblClick(var2)
+	function itemdblClick(§\x1e\x19\x18§)
 	{
 		this.api.kernel.GameManager.askPrivateMessage(var2.row.item.name);
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._btnShowFriendsWarning)
 		{
 			this.gapi.showTooltip(this.api.lang.getText("WARNING_WHEN_FRIENDS_COME_ONLINE_TOOLTIP"),var2.target,-20);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.GuildMembersViewer extends dofus.graphics.gap
 	{
 		super();
 	}
-	function __set__members(var2)
+	function __set__members(§\x10\f§)
 	{
 		this._eaData = var2;
 		this.updateData(this._eaData);
@@ -33,7 +33,7 @@ class dofus.graphics.gapi.controls.GuildMembersViewer extends dofus.graphics.gap
 		this._lblDescription.text = this.api.lang.getText("GUILD_MEMBERS_LIST");
 		this._lblShowOfflineMembers.text = this.api.lang.getText("DISPLAY_OFFLINE_GUILD_MEMBERS");
 	}
-	function updateData(var2)
+	function updateData(§\x10\f§)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -46,7 +46,8 @@ class dofus.graphics.gapi.controls.GuildMembersViewer extends dofus.graphics.gap
 			var4 = var4 + 1;
 		}
 		this._lblCount.text = var3 + " / " + String(var2.length) + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("MEMBERS"),"m",var2.length < 2);
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		if(!this._btnShowOfflineMembers.selected)
 		{
 			var var6 = 0;
@@ -81,7 +82,7 @@ class dofus.graphics.gapi.controls.GuildMembersViewer extends dofus.graphics.gap
 		}
 		this._dgMembers.dataProvider = var5;
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		var var3 = var2.row.item;
 		if(var3.name != this.api.datacenter.Player.Name)
@@ -96,15 +97,15 @@ class dofus.graphics.gapi.controls.GuildMembersViewer extends dofus.graphics.gap
 			}
 		}
 	}
-	function itemRollOver(var2)
+	function itemRollOver(§\x1e\x19\x18§)
 	{
 		var2.row.cellRenderer_mc.over();
 	}
-	function itemRollOut(var2)
+	function itemRollOut(§\x1e\x19\x18§)
 	{
 		var2.row.cellRenderer_mc.out();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._btnShowOfflineMembers)
 		{

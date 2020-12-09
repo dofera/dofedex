@@ -6,7 +6,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__min(var2)
+	function __set__min(§\x03\x02§)
 	{
 		this._nMin = var2;
 		return this.__get__min();
@@ -15,7 +15,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMin;
 	}
-	function __set__max(var2)
+	function __set__max(§\x03\x14§)
 	{
 		this._nMax = var2;
 		return this.__get__max();
@@ -24,7 +24,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMax;
 	}
-	function __set__page(var2)
+	function __set__page(§\x02\x0b§)
 	{
 		this._nPage = var2;
 		return this.__get__page();
@@ -33,7 +33,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nPage;
 	}
-	function __set__scrollTarget(var2)
+	function __set__scrollTarget(§\x1e\x0b\b§)
 	{
 		if(var2 == undefined)
 		{
@@ -57,7 +57,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 	{
 		return this._tTarget;
 	}
-	function __set__snapTo(var2)
+	function __set__snapTo(§\x1e\x0e\x01§)
 	{
 		if(var2 == undefined)
 		{
@@ -77,7 +77,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__snapTo();
 	}
-	function __set__scrollPosition(var2)
+	function __set__scrollPosition(§\x1e\x1e\x04§)
 	{
 		if(var2 > this._nMax)
 		{
@@ -95,17 +95,17 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 	{
 		return Math.round((this._mcHolder.thumb_mc._y - this._mcHolder.track_mc._y) / (this._mcHolder.track_mc._height - this._mcHolder.thumb_mc._height) * (this._nMax - this._nMin));
 	}
-	function __set__horizontal(var2)
+	function __set__horizontal(§\x19\n§)
 	{
 		this._bHorizontal = var2;
 		this.arrange();
 		return this.__get__horizontal();
 	}
-	function setSize(var2)
+	function setSize(§\x05\x07§)
 	{
 		super.setSize(null,var3);
 	}
-	function setScrollProperties(var2, var3, var4)
+	function setScrollProperties(§\x02\x0b§, §\x03\x02§, §\x03\x14§)
 	{
 		this._nPage = var2;
 		this._nMin = Math.max(var3,0);
@@ -273,11 +273,11 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 			this._mcHolder.thumb_mc._visible = false;
 		}
 	}
-	function addToScrollPosition(var2)
+	function addToScrollPosition(§\t\x05§)
 	{
 		this.scrollPosition = this.scrollPosition + var2;
 	}
-	function scrollThumb(var2, var3)
+	function scrollThumb(§\t\x05§, §\x1a\x18§)
 	{
 		if(var3)
 		{
@@ -289,7 +289,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 		}
 		_global.updateAfterEvent();
 	}
-	function moveThumb(var2)
+	function moveThumb(§\x1e\x1b\x05§)
 	{
 		this._mcHolder.thumb_mc._y = var2;
 		if(this._mcHolder.thumb_mc._y < this._mcHolder.upArrow_mc._height)
@@ -327,7 +327,7 @@ class ank.gapi.controls.ScrollBar extends ank.gapi.core.UIBasicComponent
 		this._oListener = new Object();
 		this._oListener.target = this._tTarget;
 		this._oListener.parent = this;
-		this._oListener.scroll = function(var2)
+		this._oListener.scroll = function(§\x1e\x19\x18§)
 		{
 			this.target.scroll = this.target.maxscroll * (this.parent.scrollPosition / Math.abs(this.parent._nMax - this.parent._nMin));
 		};

@@ -7,12 +7,12 @@ class dofus.graphics.gapi.ui.PopupHexa extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__value(var2)
+	function __set__value(§\x1e\x1b\x17§)
 	{
 		this._nValue = var2;
 		return this.__get__value();
 	}
-	function __set__useAllStage(var2)
+	function __set__useAllStage(§\x14\x0b§)
 	{
 		this._bUseAllStage = var2;
 		return this.__get__useAllStage();
@@ -70,12 +70,12 @@ class dofus.graphics.gapi.ui.PopupHexa extends dofus.graphics.gapi.core.DofusAdv
 		this.api.kernel.KeyManager.removeShortcutsListener(this);
 		this.dispatchEvent({type:"validate",value:_global.parseInt(this._winBackground.content._tiInput.text,16),params:this._oParams});
 	}
-	function complete(var2)
+	function complete(§\x1e\x19\x18§)
 	{
 		this.placeWindow();
 		this.addToQueue({object:this,method:this.initWindowContent});
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -86,7 +86,7 @@ class dofus.graphics.gapi.ui.PopupHexa extends dofus.graphics.gapi.core.DofusAdv
 		}
 		this.unloadThis();
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{

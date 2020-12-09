@@ -1,6 +1,6 @@
 class dofus.datacenter.Question extends Object
 {
-	function Question(var3, var4, var5)
+	function Question(§\x01\b§, §\x1d\x15§, §\x1d\x18§)
 	{
 		super();
 		this.initialize(var3,var4,var5);
@@ -17,18 +17,24 @@ class dofus.datacenter.Question extends Object
 	{
 		return this._eaResponsesObjects;
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x01\b§, §\x1d\x15§, §\x1d\x18§)
 	{
 		this.api = _global.API;
 		this._nQuestionID = var2;
-		this._sQuestionText = ank.utils.PatternDecoder.getDescription(this.api.lang.getDialogQuestionText(var2),var4);
-		this._eaResponsesObjects = new ank.utils.();
-		var var5 = 0;
-		while(var5 < var3.length)
+		var var5 = ank.utils.PatternDecoder.getDescription(this.api.lang.getDialogQuestionText(var2),var4);
+		if(dofus.Constants.DEBUG)
 		{
-			var var6 = Number(var3[var5]);
-			this._eaResponsesObjects.push({label:this.api.lang.fetchString(this.api.lang.getDialogResponseText(var6)),id:var6});
-			var5 = var5 + 1;
+			var5 = var5 + " (" + var2 + ")";
+		}
+		this._sQuestionText = var5;
+		this._eaResponsesObjects = new ank.utils.
+();
+		var var6 = 0;
+		while(var6 < var3.length)
+		{
+			var var7 = Number(var3[var6]);
+			this._eaResponsesObjects.push({label:this.api.lang.fetchString(this.api.lang.getDialogResponseText(var7)),id:var7});
+			var6 = var6 + 1;
 		}
 	}
 }

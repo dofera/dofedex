@@ -2,11 +2,11 @@ class ank.battlefield.LoadManager extends MovieClip
 {
 	static var MAX_PARALLELE_LOAD = 3;
 	static var STATE_WAITING = 0;
-	static var STATE_LOADING = 1;
-	static var STATE_LOADED = 2;
-	static var STATE_ERROR = -1;
-	static var STATE_UNKNOWN = -1;
-	function LoadManager(var2)
+	static var §§constant(24) = 1;
+	static var §§constant(55) = 2;
+	static var §§constant(70) = -1;
+	static var §§constant(59) = -1;
+	function LoadManager(§\x0b\r§)
 	{
 		super();
 		this.initialize(var3);
@@ -22,13 +22,14 @@ class ank.battlefield.LoadManager extends MovieClip
 			}
 			if(ank.battlefield.LoadManager._aMovieClipLoader[var2].state == ank.battlefield.LoadManager.STATE_WAITING)
 			{
+				org.flashdevelop.utils.FlashConnect.mtrace("processLoad " + ank.battlefield.LoadManager._aMovieClipLoader[var2].file,"ank.battlefield.LoadManager::processLoad","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/LoadManager.as",49);
 				ank.battlefield.LoadManager._aMovieClipLoader[var2].state = ank.battlefield.LoadManager.STATE_LOADING;
 				ank.battlefield.LoadManager._aMovieClipLoader[var2].loader.loadClip(ank.battlefield.LoadManager._aMovieClipLoader[var2].file,ank.battlefield.LoadManager._aMovieClipLoader[var2].container);
 			}
 			var2 = var2 + 1;
 		}
 	}
-	function getFileByMc(var2)
+	function getFileByMc(§\x0b\r§)
 	{
 		var var3 = 0;
 		while(var3 < ank.battlefield.LoadManager._aMovieClipLoader.length)
@@ -41,7 +42,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return undefined;
 	}
-	function getFileByName(var2)
+	function getFileByName(§\x1e\x12\x18§)
 	{
 		var var3 = 0;
 		while(var3 < ank.battlefield.LoadManager._aMovieClipLoader.length)
@@ -54,13 +55,13 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return undefined;
 	}
-	function initialize(var2)
+	function initialize(§\x0b\r§)
 	{
 		mx.events.EventDispatcher.initialize(this);
 		ank.battlefield.LoadManager._aMovieClipLoader = new Array();
 		this._mcMainContainer = var2;
 	}
-	function loadFile(var2)
+	function loadFile(§\x1e\x12\x18§)
 	{
 		if(this.isRegister(var2))
 		{
@@ -68,32 +69,27 @@ class ank.battlefield.LoadManager extends MovieClip
 			{
 				this.onFileLoaded(var2);
 			}
-			else
-			{
-				return undefined;
-			}
+			return undefined;
 		}
-		else
+		var var3 = new Object();
+		var3.file = var2;
+		var3.bitLoaded = 0;
+		var3.bitTotal = 1;
+		var3.state = ank.battlefield.LoadManager.STATE_WAITING;
+		var3.loader = new MovieClipLoader();
+		var var4 = this;
+		var3.loader.addListener(var4);
+		var3.container = this._mcMainContainer.createEmptyMovieClip(var2.split("/").join("_").split(".").join("_"),this._mcMainContainer.getNextHighestDepth());
+		ank.battlefield.LoadManager._aMovieClipLoader.push(var3);
+		if(this.waitingRequest > ank.battlefield.LoadManager.MAX_PARALLELE_LOAD)
 		{
-			var var3 = new Object();
-			var3.file = var2;
-			var3.bitLoaded = 0;
-			var3.bitTotal = 1;
-			var3.state = ank.battlefield.LoadManager.STATE_WAITING;
-			var3.loader = new MovieClipLoader();
-			var var4 = this;
-			var3.loader.addListener(var4);
-			var3.container = this._mcMainContainer.createEmptyMovieClip(var2.split("/").join("_").split(".").join("_"),this._mcMainContainer.getNextHighestDepth());
-			ank.battlefield.LoadManager._aMovieClipLoader.push(var3);
-			if(this.waitingRequest > ank.battlefield.LoadManager.MAX_PARALLELE_LOAD)
-			{
-				return undefined;
-			}
-			var3.state = ank.battlefield.LoadManager.STATE_LOADING;
-			var3.loader.loadClip(var2,var3.container);
+			return undefined;
 		}
+		var3.state = ank.battlefield.LoadManager.STATE_LOADING;
+		org.flashdevelop.utils.FlashConnect.mtrace("Load : " + var2,"ank.battlefield.LoadManager::loadFile","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/LoadManager.as",122);
+		var3.loader.loadClip(var2,var3.container);
 	}
-	function loadFiles(var2)
+	function loadFiles(§\x1e\x17§)
 	{
 		var var3 = 0;
 		while(var3 < var2.length)
@@ -116,7 +112,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return var2;
 	}
-	function isRegister(var2)
+	function isRegister(§\x1e\x12\x18§)
 	{
 		var var3 = 0;
 		while(var3 < ank.battlefield.LoadManager._aMovieClipLoader.length)
@@ -129,7 +125,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return false;
 	}
-	function isLoaded(var2)
+	function isLoaded(§\x1e\x12\x18§)
 	{
 		if(!this.isRegister(var2))
 		{
@@ -145,7 +141,7 @@ class ank.battlefield.LoadManager extends MovieClip
 			var3 = var3 + 1;
 		}
 	}
-	function areRegister(var2)
+	function areRegister(§\x1e\x17§)
 	{
 		true;
 		var var3 = var2.length > 0;
@@ -157,7 +153,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return var3;
 	}
-	function areLoaded(var2)
+	function areLoaded(§\x1e\x17§)
 	{
 		if(!this.areRegister(var2))
 		{
@@ -173,7 +169,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return var3;
 	}
-	function getFileState(var2)
+	function getFileState(§\x1e\x12\x18§)
 	{
 		var var3 = this.getFileByName(var2);
 		if(var3)
@@ -182,7 +178,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return ank.battlefield.LoadManager.STATE_UNKNOWN;
 	}
-	function getProgression(var2)
+	function §\§\§constant(60)§(§\x1e\x12\x18§)
 	{
 		var var3 = this.getFileByName(var2);
 		if(!var3)
@@ -195,7 +191,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return Math.floor(var3.bitLoaded / var3.bitTotal * 100);
 	}
-	function getProgressions(var2)
+	function getProgressions(§\x1e\x17§)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -211,18 +207,19 @@ class ank.battlefield.LoadManager extends MovieClip
 		}
 		return Math.floor(var3 / var2.length);
 	}
-	function onFileLoaded(var2)
+	function onFileLoaded(§\x1e\x12\x18§)
 	{
 		this.dispatchEvent({type:"onFileLoaded",value:var2});
 	}
-	function onLoadError(var2)
+	function onLoadError(§\x0b\r§)
 	{
 		var var3 = this.getFileByMc(var2);
+		org.flashdevelop.utils.FlashConnect.mtrace("onLoadError " + var3.file,"ank.battlefield.LoadManager::onLoadError","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/LoadManager.as",234);
 		var3.state = ank.battlefield.LoadManager.STATE_ERROR;
 		delete register3.loader;
 		this.processLoad();
 	}
-	function onLoadInit(var2)
+	function onLoadInit(§\x0b\r§)
 	{
 		var var3 = this.getFileByMc(var2);
 		var3.state = ank.battlefield.LoadManager.STATE_LOADED;
@@ -230,7 +227,7 @@ class ank.battlefield.LoadManager extends MovieClip
 		this.onFileLoaded(var3.file);
 		this.processLoad();
 	}
-	function onLoadProgress(var2, var3, var4)
+	function onLoadProgress(§\x0b\r§, §\b\x14§, §\b\x0e§)
 	{
 		var var5 = this.getFileByMc(var2);
 		if(!var5)

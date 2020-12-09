@@ -7,7 +7,7 @@ class dofus.graphics.gapi.ui.bigstore.BigStoreSellFilter implements dofus.graphi
 		this._nMaximalLevel = maximalLevel;
 		this._aAllowedTypes = allowedTypes;
 	}
-	function isItemListed(var2)
+	function isItemListed(§\f\x15§)
 	{
 		if(this._nMaximalLevel != null && var2.level > this._nMaximalLevel)
 		{

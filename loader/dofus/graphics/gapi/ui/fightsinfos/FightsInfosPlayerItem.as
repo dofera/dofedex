@@ -4,7 +4,7 @@ class dofus.graphics.gapi.ui.fightsinfos.FightsInfosPlayerItem extends ank.gapi.
 	{
 		super();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{

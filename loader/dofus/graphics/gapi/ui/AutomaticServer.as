@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__servers(var2)
+	function __set__servers(§\x10\x02§)
 	{
 		this._eaServers = var2;
 		return this.__get__servers();
 	}
-	function __set__remainingTime(var2)
+	function __set__remainingTime(§\x1e\x1e\x17§)
 	{
 		this._nRemainingTime = var2;
 		return this.__get__remainingTime();
@@ -51,7 +51,7 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 		this._lblAutomaticSelect.text = this.api.lang.getText("AUTOMATIC_SERVER_SELECTION");
 		this._lblManualSelect.text = this.api.lang.getText("MANUAL_SERVER_SELECT");
 	}
-	function getLessPopulatedServer(var2)
+	function getLessPopulatedServer(§\x10\x02§)
 	{
 		if(var2.length == 1)
 		{
@@ -59,7 +59,8 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 		}
 		var2.sortOn("populationWeight",Array.NUMERIC | Array.ASCENDING);
 		var var3 = var2[0].populationWeight;
-		var var4 = new ank.utils.();
+		var var4 = new ank.utils.
+();
 		var var5 = 0;
 		while(var5 < var2.length)
 		{
@@ -71,7 +72,8 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 		}
 		var4.sortOn("completion",Array.NUMERIC | Array.ASCENDING);
 		var var6 = var4[0].completion;
-		var var7 = new ank.utils.();
+		var var7 = new ank.utils.
+();
 		var var8 = 0;
 		while(var8 < var4.length)
 		{
@@ -83,18 +85,19 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 		}
 		return var7[Math.round(Math.random() * (var7.length - 1))].id;
 	}
-	function selectServer(var2)
+	function selectServer(§\x1e\x1e\x01§)
 	{
 		this.gapi.loadUIComponent("ServerInformations","ServerInformations",{server:var2});
 		this.gapi.getUIComponent("ServerInformations").addEventListener("serverSelected",this);
 		this.gapi.getUIComponent("ServerInformations").addEventListener("canceled",this);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
 			case "_mcAutomaticSelect":
-				var var3 = new ank.utils.();
+				var var3 = new ank.utils.
+();
 				var var4 = 0;
 				while(var4 < this._eaServers.length)
 				{
@@ -109,7 +112,8 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("ALL_SERVERS_ARE_DOWN"),"ERROR_BOX");
 					break;
 				}
-				var var5 = new ank.utils.();
+				var var5 = new ank.utils.
+();
 				var var6 = 0;
 				while(var6 < var3.length)
 				{
@@ -133,7 +137,8 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 					break;
 				}
 				this._eaPreselectedServers = var3;
-				var5 = new ank.utils.();
+				var5 = new ank.utils.
+();
 				var var7 = 0;
 				while(var7 < var3.length)
 				{
@@ -163,9 +168,10 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 				this.api.network.Account.getServersList();
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = 0;
 		while(var4 < this._eaPreselectedServers.length)
 		{
@@ -184,10 +190,10 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 			this.selectServer(this.getLessPopulatedServer(this._eaPreselectedServers));
 		}
 	}
-	function serverSelected(var2)
+	function serverSelected(§\x1e\x19\x18§)
 	{
 		this.gapi.unloadUIComponent("ServerInformations");
-		var var3 = new dofus.datacenter.(var2.value,1,0);
+		var var3 = new dofus.datacenter.(var2.value,1,0);
 		if(var3.isAllowed())
 		{
 			this.api.datacenter.Basics.aks_current_server = var3;
@@ -199,7 +205,7 @@ class dofus.graphics.gapi.ui.AutomaticServer extends dofus.graphics.gapi.core.Do
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("SERVER_NOT_ALLOWED_IN_YOUR_LANGUAGE"),"ERROR_BOX");
 		}
 	}
-	function canceled(var2)
+	function canceled(§\x1e\x19\x18§)
 	{
 		this.gapi.unloadUIComponent("ServerInformations");
 	}

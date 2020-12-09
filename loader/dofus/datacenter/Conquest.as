@@ -8,14 +8,16 @@ class dofus.datacenter.Conquest extends Object
 	}
 	function clear()
 	{
-		this._eaPlayers = new ank.utils.();
-		this._eaAttackers = new ank.utils.();
+		this._eaPlayers = new ank.utils.
+();
+		this._eaAttackers = new ank.utils.
+();
 	}
 	function __get__alignBonus()
 	{
 		return this._cbdAlignBonus;
 	}
-	function __set__alignBonus(var2)
+	function __set__alignBonus(§\x13\x12§)
 	{
 		this._cbdAlignBonus = var2;
 		this.dispatchEvent({type:"bonusChanged"});
@@ -25,7 +27,7 @@ class dofus.datacenter.Conquest extends Object
 	{
 		return this._cbdAlignMalus;
 	}
-	function __set__alignMalus(var2)
+	function __set__alignMalus(§\x13\x12§)
 	{
 		this._cbdAlignMalus = var2;
 		this.dispatchEvent({type:"bonusChanged"});
@@ -35,7 +37,7 @@ class dofus.datacenter.Conquest extends Object
 	{
 		return this._cbdRankMultiplicator;
 	}
-	function __set__rankMultiplicator(var2)
+	function __set__rankMultiplicator(§\x13\x12§)
 	{
 		this._cbdRankMultiplicator = var2;
 		this.dispatchEvent({type:"bonusChanged"});
@@ -45,7 +47,7 @@ class dofus.datacenter.Conquest extends Object
 	{
 		return this._eaPlayers;
 	}
-	function __set__players(var2)
+	function __set__players(§\x1e\n\x0f§)
 	{
 		this._eaPlayers = var2;
 		return this.__get__players();
@@ -54,7 +56,7 @@ class dofus.datacenter.Conquest extends Object
 	{
 		return this._eaAttackers;
 	}
-	function __set__attackers(var2)
+	function __set__attackers(§\x1e\n\x0f§)
 	{
 		this._eaAttackers = var2;
 		return this.__get__attackers();
@@ -63,7 +65,7 @@ class dofus.datacenter.Conquest extends Object
 	{
 		return this._cwdDatas;
 	}
-	function __set__worldDatas(var2)
+	function __set__worldDatas(§\x1e\n\x0f§)
 	{
 		this._cwdDatas = var2;
 		this.dispatchEvent({type:"worldDataChanged",value:var2});

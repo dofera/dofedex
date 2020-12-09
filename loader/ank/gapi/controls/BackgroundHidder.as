@@ -5,7 +5,7 @@ class ank.gapi.controls.BackgroundHidder extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__handCursor(var2)
+	function __set__handCursor(§\x19\x0f§)
 	{
 		this.useHandCursor = var2;
 		return this.__get__handCursor();

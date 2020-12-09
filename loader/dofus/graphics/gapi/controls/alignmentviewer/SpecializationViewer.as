@@ -28,7 +28,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.SpecializationViewer extends 
 	{
 		this.specializationChanged({specialization:this.api.datacenter.Player.specialization});
 	}
-	function setFeatsFromSpecialization(var2)
+	function setFeatsFromSpecialization(§\x1e\x18\x05§)
 	{
 		if(var2 != undefined)
 		{
@@ -38,10 +38,11 @@ class dofus.graphics.gapi.controls.alignmentviewer.SpecializationViewer extends 
 		else
 		{
 			this._lblFeats.text = this.api.lang.getText("FEATS");
-			this._lstFeats.dataProvider = new ank.utils.();
+			this._lstFeats.dataProvider = new ank.utils.
+();
 		}
 	}
-	function specializationChanged(var2)
+	function specializationChanged(§\x1e\x19\x18§)
 	{
 		this._mcTree.removeMovieClip();
 		this._mcOrder.removeMovieClip();
@@ -63,12 +64,12 @@ class dofus.graphics.gapi.controls.alignmentviewer.SpecializationViewer extends 
 			this._lstFeats._visible = false;
 		}
 	}
-	function specializationSelected(var2)
+	function specializationSelected(§\x1e\x19\x18§)
 	{
 		this._mcOrder.removeMovieClip();
 		this.setFeatsFromSpecialization(var2.specialization);
 	}
-	function orderSelected(var2)
+	function orderSelected(§\x1e\x19\x18§)
 	{
 		this._mcOrder.removeMovieClip();
 		this.attachMovie("AlignmentViewerOrder","_mcOrder",this.getNextHighestDepth(),{_x:this._mcOrderPlacer._x,_y:this._mcOrderPlacer._y,specialization:this.api.datacenter.Player.specialization});

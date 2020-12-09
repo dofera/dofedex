@@ -1,6 +1,6 @@
 class dofus.datacenter.Subarea extends Object
 {
-	function Subarea(var3, var4)
+	function Subarea(§\x05\x02§, §\t\f§)
 	{
 		super();
 		this.api = _global.API;
@@ -14,7 +14,7 @@ class dofus.datacenter.Subarea extends Object
 	{
 		return this._oAlignment;
 	}
-	function __set__alignment(var2)
+	function __set__alignment(§\x1e\x1a\x18§)
 	{
 		this._oAlignment = var2;
 		return this.__get__alignment();
@@ -27,9 +27,9 @@ class dofus.datacenter.Subarea extends Object
 	{
 		return dofus.Constants.AREA_ALIGNMENT_COLOR[this._oAlignment.index];
 	}
-	function initialize(var2, var3)
+	function initialize(§\x05\x02§, §\t\f§)
 	{
 		this._nID = var2;
-		this._oAlignment = new dofus.datacenter.(var3);
+		this._oAlignment = new dofus.datacenter.(var3);
 	}
 }

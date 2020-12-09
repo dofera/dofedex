@@ -1,6 +1,6 @@
 class dofus.datacenter.Accessory extends Object
 {
-	function Accessory(var3, var4, var5)
+	function Accessory(§\x1e\x1b\x1d§, §\x1e\x1c\x03§, §\x05\r§)
 	{
 		super();
 		this.api = _global.API;
@@ -30,7 +30,7 @@ class dofus.datacenter.Accessory extends Object
 	{
 		return this._nFrame;
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x1e\x1b\x1d§, §\x1e\x1c\x03§, §\x05\r§)
 	{
 		this._nUnicID = var2;
 		if(var4 != undefined)

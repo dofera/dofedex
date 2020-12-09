@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		super();
 	}
-	function __set__data(var2)
+	function __set__data(§\x1e\x1a\x02§)
 	{
 		this._oData = var2;
 		return this.__get__data();
 	}
-	function __set__isMount(var2)
+	function __set__isMount(§\x17\x1a§)
 	{
 		this._bMount = var2;
 		return this.__get__isMount();
@@ -101,17 +101,17 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 		this._ivInventoryViewer2.checkMountPods = this._bMount;
 		this.modelChanged();
 	}
-	function hideItemViewer(var2)
+	function hideItemViewer(§\x19\x0e§)
 	{
 		this._itvItemViewer._visible = !var2;
 		this._winItemViewer._visible = !var2;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.callClose();
 		var var0 = var2.target;
 	}
-	function selectedItem(var2)
+	function selectedItem(§\x1e\x19\x18§)
 	{
 		if(var2.item == undefined)
 		{
@@ -134,7 +134,7 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 			}
 		}
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		var var3 = var2.item;
 		var var4 = var2.targets;
@@ -165,7 +165,7 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 				break;
 		}
 	}
-	function moveItems(var2, var3)
+	function moveItems(§\x1e\x10§, §\x1c\x1a§)
 	{
 		if((var3 && this._bMount || !var3) && !this.api.datacenter.Player.canReceiveItems(var2,var3 && this._bMount))
 		{
@@ -182,7 +182,7 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this.api.network.Exchange.movementItems(var4);
 	}
-	function moveItem(var2, var3, var4)
+	function moveItem(§\x1e\x19\r§, §\x1c\x1a§, §\x17\x17§)
 	{
 		var var5 = var2.Quantity;
 		if(var3 && this._bMount || !var3)
@@ -201,11 +201,11 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this.api.network.Exchange.movementItem(var3,var2,var6);
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		this._ivInventoryViewer2.dataProvider = this._oData.inventory;
 	}
-	function dropItem(var2)
+	function dropItem(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -216,7 +216,7 @@ class dofus.graphics.gapi.ui.Storage extends dofus.graphics.gapi.core.DofusAdvan
 				this.api.network.Exchange.movementItem(true,var2.item,var2.quantity);
 		}
 	}
-	function dragKama(var2)
+	function dragKama(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{

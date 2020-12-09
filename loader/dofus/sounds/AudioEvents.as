@@ -7,7 +7,7 @@ class dofus.sounds.AudioEvents
 	{
 		if(dofus.sounds.AudioEvents.instance == null)
 		{
-			dofus.sounds.AudioEvents.instance = new dofus.sounds.();
+			dofus.sounds.AudioEvents.instance = new dofus.sounds.();
 		}
 		dofus.sounds.AudioEvents.api = _global.API;
 		return dofus.sounds.AudioEvents.instance;
@@ -16,7 +16,7 @@ class dofus.sounds.AudioEvents
 	{
 		return dofus.sounds.AudioManager.getInstance();
 	}
-	function onGameStart(var2)
+	function onGameStart(§\x1e\x06§)
 	{
 		if(var2 == undefined)
 		{

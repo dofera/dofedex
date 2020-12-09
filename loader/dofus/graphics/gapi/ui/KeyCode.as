@@ -16,12 +16,12 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 		}});
 		return this.__get__title();
 	}
-	function __set__changeType(var2)
+	function __set__changeType(§\x07\x1a§)
 	{
 		this._nChangeType = var2;
 		return this.__get__changeType();
 	}
-	function __set__slotsCount(var2)
+	function __set__slotsCount(§\x1e\x1d\x12§)
 	{
 		if(var2 > 8)
 		{
@@ -143,13 +143,13 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 		this._nCurrentSelectedSlot = ++this._nCurrentSelectedSlot % this._nSlotsCount;
 		this.selectSlot(var2,this._nCurrentSelectedSlot);
 	}
-	function selectSlot(var2, var3)
+	function selectSlot(§\x04\x02§, §\x1e\x1d\x13§)
 	{
 		var var4 = this._mcSlots["_ctrCode" + var2];
 		var4.selected = false;
 		this._mcSlots["_ctrCode" + var3].selected = true;
 	}
-	function setKeyInCurrentSlot(var2)
+	function setKeyInCurrentSlot(§\x04\n§)
 	{
 		var var3 = this._mcSlots["_ctrCode" + this._nCurrentSelectedSlot];
 		var var4 = this["_ctrSymbol" + var2];
@@ -171,11 +171,11 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this.api.network.Key.sendKey(this._nChangeType,!var2?this._aKeyCode.join(""):"-");
 	}
-	function dblClick(var2)
+	function dblClick(§\x1e\x19\x18§)
 	{
 		this.click(var2);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -192,7 +192,7 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 				this.setKeyInCurrentSlot(var2.target.params.index);
 		}
 	}
-	function drop(var2)
+	function drop(§\x1e\x19\x18§)
 	{
 		var var3 = this.gapi.getCursor();
 		if(var3 == undefined)
@@ -203,7 +203,7 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 		var2.target.contentData = var3;
 		this._aKeyCode[var2.target.params.index] = var3.value;
 	}
-	function drag(var2)
+	function drag(§\x1e\x19\x18§)
 	{
 		this.gapi.removeCursor();
 		var var3 = var2.target.contentData;
@@ -218,7 +218,7 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 			this._aKeyCode[var2.target.params.index] = "_";
 		}
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(Selection.getFocus() != null)
 		{
@@ -246,7 +246,7 @@ class dofus.graphics.gapi.ui.KeyCode extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		return true;
 	}
-	function onKeys(var2)
+	function onKeys(§\x1e\x11\x10§)
 	{
 		if(Selection.getFocus() != null)
 		{

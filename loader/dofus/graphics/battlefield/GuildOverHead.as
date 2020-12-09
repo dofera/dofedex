@@ -1,12 +1,13 @@
 class dofus.graphics.battlefield.GuildOverHead extends dofus.graphics.battlefield.AbstractTextOverHead
 {
-	function GuildOverHead(var3, var4, var5, var6, var7, var8, var9)
+	function GuildOverHead(§\x1e\r\x02§, §\x1e\r\x1a§, §\x1e\x19\x1a§, §\x1e\x12\x18§, §\x05\r§, §\x01\x11§, §\x1e\x0b\r§)
 	{
 		super();
 		this.initialize(var9 != undefined);
+		org.flashdevelop.utils.FlashConnect.mtrace("title : " + var9,"dofus.graphics.battlefield.GuildOverHead::GuildOverHead","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/battlefield/GuildOverHead.as",25);
 		this.draw(var3,var4,var5,var6,var7,var8,var9);
 	}
-	function initialize(var2)
+	function initialize(§\x11\x07§)
 	{
 		super.initialize();
 		this.createTextField("_txtGuildName",30,0,-2 + dofus.graphics.battlefield.AbstractTextOverHead.HEIGHT_SPACER,0,0);
@@ -17,7 +18,7 @@ class dofus.graphics.battlefield.GuildOverHead extends dofus.graphics.battlefiel
 			this._txtTitle.embedFonts = true;
 		}
 	}
-	function draw(var2, var3, var4, var5, var6, var7, var8)
+	function draw(§\x1e\x12\b§, §\x1e\r\x1a§, §\x1e\x19\x1a§, §\x1e\x12\x18§, §\x05\r§, §\x01\x11§, §\x1e\x0b\r§)
 	{
 		var var9 = var5 != undefined && var6 != undefined;
 		if(var7 == undefined)

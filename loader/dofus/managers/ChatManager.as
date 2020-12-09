@@ -30,7 +30,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 	static var LINK_FILTERS = ["WWW","HTTP","@",".COM",".FR",".INFO","HOTMAIL","MSN","GMAIL","FTP"];
 	static var WHITE_LIST = [".DOFUS.COM",".ANKAMA-GAMES.COM",".GOOGLE.COM",".DOFUS.FR",".DOFUS.DE",".DOFUS.ES",".DOFUS.CO.UK",".WAKFU.COM",".ANKAMA-SHOP.COM",".ANKAMA.COM",".ANKAMA-EDITIONS.COM",".ANKAMA-WEB.COM",".ANKAMA-EVENTS.COM",".DOFUS-ARENA.COM",".MUTAFUKAZ.COM",".MANGA-DOFUS.COM",".LABANDEPASSANTE.FR","@_@",".ANKAMA-PLAY.COM"];
 	var _nFileOutput = 0;
-	function ChatManager(var2)
+	function ChatManager(§\x1e\x1a\x16§)
 	{
 		super();
 		dofus.managers.ChatManager._sSelf = this;
@@ -40,7 +40,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 	{
 		return this._nFileOutput;
 	}
-	function __set__fileOutput(var2)
+	function __set__fileOutput(§\x05\x12§)
 	{
 		this._nFileOutput = var2;
 		return this.__get__fileOutput();
@@ -49,7 +49,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.ChatManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3);
 		this._aItemsBuffer = new Array();
@@ -59,7 +59,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		this.updateRigth();
 		this.clear();
 	}
-	function addRawMessage(var2, var3, var4, var5)
+	function addRawMessage(§\x03\x19§, §\x1e\x10\x0e§, §\x1e\x0e\x14§, §\x1e\f\x1c§)
 	{
 		var var6 = new Object();
 		var6.mapId = var2;
@@ -105,16 +105,16 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		this._aRawMessages = new Array();
 		this._nMessageCounterInfo = 0;
 	}
-	function setTypes(var2)
+	function setTypes(§\x1d\x06§)
 	{
 		this._aVisibleTypes = var2;
 		this.refresh(true);
 	}
-	function isTypeVisible(var2)
+	function isTypeVisible(§\x1e\x1c\x03§)
 	{
 		return this._aVisibleTypes[var2];
 	}
-	function setTypeVisible(var2, var3)
+	function setTypeVisible(§\x1e\x1c\x03§, §\x14\x02§)
 	{
 		this._aVisibleTypes[var2] = var3;
 		this.refresh(true);
@@ -135,7 +135,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function applyOutputCensorship(var2)
+	function applyOutputCensorship(§\x1e\r\x02§)
 	{
 		if(this.api.datacenter.Player.isAuthorized)
 		{
@@ -187,7 +187,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return true;
 	}
-	function applyInputCensorship(var2)
+	function applyInputCensorship(§\x1e\r\x02§)
 	{
 		if(!this.api.kernel.OptionsManager.getOption("CensorshipFilter") || !this.api.lang.getConfigText("CENSORSHIP_ENABLE_INPUT"))
 		{
@@ -227,7 +227,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		var3.reverse();
 		return var3.join(" ");
 	}
-	function avoidPonctuation(var2)
+	function avoidPonctuation(§\x1e\f\x04§)
 	{
 		var var3 = new String();
 		var var4 = 0;
@@ -242,7 +242,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function getCensoredWord(var2)
+	function getCensoredWord(§\x1e\f\x04§)
 	{
 		var var3 = new String();
 		var var4 = new String();
@@ -272,7 +272,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function addLinkWarning(var2)
+	function addLinkWarning(§\x1e\r\x02§)
 	{
 		var var3 = var2.toUpperCase();
 		if(var3.indexOf("</A>") > -1)
@@ -321,7 +321,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function addText(var2, var3, var4, var5)
+	function addText(§\x1e\r\x02§, §\x1e\x14\x07§, §\x15\b§, §\x1e\f\f§)
 	{
 		if(var4 == undefined)
 		{
@@ -331,113 +331,112 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		var var9 = false;
 		if((var var0 = var3) !== dofus.Constants.MSG_CHAT_COLOR)
 		{
-			loop0:
-			switch(null)
+			if(var0 !== dofus.Constants.EMOTE_CHAT_COLOR)
 			{
-				case dofus.Constants.EMOTE_CHAT_COLOR:
-					var var7 = dofus.managers.ChatManager.TYPE_MESSAGES;
-					var9 = true;
-					var var8 = true;
-					break;
-				case dofus.Constants.THINK_CHAT_COLOR:
-					var7 = dofus.managers.ChatManager.TYPE_MESSAGES;
-					var9 = true;
-					var8 = true;
-					break;
-				default:
-					switch(null)
-					{
-						case dofus.Constants.GROUP_CHAT_COLOR:
-						case dofus.Constants.MSGCHUCHOTE_CHAT_COLOR:
-							var7 = dofus.managers.ChatManager.TYPE_WISP;
-							var9 = true;
-							var8 = true;
-							if(var4)
+				loop0:
+				switch(null)
+				{
+					case dofus.Constants.THINK_CHAT_COLOR:
+						var var7 = dofus.managers.ChatManager.TYPE_MESSAGES;
+						var9 = true;
+						var var8 = true;
+						break;
+					default:
+						if(var0 !== dofus.Constants.MSGCHUCHOTE_CHAT_COLOR)
+						{
+							switch(null)
 							{
-								this.api.sounds.events.onChatWisper();
-							}
-							break loop0;
-						default:
-							if(var0 !== dofus.Constants.INFO_CHAT_COLOR)
-							{
-								switch(null)
-								{
-									case dofus.Constants.ERROR_CHAT_COLOR:
-										var7 = dofus.managers.ChatManager.TYPE_ERRORS;
-										var8 = true;
-										if(var4)
+								case dofus.Constants.INFO_CHAT_COLOR:
+									var7 = dofus.managers.ChatManager.TYPE_INFOS;
+									this._nMessageCounterInfo++;
+									var8 = false;
+									break loop0;
+								case dofus.Constants.ERROR_CHAT_COLOR:
+									var7 = dofus.managers.ChatManager.TYPE_ERRORS;
+									var8 = true;
+									if(var4)
+									{
+										if(this._bFirstErrorCatched)
 										{
-											if(this._bFirstErrorCatched)
-											{
-												this.api.sounds.events.onError();
-											}
-											else
-											{
-												this._bFirstErrorCatched = true;
-											}
+											this.api.sounds.events.onError();
 										}
-										break loop0;
-									case dofus.Constants.GUILD_CHAT_COLOR:
-										var7 = dofus.managers.ChatManager.TYPE_GUILD;
-										var9 = true;
-										var8 = true;
-										if(var4 && this.api.kernel.OptionsManager.getOption("GuildMessageSound"))
+										else
 										{
-											this.api.sounds.events.onChatWisper();
+											this._bFirstErrorCatched = true;
 										}
-										break loop0;
-									default:
-										switch(null)
-										{
-											case dofus.Constants.PVP_CHAT_COLOR:
-												var7 = dofus.managers.ChatManager.TYPE_PVP;
-												var9 = true;
-												var8 = true;
-												break loop0;
-											case dofus.Constants.TRADE_CHAT_COLOR:
-												var7 = dofus.managers.ChatManager.TYPE_TRADE;
-												var9 = true;
-												var8 = true;
-												break loop0;
-											default:
-												if(var0 !== dofus.Constants.RECRUITMENT_CHAT_COLOR)
-												{
-													switch(null)
-													{
-														case dofus.Constants.MEETIC_CHAT_COLOR:
-															var7 = dofus.managers.ChatManager.TYPE_MEETIC;
-															var9 = true;
-															var8 = true;
-															break loop0;
-														default:
-															if(var0 !== dofus.Constants.COMMANDS_CHAT_COLOR)
-															{
-																ank.utils.Logger.err("[Chat] Erreur : mauvaise couleur " + var2);
-																return undefined;
-															}
-														case dofus.Constants.ADMIN_CHAT_COLOR:
-															var7 = dofus.managers.ChatManager.TYPE_ADMIN;
-															var8 = true;
-													}
-												}
-												else
-												{
+									}
+									break loop0;
+								default:
+									switch(null)
+									{
+										case dofus.Constants.GUILD_CHAT_COLOR:
+											var7 = dofus.managers.ChatManager.TYPE_GUILD;
+											var9 = true;
+											var8 = true;
+											if(var4 && this.api.kernel.OptionsManager.getOption("GuildMessageSound"))
+											{
+												this.api.sounds.events.onChatWisper();
+											}
+											break loop0;
+										case dofus.Constants.PVP_CHAT_COLOR:
+											var7 = dofus.managers.ChatManager.TYPE_PVP;
+											var9 = true;
+											var8 = true;
+											break loop0;
+										default:
+											switch(null)
+											{
+												case dofus.Constants.TRADE_CHAT_COLOR:
+													var7 = dofus.managers.ChatManager.TYPE_TRADE;
+													var9 = true;
+													var8 = true;
+													break loop0;
+												case dofus.Constants.RECRUITMENT_CHAT_COLOR:
 													var7 = dofus.managers.ChatManager.TYPE_RECRUITMENT;
 													var9 = true;
 													var8 = true;
 													break loop0;
-												}
-										}
-								}
+												default:
+													if(var0 !== dofus.Constants.MEETIC_CHAT_COLOR)
+													{
+														switch(null)
+														{
+															case dofus.Constants.ADMIN_CHAT_COLOR:
+															case dofus.Constants.COMMANDS_CHAT_COLOR:
+																var7 = dofus.managers.ChatManager.TYPE_ADMIN;
+																var8 = true;
+																break loop0;
+															default:
+																ank.utils.Logger.err("[Chat] Erreur : mauvaise couleur " + var2);
+																return undefined;
+														}
+													}
+													else
+													{
+														var7 = dofus.managers.ChatManager.TYPE_MEETIC;
+														var9 = true;
+														var8 = true;
+														break loop0;
+													}
+											}
+									}
 							}
-							else
-							{
-								var7 = dofus.managers.ChatManager.TYPE_INFOS;
-								this._nMessageCounterInfo++;
-								var8 = false;
-								break loop0;
-							}
-					}
+						}
+					case dofus.Constants.GROUP_CHAT_COLOR:
+						var7 = dofus.managers.ChatManager.TYPE_WISP;
+						var9 = true;
+						var8 = true;
+						if(var4)
+						{
+							this.api.sounds.events.onChatWisper();
+						}
+				}
+			}
+			else
+			{
+				var7 = dofus.managers.ChatManager.TYPE_MESSAGES;
+				var9 = true;
+				var8 = true;
 			}
 		}
 		else
@@ -470,7 +469,16 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		this.refresh();
 	}
-	function refresh(var2)
+	function refresh(§\x19\x17§)
+	{
+		if(this._nRefreshVisuallyTimeout != undefined)
+		{
+			_global.clearTimeout(this._nRefreshVisuallyTimeout);
+		}
+		var var3 = _global.setTimeout(this,"realRefresh",dofus.Constants.DELAYED_CHAT_VISUAL_REFRESH,var2);
+		this._nRefreshVisuallyTimeout = var3;
+	}
+	function realRefresh(§\x19\x17§)
 	{
 		var var3 = this._aMessages.length;
 		var var4 = new String();
@@ -506,7 +514,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		this.api.ui.getUIComponent("Banner").setChatText(var4);
 	}
-	static function safeHtml(var2)
+	static function safeHtml(§\x1e\x15\n§)
 	{
 		var var3 = true;
 		var var4 = new Array();
@@ -576,14 +584,14 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return {v:var3,t:var2.split("<").join("&lt;").split(">").join("&gt;")};
 	}
-	function parseInlineItems(var2, var3)
+	function parseInlineItems(§\x1e\x10\x0f§, §\x1e\x10§)
 	{
 		var var4 = 0;
 		while(var4 < var3.length)
 		{
 			var var5 = Number(var3[var4]);
 			var var6 = var3[var4 + 1];
-			var var7 = new dofus.datacenter.(0,var5,1,1,var6,1);
+			var var7 = new dofus.datacenter.(0,var5,1,1,var6,1);
 			var var8 = "°" + var4 / 2;
 			var var9 = this.getLinkItem(var7);
 			var var10 = var2.indexOf(var8);
@@ -597,7 +605,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function parseInlinePos(var2)
+	function parseInlinePos(§\x1e\x10\x0f§)
 	{
 		var var3 = var2;
 		var var4 = 0;
@@ -613,7 +621,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 				var var11 = var3.substring(var8 + 1,var9 - 1).split(var10);
 				if(var11.length == 2)
 				{
-					if(!_global.isNaN(var11[0]) && !_global.isNaN(new ank.utils.(var11[0]).trim().toString()))
+					if(!_global.isNaN(var11[0]) && !_global.isNaN(new ank.utils.(var11[0]).trim().toString()))
 					{
 						var var12 = _global.parseInt(var11[0]);
 						var var13 = _global.parseInt(var11[1]);
@@ -637,7 +645,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function parseSecretsEmotes(var2)
+	function parseSecretsEmotes(§\x1e\x10\x0f§)
 	{
 		if(!this.api.lang.getConfigText("CHAT_USE_SECRETS_EMOTES"))
 		{
@@ -667,7 +675,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function getLinkName(var2, var3)
+	function getLinkName(§\x1e\x10\x06§, §\x1e\f\f§)
 	{
 		if(var3 != undefined && (var3.length > 0 && var3 != ""))
 		{
@@ -675,16 +683,16 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return "<b><a href=\'asfunction:onHref,ShowPlayerPopupMenu," + var2 + "\'>" + var2 + "</a></b>";
 	}
-	function getLinkCoord(var2, var3)
+	function getLinkCoord(§\x1e\x1b\r§, §\x1e\x1b\x05§)
 	{
 		return "<b><a href=\'asfunction:onHref,updateCompass," + var2 + "," + var3 + "\'>[" + var2 + "," + var3 + "]</a></b>";
 	}
-	function getLinkItem(var2)
+	function getLinkItem(§\x1e\x19\r§)
 	{
 		var var3 = this.addItemToBuffer(var2);
 		return "<b>[<a href=\'asfunction:onHref,ShowItemViewer," + String(var3) + "\'>" + var2.name + "</a>]</b>";
 	}
-	function addItemToBuffer(var2)
+	function addItemToBuffer(§\x1e\x19\r§)
 	{
 		if(this._nItemsBufferIDs == undefined || _global.isNaN(this._nItemsBufferIDs))
 		{
@@ -702,7 +710,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		this._aItemsBuffer.push({id:this._nItemsBufferIDs,data:var2});
 		return this._nItemsBufferIDs;
 	}
-	function getItemFromBuffer(var2)
+	function getItemFromBuffer(§\x04\x13§)
 	{
 		var var3 = this._aItemsBuffer.length;
 		while(var3 >= 0)
@@ -715,7 +723,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return undefined;
 	}
-	static function isPonctuation(var2)
+	static function isPonctuation(§\x1e\x14\x11§)
 	{
 		var var3 = 0;
 		while(var3 < dofus.managers.ChatManager.PONCTUATION.length)
@@ -728,14 +736,14 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return false;
 	}
-	function addToBlacklist(var2, var3)
+	function addToBlacklist(§\x1e\x10\x06§, §\x07\x10§)
 	{
 		if(var2 != this.api.datacenter.Player.Name && !this.isBlacklisted(var2))
 		{
 			this._aBlacklist.push({sName:var2,nClass:var3});
 		}
 	}
-	function removeToBlacklist(var2)
+	function removeToBlacklist(§\x1e\x10\x06§)
 	{
 		for(var i in this._aBlacklist)
 		{
@@ -744,9 +752,6 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 				this._aBlacklist[i] = undefined;
 				this.api.ui.getUIComponent("Friends").updateIgnoreList();
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("TEMPORARY_NOMORE_BLACKLISTED",[var2]),"INFO_CHAT");
-				while(§§pop() != null)
-				{
-				}
 				return undefined;
 			}
 		}
@@ -755,7 +760,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 	{
 		return this._aBlacklist;
 	}
-	function isBlacklisted(var2)
+	function isBlacklisted(§\x1e\x10\x06§)
 	{
 		for(var i in this._aBlacklist)
 		{
@@ -766,7 +771,7 @@ class dofus.managers.ChatManager extends dofus.utils.ApiElement
 		}
 		return false;
 	}
-	function getMessageFromId(var2)
+	function getMessageFromId(§\x1e\f\f§)
 	{
 		for(var i in this._aMessages)
 		{

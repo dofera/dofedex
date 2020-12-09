@@ -1,6 +1,6 @@
 class dofus.datacenter.ItemSet extends Object
 {
-	function ItemSet(var2, var3, var4)
+	function ItemSet(§\x05\x02§, §\x1e\x13\t§, §\x1e\x11§)
 	{
 		super();
 		this.initialize(var3,var4,var5);
@@ -29,7 +29,7 @@ class dofus.datacenter.ItemSet extends Object
 	{
 		return dofus.datacenter.Item.getItemDescriptionEffects(this._aEffects);
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x05\x02§, §\x1e\x13\t§, §\x1e\x11§)
 	{
 		if(var3 == undefined)
 		{
@@ -44,7 +44,7 @@ class dofus.datacenter.ItemSet extends Object
 		this.setEffects(var3);
 		this.setItems(var4);
 	}
-	function setEffects(var2)
+	function setEffects(§\x12\x14§)
 	{
 		this._sEffects = var2;
 		this._aEffects = new Array();
@@ -61,7 +61,7 @@ class dofus.datacenter.ItemSet extends Object
 			var4 = var4 + 1;
 		}
 	}
-	function setItems(var2)
+	function setItems(§\x1e\x11§)
 	{
 		var var3 = this.api.lang.getItemSetText(this._nID).i;
 		this._aItems = new Array();
@@ -76,7 +76,7 @@ class dofus.datacenter.ItemSet extends Object
 			var var6 = Number(var3[var5]);
 			if(!_global.isNaN(var6))
 			{
-				var var7 = new dofus.datacenter.(0,var6,1);
+				var var7 = new dofus.datacenter.(0,var6,1);
 				var var8 = var4[var6] == true;
 				this._aItems.push({isEquiped:var8,item:var7});
 			}

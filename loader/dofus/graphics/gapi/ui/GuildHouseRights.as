@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.GuildHouseRights extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__house(var2)
+	function __set__house(§\r\x0f§)
 	{
 		this._hHouse = var2;
 		return this.__get__house();
@@ -113,15 +113,15 @@ class dofus.graphics.gapi.ui.GuildHouseRights extends dofus.graphics.gapi.core.D
 		this.api.network.Houses.rights(var2);
 		this.unloadThis();
 	}
-	function guild(var2)
+	function guild(§\x1e\x19\x18§)
 	{
 		this.update();
 	}
-	function shared(var2)
+	function shared(§\x1e\x19\x18§)
 	{
 		this.update();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -139,12 +139,12 @@ class dofus.graphics.gapi.ui.GuildHouseRights extends dofus.graphics.gapi.core.D
 				this.validate();
 				break;
 			default:
-				switch(null)
+				if(var0 !== this._btnCancel)
 				{
-					case this._btnClose:
-					case this._btnCancel:
-						this.unloadThis();
+					break;
 				}
+			case this._btnClose:
+				this.unloadThis();
 		}
 	}
 }

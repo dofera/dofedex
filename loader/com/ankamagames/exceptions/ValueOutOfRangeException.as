@@ -4,7 +4,7 @@ class com.ankamagames.exceptions.ValueOutOfRangeException extends com.ankamagame
 	{
 		super(objectErrorSource,className,methodName,variableName + "[" + invalidValue + ") is out of of range. The value value should be between " + minValue + " and " + maxValue + ").");
 	}
-	function getExceptionName(var2)
+	function getExceptionName(§\x1e\n\f§)
 	{
 		return "com.ankamagames.exceptions.ValueOutOfRangeException";
 	}

@@ -5,7 +5,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 	var _bIsBusy = false;
 	var _aGameSpriteLeftHistory = new Array();
 	var nLastMapIdReceived = -1;
-	function Game(var2, var3)
+	function Game(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -17,19 +17,19 @@ class dofus.aks.Game extends dofus.aks.Handler
 	{
 		this.aks.send("GC" + dofus.aks.Game.TYPE_SOLO);
 	}
-	function leave(var2)
+	function leave(§\x1e\r\x1b§)
 	{
 		this.aks.send("GQ" + (var2 != undefined?var2:""));
 	}
-	function setPlayerPosition(var2)
+	function setPlayerPosition(§\b\x02§)
 	{
 		this.aks.send("Gp" + var2,true);
 	}
-	function ready(var2)
+	function ready(§\x16\x11§)
 	{
 		this.aks.send("GR" + (!var2?"0":"1"));
 	}
-	function getMapData(var2)
+	function getMapData(§\x03\x18§)
 	{
 		if(this.api.lang.getConfigText("ENABLE_CLIENT_MAP_REQUEST"))
 		{
@@ -47,11 +47,11 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.aks.send("Gt",false);
 		}
 	}
-	function turnOk(var2)
+	function turnOk(§\x1e\r\x1b§)
 	{
 		this.aks.send("GT" + (var2 == undefined?"":var2),false);
 	}
-	function turnOk2(var2)
+	function turnOk2(§\x1e\r\x1b§)
 	{
 		this.aks.send("GT" + (var2 == undefined?"":var2),false);
 	}
@@ -59,7 +59,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 	{
 		this.aks.send("GP*",false);
 	}
-	function enabledPVPMode(var2)
+	function enabledPVPMode(§\x1a\x11§)
 	{
 		this.aks.send("GP" + (!var2?"-":"+"),false);
 	}
@@ -67,15 +67,15 @@ class dofus.aks.Game extends dofus.aks.Handler
 	{
 		this.aks.send("GF",false);
 	}
-	function setFlag(var2)
+	function setFlag(§\b\x03§)
 	{
 		this.aks.send("Gf" + var2,false);
 	}
-	function showFightChallengeTarget(var2)
+	function showFightChallengeTarget(§\x13\x07§)
 	{
 		this.aks.send("Gdi" + var2,false);
 	}
-	function onCreate(var2, var3)
+	function onCreate(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(!var2)
 		{
@@ -102,9 +102,8 @@ class dofus.aks.Game extends dofus.aks.Handler
 		this.api.gfx.cleanMap(1);
 		this.onCreateSolo();
 	}
-	function onJoin(var2)
+	function onJoin(§\x1e\x12\x1a§)
 	{
-		this.api.ui.getUIComponent("Zoom").callClose();
 		this.api.datacenter.Player.guildInfos.defendedTaxCollectorID = undefined;
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -144,7 +143,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		this.api.ui.unloadLastUIAutoHideComponent();
 		this.api.ui.unloadUIComponent("FightsInfos");
 	}
-	function onPositionStart(var2)
+	function onPositionStart(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -191,7 +190,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		}
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_PLACEMENT);
 	}
-	function onPlayersCoordinates(var2)
+	function onPlayersCoordinates(§\x1e\x12\x1a§)
 	{
 		if(var2 != "e")
 		{
@@ -211,7 +210,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.api.sounds.events.onError();
 		}
 	}
-	function onReady(var2)
+	function onReady(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "1";
 		var var4 = var2.substr(1);
@@ -269,7 +268,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.api.datacenter.Game.isTacticMode = true;
 		}
 	}
-	function onTurnStart(var2)
+	function onTurnStart(§\x1e\x12\x1a§)
 	{
 		if(this.api.datacenter.Game.isFirstTurn)
 		{
@@ -330,7 +329,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		ank.utils.Timer.setTimer(this.api.network.Ping,"GameDecoDetect",this.api.network,this.api.network.quickPing,var6 * 1000);
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_START);
 	}
-	function onTurnFinish(var2)
+	function onTurnFinish(§\x1e\x12\x1a§)
 	{
 		var var3 = var2;
 		var var4 = this.api.datacenter.Sprites.getItemAt(var3);
@@ -346,13 +345,13 @@ class dofus.aks.Game extends dofus.aks.Handler
 		this.api.ui.getUIComponent("Timeline").stopChrono();
 		this.api.kernel.GameManager.cleanUpGameArea(true);
 	}
-	function onTurnlist(var2)
+	function onTurnlist(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		this.api.datacenter.Game.turnSequence = var3;
 		this.api.ui.getUIComponent("Timeline").update();
 	}
-	function onTurnMiddle(var2)
+	function onTurnMiddle(§\x1e\x12\x1a§)
 	{
 		if(!this.api.datacenter.Game.isRunning)
 		{
@@ -440,7 +439,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var2.addAction(24,false,this,this.turnEnd,[]);
 		var2.execute();
 	}
-	function onTurnReady(var2)
+	function onTurnReady(§\x1e\x12\x1a§)
 	{
 		var var3 = var2;
 		var var4 = this.api.datacenter.Sprites.getItemAt(var3);
@@ -456,7 +455,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.turnOk2();
 		}
 	}
-	function onMapData(var2)
+	function onMapData(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -464,10 +463,6 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var var6 = var3[2];
 		if(Number(var4) == this.api.datacenter.Map.id)
 		{
-			if(!this.api.datacenter.Map.bOutdoor)
-			{
-				this.api.kernel.NightManager.noEffects();
-			}
 			this.api.gfx.onMapLoaded();
 			return undefined;
 		}
@@ -484,7 +479,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			dofus.SaveTheWorld.getInstance().nextAction();
 		}
 	}
-	function onMovement(var2, var3)
+	function onMovement(§\x1e\x12\x1a§, §\x18\x0f§)
 	{
 		var var4 = var2.split("|");
 		var var5 = var4.length - 1;
@@ -544,7 +539,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 					if(var24.length)
 					{
 						var var26 = var24.split("*");
-						var25 = new dofus.datacenter.(_global.parseInt(var26[0]),var26[1]);
+						var25 = new dofus.datacenter.(_global.parseInt(var26[0]),var26[1]);
 					}
 					var var27 = 100;
 					var var28 = 100;
@@ -621,14 +616,17 @@ class dofus.aks.Game extends dofus.aks.Handler
 											{
 												this.api.gfx.setSpriteScale(var41.id,var41.scaleX,var41.scaleY);
 											}
-											switch(var36.shape)
+											if((var0 = var36.shape) !== "circle")
 											{
-												case "circle":
-													var43 = var39;
-													break;
-												case "line":
+												if(var0 === "line")
+												{
 													var42 = var40;
 													var43 = 2;
+												}
+											}
+											else
+											{
+												var43 = var39;
 											}
 										}
 										var39 = var39 + 1;
@@ -757,7 +755,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 										var50.cell = var11;
 										var50.dir = var12;
 										var50.level = var10[7];
-										var50.alignment = new dofus.datacenter.(Number(var10[9]),Number(var10[8]));
+										var50.alignment = new dofus.datacenter.(Number(var10[9]),Number(var10[8]));
 										var31 = this.api.kernel.CharactersManager.createPrism(var14,var15,var50);
 										break loop3;
 									default:
@@ -873,7 +871,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 											var var32 = [var14,this.createTransitionEffect(),var11,10];
 										}
 										var var67 = var51.split(",");
-										var52.alignment = new dofus.datacenter.(Number(var67[0]),Number(var67[1]));
+										var52.alignment = new dofus.datacenter.(Number(var67[0]),Number(var67[1]));
 										var52.rank = new dofus.datacenter.Rank(Number(var67[2]));
 										var52.alignment.fallenAngelDemon = var67[4] == 1;
 										if(var67.length > 3 && var14 != this.api.datacenter.Player.ID)
@@ -926,18 +924,14 @@ class dofus.aks.Game extends dofus.aks.Handler
 										var var76 = var14;
 										var var77 = var74.shape != "circle"?2:0;
 										var var78 = 1;
-										while(true)
+										while(var78 < var75.length)
 										{
-											if(var78 < var75.length)
+											if(var75[var78] != "")
 											{
-												if(var75[var78] == "")
-												{
-													continue;
-												}
 												var var79 = var14 + "_" + var78;
 												var var80 = new Object();
 												this.splitGfxForScale(var75[var78],var80);
-												var var81 = new ank.battlefield.datacenter.(var79,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var80.gfxID + ".swf");
+												var var81 = new ank.battlefield.datacenter.(var79,ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var80.gfxID + ".swf");
 												var81.allDirections = false;
 												this.api.gfx.addLinkedSprite(var79,var76,var77,var81);
 												if(!_global.isNaN(var80.scaleX))
@@ -948,19 +942,13 @@ class dofus.aks.Game extends dofus.aks.Handler
 												{
 													case "circle":
 														var77 = var78;
-														continue;
+														break;
 													case "line":
 														var76 = var79;
 														var77 = 2;
-														continue;
-													default:
-														continue;
 												}
 											}
-											else
-											{
-												break loop3;
-											}
+											var78 = var78 + 1;
 										}
 								}
 						}
@@ -1024,7 +1012,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			}
 		}
 	}
-	function onCellData(var2)
+	function onCellData(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = 0;
@@ -1039,7 +1027,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var4 = var4 + 1;
 		}
 	}
-	function onZoneData(var2)
+	function onZoneData(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = 0;
@@ -1062,7 +1050,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var4 = var4 + 1;
 		}
 	}
-	function onCellObject(var2)
+	function onCellObject(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -1074,7 +1062,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var var8 = _global.parseInt(var6[1]);
 			if(var3)
 			{
-				var var9 = new dofus.datacenter.(0,var8);
+				var var9 = new dofus.datacenter.(0,var8);
 				var var10 = Number(var6[2]);
 				switch(var10)
 				{
@@ -1106,7 +1094,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var5 = var5 + 1;
 		}
 	}
-	function onFrameObject2(var2)
+	function onFrameObject2(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = 0;
@@ -1125,7 +1113,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var4 = var4 + 1;
 		}
 	}
-	function onFrameObjectExternal(var2)
+	function onFrameObjectExternal(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = 0;
@@ -1138,7 +1126,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var4 = var4 + 1;
 		}
 	}
-	function onEffect(var2)
+	function onEffect(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split(";");
 		var var4 = var3[0];
@@ -1149,21 +1137,22 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var var9 = var3[5];
 		var var10 = Number(var3[6]);
 		var var11 = var3[7];
-		var var12 = 0;
-		while(var12 < var5.length)
+		var var12 = var3[8];
+		var var13 = 0;
+		while(var13 < var5.length)
 		{
-			var var13 = var5[var12];
-			if(var13 == this.api.datacenter.Game.currentPlayerID && var10 != -1)
+			var var14 = var5[var13];
+			if(var14 == this.api.datacenter.Game.currentPlayerID && var10 != -1)
 			{
 				var10 = var10 + 1;
 			}
-			var var14 = new dofus.datacenter.(Number(var4),Number(var6),Number(var7),Number(var8),var9,Number(var10),Number(var11));
-			var var15 = this.api.datacenter.Sprites.getItemAt(var13);
-			var15.EffectsManager.addEffect(var14);
-			var12 = var12 + 1;
+			var var15 = new dofus.datacenter.(var12,Number(var4),Number(var6),Number(var7),Number(var8),var9,Number(var10),Number(var11));
+			var var16 = this.api.datacenter.Sprites.getItemAt(var14);
+			var16.EffectsManager.addEffect(var15);
+			var13 = var13 + 1;
 		}
 	}
-	function onClearAllEffect(var2)
+	function onClearAllEffect(§\x1e\x12\x1a§)
 	{
 		var var3 = this.api.datacenter.Sprites;
 		for(var a in var3)
@@ -1171,7 +1160,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var3[a].EffectsManager.terminateAllEffects();
 		}
 	}
-	function onChallenge(var2)
+	function onChallenge(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -1209,7 +1198,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.api.datacenter.Challenges.removeItemAt(var6);
 		}
 	}
-	function onTeam(var2)
+	function onTeam(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3.shift());
@@ -1247,7 +1236,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var6 = var6 + 1;
 		}
 	}
-	function onFightOption(var2)
+	function onFightOption(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.substr(2);
 		var var4 = this.api.datacenter.Sprites.getItemAt(var3);
@@ -1266,13 +1255,8 @@ class dofus.aks.Game extends dofus.aks.Handler
 				case "A":
 					var4.options[dofus.datacenter.Team.OPT_BLOCK_JOINER] = var5;
 					break;
-				default:
-					if(var0 !== "P")
-					{
-						break;
-					}
+				case "P":
 					var4.options[dofus.datacenter.Team.OPT_BLOCK_JOINER_EXCEPT_PARTY_MEMBER] = var5;
-					break;
 			}
 			this.api.gfx.addSpriteOverHeadItem(var3,"FightOptions",dofus.graphics.battlefield.FightOptionsOverHead,[var4],undefined);
 		}
@@ -1291,7 +1275,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var2.cleanChallenge();
 		this.create();
 	}
-	function onEnd(var2)
+	function onEnd(§\x1e\x12\x1a§)
 	{
 		if(this.api.kernel.MapsServersManager.isBuilding)
 		{
@@ -1320,11 +1304,12 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var var8 = Number(var5[1]);
 		var var9 = Number(var5[2]);
 		var4.fightType = var9;
-		var var10 = new ank.utils.();
+		var var10 = new ank.utils.
+();
 		var var11 = 0;
 		this.parsePlayerData(var4,3,var8,var5,var9,var11,var10);
 	}
-	function parsePlayerData(var2, var3, var4, var5, var6, var7, var8)
+	function parsePlayerData(§\x1e\x18\f§, §\x1e\x1d\t§, §\x1e\x1e\x02§, §\x1d\b§, §\x05\x14§, §\x04\f§, §\x10\x12§)
 	{
 		var var9 = var3;
 		var var10 = var5[var9].split(";");
@@ -1348,23 +1333,10 @@ class dofus.aks.Game extends dofus.aks.Handler
 			var11.type = var13.type;
 			var11.level = Number(var10[3]);
 			var11.bDead = var10[4] != "1"?false:true;
-			switch(var6)
+			if((var var0 = var6) !== 0)
 			{
-				case 0:
-					var11.minxp = Number(var10[5]);
-					var11.xp = Number(var10[6]);
-					var11.maxxp = Number(var10[7]);
-					var11.winxp = Number(var10[8]);
-					var11.guildxp = Number(var10[9]);
-					var11.mountxp = Number(var10[10]);
-					var var12 = var10[11].split(",");
-					if(var11.id == this.api.datacenter.Player.ID && var12.length > 10)
-					{
-						this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
-					}
-					var11.kama = var10[12];
-					break;
-				case 1:
+				if(var0 === 1)
+				{
 					var11.minhonour = Number(var10[5]);
 					var11.honour = Number(var10[6]);
 					var11.maxhonour = Number(var10[7]);
@@ -1374,7 +1346,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 					var11.windisgrace = Number(var10[11]);
 					var11.maxdisgrace = this.api.lang.getMaxDisgracePoints();
 					var11.mindisgrace = 0;
-					var12 = var10[12].split(",");
+					var var12 = var10[12].split(",");
 					if(var11.id == this.api.datacenter.Player.ID && var12.length > 10)
 					{
 						this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
@@ -1384,6 +1356,22 @@ class dofus.aks.Game extends dofus.aks.Handler
 					var11.xp = Number(var10[15]);
 					var11.maxxp = Number(var10[16]);
 					var11.winxp = Number(var10[17]);
+				}
+			}
+			else
+			{
+				var11.minxp = Number(var10[5]);
+				var11.xp = Number(var10[6]);
+				var11.maxxp = Number(var10[7]);
+				var11.winxp = Number(var10[8]);
+				var11.guildxp = Number(var10[9]);
+				var11.mountxp = Number(var10[10]);
+				var12 = var10[11].split(",");
+				if(var11.id == this.api.datacenter.Player.ID && var12.length > 10)
+				{
+					this.api.kernel.SpeakingItemsManager.triggerEvent(dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_GREAT_DROP);
+				}
+				var11.kama = var10[12];
 			}
 		}
 		else
@@ -1405,7 +1393,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			}
 			if(var16 != 0)
 			{
-				var var18 = new dofus.datacenter.(0,var16,var17);
+				var var18 = new dofus.datacenter.(0,var16,var17);
 				var11.items.push(var18);
 			}
 		}
@@ -1437,7 +1425,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			this.onParseItemEnd(var4,var2,var8,var7);
 		}
 	}
-	function onParseItemEnd(var2, var3, var4, var5)
+	function onParseItemEnd(§\x1e\x1e\x02§, §\x1e\x18\f§, §\x10\x12§, §\x04\f§)
 	{
 		if(var4.length)
 		{
@@ -1479,7 +1467,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		}
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FIGHT_ENDFIGHT);
 	}
-	function onExtraClip(var2)
+	function onExtraClip(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -1499,7 +1487,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			}
 		}
 	}
-	function onPVP(var2, var3)
+	function onPVP(§\x1e\x12\x1a§, §\x1a\x11§)
 	{
 		if(!var3)
 		{
@@ -1541,7 +1529,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		}
 		this.api.gfx.cleanMap(2);
 	}
-	function onSpriteMovement(var2, var3, var4)
+	function onSpriteMovement(§\x1c\x1a§, oSprite, §\x1e\x1d§)
 	{
 		if(oSprite instanceof dofus.datacenter.Character)
 		{
@@ -1589,7 +1577,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 			}
 			else if(this.api.gfx.spriteHandler.isShowingMonstersTooltip && oSprite instanceof dofus.datacenter.MonsterGroup)
 			{
-				oSprite.mc._rollOver();
+				oSprite.mc._rollOver(true);
 			}
 		}
 		else if(!this.api.datacenter.Game.isRunning)
@@ -1618,31 +1606,31 @@ class dofus.aks.Game extends dofus.aks.Handler
 		}
 		this.api.kernel.GameManager.applyCreatureMode();
 	}
-	function onFlag(var2)
+	function onFlag(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
 		var var5 = Number(var3[1]);
 		var var6 = this.api.datacenter.Sprites.getItemAt(var4);
 		var var7 = new ank.battlefield.datacenter.
-();
+();
 		var7.file = dofus.Constants.CLIPS_PATH + "flag.swf";
 		var7.bInFrontOfSprite = true;
 		var7.bTryToBypassContainerColor = true;
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("PLAYER_SET_FLAG",[var6.name,var5]),"INFO_CHAT");
 		this.api.gfx.spriteLaunchVisualEffect(var4,var7,var5,11,undefined,undefined,undefined,true);
 	}
-	function onFightChallenge(var2)
+	function onFightChallenge(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split(";");
 		if(!this.api.ui.getUIComponent("FightChallenge"))
 		{
 			this.api.ui.loadUIComponent("FightChallenge","FightChallenge");
 		}
-		var var4 = new dofus.datacenter.(_global.parseInt(var3[0]),var3[1] == "1",_global.parseInt(var3[2]),_global.parseInt(var3[3]),_global.parseInt(var3[4]),_global.parseInt(var3[5]),_global.parseInt(var3[6]));
+		var var4 = new dofus.datacenter.(_global.parseInt(var3[0]),var3[1] == "1",_global.parseInt(var3[2]),_global.parseInt(var3[3]),_global.parseInt(var3[4]),_global.parseInt(var3[5]),_global.parseInt(var3[6]));
 		(dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge").addChallenge(var4);
 	}
-	function onFightChallengeUpdate(var2, var3)
+	function onFightChallengeUpdate(§\x1e\x12\x1a§, §\x1e\f\x0e§)
 	{
 		var var4 = _global.parseInt(var2);
 		(dofus.graphics.gapi.ui.FightChallenge)(dofus.graphics.gapi.ui.FightChallenge)this.api.ui.getUIComponent("FightChallenge").updateChallenge(var4,var3);
@@ -1650,7 +1638,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var5 = var5 + (" : " + this.api.lang.getFightChallenge(var4).n);
 		this.api.kernel.showMessage(undefined,var5,"INFO_CHAT");
 	}
-	function sliptGfxData(var2)
+	function sliptGfxData(§\x1e\x12\r§)
 	{
 		if(var2.indexOf(",") != -1)
 		{
@@ -1667,7 +1655,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 	function createTransitionEffect()
 	{
 		var var2 = new ank.battlefield.datacenter.
-();
+();
 		var2.id = 5;
 		var2.file = dofus.Constants.SPELLS_PATH + "transition.swf";
 		var2.level = 5;
@@ -1676,7 +1664,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var2.bTryToBypassContainerColor = false;
 		return var2;
 	}
-	function splitGfxForScale(var2, var3)
+	function splitGfxForScale(§\x1e\x12\n§, §\x1e\x1a\x02§)
 	{
 		var var4 = var2.split("^");
 		var var5 = var4.length != 2?var2:var4[0];
@@ -1700,11 +1688,11 @@ class dofus.aks.Game extends dofus.aks.Handler
 		var3.scaleX = var6;
 		var3.scaleY = var7;
 	}
-	function cancel(var2)
+	function cancel(§\x1e\x19\x18§)
 	{
 		var var0 = var2.target._name;
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -1715,7 +1703,7 @@ class dofus.aks.Game extends dofus.aks.Handler
 				this.api.network.Game.enabledPVPMode(false);
 		}
 	}
-	function no(var2)
+	function no(§\x1e\x19\x18§)
 	{
 		var var0 = var2.target._name;
 	}

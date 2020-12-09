@@ -4,7 +4,7 @@ class ank.gapi.core.UIAdvancedComponent extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__api(var2)
+	function __set__api(§\x1e\x1a\x16§)
 	{
 		this._oAPI = var2;
 		return this.__get__api();
@@ -17,7 +17,7 @@ class ank.gapi.core.UIAdvancedComponent extends ank.gapi.core.UIBasicComponent
 		}
 		return this._oAPI;
 	}
-	function __set__instanceName(var2)
+	function __set__instanceName(§\x1e\x11\x15§)
 	{
 		this._sInstanceName = var2;
 		return this.__get__instanceName();

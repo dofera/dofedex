@@ -19,7 +19,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return dofus.datacenter.Game._bLogMapDisconnections;
 	}
-	function __set__isLoggingMapDisconnections(var2)
+	function __set__isLoggingMapDisconnections(§\x18\x02§)
 	{
 		dofus.datacenter.Game._bLogMapDisconnections = var2;
 		return this.__get__isLoggingMapDisconnections();
@@ -28,7 +28,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._bFirstTurn;
 	}
-	function __set__isFirstTurn(var2)
+	function __set__isFirstTurn(§\x1a\x05§)
 	{
 		this._bFirstTurn = var2;
 		return this.__get__isFirstTurn();
@@ -37,13 +37,13 @@ class dofus.datacenter.Game extends Object
 	{
 		return dofus.datacenter.Game._bTacticMode;
 	}
-	function __set__isTacticMode(var2)
+	function __set__isTacticMode(§\x14\x19§)
 	{
 		dofus.datacenter.Game._bTacticMode = var2;
 		this.api.gfx.activateTacticMode(var2);
 		return this.__get__isTacticMode();
 	}
-	function __set__playerCount(var2)
+	function __set__playerCount(§\x01\x1c§)
 	{
 		this._nPlayerCount = Number(var2);
 		return this.__get__playerCount();
@@ -52,7 +52,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._nPlayerCount;
 	}
-	function __set__currentTableTurn(var2)
+	function __set__currentTableTurn(§\x07\x03§)
 	{
 		this._nCurrentTableTurn = Number(var2);
 		return this.__get__currentTableTurn();
@@ -61,7 +61,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._nCurrentTableTurn;
 	}
-	function __set__currentPlayerID(var2)
+	function __set__currentPlayerID(§\x1e\x13\x13§)
 	{
 		this._sCurrentPlayerID = var2;
 		return this.__get__currentPlayerID();
@@ -70,7 +70,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._sCurrentPlayerID;
 	}
-	function __set__lastPlayerID(var2)
+	function __set__lastPlayerID(§\x1e\x11\x05§)
 	{
 		this._sLastPlayerID = var2;
 		return this.__get__lastPlayerID();
@@ -79,7 +79,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._sLastPlayerID;
 	}
-	function __set__state(var2)
+	function __set__state(§\x1e\x1d\x07§)
 	{
 		this._nState = Number(var2);
 		this.dispatchEvent({type:"stateChanged",value:this._nState});
@@ -89,7 +89,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._nState;
 	}
-	function __set__fightType(var2)
+	function __set__fightType(§\x05\x14§)
 	{
 		this._nFightType = var2;
 		return this.__get__fightType();
@@ -98,7 +98,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._nFightType;
 	}
-	function __set__isSpectator(var2)
+	function __set__isSpectator(§\x15\x06§)
 	{
 		this._bSpectator = var2;
 		return this.__get__isSpectator();
@@ -107,7 +107,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._bSpectator;
 	}
-	function __set__turnSequence(var2)
+	function __set__turnSequence(§\x1d\x07§)
 	{
 		this._aTurnSequence = var2;
 		return this.__get__turnSequence();
@@ -116,7 +116,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._aTurnSequence;
 	}
-	function __set__results(var2)
+	function __set__results(§\x1e\x18\f§)
 	{
 		this._oResults = var2;
 		return this.__get__results();
@@ -125,7 +125,7 @@ class dofus.datacenter.Game extends Object
 	{
 		return this._oResults;
 	}
-	function __set__isRunning(var2)
+	function __set__isRunning(§\x16\x05§)
 	{
 		this._bRunning = var2;
 		return this.__get__isRunning();
@@ -156,7 +156,7 @@ class dofus.datacenter.Game extends Object
 		this._nInteractionType = 0;
 		this._nCurrentTableTurn = 0;
 	}
-	function setInteractionType(var2)
+	function setInteractionType(§\x1e\f\x14§)
 	{
 		switch(var2)
 		{

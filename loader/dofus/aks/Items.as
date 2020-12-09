@@ -2,11 +2,11 @@ class dofus.aks.Items extends dofus.aks.Handler
 {
 	static var EFFECT_APPEND_CHAR = ":";
 	static var COMPRESSION_RADIX = 16;
-	function Items(var2, var3)
+	function Items(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function movement(var2, var3, var4)
+	function movement(§\x05\x02§, §\x01\x17§, §\x01\x0e§)
 	{
 		if(var3 > 0)
 		{
@@ -14,39 +14,39 @@ class dofus.aks.Items extends dofus.aks.Handler
 		}
 		this.aks.send("OM" + var2 + "|" + var3 + (!_global.isNaN(var4)?"|" + var4:""),true);
 	}
-	function drop(var2, var3)
+	function drop(§\x05\x02§, §\x01\x0e§)
 	{
 		this.aks.send("OD" + var2 + "|" + var3,false);
 	}
-	function associateMimibiote(var2, var3)
+	function associateMimibiote(§\x04\x1a§, §\x04\x19§)
 	{
 		this.aks.send("AEi1|" + var2 + "|" + var3);
 	}
-	function destroyMimibiote(var2)
+	function destroyMimibiote(§\x05\x02§)
 	{
 		this.aks.send("AEi0|" + var2);
 	}
-	function destroy(var2, var3)
+	function destroy(§\x05\x02§, §\x01\x0e§)
 	{
 		this.aks.send("Od" + var2 + "|" + var3,false);
 	}
-	function use(var2, var3, var4, var5)
+	function use(§\x05\x02§, §\x1e\r\x1b§, §\b\x02§, §\x1b\x11§)
 	{
 		this.aks.send("O" + (!var5?"U":"u") + var2 + (!(var3 != undefined && !_global.isNaN(Number(var3)))?"|":"|" + var3) + (var4 == undefined?"":"|" + var4),true);
 	}
-	function dissociate(var2, var3)
+	function dissociate(§\x05\x02§, §\x01\x17§)
 	{
 		this.aks.send("Ox" + var2 + "|" + var3,false);
 	}
-	function setSkin(var2, var3, var4)
+	function setSkin(§\x05\x02§, §\x01\x17§, §\x1e\x1d\x17§)
 	{
 		this.aks.send("Os" + var2 + "|" + var3 + "|" + var4,false);
 	}
-	function feed(var2, var3, var4)
+	function feed(§\x05\x02§, §\x01\x17§, §\x05\x17§)
 	{
 		this.aks.send("Of" + var2 + "|" + var3 + "|" + var4,false);
 	}
-	function onAccessories(var2)
+	function onAccessories(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -87,7 +87,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 			this.api.datacenter.Player.updateCloseCombat();
 		}
 	}
-	function onDrop(var2, var3)
+	function onDrop(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(!var2)
 		{
@@ -101,7 +101,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 			}
 		}
 	}
-	function onAdd(var2, var3)
+	function onAdd(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(!var2)
 		{
@@ -113,13 +113,8 @@ class dofus.aks.Items extends dofus.aks.Handler
 				case "L":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("TOO_LOW_LEVEL_FOR_ITEM"),"ERROR_BOX",{name:"LowLevel"});
 					break;
-				default:
-					if(var0 !== "A")
-					{
-						break;
-					}
+				case "A":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("ALREADY_EQUIPED"),"ERROR_BOX",{name:"Already"});
-					break;
 			}
 		}
 		else
@@ -155,7 +150,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 			}
 		}
 	}
-	function onChange(var2)
+	function onChange(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("*");
 		var var4 = 0;
@@ -176,26 +171,26 @@ class dofus.aks.Items extends dofus.aks.Handler
 			var4 = var4 + 1;
 		}
 	}
-	function onRemove(var2)
+	function onRemove(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		this.api.datacenter.Player.dropItem(var3);
 	}
-	function onQuantity(var2)
+	function onQuantity(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = Number(var3[1]);
 		this.api.datacenter.Player.updateItemQuantity(var4,var5);
 	}
-	function onMovement(var2)
+	function onMovement(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = !_global.isNaN(Number(var3[1]))?Number(var3[1]):-1;
 		this.api.datacenter.Player.updateItemPosition(var4,var5);
 	}
-	function onTool(var2)
+	function onTool(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		if(_global.isNaN(var3))
@@ -207,7 +202,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 			this.api.datacenter.Player.currentJobID = var3;
 		}
 	}
-	function onWeight(var2)
+	function onWeight(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -215,7 +210,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 		this.api.datacenter.Player.maxWeight = var5;
 		this.api.datacenter.Player.currentWeight = var4;
 	}
-	function onItemSet(var2)
+	function onItemSet(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -232,7 +227,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 			this.api.datacenter.Player.ItemSets.removeItemAt(var5);
 		}
 	}
-	function onItemUseCondition(var2)
+	function onItemUseCondition(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0);
 		switch(var3)
@@ -253,11 +248,11 @@ class dofus.aks.Items extends dofus.aks.Handler
 				var var13 = !_global.isNaN(Number(var10[2]))?Number(var10[2]):undefined;
 				var var14 = !_global.isNaN(Number(var10[3]))?Number(var10[3]):undefined;
 				var var15 = {name:"UseItem",listener:this,params:{objectID:var11,spriteID:var12,cellID:var13}};
-				var var16 = new dofus.datacenter.(-1,var14,1,0,"",0);
+				var var16 = new dofus.datacenter.(-1,var14,1,0,"",0);
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("ITEM_USE_CONFIRMATION",[var16.name]),"CAUTION_YESNO",var15);
 		}
 	}
-	function onItemFound(var2)
+	function onItemFound(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = !_global.isNaN(Number(var3[0]))?Number(var3[0]):0;
@@ -273,12 +268,12 @@ class dofus.aks.Items extends dofus.aks.Handler
 			}
 			else
 			{
-				var9 = new dofus.datacenter.(0,var7,var8);
+				var9 = new dofus.datacenter.(0,var7,var8);
 			}
 			this.api.gfx.addSpriteOverHeadItem(this.api.datacenter.Player.ID,"itemFound",dofus.graphics.battlefield.CraftResultOverHead,[true,var9],2000);
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

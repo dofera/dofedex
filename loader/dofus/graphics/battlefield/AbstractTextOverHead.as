@@ -25,16 +25,16 @@ class dofus.graphics.battlefield.AbstractTextOverHead extends ank.gapi.core.UIBa
 		this.createEmptyMovieClip("_mcGfx",10);
 		this.createEmptyMovieClip("_mcTxtBackground",20);
 	}
-	function drawBackground(var2, var3, var4)
+	function drawBackground(§\x1e\x1b\x0f§, §\x05\x07§, §\x07\x0e§)
 	{
 		this.drawRoundRect(this._mcTxtBackground,(- var2) / 2,0,var2,var3,3,var4,dofus.graphics.battlefield.AbstractTextOverHead.BACKGROUND_ALPHA);
 	}
-	function drawGfx(var2, var3)
+	function drawGfx(§\x1e\x12\x18§, §\x05\r§)
 	{
 		this._mcGfx.attachClassMovie(ank.utils.SWFLoader,"_mcSwfLoader",10);
 		this._mcGfx._mcSwfLoader.loadSWF(var2,var3);
 	}
-	function addPvpGfxEffect(var2, var3)
+	function addPvpGfxEffect(§\x01\x11§, §\x05\r§)
 	{
 		switch(var2)
 		{

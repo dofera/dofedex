@@ -4,7 +4,7 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 	{
 		super();
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x12\t§)
 	{
 		this.api = _global.API;
 		if(this.api.electron.enabled)
@@ -16,7 +16,7 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 		this._sGroundFile = var2;
 		this.clear();
 	}
-	function useCustomGroundGfxFile(var2)
+	function useCustomGroundGfxFile(§\x15\x02§)
 	{
 		if(var2)
 		{
@@ -44,7 +44,8 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 		{
 			if(ank.battlefield.Constants.USE_STREAMING_FILES || ank.battlefield.Constants.STREAMING_METHOD == "compact")
 			{
-				for(var s in this.Ground)
+				§§enumerate(this.Ground);
+				while((var var0 = §§enumeration()) != null)
 				{
 					if(typeof this.Ground[s] == "movieclip")
 					{
@@ -67,8 +68,7 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 		this.clearGround();
 		if(ank.battlefield.Constants.USE_STREAMING_FILES && ank.battlefield.Constants.STREAMING_METHOD == "explod")
 		{
-			§§enumerate(this.Object1);
-			while((var var0 = §§enumeration()) != null)
+			for(var s in this.Object1)
 			{
 				if(typeof this.Object1[s] == "movieclip")
 				{
@@ -95,8 +95,7 @@ class ank.battlefield.mc.ExternalContainer extends MovieClip
 		this.Pointer.cacheAsBitmap = _global.CONFIG.cacheAsBitmap["ExternalContainer/Pointer"];
 		if(ank.battlefield.Constants.USE_STREAMING_FILES && ank.battlefield.Constants.STREAMING_METHOD == "explod")
 		{
-			§§enumerate(this.Object2);
-			while((var var0 = §§enumeration()) != null)
+			for(var s in this.Object2)
 			{
 				if(typeof this.Object1[s] == "movieclip")
 				{

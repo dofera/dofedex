@@ -66,7 +66,7 @@ class dofus.graphics.gapi.ui.Buff extends dofus.graphics.gapi.core.DofusAdvanced
 			var8 = var8 + 1;
 		}
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		switch(var2.eventName)
 		{
@@ -75,11 +75,11 @@ class dofus.graphics.gapi.ui.Buff extends dofus.graphics.gapi.core.DofusAdvanced
 		}
 		this.updateData();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.gapi.loadUIComponent("BuffInfos","BuffInfos",{data:var2.target.contentData},{bStayIfPresent:true});
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 != undefined)
@@ -87,7 +87,7 @@ class dofus.graphics.gapi.ui.Buff extends dofus.graphics.gapi.core.DofusAdvanced
 			this.gapi.showTooltip(var3.name + "\n" + var3.visibleEffects,var2.target,30);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

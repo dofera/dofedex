@@ -31,7 +31,7 @@ class dofus.graphics.gapi.ui.AskPrivateChat extends ank.gapi.ui.FlyWindow
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		Selection.setFocus(var2._txtMessage._tText);
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
@@ -40,7 +40,7 @@ class dofus.graphics.gapi.ui.AskPrivateChat extends ank.gapi.ui.FlyWindow
 		}
 		return true;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -50,17 +50,12 @@ class dofus.graphics.gapi.ui.AskPrivateChat extends ank.gapi.ui.FlyWindow
 				break;
 			case "_btnSend":
 				var var3 = this._winBackground.content._txtMessage.text;
-				var3 = new ank.utils.(var3).replace(String.fromCharCode(13)," ");
+				var3 = new ank.utils.(var3).replace(String.fromCharCode(13)," ");
 				this.dispatchEvent({type:"send",message:var3,params:this.params});
 				this.unloadThis();
 				break;
-			default:
-				if(var0 !== "_btnAddFriend")
-				{
-					break;
-				}
+			case "_btnAddFriend":
 				this.dispatchEvent({type:"addfriend",params:this.params});
-				break;
 		}
 	}
 }

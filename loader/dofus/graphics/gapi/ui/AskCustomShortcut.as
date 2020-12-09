@@ -5,17 +5,17 @@ class dofus.graphics.gapi.ui.AskCustomShortcut extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__ShortcutCode(var2)
+	function __set__ShortcutCode(§\x1e\x0e\x02§)
 	{
 		this._sShortcutCode = var2;
 		return this.__get__ShortcutCode();
 	}
-	function __set__IsAlt(var2)
+	function __set__IsAlt(§\x18\x1a§)
 	{
 		this._bIsAlt = var2;
 		return this.__get__IsAlt();
 	}
-	function __set__Description(var2)
+	function __set__Description(§\x1e\x13\x0e§)
 	{
 		this._sDescription = var2;
 		this._winBackground.content._txtHelp.text = this._sDescription;
@@ -49,7 +49,7 @@ class dofus.graphics.gapi.ui.AskCustomShortcut extends ank.gapi.ui.FlyWindow
 		this.api.kernel.KeyManager.Broadcasting = false;
 		Key.addListener(this);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -63,34 +63,35 @@ class dofus.graphics.gapi.ui.AskCustomShortcut extends ank.gapi.ui.FlyWindow
 			case "_btnCancel":
 				this.unloadThis();
 				break;
-			default:
-				switch(null)
+			case "_btnReset":
+				var var3 = this._winBackground.content;
+				var var4 = this.api.kernel.KeyManager.getDefaultShortcut(this._sShortcutCode);
+				if(!this._bIsAlt)
 				{
-					case "_btnReset":
-						var var3 = this._winBackground.content;
-						var var4 = this.api.kernel.KeyManager.getDefaultShortcut(this._sShortcutCode);
-						if(!this._bIsAlt)
-						{
-							this._nKeyCode = var4.k;
-							this._nCtrlCode = var4.c;
-							var3._lblShortcut.text = var0 = var4.s != undefined?var4.s:this.api.lang.getText("KEY_UNDEFINED");
-							this._sAscii = var0;
-						}
-						else
-						{
-							this._nKeyCode = var4.k2;
-							this._nCtrlCode = var4.c2;
-							var3._lblShortcut.text = var0 = var4.s2 != undefined?var4.s2:this.api.lang.getText("KEY_UNDEFINED");
-							this._sAscii = var0;
-						}
-						break;
-					case "_btnNone":
-						var var5 = this._winBackground.content;
-						this._nKeyCode = -1;
-						this._nCtrlCode = undefined;
-						var5._lblShortcut.text = var0 = this.api.lang.getText("KEY_UNDEFINED");
-						this._sAscii = var0;
+					this._nKeyCode = var4.k;
+					this._nCtrlCode = var4.c;
+					var3._lblShortcut.text = var0 = var4.s != undefined?var4.s:this.api.lang.getText("KEY_UNDEFINED");
+					this._sAscii = var0;
 				}
+				else
+				{
+					this._nKeyCode = var4.k2;
+					this._nCtrlCode = var4.c2;
+					var3._lblShortcut.text = var0 = var4.s2 != undefined?var4.s2:this.api.lang.getText("KEY_UNDEFINED");
+					this._sAscii = var0;
+				}
+				break;
+			default:
+				if(var0 !== "_btnNone")
+				{
+					break;
+				}
+				var var5 = this._winBackground.content;
+				this._nKeyCode = -1;
+				this._nCtrlCode = undefined;
+				var5._lblShortcut.text = var0 = this.api.lang.getText("KEY_UNDEFINED");
+				this._sAscii = var0;
+				break;
 		}
 	}
 	function onKeyUp()

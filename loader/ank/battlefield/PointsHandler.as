@@ -1,10 +1,10 @@
 class ank.battlefield.PointsHandler
 {
-	function PointsHandler(var3, var4, var5)
+	function PointsHandler(§\x1d\x03§, §\x13\x14§, §\x11\x17§)
 	{
 		this.initialize(var2,var3,var4);
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x1d\x03§, §\x13\x14§, §\x11\x17§)
 	{
 		this._mcBattlefield = var2;
 		this._mcContainer = var3;
@@ -19,7 +19,7 @@ class ank.battlefield.PointsHandler
 			this._mcContainer[k].removeMovieClip();
 		}
 	}
-	function addPoints(sID, §\x1e\x1b\x03§, §\x1e\x1a\x18§, §\x1e\x0b\x1b§, §\x07\x03§)
+	function addPoints(sID, §\x1e\x1b\r§, §\x1e\x1b\x05§, §\x1e\f\t§, §\x07\x0e§)
 	{
 		var var7 = this._mcContainer.getNextHighestDepth();
 		var var8 = this._mcContainer.attachClassMovie(ank.battlefield.mc.Points,"points" + var7,var7,[this,sID,var4,var5,var6]);

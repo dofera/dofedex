@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		super();
 	}
-	function __set__data(var2)
+	function __set__data(§\x1e\x1a\x02§)
 	{
 		this._oData = var2;
 		return this.__get__data();
 	}
-	function __set__colors(var2)
+	function __set__colors(§\f§)
 	{
 		this._colors = var2;
 		return this.__get__colors();
@@ -81,7 +81,7 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 		this._ldrArtwork.contentPath = dofus.Constants.ARTWORKS_BIG_PATH + this._oData.gfx + ".swf";
 		this.modelChanged();
 	}
-	function hideItemViewer(var2)
+	function hideItemViewer(§\x19\x0e§)
 	{
 		this._itvItemViewer._visible = !var2;
 		this._winItemViewer._visible = !var2;
@@ -90,17 +90,17 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 			this._oSelectedItem = undefined;
 		}
 	}
-	function setSellMode(var2)
+	function setSellMode(§\x1c\x1c§)
 	{
 		this._btnSell._visible = var2;
 		this._mcSellArrow._visible = var2;
 	}
-	function setBuyMode(var2)
+	function setBuyMode(§\x1c\x1c§)
 	{
 		this._btnBuy._visible = var2;
 		this._mcBuyArrow._visible = var2;
 	}
-	function askQuantity(var2, var3, var4, var5)
+	function askQuantity(§\x1e\f\x14§, §\x01\x0f§, §\x01\x14§, §\x1e\x1b\x10§)
 	{
 		var var6 = 0;
 		if(var2 == "buy")
@@ -123,7 +123,7 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 		var var9 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:1,max:var6,min:1,params:{type:var2}});
 		var9.addEventListener("validate",this);
 	}
-	function validateBuy(var2)
+	function validateBuy(§\x01\x0e§)
 	{
 		if(var2 <= 0)
 		{
@@ -136,7 +136,7 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this.api.network.Exchange.buy(this._oSelectedItem.unicID,var2);
 	}
-	function validateSell(var2)
+	function validateSell(§\x01\x0e§)
 	{
 		if(var2 <= 0)
 		{
@@ -151,7 +151,7 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 		this.setSellMode(false);
 		this.setBuyMode(false);
 	}
-	function applyColor(var2, var3)
+	function applyColor(§\x0b\r§, §\x1e\t\x10§)
 	{
 		var var4 = this._colors[var3];
 		if(var4 == -1 || var4 == undefined)
@@ -166,11 +166,11 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
 		var8.setTransform(var9);
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		this._livInventory2.dataProvider = this._oData.inventory;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -196,7 +196,7 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 				break;
 		}
 	}
-	function selectedItem(var2)
+	function selectedItem(§\x1e\x19\x18§)
 	{
 		if(var2.item == undefined)
 		{
@@ -209,21 +209,24 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 			this._oSelectedItem = var2.item;
 			this.hideItemViewer(false);
 			this._itvItemViewer.itemData = var2.item;
-			switch(var2.target._name)
+			if((var var0 = var2.target._name) !== "_livInventory")
 			{
-				case "_livInventory":
-					this.setSellMode(true);
-					this.setBuyMode(false);
-					this._livInventory2.setFilter(this._livInventory.currentFilterID);
-					break;
-				case "_livInventory2":
+				if(var0 === "_livInventory2")
+				{
 					this.setSellMode(false);
 					this.setBuyMode(true);
 					this._livInventory.setFilter(this._livInventory2.currentFilterID);
+				}
+			}
+			else
+			{
+				this.setSellMode(true);
+				this.setBuyMode(false);
+				this._livInventory2.setFilter(this._livInventory.currentFilterID);
 			}
 		}
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		switch(var2.params.type)
 		{
@@ -234,10 +237,9 @@ class dofus.graphics.gapi.ui.NpcShop extends dofus.graphics.gapi.core.DofusAdvan
 				this.validateBuy(var2.value);
 		}
 	}
-	function complete(var2)
+	function complete(§\x1e\x19\x18§)
 	{
-		var ref = this;
-		this._ldrArtwork.content.stringCourseColor = function(var2, var3)
+		this._ldrArtwork.content.stringCourseColor = function(§\x0b\r§, §\x1e\t\x14§)
 		{
 			ref.applyColor(var2,var3);
 		};

@@ -4,7 +4,7 @@ class dofus.utils.criterions.subareaCriterion.SubareaCriterionAlignment extends 
 	{
 		super();
 	}
-	function AreaCriterionAlignment(var2, var3)
+	function AreaCriterionAlignment(§\x1e\x0f\x18§, §\t\x0b§)
 	{
 		this._sOperator = var2;
 		this._nAlignmentIndex = var3;
@@ -13,15 +13,15 @@ class dofus.utils.criterions.subareaCriterion.SubareaCriterionAlignment extends 
 	function isFilled()
 	{
 		var var2 = this._aSubarea.alignment;
-		switch(this._sOperator)
+		if((var var0 = this._sOperator) !== "=")
 		{
-			case "=":
-				return this._aSubarea.alignment.index == this._nAlignmentIndex;
-			case "!":
-				return this._aSubarea.alignment.index != this._nAlignmentIndex;
-			default:
+			if(var0 !== "!")
+			{
 				return false;
+			}
+			return this._aSubarea.alignment.index != this._nAlignmentIndex;
 		}
+		return this._aSubarea.alignment.index == this._nAlignmentIndex;
 	}
 	function check()
 	{

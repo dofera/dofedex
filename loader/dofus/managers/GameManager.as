@@ -14,7 +14,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	static var FIGHT_TYPE_PvT = 5;
 	static var FIGHT_TYPE_PvMU = 6;
 	var _nFightTurnInactivity = 0;
-	function GameManager(var2)
+	function GameManager(§\x1e\x1a\x16§)
 	{
 		super();
 		dofus.managers.GameManager._sSelf = this;
@@ -24,7 +24,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	{
 		return this._bIsFullScreen;
 	}
-	function __set__isFullScreen(var2)
+	function __set__isFullScreen(§\x1e\n\x0f§)
 	{
 		this._bIsFullScreen = var2;
 		return this.__get__isFullScreen();
@@ -33,12 +33,12 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	{
 		return this._bIsAllowingScale;
 	}
-	function __set__isAllowingScale(var2)
+	function __set__isAllowingScale(§\x1e\n\x0f§)
 	{
 		this._bIsAllowingScale = var2;
 		return this.__get__isAllowingScale();
 	}
-	function __set__lastSpellLaunch(var2)
+	function __set__lastSpellLaunch(§\t\x10§)
 	{
 		this._nLastSpellLaunch = var2;
 		return this.__get__lastSpellLaunch();
@@ -47,12 +47,12 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.GameManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3);
 		this.api.ui.addEventListener("removeCursor",this);
 	}
-	function askPrivateMessage(var2)
+	function askPrivateMessage(§\x1e\x0f\x04§)
 	{
 		var var3 = this.api.ui.loadUIComponent("AskPrivateChat","AskPrivateChat",{title:this.api.lang.getText("WISPER_MESSAGE") + " " + this.api.lang.getText("TO_DESTINATION") + " " + var2,params:{playerName:var2}});
 		var3.addEventListener("send",this);
@@ -73,11 +73,11 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	{
 		this.api.network.Exchange.askOfflineExchange();
 	}
-	function askOfflineExchange(var2, var3, var4)
+	function askOfflineExchange(§\x1e\n§, tax, §\x1e\x16\x14§)
 	{
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_OFFLINEEXCHANGE",[var2,tax,var4]),"CAUTION_YESNO",{name:"OfflineExchange",listener:this,price:var4});
 	}
-	function startExchange(var2, var3, var4)
+	function startExchange(§\x05\x1a§, §\x1e\r\x1b§, §\b\x02§)
 	{
 		var var5 = this.api.datacenter.Player.data;
 		if(var5.isInMove)
@@ -87,7 +87,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		this.api.network.Exchange.request(var2,Number(var3),var4);
 	}
-	function startDialog(var2)
+	function startDialog(§\x1e\r\x1b§)
 	{
 		var var3 = this.api.datacenter.Player.data;
 		if(var3.isInMove)
@@ -97,7 +97,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		this.api.network.Dialog.create(var2);
 	}
-	function askAttack(var2)
+	function askAttack(§\x1e\r\x1b§)
 	{
 		var var3 = this.api.datacenter.Sprites.getItemAt(var2);
 		var var4 = "";
@@ -109,18 +109,19 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		{
 			if(var4 != "")
 			{
-				var4 = var4 + "\n\n";
+				var4 = var4 + MountPark;
 			}
 			var4 = var4 + this.api.lang.getText("DO_U_ATTACK_NEUTRAL");
 		}
 		if(var4 != "")
 		{
-			var4 = var4 + "\n\n";
+			var4 = var4 + MountPark;
 		}
 		if(!this.api.lang.getConfigText("SHOW_PVP_GAIN_WARNING_POPUP"))
 		{
 			var3.pvpGain = 0;
 		}
+		org.flashdevelop.utils.FlashConnect.mtrace("SHOW_PVP_GAIN_WARNING_POPUP : " + this.api.lang.getConfigText("SHOW_PVP_GAIN_WARNING_POPUP") + " (" + var3.pvpGain + ")","dofus.managers.GameManager::askAttack","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/GameManager.as",200);
 		switch(var3.pvpGain)
 		{
 			case -1:
@@ -134,30 +135,35 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		this.api.kernel.showMessage(undefined,var4,"CAUTION_YESNO",{name:"Punish",listener:this,params:{spriteID:var2}});
 	}
-	function askRemoveTaxCollector(var2)
+	function askRemoveTaxCollector(§\x1e\r\x1b§)
 	{
 		var var3 = this.api.datacenter.Sprites.getItemAt(var2).name;
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_REMOVE_TAXCOLLECTOR",[var3]),"CAUTION_YESNO",{name:"RemoveTaxCollector",listener:this,params:{spriteID:var2}});
 	}
-	function useRessource(var2, var3, var4)
+	function useRessource(§\x0b\n§, §\b\x02§, §\x1e\x1d\x19§)
 	{
+		var var5 = this.api.datacenter.Player.data.GameActionsManager;
+		if(var5 == undefined || var5.isOnUncancelableAction(1))
+		{
+			return undefined;
+		}
 		if(this.api.gfx.onCellRelease(var2))
 		{
 			this.api.network.GameActions.sendActions(500,[var3,var4]);
 		}
 	}
-	function useSkill(var2)
+	function useSkill(§\x1e\x1d\x19§)
 	{
 		this.api.network.GameActions.sendActions(507,[var2]);
 	}
-	function setEnabledInteractionIfICan(var2)
+	function setEnabledInteractionIfICan(§\x04\x15§)
 	{
 		if(this.api.datacenter.Player.isCurrentPlayer)
 		{
 			this.api.gfx.setInteraction(var2);
 		}
 	}
-	function cleanPlayer(var2)
+	function cleanPlayer(§\x1e\r\x1b§)
 	{
 		if(var2 != this.api.datacenter.Game.currentPlayerID)
 		{
@@ -167,7 +173,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			var3.GameActionsManager.clear();
 		}
 	}
-	function cleanUpGameArea(var2)
+	function cleanUpGameArea(§\x18\t§)
 	{
 		if(var2 && this.api.datacenter.Game.isRunning)
 		{
@@ -209,7 +215,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.gfx.cleanMap();
 		this.api.network.Game.onLeave();
 	}
-	function switchToItemTarget(var2)
+	function switchToItemTarget(§\x1e\x19\r§)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
@@ -239,7 +245,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.datacenter.Basics.gfx_canLaunch = false;
 		dofus.DofusCore.getInstance().forceMouseOver();
 	}
-	function switchToSpellLaunch(var2, var3, var4)
+	function switchToSpellLaunch(§\x1e\x18\x04§, §\x15\x05§, §\x19\x1d§)
 	{
 		if(var4 != true)
 		{
@@ -335,7 +341,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.datacenter.Basics.gfx_canLaunch = false;
 		dofus.DofusCore.getInstance().forceMouseOver();
 	}
-	function drawAllowedZone(lineOnly, §\x1e\x18\x01§, §\f\x12§, §\x1e\x17\n§)
+	function drawAllowedZone(lineOnly, §\x1e\x18\n§, §\f\x1c§, §\x1e\x17\x13§)
 	{
 		if(!this.api.kernel.OptionsManager.getOption("AdvancedLineOfSight"))
 		{
@@ -377,7 +383,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 				var var5 = this.api.lang.getText("DISGRACE_SANCTION_" + var4);
 				if(var5 != undefined && (var5 != "undefined" && var5.charAt(0) != "!"))
 				{
-					var3 = var3 + ("\n\n" + var5);
+					var3 = var3 + (MountPark + var5);
 				}
 				var4 = var4 + 1;
 			}
@@ -388,7 +394,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function getSpellDescriptionWithEffects(var2, var3, var4)
+	function getSpellDescriptionWithEffects(§\x1e\x1c§, §\x14\x01§, §\x1e\x1d\x0e§)
 	{
 		var var5 = new Array();
 		var var6 = var2.length;
@@ -400,7 +406,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 				var var8 = var2[var7];
 				var var9 = var8[0];
 				var var10 = !(var4 > 0 && this.api.kernel.SpellsBoostsManager.isBoostedHealingOrDamagingEffect(var9))?-1:this.api.kernel.SpellsBoostsManager.getSpellModificator(var9,var4);
-				var var11 = new dofus.datacenter.(var9,var8[1],var8[2],var8[3],undefined,var8[4],undefined,var10);
+				var var11 = new dofus.datacenter.(undefined,var9,var8[1],var8[2],var8[3],undefined,var8[4],undefined,var10);
 				if(var3 == true)
 				{
 					if(var11.showInTooltip)
@@ -418,7 +424,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return null;
 	}
-	function getSpellEffects(var2, var3)
+	function getSpellEffects(§\x1e\x1c§, §\x1e\x1d\x0e§)
 	{
 		var var4 = new Array();
 		var var5 = var2.length;
@@ -441,7 +447,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 						var9 = this.api.kernel.SpellsBoostsManager.getSpellModificator(dofus.managers.SpellsBoostsManager.ACTION_BOOST_SPELL_DMG,var3);
 					}
 				}
-				var var10 = new dofus.datacenter.(var8,var7[1],var7[2],var7[3],var7[6],var7[4],undefined,var9);
+				var var10 = new dofus.datacenter.(undefined,var8,var7[1],var7[2],var7[3],var7[6],var7[4],undefined,var9);
 				var10.probability = var7[5];
 				var4.push(var10);
 				var6 = var6 + 1;
@@ -450,7 +456,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return null;
 	}
-	function removeCursor(var2)
+	function removeCursor(§\x1e\x19\x18§)
 	{
 		switch(this.api.datacenter.Game.interactionType)
 		{
@@ -479,7 +485,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 				break;
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -489,12 +495,12 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			case "AskYesNoOfflineExchange":
 				this.api.network.Exchange.offlineExchange();
 				break;
+			case "AskYesNoPunish":
+				this.api.network.GameActions.attack(var2.params.spriteID);
+				break;
 			default:
 				switch(null)
 				{
-					case "AskYesNoPunish":
-						this.api.network.GameActions.attack(var2.params.spriteID);
-						break;
 					case "AskYesNoAttack":
 						this.api.network.GameActions.attack(var2.params.spriteID);
 						break;
@@ -503,18 +509,18 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 				}
 		}
 	}
-	function send(var2)
+	function send(§\x1e\x19\x18§)
 	{
 		if(var2.message.length != 0)
 		{
 			this.api.kernel.Console.process("/w " + var2.params.playerName + " " + var2.message);
 		}
 	}
-	function addfriend(var2)
+	function addfriend(§\x1e\x19\x18§)
 	{
 		this.api.network.Friends.addFriend(var2.params.playerName);
 	}
-	function updateCompass(var2, var3, var4)
+	function updateCompass(§\x1e\x1b\r§, §\x1e\x1b\x05§, §\x19\x1d§)
 	{
 		var var5 = this.api.ui.getUIComponent("Banner");
 		if(!var4 && (this.api.datacenter.Basics.banner_targetCoords[0] == var2 && this.api.datacenter.Basics.banner_targetCoords[1] == var3) || (_global.isNaN(var2) || _global.isNaN(var3)))
@@ -536,7 +542,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		this.api.datacenter.Basics.banner_targetCoords = [var2,var3];
 		return true;
 	}
-	function isItemUseful(var2, var3, var4)
+	function isItemUseful(§\f\x14§, §\x1e\x11\f§, §\x0b\x10§)
 	{
 		var var5 = this.api.lang.getSkillText(var3).cl;
 		var var6 = 0;
@@ -560,7 +566,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return false;
 	}
-	function analyseReceipts(var2, var3, var4)
+	function analyseReceipts(§\x10\x19§, §\x1e\x11\f§, §\x0b\x10§)
 	{
 		var var5 = this.api.lang.getSkillText(var3).cl;
 		var var6 = 0;
@@ -605,9 +611,10 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return undefined;
 	}
-	function mergeTwoInventory(var2, var3)
+	function mergeTwoInventory(§\x1b§, §\x1a§)
 	{
-		var var4 = new ank.utils.();
+		var var4 = new ank.utils.
+();
 		var var5 = 0;
 		while(var5 < var2.length)
 		{
@@ -624,7 +631,8 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	}
 	function mergeUnicItemInInventory(inventory)
 	{
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = new Object();
 		var var5 = 0;
 		while(var5 < inventory.length)
@@ -646,7 +654,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function getRemainingString(var2)
+	function getRemainingString(§\x1e\x1e\x17§)
 	{
 		if(var2 == -1)
 		{
@@ -716,7 +724,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return var10;
 	}
-	function zoomGfx(var2, var3, var4, var5, var6)
+	function zoomGfx(§\x1e\x1a\x1c§, §\x1e\n\x04§, §\x1e\t\x18§, §\x1e\t\x19§, §\x1e\t\x15§)
 	{
 		var var7 = this.api.gfx.container;
 		var var8 = ank.battlefield.Constants.CELL_WIDTH;
@@ -775,7 +783,29 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			var7.center();
 		}
 	}
-	function showMonsterPopupMenu(var2)
+	function zoomGfxRoot(§\x1e\x1a\x1c§, §\x1e\t\x19§, §\x1e\t\x15§)
+	{
+		var var5 = Stage.width;
+		var var6 = Stage.height;
+		var var7 = var3 * var2 / 100;
+		var var8 = var4 * var2 / 100;
+		if(var2 <= 100)
+		{
+			var var9 = 0;
+			var var10 = 0;
+		}
+		else
+		{
+			var9 = var3 - var7;
+			var10 = var4 - var8;
+		}
+		var var11 = _root;
+		var11._xscale = var2;
+		var11._yscale = var2;
+		var11._x = var9;
+		var11._y = var10;
+	}
+	function showMonsterPopupMenu(§\x1e\x18\x02§)
 	{
 		var var3 = var2;
 		if(var3 == null)
@@ -812,7 +842,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function showCellPlayersPopupMenu(var2)
+	function showCellPlayersPopupMenu(§\x1e\t§)
 	{
 		var var3 = false;
 		var var4 = this.api.ui.createPopupMenu();
@@ -838,7 +868,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 	{
 		return this._sLastClickedMessage;
 	}
-	function showMessagePopupMenu(var2, var3, var4)
+	function showMessagePopupMenu(§\x1e\x0f\x04§, §\x1e\x10\x0f§, §\x1e\f\r§)
 	{
 		this._sLastClickedMessage = var3;
 		var var5 = this.api.ui.createPopupMenu();
@@ -846,7 +876,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		var5.addItem(this.api.lang.getText("COPY"),System,System.setClipboard,[var3],true);
 		var5.show(_root._xmouse,_root._ymouse,true);
 	}
-	function showPlayerPopupMenu(var2, var3, var4, var5, var6, var7, var8, var9, var10)
+	function showPlayerPopupMenu(§\x1e\x18\x02§, §\x1e\x0f\x04§, §\x1e\x18\x13§, §\x17\r§, §\x17\f§, §\x1e\f\f§, §\x15\x0e§, §\x19\x18§, §\x18\n§)
 	{
 		if(!var10)
 		{
@@ -864,13 +894,24 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		else if(var3 != undefined)
 		{
 			var var12 = this.api.datacenter.Sprites.getItems();
+			loop0:
 			for(var a in var12)
 			{
 				var var13 = var12[a];
 				if(var13.name.toUpperCase() == var3.toUpperCase())
 				{
 					var11 = var13;
-					break;
+					while(true)
+					{
+						if(§§pop() == null)
+						{
+							break loop0;
+						}
+					}
+				}
+				else
+				{
+					continue;
 				}
 			}
 		}
@@ -905,12 +946,12 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function showTeamAdminPopupMenu(var2)
+	function showTeamAdminPopupMenu(§\x1e\r\x05§)
 	{
 		var var3 = this.api.kernel.AdminManager.getAdminPopupMenu(var2,false);
 		var3.show(_root._xmouse,_root._ymouse,true);
 	}
-	function getDurationString(var2, var3)
+	function getDurationString(§\x10\x1b§, §\x1c\x06§)
 	{
 		if(var2 <= 0)
 		{
@@ -927,7 +968,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return (var5 == 0?"":var5 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("HOURS"),"m",var5 < 2) + " ") + var6 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("MINUTES"),"m",var6 < 2) + " " + var7 + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("SECONDS"),"m",var7 < 2);
 	}
-	function insertItemInChat(var2, var3, var4)
+	function insertItemInChat(§\x1e\x19\r§, §\x1e\x0f\x02§, §\x1e\r\x13§)
 	{
 		if(var3 == undefined)
 		{
@@ -951,7 +992,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("TOO_MANY_ITEM_LINK"),"ERROR_CHAT");
 		}
 	}
-	function getLastModified(var2)
+	function getLastModified(§\x1e\x1d\x14§)
 	{
 		var var3 = this._aLastModified[var2];
 		if(var3 == undefined || _global.isNaN(var3))
@@ -960,7 +1001,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function setAsModified(var2)
+	function setAsModified(§\x1e\x1d\x14§)
 	{
 		if(var2 < 0)
 		{
@@ -968,7 +1009,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		this._aLastModified[var2] = getTimer();
 	}
-	function getCriticalHitChance(var2)
+	function getCriticalHitChance(§\x06\x15§)
 	{
 		if(var2 == 0)
 		{
@@ -983,7 +1024,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		return Math.floor(Math.max(var2,2));
 	}
-	function reportSentance(var2, var3, var4, var5)
+	function reportSentance(§\x1e\x10\x06§, sID, §\x1e\f\f§, §\x1e\x1a\x02§)
 	{
 		if(var4 != undefined && (var4.length > 0 && var4 != ""))
 		{
@@ -995,7 +1036,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("TEMPORARY_BLACKLISTED",[var2]),"INFO_CHAT");
 		}
 	}
-	function isInMyTeam(var2)
+	function isInMyTeam(§\x1e\x0e\x1c§)
 	{
 		if(this.api.datacenter.Basics.aks_current_team == 0)
 		{
@@ -1043,7 +1084,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		}
 		this._nLastActivity = undefined;
 	}
-	function getPlayerPopupMenu(var2, var3, var4, var5, var6, var7, var8)
+	function getPlayerPopupMenu(§\x11\x17§, §\x1e\x0f\x04§, §\x1e\x18\x13§, §\x17\r§, §\x17\f§, §\x1e\f\f§, §\x15\x0e§)
 	{
 		var var9 = this.api.datacenter.Game.isFight;
 		var var10 = var2.id;
@@ -1087,6 +1128,7 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		{
 			if(var7 != undefined && (var7.length > 0 && (var7 != "" && !var13)))
 			{
+				org.flashdevelop.utils.FlashConnect.mtrace(this.api.datacenter.Basics.aks_current_server.id,"dofus.managers.GameManager::getPlayerPopupMenu","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/GameManager.as",1477);
 				var var15 = false;
 				var var16 = 0;
 				while(var16 < this.api.lang.getConfigText("ENABLED_SERVER_REPORT_LIST").length)
@@ -1208,10 +1250,6 @@ class dofus.managers.GameManager extends dofus.utils.ApiElement
 		if(var4 != undefined)
 		{
 			var4.addPartyMenuItems(var12);
-		}
-		if(var2 != null && (var2.gfxID != "999" && (var2.isVisible && (this.api.ui.getUIComponent("Zoom") == undefined && !var9))))
-		{
-			var12.addItem(this.api.lang.getText("ZOOM"),this.api.ui,this.api.ui.loadUIAutoHideComponent,["Zoom","Zoom",{sprite:var2}]);
 		}
 		return var12;
 	}

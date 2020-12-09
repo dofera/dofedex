@@ -23,7 +23,7 @@ class ank.external.ExternalConnector extends LocalConnection
 		}
 		return ank.external.ExternalConnector._oInstance;
 	}
-	function pushCall(var2)
+	function pushCall(§\x1e\x10\x0b§)
 	{
 		this._aCallQueue.push({args:arguments});
 		if(!this._bInitializing)
@@ -38,7 +38,7 @@ class ank.external.ExternalConnector extends LocalConnection
 			}
 		}
 	}
-	function call(var2)
+	function call(§\x1e\x10\x0b§)
 	{
 		this._bCalling = true;
 		var var3 = new Array();
@@ -53,7 +53,7 @@ class ank.external.ExternalConnector extends LocalConnection
 		}
 		this.send.apply(this,var3);
 	}
-	function onStatus(var2)
+	function onStatus(§\x1e\x19\x0e§)
 	{
 		this._bCalling = false;
 		switch(var2.level)
@@ -111,7 +111,7 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		this.dispatchEvent({type:"onExternalConnectionFaild"});
 	}
-	function onApplicationArgs(var2)
+	function onApplicationArgs(§\x1e\x15\x03§)
 	{
 		this.dispatchEvent({type:"onApplicationArgs",args:var2.split(" ")});
 	}
@@ -119,7 +119,7 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		this.dispatchEvent({type:"onBrowseFileCancel"});
 	}
-	function onBrowseFileSelect(var2)
+	function onBrowseFileSelect(§\x1e\x17§)
 	{
 		this.dispatchEvent({type:"onBrowseFileSelect",files:var2});
 	}
@@ -127,15 +127,15 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		this.dispatchEvent({type:"onBrowseFileToSaveCancel"});
 	}
-	function onBrowseFileToSaveSelect(var2)
+	function onBrowseFileToSaveSelect(§\x1e\x12\x18§)
 	{
 		this.dispatchEvent({type:"onBrowseFileToSaveSelect",file:var2});
 	}
-	function onHttpDownloadError(var2, var3)
+	function onHttpDownloadError(§\x1e\x10\x07§, §\n\x02§)
 	{
 		this.dispatchEvent({type:"onHttpDownloadError",msg:var2,params:var3});
 	}
-	function onHttpDownloadProgress(var2, var3)
+	function onHttpDownloadProgress(§\b\x0b§, §\b\n§)
 	{
 		this.dispatchEvent({type:"onHttpDownloadProgress",bl:var2,bt:var3});
 	}
@@ -143,11 +143,11 @@ class ank.external.ExternalConnector extends LocalConnection
 	{
 		this.dispatchEvent({type:"onHttpDownloadComplete"});
 	}
-	function onScreenResolutionError(var2)
+	function onScreenResolutionError(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:"onScreenResolutionError"});
 	}
-	function onScreenResolutionSuccess(var2)
+	function onScreenResolutionSuccess(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:"onScreenResolutionSuccess"});
 	}

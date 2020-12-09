@@ -1,12 +1,12 @@
 class ank.utils.ExtendedString extends String
 {
 	static var DEFAULT_SPACECHARS = " \n\r\t";
-	function ExtendedString(var3)
+	function ExtendedString(§\x1e\x1a\x1b§)
 	{
 		super();
 		this._s = String(var3);
 	}
-	function replace(var2, var3)
+	function replace(§\x1e\x17\x02§, §\x1e\x16\x0e§)
 	{
 		if(arguments.length == 0)
 		{
@@ -49,7 +49,7 @@ class ank.utils.ExtendedString extends String
 		}
 		return var5;
 	}
-	function addLeftChar(var2, var3)
+	function addLeftChar(§\x1e\x14\x11§, §\x03\b§)
 	{
 		var var4 = var3 - this._s.length;
 		var var5 = new String();
@@ -62,43 +62,43 @@ class ank.utils.ExtendedString extends String
 		var5 = var5 + this._s;
 		return var5;
 	}
-	function addMiddleChar(§\x07\r§, nCount)
+	function addMiddleChar(§\x07\x18§, §\x07\b§)
 	{
-		if(_global.isNaN(nCount))
+		if(_global.isNaN(var3))
 		{
-			nCount = Number(nCount);
+			var3 = Number(var3);
 		}
-		nCount = Math.abs(nCount);
+		var3 = Math.abs(var3);
 		var var5 = new Array();
 		var var4 = this._s.length;
 		while(var4 > 0)
 		{
-			if(Math.max(0,var4 - nCount) == 0)
+			if(Math.max(0,var4 - var3) == 0)
 			{
 				var5.push(this._s.substr(0,var4));
 			}
 			else
 			{
-				var5.push(this._s.substr(var4 - nCount,nCount));
+				var5.push(this._s.substr(var4 - var3,var3));
 			}
-			var4 = var4 - nCount;
+			var4 = var4 - var3;
 		}
 		var5.reverse();
 		return var5.join(var2);
 	}
-	function lTrim(var2)
+	function lTrim(§\x1d§)
 	{
 		this._clearOutOfRange();
 		this._lTrim(this.spaceStringToObject(var2));
 		return this;
 	}
-	function rTrim(var2)
+	function rTrim(§\x1d§)
 	{
 		this._clearOutOfRange();
 		this._rTrim(this.spaceStringToObject(var2));
 		return this;
 	}
-	function trim(var2)
+	function trim(§\x1d§)
 	{
 		var var3 = this.spaceStringToObject(var2);
 		this._clearOutOfRange();
@@ -110,7 +110,7 @@ class ank.utils.ExtendedString extends String
 	{
 		return this._s;
 	}
-	function spaceStringToObject(var2)
+	function spaceStringToObject(§\x1d§)
 	{
 		var var3 = new Object();
 		if(var2 == undefined)
@@ -131,7 +131,7 @@ class ank.utils.ExtendedString extends String
 		}
 		return var3;
 	}
-	function _lTrim(var2)
+	function _lTrim(§\x1d§)
 	{
 		var var3 = this._s.length;
 		var var4 = 0;
@@ -146,7 +146,7 @@ class ank.utils.ExtendedString extends String
 		}
 		this._s = this._s.slice(var4);
 	}
-	function _rTrim(var2)
+	function _rTrim(§\x1d§)
 	{
 		var var3 = this._s.length;
 		var var4 = var3 - 1;

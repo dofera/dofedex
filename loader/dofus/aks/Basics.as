@@ -1,18 +1,18 @@
 class dofus.aks.Basics extends dofus.aks.Handler
 {
-	function Basics(var2, var3)
+	function Basics(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function autorisedCommand(var2)
+	function autorisedCommand(§\x1e\x14\x06§)
 	{
 		this.aks.send("BA" + var2,false,undefined,true);
 	}
-	function autorisedMoveCommand(var2, var3)
+	function autorisedMoveCommand(§\x1e\x1b\r§, §\x1e\x1b\x05§)
 	{
 		this.aks.send("BaM" + var2 + "," + var3,false);
 	}
-	function autorisedKickCommand(var2, var3, var4)
+	function autorisedKickCommand(§\x1e\x0f\x04§, §\x1e\x1c\x10§, §\x1e\x10\x0f§)
 	{
 		this.aks.send("BaK" + var2 + "|" + var3 + "|" + var4,false);
 	}
@@ -20,11 +20,11 @@ class dofus.aks.Basics extends dofus.aks.Handler
 	{
 		this.whoIs("");
 	}
-	function whoIs(var2)
+	function whoIs(§\x1e\x10\x06§)
 	{
 		this.aks.send("BW" + var2);
 	}
-	function kick(var2)
+	function kick(§\b\x02§)
 	{
 		this.aks.send("BQ" + var2,false);
 	}
@@ -40,11 +40,11 @@ class dofus.aks.Basics extends dofus.aks.Handler
 	{
 		this.aks.send("BD",false);
 	}
-	function fileCheckAnswer(var2, var3)
+	function fileCheckAnswer(§\x07\x12§, §\x05\x11§)
 	{
 		this.aks.send("BC" + var2 + ";" + var3,false);
 	}
-	function sanctionMe(var2, var3)
+	function sanctionMe(§\x1e\x1e\x0b§, §\x1e\x1b\x0e§)
 	{
 		this.aks.send("BK" + var2 + "|" + var3,false);
 	}
@@ -52,11 +52,11 @@ class dofus.aks.Basics extends dofus.aks.Handler
 	{
 		this.aks.send("Bp" + this.api.network.getAveragePing() + "|" + this.api.network.getAveragePingPacketsCount() + "|" + this.api.network.getAveragePingBufferSize(),false);
 	}
-	function askReportInfos(var2, var3, var4)
+	function askReportInfos(§\x1e\x1d\x05§, §\x1e\r\n§, §\x1c\x17§)
 	{
 		this.aks.send("Br" + var2 + "|" + var3 + "|" + (!var4?"0":"1"));
 	}
-	function onReportInfos(var2)
+	function onReportInfos(§\x1e\x12\x1a§)
 	{
 		var var3 = this.api.datacenter.Temporary.Report;
 		if(var3 == undefined)
@@ -65,56 +65,56 @@ class dofus.aks.Basics extends dofus.aks.Handler
 		}
 		var var4 = var2.charAt(0);
 		var var5 = var2.substring(1);
-		if((var var0 = var4) !== "t")
+		switch(var4)
 		{
-			switch(null)
-			{
-				case "s":
-					if(var3.sanctionnatedAccounts == undefined)
-					{
-						var3.sanctionnatedAccounts = var5;
-					}
-					else
-					{
-						var3.sanctionnatedAccounts = var3.sanctionnatedAccounts + ("\n\n" + var5);
-					}
+			case "t":
+				var var6 = var5.split("|");
+				if(var3.targetAccountPseudo == undefined)
+				{
+					var3.targetAccountPseudo = var6[0];
+					var3.targetAccountId = var6[1];
+				}
+				break;
+			case "s":
+				if(var3.sanctionnatedAccounts == undefined)
+				{
+					var3.sanctionnatedAccounts = var5;
+				}
+				else
+				{
+					var3.sanctionnatedAccounts = var3.sanctionnatedAccounts + (MountPark + var5);
+				}
+				break;
+			case "p":
+				var3.penal = var5;
+				break;
+			case "f":
+				var3.findAccounts = var5;
+				break;
+			default:
+				if(var0 !== "#")
+				{
 					break;
-				case "p":
-					var3.penal = var5;
+				}
+				this.api.ui.unloadUIComponent("FightsInfos");
+				var var7 = (dofus.graphics.gapi.ui.MakeReport)this.api.ui.getUIComponent("MakeReport");
+				if(var7 == undefined)
+				{
+					var var8 = var3.targetPseudos;
+					var var9 = var3.reason;
+					var var10 = var3.description;
+					var var11 = var3.jailDialog;
+					var var12 = var3.isAllAccounts;
+					var var13 = var3.penal;
+					var var14 = var3.findAccounts;
+					this.api.ui.loadUIComponent("MakeReport","MakeReport",{targetPseudos:var8,reason:var9,description:var10,jailDialog:var11,isAllAccounts:var12,penal:var13,findAccounts:var14});
 					break;
-				case "f":
-					var3.findAccounts = var5;
-					break;
-				case "#":
-					this.api.ui.unloadUIComponent("FightsInfos");
-					var var7 = (dofus.graphics.gapi.ui.MakeReport)this.api.ui.getUIComponent("MakeReport");
-					if(var7 == undefined)
-					{
-						var var8 = var3.targetPseudos;
-						var var9 = var3.reason;
-						var var10 = var3.description;
-						var var11 = var3.jailDialog;
-						var var12 = var3.isAllAccounts;
-						var var13 = var3.penal;
-						var var14 = var3.findAccounts;
-						this.api.ui.loadUIComponent("MakeReport","MakeReport",{targetPseudos:var8,reason:var9,description:var10,jailDialog:var11,isAllAccounts:var12,penal:var13,findAccounts:var14});
-						break;
-					}
-					var7.update();
-					break;
-			}
-		}
-		else
-		{
-			var var6 = var5.split("|");
-			if(var3.targetAccountPseudo == undefined)
-			{
-				var3.targetAccountPseudo = var6[0];
-				var3.targetAccountId = var6[1];
-			}
+				}
+				var7.update();
+				break;
 		}
 	}
-	function onPopupMessage(var2)
+	function onPopupMessage(§\x1e\x12\x1a§)
 	{
 		var var3 = var2;
 		if(var3 != undefined && var3.length > 0)
@@ -122,33 +122,30 @@ class dofus.aks.Basics extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,var3,"WAIT_BOX");
 		}
 	}
-	function onAuthorizedInterfaceOpen(var2)
+	function onAuthorizedInterfaceOpen(§\x1e\x12\x1a§)
 	{
 		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("A_GIVE_U_RIGHTS",[var2]),"ERROR_BOX");
 		this.api.datacenter.Player.isAuthorized = true;
 	}
-	function onAuthorizedInterfaceClose(var2)
+	function onAuthorizedInterfaceClose(§\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("Debug");
 		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("A_REMOVE_U_RIGHTS",[var2]),"ERROR_BOX");
 		this.api.datacenter.Player.isAuthorized = false;
 	}
-	function onAuthorizedCommand(var2, var3)
+	function onAuthorizedCommand(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
 			var var4 = Number(var3.charAt(0));
 			var var5 = "DEBUG_LOG";
-			if((var var0 = var4) !== 1)
+			switch(var4)
 			{
-				if(var0 === 2)
-				{
+				case 1:
+					var5 = "DEBUG_ERROR";
+					break;
+				case 2:
 					var5 = "DEBUG_INFO";
-				}
-			}
-			else
-			{
-				var5 = "DEBUG_ERROR";
 			}
 			if(this.api.ui.getUIComponent("Debug") == undefined)
 			{
@@ -179,7 +176,7 @@ class dofus.aks.Basics extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("UNKNOW_COMMAND",["/a"]),"ERROR_CHAT");
 		}
 	}
-	function onAuthorizedCommandPrompt(var2)
+	function onAuthorizedCommandPrompt(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Basics.aks_a_prompt = var2;
 		this.api.ui.getUIComponent("Debug").setPrompt(var2);
@@ -188,7 +185,7 @@ class dofus.aks.Basics extends dofus.aks.Handler
 	{
 		this.api.ui.getUIComponent("Debug").clear();
 	}
-	function onAuthorizedLine(var2)
+	function onAuthorizedLine(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -211,18 +208,18 @@ class dofus.aks.Basics extends dofus.aks.Handler
 			this.api.ui.getUIComponent("Debug").refresh();
 		}
 	}
-	function onReferenceTime(var2)
+	function onReferenceTime(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		this.api.kernel.NightManager.setReferenceTime(var3);
 	}
-	function onDate(var2)
+	function onDate(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Basics.lastDateUpdate = getTimer();
 		var var3 = var2.split("|");
 		this.api.kernel.NightManager.setReferenceDate(Number(var3[0]),Number(var3[1]),Number(var3[2]));
 	}
-	function onWhoIs(var2, var3)
+	function onWhoIs(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(var2)
 		{
@@ -246,16 +243,16 @@ class dofus.aks.Basics extends dofus.aks.Handler
 						this.api.kernel.showMessage(undefined,this.api.lang.getText("I_AM_IN_GAME",[var7,var5,var8]),"COMMANDS_CHAT");
 				}
 			}
+			else if((var0 = var6) !== "1")
+			{
+				if(var0 === "2")
+				{
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("IS_IN_GAME",[var7,var5,var8]),"COMMANDS_CHAT");
+				}
+			}
 			else
 			{
-				switch(var6)
-				{
-					case "1":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("IS_IN_SINGLE_GAME",[var7,var5,var8]),"COMMANDS_CHAT");
-						break;
-					case "2":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("IS_IN_GAME",[var7,var5,var8]),"COMMANDS_CHAT");
-				}
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("IS_IN_SINGLE_GAME",[var7,var5,var8]),"COMMANDS_CHAT");
 			}
 		}
 		else
@@ -263,7 +260,7 @@ class dofus.aks.Basics extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_FIND_ACCOUNT_OR_CHARACTER",[var3]),"ERROR_CHAT");
 		}
 	}
-	function onFileCheck(var2)
+	function onFileCheck(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split(";");
 		var var4 = Number(var3[0]);
@@ -279,7 +276,7 @@ class dofus.aks.Basics extends dofus.aks.Handler
 			dofus.utils.Api.getInstance().checkFileSize(var5,var4);
 		}
 	}
-	function onBrightCell(var2)
+	function onBrightCell(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("/");
 		var var4 = Number(var3[0]);
@@ -299,11 +296,11 @@ class dofus.aks.Basics extends dofus.aks.Handler
 			this.api.gfx.select(var6,var7,"brightedPosition");
 		}
 	}
-	function onAveragePing(var2)
+	function onAveragePing(§\x1e\x12\x1a§)
 	{
 		this.averagePing();
 	}
-	function onSubscriberRestriction(var2)
+	function onSubscriberRestriction(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0) == "+";
 		if(var3)

@@ -6,7 +6,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 	var _bShiftDown = true;
 	static var _sSelf = null;
 	var _nLastTriggerShow = 0;
-	function KeyManager(var2)
+	function KeyManager(§\x1e\x1a\x16§)
 	{
 		super();
 		dofus.managers.KeyManager._sSelf = this;
@@ -16,7 +16,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 	{
 		return this._bIsBroadcasting;
 	}
-	function __set__Broadcasting(var2)
+	function __set__Broadcasting(§\x18\x18§)
 	{
 		this._bIsBroadcasting = var2;
 		return this.__get__Broadcasting();
@@ -25,7 +25,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.KeyManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3);
 		Key.addListener(this);
@@ -33,7 +33,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		this._aNoChatShortcuts = new Array();
 		this.addToQueue({object:this,method:this.loadShortcuts});
 	}
-	function addShortcutsListener(var2, var3)
+	function addShortcutsListener(§\x1e\x10\f§, §\x1e\x19\x06§)
 	{
 		if(this._aListening == undefined)
 		{
@@ -50,7 +50,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		}
 		this._aListening.unshift({o:var3,m:var2});
 	}
-	function removeShortcutsListener(var2)
+	function removeShortcutsListener(§\x1e\x19\x06§)
 	{
 		if(this._aListening == undefined)
 		{
@@ -74,7 +74,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 			var5 = var5 + 1;
 		}
 	}
-	function addKeysListener(var2, var3)
+	function addKeysListener(§\x1e\x10\f§, §\x1e\x19\x06§)
 	{
 		if(this._aKeysListening == undefined)
 		{
@@ -91,7 +91,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		}
 		this._aKeysListening.unshift({o:var3,m:var2});
 	}
-	function removeKeysListener(var2)
+	function removeKeysListener(§\x1e\x19\x06§)
 	{
 		if(this._aKeysListening == undefined)
 		{
@@ -115,11 +115,11 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 			var5 = var5 + 1;
 		}
 	}
-	function getDefaultShortcut(var2)
+	function getDefaultShortcut(§\x1e\x0e\x04§)
 	{
 		return this.api.lang.getKeyboardShortcutsKeys(this._nCurrentSet,var2);
 	}
-	function getCurrentShortcut(var2)
+	function getCurrentShortcut(§\x1e\x0e\x04§)
 	{
 		var var3 = new Array();
 		var var4 = 0;
@@ -155,11 +155,11 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		this._so.clear();
 		this.loadShortcuts();
 	}
-	function askCustomShortcut(var2, var3)
+	function askCustomShortcut(§\x1e\x0e\x04§, §\x18\x19§)
 	{
 		this.api.ui.loadUIComponent("AskCustomShortcut","AskCustomShortcut",{title:this.api.lang.getText("SHORTCUTS_CUSTOM"),ShortcutCode:var2,IsAlt:var3,Description:this.api.lang.getKeyboardShortcuts()[var2].d});
 	}
-	function setCustomShortcut(var2, var3, var4, var5, var6)
+	function setCustomShortcut(§\x1e\x0e\x04§, §\x18\x19§, §\x04\t§, §\x07\x05§, §\x1e\x14\x1c§)
 	{
 		if(var2 == undefined || var3 == undefined)
 		{
@@ -186,16 +186,16 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		this._so.flush();
 		this.loadShortcuts();
 	}
-	function getCustomShortcut(var2, var3)
+	function getCustomShortcut(§\x1e\x0e\x04§, §\x18\x19§)
 	{
 		var var4 = var2 + (!var3?"_MAIN":"_ALT");
 		return this._so.data[var4];
 	}
-	function isCustomShortcut(var2, var3)
+	function isCustomShortcut(§\x1e\x0e\x04§, §\x18\x19§)
 	{
 		return this.getCustomShortcut(var2,var3) != undefined;
 	}
-	function deleteCustomShortcut(var2, var3)
+	function deleteCustomShortcut(§\x1e\x0e\x04§, §\x18\x19§)
 	{
 		this.setCustomShortcut(var2,var3);
 	}
@@ -208,11 +208,11 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function dispatchCtrlState(var2)
+	function dispatchCtrlState(§\x17\x13§)
 	{
 		this.dispatchShortcut(!var2?"CTRL_STATE_CHANGED_OFF":"CTRL_STATE_CHANGED_ON");
 	}
-	function dispatchShortcut(var2)
+	function dispatchShortcut(§\x1e\x0e\x04§)
 	{
 		if(!this._bIsBroadcasting)
 		{
@@ -259,7 +259,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		}
 		return var4;
 	}
-	function dispatchKey(var2)
+	function dispatchKey(§\x1e\x11\x10§)
 	{
 		if(!this._bIsBroadcasting)
 		{
@@ -269,7 +269,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		{
 			return undefined;
 		}
-		var2 = new ank.utils.(var2).trim().toString();
+		var2 = new ank.utils.(var2).trim().toString();
 		if(var2.length == 0)
 		{
 			return undefined;
@@ -311,6 +311,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		var var4 = this.api.lang.getKeyboardShortcuts();
 		this._aNoChatShortcuts = new Array();
 		this._aAnyTimeShortcuts = new Array();
+		org.flashdevelop.utils.FlashConnect.mtrace("Vidage des raccourcis...","dofus.managers.KeyManager::loadShortcuts","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/KeyManager.as",374);
 		for(var k in var4)
 		{
 			var var5 = this.api.lang.getKeyboardShortcutsKeys(this._nCurrentSet,k);
@@ -360,6 +361,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		}
 		if(this._aNoChatShortcuts.length == 0 && this._aAnyTimeShortcuts.length == 0)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace("No shortcuts...","dofus.managers.KeyManager::loadShortcuts","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/KeyManager.as",427);
 			this._aAnyTimeShortcuts.push({k:38,c:0,o:true,d:"HISTORY_UP"});
 			this._aAnyTimeShortcuts.push({k:40,c:0,o:true,d:"HISTORY_DOWN"});
 			this._aAnyTimeShortcuts.push({k:13,c:1,o:true,d:"GUILD_MESSAGE"});
@@ -380,7 +382,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function processShortcuts(var2, var3, var4, var5)
+	function processShortcuts(§\x1d\x0e§, §\x04\t§, §\x1b\x0e§, §\x15\x14§)
 	{
 		var var6 = true;
 		var var7 = 0;
@@ -403,18 +405,21 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 							var8 = true;
 						}
 						break;
-					case 3:
+					default:
+						if(var0 !== 3)
+						{
+							if(!var4 && !var5)
+							{
+								var8 = true;
+								break;
+							}
+							break;
+						}
 						if(var4 && var5)
 						{
 							var8 = true;
 						}
 						break;
-					default:
-						if(!var4 && !var5)
-						{
-							var8 = true;
-							break;
-						}
 				}
 				if(var8)
 				{
@@ -425,7 +430,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		}
 		return var6;
 	}
-	function onSetChange(var2)
+	function onSetChange(§\x1e\x1d\x1d§)
 	{
 		this._nCurrentSet = var2;
 		this.loadShortcuts();
@@ -498,7 +503,7 @@ class dofus.managers.KeyManager extends dofus.utils.ApiElement
 		var var2 = Key.getCode();
 		delete this._bPressedKeys.register2;
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		var var3 = true;
 		loop0:

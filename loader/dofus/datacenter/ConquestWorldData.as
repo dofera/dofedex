@@ -8,7 +8,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._nOwnedAreas;
 	}
-	function __set__ownedAreas(var2)
+	function __set__ownedAreas(§\x1e\n\x0f§)
 	{
 		this._nOwnedAreas = var2;
 		return this.__get__ownedAreas();
@@ -17,7 +17,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._nTotalAreas;
 	}
-	function __set__totalAreas(var2)
+	function __set__totalAreas(§\x1e\n\x0f§)
 	{
 		this._nTotalAreas = var2;
 		return this.__get__totalAreas();
@@ -26,7 +26,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._nPossibleAreas;
 	}
-	function __set__possibleAreas(var2)
+	function __set__possibleAreas(§\x1e\n\x0f§)
 	{
 		this._nPossibleAreas = var2;
 		return this.__get__possibleAreas();
@@ -35,7 +35,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._aAreas;
 	}
-	function __set__areas(var2)
+	function __set__areas(§\x1e\n\x0f§)
 	{
 		this._aAreas = var2;
 		return this.__get__areas();
@@ -44,7 +44,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._nOwnedVillages;
 	}
-	function __set__ownedVillages(var2)
+	function __set__ownedVillages(§\x1e\n\x0f§)
 	{
 		this._nOwnedVillages = var2;
 		return this.__get__ownedVillages();
@@ -53,7 +53,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._nTotalVillages;
 	}
-	function __set__totalVillages(var2)
+	function __set__totalVillages(§\x1e\n\x0f§)
 	{
 		this._nTotalVillages = var2;
 		return this.__get__totalVillages();
@@ -62,7 +62,7 @@ class dofus.datacenter.ConquestWorldData extends Object
 	{
 		return this._aVillages;
 	}
-	function __set__villages(var2)
+	function __set__villages(§\x1e\n\x0f§)
 	{
 		this._aVillages = var2;
 		return this.__get__villages();

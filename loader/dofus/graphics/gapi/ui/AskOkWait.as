@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.AskOkWait extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(var2)
+	function __set__text(§\x1e\r\x02§)
 	{
 		this._sText = var2;
 		return this.__get__text();
@@ -27,19 +27,19 @@ class dofus.graphics.gapi.ui.AskOkWait extends ank.gapi.ui.FlyWindow
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		this.startTimer();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.api.kernel.KeyManager.removeShortcutsListener(this);
 		this.dispatchEvent({type:"ok"});
 		this.unloadThis();
 	}
-	function change(var2)
+	function change(§\x1e\x19\x18§)
 	{
 		var var3 = this._winBackground.content;
 		var3._btnOk._y = var3._txtText._y + var3._txtText.height + 20;
 		this._winBackground.setPreferedSize();
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._winBackground.content._btnOk.enabled)
 		{

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.QuestStepListViewer extends dofus.graphics.ga
 	{
 		super();
 	}
-	function __set__steps(var2)
+	function __set__steps(§\x0f\x1b§)
 	{
 		this._eaSteps = var2;
 		if(this.initialized)
@@ -50,7 +50,7 @@ class dofus.graphics.gapi.controls.QuestStepListViewer extends dofus.graphics.ga
 			}
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		var var3 = var2.row.item;
 		this._txtDescription.text = var3.description;

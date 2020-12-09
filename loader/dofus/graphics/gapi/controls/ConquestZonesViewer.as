@@ -31,6 +31,7 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 	}
 	function addListeners()
 	{
+		var ref = this;
 		this._mcGotAreasInteractivity.onRollOver = function()
 		{
 			ref.over({target:this});
@@ -54,7 +55,8 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 	{
 		var var2 = this.api.datacenter.Conquest.worldDatas;
 		var var3 = this._cbFilter.selectedItem.value;
-		var var4 = new ank.utils.();
+		var var4 = new ank.utils.
+();
 		var var5 = new String();
 		var var6 = 0;
 		while(var6 < var2.areas.length)
@@ -88,7 +90,8 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 		this._lblGotVillages.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("CONQUEST_POSSESSED_WORD"),"m",false) + " : " + var2.ownedVillages + " / " + var2.totalVillages;
 		this.refreshAreaList();
 		this._lstVillages.dataProvider = var2.villages;
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = this.api.lang.getAlignments();
 		for(var s in var4)
 		{
@@ -104,7 +107,7 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 		this._cbFilter.dataProvider = var3;
 		this._cbFilter.selectedIndex = var3.findFirstItem("value",this.api.kernel.OptionsManager.getOption("ConquestFilter")).index;
 	}
-	function over(var2)
+	function over(§\x0f\r§)
 	{
 		var var3 = this.api.datacenter.Conquest.worldDatas;
 		switch(var2.target)
@@ -116,15 +119,15 @@ class dofus.graphics.gapi.controls.ConquestZonesViewer extends dofus.graphics.ga
 				this.api.ui.showTooltip(this.api.lang.getText("CONQUEST_GOT_VILLAGES",[var3.ownedVillages,var3.totalVillages]),this._mcGotVillagesInteractivity,-20);
 		}
 	}
-	function out(var2)
+	function out(§\x0f\r§)
 	{
 		this.api.ui.hideTooltip();
 	}
-	function worldDataChanged(var2)
+	function worldDataChanged(§\x0f\r§)
 	{
 		this.addToQueue({object:this,method:this.initData});
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x0f\r§)
 	{
 		this.api.kernel.OptionsManager.setOption("ConquestFilter",this._cbFilter.selectedItem.value);
 		this.refreshAreaList();

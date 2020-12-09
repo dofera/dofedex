@@ -7,7 +7,7 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__spriteList(var2)
+	function __set__spriteList(§\x1d\x0b§)
 	{
 		this._aSpriteList = var2;
 		if(this.initialized)
@@ -16,12 +16,12 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		}
 		return this.__get__spriteList();
 	}
-	function __set__characterCount(var2)
+	function __set__characterCount(§\x07\x16§)
 	{
 		this._nCharacterCount = var2;
 		return this.__get__characterCount();
 	}
-	function __set__setNewName(var2)
+	function __set__setNewName(§\x1e\x10\x06§)
 	{
 		this._mcPlayer._itCharacterName.text = var2;
 		return this.__get__setNewName();
@@ -79,9 +79,11 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 	}
 	function updateCharactersList()
 	{
-		var var2 = new ank.utils.();
-		for(var var3 in this._aSpriteList)
+		var var2 = new ank.utils.
+();
+		for(var i in this._aSpriteList)
 		{
+			var var3 = new Object();
 			var3.level = this._aSpriteList[i].Level;
 			var3.playerName = this._aSpriteList[i].name;
 			var3.newPlayerName = var3.playerName;
@@ -117,14 +119,14 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		this._lblMigrationTitle.text = this.api.lang.getText("CHARACTER_MIGRATION_TITLE");
 		this._lstCharacters.columnsNames = ["",this.api.lang.getText("NAME").substr(0,1).toUpperCase() + this.api.lang.getText("NAME").substr(1),this.api.lang.getText("LEVEL"),this.api.lang.getText("STATE")];
 	}
-	function changeSpriteOrientation(var2)
+	function changeSpriteOrientation(§\n\x1b§)
 	{
 		if(!var2.attachMovie("staticF","mcAnim",10))
 		{
 			var2.attachMovie("staticR","mcAnim",10);
 		}
 	}
-	function checkName(var2)
+	function checkName(§\x1e\x10\x06§)
 	{
 		return Math.random() * 2 > 1;
 	}
@@ -132,7 +134,7 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 	{
 		this._mcPlayer._svCharacterViewer.destroy();
 	}
-	function validateCreation(var2, var3)
+	function validateCreation(§\x1e\x14\x0b§, §\x07\x14§)
 	{
 		if(var2.length == 0 || var2 == undefined)
 		{
@@ -146,12 +148,12 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var var4 = new dofus.utils.nameChecker.(var2);
+			var var4 = new dofus.utils.nameChecker.	(var2);
 			var var5 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
 			var var6 = var4.isValidAgainstWithDetails(var5);
 			if(!var6.IS_SUCCESS)
 			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + GuildRights + var6.toString(GuildRights),"ERROR_BOX");
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + IComparable + var6.toString(IComparable),"ERROR_BOX");
 				return undefined;
 			}
 		}
@@ -177,7 +179,7 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		this.unloadThis();
 		return true;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -190,7 +192,7 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 				this.callClose();
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		this._mcPlayer._svCharacterViewer.zoom = 200;
 		this._mcPlayer._svCharacterViewer.refreshDelay = 50;
@@ -200,14 +202,14 @@ class dofus.graphics.gapi.ui.CharactersMigration extends dofus.graphics.gapi.cor
 		this._mcPlayer._lblOldName.text = this.api.lang.getText("OLD_NAME") + " : " + var2.row.item.playerName;
 		this._mcPlayer._itCharacterName.text = var2.row.item.newPlayerName;
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		this._mcSprite = var2.clip;
 		this.gapi.api.colors.addSprite(this._mcSprite,this._oCurrentPlayerData);
 		this._mcSprite._xscale = this._mcSprite._yscale = 180;
 		this.addToQueue({object:this,method:this.changeSpriteOrientation,params:[this._mcSprite]});
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

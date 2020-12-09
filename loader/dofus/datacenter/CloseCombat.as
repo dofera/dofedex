@@ -1,6 +1,6 @@
 class dofus.datacenter.CloseCombat extends Object
 {
-	function CloseCombat(var3, var4)
+	function CloseCombat(§\x1e\x19\r§, §\x07\x0f§)
 	{
 		super();
 		this.initialize(var3,var4);
@@ -207,8 +207,9 @@ class dofus.datacenter.CloseCombat extends Object
 	{
 		var var2 = {none:false,neutral:false,earth:false,fire:false,water:false,air:false};
 		var var3 = this.effectsNormalHit;
-		for(var var4 in var3)
+		for(var k in var3)
 		{
+			var var4 = var3[k].element;
 			if((var var0 = var4) !== "N")
 			{
 				switch(null)
@@ -252,7 +253,7 @@ class dofus.datacenter.CloseCombat extends Object
 	{
 		return this._aRequiredStates.length > 0 || this._aForbiddenStates.length > 0;
 	}
-	function initialize(var2, var3)
+	function initialize(§\x1e\x19\r§, §\x07\x0f§)
 	{
 		this.api = _global.API;
 		this._oItem = var2;
@@ -277,7 +278,7 @@ class dofus.datacenter.CloseCombat extends Object
 		this._aRequiredStates = var7[9];
 		this._aForbiddenStates = var7[10];
 	}
-	function getDefaultProperty(var2)
+	function getDefaultProperty(§\x01\x12§)
 	{
 		return this._oCloseCombatClassInfos[var2];
 	}

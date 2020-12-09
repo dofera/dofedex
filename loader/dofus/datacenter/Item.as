@@ -3,7 +3,7 @@ class dofus.datacenter.Item extends Object
 	static var OBJECT_ACTION_SUMMON = 623;
 	static var LEVEL_STEP = [0,10,21,33,46,60,75,91,108,126,145,165,186,208,231,255,280,306,333,361];
 	static var DATE_ID = 0;
-	function Item(var3, var4, var5, var6, var7, var8, var9, var10)
+	function Item(§\x05\x02§, §\x1e\x1b\x1d§, §\x01\x0e§, §\x01\x17§, §\x1e\x13\t§, §\x01\x14§, §\x1e\x1d\x17§, §\x02\x17§)
 	{
 		super();
 		this.initialize(var3,var4,var5,var6,var7,var8,var9,var10);
@@ -24,7 +24,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._sEffects;
 	}
-	function __set__Quantity(var2)
+	function __set__Quantity(§\x1e\n\x0f§)
 	{
 		if(_global.isNaN(Number(var2)))
 		{
@@ -37,7 +37,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._nQuantity;
 	}
-	function __set__remainingHours(var2)
+	function __set__remainingHours(§\x1e\x1e\x18§)
 	{
 		this._nRemainingHours = var2;
 		return this.__get__remainingHours();
@@ -46,7 +46,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._nRemainingHours;
 	}
-	function __set__position(var2)
+	function __set__position(§\x1e\n\x0f§)
 	{
 		if(_global.isNaN(Number(var2)))
 		{
@@ -59,7 +59,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._nPosition;
 	}
-	function __set__priceMultiplicator(var2)
+	function __set__priceMultiplicator(§\x1e\n\x0f§)
 	{
 		if(_global.isNaN(Number(var2)))
 		{
@@ -99,7 +99,7 @@ class dofus.datacenter.Item extends Object
 		}
 		return Number(this._oUnicInfos.t);
 	}
-	function __set__type(var2)
+	function __set__type(§\x1e\x1c\x03§)
 	{
 		this._nRealType = var2;
 		return this.__get__type();
@@ -148,7 +148,7 @@ class dofus.datacenter.Item extends Object
 					while(§§pop() != null)
 					{
 					}
-					return new dofus.datacenter.(var2[0],var2[1],var2[2],var2[3]);
+					return new dofus.datacenter.(var2[0],var2[1],var2[2],var2[3]);
 				}
 			}
 		}
@@ -222,7 +222,7 @@ class dofus.datacenter.Item extends Object
 		}
 		return this._oUnicInfos.g;
 	}
-	function __set__gfx(var2)
+	function __set__gfx(§\x1e\x12\r§)
 	{
 		this._sGfx = var2;
 		return this.__get__gfx();
@@ -318,7 +318,7 @@ class dofus.datacenter.Item extends Object
 		var var6 = 0;
 		while(var6 < var4.length)
 		{
-			var4[var6] = new ank.utils.(var4[var6]).replace(["(",")"],["",""]);
+			var4[var6] = new ank.utils.(var4[var6]).replace(["(",")"],["",""]);
 			var var7 = var4[var6].split("|");
 			var var8 = 0;
 			for(; var8 < var7.length; var8 = var8 + 1)
@@ -354,23 +354,23 @@ class dofus.datacenter.Item extends Object
 						case "Pr":
 							var13 = this.api.lang.getAlignmentSpecialization(Number(var13)).n;
 							break;
-						case "Pg":
-							var var14 = var13.split(",");
-							if(var14.length == 2)
-							{
-								var13 = this.api.lang.getAlignmentFeat(Number(var14[0])).n + " (" + Number(var14[1]) + ")";
-							}
-							else
-							{
-								var13 = this.api.lang.getAlignmentFeat(Number(var13)).n;
-							}
-							break;
-						case "PG":
-							var13 = this.api.lang.getClassText(Number(var13)).sn;
-							break;
 						default:
 							switch(null)
 							{
+								case "Pg":
+									var var14 = var13.split(",");
+									if(var14.length == 2)
+									{
+										var13 = this.api.lang.getAlignmentFeat(Number(var14[0])).n + " (" + Number(var14[1]) + ")";
+									}
+									else
+									{
+										var13 = this.api.lang.getAlignmentFeat(Number(var13)).n;
+									}
+									break loop3;
+								case "PG":
+									var13 = this.api.lang.getClassText(Number(var13)).sn;
+									break loop3;
 								case "PJ":
 								case "Pj":
 									var var15 = var13.split(",");
@@ -378,14 +378,19 @@ class dofus.datacenter.Item extends Object
 									break loop3;
 								case "PM":
 									continue;
-								case "PO":
-									var var16 = new dofus.datacenter.(-1,Number(var13),1,0,"",0);
+								default:
+									if(var0 !== "PO")
+									{
+										break loop3;
+									}
+									var var16 = new dofus.datacenter.(-1,Number(var13),1,0,"",0);
 									var13 = var16.name;
+									break loop3;
 							}
 					}
-					var12 = new ank.utils.(var12).replace(["CS","Cs","CV","Cv","CA","Ca","CI","Ci","CW","Cw","CC","Cc","CA","PG","PJ","Pj","PM","PA","PN","PE","<NO>","PS","PR","PL","PK","Pg","Pr","Ps","Pa","PP","PZ","CM"],this.api.lang.getText("ITEM_CHARACTERISTICS").split(","));
+					var12 = new ank.utils.(var12).replace(["CS","Cs","CV","Cv","CA","Ca","CI","Ci","CW","Cw","CC","Cc","CA","PG","PJ","Pj","PM","PA","PN","PE","<NO>","PS","PR","PL","PK","Pg","Pr","Ps","Pa","PP","PZ","CM"],this.api.lang.getText("ITEM_CHARACTERISTICS").split(","));
 					var var17 = var10 == "!";
-					var10 = new ank.utils.(var10).replace(["!"],[this.api.lang.getText("ITEM_NO")]);
+					var10 = new ank.utils.(var10).replace(["!"],[this.api.lang.getText("ITEM_NO")]);
 					switch(var12)
 					{
 						case "BI":
@@ -418,7 +423,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._nSkin;
 	}
-	function __set__skin(var2)
+	function __set__skin(§\x1e\x1d\x17§)
 	{
 		this._nSkin = var2;
 		return this.__get__skin();
@@ -519,7 +524,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._bCanBeExchange;
 	}
-	function initialize(var2, var3, var4, var5, var6, var7, var8, var9)
+	function initialize(§\x05\x02§, §\x1e\x1b\x1d§, §\x01\x0e§, §\x01\x17§, §\x1e\x13\t§, §\x01\x14§, §\x1e\x1d\x17§, §\x02\x17§)
 	{
 		this.api = _global.API;
 		this._itemDateId = dofus.datacenter.Item.DATE_ID--;
@@ -563,7 +568,7 @@ class dofus.datacenter.Item extends Object
 	{
 		return this._sCustomFullGfx != undefined;
 	}
-	function setEffects(var2)
+	function setEffects(§\x12\x14§)
 	{
 		this._sEffects = var2;
 		this._aEffects = new Array();
@@ -583,13 +588,13 @@ class dofus.datacenter.Item extends Object
 	}
 	function clone()
 	{
-		return new dofus.datacenter.(this._nID,this._nUnicID,this._nQuantity,this._nPosition,this._sEffects);
+		return new dofus.datacenter.(this._nID,this._nUnicID,this._nQuantity,this._nPosition,this._sEffects);
 	}
-	function equals(var2)
+	function equals(§\f\x15§)
 	{
 		return this.unicID == var2.unicID;
 	}
-	function showStatsTooltip(var2, var3)
+	function showStatsTooltip(§\x0b\r§, §\x1e\r\x15§)
 	{
 		var var4 = -20;
 		var var5 = this.name + " (" + this.api.lang.getText("LEVEL_SMALL") + " " + this.level + ")";
@@ -611,7 +616,7 @@ class dofus.datacenter.Item extends Object
 		}
 		this.api.ui.showTooltip(var5,var2,var4,undefined,var3 + "ToolTip");
 	}
-	function getItemFightEffectsText(var2)
+	function getItemFightEffectsText(§\x01\x12§)
 	{
 		return this._oUnicInfos.e[var2];
 	}
@@ -628,13 +633,13 @@ class dofus.datacenter.Item extends Object
 				case 973:
 					this._nRealType = !var2[3]?0:var2[3];
 					break;
-				case 972:
-					this._nSkin = !var2[3]?0:_global.parseInt(var2[3]) - 1;
-					this._bIsSkineable = true;
-					break;
 				default:
 					switch(null)
 					{
+						case 972:
+							this._nSkin = !var2[3]?0:_global.parseInt(var2[3]) - 1;
+							this._bIsSkineable = true;
+							break;
 						case 971:
 							this._nMood = !var2[3]?0:var2[3];
 							break;
@@ -653,7 +658,7 @@ class dofus.datacenter.Item extends Object
 			}
 		}
 	}
-	static function getItemDescriptionEffects(var2, var3)
+	static function getItemDescriptionEffects(§\x1e\x1c§, §\x14\x01§)
 	{
 		var var4 = new Array();
 		var var5 = var2.length;
@@ -672,14 +677,14 @@ class dofus.datacenter.Item extends Object
 					while(var11 < var10.length)
 					{
 						var var12 = _global.parseInt(var10[var11],dofus.aks.Items.COMPRESSION_RADIX);
-						var var13 = new dofus.datacenter.(var8,undefined,undefined,var12);
+						var var13 = new dofus.datacenter.(undefined,var8,undefined,undefined,var12);
 						var9.push(var13);
 						var11 = var11 + 1;
 					}
 				}
 				else
 				{
-					var var14 = new dofus.datacenter.(var8,var7[1],var7[2],var7[3],var7[4]);
+					var var14 = new dofus.datacenter.(undefined,var8,var7[1],var7[2],var7[3],var7[4]);
 					var9.push(var14);
 				}
 				var var15 = 0;

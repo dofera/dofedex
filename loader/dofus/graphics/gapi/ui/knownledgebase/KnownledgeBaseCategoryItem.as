@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.knownledgebase.KnownledgeBaseCategoryItem extends a
 		super();
 		this._mcPicto._visible = false;
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{

@@ -1,6 +1,6 @@
 class ank.battlefield.datacenter.Mount extends Object
 {
-	function Mount(§\x1e\x12\x01§, sChevauchorGfxFile)
+	function Mount(§\x1e\x12\f§, sChevauchorGfxFile)
 	{
 		super();
 		this.gfxFile = var3;
@@ -10,7 +10,7 @@ class ank.battlefield.datacenter.Mount extends Object
 	{
 		return this._nColor1;
 	}
-	function __set__color1(var2)
+	function __set__color1(§\x1e\n\x13§)
 	{
 		this._nColor1 = var2;
 		return this.__get__color1();
@@ -19,7 +19,7 @@ class ank.battlefield.datacenter.Mount extends Object
 	{
 		return this._nColor2;
 	}
-	function __set__color2(var2)
+	function __set__color2(§\x1e\n\x13§)
 	{
 		this._nColor2 = var2;
 		return this.__get__color2();
@@ -28,7 +28,7 @@ class ank.battlefield.datacenter.Mount extends Object
 	{
 		return this._nColor3;
 	}
-	function __set__color3(var2)
+	function __set__color3(§\x1e\n\x13§)
 	{
 		this._nColor3 = var2;
 		return this.__get__color3();

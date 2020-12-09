@@ -15,11 +15,11 @@ class dofus.datacenter.Tutorial extends Object
 	{
 		return this._bCanCancel;
 	}
-	function addBloc(var2)
+	function addBloc(§\x1e\x1a\x0f§)
 	{
 		this._oBlocs[var2.id] = var2;
 	}
-	function setData(var2)
+	function setData(§\x16§)
 	{
 		var var3 = 0;
 		while(var3 < var2.length)
@@ -38,8 +38,7 @@ class dofus.datacenter.Tutorial extends Object
 						var var19 = var4[4];
 						var var20 = var4[5];
 						var var21 = var4[6];
-						var var22 = new dofus.datacenter.
-(var16,var17,var18,var19,var20,var21);
+						var var22 = new dofus.datacenter.(var16,var17,var18,var19,var20,var21);
 						this.addBloc(var22);
 					}
 				}
@@ -48,8 +47,7 @@ class dofus.datacenter.Tutorial extends Object
 					var var12 = var4[1];
 					var var13 = Number(var4[2]);
 					var var14 = var4[3];
-					var var15 = new dofus.datacenter.
-(var12,var13,var14);
+					var var15 = new dofus.datacenter.(var12,var13,var14);
 					this.addBloc(var15);
 				}
 			}
@@ -60,8 +58,7 @@ class dofus.datacenter.Tutorial extends Object
 				var var8 = var4[3];
 				var var9 = var4[4];
 				var var10 = var4[5];
-				var var11 = new dofus.datacenter.
-(var6,var7,var8,var9,var10);
+				var var11 = new dofus.datacenter.(var6,var7,var8,var9,var10);
 				this.addBloc(var11);
 			}
 			var3 = var3 + 1;
@@ -75,7 +72,7 @@ class dofus.datacenter.Tutorial extends Object
 	{
 		return this._oBlocs[this._sRootExitBlocID];
 	}
-	function getBloc(var2)
+	function getBloc(§\x1e\x14\x17§)
 	{
 		return this._oBlocs[var2];
 	}

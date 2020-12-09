@@ -11,7 +11,7 @@ class dofus.datacenter.ConquestBonusData extends Object
 	{
 		return this._nXp;
 	}
-	function __set__xp(var2)
+	function __set__xp(§\x1e\n\x0f§)
 	{
 		this._nXp = var2;
 		return this.__get__xp();
@@ -20,7 +20,7 @@ class dofus.datacenter.ConquestBonusData extends Object
 	{
 		return this._nDrop;
 	}
-	function __set__drop(var2)
+	function __set__drop(§\x1e\n\x0f§)
 	{
 		this._nDrop = var2;
 		return this.__get__drop();
@@ -29,7 +29,7 @@ class dofus.datacenter.ConquestBonusData extends Object
 	{
 		return this._nRecolte;
 	}
-	function __set__recolte(var2)
+	function __set__recolte(§\x1e\n\x0f§)
 	{
 		this._nRecolte = var2;
 		return this.__get__recolte();

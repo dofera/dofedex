@@ -7,7 +7,7 @@ class dofus.graphics.gapi.ui.GameResult extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__data(var2)
+	function __set__data(§\x1e\x1a\x02§)
 	{
 		this._oData = var2;
 		return this.__get__data();
@@ -109,18 +109,18 @@ class dofus.graphics.gapi.ui.GameResult extends dofus.graphics.gapi.core.DofusAd
 			}
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.callClose();
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._sdStars)
 		{
 			this.gapi.showTooltip(this.api.lang.getText("GAME_RESULTS_BONUS_TOOLTIP",[this._sdStars.value]),this._sdStars,-20);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

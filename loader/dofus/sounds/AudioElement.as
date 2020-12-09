@@ -4,18 +4,21 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	static var ONESHOT_SAMPLE = 1;
 	static var UNLIMITED_LENGTH = 0;
 	var _nVolumeBeforeMute = -1;
-	function AudioElement(uniqID, §\x0e\b§, linkedClip, §\x1e\f\x0b§)
+	function AudioElement(uniqID, §\x0e\x12§, linkedClip, §\x1e\f\x16§)
 	{
 		if(uniqID == undefined)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.NullPointerException(this,"AudioElement","","uniqID"),"dofus.sounds.AudioElement::AudioElement","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",245);
 			return undefined;
 		}
 		if(var4 == undefined)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.NullPointerException(this,"AudioElement","","file"),"dofus.sounds.AudioElement::AudioElement","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",250);
 			return undefined;
 		}
 		if(linkedClip == undefined)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.NullPointerException(this,"AudioElement","","linkedClip"),"dofus.sounds.AudioElement::AudioElement","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",255);
 			return undefined;
 		}
 		this._nUniqID = uniqID;
@@ -54,10 +57,11 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return super.getVolume();
 	}
-	function __set__volume(var2)
+	function __set__volume(§\x1e\x1b\x17§)
 	{
 		if(var3 < 0 || var3 > 100)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.ValueOutOfRangeException(this,"AudioElement","set volume","nValue",var3,0,100),"dofus.sounds.AudioElement::volume","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",115);
 			return undefined;
 		}
 		if(!this._bMute && super.setVolume != undefined)
@@ -75,7 +79,7 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this._bMute;
 	}
-	function __set__mute(var2)
+	function __set__mute(§\x14\x03§)
 	{
 		this._bMute = var3;
 		if(this._bMute && super.setVolume != undefined)
@@ -96,10 +100,11 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this._nLoops;
 	}
-	function __set__loops(var2)
+	function __set__loops(§\x1e\x1b\x17§)
 	{
 		if(var2 < dofus.sounds.AudioElement.ONESHOT_SAMPLE || var2 > dofus.sounds.AudioElement.INFINITE_LOOP)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.ValueOutOfRangeException(this,"AudioElement","set loops","nValue",var2,dofus.sounds.AudioElement.ONESHOT_SAMPLE,dofus.sounds.AudioElement.INFINITE_LOOP),"dofus.sounds.AudioElement::loops","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",172);
 			return undefined;
 		}
 		this._nLoops = var2;
@@ -109,10 +114,11 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this._nOffset;
 	}
-	function __set__offset(var2)
+	function __set__offset(§\x1e\x1b\x17§)
 	{
 		if(var2 < 0 || this._nMaxLength != null && var2 > this._nMaxLength)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.ValueOutOfRangeException(this,"AudioElement","set offset","nValue",var2,0,this._nMaxLength != null?this._nMaxLength:Number.POSITIVE_INFINITY),"dofus.sounds.AudioElement::offset","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",197);
 			return undefined;
 		}
 		this._nOffset = var2;
@@ -122,16 +128,17 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this._nMaxLength;
 	}
-	function __set__maxLength(var2)
+	function __set__maxLength(§\x1e\x1b\x17§)
 	{
 		if(var2 < 0)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.ValueOutOfRangeException(this,"AudioElement","set maxLength","nValue",var2,0,Number.POSITIVE_INFINITY),"dofus.sounds.AudioElement::maxLength","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",222);
 			return undefined;
 		}
 		this._nMaxLength = var2;
 		return this.__get__maxLength();
 	}
-	function dispose(var2)
+	function dispose(§\x1e\n\f§)
 	{
 		this.onKill();
 		this._mcLinkedClip.onEnterFrame = null;
@@ -144,7 +151,7 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		return this.volume;
 	}
-	function setVolume(var2)
+	function setVolume(§\x1e\x1b\x12§)
 	{
 		this.volume = var2;
 	}
@@ -168,7 +175,7 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 	{
 		super.stop();
 	}
-	function fadeOut(var2, var3)
+	function fadeOut(§\x06\t§, §\x1c\r§)
 	{
 		var volume = this.volume;
 		var t = volume / var3 / dofus.Constants.AVERAGE_FRAMES_PER_SECOND;
@@ -205,10 +212,11 @@ class dofus.sounds.AudioElement extends Sound implements com.ankamagames.interfa
 		var2 = var2 + (" > Mute         : " + this._bMute + "\n");
 		return var2;
 	}
-	function onLoad(var2)
+	function onLoad(§\x14\x1b§)
 	{
 		if(!var2)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace(new com.ankamagames.exceptions.FileLoadException(this,"AudioElement","onLoad",this._sFile),"dofus.sounds.AudioElement::onLoad","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/sounds/AudioElement.as",429);
 			return undefined;
 		}
 		this._bLoaded = true;

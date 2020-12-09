@@ -32,12 +32,12 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		return this._itvItemViewer;
 	}
-	function __set__maxItem(var2)
+	function __set__maxItem(§\x03\x0f§)
 	{
 		this._nMaxItem = Number(var2);
 		return this.__get__maxItem();
 	}
-	function __set__skillId(var2)
+	function __set__skillId(§\x1e\x1d\x18§)
 	{
 		this._nSkillId = Number(var2);
 		this._btnTries._visible = false;
@@ -51,7 +51,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this._btnValidate._visible = true;
 		return this.__get__skillId();
 	}
-	function __set__dataProvider(var2)
+	function __set__dataProvider(§\x10\x14§)
 	{
 		this._eaDataProvider.removeEventListener("modelChanged",this);
 		this._eaDataProvider = var2;
@@ -59,7 +59,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this.modelChanged();
 		return this.__get__dataProvider();
 	}
-	function __set__localDataProvider(var2)
+	function __set__localDataProvider(§\x10\r§)
 	{
 		this._eaLocalDataProvider.removeEventListener("modelChanged",this);
 		this._eaLocalDataProvider = var2;
@@ -67,7 +67,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this.modelChanged();
 		return this.__get__localDataProvider();
 	}
-	function __set__distantDataProvider(var2)
+	function __set__distantDataProvider(§\x10\x13§)
 	{
 		this._eaDistantDataProvider.removeEventListener("modelChanged",this);
 		this._eaDistantDataProvider = var2;
@@ -175,7 +175,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this._nLblNewToDistantWin = this._lblNewObject._x - this._winDistant._x;
 		this._nCgDistantToDistantWin = this._cgDistant._x - this._winDistant._x;
 	}
-	function showBottom(var2)
+	function showBottom(§\x15\x13§)
 	{
 		this._winLocal._visible = var2;
 		this._mcArrow._visible = var2;
@@ -213,11 +213,14 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		var var2 = this.api.datacenter.Basics[dofus.graphics.gapi.ui.Craft.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name];
 		this._nSelectedTypeID = var2 != undefined?var2:0;
-		var var3 = new ank.utils.();
-		var var4 = new ank.utils.();
+		var var3 = new ank.utils.
+();
+		var var4 = new ank.utils.
+();
 		var var5 = new Object();
-		for(var var6 in this._eaDataProvider)
+		for(var k in this._eaDataProvider)
 		{
+			var var6 = this._eaDataProvider[k];
 			var var7 = var6.position;
 			if(var7 == -1 && this._aSelectedSuperTypes[var6.superType])
 			{
@@ -244,7 +247,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this.setType(this._nSelectedTypeID);
 		this._cgGrid.dataProvider = var3;
 	}
-	function setType(var2)
+	function setType(§\x1e\x1c\x02§)
 	{
 		var var3 = this._cbTypes.dataProvider;
 		var var4 = 0;
@@ -275,12 +278,12 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this._bInvalidateDistant = true;
 	}
-	function hideItemViewer(var2)
+	function hideItemViewer(§\x19\x0e§)
 	{
 		this._itvItemViewer._visible = !var2;
 		this._winItemViewer._visible = !var2;
 	}
-	function validateDrop(var2, var3, var4)
+	function validateDrop(§\x1e\r\f§, §\x1e\x19\r§, §\x1e\x1b\x17§)
 	{
 		if(var4 < 1 || var4 == undefined)
 		{
@@ -312,7 +315,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this.api.network.Exchange.ready();
 	}
-	function canDropInGarbage(var2)
+	function canDropInGarbage(§\x1e\x19\r§)
 	{
 		var var3 = this.api.datacenter.Exchange.localGarbage.findFirstItem("ID",var2.ID);
 		var var4 = this.api.datacenter.Exchange.localGarbage.length;
@@ -322,14 +325,14 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		return true;
 	}
-	function showCraftViewer(var2)
+	function showCraftViewer(§\x15\x13§)
 	{
 		if(var2)
 		{
 			var var3 = this.attachMovie("CraftViewer","_cvCraftViewer",this.getNextHighestDepth());
 			var3._x = this._mcPlacer._x;
 			var3._y = this._mcPlacer._y;
-			var3.skill = new dofus.datacenter.(this._nSkillId,this._nMaxItem);
+			var3.skill = new dofus.datacenter.(this._nSkillId,this._nMaxItem);
 		}
 		else
 		{
@@ -337,7 +340,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this._winCraftViewer._visible = var2;
 	}
-	function addCraft(var2)
+	function addCraft(§\x1e\x1c\x18§)
 	{
 		if(this._nLastRegenerateTimer + dofus.graphics.gapi.ui.Craft.NAME_GENERATION_DELAY < getTimer())
 		{
@@ -487,7 +490,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this.updateData();
 		this.updateDistantData();
 	}
-	function showPreview(var2, var3)
+	function showPreview(§\f\x15§, §\x1d\x03§)
 	{
 		if(this._ctrPreview.contentPath == undefined)
 		{
@@ -498,7 +501,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this._ctrPreview.contentPath = !var3?"":var2.iconFile;
 		this._mcFiligrane.itemName = var2.name;
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -520,7 +523,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 					var var3 = this.api.kernel.GameManager.analyseReceipts(this.api.kernel.GameManager.mergeUnicItemInInventory(this._eaLocalDataProvider),this._nSkillId,this._nMaxItem);
 					if(var3 != undefined)
 					{
-						this.showPreview(new dofus.datacenter.(-1,var3,1,0,"",0),true);
+						this.showPreview(new dofus.datacenter.(-1,var3,1,0,"",0),true);
 					}
 					else
 					{
@@ -534,23 +537,26 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 					this.updateDistantData();
 				}
 				break;
-			case this._eaDataProvider:
+			default:
+				if(var0 !== this._eaDataProvider)
+				{
+					if(!this._bMakeAll && !this._bIsLooping)
+					{
+						this.updateData();
+						this.updateLocalData();
+						this.updateDistantData();
+						break;
+					}
+					break;
+				}
 				if(!this._bMakeAll && !this._bIsLooping)
 				{
 					this.updateData();
 				}
 				break;
-			default:
-				if(!this._bMakeAll && !this._bIsLooping)
-				{
-					this.updateData();
-					this.updateLocalData();
-					this.updateDistantData();
-					break;
-				}
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -560,22 +566,23 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 			case this._btnFilterNonEquipement:
 				this.api.ui.showTooltip(this.api.lang.getText("NONEQUIPEMENT"),var2.target,-20);
 				break;
+			case this._btnFilterRessoureces:
+				this.api.ui.showTooltip(this.api.lang.getText("RESSOURECES"),var2.target,-20);
+				break;
 			default:
-				switch(null)
+				if(var0 !== this._ctrPreview)
 				{
-					case this._btnFilterRessoureces:
-						this.api.ui.showTooltip(this.api.lang.getText("RESSOURECES"),var2.target,-20);
-						break;
-					case this._ctrPreview:
-						if(this._mcFiligrane.itemName != undefined)
-						{
-							this.gapi.showTooltip(this._mcFiligrane.itemName,this._ctrPreview,-22);
-							break;
-						}
+					break;
 				}
+				if(this._mcFiligrane.itemName != undefined)
+				{
+					this.gapi.showTooltip(this._mcFiligrane.itemName,this._ctrPreview,-22);
+					break;
+				}
+				break;
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.api.ui.hideTooltip();
 	}
@@ -589,13 +596,13 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this._btnApplyRunes.label = this.api.lang.getText("APPLY_ONE_RUNE");
 		this.updateData();
 	}
-	function overItem(var2)
+	function overItem(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		var3.showStatsTooltip(var2.target,var2.target.contentData.style);
 		this._oOverItem = var3;
 	}
-	function outItem(var2)
+	function outItem(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 		this._oOverItem = undefined;
@@ -606,7 +613,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		this._btnValidate.label = this._btnApplyRunes.label = this.api.lang.getText("STOP_WORD");
 		this.api.network.Exchange.repeatCraft(this._nCurrentQuantity - 1);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if(var2.target == this._btnClose)
 		{
@@ -745,13 +752,14 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 			this.setReady();
 		}
 	}
-	function updateForgemagusResult(var2)
+	function updateForgemagusResult(§\x1e\x19\r§)
 	{
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var3.push(var2);
 		this.distantDataProvider = var3;
 	}
-	function dblClickItem(var2)
+	function dblClickItem(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 == undefined)
@@ -772,7 +780,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 			this.validateDrop("_cgLocal",var3,var4);
 		}
 	}
-	function dragItem(var2)
+	function dragItem(§\x1e\x19\x18§)
 	{
 		this.gapi.removeCursor();
 		if(var2.target.contentData == undefined)
@@ -781,7 +789,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(var2)
+	function dropItem(§\x1e\x19\x18§)
 	{
 		var var3 = this.gapi.getCursor();
 		if(var3 == undefined)
@@ -819,7 +827,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 			this.validateDrop(var4,var3,1);
 		}
 	}
-	function selectItem(var2)
+	function selectItem(§\x1e\x19\x18§)
 	{
 		if(var2.target.contentData == undefined)
 		{
@@ -836,7 +844,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 			this._itvItemViewer.itemData = var2.target.contentData;
 		}
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		switch(var2.params.targetType)
 		{
@@ -853,7 +861,7 @@ class dofus.graphics.gapi.ui.Craft extends dofus.graphics.gapi.core.DofusAdvance
 				this._nCurrentQuantity = var3;
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "_cbTypes")
 		{

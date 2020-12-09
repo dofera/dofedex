@@ -5,7 +5,7 @@ class ank.gapi.styles.StylesManager extends Object
 	{
 		super();
 	}
-	static function setStyle(var2, var3)
+	static function setStyle(§\x1e\r\x14§, §\x1e\x17\x1a§)
 	{
 		if(!(var3 instanceof Object))
 		{
@@ -21,11 +21,11 @@ class ank.gapi.styles.StylesManager extends Object
 		}
 		ank.gapi.styles.StylesManager._styles[var2] = var3;
 	}
-	static function getStyle(var2)
+	static function getStyle(§\x1e\r\x14§)
 	{
 		return ank.gapi.styles.StylesManager._styles[var2];
 	}
-	static function loadStylePackage(var2)
+	static function loadStylePackage(§\x1e\x18\x17§)
 	{
 		for(var k in var2)
 		{

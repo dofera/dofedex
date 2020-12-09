@@ -9,7 +9,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 	{
 		return this._sMessage;
 	}
-	function __set__message(var2)
+	function __set__message(§\t\x1c§)
 	{
 		this._sMessage = var2;
 		return this.__get__message();
@@ -18,7 +18,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 	{
 		return this._sMessageId;
 	}
-	function __set__messageId(var2)
+	function __set__messageId(§\r\b§)
 	{
 		this._sMessageId = var2;
 		return this.__get__messageId();
@@ -27,7 +27,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 	{
 		return this._sChannelId;
 	}
-	function __set__channelId(var2)
+	function __set__channelId(§\r\b§)
 	{
 		this._sChannelId = var2;
 		return this.__get__channelId();
@@ -36,7 +36,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 	{
 		return this._sCharacterId;
 	}
-	function __set__authorId(var2)
+	function __set__authorId(§\r\b§)
 	{
 		this._sCharacterId = var2;
 		return this.__get__authorId();
@@ -45,7 +45,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 	{
 		return this._sCharacterName;
 	}
-	function __set__authorName(var2)
+	function __set__authorName(§\t\t§)
 	{
 		this._sCharacterName = var2;
 		return this.__get__authorName();
@@ -78,18 +78,18 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 	{
 		this._taMessage.text = this._sMessage.split("<br/>").join("");
 		this._btnIgnoreToo.selected = true;
-		var var2 = new ank.utils.();
+		var var2 = new ank.utils.
+();
 		var var3 = this.api.lang.getAbuseReasons();
 		var2.push({id:-1,label:"(" + this.api.lang.getText("PLEASE_SELECT") + ")"});
-		§§enumerate(var3);
-		while((var var0 = §§enumeration()) != null)
+		for(var i in var3)
 		{
 			var2.push({id:var3[i].i,label:var3[i].t});
 		}
 		this._cbReason.dataProvider = var2;
 		this._cbReason.selectedIndex = 0;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -107,7 +107,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 				this.unloadThis();
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoReportMessage")
 		{
@@ -125,7 +125,7 @@ class dofus.graphics.gapi.ui.AskReportMessage extends dofus.graphics.gapi.core.D
 			this.unloadThis();
 		}
 	}
-	function no(var2)
+	function no(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoReportMessage")
 		{

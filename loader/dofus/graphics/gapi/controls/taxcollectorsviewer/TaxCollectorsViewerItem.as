@@ -4,12 +4,12 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 	{
 		super();
 	}
-	function __set__list(var2)
+	function __set__list(§\x0b\x05§)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		this._oItem.players.removeEventListener("modelChanged",this);
 		this._oItem.attackers.removeEventListener("modelChanged",this);
@@ -108,7 +108,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 		this._btnState.addEventListener("out",this);
 		this._vcTimer.addEventListener("endTimer",this);
 	}
-	function showButtonsJoin(var2)
+	function showButtonsJoin(§\x01\x1c§)
 	{
 		this._mcBackButtons._visible = true;
 		var var3 = 0;
@@ -176,7 +176,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 		this._mcEnterFight._visible = this._oItem.state == 1;
 		this._mcCollect._visible = this._oItem.state == 0;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		var var3 = this._mcList.gapi.api;
 		if(var3.datacenter.Player.cantInteractWithTaxCollector)
@@ -208,7 +208,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 			}
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -242,8 +242,13 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 					case 1:
 						var7 = this._mcList.gapi.api.lang.getText("TAX_IN_ENTERFIGHT");
 						break;
-					case 2:
+					default:
+						if(var0 !== 2)
+						{
+							break;
+						}
 						var7 = this._mcList.gapi.api.lang.getText("TAX_IN_FIGHT");
+						break;
 				}
 				if(this._oItem.showMoreInfo)
 				{
@@ -299,11 +304,11 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 				}
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this._mcList.gapi.hideTooltip();
 	}
-	function endTimer(var2)
+	function endTimer(§\x1e\x19\x18§)
 	{
 		this._vcTimer.stopTimer();
 		this.showButtonsJoin(0);
@@ -312,7 +317,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerItem e
 		this.updateAttackers();
 		this._mcList.gapi.api.datacenter.Player.guildInfos.defendedTaxCollectorID = undefined;
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		this._mcList.gapi.hideTooltip();
 		this.updateAttackers();

@@ -9,9 +9,9 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 	{
 		super();
 	}
-	function __set__data(var2)
+	function __set__data(§\x10\x15§)
 	{
-		this.addToQueue({object:this,method:function(var2)
+		this.addToQueue({object:this,method:function(§\x11\x17§)
 		{
 			this._eaData = var2;
 			if(this.initialized)
@@ -21,7 +21,7 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		},params:[var2]});
 		return this.__get__data();
 	}
-	function __set__type(var2)
+	function __set__type(§\x1e\n\x1b§)
 	{
 		this._nType = var2;
 		return this.__get__type();
@@ -83,9 +83,8 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		else
 		{
-			for(var a in this._eaData)
+			for(var var2 in this._eaData)
 			{
-				var var2 = new Object();
 				var2._y = this._mcTabPlacer._y;
 				var2._height = 20;
 				var2.backgroundDown = "ButtonTabDown";
@@ -115,15 +114,11 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		if(this._eaData != undefined && this._eaData.length > 0)
 		{
-			for(var a in this._eaData)
+			§§enumerate(this._eaData);
+			if((var var0 = §§enumeration()) != null)
 			{
 				this.setCurrentTab(Number(a));
-				while(§§pop() != null)
-				{
-				}
 				return undefined;
-				
-				break;
 			}
 		}
 	}
@@ -136,7 +131,7 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 		this._eaData[this._nCurrentCategory].sortOn("fieldToSort",Array.CASEINSENSITIVE);
 		this._lstSubway.dataProvider = this._eaData[this._nCurrentCategory];
 	}
-	function setCurrentTab(var2)
+	function setCurrentTab(§\b\t§)
 	{
 		if(this._nType != dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_SUBWAY)
 		{
@@ -159,15 +154,14 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 			return undefined;
 		}
 		var var2 = this._mcTabPlacer._x;
-		for(var a in this._eaData)
+		for(var var3 in this._eaData)
 		{
-			var var3 = (ank.gapi.controls.Button)this["_btnTab" + a];
 			var3._x = var2;
 			var3.setPreferedSize();
 			var2 = var2 + var3.width;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target._name;
 		switch(var3)
@@ -180,7 +174,7 @@ class dofus.graphics.gapi.ui.Subway extends dofus.graphics.gapi.core.DofusAdvanc
 				this.setCurrentTab(Number(var3.substr(7)));
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		var var3 = var2.row.item;
 		var var4 = var3.cost;

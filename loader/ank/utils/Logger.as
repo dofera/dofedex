@@ -3,7 +3,7 @@ class ank.utils.Logger
 	static var LC = new LocalConnection();
 	static var MAX_LOG_COUNT = 50;
 	static var MAX_LOG_SIZE = 300;
-	static var _instance = new ank.utils.();
+	static var _instance = new ank.utils.Logger();
 	function Logger()
 	{
 		this._logs = new Array();
@@ -18,8 +18,9 @@ class ank.utils.Logger
 			ank.utils.Logger.LC.send("loggerOut","err",ank.utils.Logger.errors);
 		};
 	}
-	static function log(var2, var3)
+	static function log(§\x1e\x0b\x01§, §\x1e\r\x1d§)
 	{
+		org.flashdevelop.utils.FlashConnect.mtrace(var2,"ank.utils.Logger::log","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/utils/Logger.as",49);
 		ank.utils.Logger.LC.send("loggerOut","log",var2);
 		if(var2.length < ank.utils.Logger.MAX_LOG_SIZE)
 		{
@@ -30,9 +31,10 @@ class ank.utils.Logger
 			ank.utils.Logger._instance._logs.shift();
 		}
 	}
-	static function err(var2)
+	static function err(§\x1e\x0b\x01§)
 	{
 		var2 = "ERROR : " + var2;
+		org.flashdevelop.utils.FlashConnect.mtrace(var2,"ank.utils.Logger::err","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/utils/Logger.as",70);
 		ank.utils.Logger.LC.send("loggerOut","err",var2);
 		ank.utils.Logger._instance._errors.push(var2);
 	}

@@ -5,13 +5,13 @@ class dofus.graphics.gapi.ui.SpellInfos extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__spell(var2)
+	function __set__spell(§\x1e\x18\x04§)
 	{
 		if(var2 == this._oSpell)
 		{
 			return undefined;
 		}
-		this.addToQueue({object:this,method:function(var2)
+		this.addToQueue({object:this,method:function(§\x1e\x15\n§)
 		{
 			this._oSpell = var2;
 			if(this.initialized)
@@ -47,11 +47,11 @@ class dofus.graphics.gapi.ui.SpellInfos extends dofus.graphics.gapi.core.DofusAd
 			this._sfivSpellFullInfosViewer.spell = this._oSpell;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		this.unloadThis();
 	}
-	function close(var2)
+	function close(§\x1e\x19\x18§)
 	{
 		this.unloadThis();
 	}

@@ -17,7 +17,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 	{
 		this._tl.update();
 	}
-	function nextTurn(var2, var3)
+	function nextTurn(§\r\b§, §\x13\x18§)
 	{
 		this.refreshCurrentTableTurnTxtFields();
 		this._tl.nextTurn(var2,var3);
@@ -26,15 +26,15 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 	{
 		return this._tl;
 	}
-	function hideItem(var2)
+	function hideItem(§\r\b§)
 	{
 		this._tl.hideItem(var2);
 	}
-	function showItem(var2)
+	function showItem(§\r\b§)
 	{
 		this._tl.showItem(var2);
 	}
-	function startChrono(var2)
+	function startChrono(§\x06\t§)
 	{
 		this._tl.startChrono(var2);
 	}
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 		this._txtTableTurnDown.text = String(this.api.datacenter.Game.currentTableTurn);
 		this._txtTableTurnUp.text = String(this.api.datacenter.Game.currentTableTurn);
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if(!this.gapi.isCursorHidden())
 		{
@@ -120,13 +120,24 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 			this._parent.out({target:this});
 		};
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target._name;
-		if((var var0 = var3) !== "_btnUp")
+		switch(var3)
 		{
-			if(var0 === "_btnDown")
-			{
+			case "_btnUp":
+				dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition = true;
+				this._btnUp._visible = false;
+				this._btnDown._visible = true;
+				this._txtTableTurnUp._visible = true;
+				this._txtTableTurnDown._visible = false;
+				this._mcTableTurnUp._visible = true;
+				this._mcTableTurnDown._visible = false;
+				this.moveTimeline(- dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
+				this.api.ui.getUIComponent("FightOptionButtons").moveButtons(dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
+				this.api.ui.getUIComponent("Party").moveUI(dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
+				break;
+			case "_btnDown":
 				dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition = false;
 				this._btnUp._visible = true;
 				this._btnDown._visible = false;
@@ -137,20 +148,6 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 				this.moveTimeline(dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
 				this.api.ui.getUIComponent("FightOptionButtons").moveButtons(- dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
 				this.api.ui.getUIComponent("Party").moveUI(- dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
-			}
-		}
-		else
-		{
-			dofus.graphics.gapi.ui.Timeline.bTimelineUpPosition = true;
-			this._btnUp._visible = false;
-			this._btnDown._visible = true;
-			this._txtTableTurnUp._visible = true;
-			this._txtTableTurnDown._visible = false;
-			this._mcTableTurnUp._visible = true;
-			this._mcTableTurnDown._visible = false;
-			this.moveTimeline(- dofus.graphics.gapi.ui.Timeline.UI_TIMELINE_MOVE_DISTANCE);
-			this.api.ui.getUIComponent("FightOptionButtons").moveButtons(dofus.graphics.gapi.ui.Timeline.OPTION_BUTTONS_MOVE_DISTANCE);
-			this.api.ui.getUIComponent("Party").moveUI(dofus.graphics.gapi.ui.Timeline.UI_PARTY_MOVE_DISTANCE);
 		}
 	}
 	function destroy()
@@ -169,7 +166,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 			}
 		}
 	}
-	function moveTimeline(var2)
+	function moveTimeline(§\x06\r§)
 	{
 		this._tl._y = this._tl._y + var2;
 		this._btnUp._y = this._btnUp._y + var2;

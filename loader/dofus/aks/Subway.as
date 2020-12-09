@@ -1,6 +1,6 @@
 class dofus.aks.Subway extends dofus.aks.Handler
 {
-	function Subway(var2, var3)
+	function Subway(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
@@ -8,7 +8,7 @@ class dofus.aks.Subway extends dofus.aks.Handler
 	{
 		this.aks.send("Wv");
 	}
-	function use(var2)
+	function use(§\x0b\x12§)
 	{
 		this.aks.send("Wu" + var2);
 	}
@@ -16,15 +16,16 @@ class dofus.aks.Subway extends dofus.aks.Handler
 	{
 		this.aks.send("Ww");
 	}
-	function prismUse(var2)
+	function prismUse(§\x0b\x12§)
 	{
 		this.aks.send("Wp" + var2);
 	}
-	function onCreate(var2)
+	function onCreate(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		var var6 = 1;
 		while(var6 < var3.length)
 		{
@@ -38,7 +39,8 @@ class dofus.aks.Subway extends dofus.aks.Handler
 				var var12 = new dofus.datacenter.Subway(var10[var11],var9);
 				if(var5[var12.categoryID] == undefined)
 				{
-					var5[var12.categoryID] = new ank.utils.();
+					var5[var12.categoryID] = new ank.utils.
+();
 				}
 				var5[var12.categoryID].push(var12);
 				var11 = var11 + 1;
@@ -51,11 +53,12 @@ class dofus.aks.Subway extends dofus.aks.Handler
 	{
 		this.api.ui.unloadUIComponent("Subway");
 	}
-	function onPrismCreate(var2)
+	function onPrismCreate(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
-		var var5 = new ank.utils.();
+		var var5 = new ank.utils.
+();
 		var var6 = 1;
 		while(var6 < var3.length)
 		{
@@ -73,8 +76,7 @@ class dofus.aks.Subway extends dofus.aks.Handler
 			{
 				var10 = Number(var11);
 			}
-			var5.push(new dofus.datacenter.
-(var8,var10,var9));
+			var5.push(new dofus.datacenter.(var8,var10,var9));
 			var6 = var6 + 1;
 		}
 		this.api.ui.loadUIComponent("Subway","Subway",{data:var5,type:dofus.graphics.gapi.ui.Subway.SUBWAY_TYPE_PRISM});

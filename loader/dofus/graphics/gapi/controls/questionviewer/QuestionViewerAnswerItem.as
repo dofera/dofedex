@@ -4,12 +4,17 @@ class dofus.graphics.gapi.controls.questionviewer.QuestionViewerAnswerItem exten
 	{
 		super();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{
 			this._mcRound._visible = true;
-			this._txtResponse.text = var4.label;
+			var var5 = var4.label;
+			if(dofus.Constants.DEBUG)
+			{
+				var5 = var5 + " (" + var4.id + ")";
+			}
+			this._txtResponse.text = var5;
 		}
 		else if(this._txtResponse.text != undefined)
 		{

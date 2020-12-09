@@ -59,13 +59,15 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerTree extends d
 				}
 			}
 		}
-		var var13 = new ank.utils.();
+		var var13 = new ank.utils.
+();
 		var var14 = 0;
 		while(var14 < var6.length)
 		{
 			if(var6[var14] != undefined)
 			{
-				var var15 = new ank.utils.();
+				var var15 = new ank.utils.
+();
 				var var16 = 0;
 				while(var16 < var6[var14].length)
 				{
@@ -106,7 +108,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerTree extends d
 			this._lstTree.selectedIndex = var17;
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 		if(var2.row.item.data instanceof dofus.datacenter.Specialization)
@@ -127,7 +129,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerTree extends d
 			this.dispatchEvent({type:"itemSelected"});
 		}
 	}
-	function itemRollOver(var2)
+	function itemRollOver(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.item.data;
 		if(var3 instanceof dofus.datacenter.Specialization)
@@ -135,7 +137,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.AlignmentViewerTree extends d
 			this.gapi.showTooltip(var3.description,this,this.__height + 30);
 		}
 	}
-	function itemRollOut(var2)
+	function itemRollOut(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

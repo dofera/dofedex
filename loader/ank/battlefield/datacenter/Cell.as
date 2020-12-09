@@ -73,7 +73,7 @@ class ank.battlefield.datacenter.Cell extends Object
 					var2 = true;
 				}
 			}
-			else if(this.layerObject1Num == 10001)
+			else if(this.layerObject1Num == 10001 || this.layerObject1Num == 10003)
 			{
 				var2 = true;
 			}
@@ -139,8 +139,7 @@ class ank.battlefield.datacenter.Cell extends Object
 		{
 			return false;
 		}
-		§§enumerate(this.allSpritesOn);
-		while((var var0 = §§enumeration()) != null)
+		for(var k in this.allSpritesOn)
 		{
 			if(this.allSpritesOn[k].hasCarriedChild())
 			{
@@ -149,9 +148,9 @@ class ank.battlefield.datacenter.Cell extends Object
 		}
 		return false;
 	}
-	function turnTactic()
+	function turnTactic(mapHandler)
 	{
-		var var2 = this.isTrigger;
+		var var3 = this.isTrigger;
 		if(this.nPermanentLevel == 0)
 		{
 			this.nPermanentLevel = 1;
@@ -169,11 +168,13 @@ class ank.battlefield.datacenter.Cell extends Object
 		}
 		else
 		{
-			this.layerObject1Num = 10001;
+			var var4 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,this.num);
+			var var5 = Math.abs(var4.x) % 2 == Math.abs(var4.y) % 2;
+			this.layerObject1Num = !var5?10001:10001;
 		}
 		if(this.layerObject2Num != 25)
 		{
-			if(var2)
+			if(var3)
 			{
 				this.layerObject2Num = 1030;
 			}

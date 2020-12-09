@@ -4,13 +4,13 @@ class ank.battlefield.mc.InteractiveObject extends MovieClip
 	{
 		super();
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x1d\x03§, §\x1e\x1a\r§, §\x18\x1c§)
 	{
 		this._battlefield = var2;
 		this._oCell = var3;
 		this._bInteractive = var4 != undefined?var4:true;
 	}
-	function select(var2)
+	function select(§\x16\x1d§)
 	{
 		var var3 = new Color(this);
 		var var4 = new Object();
@@ -24,7 +24,7 @@ class ank.battlefield.mc.InteractiveObject extends MovieClip
 		}
 		var3.setTransform(var4);
 	}
-	function loadExternalClip(var2, var3)
+	function loadExternalClip(§\x1e\x12\x18§, §\x1c\b§)
 	{
 		var3 = var3 != undefined?var3:true;
 		this.createEmptyMovieClip("_mcExternal",10);
@@ -39,28 +39,28 @@ class ank.battlefield.mc.InteractiveObject extends MovieClip
 	{
 		return this._oCell;
 	}
-	function _release(var2)
+	function _release(§\x1e\n\f§)
 	{
 		if(this._bInteractive)
 		{
 			this._battlefield.onObjectRelease(this);
 		}
 	}
-	function _rollOver(var2)
+	function _rollOver(§\x1e\n\f§)
 	{
 		if(this._bInteractive)
 		{
 			this._battlefield.onObjectRollOver(this);
 		}
 	}
-	function _rollOut(var2)
+	function _rollOut(§\x1e\n\f§)
 	{
 		if(this._bInteractive)
 		{
 			this._battlefield.onObjectRollOut(this);
 		}
 	}
-	function onLoadInit(var2)
+	function onLoadInit(§\x0b\r§)
 	{
 		var var3 = var2._width;
 		var var4 = var2._height;

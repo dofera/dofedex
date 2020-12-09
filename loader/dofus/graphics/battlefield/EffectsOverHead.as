@@ -1,7 +1,7 @@
 class dofus.graphics.battlefield.EffectsOverHead extends MovieClip
 {
 	static var ICON_WIDTH = 20;
-	function EffectsOverHead(var3)
+	function EffectsOverHead(§\x1e\x1c§)
 	{
 		super();
 		this.initialize(var3);
@@ -11,7 +11,7 @@ class dofus.graphics.battlefield.EffectsOverHead extends MovieClip
 	{
 		return 20;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1c§)
 	{
 		this.createEmptyMovieClip("_mcEffects",10);
 		this._aEffects = var2;
@@ -48,7 +48,7 @@ class dofus.graphics.battlefield.EffectsOverHead extends MovieClip
 		}
 		this._x = (- var5) / 2;
 	}
-	function onLoadInit(var2)
+	function onLoadInit(§\x0b\r§)
 	{
 		var var3 = var2.getDepth();
 		var var4 = this._aEffectsQty[var3].effect;

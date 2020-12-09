@@ -1,14 +1,17 @@
 class dofus.datacenter.GuildInfos extends Object
 {
-	function GuildInfos(var3, var4, var5, var6, var7, var8)
+	function GuildInfos(§\x1e\x10\x06§, §\b\x19§, §\b\x1a§, §\x1e\x1b\x19§, §\x1e\x1b\x1a§, §\x01\x1a§)
 	{
 		super();
 		this.api = _global.API;
 		mx.events.EventDispatcher.initialize(this);
 		this.initialize(false,var3,var4,var5,var6,var7,var8);
-		this._eaMembers = new ank.utils.();
-		this._eaTaxCollectors = new ank.utils.();
-		this._eaMountParks = new ank.utils.();
+		this._eaMembers = new ank.utils.
+();
+		this._eaTaxCollectors = new ank.utils.
+();
+		this._eaMountParks = new ank.utils.
+();
 	}
 	function __get__name()
 	{
@@ -106,7 +109,7 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		return this._eaHouses;
 	}
-	function __set__defendedTaxCollectorID(var2)
+	function __set__defendedTaxCollectorID(§\x06\x19§)
 	{
 		this._nDefendedTaxCollectorID = var2;
 		return this.__get__defendedTaxCollectorID();
@@ -119,21 +122,20 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		return this._nDefendedTaxCollectorID != undefined;
 	}
-	function initialize(var2, var3, var4, var5, var6, var7, var8)
+	function initialize(§\x14\x0e§, §\x1e\x10\x06§, §\b\x19§, §\b\x1a§, §\x1e\x1b\x19§, §\x1e\x1b\x1a§, §\x01\x1a§)
 	{
 		this._sName = var3;
 		this._nBackEmblemID = var4;
 		this._nBackEmblemColor = var5;
 		this._nUpEmblemID = var6;
 		this._nUpEmblemColor = var7;
-		this._grPlayerRights = new dofus.datacenter.
-(var8);
+		this._grPlayerRights = new dofus.datacenter.(var8);
 		if(var2)
 		{
 			this.dispatchEvent({type:"modelChanged",eventName:"infosUpdate"});
 		}
 	}
-	function setGeneralInfos(var2, var3, var4, var5, var6)
+	function setGeneralInfos(§\x14\x04§, §\x04\x01§, §\x1e\x1b\b§, §\x1e\x1b\f§, §\x1e\x1b\n§)
 	{
 		this._bValid = var2;
 		this._nLevel = var3;
@@ -146,13 +148,13 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		this.dispatchEvent({type:"modelChanged",eventName:"members"});
 	}
-	function setMountParks(var2, var3)
+	function setMountParks(§\x03\x0b§, §\x10\n§)
 	{
 		this._nMaxMountParks = var2;
 		this._eaMountParks = var3;
 		this.dispatchEvent({type:"modelChanged",eventName:"mountParks"});
 	}
-	function setBoosts(var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12)
+	function setBoosts(§\x1e\x1c\x15§, §\x1e\x1c\x14§, §\x03\x1a§, §\b\x13§, §\x01\x19§, §\x01\x15§, §\x1e\x1e\f§, §\x02\x01§, §\b\x11§, §\x1e\x1c\x13§, §\x0f\x1d§)
 	{
 		this._nTaxCount = var2;
 		this._nTaxCountMax = var3;
@@ -171,7 +173,7 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		this.dispatchEvent({type:"modelChanged",eventName:"noboosts"});
 	}
-	function canBoost(var2, var3)
+	function canBoost(§\x1e\x14\x10§, §\x02\x04§)
 	{
 		var var4 = this.getBoostCostAndCountForCharacteristic(var2,var3).cost;
 		if(this._nBoostPoints >= var4 && var4 != undefined)
@@ -180,7 +182,7 @@ class dofus.datacenter.GuildInfos extends Object
 		}
 		return false;
 	}
-	function getBoostCostAndCountForCharacteristic(var2, var3)
+	function getBoostCostAndCountForCharacteristic(§\x1e\x14\x10§, §\x02\x04§)
 	{
 		var var4 = this.api.lang.getGuildBoosts(var2);
 		var var5 = 1;
@@ -240,14 +242,15 @@ class dofus.datacenter.GuildInfos extends Object
 	{
 		this.dispatchEvent({type:"modelChanged",eventName:"notaxcollectors"});
 	}
-	function setHouses(var2)
+	function setHouses(§\x10\x10§)
 	{
 		this._eaHouses = var2;
 		this.dispatchEvent({type:"modelChanged",eventName:"houses"});
 	}
 	function setNoHouses()
 	{
-		this._eaHouses = new ank.utils.();
+		this._eaHouses = new ank.utils.
+();
 		this.dispatchEvent({type:"modelChanged",eventName:"nohouses"});
 	}
 }

@@ -1,11 +1,11 @@
 class ank.battlefield.mc.Bubble extends MovieClip
 {
-	function Bubble(var3, var4, var5, var6)
+	function Bubble(§\x1e\x0b\x15§, §\x1e\n\x04§, §\x1e\t\x18§, §\x0b\x0e§)
 	{
 		super();
 		this.initialize(var3,var4,var5,var6);
 	}
-	function initialize(var2, var3, var4, var5)
+	function initialize(§\x1e\x0b\x15§, §\x1e\n\x04§, §\x1e\t\x18§, §\x0b\x0e§)
 	{
 		this._maxW = var5;
 		this.createTextField("_txtf",20,0,0,150,100);
@@ -17,7 +17,7 @@ class ank.battlefield.mc.Bubble extends MovieClip
 		this._txtf.html = true;
 		this.draw(var2,var3,var4);
 	}
-	function draw(var2, var3, var4)
+	function draw(§\x1e\x0b\x15§, §\x1e\n\x04§, §\x1e\t\x18§)
 	{
 		this._txtf.htmlText = var2;
 		this._txtf.setTextFormat(ank.battlefield.Constants.BUBBLE_TXTFORMAT);
@@ -33,7 +33,7 @@ class ank.battlefield.mc.Bubble extends MovieClip
 		this.swapDepths(1);
 		this.removeMovieClip();
 	}
-	function drawBackground(var2, var3)
+	function drawBackground(§\x1e\n\x0b§, §\r\x13§)
 	{
 		var var4 = ank.battlefield.Constants.BUBBLE_MARGIN * 2;
 		this.createEmptyMovieClip("_bg",10);
@@ -48,7 +48,7 @@ class ank.battlefield.mc.Bubble extends MovieClip
 		this._bg.lineTo(0,- var3 - var4 - ank.battlefield.Constants.BUBBLE_PIC_HEIGHT);
 		this._bg.endFill();
 	}
-	function adjust(var2, var3, var4, var5)
+	function adjust(§\x1e\n\x0b§, §\r\x13§, §\x1e\n\x04§, §\x1e\t\x18§)
 	{
 		var var6 = this._maxW - var2;
 		var var7 = var3 + ank.battlefield.Constants.BUBBLE_Y_OFFSET;

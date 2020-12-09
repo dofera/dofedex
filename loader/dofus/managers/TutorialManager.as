@@ -2,7 +2,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 {
 	var _bInTutorialMode = false;
 	static var _sSelf = null;
-	function TutorialManager(var2)
+	function TutorialManager(§\x1e\x1a\x16§)
 	{
 		super();
 		dofus.managers.TutorialManager._sSelf = this;
@@ -25,10 +25,10 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.TutorialManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3);
-		this._oSequencer = new ank.utils.();
+		this._oSequencer = new ank.utils.();
 	}
 	function clear()
 	{
@@ -36,7 +36,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 		ank.utils.Timer.removeTimer(this,"tutorial");
 		this._oVars = new Object();
 	}
-	function start(var2)
+	function start(§\x1e\x17\x16§)
 	{
 		this._bInTutorialMode = true;
 		this._oVars = new Object();
@@ -60,7 +60,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 			this.executeBloc(var2);
 		}
 	}
-	function terminate(var2)
+	function terminate(§\t\x0e§)
 	{
 		this.clear();
 		var var3 = this.api.datacenter.Player.data.cellNum;
@@ -75,7 +75,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 		var var3 = this.api.datacenter.Player.data.direction;
 		this.api.ui.unloadUIComponent("Tutorial");
 	}
-	function executeBloc(var2)
+	function executeBloc(§\x1e\x1a\x0f§)
 	{
 		ank.utils.Timer.removeTimer(this,"tutorial");
 		for(var i in var2.params)
@@ -111,260 +111,51 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 				}
 			}
 		}
-		switch(var2.type)
+		if((var var0 = var2.type) !== dofus.datacenter.TutorialBloc.TYPE_ACTION)
 		{
-			case dofus.datacenter.TutorialBloc.TYPE_ACTION:
-				if(!(var2 instanceof dofus.datacenter.TutorialAction))
+			if(var0 !== dofus.datacenter.TutorialBloc.TYPE_WAITING)
+			{
+				if(var0 !== dofus.datacenter.TutorialBloc.TYPE_IF)
 				{
-					ank.utils.Logger.err("[executeBloc] le type ne correspond pas");
-					return undefined;
+					ank.utils.Logger.log("[executeBloc] mauvais type");
 				}
-				if(!var2.keepLastWaitingBloc)
+				else
 				{
-					delete this._oCurrentWaitingBloc;
+					if(!(var2 instanceof dofus.datacenter.TutorialIf))
+					{
+						ank.utils.Logger.log("[executeBloc] le type ne correspond pas");
+						return undefined;
+					}
+					var var39 = this.extractValue(var2.left);
+					var var40 = this.extractValue(var2.right);
+					var var41 = false;
+					switch(var2.operator)
+					{
+						case "=":
+							var41 = var39 == var40;
+							break;
+						case "<":
+							var41 = var39 < var40;
+							break;
+						case ">":
+							var41 = var39 > var40;
+					}
+					if(var41)
+					{
+						this._oSequencer.addAction(170,false,this,this.callNextBloc,[var2.nextBlocTrueID]);
+					}
+					else
+					{
+						this._oSequencer.addAction(171,false,this,this.callNextBloc,[var2.nextBlocFalseID]);
+					}
+					if(!this._oSequencer.isPlaying())
+					{
+						this._oSequencer.execute(true);
+					}
 				}
-				loop3:
-				switch(var2.actionCode)
-				{
-					case "VAR_ADD":
-						this._oSequencer.addAction(126,false,this,this.addToVariable,var2.params);
-						break;
-					case "VAR_SET":
-						this._oSequencer.addAction(127,false,this,this.setToVariable,var2.params);
-						break;
-					case "CHAT":
-						this._oSequencer.addAction(128,false,this.api.kernel,this.api.kernel.showMessage,[undefined,var2.params[0],var2.params[1]]);
-						break;
-					default:
-						switch(null)
-						{
-							case "GFX_CLEAN_MAP":
-								this._oSequencer.addAction(129,false,this.api.gfx,this.api.gfx.cleanMap,[undefined,true]);
-								break loop3;
-							case "GFX_SELECT":
-								this._oSequencer.addAction(130,false,this.api.gfx,this.api.gfx.select,[var2.params[0],var2.params[1]]);
-								break loop3;
-							case "GFX_UNSELECT":
-								this._oSequencer.addAction(131,false,this.api.gfx,this.api.gfx.unSelect,[var2.params[0],var2.params[1]]);
-								break loop3;
-							case "GFX_ALPHA":
-								this._oSequencer.addAction(132,false,this.api.gfx,this.api.gfx.setSpriteAlpha,[var2.params[0],var2.params[1]]);
-								break loop3;
-							case "GFX_GRID":
-								if(var2.params[0] == true)
-								{
-									this._oSequencer.addAction(133,false,this.api.gfx,this.api.gfx.drawGrid,[false]);
-								}
-								else
-								{
-									this._oSequencer.addAction(134,false,this.api.gfx,this.api.gfx.removeGrid,[]);
-								}
-								break loop3;
-							default:
-								switch(null)
-								{
-									case "GFX_ADD_INDICATOR":
-										var var7 = this.api.gfx.mapHandler.getCellData(var2.params[0]).mc;
-										if(var7 == undefined)
-										{
-											ank.utils.Logger.err("[GFX_ADD_INDICATOR] la cellule n\'existe pas");
-											break loop3;
-										}
-										var var8 = {x:var7._x,y:var7._y};
-										var7._parent.localToGlobal(var8);
-										var var9 = var8.x;
-										var var10 = var8.y;
-										this._oSequencer.addAction(135,false,this.api.ui,this.api.ui.unloadUIComponent,["Indicator"]);
-										this._oSequencer.addAction(136,false,this.api.ui,this.api.ui.loadUIComponent,["Indicator","Indicator",{coordinates:[var9,var10],offset:var2.params[1],rotate:false},{bAlwaysOnTop:true}]);
-										break loop3;
-									case "GFX_ADD_PLAYER_SPRITE":
-										var var11 = this.api.datacenter.Player.data;
-										this._oSequencer.addAction(137,false,this.api.gfx,this.api.gfx.addSprite,[var11.id,var11]);
-										break loop3;
-									case "GFX_ADD_SPRITE":
-										var var12 = new dofus.datacenter.(var2.params[0],ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var2.params[1] + ".swf",var2.params[2],var2.params[3],var2.params[1]);
-										var12.name = var2.params[4] != undefined?var2.params[4]:"";
-										var12.color1 = var2.params[5] != undefined?var2.params[5]:-1;
-										var12.color2 = var2.params[6] != undefined?var2.params[6]:-1;
-										var12.color3 = var2.params[7] != undefined?var2.params[7]:-1;
-										this._oSequencer.addAction(138,false,this.api.gfx,this.api.gfx.addSprite,[var12.id,var12]);
-										break loop3;
-									case "GFX_REMOVE_SPRITE":
-										this._oSequencer.addAction(139,false,this.api.gfx,this.api.gfx.removeSprite,[var2.params[0],false]);
-										break loop3;
-									case "GFX_MOVE_SPRITE":
-										var var13 = this.getSpriteIDFromData(var2.params[0]);
-										var var14 = this.api.datacenter.Sprites.getItemAt(var13);
-										var var15 = ank.battlefield.utils.Pathfinding.pathFind(this.api,this.api.gfx.mapHandler,var14.cellNum,var2.params[1],{bAllDirections:false,bIgnoreSprites:true,bCellNumOnly:true,bWithBeginCellNum:true});
-										if(var15 != null)
-										{
-											this.api.gfx.spriteHandler.moveSprite(var14.id,var15,this._oSequencer,false,undefined,false,false);
-										}
-										break loop3;
-									case "GFX_ADD_SPRITE_BUBBLE":
-										var var16 = this.getSpriteIDFromData(var2.params[0]);
-										this._oSequencer.addAction(140,true,this.api.gfx,this.api.gfx.removeSpriteBubble,[var16],200);
-										this._oSequencer.addAction(141,false,this.api.gfx,this.api.gfx.addSpriteBubble,[var16,var2.params[1]]);
-										break loop3;
-									default:
-										switch(null)
-										{
-											case "GFX_CLEAR_SPRITE_BUBBLES":
-												this._oSequencer.addAction(142,false,this.api.gfx.textHandler,this.api.gfx.textHandler.clear,[]);
-												break loop3;
-											case "GFX_SPRITE_DIR":
-												var var17 = this.getSpriteIDFromData(var2.params[0]);
-												this._oSequencer.addAction(143,false,this.api.gfx,this.api.gfx.setSpriteDirection,[var17,var2.params[1]]);
-												break loop3;
-											case "GFX_SPRITE_POS":
-												var var18 = this.getSpriteIDFromData(var2.params[0]);
-												this._oSequencer.addAction(144,false,this.api.gfx,this.api.gfx.setSpritePosition,[var18,var2.params[1]]);
-												break loop3;
-											case "GFX_SPRITE_VISUALEFFECT":
-												var var19 = this.getSpriteIDFromData(var2.params[0]);
-												var var20 = new ank.battlefield.datacenter.
-();
-												var20.file = dofus.Constants.SPELLS_PATH + var2.params[1] + ".swf";
-												var20.level = !_global.isNaN(Number(var2.params[3]))?Number(var2.params[3]):1;
-												var20.bInFrontOfSprite = true;
-												this._oSequencer.addAction(145,false,this.api.gfx,this.api.gfx.addVisualEffectOnSprite,[var19,var20,var2.params[2],var2.params[4]]);
-												break loop3;
-											case "GFX_SPRITE_ANIM":
-												var var21 = this.getSpriteIDFromData(var2.params[0]);
-												this._oSequencer.addAction(146,false,this.api.gfx,this.api.gfx.setSpriteAnim,[var21,var2.params[1]]);
-												break loop3;
-											default:
-												switch(null)
-												{
-													case "GFX_SPRITE_EXEC_FUNCTION":
-														var var22 = this.getSpriteIDFromData(var2.params[0]);
-														var var23 = this.api.datacenter.Sprites.getItemAt(var22);
-														var var24 = var23[var2.params[1]];
-														if(typeof var24 != "function")
-														{
-															ank.utils.Logger.err("[GFX_SPRITE_EXEC_FUNCTION] la fonction n\'existe pas");
-															break loop3;
-														}
-														this._oSequencer.addAction(147,false,var23,var24,var2.params[2]);
-														break loop3;
-													case "GFX_SPRITE_SET_PROPERTY":
-														var var25 = this.getSpriteIDFromData(var2.params[0]);
-														var var26 = this.api.datacenter.Sprites.getItemAt(var25);
-														this._oSequencer.addAction(148,false,this,this.setObjectPropertyValue,[var26,var2.params[1],var2.params[2]]);
-														break loop3;
-													case "GFX_DRAW_ZONE":
-														this._oSequencer.addAction(149,false,this.api.gfx,this.api.gfx.drawZone,var2.params);
-														break loop3;
-													case "GFX_CLEAR_ALL_ZONES":
-														this._oSequencer.addAction(150,false,this.api.gfx,this.api.gfx.clearAllZones,[]);
-														break loop3;
-													case "GFX_ADD_POINTER_SHAPE":
-														this._oSequencer.addAction(151,false,this.api.gfx,this.api.gfx.addPointerShape,var2.params);
-														break loop3;
-													default:
-														switch(null)
-														{
-															case "GFX_CLEAR_POINTER":
-																this._oSequencer.addAction(152,false,this.api.gfx,this.api.gfx.clearPointer,[]);
-																break loop3;
-															case "GFX_HIDE_POINTER":
-																this._oSequencer.addAction(153,false,this.api.gfx,this.api.gfx.hidePointer,[]);
-																break loop3;
-															case "GFX_DRAW_POINTER":
-																this._oSequencer.addAction(154,false,this.api.gfx,this.api.gfx.drawPointer,var2.params);
-																break loop3;
-															case "GFX_OBJECT2_INTERACTIVE":
-																this._oSequencer.addAction(155,false,this.api.gfx,this.api.gfx.setObject2Interactive,[var2.params[0],var2.params[1],1]);
-																break loop3;
-															default:
-																switch(null)
-																{
-																	case "INTERAC_SET":
-																		this._oSequencer.addAction(156,false,this.api.gfx,this.api.gfx.setInteraction,[ank.battlefield.Constants[var2.params[0]]]);
-																		break loop3;
-																	case "INTERAC_SET_ONCELLS":
-																		this._oSequencer.addAction(157,false,this.api.gfx,this.api.gfx.setInteractionOnCells,[var2.params[0],ank.battlefield.Constants[var2.params[1]]]);
-																		break loop3;
-																	case "UI_ADD_INDICATOR":
-																		var var27 = this.api.ui.getUIComponent(var2.params[0]);
-																		var var28 = eval(var27 + "." + var2.params[1]);
-																		var var29 = var28.getBounds();
-																		var var30 = var29.xMax - var29.xMin;
-																		var var31 = var29.yMax - var29.yMin;
-																		var var32 = var30 / 2 + var28._x + var29.xMin;
-																		var var33 = var31 / 2 + var28._y + var29.yMin;
-																		var var34 = {x:var32,y:var33};
-																		var28._parent.localToGlobal(var34);
-																		var32 = var34.x;
-																		var33 = var34.y;
-																		var var35 = Math.sqrt(Math.pow(var30,2) + Math.pow(var31,2)) / 2;
-																		this._oSequencer.addAction(158,false,this.api.ui,this.api.ui.unloadUIComponent,["Indicator"]);
-																		this._oSequencer.addAction(159,false,this.api.ui,this.api.ui.loadUIComponent,["Indicator","Indicator",{coordinates:[var32,var33],offset:var35},{bAlwaysOnTop:true}]);
-																		break loop3;
-																	case "UI_REMOVE_INDICATOR":
-																		this._oSequencer.addAction(160,false,this.api.ui,this.api.ui.unloadUIComponent,["Indicator"]);
-																		break loop3;
-																	default:
-																		switch(null)
-																		{
-																			case "UI_OPEN":
-																				this._oSequencer.addAction(161,false,this.api.ui,this.api.ui.loadUIComponent,[var2.params[0],var2.params[0],var2.params[1],var2.params[2]]);
-																				break loop3;
-																			case "UI_OPEN_AUTOHIDE":
-																				this._oSequencer.addAction(162,false,this.api.ui,this.api.ui.loadUIAutoHideComponent,[var2.params[0],var2.params[0],var2.params[1],var2.params[2]]);
-																				break loop3;
-																			case "UI_CLOSE":
-																				this._oSequencer.addAction(163,false,this.api.ui,this.api.ui.unloadUIComponent,[var2.params[0]]);
-																				break loop3;
-																			case "UI_EXEC_FUNCTION":
-																				var var36 = this.api.ui.getUIComponent(var2.params[0]);
-																				var var37 = var36[var2.params[1]];
-																				if(typeof var37 != "function")
-																				{
-																					ank.utils.Logger.err("[UI_EXEC_FUNCTION] la fonction n\'existe pas");
-																					break loop3;
-																				}
-																				this._oSequencer.addAction(164,false,var36,var37,var2.params[2]);
-																				break loop3;
-																			case "ADD_SPELL":
-																				var var38 = new dofus.datacenter.(var2.params[0],var2.params[1],var2.params[2]);
-																				this._oSequencer.addAction(165,false,this.api.datacenter.Player,this.api.datacenter.Player.updateSpellPosition,[var38]);
-																				break loop3;
-																			default:
-																				switch(null)
-																				{
-																					case "SET_SPELLS":
-																						this._oSequencer.addAction(166,false,this.api.network.Spells,this.api.network.Spells.onList,[var2.params.join(";")]);
-																						break loop3;
-																					case "REMOVE_SPELL":
-																						this._oSequencer.addAction(167,false,this.api.datacenter.Player,this.api.datacenter.Player.removeSpell,var2.params);
-																						break loop3;
-																					case "END":
-																						this._oSequencer.addAction(168,false,this,this.terminate,var2.params);
-																						if(!this._oSequencer.isPlaying())
-																						{
-																							this._oSequencer.execute(true);
-																						}
-																						return undefined;
-																					default:
-																						ank.utils.Logger.err("[executeBloc] Code action " + var2.actionCode + " inconnu");
-																						return undefined;
-																				}
-																		}
-																}
-														}
-												}
-										}
-								}
-						}
-				}
-				this._oSequencer.addAction(169,false,this,this.callNextBloc,[var2.nextBlocID]);
-				if(!this._oSequencer.isPlaying())
-				{
-					this._oSequencer.execute(true);
-				}
-				break;
-			case dofus.datacenter.TutorialBloc.TYPE_WAITING:
+			}
+			else
+			{
 				this._oCurrentWaitingBloc = var2;
 				if(!(var2 instanceof dofus.datacenter.TutorialWaiting))
 				{
@@ -376,53 +167,264 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 				{
 					ank.utils.Timer.setTimer(this,"tutorial",this,this.onWaitingTimeout,var2.timeout,[var2]);
 				}
-				break;
-			default:
-				if(var0 !== dofus.datacenter.TutorialBloc.TYPE_IF)
-				{
-					ank.utils.Logger.log("[executeBloc] mauvais type");
+			}
+		}
+		else
+		{
+			if(!(var2 instanceof dofus.datacenter.TutorialAction))
+			{
+				ank.utils.Logger.err("[executeBloc] le type ne correspond pas");
+				return undefined;
+			}
+			if(!var2.keepLastWaitingBloc)
+			{
+				delete this._oCurrentWaitingBloc;
+			}
+			loop3:
+			switch(var2.actionCode)
+			{
+				case "VAR_ADD":
+					this._oSequencer.addAction(126,false,this,this.addToVariable,var2.params);
 					break;
-				}
-				if(!(var2 instanceof dofus.datacenter.TutorialIf))
-				{
-					ank.utils.Logger.log("[executeBloc] le type ne correspond pas");
-					return undefined;
-				}
-				var var39 = this.extractValue(var2.left);
-				var var40 = this.extractValue(var2.right);
-				var var41 = false;
-				switch(var2.operator)
-				{
-					case "=":
-						var41 = var39 == var40;
-						break;
-					case "<":
-						var41 = var39 < var40;
-						break;
-					default:
-						if(var0 !== ">")
-						{
-							break;
-						}
-						var41 = var39 > var40;
-						break;
-				}
-				if(var41)
-				{
-					this._oSequencer.addAction(170,false,this,this.callNextBloc,[var2.nextBlocTrueID]);
-				}
-				else
-				{
-					this._oSequencer.addAction(171,false,this,this.callNextBloc,[var2.nextBlocFalseID]);
-				}
-				if(!this._oSequencer.isPlaying())
-				{
-					this._oSequencer.execute(true);
-				}
-				break;
+				case "VAR_SET":
+					this._oSequencer.addAction(127,false,this,this.setToVariable,var2.params);
+					break;
+				default:
+					switch(null)
+					{
+						case "CHAT":
+							this._oSequencer.addAction(128,false,this.api.kernel,this.api.kernel.showMessage,[undefined,var2.params[0],var2.params[1]]);
+							break loop3;
+						case "GFX_CLEAN_MAP":
+							this._oSequencer.addAction(129,false,this.api.gfx,this.api.gfx.cleanMap,[undefined,true]);
+							break loop3;
+						case "GFX_SELECT":
+							this._oSequencer.addAction(130,false,this.api.gfx,this.api.gfx.select,[var2.params[0],var2.params[1]]);
+							break loop3;
+						case "GFX_UNSELECT":
+							this._oSequencer.addAction(131,false,this.api.gfx,this.api.gfx.unSelect,[var2.params[0],var2.params[1]]);
+							break loop3;
+						case "GFX_ALPHA":
+							this._oSequencer.addAction(132,false,this.api.gfx,this.api.gfx.setSpriteAlpha,[var2.params[0],var2.params[1]]);
+							break loop3;
+						default:
+							switch(null)
+							{
+								case "GFX_GRID":
+									if(var2.params[0] == true)
+									{
+										this._oSequencer.addAction(133,false,this.api.gfx,this.api.gfx.drawGrid,[false]);
+									}
+									else
+									{
+										this._oSequencer.addAction(134,false,this.api.gfx,this.api.gfx.removeGrid,[]);
+									}
+									break loop3;
+								case "GFX_ADD_INDICATOR":
+									var var7 = this.api.gfx.mapHandler.getCellData(var2.params[0]).mc;
+									if(var7 == undefined)
+									{
+										ank.utils.Logger.err("[GFX_ADD_INDICATOR] la cellule n\'existe pas");
+										break loop3;
+									}
+									var var8 = {x:var7._x,y:var7._y};
+									var7._parent.localToGlobal(var8);
+									var var9 = var8.x;
+									var var10 = var8.y;
+									this._oSequencer.addAction(135,false,this.api.ui,this.api.ui.unloadUIComponent,["Indicator"]);
+									this._oSequencer.addAction(136,false,this.api.ui,this.api.ui.loadUIComponent,["Indicator","Indicator",{coordinates:[var9,var10],offset:var2.params[1],rotate:false},{bAlwaysOnTop:true}]);
+									break loop3;
+								case "GFX_ADD_PLAYER_SPRITE":
+									var var11 = this.api.datacenter.Player.data;
+									this._oSequencer.addAction(137,false,this.api.gfx,this.api.gfx.addSprite,[var11.id,var11]);
+									break loop3;
+								case "GFX_ADD_SPRITE":
+									var var12 = new dofus.datacenter.(var2.params[0],ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var2.params[1] + ".swf",var2.params[2],var2.params[3],var2.params[1]);
+									var12.name = var2.params[4] != undefined?var2.params[4]:"";
+									var12.color1 = var2.params[5] != undefined?var2.params[5]:-1;
+									var12.color2 = var2.params[6] != undefined?var2.params[6]:-1;
+									var12.color3 = var2.params[7] != undefined?var2.params[7]:-1;
+									this._oSequencer.addAction(138,false,this.api.gfx,this.api.gfx.addSprite,[var12.id,var12]);
+									break loop3;
+								case "GFX_REMOVE_SPRITE":
+									this._oSequencer.addAction(139,false,this.api.gfx,this.api.gfx.removeSprite,[var2.params[0],false]);
+									break loop3;
+								default:
+									switch(null)
+									{
+										case "GFX_MOVE_SPRITE":
+											var var13 = this.getSpriteIDFromData(var2.params[0]);
+											var var14 = this.api.datacenter.Sprites.getItemAt(var13);
+											var var15 = ank.battlefield.utils.Pathfinding.pathFind(this.api,this.api.gfx.mapHandler,var14.cellNum,var2.params[1],{bAllDirections:false,bIgnoreSprites:true,bCellNumOnly:true,bWithBeginCellNum:true});
+											if(var15 != null)
+											{
+												this.api.gfx.spriteHandler.moveSprite(var14.id,var15,this._oSequencer,false,undefined,false,false);
+											}
+											break loop3;
+										case "GFX_ADD_SPRITE_BUBBLE":
+											var var16 = this.getSpriteIDFromData(var2.params[0]);
+											this._oSequencer.addAction(140,true,this.api.gfx,this.api.gfx.removeSpriteBubble,[var16],200);
+											this._oSequencer.addAction(141,false,this.api.gfx,this.api.gfx.addSpriteBubble,[var16,var2.params[1]]);
+											break loop3;
+										case "GFX_CLEAR_SPRITE_BUBBLES":
+											this._oSequencer.addAction(142,false,this.api.gfx.textHandler,this.api.gfx.textHandler.clear,[]);
+											break loop3;
+										case "GFX_SPRITE_DIR":
+											var var17 = this.getSpriteIDFromData(var2.params[0]);
+											this._oSequencer.addAction(143,false,this.api.gfx,this.api.gfx.setSpriteDirection,[var17,var2.params[1]]);
+											break loop3;
+										default:
+											switch(null)
+											{
+												case "GFX_SPRITE_POS":
+													var var18 = this.getSpriteIDFromData(var2.params[0]);
+													this._oSequencer.addAction(144,false,this.api.gfx,this.api.gfx.setSpritePosition,[var18,var2.params[1]]);
+													break loop3;
+												case "GFX_SPRITE_VISUALEFFECT":
+													var var19 = this.getSpriteIDFromData(var2.params[0]);
+													var var20 = new ank.battlefield.datacenter.
+();
+													var20.file = dofus.Constants.SPELLS_PATH + var2.params[1] + ".swf";
+													var20.level = !_global.isNaN(Number(var2.params[3]))?Number(var2.params[3]):1;
+													var20.bInFrontOfSprite = true;
+													this._oSequencer.addAction(145,false,this.api.gfx,this.api.gfx.addVisualEffectOnSprite,[var19,var20,var2.params[2],var2.params[4]]);
+													break loop3;
+												case "GFX_SPRITE_ANIM":
+													var var21 = this.getSpriteIDFromData(var2.params[0]);
+													this._oSequencer.addAction(146,false,this.api.gfx,this.api.gfx.setSpriteAnim,[var21,var2.params[1]]);
+													break loop3;
+												case "GFX_SPRITE_EXEC_FUNCTION":
+													var var22 = this.getSpriteIDFromData(var2.params[0]);
+													var var23 = this.api.datacenter.Sprites.getItemAt(var22);
+													var var24 = var23[var2.params[1]];
+													if(typeof var24 != "function")
+													{
+														ank.utils.Logger.err("[GFX_SPRITE_EXEC_FUNCTION] la fonction n\'existe pas");
+														break loop3;
+													}
+													this._oSequencer.addAction(147,false,var23,var24,var2.params[2]);
+													break loop3;
+												case "GFX_SPRITE_SET_PROPERTY":
+													var var25 = this.getSpriteIDFromData(var2.params[0]);
+													var var26 = this.api.datacenter.Sprites.getItemAt(var25);
+													this._oSequencer.addAction(148,false,this,this.setObjectPropertyValue,[var26,var2.params[1],var2.params[2]]);
+													break loop3;
+												default:
+													switch(null)
+													{
+														case "GFX_DRAW_ZONE":
+															this._oSequencer.addAction(149,false,this.api.gfx,this.api.gfx.drawZone,var2.params);
+															break loop3;
+														case "GFX_CLEAR_ALL_ZONES":
+															this._oSequencer.addAction(150,false,this.api.gfx,this.api.gfx.clearAllZones,[]);
+															break loop3;
+														case "GFX_ADD_POINTER_SHAPE":
+															this._oSequencer.addAction(151,false,this.api.gfx,this.api.gfx.addPointerShape,var2.params);
+															break loop3;
+														case "GFX_CLEAR_POINTER":
+															this._oSequencer.addAction(152,false,this.api.gfx,this.api.gfx.clearPointer,[]);
+															break loop3;
+														default:
+															switch(null)
+															{
+																case "GFX_HIDE_POINTER":
+																	this._oSequencer.addAction(153,false,this.api.gfx,this.api.gfx.hidePointer,[]);
+																	break loop3;
+																case "GFX_DRAW_POINTER":
+																	this._oSequencer.addAction(154,false,this.api.gfx,this.api.gfx.drawPointer,var2.params);
+																	break loop3;
+																case "GFX_OBJECT2_INTERACTIVE":
+																	this._oSequencer.addAction(155,false,this.api.gfx,this.api.gfx.setObject2Interactive,[var2.params[0],var2.params[1],1]);
+																	break loop3;
+																case "INTERAC_SET":
+																	this._oSequencer.addAction(156,false,this.api.gfx,this.api.gfx.setInteraction,[ank.battlefield.Constants[var2.params[0]]]);
+																	break loop3;
+																default:
+																	switch(null)
+																	{
+																		case "INTERAC_SET_ONCELLS":
+																			this._oSequencer.addAction(157,false,this.api.gfx,this.api.gfx.setInteractionOnCells,[var2.params[0],ank.battlefield.Constants[var2.params[1]]]);
+																			break loop3;
+																		case "UI_ADD_INDICATOR":
+																			var var27 = this.api.ui.getUIComponent(var2.params[0]);
+																			var var28 = eval(var27 + "." + var2.params[1]);
+																			var var29 = var28.getBounds();
+																			var var30 = var29.xMax - var29.xMin;
+																			var var31 = var29.yMax - var29.yMin;
+																			var var32 = var30 / 2 + var28._x + var29.xMin;
+																			var var33 = var31 / 2 + var28._y + var29.yMin;
+																			var var34 = {x:var32,y:var33};
+																			var28._parent.localToGlobal(var34);
+																			var32 = var34.x;
+																			var33 = var34.y;
+																			var var35 = Math.sqrt(Math.pow(var30,2) + Math.pow(var31,2)) / 2;
+																			this._oSequencer.addAction(158,false,this.api.ui,this.api.ui.unloadUIComponent,["Indicator"]);
+																			this._oSequencer.addAction(159,false,this.api.ui,this.api.ui.loadUIComponent,["Indicator","Indicator",{coordinates:[var32,var33],offset:var35},{bAlwaysOnTop:true}]);
+																			break loop3;
+																		case "UI_REMOVE_INDICATOR":
+																			this._oSequencer.addAction(160,false,this.api.ui,this.api.ui.unloadUIComponent,["Indicator"]);
+																			break loop3;
+																		case "UI_OPEN":
+																			this._oSequencer.addAction(161,false,this.api.ui,this.api.ui.loadUIComponent,[var2.params[0],var2.params[0],var2.params[1],var2.params[2]]);
+																			break loop3;
+																		case "UI_OPEN_AUTOHIDE":
+																			this._oSequencer.addAction(162,false,this.api.ui,this.api.ui.loadUIAutoHideComponent,[var2.params[0],var2.params[0],var2.params[1],var2.params[2]]);
+																			break loop3;
+																		default:
+																			switch(null)
+																			{
+																				case "UI_CLOSE":
+																					this._oSequencer.addAction(163,false,this.api.ui,this.api.ui.unloadUIComponent,[var2.params[0]]);
+																					break loop3;
+																				case "UI_EXEC_FUNCTION":
+																					var var36 = this.api.ui.getUIComponent(var2.params[0]);
+																					var var37 = var36[var2.params[1]];
+																					if(typeof var37 != "function")
+																					{
+																						ank.utils.Logger.err("[UI_EXEC_FUNCTION] la fonction n\'existe pas");
+																						break loop3;
+																					}
+																					this._oSequencer.addAction(164,false,var36,var37,var2.params[2]);
+																					break loop3;
+																				case "ADD_SPELL":
+																					var var38 = new dofus.datacenter.(var2.params[0],var2.params[1],var2.params[2]);
+																					this._oSequencer.addAction(165,false,this.api.datacenter.Player,this.api.datacenter.Player.updateSpellPosition,[var38]);
+																					break loop3;
+																				case "SET_SPELLS":
+																					this._oSequencer.addAction(166,false,this.api.network.Spells,this.api.network.Spells.onList,[var2.params.join(";")]);
+																					break loop3;
+																				case "REMOVE_SPELL":
+																					this._oSequencer.addAction(167,false,this.api.datacenter.Player,this.api.datacenter.Player.removeSpell,var2.params);
+																					break loop3;
+																				default:
+																					if(var0 !== "END")
+																					{
+																						ank.utils.Logger.err("[executeBloc] Code action " + var2.actionCode + " inconnu");
+																						return undefined;
+																					}
+																					this._oSequencer.addAction(168,false,this,this.terminate,var2.params);
+																					if(!this._oSequencer.isPlaying())
+																					{
+																						this._oSequencer.execute(true);
+																					}
+																					return undefined;
+																			}
+																	}
+															}
+													}
+											}
+									}
+							}
+					}
+			}
+			this._oSequencer.addAction(169,false,this,this.callNextBloc,[var2.nextBlocID]);
+			if(!this._oSequencer.isPlaying())
+			{
+				this._oSequencer.execute(true);
+			}
 		}
 	}
-	function callNextBloc(var2)
+	function callNextBloc(§\n\x0f§)
 	{
 		ank.utils.Timer.removeTimer(this,"tutorial");
 		if(typeof var2 == "object")
@@ -443,7 +445,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 			this.callNextBloc(var2.nextBlocID);
 		}
 	}
-	function setObjectPropertyValue(var2, var3, var4)
+	function setObjectPropertyValue(§\x1e\x18\x1a§, §\x1e\x0e\x18§, §\t\x14§)
 	{
 		if(var2 == undefined)
 		{
@@ -452,7 +454,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 		}
 		var2[var3] = var4;
 	}
-	function getSpriteIDFromData(var2)
+	function getSpriteIDFromData(§\n\x12§)
 	{
 		if(typeof var2 == "number")
 		{
@@ -463,12 +465,12 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 			return this.api.datacenter.Map.data[var2.substr(1)].spriteOnID;
 		}
 	}
-	function setToVariable(var2, var3)
+	function setToVariable(§\x1e\f\b§, §\x1e\x1b\x17§)
 	{
 		var2 = this.extractVarName(var2);
 		this._oVars[var2] = var3;
 	}
-	function addToVariable(var2, var3)
+	function addToVariable(§\x1e\f\b§, §\x1e\x1b\x17§)
 	{
 		var2 = this.extractVarName(var2);
 		if(this._oVars[var2] == undefined)
@@ -480,7 +482,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 			this._oVars[var2] = this._oVars[var2] + var3;
 		}
 	}
-	function extractVarName(var2)
+	function extractVarName(§\x1e\f\b§)
 	{
 		var var3 = var2.split("|");
 		if(var3.length != 0)
@@ -495,7 +497,7 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function extractValue(var2)
+	function extractValue(§\t\x13§)
 	{
 		if(typeof var2 == "string")
 		{
@@ -503,11 +505,11 @@ class dofus.managers.TutorialManager extends dofus.utils.ApiElement
 		}
 		return var2;
 	}
-	function onWaitingTimeout(var2)
+	function onWaitingTimeout(§\x1e\x1a\x0f§)
 	{
 		this.callNextBloc(var2.cases[dofus.datacenter.TutorialWaitingCase.CASE_TIMEOUT].nextBlocID);
 	}
-	function onWaitingCase(var2)
+	function onWaitingCase(§\x1e\x19\x18§)
 	{
 		var var3 = var2.code;
 		var var4 = var2.params;

@@ -6,12 +6,12 @@ class ank.gapi.controls.ToolTip extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__params(var2)
+	function __set__params(§\x1e\x18\x15§)
 	{
 		this._oParams = var2;
 		return this.__get__params();
 	}
-	function __set__text(var2)
+	function __set__text(§\x1e\r\x02§)
 	{
 		this._sText = var2;
 		if(this.initialized)
@@ -20,7 +20,7 @@ class ank.gapi.controls.ToolTip extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__text();
 	}
-	function __set__x(var2)
+	function __set__x(§\x1e\x1b\r§)
 	{
 		this._nX = var2;
 		if(this.initialized)
@@ -29,7 +29,7 @@ class ank.gapi.controls.ToolTip extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__x();
 	}
-	function __set__y(var2)
+	function __set__y(§\x1e\x1b\x05§)
 	{
 		this._nY = var2;
 		if(this.initialized)

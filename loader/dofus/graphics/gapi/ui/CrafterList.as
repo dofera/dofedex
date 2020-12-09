@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__jobs(var2)
+	function __set__jobs(§\x10\x0e§)
 	{
 		this._eaJobs = var2;
 		if(this.initialized)
@@ -14,7 +14,7 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 		}
 		return this.__get__jobs();
 	}
-	function __set__crafters(var2)
+	function __set__crafters(§\x10\x16§)
 	{
 		this._eaCrafters.removeEventListener("modelChanged",this);
 		this._eaCrafters = var2;
@@ -77,7 +77,7 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 	{
 		this._dgCrafter.dataProvider = this._eaCrafters;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -86,11 +86,11 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 				this.callClose();
 		}
 	}
-	function itemdblClick(var2)
+	function itemdblClick(§\x1e\x19\x18§)
 	{
 		this.itemSelected(var2);
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -103,7 +103,7 @@ class dofus.graphics.gapi.ui.CrafterList extends dofus.graphics.gapi.core.DofusA
 				this.api.ui.loadUIComponent("CrafterCard","CrafterCard",{crafter:var3});
 		}
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		this.updateCrafters();
 	}

@@ -21,7 +21,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__cellRenderer(var2)
+	function __set__cellRenderer(§\x1e\x14\x12§)
 	{
 		this._sCellRenderer = var2;
 		return this.__get__cellRenderer();
@@ -30,7 +30,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sCellRenderer;
 	}
-	function __set__isButtonLeft(var2)
+	function __set__isButtonLeft(§\x1b\x1d§)
 	{
 		this._bButtonLeft = var2;
 		return this.__get__isButtonLeft();
@@ -39,7 +39,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bButtonLeft;
 	}
-	function __set__rowHeight(var2)
+	function __set__rowHeight(§\x1e\x1e\x0f§)
 	{
 		if(var2 == 0)
 		{
@@ -52,7 +52,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nRowHeight;
 	}
-	function __set__buttonWidth(var2)
+	function __set__buttonWidth(§\b\f§)
 	{
 		this._nButtonWidth = var2;
 		return this.__get__buttonWidth();
@@ -61,7 +61,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nButtonWidth;
 	}
-	function __set__labelLeftMargin(var2)
+	function __set__labelLeftMargin(§\x04\x06§)
 	{
 		this._nLabelLeftMargin = var2;
 		return this.__get__labelLeftMargin();
@@ -70,7 +70,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nLabelLeftMargin;
 	}
-	function __set__labelRightMargin(var2)
+	function __set__labelRightMargin(§\x04\x04§)
 	{
 		this._nLabelRightMargin = var2;
 		return this.__get__labelRightMargin();
@@ -79,7 +79,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nLabelRightMargin;
 	}
-	function __set__labelTopMargin(var2)
+	function __set__labelTopMargin(§\x04\x03§)
 	{
 		this._nLabelTopMargin = var2;
 		return this.__get__labelTopMargin();
@@ -88,7 +88,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nLabelTopMargin;
 	}
-	function __set__labelBottomMargin(var2)
+	function __set__labelBottomMargin(§\x04\x07§)
 	{
 		this._nLabelBottomMargin = var2;
 		return this.__get__labelBottomMargin();
@@ -97,7 +97,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nLabelBottomMargin;
 	}
-	function __set__listLeftMargin(var2)
+	function __set__listLeftMargin(§\x03\x1d§)
 	{
 		this._nListLeftMargin = var2;
 		return this.__get__listLeftMargin();
@@ -106,7 +106,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nListLeftMargin;
 	}
-	function __set__listRightMargin(var2)
+	function __set__listRightMargin(§\x03\x1c§)
 	{
 		this._nListRightMargin = var2;
 		return this.__get__listRightMargin();
@@ -115,7 +115,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nListRightMargin;
 	}
-	function __set__rowCount(var2)
+	function __set__rowCount(§\x1e\x1e\x10§)
 	{
 		this._nRowCount = var2;
 		return this.__get__rowCount();
@@ -124,7 +124,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nRowCount;
 	}
-	function __set__mcListParent(var2)
+	function __set__mcListParent(§\x1e\x10\x11§)
 	{
 		this._sMcListParent = var2;
 		return this.__get__mcListParent();
@@ -133,7 +133,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sMcListParent;
 	}
-	function __set__background(var2)
+	function __set__background(§\x1e\x14\x1a§)
 	{
 		this._sBackground = var2;
 		return this.__get__background();
@@ -142,7 +142,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackground;
 	}
-	function __set__buttonBackgroundUp(var2)
+	function __set__buttonBackgroundUp(§\x1e\x14\x14§)
 	{
 		this._sButtonBackgroundUp = var2;
 		return this.__get__buttonBackgroundUp();
@@ -151,7 +151,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sButtonBackgroundUp;
 	}
-	function __set__buttonBackgroundDown(var2)
+	function __set__buttonBackgroundDown(§\x1e\x14\x15§)
 	{
 		this._sButtonBackgroundDown = var2;
 		return this.__get__buttonBackgroundDown();
@@ -160,7 +160,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sButtonBackgroundDown;
 	}
-	function __set__buttonIcon(var2)
+	function __set__buttonIcon(§\x1e\x14\x13§)
 	{
 		this._sButtonIcon = var2;
 		if(this.initialized)
@@ -173,7 +173,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sButtonIcon;
 	}
-	function __set__dataProvider(var2)
+	function __set__dataProvider(§\x10\x14§)
 	{
 		this._eaDataProvider = var2;
 		this._eaDataProvider.addEventListener("modelChanged",this);
@@ -189,7 +189,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider;
 	}
-	function __set__selectedIndex(var2)
+	function __set__selectedIndex(§\x1e\x1e\x03§)
 	{
 		this._nSelectedIndex = var2;
 		if(this.initialized)
@@ -291,7 +291,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 		}
 		else
 		{
-			var var3 = new ank.utils.(String(this._sMcListParent));
+			var var3 = new ank.utils.(String(this._sMcListParent));
 			var var4 = var3.replace("this",String(this));
 			var2 = eval(String(var4));
 		}
@@ -331,7 +331,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 			this.drawList();
 		}
 	}
-	function setLabel(var2)
+	function setLabel(§\x1e\r\x02§)
 	{
 		this._lblCombo.text = var2 != undefined?var2:"";
 	}
@@ -356,7 +356,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 	{
 		this.removeList();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if(this._btnOpen.selected)
 		{
@@ -367,7 +367,7 @@ class ank.gapi.controls.ComboBox extends ank.gapi.core.UIBasicComponent
 			this.removeList();
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		this._nSelectedIndex = this._lstCombo.selectedIndex;
 		this.setLabel(this.getSelectedItemText());

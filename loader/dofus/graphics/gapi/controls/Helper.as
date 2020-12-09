@@ -36,17 +36,17 @@ class dofus.graphics.gapi.controls.Helper extends dofus.graphics.gapi.core.Dofus
 	{
 		this.showStars(0);
 	}
-	function showStars(nCount)
+	function showStars(§\x07\b§)
 	{
 		var var3 = 0;
 		while(var3 < dofus.graphics.gapi.controls.Helper.MAX_STARS_DISPLAYED)
 		{
-			this.getStar(var3 + 1)._visible = nCount > var3;
+			this.getStar(var3 + 1)._visible = var2 > var3;
 			var3 = var3 + 1;
 		}
-		this._nStarsDisplayed = nCount;
+		this._nStarsDisplayed = var2;
 	}
-	function getStar(var2)
+	function getStar(§\x05\x02§)
 	{
 		return this["_mcStar" + var2];
 	}
@@ -64,7 +64,7 @@ class dofus.graphics.gapi.controls.Helper extends dofus.graphics.gapi.core.Dofus
 			this.showStars(this._nStarsDisplayed - 1);
 		}
 	}
-	function addAnimationToQueue(var2)
+	function addAnimationToQueue(§\x1e\x15\x04§)
 	{
 		this._aAnimationQueue.push(var2);
 		if(!this._bIsPlaying)

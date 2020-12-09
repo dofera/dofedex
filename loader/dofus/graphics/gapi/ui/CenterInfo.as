@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.CenterInfo extends dofus.graphics.gapi.ui.CenterTex
 	{
 		super();
 	}
-	function __set__textInfo(var2)
+	function __set__textInfo(§\x1e\r\x02§)
 	{
 		this._sDesc = var2;
 		return this.__get__textInfo();
@@ -18,5 +18,6 @@ class dofus.graphics.gapi.ui.CenterInfo extends dofus.graphics.gapi.ui.CenterTex
 	{
 		super.initText();
 		this._lblWhiteDesc.text = this._sDesc;
+		org.flashdevelop.utils.FlashConnect.mtrace(this._sDesc,"dofus.graphics.gapi.ui.CenterInfo::initText","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/CenterInfo.as",49);
 	}
 }

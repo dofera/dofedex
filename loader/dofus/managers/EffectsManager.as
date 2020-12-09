@@ -1,12 +1,12 @@
 class dofus.managers.EffectsManager extends dofus.utils.ApiElement
 {
-	function EffectsManager(oSprite, §\x1e\x1a\r§)
+	function EffectsManager(oSprite, §\x1e\x1a\x16§)
 	{
 		super();
 		var var5 = new flash.display.BitmapData();
 		this.initialize(oSprite,var4);
 	}
-	function initialize(oSprite, §\x1e\x1a\r§)
+	function initialize(oSprite, §\x1e\x1a\x16§)
 	{
 		super.initialize(var4);
 		this._oSprite = oSprite;
@@ -16,7 +16,7 @@ class dofus.managers.EffectsManager extends dofus.utils.ApiElement
 	{
 		return this._aEffects;
 	}
-	function addEffect(var2)
+	function addEffect(§\x1e\x19\x1c§)
 	{
 		var var3 = 0;
 		while(var3 < this._aEffects.length)
@@ -38,6 +38,22 @@ class dofus.managers.EffectsManager extends dofus.utils.ApiElement
 		{
 			var var3 = this._aEffects[var2];
 			this._aEffects.splice(var2,var2 + 1);
+		}
+	}
+	function removeEffectsByCasterID(sCasterID)
+	{
+		if(sCasterID == undefined)
+		{
+			return undefined;
+		}
+		var var3 = this._aEffects.length;
+		while((var3 = var3 - 1) >= 0)
+		{
+			var var4 = this._aEffects[var3];
+			if(var4.sCasterID == sCasterID)
+			{
+				this._aEffects.splice(var3,1);
+			}
 		}
 	}
 	function nextTurn()

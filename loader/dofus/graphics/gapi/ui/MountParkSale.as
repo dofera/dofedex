@@ -76,7 +76,7 @@ class dofus.graphics.gapi.ui.MountParkSale extends dofus.graphics.gapi.core.Dofu
 			this._btnValidate.label = this.api.lang.getText("BUY");
 		}
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && eval(Selection.getFocus())._name == "_txtPrice")
 		{
@@ -85,7 +85,7 @@ class dofus.graphics.gapi.ui.MountParkSale extends dofus.graphics.gapi.core.Dofu
 		}
 		return true;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -117,13 +117,18 @@ class dofus.graphics.gapi.ui.MountParkSale extends dofus.graphics.gapi.core.Dofu
 					}
 				}
 				break;
-			case "_btnClose":
+			default:
+				if(var0 !== "_btnClose")
+				{
+					break;
+				}
 				this.callClose();
+				break;
 		}
 	}
 	function getFormattedPrice()
 	{
-		return new ank.utils.(this._oMountPark.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
+		return new ank.utils.(this._oMountPark.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
 	}
 	function yes()
 	{

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.TitleDisplayer extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__title(var2)
+	function __set__title(§\x1e\f\x1b§)
 	{
 		this._sTitle = var2;
 		return this.__get__title();

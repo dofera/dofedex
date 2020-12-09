@@ -4,7 +4,7 @@ class dofus.graphics.gapi.ui.shortcuts.ShortcutsItem extends ank.gapi.core.UIBas
 	{
 		super();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		if(var2)
 		{
@@ -26,7 +26,7 @@ class dofus.graphics.gapi.ui.shortcuts.ShortcutsItem extends ank.gapi.core.UIBas
 				this._lblDescription.text = "    " + var4.d;
 				if(var4.s.k != undefined)
 				{
-					if(var4.s.d == undefined || (var4.s.d == "" || new ank.utils.(var4.s.d).trim().toString() == ""))
+					if(var4.s.d == undefined || (var4.s.d == "" || new ank.utils.(var4.s.d).trim().toString() == ""))
 					{
 						this._btnMain.label = var5.lang.getControlKeyString(var4.s.c) + var5.lang.getKeyStringFromKeyCode(var4.s.k);
 					}
@@ -41,7 +41,7 @@ class dofus.graphics.gapi.ui.shortcuts.ShortcutsItem extends ank.gapi.core.UIBas
 				}
 				if(var4.s.k2 != undefined)
 				{
-					if(var4.s.d2 == undefined || (var4.s.d2 == "" || new ank.utils.(var4.s.d2).trim().toString() == ""))
+					if(var4.s.d2 == undefined || (var4.s.d2 == "" || new ank.utils.(var4.s.d2).trim().toString() == ""))
 					{
 						this._btnAlt.label = var5.lang.getControlKeyString(var4.s.c2) + var5.lang.getKeyStringFromKeyCode(var4.s.k2);
 					}
@@ -86,7 +86,7 @@ class dofus.graphics.gapi.ui.shortcuts.ShortcutsItem extends ank.gapi.core.UIBas
 		this._btnMain.addEventListener("click",this);
 		this._btnAlt.addEventListener("click",this);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if(this._sShortcut == undefined)
 		{

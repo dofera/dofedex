@@ -41,7 +41,7 @@ class ank.gapi.ui.FlyWindow extends ank.gapi.core.UIAdvancedComponent
 	{
 		this._winBackground.addEventListener("complete",this);
 	}
-	function complete(var2)
+	function complete(§\x1e\x19\x18§)
 	{
 		this.addToQueue({object:this,method:this.initWindowContent});
 	}

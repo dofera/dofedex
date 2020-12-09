@@ -12,12 +12,12 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		return this._nFileOutput;
 	}
-	function __set__fileOutput(var2)
+	function __set__fileOutput(§\x05\x12§)
 	{
 		this._nFileOutput = var2;
 		return this.__get__fileOutput();
 	}
-	function setPrompt(var2)
+	function setPrompt(§\x1e\x0e\x19§)
 	{
 		if(this._lblPrompt.text == undefined)
 		{
@@ -27,7 +27,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 		this._tiCommandLine._x = this._lblPrompt._x + this._lblPrompt.textWidth + 2;
 		this._lblPrompt.setPreferedSize("left");
 	}
-	function setLogsText(var2)
+	function setLogsText(§\x1e\x10\x17§)
 	{
 		if(this._cLogs.text == undefined)
 		{
@@ -35,7 +35,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this._cLogs.text = var2;
 	}
-	function __set__command(var2)
+	function __set__command(§\x1e\x14\x06§)
 	{
 		this._sCommand = var2;
 		if(this.initialized)
@@ -45,6 +45,15 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 		return this.__get__command();
 	}
 	function refresh()
+	{
+		if(this._nRefreshVisuallyTimeout != undefined)
+		{
+			_global.clearTimeout(this._nRefreshVisuallyTimeout);
+		}
+		var var2 = _global.setTimeout(this,"realRefresh",dofus.Constants.DELAYED_DEBUG_CONSOLE_VISUAL_REFRESH);
+		this._nRefreshVisuallyTimeout = var2;
+	}
+	function realRefresh()
 	{
 		this.initData(true);
 	}
@@ -105,7 +114,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		this._tiCommandLine.setFocus();
 	}
-	function initData(var2)
+	function initData(§\x16\r§)
 	{
 		if(var2 == undefined)
 		{
@@ -158,7 +167,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 		this._srLogsBack.setSize(undefined,20);
 		this._srCommandLineBack._y = this._tiCommandLine._y = this._lblPrompt._y = this._cLogs._y;
 	}
-	function maximize(var2)
+	function maximize(§\x05\x07§)
 	{
 		this._cLogs._visible = true;
 		this._cLogs.setSize(undefined,var2);
@@ -169,7 +178,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x0e\x04§)
 	{
 		var var3 = true;
 		switch(var2)
@@ -190,43 +199,43 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 					var3 = false;
 				}
 				break;
-			case "TEAM_MESSAGE":
-				if(this.isFocused())
-				{
-					var var4 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex") + 1;
-					var4 = var4 % 3;
-					this.api.kernel.OptionsManager.setOption("DebugSizeIndex",var4);
-					this.applySizeIndex();
-				}
-				break;
 			default:
-				if(var0 !== "ACCEPT_CURRENT_DIALOG")
+				switch(null)
 				{
-					break;
-				}
-				if(this.isFocused())
-				{
-					var var5 = this._tiCommandLine.text;
-					if(var5.length == 0)
-					{
+					case "TEAM_MESSAGE":
+						if(this.isFocused())
+						{
+							var var4 = this.api.kernel.OptionsManager.getOption("DebugSizeIndex") + 1;
+							var4 = var4 % 3;
+							this.api.kernel.OptionsManager.setOption("DebugSizeIndex",var4);
+							this.applySizeIndex();
+						}
 						break;
-					}
-					var3 = false;
-					if(this._tiCommandLine.text != undefined)
-					{
-						this._tiCommandLine.text = "";
-					}
-					this.api.kernel.DebugConsole.process(var5);
-					break;
+					case "ACCEPT_CURRENT_DIALOG":
+						if(this.isFocused())
+						{
+							var var5 = this._tiCommandLine.text;
+							if(var5.length == 0)
+							{
+								break;
+							}
+							var3 = false;
+							if(this._tiCommandLine.text != undefined)
+							{
+								this._tiCommandLine.text = "";
+							}
+							this.api.kernel.DebugConsole.process(var5);
+							break;
+						}
+						var var6 = (dofus.graphics.gapi.ui.Banner)this.gapi.getUIComponent("Banner");
+						if(Selection.getFocus() != undefined && !(var6 != undefined && (var6.isChatFocus() && !var6.chatInputHasText())))
+						{
+							break;
+						}
+						var3 = false;
+						this._tiCommandLine.setFocus();
+						break;
 				}
-				var var6 = (dofus.graphics.gapi.ui.Banner)this.gapi.getUIComponent("Banner");
-				if(Selection.getFocus() != undefined && !(var6 != undefined && (var6.isChatFocus() && !var6.chatInputHasText())))
-				{
-					break;
-				}
-				var3 = false;
-				this._tiCommandLine.setFocus();
-				break;
 		}
 		return var3;
 	}
@@ -238,7 +247,7 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		return this._tiCommandLine.text != undefined && this._tiCommandLine.text != "";
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -251,13 +260,8 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 			case this._btnCopy:
 				System.setClipboard(this._cLogs.text);
 				break;
-			default:
-				if(var0 !== this._btnMinimize)
-				{
-					break;
-				}
+			case this._btnMinimize:
 				this.changeSize();
-				break;
 		}
 	}
 	function changeSize()
@@ -267,23 +271,24 @@ class dofus.graphics.gapi.ui.Debug extends dofus.graphics.gapi.core.DofusAdvance
 		this.api.kernel.OptionsManager.setOption("DebugSizeIndex",var2);
 		this.applySizeIndex();
 	}
-	function href(var2)
+	function href(§\x1e\x19\x18§)
 	{
 		var var3 = var2.params.split(",");
-		switch(var3[0])
+		if((var var0 = var3[0]) !== "ShowPlayerPopupMenu")
 		{
-			case "ShowPlayerPopupMenu":
-				this.api.kernel.GameManager.showPlayerPopupMenu(undefined,_global.unescape(var3[1]));
-				break;
-			case "ExecCmd":
-			default:
+			if(var0 === "ExecCmd")
+			{
 				this._tiCommandLine.text = _global.unescape(var3[1]);
 				if(var3[2] == "true" || var3[2] == true)
 				{
 					this._tiCommandLine.setFocus();
 					this.onShortcut("ACCEPT_CURRENT_DIALOG");
-					break;
 				}
+			}
+		}
+		else
+		{
+			this.api.kernel.GameManager.showPlayerPopupMenu(undefined,_global.unescape(var3[1]));
 		}
 	}
 }

@@ -7,7 +7,7 @@ class dofus.datacenter.Storage extends Object
 		super();
 		this.initialize();
 	}
-	function __set__localOwner(var2)
+	function __set__localOwner(§\x18\x05§)
 	{
 		this._bLocalOwner = var2;
 		return this.__get__localOwner();
@@ -16,7 +16,7 @@ class dofus.datacenter.Storage extends Object
 	{
 		return this._bLocalOwner;
 	}
-	function __set__isLocked(var2)
+	function __set__isLocked(§\x18\x04§)
 	{
 		this._bLocked = var2;
 		this.dispatchEvent({type:"locked",value:var2});
@@ -26,7 +26,7 @@ class dofus.datacenter.Storage extends Object
 	{
 		return this._bLocked;
 	}
-	function __set__inventory(var2)
+	function __set__inventory(§\x10\x0f§)
 	{
 		this._eaInventory = var2;
 		this.dispatchEvent({type:"modelChanged"});
@@ -36,7 +36,7 @@ class dofus.datacenter.Storage extends Object
 	{
 		return this._eaInventory;
 	}
-	function __set__Kama(var2)
+	function __set__Kama(§\x04\x0b§)
 	{
 		this._nKamas = var2;
 		this.dispatchEvent({type:"kamaChanged",value:var2});

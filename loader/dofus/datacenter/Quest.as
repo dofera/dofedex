@@ -1,6 +1,6 @@
 class dofus.datacenter.Quest extends Object
 {
-	function Quest(var3, var4, var5)
+	function Quest(§\x05\x02§, §\x1a\b§, §\x1e\x1d\x10§)
 	{
 		super();
 		this.initialize(var3,var4,var5);
@@ -26,7 +26,7 @@ class dofus.datacenter.Quest extends Object
 	{
 		return this._oCurrentStep;
 	}
-	function addStep(var2)
+	function addStep(§\x1e\x17\x1b§)
 	{
 		this._eoSteps.addItemAt(var2.id,var2);
 		if(var2.isCurrent)
@@ -34,10 +34,10 @@ class dofus.datacenter.Quest extends Object
 			this._oCurrentStep = var2;
 		}
 	}
-	function initialize(var2, var3, var4)
+	function initialize(§\x05\x02§, §\x1a\b§, §\x1e\x1d\x10§)
 	{
 		this.api = _global.API;
-		this._eoSteps = new ank.utils.();
+		this._eoSteps = new ank.utils.	();
 		this._nID = var2;
 		this._bFinished = var3;
 		this.sortOrder = var4;

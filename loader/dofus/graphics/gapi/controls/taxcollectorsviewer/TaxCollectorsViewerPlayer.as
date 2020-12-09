@@ -4,7 +4,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerPlayer
 	{
 		super();
 	}
-	function __set__data(var2)
+	function __set__data(§\x1e\x1a\x02§)
 	{
 		if(var2 != this._oData)
 		{
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.controls.taxcollectorsviewer.TaxCollectorsViewerPlayer
 	{
 		this._ldrSprite.contentPath = this._oData.gfxFile != undefined?this._oData.gfxFile:"";
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		var var3 = var2.clip;
 		_global.GAC.addSprite(var3,this._oData);

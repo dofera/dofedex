@@ -14,7 +14,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__multipleSelection(var2)
+	function __set__multipleSelection(§\x17\x14§)
 	{
 		this._bMultipleSelection = var2;
 		return this.__get__multipleSelection();
@@ -23,7 +23,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bMultipleSelection;
 	}
-	function __set__rowHeight(var2)
+	function __set__rowHeight(§\x1e\x1e\x0f§)
 	{
 		if(var2 == 0)
 		{
@@ -36,7 +36,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nRowHeight;
 	}
-	function __set__cellRenderer(var2)
+	function __set__cellRenderer(§\x1e\x14\x12§)
 	{
 		if(var2 != undefined)
 		{
@@ -48,7 +48,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sCellRenderer;
 	}
-	function __set__dataProvider(var2)
+	function __set__dataProvider(§\x10\x19§)
 	{
 		delete this._nSelectedIndex;
 		this._eaDataProvider = var2;
@@ -65,7 +65,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider;
 	}
-	function __set__selectedIndex(var2)
+	function __set__selectedIndex(§\x04\x17§)
 	{
 		var var3 = this._mcContent["row" + var2];
 		this._nSelectedIndex = var2;
@@ -80,7 +80,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider[this._nSelectedIndex];
 	}
-	function __set__autoScroll(var2)
+	function __set__autoScroll(§\x1c\t§)
 	{
 		this._bAutoScroll = var2;
 		return this.__get__autoScroll();
@@ -89,7 +89,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bAutoScroll;
 	}
-	function __set__dblClickEnabled(var2)
+	function __set__dblClickEnabled(§\x1b\r§)
 	{
 		this._bDblClickEnabled = var2;
 		return this.__get__dblClickEnabled();
@@ -98,19 +98,19 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bDblClickEnabled;
 	}
-	function addItem(var2)
+	function addItem(§\x1e\x19\r§)
 	{
 		this._aRows.push({item:var2,selected:false});
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function addItemAt(var2, var3)
+	function addItemAt(§\x1e\x19\r§, §\x04\x17§)
 	{
 		this._aRows.splice(var3,0,{item:var2,selected:false});
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function removeItemAt(var2, var3)
+	function removeItemAt(§\x1e\x19\r§, §\x04\x17§)
 	{
 		this._aRows.splice(var3,1);
 		this.setScrollBarProperties(true);
@@ -122,7 +122,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function setVPosition(var2, var3)
+	function setVPosition(§\x01\x17§, §\x19\x1d§)
 	{
 		var var4 = this._eaDataProvider.length - Math.floor(this.__height / this._nRowHeight);
 		if(var2 > var4)
@@ -140,7 +140,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this.layoutContent();
 		}
 	}
-	function sortOn(var2, var3)
+	function sortOn(§\x1e\x0e\x17§, §\x02\r§)
 	{
 		this._eaDataProvider.sortOn(var2,var3);
 		this.modelChanged();
@@ -176,8 +176,9 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			return undefined;
 		}
 		var var2 = this.getStyle();
-		for(this._mcContent[k].styleName in this._mcContent)
+		for(var k in this._mcContent)
 		{
+			this._mcContent[k].styleName = this.styleName;
 		}
 		this._sbVertical.styleName = var2.scrollbarstyle;
 	}
@@ -232,7 +233,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		}
 		this._bInvalidateLayout = false;
 	}
-	function addScrollBar(var2)
+	function addScrollBar(§\x1c\x11§)
 	{
 		if(!this._sbVertical._visible)
 		{
@@ -243,7 +244,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			}
 		}
 	}
-	function removeScrollBar(var2)
+	function removeScrollBar(§\x1c\x11§)
 	{
 		if(this._sbVertical._visible)
 		{
@@ -254,7 +255,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			}
 		}
 	}
-	function setScrollBarProperties(var2)
+	function setScrollBarProperties(§\x1c\x11§)
 	{
 		this._bInvalidateScrollBar = false;
 		var var3 = Math.floor(this.__height / this._nRowHeight);
@@ -271,7 +272,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this._sbVertical.scrollPosition = this._nScrollPosition;
 		}
 	}
-	function layoutSelection(var2, var3, var4)
+	function layoutSelection(§\x04\x17§, §\x1e\x0e\x0e§, §\x16\x07§)
 	{
 		if(var4 == undefined)
 		{
@@ -348,11 +349,11 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this.layoutContent();
 		}
 	}
-	function scroll(var2)
+	function scroll(§\x1e\x19\x18§)
 	{
 		this.setVPosition(var2.target.scrollPosition);
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.itemIndex;
 		var var4 = var2.target;
@@ -360,7 +361,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.layoutSelection(var3,var4);
 		this.dispatchEvent({type:"itemSelected",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemdblClick(var2)
+	function itemdblClick(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.itemIndex;
 		var var4 = var2.target;
@@ -368,7 +369,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.layoutSelection(var3,var4);
 		this.dispatchEvent({type:"itemdblClick",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemRollOver(var2)
+	function itemRollOver(§\x1e\x19\x18§)
 	{
 		var var3 = this._bMultipleSelection && (Key.isDown(dofus.Constants.SELECT_MULTIPLE_ITEMS_KEY) && Key.isDown(Key.SHIFT));
 		if(var3)
@@ -379,20 +380,24 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		}
 		this.dispatchEvent({type:"itemRollOver",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemRollOut(var2)
+	function itemRollOut(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:"itemRollOut",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemDrag(var2)
+	function itemDrag(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:"itemDrag",row:var2.target});
 	}
-	function itemDrop(var2)
+	function itemDrop(§\x1e\x19\x18§)
 	{
 		this.dispatchEvent({type:"itemDrop",row:var2.target});
 	}
-	function onMouseWheel(var2, var3)
+	function onMouseWheel(§\x06\x17§, §\x0b\r§)
 	{
+		if(Key.isDown(Key.CONTROL))
+		{
+			return undefined;
+		}
 		if(String(var3._target).indexOf(this._target) != -1)
 		{
 			this.setVPosition(this._nScrollPosition - var2);

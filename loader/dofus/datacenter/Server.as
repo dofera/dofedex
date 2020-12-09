@@ -12,12 +12,12 @@ class dofus.datacenter.Server
 	static var SERVER_RETRO = 4;
 	static var SERVER_MONOACCOUNT = 5;
 	static var SERVER_COMMUNITY_INTERNATIONAL = 2;
-	function Server(var3, var4, var5, var6)
+	function Server(§\x05\x02§, §\x1e\x1d\x07§, §\x07\t§, §\x1b\x19§)
 	{
 		this.initialize(var2,var3,var4,var5);
 		this._nCharactersCount = 0;
 	}
-	function __set__id(var2)
+	function __set__id(§\x05\x02§)
 	{
 		this._nID = var2;
 		return this.__get__id();
@@ -26,16 +26,16 @@ class dofus.datacenter.Server
 	{
 		return this._nID;
 	}
-	function __set__charactersCount(nCount)
+	function __set__charactersCount(§\x07\b§)
 	{
-		this._nCharactersCount = nCount;
+		this._nCharactersCount = var2;
 		return this.__get__charactersCount();
 	}
 	function __get__charactersCount()
 	{
 		return this._nCharactersCount;
 	}
-	function __set__state(var2)
+	function __set__state(§\x1e\x1d\x07§)
 	{
 		this._nState = var2;
 		return this.__get__state();
@@ -74,7 +74,7 @@ class dofus.datacenter.Server
 		}
 		return this.api.lang.getText("SERVER_OFFLINE_SHORT");
 	}
-	function __set__canLog(var2)
+	function __set__canLog(§\x1b\x19§)
 	{
 		this._bCanLog = var2;
 		return this.__get__canLog();
@@ -132,24 +132,24 @@ class dofus.datacenter.Server
 	function getRulesType()
 	{
 		var var2 = this.typeNum;
-		switch(var2)
+		if((var var0 = var2) !== dofus.datacenter.Server.SERVER_MONOACCOUNT)
 		{
-			case dofus.datacenter.Server.SERVER_MONOACCOUNT:
-				return dofus.datacenter.Server.SERVER_RULES_MONOACCOUNT;
-			default:
+			if(var0 !== dofus.datacenter.Server.SERVER_129)
+			{
 				if(var0 !== dofus.datacenter.Server.SERVER_RETRO)
 				{
 					return var2;
 				}
-			case dofus.datacenter.Server.SERVER_129:
-				return dofus.datacenter.Server.SERVER_RULES_CLASSIC;
+			}
+			return dofus.datacenter.Server.SERVER_RULES_CLASSIC;
 		}
+		return dofus.datacenter.Server.SERVER_RULES_MONOACCOUNT;
 	}
 	function isHardcore()
 	{
 		return this.typeNum == dofus.datacenter.Server.SERVER_HARDCORE;
 	}
-	function initialize(var2, var3, var4, var5)
+	function initialize(§\x05\x02§, §\x1e\x1d\x07§, §\x07\t§, §\x1b\x19§)
 	{
 		this.api = _global.API;
 		this._nID = var2;

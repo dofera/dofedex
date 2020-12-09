@@ -8,19 +8,19 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__colors(var2)
+	function __set__colors(§\f§)
 	{
 		this.addToQueue({object:this,method:this.applyColor,params:[var2[0],1]});
 		this.addToQueue({object:this,method:this.applyColor,params:[var2[1],2]});
 		this.addToQueue({object:this,method:this.applyColor,params:[var2[2],3]});
 		return this.__get__colors();
 	}
-	function __set__breed(var2)
+	function __set__breed(§\b\x10§)
 	{
 		this._nBreed = var2;
 		return this.__get__breed();
 	}
-	function __set__sex(var2)
+	function __set__sex(§\x1e\x1d\x1c§)
 	{
 		this._nSex = var2;
 		return this.__get__sex();
@@ -54,6 +54,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		this._btnReset.addEventListener("click",this);
 		this._btnReset.addEventListener("over",this);
 		this._btnReset.addEventListener("out",this);
+		var ref = this;
 		this._mcRandomColor1.onPress = function()
 		{
 			ref.click({target:this});
@@ -103,7 +104,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 			ref.out({target:this});
 		};
 	}
-	function setColorIndex(var2)
+	function setColorIndex(§\x04\x17§)
 	{
 		var var3 = this["_btnColor" + this._nSelectedColorIndex];
 		var var4 = this["_btnColor" + var2];
@@ -111,7 +112,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		var4.selected = true;
 		this._nSelectedColorIndex = var2;
 	}
-	function applyColor(var2, var3)
+	function applyColor(§\x07\x0e§, §\x04\x17§)
 	{
 		if(var3 == undefined)
 		{
@@ -123,7 +124,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		this._oColors["color" + var3] = var2;
 		this._oBakColors["color" + var3] = var2;
 	}
-	function selectColor(var2)
+	function selectColor(§\x04\x17§)
 	{
 		var var3 = this._oBakColors["color" + var2];
 		if(var3 != -1)
@@ -132,7 +133,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		this.setColorIndex(var2);
 	}
-	static function d2h(var2)
+	static function d2h(§\x11\x17§)
 	{
 		if(var2 > 255)
 		{
@@ -140,7 +141,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return dofus.graphics.gapi.controls.ColorSelector.HEX_CHARS[Math.floor(var2 / 16)] + dofus.graphics.gapi.controls.ColorSelector.HEX_CHARS[var2 % 16];
 	}
-	function displayColorCode(var2)
+	function displayColorCode(§\x04\x17§)
 	{
 		this.selectColor(var2);
 		var var3 = (this._oColors["color" + var2] & 16711680) >> 16;
@@ -154,13 +155,13 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		var var7 = this.gapi.loadUIComponent("PopupHexa","PopupHexa",{value:var6,params:{targetType:"colorCode",colorIndex:var2}});
 		var7.addEventListener("validate",this);
 	}
-	function setColor(var2, var3)
+	function setColor(§\x04\x17§, §\x1e\x1b\x17§)
 	{
 		this.setColorIndex(var2);
 		this.change({target:this._cpColorPicker,value:var3});
 		this.click({target:this["_btnColor" + var2]});
 	}
-	function hueVariation(var2, var3, var4)
+	function hueVariation(§\x07\x0e§, §\x1e\x1b\x16§, §\x17\x12§)
 	{
 		var var5 = this.rgb2hsl(var2);
 		if(var5.h < 0.5 && !var4)
@@ -178,7 +179,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return this.hsl2rgb(var5.h,var5.s,var5.l);
 	}
-	function lightVariation(var2, var3)
+	function lightVariation(§\x07\x0e§, §\x1e\x1b\x16§)
 	{
 		var var4 = this.rgb2hsl(var2);
 		var4.l = var4.l + var3;
@@ -192,7 +193,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return this.hsl2rgb(var4.h,var4.s,var4.l);
 	}
-	function complementaryColor(var2)
+	function complementaryColor(§\x07\x0e§)
 	{
 		var var3 = this.rgb2hsl(var2);
 		var var4 = var3.h + 0.5;
@@ -202,7 +203,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return this.hsl2rgb(var4,var3.s,var3.l);
 	}
-	function hsl2rgb(var2, var3, var4)
+	function hsl2rgb(§\r\x13§, §\x1e\x15\n§, §\f\x0b§)
 	{
 		if(var3 == 0)
 		{
@@ -227,7 +228,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return Number("0x" + dofus.graphics.gapi.controls.ColorSelector.d2h(Math.round(var5)) + dofus.graphics.gapi.controls.ColorSelector.d2h(Math.round(var6)) + dofus.graphics.gapi.controls.ColorSelector.d2h(Math.round(var7)));
 	}
-	function rgb2hsl(var2)
+	function rgb2hsl(§\x07\x0e§)
 	{
 		var var3 = ((var2 & 16711680) >> 16) / 255;
 		var var4 = ((var2 & 65280) >> 8) / 255;
@@ -277,7 +278,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return {h:var10,s:var11,l:var9};
 	}
-	function h2rgb(var2, var3, var4)
+	function h2rgb(§\x1e\n\x12§, §\x1e\n\x11§, §\r\x13§)
 	{
 		if(var4 < 0)
 		{
@@ -329,7 +330,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 		}
 		return var2;
 	}
-	function isSkin(var2)
+	function isSkin(§\x04\x17§)
 	{
 		return dofus.Constants.BREED_SKIN_INDEXES[this._nSex][this._nBreed - 1] == var2;
 	}
@@ -337,21 +338,40 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 	{
 		return this.lightVariation(dofus.Constants.BREED_SKIN_BASE_COLOR[this._nSex][this._nBreed - 1],Math.random() * 0.2 * (Math.random() <= 0.5?-1:1));
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		loop1:
 		switch(var2.target)
 		{
+			case this._btnColor1:
+			case this._btnColor2:
+			case this._btnColor3:
+				var var3 = Number(var2.target._name.substr(9));
+				if(Key.isDown(Key.SHIFT))
+				{
+					this.displayColorCode(var3);
+				}
+				else if(Key.isDown(Key.CONTROL))
+				{
+					this.applyColor(-1,var3);
+				}
+				else
+				{
+					this.selectColor(var3);
+				}
+				break;
 			default:
 				switch(null)
 				{
-					case this._btnColor3:
+					case this._mcRandomColor1:
+					case this._mcRandomColor2:
+					case this._mcRandomColor3:
+						var var4 = Number(var2.target._name.substr(14));
+						this.setColor(var4,Math.round(Math.random() * 16777215));
 						break loop1;
 					default:
 						switch(null)
 						{
-							case this._mcRandomColor3:
-								break;
 							case this._mcRandomAll:
 								var var5 = Math.floor(Math.random() * dofus.graphics.gapi.controls.ColorSelector.MAXIMUM_COLOR_INDEX);
 								var var6 = Math.ceil(Math.random() * 16777215);
@@ -378,41 +398,26 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 								}
 								this.dispatchEvent({type:"change",value:this._oColors});
 						}
-					case this._mcRandomColor1:
-					case this._mcRandomColor2:
-						var var4 = Number(var2.target._name.substr(14));
-						this.setColor(var4,Math.round(Math.random() * 16777215));
 				}
-			case this._btnColor1:
-			case this._btnColor2:
-		}
-		var var3 = Number(var2.target._name.substr(9));
-		if(Key.isDown(Key.SHIFT))
-		{
-			this.displayColorCode(var3);
-		}
-		else if(Key.isDown(Key.CONTROL))
-		{
-			this.applyColor(-1,var3);
-		}
-		else
-		{
-			this.selectColor(var3);
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		loop0:
 		switch(var2.target)
 		{
+			case this._btnColor1:
+			case this._btnColor2:
+			case this._btnColor3:
+				var var3 = Number(var2.target._name.substr(9));
+				this.dispatchEvent({type:"over",index:var3});
+				break;
 			default:
 				switch(null)
 				{
-					case this._btnColor3:
-						break loop0;
 					case this._btnReset:
 						this.gapi.showTooltip(this.api.lang.getText("REINIT_WORD"),var2.target,-20);
-						break;
+						break loop0;
 					default:
 						switch(null)
 						{
@@ -421,18 +426,14 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 							case this._mcRandomAll:
 								this.gapi.showTooltip(this.api.lang.getText("RANDOM_ALL_COLORS"),_root._xmouse,_root._ymouse - 20);
 						}
-						break;
+						break loop0;
 					case this._mcRandomColor1:
 					case this._mcRandomColor2:
 						this.gapi.showTooltip(this.api.lang.getText("RANDOM_COLOR"),_root._xmouse,_root._ymouse - 20);
 				}
-			case this._btnColor1:
-			case this._btnColor2:
 		}
-		var var3 = Number(var2.target._name.substr(9));
-		this.dispatchEvent({type:"over",index:var3});
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -446,7 +447,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 				this.gapi.hideTooltip();
 		}
 	}
-	function change(var2)
+	function change(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._cpColorPicker)
 		{
@@ -454,7 +455,7 @@ class dofus.graphics.gapi.controls.ColorSelector extends dofus.graphics.gapi.cor
 			this.dispatchEvent({type:"change",value:this._oColors});
 		}
 	}
-	function validate(var2)
+	function validate(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.params.targetType) === "colorCode")
 		{

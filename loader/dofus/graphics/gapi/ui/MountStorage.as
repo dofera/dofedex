@@ -9,7 +9,7 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__mounts(var2)
+	function __set__mounts(§\x10\x0b§)
 	{
 		this._eaMount.removeEventListener("modelChanged",this);
 		this._eaMount = var2;
@@ -24,7 +24,7 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 	{
 		return this._eaMount;
 	}
-	function __set__parkMounts(var2)
+	function __set__parkMounts(§\x10\x0b§)
 	{
 		this._eaParkMounts.removeEventListener("modelChanged",this);
 		this._eaParkMounts = var2;
@@ -107,7 +107,8 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 	}
 	function createCertificateArray()
 	{
-		var var2 = new ank.utils.();
+		var var2 = new ank.utils.
+();
 		var var3 = this.api.datacenter.Player.Inventory;
 		var var4 = 0;
 		while(var4 < var3.length)
@@ -121,27 +122,27 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		}
 		return var2;
 	}
-	function hideShedButton(var2)
+	function hideShedButton(§\x19\x0e§)
 	{
 		this._mcArrowShed._visible = !var2;
 		this._btnShed._visible = !var2;
 	}
-	function hideMountParkButton(var2)
+	function hideMountParkButton(§\x19\x0e§)
 	{
 		this._mcArrowMountPark._visible = !var2;
 		this._btnMountPark._visible = !var2;
 	}
-	function hideCertificateButton(var2)
+	function hideCertificateButton(§\x19\x0e§)
 	{
 		this._mcArrowCertificate._visible = !var2;
 		this._btnCertificate._visible = !var2;
 	}
-	function hideInventoryButton(var2)
+	function hideInventoryButton(§\x19\x0e§)
 	{
 		this._mcArrowInventory._visible = !var2;
 		this._btnInventory._visible = !var2;
 	}
-	function hideMountViewer(var2)
+	function hideMountViewer(§\x19\x0e§)
 	{
 		this._winMountViewer._visible = !var2;
 		this._mvMountViewer._visible = !var2;
@@ -151,7 +152,7 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			this.moveBottomButtons(0);
 		}
 	}
-	function hideItemViewer(var2)
+	function hideItemViewer(§\x19\x0e§)
 	{
 		this._winItemViewer._visible = !var2;
 		this._itvItemViewer._visible = !var2;
@@ -161,17 +162,17 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			this.moveBottomButtons(-13);
 		}
 	}
-	function moveTopButtons(var2)
+	function moveTopButtons(§\x1e\t\x18§)
 	{
 		this._btnInventory._y = 146 + var2;
 		this._btnShed._y = 146 + var2;
 	}
-	function moveBottomButtons(var2)
+	function moveBottomButtons(§\x1e\t\x18§)
 	{
 		this._btnCertificate._y = 383 + var2;
 		this._btnMountPark._y = 383 + var2;
 	}
-	function hideAllButtons(var2)
+	function hideAllButtons(§\x19\x0e§)
 	{
 		this.hideShedButton(var2);
 		this.hideMountParkButton(var2);
@@ -184,11 +185,12 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		this.hideMountViewer(true);
 		this.hideItemViewer(true);
 	}
-	function fillTypeCombobox(var2, var3)
+	function fillTypeCombobox(§\x13\x13§, §\x0f\x1c§)
 	{
 		var var4 = var2.selectedItem.id;
 		var var5 = var2.selectedItem.modelID;
-		var var6 = !var2.dataProvider.length?new ank.utils.():var2.dataProvider;
+		var var6 = !var2.dataProvider.length?new ank.utils.
+():var2.dataProvider;
 		if(!var2.dataProvider.length)
 		{
 			var6.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
@@ -204,14 +206,23 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			var6.push({label:this.api.lang.getText("MOUNT_FILTER_NOTIRED"),id:10});
 		}
 		var3.sortOn("modelID");
-		for(var i in var3)
+		for(var var7 in var3)
 		{
-			var var7 = false;
-			for(var j in var6)
+			§§enumerate(var6);
+			while((var var0 = §§enumeration()) != null)
 			{
 				if(var6[j].modelID == var3[i].modelID)
 				{
 					var7 = true;
+					var3[i]();
+					var3.sortOn("modelID");
+					§§enumerate(var3);
+					((var var0 = §§enumeration()) == null)[var7 = false]();
+					var7 = true;
+					§§push(Array.NUMERIC);
+					§§push(["id","modelName"]);
+					§§push(2);
+					§§push(var6.sortOn != var3[i].modelID);
 					break;
 				}
 			}
@@ -232,9 +243,10 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		var2.dataProvider = var6;
 		var2.selectedIndex = var8 == -1?0:var8;
 	}
-	function makeDataProvider(var2, var3)
+	function makeDataProvider(§\x0f\x1c§, §\x13\x11§)
 	{
-		var var4 = new ank.utils.();
+		var var4 = new ank.utils.
+();
 		var var5 = var3.selectedItem.id;
 		loop11:
 		switch(var5)
@@ -243,7 +255,8 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 				var4 = var2;
 				break;
 			case 1:
-				for(var i in var2)
+				§§enumerate(var2);
+				while((var0 = §§enumeration()) != null)
 				{
 					if(!var2[i].sex)
 					{
@@ -252,9 +265,30 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 				}
 				break;
 			case 2:
-				for(var i in var2)
+				§§enumerate(var2);
+				while((var var0 = §§enumeration()) != null)
 				{
 					if(var2[i].sex)
+					{
+						var4.push(var2[i]);
+					}
+				}
+				break;
+			case 3:
+				§§enumerate(var2);
+				while((var var0 = §§enumeration()) != null)
+				{
+					if(var2[i].fecondable && var2[i].fecondation == -1)
+					{
+						var4.push(var2[i]);
+					}
+				}
+				break;
+			case 4:
+				§§enumerate(var2);
+				while((var var0 = §§enumeration()) != null)
+				{
+					if(var2[i].fecondation > 0)
 					{
 						var4.push(var2[i]);
 					}
@@ -263,26 +297,9 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			default:
 				switch(null)
 				{
-					case 3:
-						for(var i in var2)
-						{
-							if(var2[i].fecondable && var2[i].fecondation == -1)
-							{
-								var4.push(var2[i]);
-							}
-						}
-						break loop11;
-					case 4:
-						for(var i in var2)
-						{
-							if(var2[i].fecondation > 0)
-							{
-								var4.push(var2[i]);
-							}
-						}
-						break loop11;
 					case 5:
-						for(var i in var2)
+						§§enumerate(var2);
+						while((var var0 = §§enumeration()) != null)
 						{
 							if(var2[i].mountable)
 							{
@@ -291,7 +308,8 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 						}
 						break loop11;
 					case 6:
-						for(var i in var2)
+						§§enumerate(var2);
+						while((var var0 = §§enumeration()) != null)
 						{
 							if(var2[i].name == this.api.lang.getText("NO_NAME"))
 							{
@@ -300,9 +318,30 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 						}
 						break loop11;
 					case 7:
-						for(var i in var2)
+						§§enumerate(var2);
+						while((var var0 = §§enumeration()) != null)
 						{
 							if(var2[i].capacities.length > 0)
+							{
+								var4.push(var2[i]);
+							}
+						}
+						break loop11;
+					case 8:
+						§§enumerate(var2);
+						while((var var0 = §§enumeration()) != null)
+						{
+							if(var2[i].mountable && var2[i].level < 5)
+							{
+								var4.push(var2[i]);
+							}
+						}
+						break loop11;
+					case 9:
+						§§enumerate(var2);
+						while((var var0 = §§enumeration()) != null)
+						{
+							if(var2[i].tired == var2[i].tiredMax)
 							{
 								var4.push(var2[i]);
 							}
@@ -311,24 +350,6 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 					default:
 						switch(null)
 						{
-							case 8:
-								for(var i in var2)
-								{
-									if(var2[i].mountable && var2[i].level < 5)
-									{
-										var4.push(var2[i]);
-									}
-								}
-								break;
-							case 9:
-								for(var i in var2)
-								{
-									if(var2[i].tired == var2[i].tiredMax)
-									{
-										var4.push(var2[i]);
-									}
-								}
-								break;
 							case 10:
 								for(var i in var2)
 								{
@@ -351,13 +372,13 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		}
 		break loop10;
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.content;
 		var3.attachMovie("staticR_front","anim_front",11);
 		var3.attachMovie("staticR_back","anim_back",10);
 	}
-	function mountChanged(var2)
+	function mountChanged(§\x1e\x19\x18§)
 	{
 		this.hideViewersAndButtons();
 		var var3 = this.api.datacenter.Player.mount;
@@ -368,7 +389,7 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 			this._lblInventoryMountName.text = var3.name;
 			this._ldrSprite.forceNextLoad();
 			this._ldrSprite.contentPath = var3.gfxFile;
-			var var5 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
+			var var5 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
 			var5.mount = var3;
 			this.api.colors.addSprite(this._ldrSprite,var5);
 		}
@@ -378,183 +399,178 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 		this._ldrSprite._visible = var4;
 		this._mcRectanglePreview._visible = var4;
 	}
-	function modelChanged(var2)
+	function modelChanged(§\x1e\x19\x18§)
 	{
 		this.hideViewersAndButtons();
-		if((var var0 = var2.target) !== this._eaMount)
+		switch(var2.target)
 		{
-			switch(null)
-			{
-				case this._eaParkMounts:
-					this._lstMountPark.dataProvider = this.makeDataProvider(this._eaParkMounts,this._cbFilterPark);
-					this._lstShed.sortOn("modelID");
-					this.fillTypeCombobox(this._cbFilterShed,this.mounts.concat(this.parkMounts));
-					this.fillTypeCombobox(this._cbFilterPark,this.mounts.concat(this.parkMounts));
+			case this._eaMount:
+				this._lstShed.dataProvider = this.makeDataProvider(this._eaMount,this._cbFilterShed);
+				this._lstShed.sortOn("modelID");
+				this.fillTypeCombobox(this._cbFilterShed,this.mounts.concat(this.parkMounts));
+				this.fillTypeCombobox(this._cbFilterPark,this.mounts.concat(this.parkMounts));
+				break;
+			case this._eaParkMounts:
+				this._lstMountPark.dataProvider = this.makeDataProvider(this._eaParkMounts,this._cbFilterPark);
+				this._lstShed.sortOn("modelID");
+				this.fillTypeCombobox(this._cbFilterShed,this.mounts.concat(this.parkMounts));
+				this.fillTypeCombobox(this._cbFilterPark,this.mounts.concat(this.parkMounts));
+				break;
+			default:
+				if(var0 !== this.api.datacenter.Player.Inventory)
+				{
 					break;
-				case this.api.datacenter.Player.Inventory:
-					this._lstCertificate.dataProvider = this.createCertificateArray();
-			}
-		}
-		else
-		{
-			this._lstShed.dataProvider = this.makeDataProvider(this._eaMount,this._cbFilterShed);
-			this._lstShed.sortOn("modelID");
-			this.fillTypeCombobox(this._cbFilterShed,this.mounts.concat(this.parkMounts));
-			this.fillTypeCombobox(this._cbFilterPark,this.mounts.concat(this.parkMounts));
+				}
+				this._lstCertificate.dataProvider = this.createCertificateArray();
+				break;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		var var3 = this.api.network.Exchange;
-		if((var var0 = var2.target) !== this._btnClose)
+		switch(var2.target)
 		{
-			switch(null)
-			{
-				case this._btnInventoryMount:
-					this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY;
-					this._mvMountViewer.mount = this.api.datacenter.Player.mount;
-					this.hideAllButtons(false);
-					this.hideItemViewer(true);
-					this.hideMountViewer(false);
-					this.hideInventoryButton(true);
-					break;
-				case this._btnShed:
-					if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+			case this._btnClose:
+				this.callClose();
+				break;
+			case this._btnInventoryMount:
+				this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY;
+				this._mvMountViewer.mount = this.api.datacenter.Player.mount;
+				this.hideAllButtons(false);
+				this.hideItemViewer(true);
+				this.hideMountViewer(false);
+				this.hideInventoryButton(true);
+				break;
+			case this._btnShed:
+				if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+				{
+					if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
 					{
-						if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
+						if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
 						{
-							if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
-							{
-								var3.putInShedFromInventory(this.api.datacenter.Player.mount.ID);
-							}
-						}
-						else
-						{
-							var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
+							var3.putInShedFromInventory(this.api.datacenter.Player.mount.ID);
 						}
 					}
 					else
 					{
-						var3.putInShedFromCertificate(this._itvItemViewer.itemData.ID);
+						var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
 					}
-					break;
-				case this._btnInventory:
-					if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
+				}
+				else
+				{
+					var3.putInShedFromCertificate(this._itvItemViewer.itemData.ID);
+				}
+				break;
+			case this._btnInventory:
+				if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
+				{
+					if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
 					{
-						if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
+						if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+						{
+						}
+					}
+					else
+					{
+						var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
+						var3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
+					}
+				}
+				else
+				{
+					var3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
+				}
+				break;
+			default:
+				switch(null)
+				{
+					case this._btnMountPark:
+						if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
 						{
 							if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
 							{
+								if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
+								{
+									var3.putInShedFromInventory(this._mvMountViewer.mount.ID);
+									var3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
+								}
 							}
 						}
 						else
 						{
-							var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
-							var3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
+							var3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
 						}
-					}
-					else
-					{
-						var3.putInInventoryFromShed(this._mvMountViewer.mount.ID);
-					}
-					break;
-				default:
-					switch(null)
-					{
-						case this._btnMountPark:
-							if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
+						break;
+					case this._btnCertificate:
+						if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
+						{
+							if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
 							{
-								if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE)
+								if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
 								{
-									if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
-									{
-										var3.putInShedFromInventory(this._mvMountViewer.mount.ID);
-										var3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
-									}
-								}
-							}
-							else
-							{
-								var3.putInMountParkFromShed(this._mvMountViewer.mount.ID);
-							}
-							break;
-						case this._btnCertificate:
-							if((var0 = this._nSelectFrom) !== dofus.graphics.gapi.ui.MountStorage.FROM_SHED)
-							{
-								if(var0 !== dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK)
-								{
-									if(var0 === dofus.graphics.gapi.ui.MountStorage.FROM_INVENTORY)
-									{
-										var3.putInShedFromInventory(this._mvMountViewer.mount.ID);
-										var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
-									}
-								}
-								else
-								{
-									var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
+									var3.putInShedFromInventory(this._mvMountViewer.mount.ID);
 									var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
 								}
 							}
 							else
 							{
+								var3.putInShedFromMountPark(this._mvMountViewer.mount.ID);
 								var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
 							}
-					}
-			}
-		}
-		else
-		{
-			this.callClose();
+						}
+						else
+						{
+							var3.putInCertificateFromShed(this._mvMountViewer.mount.ID);
+						}
+				}
 		}
 	}
-	function itemSelected(var2)
+	function itemSelected(§\x1e\x19\x18§)
 	{
 		this.hideAllButtons(false);
-		if((var var0 = var2.target) !== this._lstShed)
+		loop0:
+		switch(var2.target)
 		{
-			switch(null)
-			{
-				case this._lstMountPark:
-					this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK;
-					this._mvMountViewer.mount = var2.row.item;
-					this.hideItemViewer(true);
-					this.hideMountParkButton(true);
-					this.hideMountViewer(false);
-					break;
-				case this._lstCertificate:
-					this.hideMountParkButton(true);
-					this.hideInventoryButton(true);
-					this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE;
-					this._itvItemViewer.itemData = var2.row.item;
-					this.hideCertificateButton(true);
-					this.hideMountViewer(true);
-					this.hideItemViewer(false);
-					break;
-				case this._cbFilterShed:
-					this._lstShed.dataProvider = this.makeDataProvider(this._eaMount,this._cbFilterShed);
-					this.hideViewersAndButtons();
-					break;
-				default:
-					if(var0 !== this._cbFilterPark)
-					{
+			case this._lstShed:
+				this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_SHED;
+				this._mvMountViewer.mount = var2.row.item;
+				this.hideItemViewer(true);
+				this.hideShedButton(true);
+				this.hideMountViewer(false);
+				break;
+			case this._lstMountPark:
+				this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_MOUNTPARK;
+				this._mvMountViewer.mount = var2.row.item;
+				this.hideItemViewer(true);
+				this.hideMountParkButton(true);
+				this.hideMountViewer(false);
+				break;
+			default:
+				switch(null)
+				{
+					case this._lstCertificate:
+						this.hideMountParkButton(true);
+						this.hideInventoryButton(true);
+						this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_CERTIFICATE;
+						this._itvItemViewer.itemData = var2.row.item;
+						this.hideCertificateButton(true);
+						this.hideMountViewer(true);
+						this.hideItemViewer(false);
+						break loop0;
+					case this._cbFilterShed:
+						this._lstShed.dataProvider = this.makeDataProvider(this._eaMount,this._cbFilterShed);
 						this.hideViewersAndButtons();
-						break;
-					}
-					this._lstMountPark.dataProvider = this.makeDataProvider(this._eaParkMounts,this._cbFilterPark);
-					this.hideViewersAndButtons();
-					break;
-			}
-		}
-		else
-		{
-			this._nSelectFrom = dofus.graphics.gapi.ui.MountStorage.FROM_SHED;
-			this._mvMountViewer.mount = var2.row.item;
-			this.hideItemViewer(true);
-			this.hideShedButton(true);
-			this.hideMountViewer(false);
+						break loop0;
+					case this._cbFilterPark:
+						this._lstMountPark.dataProvider = this.makeDataProvider(this._eaParkMounts,this._cbFilterPark);
+						this.hideViewersAndButtons();
+						break loop0;
+					default:
+						this.hideViewersAndButtons();
+				}
 		}
 	}
-	function itemRollOver(var2)
+	function itemRollOver(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -565,11 +581,11 @@ class dofus.graphics.gapi.ui.MountStorage extends dofus.graphics.gapi.core.Dofus
 				this.gapi.showTooltip(var2.row.item.getToolTip(),var2.target,20,{bXLimit:true,bYLimit:false});
 		}
 	}
-	function itemRollOut(var2)
+	function itemRollOut(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
-	function nameChanged(var2)
+	function nameChanged(§\x1e\x19\x18§)
 	{
 		this._lblInventoryMountName.text = var2.name;
 	}

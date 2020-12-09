@@ -29,7 +29,7 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	static var SPEAK_TRIGGER_ASSOCIATE = "SPEAK_TRIGGER_ASSOCIATE";
 	static var SPEAK_TRIGGER_DISSOCIATE = "SPEAK_TRIGGER_DISSOCIATE";
 	static var SPEAK_TRIGGER_CHANGE_SKIN = "SPEAK_TRIGGER_CHANGE_SKIN";
-	function SpeakingItemsManager(var2)
+	function SpeakingItemsManager(§\x1e\x1a\x16§)
 	{
 		super();
 		dofus.managers.SpeakingItemsManager._sSelf = this;
@@ -39,7 +39,7 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.SpeakingItemsManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3);
 		mx.events.EventDispatcher.initialize(this);
@@ -49,11 +49,11 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	{
 		return this._nNextMessageCount;
 	}
-	function triggerPrivateEvent(var2)
+	function triggerPrivateEvent(§\x1e\x12\x1b§)
 	{
 		this.api.kernel.AudioManager.playSound(var2);
 	}
-	function triggerEvent(var2)
+	function triggerEvent(§\x06\x02§)
 	{
 		if(var2 == dofus.managers.SpeakingItemsManager.SPEAK_TRIGGER_ON_CONNECT)
 		{
@@ -159,7 +159,7 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 		}
 		return undefined;
 	}
-	function generateNextMsgCount(var2)
+	function generateNextMsgCount(§\x17\n§)
 	{
 		var var3 = this.api.lang.getConfigText("SPEAKING_ITEMS_MSG_COUNT");
 		var var4 = var3 * this.api.lang.getConfigText("SPEAKING_ITEMS_MSG_COUNT_DELTA");
@@ -175,7 +175,8 @@ class dofus.managers.SpeakingItemsManager extends dofus.utils.ApiElement
 	function updateEquipedSpeakingItems()
 	{
 		var var2 = this.api.datacenter.Player.Inventory;
-		var var3 = new ank.utils.();
+		var var3 = new ank.utils.
+();
 		var var4 = 0;
 		while(var4 < var2.length)
 		{

@@ -1,7 +1,7 @@
 class dofus.datacenter.Alignment implements com.ankamagames.interfaces.IComparable
 {
 	var fallenAngelDemon = false;
-	function Alignment(var3, var4)
+	function Alignment(§\x04\x17§, §\x1e\x1b\x17§)
 	{
 		this.api = _global.API;
 		this.initialize(var2,var3);
@@ -10,7 +10,7 @@ class dofus.datacenter.Alignment implements com.ankamagames.interfaces.IComparab
 	{
 		return this._nIndex;
 	}
-	function __set__index(var2)
+	function __set__index(§\x04\x17§)
 	{
 		this._nIndex = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		return this.__get__index();
@@ -27,7 +27,7 @@ class dofus.datacenter.Alignment implements com.ankamagames.interfaces.IComparab
 	{
 		return this._nValue;
 	}
-	function __set__value(var2)
+	function __set__value(§\x1e\x1b\x17§)
 	{
 		this._nValue = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		return this.__get__value();
@@ -56,16 +56,16 @@ class dofus.datacenter.Alignment implements com.ankamagames.interfaces.IComparab
 	{
 		return dofus.Constants.ALIGNMENTS_PATH + this._nIndex + ".swf";
 	}
-	function initialize(var2, var3)
+	function initialize(§\x04\x17§, §\x1e\x1b\x17§)
 	{
 		this._nIndex = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		this._nValue = !(_global.isNaN(var3) || var3 == undefined)?var3:0;
 	}
 	function clone()
 	{
-		return new dofus.datacenter.(this._nIndex,this._nValue);
+		return new dofus.datacenter.(this._nIndex,this._nValue);
 	}
-	function compareTo(var2)
+	function compareTo(§\x1e\x1a\x13§)
 	{
 		var var3 = (dofus.datacenter.Alignment)var2;
 		if(var3.index == this._nIndex)

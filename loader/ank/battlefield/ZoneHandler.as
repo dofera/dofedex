@@ -1,22 +1,22 @@
 class ank.battlefield.ZoneHandler
 {
-	function ZoneHandler(var3, var4)
+	function ZoneHandler(§\x1d\x03§, §\x13\x14§)
 	{
 		this.initialize(var2,var3);
 	}
-	function initialize(var2, var3)
+	function initialize(§\x1d\x03§, §\x13\x14§)
 	{
 		this._mcBattlefield = var2;
 		this._mcContainer = var3;
 		this.clear();
 	}
-	function clear(var2)
+	function clear(§\x1e\n\f§)
 	{
 		this._mcZones.removeMovieClip();
 		this._mcZones = this._mcContainer.createEmptyMovieClip("zones",10);
 		this._nNextLayerDepth = 0;
 	}
-	function clearZone(var2, var3, var4)
+	function clearZone(§\b\x02§, §\x1e\x15\x19§, §\f\x06§)
 	{
 		var2 = Number(var2);
 		var3 = Number(var3);
@@ -31,11 +31,11 @@ class ank.battlefield.ZoneHandler
 		var var5 = var2 * 1000 + var3 * 100;
 		this._mcZones[var4]["zone" + var5].clear();
 	}
-	function clearZoneLayer(var2)
+	function clearZoneLayer(§\f\x06§)
 	{
 		this._mcZones[var2].removeMovieClip();
 	}
-	function drawZone(var2, var3, var4, var5, var6, var7)
+	function drawZone(§\b\x02§, §\x1e\x15\x18§, §\x1e\x15\x17§, §\f\x06§, §\x12\x1a§, §\x1e\x12\x07§)
 	{
 		var2 = Number(var2);
 		var3 = Number(var3);
@@ -114,7 +114,7 @@ class ank.battlefield.ZoneHandler
 		}
 		this.moveZoneTo(var9,var2);
 	}
-	function moveZoneTo(var2, var3)
+	function moveZoneTo(§\x1e\t\x10§, §\b\x02§)
 	{
 		var var4 = this._mcBattlefield.mapHandler.getCellData(var3);
 		var2._x = var4.x;

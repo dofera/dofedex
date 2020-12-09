@@ -15,7 +15,7 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 	{
 		return this._bBuildingMap;
 	}
-	function __set__isBuilding(var2)
+	function __set__isBuilding(§\x1c\x01§)
 	{
 		this._bBuildingMap = var2;
 		return this.__get__isBuilding();
@@ -24,11 +24,11 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 	{
 		return dofus.managers.MapsServersManager._sSelf;
 	}
-	function initialize(var2)
+	function initialize(§\x1e\x1a\x16§)
 	{
 		super.initialize(var3,"maps","maps/");
 	}
-	function loadMap(sID, §\x1e\x13\x04§, §\x1e\x11\x06§)
+	function loadMap(sID, §\x1e\x13\x0f§, §\x1e\x11\x10§)
 	{
 		this._lastLoadedMap = undefined;
 		if(!_global.isNaN(Number(sID)))
@@ -44,7 +44,7 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 		}
 		this.loadData(sID + "_" + var3 + (this._aKeys[Number(sID)] == undefined?"":"X") + ".swf");
 	}
-	function getMapName(var2)
+	function getMapName(§\x03\x18§)
 	{
 		var var3 = this.api.lang.getMapText(var2);
 		var var4 = this.api.lang.getMapAreaInfos(var3.sa);
@@ -57,7 +57,7 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 		}
 		return var7;
 	}
-	function parseMap(var2)
+	function parseMap(§\x1e\x1a\x02§)
 	{
 		if(this.api.network.Game.isBusy)
 		{
@@ -109,12 +109,15 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 			if(var5 && !this._bPreloadCall)
 			{
 				this._bPreloadCall = true;
+				org.flashdevelop.utils.FlashConnect.mtrace("preload","dofus.managers.MapsServersManager::parseMap","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/MapsServersManager.as",144);
 				this.api.gfx.loadManager.loadFiles([dofus.Constants.CLIPS_PERSOS_PATH + (this.api.datacenter.Player.Guild * 10 + this.api.datacenter.Player.Sex) + ".swf",dofus.Constants.CLIPS_PERSOS_PATH + "9059.swf",dofus.Constants.CLIPS_PERSOS_PATH + "9091.swf",dofus.Constants.CLIPS_PERSOS_PATH + "1219.swf",dofus.Constants.CLIPS_PERSOS_PATH + "101.swf",dofus.Constants.GFX_ROOT_PATH + "g0.swf",dofus.Constants.GFX_ROOT_PATH + "o0.swf"]);
 			}
 		}
+		org.flashdevelop.utils.FlashConnect.mtrace("BuildMap","dofus.managers.MapsServersManager::parseMap","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/MapsServersManager.as",155);
 		this._bCustomFileCall = false;
 		if(this.api.network.Game.nLastMapIdReceived != var3 && (this.api.network.Game.nLastMapIdReceived != -1 && this.api.lang.getConfigText("CHECK_MAP_FILE_ID")))
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace("Donnée de map ne correspondant pas à la carte courante","dofus.managers.MapsServersManager::parseMap","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/MapsServersManager.as",162);
 			this.api.gfx.onMapLoaded();
 			return undefined;
 		}
@@ -132,10 +135,11 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 		var var18 = (var2.capabilities >> 1 & 1) == 0;
 		var var19 = (var2.capabilities >> 2 & 1) == 0;
 		var var20 = (var2.capabilities >> 3 & 1) == 0;
+		org.flashdevelop.utils.FlashConnect.mtrace("[wtf] Map " + var3 + " : " + var18,"dofus.managers.MapsServersManager::parseMap","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/MapsServersManager.as",187);
 		this.api.datacenter.Basics.aks_current_map_id = var3;
 		this.api.kernel.TipsManager.onNewMap(var3);
 		this.api.kernel.StreamingDisplayManager.onNewMap(var3);
-		var var21 = new dofus.datacenter.(var3);
+		var var21 = new dofus.datacenter.(var3);
 		var21.bCanChallenge = var17;
 		var21.bCanAttack = var18;
 		var21.bSaveTeleport = var19;
@@ -146,7 +150,7 @@ class dofus.managers.MapsServersManager extends dofus.managers.ServersManager
 		this.api.gfx.buildMap(var3,var9,var10,var11,var12,var13,var21);
 		this._bBuildingMap = false;
 	}
-	function onComplete(var2)
+	function onComplete(§\x0b\r§)
 	{
 		var var3 = var2;
 		this.parseMap(var3);

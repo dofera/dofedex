@@ -1,10 +1,10 @@
 class dofus.aks.Mount extends dofus.aks.Handler
 {
-	function Mount(var2, var3)
+	function Mount(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 	}
-	function rename(var2)
+	function rename(§\x1e\x10\x06§)
 	{
 		this.aks.send("Rn" + var2,true);
 	}
@@ -12,7 +12,7 @@ class dofus.aks.Mount extends dofus.aks.Handler
 	{
 		this.aks.send("Rf");
 	}
-	function setXP(var2)
+	function setXP(§\x1e\x1b\x17§)
 	{
 		this.aks.send("Rx" + var2,true);
 	}
@@ -20,23 +20,23 @@ class dofus.aks.Mount extends dofus.aks.Handler
 	{
 		this.aks.send("Rr",false);
 	}
-	function data(var2, var3)
+	function data(§\x02\x16§, §\x1e\f\x1d§)
 	{
 		this.aks.send("Rd" + var2 + "|" + var3,true);
 	}
-	function parkMountData(var2)
+	function parkMountData(§\x1e\x1d\f§)
 	{
 		this.aks.send("Rp" + var2,true);
 	}
-	function removeObjectInPark(var2)
+	function removeObjectInPark(§\b\x02§)
 	{
 		this.aks.send("Ro" + var2,true);
 	}
-	function mountParkSell(var2)
+	function mountParkSell(§\x01\x14§)
 	{
 		this.aks.send("Rs" + var2,true);
 	}
-	function mountParkBuy(var2)
+	function mountParkBuy(§\x01\x14§)
 	{
 		this.aks.send("Rb" + var2,true);
 	}
@@ -48,7 +48,7 @@ class dofus.aks.Mount extends dofus.aks.Handler
 	{
 		this.aks.send("Rc");
 	}
-	function onEquip(var2)
+	function onEquip(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0);
 		switch(var3)
@@ -63,7 +63,7 @@ class dofus.aks.Mount extends dofus.aks.Handler
 				this.equipError(var2.charAt(1));
 		}
 	}
-	function onXP(var2)
+	function onXP(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		if(!_global.isNaN(var3))
@@ -71,16 +71,16 @@ class dofus.aks.Mount extends dofus.aks.Handler
 			this.api.datacenter.Player.mountXPPercent = var3;
 		}
 	}
-	function onName(var2)
+	function onName(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Player.mount.name = var2;
 	}
-	function onData(var2)
+	function onData(§\x1e\x12\x1a§)
 	{
 		var var3 = this.createMount(var2);
 		this.api.ui.loadUIComponent("MountViewer","MountViewer",{mount:var3});
 	}
-	function onMountPark(var2)
+	function onMountPark(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split(";");
 		var var4 = Number(var3[0]);
@@ -90,21 +90,24 @@ class dofus.aks.Mount extends dofus.aks.Handler
 		var var8 = var3[4];
 		var var9 = var3[5];
 		var var10 = this.api.kernel.CharactersManager.createGuildEmblem(var9);
-		this.api.datacenter.Map.mountPark = new dofus.datacenter.	(var4,var5,var6,var7,var8,var10);
+		this.api.datacenter.Map.mountPark = new dofus.datacenter.
+
+(var4,var5,var6,var7,var8,var10);
 	}
-	function onRidingState(var2)
+	function onRidingState(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.charAt(0);
 		switch(var3)
 		{
 			case "+":
+			default:
 				this.api.datacenter.Player.isRiding = true;
 				break;
 			case "-":
 				this.api.datacenter.Player.isRiding = false;
 		}
 	}
-	function onMountParkBuy(var2)
+	function onMountParkBuy(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		this.api.ui.loadUIComponent("MountParkSale","MountParkSale",{defaultPrice:Number(var3[1])});
@@ -113,7 +116,7 @@ class dofus.aks.Mount extends dofus.aks.Handler
 	{
 		this.api.ui.unloadUIComponent("MountParkSale");
 	}
-	function equipError(var2)
+	function equipError(§\x0f\x0e§)
 	{
 		switch(var2)
 		{
@@ -132,7 +135,7 @@ class dofus.aks.Mount extends dofus.aks.Handler
 	{
 		this.api.datacenter.Player.mount = undefined;
 	}
-	function createMount(§\x1e\x0f\t§, newBorn)
+	function createMount(§\x1e\x0f\x13§, newBorn)
 	{
 		var var4 = var2.split(":");
 		var var5 = Number(var4[1]);
@@ -140,7 +143,8 @@ class dofus.aks.Mount extends dofus.aks.Handler
 		var6.ID = var4[0];
 		var6.ancestors = var4[2].split(",");
 		var var7 = var4[3].split(",");
-		var6.capacities = new ank.utils.();
+		var6.capacities = new ank.utils.
+();
 		var var8 = 0;
 		while(var8 < var7.length)
 		{

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.MountAncestorsViewer extends dofus.graphics.gapi.co
 	{
 		super();
 	}
-	function __set__mount(var2)
+	function __set__mount(§\x1e\x19\x01§)
 	{
 		this._oMount = var2;
 		if(this.initialized)
@@ -47,7 +47,8 @@ class dofus.graphics.gapi.ui.MountAncestorsViewer extends dofus.graphics.gapi.co
 		if(this._oMount != undefined)
 		{
 			this._lblMountName.text = this._oMount.name;
-			var var2 = new ank.utils.();
+			var var2 = new ank.utils.
+();
 			for(var a in this._oMount.ancestors)
 			{
 				var2[a] = this._oMount.ancestors[a];
@@ -63,7 +64,7 @@ class dofus.graphics.gapi.ui.MountAncestorsViewer extends dofus.graphics.gapi.co
 					var var6 = (ank.gapi.controls.Loader)this["_ldr" + var3];
 					var6.forceNextLoad();
 					var6.contentPath = var5.gfxFile;
-					var var7 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
+					var var7 = new ank.battlefield.datacenter.("-1",undefined,"",0,0);
 					var7.mount = var5;
 					this.api.colors.addSprite(var6,var7);
 					var var8 = this.attachMovie("Rectangle","mcButton" + var3,var3);
@@ -87,20 +88,20 @@ class dofus.graphics.gapi.ui.MountAncestorsViewer extends dofus.graphics.gapi.co
 			}
 		}
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.content;
 		var3.attachMovie("staticR_front","anim_front",11);
 		var3.attachMovie("staticR_back","anim_back",10);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._btnClose)
 		{
 			this.callClose();
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}

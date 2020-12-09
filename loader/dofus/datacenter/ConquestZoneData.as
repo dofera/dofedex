@@ -1,6 +1,6 @@
 class dofus.datacenter.ConquestZoneData extends dofus.utils.ApiElement
 {
-	function ConquestZoneData(§\f\x1b§, alignment, fighting, prism, attackable)
+	function ConquestZoneData(§\r\b§, alignment, fighting, prism, attackable)
 	{
 		super();
 		this._nSubAreaId = var3;
@@ -46,13 +46,11 @@ class dofus.datacenter.ConquestZoneData extends dofus.utils.ApiElement
 		}
 		var var2 = this.getNearZonesList();
 		var var3 = this.api.datacenter.Conquest.worldDatas;
-		for(var s in var2)
+		§§enumerate(var2);
+		while((var var0 = §§enumeration()) != null)
 		{
 			if(var3.areas.findFirstItem("id",var2[s]).item.alignment == this.api.datacenter.Player.alignment.index)
 			{
-				while(§§pop() != null)
-				{
-				}
 				return true;
 			}
 		}
@@ -70,9 +68,8 @@ class dofus.datacenter.ConquestZoneData extends dofus.utils.ApiElement
 		}
 		var var2 = this.getNearZonesList();
 		var var3 = this.api.datacenter.Conquest.worldDatas;
-		for(var s in var2)
+		for(var var4 in var2)
 		{
-			var var4 = var3.areas.findFirstItem("id",var2[s]).item.alignment;
 			if(var4 != this.api.datacenter.Player.alignment.index && var4 > 0)
 			{
 				return true;

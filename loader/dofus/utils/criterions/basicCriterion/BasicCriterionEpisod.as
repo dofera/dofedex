@@ -1,6 +1,6 @@
 class dofus.utils.criterions.basicCriterion.BasicCriterionEpisod extends dofus.utils.ApiElement implements dofus.utils.criterions.ICriterion
 {
-	function BasicCriterionEpisod(var3, var4)
+	function BasicCriterionEpisod(§\x1e\x0f\x18§, §\x1e\x1b\x17§)
 	{
 		super();
 		this._sOperator = var3;

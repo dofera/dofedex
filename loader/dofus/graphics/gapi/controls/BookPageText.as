@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.BookPageText extends dofus.graphics.gapi.core
 	{
 		super();
 	}
-	function __set__page(var2)
+	function __set__page(§\x1e\x18\x16§)
 	{
 		this._oPage = var2;
 		if(this.initialized)
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.controls.BookPageText extends dofus.graphics.gapi.core
 	{
 		this.setCssStyle(this._oPage.cssFile);
 	}
-	function setCssStyle(var2)
+	function setCssStyle(§\x1e\x13\x14§)
 	{
 		var var3 = new TextField.StyleSheet();
 		var3.owner = this;
@@ -39,7 +39,7 @@ class dofus.graphics.gapi.controls.BookPageText extends dofus.graphics.gapi.core
 		};
 		var3.load(var2);
 	}
-	function layoutContent(var2)
+	function layoutContent(§\x1e\r\x17§)
 	{
 		this._txtPage.styleSheet = var2;
 		this._txtPage.htmlText = this._oPage.text;

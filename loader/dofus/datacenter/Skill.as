@@ -1,6 +1,6 @@
 class dofus.datacenter.Skill extends Object
 {
-	function Skill(var3, var4, var5, var6, var7)
+	function Skill(§\x05\x02§, §\x02\t§, §\x02\b§, §\x02\x07§, §\x02\x06§)
 	{
 		super();
 		this.initialize(var3,var4,var5,var6,var7);
@@ -27,7 +27,7 @@ class dofus.datacenter.Skill extends Object
 		{
 			return null;
 		}
-		return new dofus.datacenter.(0,this._oSkillText.i);
+		return new dofus.datacenter.(0,this._oSkillText.i);
 	}
 	function __get__interactiveObject()
 	{
@@ -68,7 +68,7 @@ class dofus.datacenter.Skill extends Object
 		}
 		return this._oCraftsList;
 	}
-	function initialize(var2, var3, var4, var5, var6)
+	function initialize(§\x05\x02§, §\x02\t§, §\x02\b§, §\x02\x07§, §\x02\x06§)
 	{
 		this.api = _global.API;
 		this._nID = var2;
@@ -91,7 +91,7 @@ class dofus.datacenter.Skill extends Object
 		this._oSkillText = this.api.lang.getSkillText(var2);
 		this.skillName = this.description;
 	}
-	function getState(var2, var3, var4, var5, var6, var7)
+	function getState(§\x18\r§, §\x16\x16§, §\x19\x10§, §\x18\x04§, §\x19\x02§, §\x17\x04§)
 	{
 		if(this.criterion == undefined || this.criterion.length == 0)
 		{
@@ -111,72 +111,72 @@ class dofus.datacenter.Skill extends Object
 			{
 				var14 = var14.substr(1);
 			}
-			switch(var14)
+			if((var var0 = var14) !== "J")
 			{
-				case "J":
-					if(var15)
-					{
-						var2 = !var2;
-					}
-					if(!var2)
-					{
-						return var12;
-					}
-					break;
-				case "O":
-					if(var15)
-					{
-						var3 = !var3;
-					}
-					if(!var3)
-					{
-						return var12;
-					}
-					break;
-				case "S":
-					if(var15)
-					{
-						var4 = !var4;
-					}
-					if(!var4)
-					{
-						return var12;
-					}
-					break;
-				default:
-					switch(null)
-					{
-						case "L":
-							if(var15)
-							{
-								var5 = !var5;
-							}
-							if(!var5)
-							{
-								return var12;
-							}
-							break;
-						case "I":
-							if(var15)
-							{
-								var6 = !var6;
-							}
-							if(!var6)
-							{
-								return var12;
-							}
-							break;
-						case "N":
-							if(var15)
-							{
-								var7 = !var7;
-							}
-							if(!var7)
-							{
-								return var12;
-							}
-							break;
-					}
+				switch(null)
+				{
+					case "O":
+						if(var15)
+						{
+							var3 = !var3;
+						}
+						if(!var3)
+						{
+							return var12;
+						}
+						break;
+					case "S":
+						if(var15)
+						{
+							var4 = !var4;
+						}
+						if(!var4)
+						{
+							return var12;
+						}
+						break;
+					case "L":
+						if(var15)
+						{
+							var5 = !var5;
+						}
+						if(!var5)
+						{
+							return var12;
+						}
+						break;
+					case "I":
+						if(var15)
+						{
+							var6 = !var6;
+						}
+						if(!var6)
+						{
+							return var12;
+						}
+						break;
+					case "N":
+						if(var15)
+						{
+							var7 = !var7;
+						}
+						if(!var7)
+						{
+							return var12;
+						}
+						break;
+				}
+			}
+			else
+			{
+				if(var15)
+				{
+					var2 = !var2;
+				}
+				if(!var2)
+				{
+					return var12;
+				}
 			}
 			var13 = var13 + 1;
 		}

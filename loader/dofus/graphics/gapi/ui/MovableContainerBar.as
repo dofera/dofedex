@@ -13,7 +13,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._nContainerNumber;
 	}
-	function __set__size(var2)
+	function __set__size(§\t\x10§)
 	{
 		if(var2 < 0)
 		{
@@ -34,7 +34,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._nMaxContainer;
 	}
-	function __set__maxContainer(var2)
+	function __set__maxContainer(§\t\x10§)
 	{
 		this._nMaxContainer = var2;
 		if(this._nContainerNumber > var2)
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._oBounds;
 	}
-	function __set__bounds(var2)
+	function __set__bounds(§\x1e\x1a\x1b§)
 	{
 		this._oBounds = var2;
 		return this.__get__bounds();
@@ -56,7 +56,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		return this._nSnap;
 	}
-	function __set__snap(var2)
+	function __set__snap(§\t\x10§)
 	{
 		this._nSnap = var2;
 		return this.__get__snap();
@@ -172,7 +172,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 		}
 		this.dispatchEvent({type:"drawBar"});
 	}
-	function autoDetectBarOrientation(var2, var3)
+	function autoDetectBarOrientation(§\x1e\n\x04§, §\x1e\t\x18§)
 	{
 		var var4 = var3 - this._oBounds.top;
 		var var5 = this._oBounds.bottom - var3;
@@ -251,7 +251,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 	{
 		Mouse.removeListener(this);
 	}
-	function move(var2, var3, var4)
+	function move(§\x1e\n\x04§, §\x1e\t\x18§, §\x19\x1c§)
 	{
 		if(var4 || this.autoDetectBarOrientation(var2,var3))
 		{
@@ -261,7 +261,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 		this._y = var3;
 		this.snapBar();
 	}
-	function setOptions(var2, var3, var4, var5, var6)
+	function setOptions(§\x0b\x14§, §\x1e\x15\n§, §\x1d\x03§, §\x1e\x11\x1c§, §\x13\x14§)
 	{
 		this._nMaxContainer = var2;
 		this._nSnap = var3;
@@ -282,7 +282,7 @@ class dofus.graphics.gapi.ui.MovableContainerBar extends dofus.graphics.gapi.cor
 		ank.utils.Timer.removeTimer(this,"movablecontainerbar");
 		this._bTimerEnable = false;
 	}
-	function onShortcut(var2)
+	function onShortcut(§\x1e\x12\x02§)
 	{
 		var var3 = 0;
 		while(var3 < this._nContainerNumber)

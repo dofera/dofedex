@@ -1,6 +1,6 @@
 class dofus.datacenter.ServerProblemEvent extends Object
 {
-	function ServerProblemEvent(nTimestamp, nEventID, bTranslated, §\x1e\x13\x12§)
+	function ServerProblemEvent(nTimestamp, nEventID, bTranslated, §\x1e\x13\x1d§)
 	{
 		super();
 		this._nTimestamp = nTimestamp;

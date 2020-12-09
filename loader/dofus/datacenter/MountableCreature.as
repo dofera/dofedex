@@ -1,6 +1,6 @@
 class dofus.datacenter.MountableCreature
 {
-	function MountableCreature(var3, var4)
+	function MountableCreature(§\x1e\x12\f§, §\x05\t§)
 	{
 		this.initialize(var2,var3);
 	}
@@ -8,7 +8,7 @@ class dofus.datacenter.MountableCreature
 	{
 		return this._sGfxFile;
 	}
-	function initialize(var2, var3)
+	function initialize(§\x1e\x12\f§, §\x05\t§)
 	{
 		this._sGfxFile = var2;
 		this._nGfxID = var3;

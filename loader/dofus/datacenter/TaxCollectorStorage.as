@@ -5,7 +5,7 @@ class dofus.datacenter.TaxCollectorStorage extends dofus.datacenter.Shop
 		super();
 		this.initialize();
 	}
-	function __set__Kama(var2)
+	function __set__Kama(§\x04\x0b§)
 	{
 		this._nKamas = var2;
 		this.dispatchEvent({type:"kamaChanged",value:var2});

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__spriteList(var2)
+	function __set__spriteList(§\x1d\x0b§)
 	{
 		this._aSpriteList = var2;
 		if(this.initialized)
@@ -14,17 +14,17 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 		}
 		return this.__get__spriteList();
 	}
-	function __set__remainingTime(var2)
+	function __set__remainingTime(§\x1e\x1e\x17§)
 	{
 		this._nRemainingTime = var2;
 		return this.__get__remainingTime();
 	}
-	function __set__showComboBox(var2)
+	function __set__showComboBox(§\x15\x11§)
 	{
 		this._bShowComboBox = var2;
 		return this.__get__showComboBox();
 	}
-	function __set__characterCount(var2)
+	function __set__characterCount(§\x07\x16§)
 	{
 		this._nCharacterCount = var2;
 		return this.__get__characterCount();
@@ -169,7 +169,7 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 		}
 		this._lblServer.text = var2;
 	}
-	function select(var2)
+	function select(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.params.index;
 		this["_cciSprite" + this._nSelectedIndex].selected = false;
@@ -189,7 +189,7 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 		}
 		this._nSaveLastClick = getTimer();
 	}
-	function remove(var2)
+	function remove(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.params.index;
 		if(this.api.lang.getConfigText("SECRET_ANSWER_ON_DELETE") && (this._aSpriteList[var3].Level >= this.api.lang.getConfigText("SECRET_ANSWER_SINCE_LEVEL") && (this.api.datacenter.Basics.aks_secret_question != undefined && this.api.datacenter.Basics.aks_secret_question.length > 0)))
@@ -201,13 +201,13 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 			this.api.kernel.showMessage(this.api.lang.getText("DELETE_WORD"),this.api.lang.getText("DO_U_DELETE_A",[this._aSpriteList[var3].name]),"CAUTION_YESNO",{name:"Delete",listener:this,params:{index:var3}});
 		}
 	}
-	function reset(var2)
+	function reset(§\x1e\x19\x18§)
 	{
 		var var3 = this._aSpriteList[var2.target.params.index].id;
 		var var4 = this.gapi.loadUIComponent("AskYesNo","AskYesReset",{title:this.api.lang.getText("RESET_SHORTCUT"),text:this.api.lang.getText("DO_U_RESET_CHARACTER"),params:{index:var3}});
 		var4.addEventListener("yes",this);
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -245,7 +245,7 @@ class dofus.graphics.gapi.ui.ChooseCharacter extends dofus.graphics.gapi.core.Do
 				}
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{

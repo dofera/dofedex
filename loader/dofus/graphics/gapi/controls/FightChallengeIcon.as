@@ -23,6 +23,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 	}
 	function initCpt()
 	{
+		org.flashdevelop.utils.FlashConnect.mtrace(this.challenge.id + " : " + this.challenge.iconPath,"dofus.graphics.gapi.controls.FightChallengeIcon::initCpt","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/controls/FightChallengeIcon.as",65);
 		this._ldr.contentPath = this.challenge.iconPath;
 		this.update();
 	}
@@ -35,7 +36,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 		this.onRollOver = this.virtualEvent(this,"over",this);
 		this.onRollOut = this.virtualEvent(this,"out",this);
 	}
-	function onEventRelease(§\x1e\x1a\f§, attachTarget, §\x1e\x16\x15§, challenge)
+	function onEventRelease(§\x1e\x1a\x15§, attachTarget, §\x1e\x17\x01§, challenge)
 	{
 		return function()
 		{
@@ -50,7 +51,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 			}
 		};
 	}
-	function over(var2)
+	function over(§\x10\x1a§)
 	{
 		var var3 = this.api.lang.getFightChallenge(this.challenge.id);
 		var var4 = "<b>" + var3.n + "</b>\n";
@@ -73,7 +74,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 		}
 		this.gapi.showTooltip(var4,var2.target,40);
 	}
-	function out(var2)
+	function out(§\x10\x1a§)
 	{
 		this.gapi.hideTooltip();
 	}

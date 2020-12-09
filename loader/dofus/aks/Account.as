@@ -1,24 +1,11 @@
-if(!dofus.aks.Account)
+class dofus.aks.Account extends dofus.aks.Handler
 {
-	if(!dofus)
-	{
-		_global.dofus = new Object();
-	}
-	if(!dofus.aks)
-	{
-		_global.dofus.aks = new Object();
-	}
-	dofus.aks.Account = function(var2, var3)
+	function Account(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
 	{
 		super.initialize(var3,var4);
 		this.WaitQueueTimer = new Object();
-	} extends dofus.aks.Handler;
-	var var1 = dofus.aks.Account = function(var2, var3)
-	{
-		super.initialize(var3,var4);
-		this.WaitQueueTimer = new Object();
-	}.prototype;
-	var1.logon = function logon(var2, var3, var4)
+	}
+	function logon(§\x1e\x10\x18§, §\x1e\x0f\x10§, §\x13\x16§)
 	{
 		if(this.api.datacenter.Basics.connexionKey == undefined)
 		{
@@ -49,7 +36,7 @@ if(!dofus.aks.Account)
 		else if(this.api.lang.getConfigText("CRYPTO_METHOD") == 2)
 		{
 			var var5 = new ank.utils.
-	();
+();
 			var var6 = "#2" + var5.hex_md5(var5.hex_md5(var3) + this.api.datacenter.Basics.connexionKey);
 			this.aks.send(var2 + "\n" + var6);
 		}
@@ -57,24 +44,24 @@ if(!dofus.aks.Account)
 		{
 			this.aks.send(var2 + "\n" + ank.utils.Crypt.cryptPassword(var3,this.api.datacenter.Basics.connexionKey));
 		}
-	};
-	var1.setNickName = function setNickName(var2)
+	}
+	function setNickName(§\x1e\x10\x02§)
 	{
 		this.aks.send(var2,true,this.api.lang.getText("WAITING_MSG_LOADING"));
-	};
-	var1.getCharacters = function getCharacters()
+	}
+	function getCharacters()
 	{
 		this.aks.send("AL",true,this.api.lang.getText("CONNECTING"));
-	};
-	var1.getCharactersForced = function getCharactersForced()
+	}
+	function getCharactersForced()
 	{
 		this.aks.send("ALf",true,this.api.lang.getText("CONNECTING"));
-	};
-	var1.getServersList = function getServersList()
+	}
+	function getServersList()
 	{
 		this.aks.send("Ax",true,this.api.lang.getText("WAITING_MSG_LOADING"));
-	};
-	var1.setServer = function setServer(var2)
+	}
+	function setServer(§\x1e\x1e\x01§)
 	{
 		if(var2 == undefined)
 		{
@@ -82,30 +69,30 @@ if(!dofus.aks.Account)
 		}
 		this.api.datacenter.Basics.aks_incoming_server_id = var2;
 		this.aks.send("AX" + var2,true,this.api.lang.getText("WAITING_MSG_LOADING"));
-	};
-	var1.searchForFriend = function searchForFriend(var2)
+	}
+	function searchForFriend(§\x1e\x10\x03§)
 	{
 		this.aks.send("AF" + var2);
-	};
-	var1.setCharacter = function setCharacter(var2)
+	}
+	function setCharacter(§\x1e\x14\x0f§)
 	{
 		this.aks.send("AS" + var2,true,this.api.lang.getText("WAITING_MSG_LOADING"));
 		this.api.ui.unloadUIComponent("ChooseCharacter");
 		this.getQueuePosition();
-	};
-	var1.editCharacterName = function editCharacterName(var2)
+	}
+	function editCharacterName(§\x1e\x10\x06§)
 	{
 		this.aks.send("AEn" + var2,true);
-	};
-	var1.editCharacterColors = function editCharacterColors(var2, var3, var4)
+	}
+	function editCharacterColors(§\x07\r§, §\x07\f§, §\x07\x0b§)
 	{
 		this.aks.send("AEc" + var2 + "|" + var3 + "|" + var4,true);
-	};
-	var1.addCharacter = function addCharacter(var2, var3, var4, var5, var6, var7)
+	}
+	function addCharacter(§\x1e\x10\x06§, §\x07\x10§, §\x07\r§, §\x07\f§, §\x07\x0b§, §\x1e\x1d\x1c§)
 	{
 		this.aks.send("AA" + var2 + "|" + var3 + "|" + var7 + "|" + var4 + "|" + var5 + "|" + var6,true,this.api.lang.getText("WAITING_MSG_RECORDING"));
-	};
-	var1.deleteCharacter = function deleteCharacter(var2, var3)
+	}
+	function deleteCharacter(§\x07\x17§, §\x1e\x0e\t§)
 	{
 		if(var2 == undefined)
 		{
@@ -115,22 +102,22 @@ if(!dofus.aks.Account)
 		{
 			var3 = "";
 		}
-		var var4 = new ank.utils.(_global.escape(var3));
+		var var4 = new ank.utils.(_global.escape(var3));
 		this.aks.send("AD" + var2 + "|" + var4.replace(["|","\r","\n",String.fromCharCode(0)],["","","",""]),true,this.api.lang.getText("WAITING_MSG_DELETING"));
-	};
-	var1.resetCharacter = function resetCharacter(var2)
+	}
+	function resetCharacter(§\x07\x17§)
 	{
 		this.aks.send("AR" + var2);
-	};
-	var1.boost = function boost(var2)
+	}
+	function boost(§\b\x12§)
 	{
 		this.aks.send("AB" + var2);
-	};
-	var1.sendTicket = function sendTicket(var2)
+	}
+	function sendTicket(§\x1e\r\x01§)
 	{
 		this.aks.send("AT" + var2);
-	};
-	var1.rescue = function rescue(var2)
+	}
+	function rescue(§\x1e\r\x01§)
 	{
 		var var3 = "";
 		if(this.api.datacenter.Game.isFight)
@@ -138,37 +125,37 @@ if(!dofus.aks.Account)
 			var3 = !this.api.datacenter.Game.isRunning?"|0":"|1";
 		}
 		this.aks.send("Ar" + var2 + var3);
-	};
-	var1.getGifts = function getGifts()
+	}
+	function getGifts()
 	{
 		this.aks.send("Ag" + this.api.config.language);
-	};
-	var1.attributeGiftToCharacter = function attributeGiftToCharacter(var2, var3)
+	}
+	function attributeGiftToCharacter(§\x05\b§, §\x07\x15§)
 	{
 		this.aks.send("AG" + var2 + "|" + var3);
-	};
-	var1.getQueuePosition = function getQueuePosition()
+	}
+	function getQueuePosition()
 	{
 		this.aks.send("Af",false);
 		ank.utils.Timer.setTimer(this.WaitQueueTimer,"WaitQueue",this,this.getQueuePosition,Number(this.api.lang.getConfigText("DELAY_WAIT_QUEUE_REFRESH")));
-	};
-	var1.getRandomCharacterName = function getRandomCharacterName()
+	}
+	function getRandomCharacterName()
 	{
 		this.aks.send("AP",false);
-	};
-	var1.useKey = function useKey(var2)
+	}
+	function useKey(§\x04\b§)
 	{
 		this.aks.send("Ak" + dofus.aks.Aks.HEX_CHARS[var2],false);
-	};
-	var1.requestRegionalVersion = function requestRegionalVersion()
+	}
+	function requestRegionalVersion()
 	{
 		this.aks.send("AV",true,this.api.lang.getText("WAITING_MSG_LOADING"));
-	};
-	var1.sendConfiguredPort = function sendConfiguredPort()
+	}
+	function sendConfiguredPort()
 	{
 		this.aks.send("Ap" + this.api.datacenter.Basics.aks_connection_server_port,false);
-	};
-	var1.sendIdentity = function sendIdentity()
+	}
+	function sendIdentity()
 	{
 		dofus.managers.UIdManager.getInstance().update();
 		var var2 = SharedObject.getLocal(dofus.Constants.GLOBAL_SO_IDENTITY_NAME);
@@ -188,20 +175,20 @@ if(!dofus.aks.Account)
 		}
 		this.aks.send("Ai" + this.api.datacenter.Basics.aks_identity,false);
 		var2.close();
-	};
-	var1.validCharacterMigration = function validCharacterMigration(var2, var3)
+	}
+	function validCharacterMigration(§\x07\x15§, §\x1e\x10\x06§)
 	{
 		this.aks.send("AM" + var2 + ";" + var3,false);
-	};
-	var1.deleteCharacterMigration = function deleteCharacterMigration(var2)
+	}
+	function deleteCharacterMigration(§\x07\x15§)
 	{
 		this.aks.send("AM-" + var2,false);
-	};
-	var1.askCharacterMigration = function askCharacterMigration(var2, var3)
+	}
+	function askCharacterMigration(§\x07\x15§, §\x1e\x10\x06§)
 	{
 		this.aks.send("AM?" + var2 + ";" + var3,false);
-	};
-	var1.onRegionalVersion = function onRegionalVersion(var2)
+	}
+	function onRegionalVersion(§\x1e\x12\x1a§)
 	{
 		var var3 = this.api.lang.getConfigText("MAXIMUM_ALLOWED_VERSION");
 		var var4 = Number(var2);
@@ -218,40 +205,40 @@ if(!dofus.aks.Account)
 		this.getGifts();
 		this.getCharacters();
 		this.api.network.Account.getQueuePosition();
-	};
-	var1.onCharacterDelete = function onCharacterDelete(var2, var3)
+	}
+	function onCharacterDelete(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		if(!var2)
 		{
 			this.api.ui.unloadUIComponent("WaitingMessage");
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CHARACTER_DELETION_FAILED"),"ERROR_BOX");
 		}
-	};
-	var1.onSecretQuestion = function onSecretQuestion(var2)
+	}
+	function onSecretQuestion(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Basics.aks_secret_question = var2;
-	};
-	var1.onKey = function onKey(var2)
+	}
+	function onKey(§\x1e\x12\x1a§)
 	{
 		var var3 = _global.parseInt(var2.substr(0,1),16);
 		var var4 = var2.substr(1);
 		this.aks.addKeyToCollection(var3,var4);
 		this.useKey(var3);
 		this.aks.startUsingKey(var3);
-	};
-	var1.onDofusPseudo = function onDofusPseudo(var2)
+	}
+	function onDofusPseudo(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Basics.dofusPseudo = var2;
-	};
-	var1.onCommunity = function onCommunity(var2)
+	}
+	function onCommunity(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		if(var3 >= 0)
 		{
 			this.api.datacenter.Basics.communityId = var3;
 		}
-	};
-	var1.onLogin = function onLogin(var2, var3)
+	}
+	function onLogin(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		ank.utils.Timer.removeTimer(this.WaitQueueTimer,"WaitQueue");
 		this.api.ui.unloadUIComponent("CenterText");
@@ -269,85 +256,88 @@ if(!dofus.aks.Account)
 		{
 			var var4 = var3.charAt(0);
 			var var6 = false;
-			loop1:
-			switch(var4)
+			org.flashdevelop.utils.FlashConnect.mtrace(var4,"dofus.aks.Account::onLogin","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",399);
+			if((var var0 = var4) !== "n")
 			{
-				case "n":
-					var var5 = this.api.lang.getText("CONNECT_NOT_FINISHED");
-					break;
-				case "a":
-					var5 = this.api.lang.getText("ALREADY_LOGGED");
-					break;
-				case "c":
-					var5 = this.api.lang.getText("ALREADY_LOGGED_GAME_SERVER");
-					break;
-				default:
-					switch(null)
-					{
-						case "v":
-							var5 = this.api.lang.getText("BAD_VERSION",[dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION + (dofus.Constants.BETAVERSION <= 0?"":" Beta " + dofus.Constants.BETAVERSION),var3.substr(1)]);
-							var6 = true;
-							break loop1;
-						case "p":
-							var5 = this.api.lang.getText("NOT_PLAYER");
-							break loop1;
-						case "b":
-							var5 = this.api.lang.getText("BANNED");
-							break loop1;
-						case "d":
-							var5 = this.api.lang.getText("U_DISCONNECT_ACCOUNT");
-							break loop1;
-						case "k":
-							var var7 = var3.substr(1).split("|");
-							var var8 = 0;
-							while(var8 < var7.length)
-							{
-								if(var7[var8] == 0)
+				loop1:
+				switch(null)
+				{
+					case "a":
+						var var5 = this.api.lang.getText("ALREADY_LOGGED");
+						break;
+					case "c":
+						var5 = this.api.lang.getText("ALREADY_LOGGED_GAME_SERVER");
+						break;
+					case "v":
+						var5 = this.api.lang.getText("BAD_VERSION",[dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION + (dofus.Constants.BETAVERSION <= 0?"":" Beta " + dofus.Constants.BETAVERSION),var3.substr(1)]);
+						var6 = true;
+						break;
+					case "p":
+						var5 = this.api.lang.getText("NOT_PLAYER");
+						break;
+					default:
+						switch(null)
+						{
+							case "b":
+								var5 = this.api.lang.getText("BANNED");
+								break loop1;
+							case "d":
+								var5 = this.api.lang.getText("U_DISCONNECT_ACCOUNT");
+								break loop1;
+							case "k":
+								var var7 = var3.substr(1).split("|");
+								var var8 = 0;
+								while(var8 < var7.length)
 								{
-									var7[var8] = undefined;
-								}
-								var8 = var8 + 1;
-							}
-							var5 = ank.utils.PatternDecoder.getDescription(this.api.lang.getText("KICKED"),var7);
-							break loop1;
-						default:
-							switch(null)
-							{
-								case "w":
-									var5 = this.api.lang.getText("SERVER_FULL");
-									break loop1;
-								case "o":
-									var5 = this.api.lang.getText("OLD_ACCOUNT",[this.api.datacenter.Basics.login]);
-									break loop1;
-								case "e":
-									var5 = this.api.lang.getText("OLD_ACCOUNT_USE_NEW",[this.api.datacenter.Basics.login]);
-									break loop1;
-								case "m":
-									var5 = this.api.lang.getText("MAINTAIN_ACCOUNT");
-									break loop1;
-								default:
-									switch(null)
+									if(var7[var8] == 0)
 									{
-										case "r":
-											this.api.ui.loadUIComponent("ChooseNickName","ChooseNickName");
-											return undefined;
-										case "s":
-											this.api.ui.getUIComponent("ChooseNickName").nickAlreadyUsed = true;
-											return undefined;
-										case "i":
-											var5 = this.api.lang.getText("LOGIN_ERROR_ANONYMOUS_IP");
-											break loop1;
-										case "f":
+										var7[var8] = undefined;
+									}
+									var8 = var8 + 1;
+								}
+								var5 = ank.utils.PatternDecoder.getDescription(this.api.lang.getText("KICKED"),var7);
+								break loop1;
+							case "w":
+								var5 = this.api.lang.getText("SERVER_FULL");
+								break loop1;
+							case "o":
+								var5 = this.api.lang.getText("OLD_ACCOUNT",[this.api.datacenter.Basics.login]);
+								break loop1;
+							case "e":
+								var5 = this.api.lang.getText("OLD_ACCOUNT_USE_NEW",[this.api.datacenter.Basics.login]);
+								break loop1;
+							default:
+								switch(null)
+								{
+									case "m":
+										var5 = this.api.lang.getText("MAINTAIN_ACCOUNT");
+										break loop1;
+									case "r":
+										this.api.ui.loadUIComponent("ChooseNickName","ChooseNickName");
+										return undefined;
+									case "s":
+										this.api.ui.getUIComponent("ChooseNickName").nickAlreadyUsed = true;
+										return undefined;
+									case "i":
+										var5 = this.api.lang.getText("LOGIN_ERROR_ANONYMOUS_IP");
+										break loop1;
+									default:
+										if(var0 === "f")
+										{
 											if(this.api.config.isStreaming)
 											{
 												var5 = this.api.lang.getText("ACCESS_DENIED_MINICLIP");
 												break loop1;
 											}
-										default:
-											var5 = this.api.lang.getText("ACCESS_DENIED");
-									}
-							}
-					}
+										}
+										var5 = this.api.lang.getText("ACCESS_DENIED");
+								}
+						}
+				}
+			}
+			else
+			{
+				var5 = this.api.lang.getText("CONNECT_NOT_FINISHED");
 			}
 			if(dofus.Constants.USE_JS_LOG && _global.CONFIG.isNewAccount)
 			{
@@ -358,8 +348,8 @@ if(!dofus.aks.Account)
 			var9.addEventListener("ok",this);
 			this.api.kernel.manualLogon();
 		}
-	};
-	var1.onServersList = function onServersList(var2, var3)
+	}
+	function onServersList(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		var var4 = this.api.datacenter.Basics.aks_servers;
@@ -450,7 +440,7 @@ if(!dofus.aks.Account)
 			}
 			else if(var7 != -1 && this.api.config.isStreaming)
 			{
-				var var19 = new dofus.datacenter.(var7,1,0);
+				var var19 = new dofus.datacenter.(var7,1,0);
 				if(var19.isAllowed())
 				{
 					this.api.datacenter.Basics.aks_current_server = var19;
@@ -466,8 +456,8 @@ if(!dofus.aks.Account)
 			this.api.datacenter.Basics.forceAutomaticServerSelection = false;
 			this.api.ui.loadUIComponent("AutomaticServer","AutomaticServer",{servers:var4,remainingTime:var6});
 		}
-	};
-	var1.onHosts = function onHosts(var2)
+	}
+	function onHosts(§\x1e\x12\x1a§)
 	{
 		var var3 = this.api.datacenter.Basics.aks_servers;
 		var var4 = new Array();
@@ -480,7 +470,7 @@ if(!dofus.aks.Account)
 			var var9 = Number(var7[1]);
 			var var10 = Number(var7[2]);
 			var var11 = var7[3] == "1";
-			var var12 = new dofus.datacenter.(var8,var9,var10,var11);
+			var var12 = new dofus.datacenter.(var8,var9,var10,var11);
 			if(!(_global.CONFIG.onlyHardcore && var12.typeNum != dofus.datacenter.Server.SERVER_HARDCORE))
 			{
 				var var13 = var3.findFirstItem("id",var8).item;
@@ -493,8 +483,8 @@ if(!dofus.aks.Account)
 			var6 = var6 + 1;
 		}
 		this.api.datacenter.Basics.aks_servers.createFromArray(var4);
-	};
-	var1.onCharactersList = function onCharactersList(var2, var3, var4)
+	}
+	function onCharactersList(§\x14\x1b§, §\x1e\x12\x1a§, §\x18\x11§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.unloadUIComponent("WaitingQueue");
@@ -530,7 +520,6 @@ if(!dofus.aks.Account)
 			var9.push(Number(var13));
 			var10 = var10 + 1;
 		}
-		var5.sortOn("sortID",Array.NUMERIC);
 		this.api.ui.unloadUIComponent("ChooseCharacter");
 		this.api.ui.unloadUIComponent("CreateCharacter");
 		this.api.ui.unloadUIComponent("ChooseServer");
@@ -589,6 +578,7 @@ if(!dofus.aks.Account)
 			this.api.kernel.onFastServerSwitchFail("Could not find " + var20 + " on this characters list !");
 		}
 		this.api.datacenter.Basics.oldCharList = var9;
+		org.flashdevelop.utils.FlashConnect.mtrace("ignoreMigration 2 : " + this.api.datacenter.Basics.ignoreMigration,"dofus.aks.Account::onCharactersList","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",811);
 		if((!var4 || this.api.datacenter.Basics.ignoreMigration) && ((this.api.datacenter.Basics.createCharacter || !var8) && !this.api.datacenter.Basics.ignoreCreateCharacter))
 		{
 			this.api.ui.loadUIComponent("CreateCharacter","CreateCharacter",{remainingTime:var7});
@@ -614,12 +604,12 @@ if(!dofus.aks.Account)
 			this.api.ui.getUIComponent("ChooseCharacter")._visible = false;
 			this.api.ui.loadUIComponent("Gifts","Gifts",{gift:this.api.datacenter.Basics.aks_gifts_stack.shift(),spriteList:var5},{bForceLoad:true});
 		}
-	};
-	var1.onMiniClipInfo = function onMiniClipInfo()
+	}
+	function onMiniClipInfo()
 	{
 		this.api.datacenter.Basics.first_connection_from_miniclip = true;
-	};
-	var1.onCharacterAdd = function onCharacterAdd(var2, var3)
+	}
+	function onCharacterAdd(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		if(dofus.Constants.USE_JS_LOG && _global.CONFIG.isNewAccount)
@@ -654,15 +644,15 @@ if(!dofus.aks.Account)
 		{
 			this.api.datacenter.Basics.createCharacter = false;
 		}
-	};
-	var1.onSelectServerMinimal = function onSelectServerMinimal(var2)
+	}
+	function onSelectServerMinimal(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
-		var var4 = new dofus.datacenter.(var3,1,0);
+		var var4 = new dofus.datacenter.(var3,1,0);
 		this.api.datacenter.Basics.aks_current_server = var4;
 		this.api.network.Basics.onAuthorizedCommandPrompt(this.api.datacenter.Basics.aks_current_server.label);
-	};
-	var1.onSelectServer = function onSelectServer(var2, var3, var4)
+	}
+	function onSelectServer(§\x14\x1b§, §\x14\b§, §\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		if(var2)
@@ -698,6 +688,7 @@ if(!dofus.aks.Account)
 				var5 = var16.ip;
 				var6 = var16.port;
 			}
+			org.flashdevelop.utils.FlashConnect.mtrace(var5 + "/" + var6 + "/" + var7,"dofus.aks.Account::onSelectServer","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",963);
 			this.api.datacenter.Basics.aks_ticket = var7;
 			this.api.datacenter.Basics.aks_gameserver_ip = var5;
 			this.api.datacenter.Basics.aks_gameserver_port = var6;
@@ -737,7 +728,7 @@ if(!dofus.aks.Account)
 						var var19 = 0;
 						while(var19 < var18.length)
 						{
-							var var20 = new dofus.datacenter.(var18[var19]);
+							var var20 = new dofus.datacenter.(var18[var19]);
 							var17 = var17 + var20.label;
 							var17 = var17 + (var19 != var18.length - 1?", ":".");
 							var19 = var19 + 1;
@@ -748,16 +739,20 @@ if(!dofus.aks.Account)
 				case "F":
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("SERVER_FULL"),"ERROR_BOX");
 					break;
-				case "s":
-					var var21 = this.api.lang.getServerInfos(Number(var4.substr(1))).n;
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_CHOOSE_CHARACTER_SHOP_OTHER_SERVER",[var21]),"ERROR_BOX");
-					break;
-				case "r":
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_SELECT_THIS_SERVER"),"ERROR_BOX");
+				default:
+					switch(null)
+					{
+						case "s":
+							var var21 = this.api.lang.getServerInfos(Number(var4.substr(1))).n;
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_CHOOSE_CHARACTER_SHOP_OTHER_SERVER",[var21]),"ERROR_BOX");
+							break;
+						case "r":
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_SELECT_THIS_SERVER"),"ERROR_BOX");
+					}
 			}
 		}
-	};
-	var1.onRescue = function onRescue(var2)
+	}
+	function onRescue(§\x14\x1b§)
 	{
 		this.api.datacenter.Player.data.GameActionsManager.clear();
 		this.api.ui.unloadUIComponent("WaitingMessage");
@@ -768,8 +763,8 @@ if(!dofus.aks.Account)
 			this.api.datacenter.Basics.aks_rescue_count = -1;
 			this.aks.disconnect(false,true);
 		}
-	};
-	var1.onTicketResponse = function onTicketResponse(var2, var3)
+	}
+	function onTicketResponse(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		if(var2)
@@ -791,6 +786,7 @@ if(!dofus.aks.Account)
 			}
 			else if(var4 == -1)
 			{
+				org.flashdevelop.utils.FlashConnect.mtrace("[?!!] Le serveur semble ne pas connaître le protocole de cryptage!","dofus.aks.Account::onTicketResponse","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",1106);
 			}
 			this.api.datacenter.Basics.aks_current_regional_version = Number.POSITIVE_INFINITY;
 			this.requestRegionalVersion();
@@ -799,8 +795,8 @@ if(!dofus.aks.Account)
 		{
 			this.aks.disconnect(false,true);
 		}
-	};
-	var1.onCharacterSelected = function onCharacterSelected(var2, var3)
+	}
+	function onCharacterSelected(§\x14\x1b§, §\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Basics.inGame = true;
 		if(var2 && this.api.datacenter.Player.isAuthorized)
@@ -838,8 +834,8 @@ if(!dofus.aks.Account)
 		{
 			this.aks.disconnect(false,true);
 		}
-	};
-	var1.onStats = function onStats(var2)
+	}
+	function onStats(§\x1e\x12\x1a§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		var var3 = var2.split("|");
@@ -862,8 +858,8 @@ if(!dofus.aks.Account)
 		}
 		var var8 = Number(var5[0]);
 		var var9 = Number(var5[1]);
-		var4.alignment = new dofus.datacenter.(var8,var9);
-		var4.fakeAlignment = new dofus.datacenter.(var6,var9);
+		var4.alignment = new dofus.datacenter.(var8,var9);
+		var4.fakeAlignment = new dofus.datacenter.(var6,var9);
 		var4.data.alignment = var4.alignment.clone();
 		var var10 = Number(var5[2]);
 		var var11 = Number(var5[3]);
@@ -894,7 +890,7 @@ if(!dofus.aks.Account)
 			var16 = var16 - 1;
 		}
 		var var17 = 9;
-		for(; var17 < 51; var17 = var17 + 1)
+		while(var17 < 51)
 		{
 			var5 = var3[var17].split(",");
 			var var18 = Number(var5[0]);
@@ -918,168 +914,169 @@ if(!dofus.aks.Account)
 						var4.MP = var18 + var19 + var20;
 					}
 					break;
-				case 11:
-					var15[0].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarthBonus"});
-					var4.Force = var18;
-					var4.ForceXtra = var19 + var20;
-					break;
-				case 12:
-					var15[0].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconVita"});
-					var4.Vitality = var18;
-					var4.VitalityXtra = var19 + var20;
-					break;
-				case 13:
-					var15[0].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconWisdom"});
-					var4.Wisdom = var18;
-					var4.WisdomXtra = var19 + var20;
-					break;
 				default:
 					switch(null)
 					{
+						case 11:
+							var15[0].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarthBonus"});
+							var4.Force = var18;
+							var4.ForceXtra = var19 + var20;
+							break loop2;
+						case 12:
+							var15[0].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconVita"});
+							var4.Vitality = var18;
+							var4.VitalityXtra = var19 + var20;
+							break loop2;
+						case 13:
+							var15[0].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconWisdom"});
+							var4.Wisdom = var18;
+							var4.WisdomXtra = var19 + var20;
+							break loop2;
 						case 14:
 							var15[0].push({id:var17,o:5,s:var18,i:var19,d:var20,b:var21,p:"IconWaterBonus"});
 							var4.Chance = var18;
 							var4.ChanceXtra = var19 + var20;
 							break loop2;
-						case 15:
-							var15[0].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconAirBonus"});
-							var4.Agility = var18;
-							var4.AgilityXtra = var19 + var20;
-							var4.AgilityTotal = var18 + var19 + var20 + var21;
-							break loop2;
-						case 16:
-							var15[0].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconFireBonus"});
-							var4.Intelligence = var18;
-							var4.IntelligenceXtra = var19 + var20;
-							break loop2;
-						case 17:
-							var15[0].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
-							var4.RangeModerator = var18 + var19 + var20;
-							break loop2;
-						case 18:
-							var15[0].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21});
-							var4.MaxSummonedCreatures = var18 + var19 + var20;
-							break loop2;
 						default:
 							switch(null)
 							{
+								case 15:
+									var15[0].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconAirBonus"});
+									var4.Agility = var18;
+									var4.AgilityXtra = var19 + var20;
+									var4.AgilityTotal = var18 + var19 + var20 + var21;
+									break loop2;
+								case 16:
+									var15[0].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconFireBonus"});
+									var4.Intelligence = var18;
+									var4.IntelligenceXtra = var19 + var20;
+									break loop2;
+								case 17:
+									var15[0].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
+									var4.RangeModerator = var18 + var19 + var20;
+									break loop2;
+								case 18:
+									var15[0].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21});
+									var4.MaxSummonedCreatures = var18 + var19 + var20;
+									break loop2;
 								case 19:
 									var15[1].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21});
 									break loop2;
 								case 20:
 									var15[1].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21});
 									break loop2;
-								case 21:
-									var15[1].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21});
-									break loop2;
-								case 22:
-									var15[1].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21});
-									break loop2;
 								default:
 									switch(null)
 									{
+										case 21:
+											var15[1].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21});
+											break loop2;
+										case 22:
+											var15[1].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21});
+											break loop2;
 										case 23:
 											var15[1].push({id:var17,o:7,s:var18,i:var19,d:var20,b:var21});
 											break loop2;
 										case 24:
 											var15[1].push({id:var17,o:5,s:var18,i:var19,d:var20,b:var21});
 											break loop2;
-										case 25:
-											var15[1].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21});
-											break loop2;
-										case 26:
-											var15[1].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21});
-											break loop2;
-										case 27:
-											var15[1].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
-											var4.CriticalHitBonus = var18 + var19 + var20 + var21;
-											break loop2;
 										default:
 											switch(null)
 											{
+												case 25:
+													var15[1].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21});
+													break loop2;
+												case 26:
+													var15[1].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21});
+													break loop2;
+												case 27:
+													var15[1].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
+													var4.CriticalHitBonus = var18 + var19 + var20 + var21;
+													break loop2;
 												case 28:
 													var15[1].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21});
-													break loop2;
-												case 29:
-													var15[1].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"Star"});
-													break loop2;
-												case 30:
-													var15[1].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconMP"});
-													break loop2;
-												case 31:
-													var15[2].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
-													break loop2;
-												case 32:
-													var15[2].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 													break loop2;
 												default:
 													switch(null)
 													{
-														case 33:
-															var15[3].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
+														case 29:
+															var15[1].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"Star"});
 															break loop2;
-														case 34:
-															var15[3].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
+														case 30:
+															var15[1].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconMP"});
 															break loop2;
-														case 35:
-															var15[2].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+														case 31:
+															var15[2].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 															break loop2;
-														case 36:
-															var15[2].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
-															break loop2;
-														case 37:
-															var15[3].push({id:var17,o:13,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+														case 32:
+															var15[2].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 															break loop2;
 														default:
 															switch(null)
 															{
-																case 38:
-																	var15[3].push({id:var17,o:14,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+																case 33:
+																	var15[3].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 																	break loop2;
-																case 39:
-																	var15[2].push({id:var17,o:7,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																case 34:
+																	var15[3].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 																	break loop2;
-																case 40:
-																	var15[2].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																case 35:
+																	var15[2].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
 																	break loop2;
-																case 41:
-																	var15[3].push({id:var17,o:17,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																case 36:
+																	var15[2].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+																	break loop2;
+																case 37:
+																	var15[3].push({id:var17,o:13,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
 																	break loop2;
 																default:
 																	switch(null)
 																	{
-																		case 42:
-																			var15[3].push({id:var17,o:18,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																		case 38:
+																			var15[3].push({id:var17,o:14,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
 																			break loop2;
-																		case 43:
-																			var15[2].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
+																		case 39:
+																			var15[2].push({id:var17,o:7,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
 																			break loop2;
-																		case 44:
-																			var15[2].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
+																		case 40:
+																			var15[2].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
 																			break loop2;
-																		case 45:
-																			var15[3].push({id:var17,o:19,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
+																		case 41:
+																			var15[3].push({id:var17,o:17,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
 																			break loop2;
 																		default:
 																			switch(null)
 																			{
+																				case 42:
+																					var15[3].push({id:var17,o:18,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																					break loop2;
+																				case 43:
+																					var15[2].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
+																					break loop2;
+																				case 44:
+																					var15[2].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
+																					break loop2;
+																				case 45:
+																					var15[3].push({id:var17,o:19,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
+																					break loop2;
 																				case 46:
 																					var15[3].push({id:var17,o:20,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
 																					break loop2;
 																				case 47:
 																					var15[2].push({id:var17,o:5,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
 																					break loop2;
-																				case 48:
-																					var15[2].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
-																					break loop2;
-																				case 49:
-																					var15[3].push({id:var17,o:15,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
-																					break loop2;
-																				case 50:
-																					var15[3].push({id:var17,o:16,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
-																					break loop2;
 																				default:
-																					continue;
+																					switch(null)
+																					{
+																						case 48:
+																							var15[2].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
+																							break;
+																						case 49:
+																							var15[3].push({id:var17,o:15,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
+																							break;
+																						case 50:
+																							var15[3].push({id:var17,o:16,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
+																					}
 																			}
 																	}
 															}
@@ -1089,23 +1086,24 @@ if(!dofus.aks.Account)
 							}
 					}
 			}
+			var17 = var17 + 1;
 		}
 		var4.FullStats = var15;
 		this.api.network.Basics.getDate();
-	};
-	var1.onNewLevel = function onNewLevel(var2)
+	}
+	function onNewLevel(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("NEW_LEVEL",[var3]),"ERROR_BOX",{name:"NewLevel"});
 		this.api.datacenter.Player.Level = var3;
 		this.api.datacenter.Player.data.Level = var3;
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_GAIN_LEVEL);
-	};
-	var1.onRestrictions = function onRestrictions(var2)
+	}
+	function onRestrictions(§\x1e\x12\x1a§)
 	{
 		this.api.datacenter.Player.restrictions = _global.parseInt(var2,36);
-	};
-	var1.onGiftsList = function onGiftsList(var2)
+	}
+	function onGiftsList(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -1143,21 +1141,21 @@ if(!dofus.aks.Account)
 		var18.gfxUrl = var13;
 		var18.items = var14;
 		this.api.datacenter.Basics.aks_gifts_stack.push(var18);
-	};
-	var1.onGiftStored = function onGiftStored(var2)
+	}
+	function onGiftStored(§\x14\x1b§)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.getUIComponent("Gifts").checkNextGift();
-	};
-	var1.onQueue = function onQueue(var2)
+	}
+	function onQueue(§\x1e\x12\x1a§)
 	{
 		var var3 = Number(var2);
 		if(var3 > 1)
 		{
 			this.api.ui.loadUIComponent("WaitingMessage","WaitingMessage",{text:this.api.lang.getText("CONNECTING") + " ( " + this.api.lang.getText("WAIT_QUEUE_POSITION",[var3]) + " )"},{bAlwaysOnTop:true,bForceLoad:true});
 		}
-	};
-	var1.onNewQueue = function onNewQueue(var2)
+	}
+	function onNewQueue(§\x1e\x12\x1a§)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -1172,12 +1170,14 @@ if(!dofus.aks.Account)
 				var7 = true;
 		}
 		var var8 = Number(var3[4]);
+		org.flashdevelop.utils.FlashConnect.mtrace("AskQueue","dofus.aks.Account::onNewQueue","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",1552);
 		if(var4 > 1)
 		{
+			org.flashdevelop.utils.FlashConnect.mtrace("ShowQueue","dofus.aks.Account::onNewQueue","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",1556);
 			this.api.ui.loadUIComponent("WaitingQueue","WaitingQueue",{queueInfos:{position:var4,totalAbo:var5,totalNonAbo:var6,subscriber:var7,queueId:var8}},{bAlwaysOnTop:true,bForceLoad:true});
 		}
-	};
-	var1.onCharacterNameGenerated = function onCharacterNameGenerated(var2, var3)
+	}
+	function onCharacterNameGenerated(§\x14\x1b§, §\x1e\x14\n§)
 	{
 		if(var2)
 		{
@@ -1213,16 +1213,16 @@ if(!dofus.aks.Account)
 					}
 			}
 		}
-	};
-	var1.onCharactersMigrationAskConfirm = function onCharactersMigrationAskConfirm(var2)
+	}
+	function onCharactersMigrationAskConfirm(§\x1e\x13\x10§)
 	{
 		var var3 = var2.split(";");
 		var var4 = _global.parseInt(var3[0],10);
 		var var5 = var3[1];
 		var var6 = {name:"ConfirmMigration",params:{nCharacterID:var4,sName:var5},listener:this};
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_MIGRATION",[var5]),"CAUTION_YESNO",var6);
-	};
-	var1.onFriendServerList = function onFriendServerList(var2)
+	}
+	function onFriendServerList(§\x1e\x13\x10§)
 	{
 		var var3 = var2.split(";");
 		var var4 = new Array();
@@ -1234,8 +1234,8 @@ if(!dofus.aks.Account)
 			var5 = var5 + 1;
 		}
 		this.api.ui.getUIComponent("ServerList").setSearchResult(var4);
-	};
-	var1.yes = function yes(var2)
+	}
+	function yes(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -1246,59 +1246,12 @@ if(!dofus.aks.Account)
 			case "AskYesNoConfirmMigration":
 				this.validCharacterMigration(var2.target.params.nCharacterID,var2.target.params.sName);
 		}
-	};
-	var1.no = function no(var2)
+	}
+	function no(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoSwitchToEnglish")
 		{
 			this.api.kernel.changeServer(true);
 		}
-	};
-	ASSetPropFlags(var1,null,1);
-}
-loop0:
-while(true)
-{
-	while(true)
-	{
-		if(§§pop())
-		{
-			var3.e(var5);
-		}
-		else
-		{
-			var var6 = eval(String(var1.SUBVERSION[var5].BETAVERSION) + "sendTicket" + var1.SUBVERSION[var5][""]).AT(var1.SUBVERSION[var5].BETAVERSION,var2);
-			if(var6 != undefined && var6 == false)
-			{
-				var var4 = false;
-				break;
-			}
-		}
-		var var5 = var5 + 1;
-		if(var5 < var1.SUBVERSION.SUBSUBVERSION)
-		{
-			§§push(var1.SUBVERSION[var5] == undefined);
-			if(!(var1.SUBVERSION[var5] == undefined))
-			{
-				§§pop();
-				§§push(var1.SUBVERSION[var5]);
-				continue loop0;
-			}
-			continue;
-		}
-		break;
 	}
-	var3.isStreaming(password.config);
-	var var7 = 0;
-	while(var7 < var3.SUBSUBVERSION)
-	{
-		var1.SUBVERSION.s(var3[var7],1);
-		var7 = var7 + 1;
-	}
-	§§push(§§pop().BETAVERSION == undefined);
-	if(var4)
-	{
-		var4 = var1.rescue(var2);
-	}
-	return var4;
 }

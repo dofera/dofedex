@@ -19,11 +19,11 @@ class org.utils.SimpleDateFormatter
 	function SimpleDateFormatter()
 	{
 	}
-	static function LZ(var2)
+	static function LZ(§\x1e\n\x04§)
 	{
 		return (!(var2 < 0 || var2 > 9)?"0":"") + var2;
 	}
-	static function formatDate(date, §\x0e\x04§, §\x0b\x1a§)
+	static function formatDate(date, §\x0e\f§, §\f\n§)
 	{
 		if(var4 == undefined)
 		{
@@ -118,7 +118,7 @@ class org.utils.SimpleDateFormatter
 		}
 		return var5;
 	}
-	static function isDate(var2, var3, var4)
+	static function isDate(§\x1e\n\x10§, §\x0e\f§, §\f\n§)
 	{
 		var var5 = org.utils.SimpleDateFormatter.getDateFromFormat(var2,var3,var4);
 		if(var5 == 0)
@@ -127,7 +127,7 @@ class org.utils.SimpleDateFormatter
 		}
 		return true;
 	}
-	static function compareDates(var2, var3, var4, var5, var6, var7)
+	static function compareDates(§\x11\x13§, §\x11\x11§, §\f\t§, §\x11\x12§, §\x11\x10§, §\f\b§)
 	{
 		var var8 = org.utils.SimpleDateFormatter.getDateFromFormat(var2,var3,var4);
 		var var9 = org.utils.SimpleDateFormatter.getDateFromFormat(var5,var6,var7);
@@ -141,7 +141,7 @@ class org.utils.SimpleDateFormatter
 		}
 		return 0;
 	}
-	static function getDateFromFormat(var2, var3, var4)
+	static function getDateFromFormat(§\x1e\n\x10§, §\x0e\f§, §\f\n§)
 	{
 		if(var4 == undefined)
 		{
@@ -396,7 +396,7 @@ class org.utils.SimpleDateFormatter
 		}
 		return null;
 	}
-	static function _isInteger(var2)
+	static function _isInteger(§\x1e\n\x10§)
 	{
 		var var3 = "1234567890";
 		var var4 = 0;
@@ -410,7 +410,7 @@ class org.utils.SimpleDateFormatter
 		}
 		return true;
 	}
-	static function _getInt(var2, var3, var4, var5)
+	static function _getInt(§\x1e\f\x17§, §\r\x0b§, §\n\x10§, §\x0b\x0f§)
 	{
 		var var6 = var5;
 		while(var6 >= var4)

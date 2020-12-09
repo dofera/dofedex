@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.Cinematic extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__file(var2)
+	function __set__file(§\x1e\x12\x18§)
 	{
 		this._sFile = var2;
 		return this.__get__file();
 	}
-	function __set__sequencer(var2)
+	function __set__sequencer(§\x1e\x18\b§)
 	{
 		this._oSequencer = var2;
 		return this.__get__sequencer();
@@ -28,7 +28,7 @@ class dofus.graphics.gapi.ui.Cinematic extends dofus.graphics.gapi.core.DofusAdv
 		this.addToQueue({object:this,method:this.addListeners});
 		this.addToQueue({object:this,method:this.loadFile});
 	}
-	function startCinematic(var2)
+	function startCinematic(§\x0b\t§)
 	{
 		var2.gotoAndPlay(1);
 	}
@@ -47,33 +47,33 @@ class dofus.graphics.gapi.ui.Cinematic extends dofus.graphics.gapi.core.DofusAdv
 		_root._quality = "MEDIUM";
 		this._lblWhite.text = this.api.lang.getText("LOADING");
 	}
-	function initialization(var2)
+	function initialization(§\x1e\x19\x18§)
 	{
 		this._lblWhite._visible = false;
 		var2.target.content.cinematic = this;
 		this.addToQueue({object:this,method:this.startCinematic,params:[var2.target.content]});
 	}
-	function complete(var2)
+	function complete(§\x1e\x19\x18§)
 	{
 		var2.target.stop();
 		var2.target.content.stop();
 		var2.target.content.cinematic.stop();
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._btnCancel)
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("LEAVE_CINEMATIC"),"CAUTION_YESNO",{name:"Cinematic",listener:this});
 		}
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target) === this._btnCancel)
 		{
 			this.gapi.showTooltip(this.api.lang.getText("CANCEL_CINEMATIC"),var2.target,-20);
 		}
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this.gapi.hideTooltip();
 	}
@@ -84,8 +84,9 @@ class dofus.graphics.gapi.ui.Cinematic extends dofus.graphics.gapi.core.DofusAdv
 		_root._quality = this._sOldQuality;
 		this.unloadThis();
 	}
-	function onSubtitle(var2, var3)
+	function onSubtitle(§\x1e\x0b\x11§, §\x1e\x1d\x03§)
 	{
+		org.flashdevelop.utils.FlashConnect.mtrace("Sub : " + var2,"dofus.graphics.gapi.ui.Cinematic::onSubtitle","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Cinematic.as",165);
 		var var4 = this._sFile.substring(0,this._sFile.toLowerCase().indexOf(".swf"));
 		while(var4.indexOf("/") > -1)
 		{
@@ -98,7 +99,7 @@ class dofus.graphics.gapi.ui.Cinematic extends dofus.graphics.gapi.core.DofusAdv
 			var2.text = var6;
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		this.onCinematicFinished();
 	}

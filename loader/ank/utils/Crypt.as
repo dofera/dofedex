@@ -4,7 +4,7 @@ class ank.utils.Crypt
 	function Crypt()
 	{
 	}
-	static function cryptPassword(var2, var3)
+	static function cryptPassword(§\x1e\x16\f§, §\f\x0e§)
 	{
 		var var4 = "#1";
 		var var5 = 0;

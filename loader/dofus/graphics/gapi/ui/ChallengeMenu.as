@@ -6,17 +6,17 @@ class dofus.graphics.gapi.ui.ChallengeMenu extends dofus.graphics.gapi.core.Dofu
 	{
 		super();
 	}
-	function __set__labelReady(var2)
+	function __set__labelReady(§\x1e\x11\t§)
 	{
 		this._sLabelReady = var2;
 		return this.__get__labelReady();
 	}
-	function __set__labelCancel(var2)
+	function __set__labelCancel(§\x1e\x11\n§)
 	{
 		this._sLabelCancel = var2;
 		return this.__get__labelCancel();
 	}
-	function __set__cancelButton(var2)
+	function __set__cancelButton(§\x1b\x1a§)
 	{
 		this._bCancelButton = var2;
 		this._btnCancel._visible = var2;
@@ -30,7 +30,7 @@ class dofus.graphics.gapi.ui.ChallengeMenu extends dofus.graphics.gapi.core.Dofu
 		}
 		return this.__get__cancelButton();
 	}
-	function __set__ready(var2)
+	function __set__ready(§\x16\x11§)
 	{
 		this._bReady = var2;
 		this._mcTick._visible = var2;

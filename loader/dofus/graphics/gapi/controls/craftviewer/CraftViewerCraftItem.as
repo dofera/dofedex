@@ -4,12 +4,12 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 	{
 		super();
 	}
-	function __set__list(var2)
+	function __set__list(§\x0b\x05§)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(var2, var3, var4)
+	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
 	{
 		this._oItem = var4;
 		if(var2)
@@ -25,8 +25,13 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 				case 2:
 					this._lblItemName.styleName = "GreenLeftSmallBoldLabel";
 					break;
-				case 3:
+				default:
+					if(var0 !== 3)
+					{
+						break;
+					}
 					this._lblItemName.styleName = "RedLeftSmallBoldLabel";
+					break;
 			}
 			this._mcTooltip.onRollOver = function()
 			{
@@ -106,11 +111,11 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 		}
 		this._ctrItemIcon.addEventListener("click",this);
 	}
-	function setContainerContentData(var2, var3)
+	function setContainerContentData(§\x04\x17§, §\x1e\x19\r§)
 	{
 		this["_ctr" + var2].contentData = var3;
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target._name)
 		{
@@ -168,12 +173,12 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 	{
 		this._mcList._parent.gapi.hideTooltip();
 	}
-	function over(var2)
+	function over(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target.contentData;
 		this._mcList._parent.gapi.showTooltip("x" + var3.Quantity + " - " + var3.name,var2.target,-20);
 	}
-	function out(var2)
+	function out(§\x1e\x19\x18§)
 	{
 		this._mcList._parent.gapi.hideTooltip();
 	}

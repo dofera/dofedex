@@ -11,7 +11,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._bAllAccounts;
 	}
-	function __set__isAllAccounts(var2)
+	function __set__isAllAccounts(§\x1c\x17§)
 	{
 		this._bAllAccounts = var2;
 		return this.__get__isAllAccounts();
@@ -20,7 +20,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sTargetPseudos;
 	}
-	function __set__targetPseudos(var2)
+	function __set__targetPseudos(§\x1e\x0b\x1c§)
 	{
 		this._sTargetPseudos = var2;
 		return this.__get__targetPseudos();
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sDescription;
 	}
-	function __set__description(var2)
+	function __set__description(§\x11\n§)
 	{
 		this._sDescription = var2;
 		return this.__get__description();
@@ -38,7 +38,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sJailDialog;
 	}
-	function __set__jailDialog(var2)
+	function __set__jailDialog(§\x1e\x11\x13§)
 	{
 		this._sJailDialog = var2;
 		return this.__get__jailDialog();
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sPenal;
 	}
-	function __set__penal(var2)
+	function __set__penal(§\x1e\x17\x04§)
 	{
 		this._sPenal = var2;
 		return this.__get__penal();
@@ -56,7 +56,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sFindAccounts;
 	}
-	function __set__findAccounts(var2)
+	function __set__findAccounts(§\x0e\x11§)
 	{
 		this._sFindAccounts = var2;
 		return this.__get__findAccounts();
@@ -65,7 +65,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sReason;
 	}
-	function __set__reason(var2)
+	function __set__reason(§\x1e\x15\x13§)
 	{
 		this._sReason = var2;
 		return this.__get__reason();
@@ -118,7 +118,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 		this._tiReasonName.text = this._sReason;
 		this.showViewData(dofus.graphics.gapi.ui.MakeReport.FIRST_VIEW);
 	}
-	function showViewData(var2)
+	function showViewData(§\x1e\x1b\x15§)
 	{
 		var var3 = var2 == dofus.graphics.gapi.ui.MakeReport.FIRST_VIEW;
 		this._lblTarget._visible = var3;
@@ -189,41 +189,39 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		this.api.datacenter.Temporary.Report = undefined;
 	}
-	function change(var2)
+	function change(§\x1e\x19\x18§)
 	{
 		var var3 = var2.target;
-		loop0:
-		switch(var3)
+		if((var var0 = var3) !== this._taComplementary)
 		{
-			case this._taComplementary:
-				this._sComplementary = var3.text;
-				break;
-			case this._taDescription:
-				this._sDescription = var3.text;
-				break;
-			default:
-				switch(null)
-				{
-					case this._taFindAccounts:
-						this._sFindAccounts = var3.text;
-						break loop0;
-					case this._taPenal:
-						this._sPenal = var3.text;
-						break loop0;
-					case this._tiReasonName:
-						this._sReason = var3.text;
-						break loop0;
-					default:
-						if(var0 !== this._taJailDialog)
-						{
-							break loop0;
-						}
-						this._sJailDialog = var3.text;
-						break loop0;
-				}
+			switch(null)
+			{
+				case this._taDescription:
+					this._sDescription = var3.text;
+					break;
+				case this._taFindAccounts:
+					this._sFindAccounts = var3.text;
+					break;
+				case this._taPenal:
+					this._sPenal = var3.text;
+					break;
+				default:
+					switch(null)
+					{
+						case this._tiReasonName:
+							this._sReason = var3.text;
+							break;
+						case this._taJailDialog:
+							this._sJailDialog = var3.text;
+					}
+			}
+		}
+		else
+		{
+			this._sComplementary = var3.text;
 		}
 	}
-	function click(var2)
+	function click(§\x1e\x19\x18§)
 	{
 		switch(var2.target)
 		{
@@ -244,7 +242,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 				this.unloadThis();
 		}
 	}
-	function yes(var2)
+	function yes(§\x1e\x19\x18§)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoMakeReport")
 		{
