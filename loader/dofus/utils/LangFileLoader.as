@@ -5,7 +5,7 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 		super();
 		AsBroadcaster.initialize(this);
 	}
-	function load(§\x1d\x0f§, §\x1e\x12\x18§, §\x0b\r§, §\x1e\x0e\x05§, §\x1e\x12\x17§, §\x1e\x11\b§, §\x14\x06§)
+	function load(var2, var3, var4, var5, var6, var7, var8)
 	{
 		this._aServers = var2;
 		this._sFile = var3;
@@ -29,7 +29,6 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 			this._mcl.addListener(this);
 			this._progressTimer = _global.setInterval(this.onTimedProgress,1000);
 			this._timerID = _global.setInterval(this.onEventNotCall,5000);
-			org.flashdevelop.utils.FlashConnect.mtrace("[wtf] -> Chargement de " + var3,"dofus.utils.LangFileLoader::loadWithNextURL","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/utils/LangFileLoader.as",90);
 			this._mcl.loadClip(var3,this._mc);
 		}
 		else
@@ -41,17 +40,17 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._aServers[this._urlIndex];
 	}
-	function onEventNotCall(§\x0b\r§)
+	function onEventNotCall(var2)
 	{
 		_global.clearInterval(this._timerID);
 		this.onLoadError(var2,"unknown",-1);
 	}
-	function onLoadStart(§\x0b\r§)
+	function onLoadStart(var2)
 	{
 		_global.clearInterval(this._timerID);
 		this.broadcastMessage("onLoadStart",var2,this.getCurrentServer());
 	}
-	function onLoadError(§\x0b\r§, §\x0f\x0f§, §\r\f§)
+	function onLoadError(var2, var3, var4)
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
@@ -63,13 +62,13 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 		var var2 = this._mcl.getProgress(this._mc);
 		this.broadcastMessage("onLoadProgress",this._mc,var2.bytesLoaded,var2.bytesTotal,this.getCurrentServer());
 	}
-	function onLoadComplete(§\x0b\r§, §\r\f§)
+	function onLoadComplete(var2, var3)
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
 		this.broadcastMessage("onLoadComplete",var2,var3,this.getCurrentServer());
 	}
-	function onLoadInit(§\x0b\r§)
+	function onLoadInit(var2)
 	{
 		_global.clearInterval(this._timerID);
 		_global.clearInterval(this._progressTimer);
@@ -134,7 +133,6 @@ class dofus.utils.LangFileLoader extends ank.utils.QueueEmbedMovieClip
 			var2 = var2 + 1;
 		}
 		this._nStart = this._nStart + this._nStep;
-		org.flashdevelop.utils.FlashConnect.mtrace("[wtf]Flush des données","dofus.utils.LangFileLoader::processFile","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/utils/LangFileLoader.as",248);
 		if(this._so.flush(1000000000) == false)
 		{
 			this.broadcastMessage("onCantWrite",this._mc);

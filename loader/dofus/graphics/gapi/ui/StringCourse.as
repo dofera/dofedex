@@ -5,22 +5,22 @@ class dofus.graphics.gapi.ui.StringCourse extends dofus.graphics.gapi.core.Dofus
 	{
 		super();
 	}
-	function __set__name(§\x1e\x10\x06§)
+	function __set__name(var2)
 	{
 		this._sName = var2;
 		return this.__get__name();
 	}
-	function __set__level(§\x1e\x10\x1c§)
+	function __set__level(var2)
 	{
 		this._sLevel = var2;
 		return this.__get__level();
 	}
-	function __set__gfx(§\x1e\x12\r§)
+	function __set__gfx(var2)
 	{
 		this._sGfx = var2;
 		return this.__get__gfx();
 	}
-	function __set__colors(§\f§)
+	function __set__colors(var2)
 	{
 		this._colors = var2;
 		return this.__get__colors();
@@ -45,7 +45,7 @@ class dofus.graphics.gapi.ui.StringCourse extends dofus.graphics.gapi.core.Dofus
 		this._lblName.text = "";
 		this._lblLevel.text = "";
 	}
-	function applyColor(§\x0b\r§, §\x1e\t\x10§)
+	function applyColor(var2, var3)
 	{
 		var var4 = this._colors[var3];
 		if(var4 == -1 || var4 == undefined)
@@ -60,18 +60,18 @@ class dofus.graphics.gapi.ui.StringCourse extends dofus.graphics.gapi.core.Dofus
 		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
 		var8.setTransform(var9);
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		this._lblName.text = this._sName;
 		this._lblLevel.text = this._sLevel;
 		var ref = this;
-		this._ldrStringCourse.content.stringCourseColor = function(§\x0b\r§, §\x1e\t\x14§)
+		this._ldrStringCourse.content.stringCourseColor = function(var2, var3)
 		{
 			ref.applyColor(var2,var3);
 		};
 		this._mcAnim.play();
 	}
-	function error(§\x1e\x19\x18§)
+	function error(var2)
 	{
 		this.unloadThis();
 	}

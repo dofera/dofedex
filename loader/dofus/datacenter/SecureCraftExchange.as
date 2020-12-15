@@ -2,7 +2,7 @@ class dofus.datacenter.SecureCraftExchange extends dofus.datacenter.Exchange
 {
 	var _nPayKama = 0;
 	var _nPayIfSuccessKama = 0;
-	function SecureCraftExchange(§\x06\x0b§)
+	function SecureCraftExchange(var3)
 	{
 		super();
 		this.initialize(var3);
@@ -19,7 +19,7 @@ class dofus.datacenter.SecureCraftExchange extends dofus.datacenter.Exchange
 	{
 		return this._eaPayIfSuccessGarbage;
 	}
-	function __set__payKama(§\x04\r§)
+	function __set__payKama(var2)
 	{
 		this._nPayKama = var2;
 		this.dispatchEvent({type:"payKamaChange",value:var2});
@@ -29,7 +29,7 @@ class dofus.datacenter.SecureCraftExchange extends dofus.datacenter.Exchange
 	{
 		return this._nPayKama;
 	}
-	function __set__payIfSuccessKama(§\x04\r§)
+	function __set__payIfSuccessKama(var2)
 	{
 		this._nPayIfSuccessKama = var2;
 		this.dispatchEvent({type:"payIfSuccessKamaChange",value:var2});
@@ -39,15 +39,12 @@ class dofus.datacenter.SecureCraftExchange extends dofus.datacenter.Exchange
 	{
 		return this._nPayIfSuccessKama;
 	}
-	function initialize(§\x06\x0b§)
+	function initialize(var2)
 	{
 		super.initialize(var3);
-		this._eaCoopGarbage = new ank.utils.
-();
-		this._eaPayGarbage = new ank.utils.
-();
-		this._eaPayIfSuccessGarbage = new ank.utils.
-();
+		this._eaCoopGarbage = new ank.utils.();
+		this._eaPayGarbage = new ank.utils.();
+		this._eaPayIfSuccessGarbage = new ank.utils.();
 	}
 	function clearCoopGarbage()
 	{

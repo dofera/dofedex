@@ -49,19 +49,22 @@ class dofus.utils.Api extends Object
 	{
 		return this._oElectron;
 	}
+	function __get__mouseClicksMemorizer()
+	{
+		return this._oMouseClicksMemorizer;
+	}
 	function initialize()
 	{
 		this._oConfig = _global.CONFIG;
-		this._oLang = new dofus.utils.();
+		this._oLang = new dofus.utils.();
 		this._oUI = dofus.DofusCore.getClip().GAPI;
 		this._oUI.api = this;
-		org.flashdevelop.utils.FlashConnect.mtrace("[wtf]" + this._oUI.api,"dofus.utils.Api::initialize","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/utils/Api.as",136);
-		this._oElectron = new dofus.(this);
-		this._oKernel = new dofus.Kernel(this);
+		this._oElectron = new dofus.	(this);
+		this._oKernel = new dofus.(this);
 		this._oSounds = dofus.sounds.AudioManager.getInstance();
 		_global.SOMA = this._oSounds;
-		this._oDatacenter = new dofus.datacenter.(this);
-		this._oNetwork = new dofus.aks.Aks(this);
+		this._oDatacenter = new dofus.datacenter.(this);
+		this._oNetwork = new dofus.aks.(this);
 		this._oGfx = dofus.DofusCore.getClip().BATTLEFIELD;
 		if(this._oConfig.isStreaming && this._oConfig.streamingMethod == "explod")
 		{
@@ -73,13 +76,18 @@ class dofus.utils.Api extends Object
 		}
 		this._oColors = _global.GAC;
 		this._oConfig.languages = this._oLang.getConfigText("LANGUAGES_LIST");
-		_root.menu = new ank.gapi.controls.(this);
-		this.ui.loadUIComponent("Zoom","Zoom");
+		this._oMouseClicksMemorizer = new ank.utils.	();
+		_root.menu = new ank.gapi.controls.(this);
+		if(this.ui.getUIComponent("Zoom") == undefined)
+		{
+			this.ui.loadUIComponent("Zoom","Zoom");
+		}
 	}
 	function checkFileSize(sFile, nCheckID)
 	{
 		var var2 = sFile.split("*");
 		sFile = var2[0];
+		var arg = "";
 		if(var2.length > 1)
 		{
 			arg = var2[1];
@@ -99,7 +107,8 @@ class dofus.utils.Api extends Object
 		}
 		var nAddition = !!var3?-10:0;
 		var var5 = new Object();
-		var5.onLoadInit = function(§\x0b\r§, §\r\f§)
+		var ref = this;
+		var5.onLoadInit = function(var2, var3)
 		{
 			var var4 = var2.getBytesTotal() + nAddition;
 			var var5 = "CHALLENGE";
@@ -118,17 +127,19 @@ class dofus.utils.Api extends Object
 				}
 				if(var7)
 				{
-					var var9 = Number(var6.apply(ref,[sFile,arg]));
-					if(!_global.isNaN(var9))
+					var var9 = Number(var6.apply(ref,[_root,_global,sFile,nCheckID,arg]));
+					if(_global.isNaN(var9))
 					{
-						var4 = var9;
+						var2.removeMovieClip();
+						return undefined;
 					}
+					var4 = var9;
 				}
 			}
 			ref.onFileCheckFinished(true,var4,nCheckID);
 			var2.removeMovieClip();
 		};
-		var5.onLoadError = function(§\x0b\r§, §\x0f\x0f§, §\r\f§)
+		var5.onLoadError = function(var2, var3, var4)
 		{
 			var var5 = var2.getBytesTotal() + nAddition;
 			ref.onFileCheckFinished(true,var5,nCheckID);
@@ -140,7 +151,7 @@ class dofus.utils.Api extends Object
 		var8.addListener(var5);
 		var8.loadClip(sFile,var7);
 	}
-	function onFileCheckFinished(§\x14\x1b§, §\x05\x11§, §\x07\x12§)
+	function onFileCheckFinished(var2, var3, var4)
 	{
 		this.network.Basics.fileCheckAnswer(var4,!var2?-1:var3);
 	}

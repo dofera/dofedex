@@ -16,9 +16,8 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 		}
 		return dofus.managers.StreamingDisplayManager._self;
 	}
-	function displayAdvice(§\r\b§)
+	function displayAdvice(var2)
 	{
-		org.flashdevelop.utils.FlashConnect.mtrace("[wtf] Displaying advice " + var2,"dofus.managers.StreamingDisplayManager::displayAdvice","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/StreamingDisplayManager.as",55);
 		getURL("FSCommand:" add "display",var2);
 		var var3 = this.getDisplaysSharedObject();
 		if(var3.data["display" + var2] == undefined)
@@ -31,14 +30,14 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 		}
 		var3.flush();
 	}
-	function displayAdviceMax(§\r\b§, §\x0b\x11§)
+	function displayAdviceMax(var2, var3)
 	{
 		if(this.getDisplaysSharedObject().data["display" + var2] == undefined || this.getDisplaysSharedObject().data["display" + var2] < var3)
 		{
 			this.displayAdvice(var2);
 		}
 	}
-	function getMapDisplay(§\r\b§)
+	function getMapDisplay(var2)
 	{
 		if(dofus.managers.StreamingDisplayManager.TRIGGERING_MAPS[var2] != undefined)
 		{
@@ -52,10 +51,9 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 	}
 	function getPlayTime()
 	{
-		org.flashdevelop.utils.FlashConnect.mtrace(getTimer() / 1000,"dofus.managers.StreamingDisplayManager::getPlayTime","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/managers/StreamingDisplayManager.as",93);
 		return getTimer() / 1000;
 	}
-	function getDefaultDisplay(§\x1e\x16\x19§)
+	function getDefaultDisplay(var2)
 	{
 		if(var2 < 1200)
 		{
@@ -144,12 +142,12 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 			this.displayAdvice(this.getMapDisplay(this._nCurrentMap));
 		}
 	}
-	function onNewInterface(§\x0b\x1a§)
+	function onNewInterface(var2)
 	{
 		_global.clearInterval(this._nNewInterfaceTimer);
 		this._nNewInterfaceTimer = _global.setInterval(this,"newInterface",200,var2);
 	}
-	function newInterface(§\x0b\x1a§)
+	function newInterface(var2)
 	{
 		_global.clearInterval(this._nNewInterfaceTimer);
 		switch(var2)
@@ -179,7 +177,7 @@ class dofus.managers.StreamingDisplayManager extends dofus.utils.ApiElement
 	{
 		this.displayAdviceMax(13,2);
 	}
-	function onNewMap(§\r\b§)
+	function onNewMap(var2)
 	{
 		this._nCurrentMap = var2;
 		this.displayAdvice(this.getMapDisplay(var2));

@@ -6,7 +6,7 @@ class ank.utils.Sequencer extends Object
 		super();
 		this.initialize(timeout);
 	}
-	function initialize(§\x1e\x1c\x0b§)
+	function initialize(var2)
 	{
 		this._nTimeout = var2 != undefined?var2:10000;
 		this._unicID = String(getTimer()) + random(10000);
@@ -20,11 +20,11 @@ class ank.utils.Sequencer extends Object
 		this._nTimeModerator = 1;
 		ank.utils.Timer.removeTimer(this,"sequencer");
 	}
-	function setTimeModerator(§\x1e\x1c\f§)
+	function setTimeModerator(var2)
 	{
 		this._nTimeModerator = var2;
 	}
-	function addAction(§\x06\x1a§, §\x13\x1d§, §\n\x01§, §\x0e\x1a§, §\x1e\x02§, §\x06\t§, §\x19\x13§)
+	function addAction(var2, var3, var4, var5, var6, var7, var8)
 	{
 		var var9 = new Object();
 		var9.debugId = var2;
@@ -50,7 +50,7 @@ class ank.utils.Sequencer extends Object
 		}
 		var2.kernel.showMessage(undefined,var3,"DEBUG_LOG");
 	}
-	function containsAction(§\n\x01§, §\x0e\x1a§)
+	function containsAction(var2, var3)
 	{
 		var var4 = 0;
 		while(var4 < this._aActions.length)
@@ -64,7 +64,7 @@ class ank.utils.Sequencer extends Object
 		}
 		return false;
 	}
-	function execute(§\x19\x1d§)
+	function execute(var2)
 	{
 		if(this._bPlaying && !var2)
 		{
@@ -107,12 +107,12 @@ class ank.utils.Sequencer extends Object
 	{
 		return this._bPlaying;
 	}
-	function clearAllNextActions(§\x1e\n\f§)
+	function clearAllNextActions(var2)
 	{
 		this._aActions.splice(1);
 		ank.utils.Timer.removeTimer(this,"sequencer");
 	}
-	function onActionTimeOut(§\x1e\x1a\x1a§)
+	function onActionTimeOut(var2)
 	{
 		if(var2 != undefined && this._aActions[0].id != var2.id)
 		{
@@ -120,7 +120,7 @@ class ank.utils.Sequencer extends Object
 		}
 		this.onActionEnd(false,true);
 	}
-	function onActionEnd(§\x1a\x1d§, §\x14\x17§)
+	function onActionEnd(var2, var3)
 	{
 		if(var3 == undefined)
 		{
@@ -156,7 +156,7 @@ class ank.utils.Sequencer extends Object
 	{
 		return "Sequencer unicID:" + this._unicID + " playing:" + this._bPlaying + " actionsCount:" + this._aActions.length + " currentActionID:" + this._aActions[0].id + " currentActionObject:" + this._aActions[0].object + " currentActionParam:" + this._aActions[0].parameters.toString() + " currentActionBlocking:" + this._aActions[0].waitEnd + " currentActionForceTimeout:" + this._aActions[0].forceTimeout;
 	}
-	function getActionIndex(§\x1e\n\f§)
+	function getActionIndex(var2)
 	{
 		this._nActionIndex++;
 		if(this._nActionIndex > 10000)

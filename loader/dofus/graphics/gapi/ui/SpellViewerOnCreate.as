@@ -10,7 +10,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 	{
 		return this._nBreed;
 	}
-	function __set__breed(§\t\x10§)
+	function __set__breed(var2)
 	{
 		this._nBreed = var2;
 		return this.__get__breed();
@@ -111,7 +111,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 		this._mcSpellDesc._ldrSpellBig.addEventListener("complete",this);
 		this.showSpellInfo(var3[0],1);
 	}
-	function showSpellInfo(§\x1e\x1d\r§, §\x04\x01§)
+	function showSpellInfo(var2, var3)
 	{
 		this._nSpellID = var2;
 		var var4 = this.api.kernel.CharactersManager.getSpellObjectFromData(var2 + "~" + var3 + "~");
@@ -153,7 +153,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 			this._mcSpellDesc._ldrSpellBig.contentPath = var4.iconFile;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -183,7 +183,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 		var var6 = this._mcSpellDesc._ldrSpellBig;
 		var6.content.gotoAndStop(var2);
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		if(!dofus.Constants.DOUBLEFRAMERATE)
 		{
@@ -193,7 +193,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 		var var4 = this.api.kernel.OptionsManager.getOption("RemasteredSpellIconsPack");
 		var3.gotoAndStop(var4);
 	}
-	function onContentLoaded(§\x1e\x19\x18§)
+	function onContentLoaded(var2)
 	{
 		if(!dofus.Constants.DOUBLEFRAMERATE)
 		{
@@ -203,7 +203,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 		var var4 = this.api.kernel.OptionsManager.getOption("RemasteredSpellIconsPack");
 		var3.gotoAndStop(var4);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) !== this._btnClose)
 		{
@@ -215,7 +215,7 @@ class dofus.graphics.gapi.ui.SpellViewerOnCreate extends dofus.graphics.gapi.cor
 			this.gapi.showTooltip(this.api.lang.getText("CLOSE"),var2.target,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

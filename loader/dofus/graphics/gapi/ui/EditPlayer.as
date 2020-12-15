@@ -11,22 +11,22 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__editColors(§\x1a\x14§)
+	function __set__editColors(var2)
 	{
 		this._bEditColors = var2;
 		return this.__get__editColors();
 	}
-	function __set__editName(§\x1a\x13§)
+	function __set__editName(var2)
 	{
 		this._bEditName = var2;
 		return this.__get__editName();
 	}
-	function __set__force(§\x1a\x02§)
+	function __set__force(var2)
 	{
 		this._bForce = var2;
 		return this.__get__force();
 	}
-	function __set__characterName(§\x1e\x10\x05§)
+	function __set__characterName(var2)
 	{
 		if(this._itCharacterName.text != undefined)
 		{
@@ -47,7 +47,6 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	}
 	function addListeners()
 	{
-		var ref = this;
 		this._mcRandomName.onPress = function()
 		{
 			ref.click({target:this});
@@ -163,7 +162,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 		this._csColors.sex = var9;
 		this._csColors.colors = [var5,var6,var7];
 		var var10 = var8 + "" + var9;
-		var var11 = new ank.battlefield.datacenter.("viewer",ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var10 + ".swf",undefined,5);
+		var var11 = new ank.battlefield.datacenter.("viewer",ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var10 + ".swf",undefined,5);
 		if(!var2)
 		{
 			var11.accessories = var4.accessories;
@@ -192,14 +191,13 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	}
 	function showColorPosition(nIndex)
 	{
-		var bWhite = true;
 		this._nSavedColor = this._svCharacter.getColor(nIndex);
 		this.onEnterFrame = function()
 		{
 			this._svCharacter.setColor(nIndex,!(bWhite = !bWhite)?16746632:16733525);
 		};
 	}
-	function hideColorPosition(§\x04\x17§)
+	function hideColorPosition(var2)
 	{
 		delete this.onEnterFrame;
 		this._svCharacter.setColor(var2,this._nSavedColor);
@@ -219,12 +217,12 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var var3 = new dofus.utils.nameChecker.	(var2);
+			var var3 = new dofus.utils.nameChecker.(var2);
 			var var4 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
 			var var5 = var3.isValidAgainstWithDetails(var4);
 			if(!var5.IS_SUCCESS)
 			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + IComparable + var5.toString(IComparable),"ERROR_BOX");
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + "\r\n" + var5.toString("\r\n"),"ERROR_BOX");
 				return undefined;
 			}
 		}
@@ -234,7 +232,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		this.api.network.Account.editCharacterColors(this._oColors.color1,this._oColors.color2,this._oColors.color3);
 	}
-	function setColors(§\x1e\x1a\t§)
+	function setColors(var2)
 	{
 		this._oColors = var2;
 		this._svCharacter.setColors(this._oColors);
@@ -243,7 +241,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 	{
 		this._mcRandomName._visible = false;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target)
@@ -283,7 +281,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 		}
 		this.unloadThis();
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -294,7 +292,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 				this.gapi.showTooltip(this.api.lang.getText("RANDOM_NICKNAME"),_root._xmouse,_root._ymouse - 20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		if((var var0 = var2.target) !== this._csColors)
 		{
@@ -305,7 +303,7 @@ class dofus.graphics.gapi.ui.EditPlayer extends dofus.graphics.gapi.core.DofusAd
 			this.hideColorPosition(var2.index);
 		}
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		switch(var2.target)
 		{

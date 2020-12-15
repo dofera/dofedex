@@ -1,6 +1,6 @@
 class dofus.datacenter.Hint extends Object
 {
-	function Hint(§\x11\x15§)
+	function Hint(var3)
 	{
 		super();
 		this.api = _global.API;

@@ -27,13 +27,11 @@ class dofus.graphics.gapi.controls.StatsViewer extends dofus.graphics.gapi.core.
 	function initData()
 	{
 		var var2 = this.api.datacenter.Player.FullStats;
-		var var3 = new ank.utils.
-();
+		var var3 = new ank.utils.();
 		for(var k in var2)
 		{
 			var3.push({isCat:true,name:this.api.lang.getText("FULL_STATS_CAT" + k)});
-			var var4 = new ank.utils.
-();
+			var var4 = new ank.utils.();
 			var var5 = 0;
 			while(var5 < var2[k].length)
 			{
@@ -42,15 +40,13 @@ class dofus.graphics.gapi.controls.StatsViewer extends dofus.graphics.gapi.core.
 			}
 			var4.sortOn("o",Array.NUMERIC);
 			var var6 = var3.concat(var4);
-			var3 = new ank.utils.
-();
+			var3 = new ank.utils.();
 			var3.createFromArray(var6);
 		}
 		this._dgStats.dataProvider = var3;
 	}
-	function fullStatsChanged(§\x1e\x19\x18§)
+	function fullStatsChanged(var2)
 	{
-		org.flashdevelop.utils.FlashConnect.mtrace("fullStatsChanged!","dofus.graphics.gapi.controls.StatsViewer::fullStatsChanged","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/controls/StatsViewer.as",103);
 		this.initData();
 	}
 }

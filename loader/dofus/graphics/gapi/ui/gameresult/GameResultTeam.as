@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.gameresult.GameResultTeam extends dofus.graphics.ga
 	{
 		super();
 	}
-	function __set__title(§\x1e\f\x1b§)
+	function __set__title(var2)
 	{
 		this._sTitle = var2;
 		return this.__get__title();
 	}
-	function __set__dataProvider(§\x10\x14§)
+	function __set__dataProvider(var2)
 	{
 		this._eaDataProvider = var2;
 		return this.__get__dataProvider();
@@ -47,10 +47,10 @@ class dofus.graphics.gapi.ui.gameresult.GameResultTeam extends dofus.graphics.ga
 		this._lstPlayers.setSize(undefined,Math.min(var2,dofus.graphics.gapi.ui.GameResult.MAX_VISIBLE_PLAYERS_IN_TEAM) * this._lstPlayers.rowHeight);
 		this._lstPlayers._visible = true;
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 		this.gapi.hideTooltip();
 	}

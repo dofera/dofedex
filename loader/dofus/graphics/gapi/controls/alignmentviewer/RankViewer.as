@@ -41,7 +41,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		this._pbDisgrace.maximum = this.api.lang.getMaxDisgracePoints();
 		this.rankChanged({rank:this.api.datacenter.Player.rank});
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -59,7 +59,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 				this.api.kernel.GameManager.showDisgraceSanction();
 		}
 	}
-	function rankChanged(§\x1e\x19\x18§)
+	function rankChanged(var2)
 	{
 		this._oRank = var2.rank;
 		var var3 = this.api.lang.getGradeHonourPointsBounds(this._oRank.value);
@@ -68,7 +68,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		this._pbHonour.value = this._oRank.honour;
 		this._mcHonour.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.honour).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbHonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.honour).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbHonour.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcHonour.onRollOut = function()
 		{
@@ -77,7 +77,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		this._pbDisgrace.value = this._oRank.disgrace;
 		this._mcDisgrace.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.disgrace).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbDisgrace.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(this._parent._oRank.disgrace).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbDisgrace.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcDisgrace.onRollOut = function()
 		{
@@ -119,7 +119,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 		}
 		this._btnDisgraceSanction._visible = this.api.datacenter.Player.rank.disgrace > 0;
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -130,7 +130,7 @@ class dofus.graphics.gapi.controls.alignmentviewer.RankViewer extends dofus.grap
 				this.gapi.showTooltip(this.api.lang.getText("DISGRACE_SANCTION_TOOLTIP"),this._btnDisgraceSanction,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

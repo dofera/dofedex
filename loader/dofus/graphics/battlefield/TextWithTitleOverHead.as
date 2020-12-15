@@ -4,13 +4,13 @@ class dofus.graphics.battlefield.TextWithTitleOverHead extends dofus.graphics.ba
 	static var STARS_WIDTH = 10;
 	static var STARS_MARGIN = 2;
 	static var STARS_COLORS = [-1,16777011,16750848,39168,39372,6697728,2236962,16711680,65280,16777215,16711935];
-	function TextWithTitleOverHead(§\x1e\r\x02§, §\x1e\x12\x18§, §\x07\x0e§, §\x05\r§, §\x1e\f\x1b§, §\x07\n§, nStarsValue)
+	function TextWithTitleOverHead(§\x1e\f\x12§, §\x1e\x12\x0b§, §\x06\x1d§, §\x04\x1d§, §\x1e\f\x0e§, §\x06\x19§, nStarsValue)
 	{
 		super();
 		this.initialize(nStarsValue);
 		this.draw(var3,var4,var5,var6,var7,var8);
 	}
-	function initialize(§\x1e\r\t§)
+	function initialize(var2)
 	{
 		super.initialize();
 		if(var3 == undefined || _global.isNaN(var3))
@@ -24,7 +24,7 @@ class dofus.graphics.battlefield.TextWithTitleOverHead extends dofus.graphics.ba
 		this._txtTitle.embedFonts = true;
 		this._aStars = new Array();
 	}
-	function draw(§\x1e\r\x02§, §\x1e\x12\x18§, §\x07\x0e§, §\x05\r§, §\x1e\f\x1b§, §\x07\n§)
+	function draw(var2, var3, var4, var5, var6, var7)
 	{
 		var var8 = var3 != undefined && var5 != undefined;
 		this._txtText.autoSize = "center";

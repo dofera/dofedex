@@ -4,7 +4,7 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 	{
 		super();
 	}
-	function attachClassMovie(className, instanceName, §\x11\x0b§, §\x1d\x12§)
+	function attachClassMovie(className, instanceName, §\x11\x03§, §\x1d\x10§)
 	{
 		var var6 = this.createEmptyMovieClip(instanceName,var4);
 		var6.__proto__ = className.prototype;
@@ -31,7 +31,7 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 			}
 		}
 	}
-	function end(§\x1e\x13\x05§)
+	function end(var2)
 	{
 		var var3 = this.getFirstParentProperty("_ACTION");
 		if(var2 == undefined)
@@ -40,7 +40,7 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 		}
 		var2.onActionEnd();
 	}
-	function getFirstParentProperty(§\x1e\x16\x11§)
+	function getFirstParentProperty(var2)
 	{
 		var var3 = 20;
 		var var4 = this;
@@ -54,11 +54,11 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 			var3 = var3 - 1;
 		}
 	}
-	function getActionClip(§\x1e\n\f§)
+	function getActionClip(var2)
 	{
 		return this.getFirstParentProperty("_ACTION");
 	}
-	function playAll(§\x0b\r§)
+	function playAll(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -73,7 +73,7 @@ class ank.utils.extensions.MovieClipExtensions extends MovieClip
 			}
 		}
 	}
-	function stopAll(§\x0b\r§)
+	function stopAll(var2)
 	{
 		if(var2 == undefined)
 		{

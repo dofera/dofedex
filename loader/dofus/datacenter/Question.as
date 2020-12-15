@@ -1,6 +1,6 @@
 class dofus.datacenter.Question extends Object
 {
-	function Question(§\x01\b§, §\x1d\x15§, §\x1d\x18§)
+	function Question(var3, var4, var5)
 	{
 		super();
 		this.initialize(var3,var4,var5);
@@ -17,7 +17,7 @@ class dofus.datacenter.Question extends Object
 	{
 		return this._eaResponsesObjects;
 	}
-	function initialize(§\x01\b§, §\x1d\x15§, §\x1d\x18§)
+	function initialize(var2, var3, var4)
 	{
 		this.api = _global.API;
 		this._nQuestionID = var2;
@@ -27,8 +27,7 @@ class dofus.datacenter.Question extends Object
 			var5 = var5 + " (" + var2 + ")";
 		}
 		this._sQuestionText = var5;
-		this._eaResponsesObjects = new ank.utils.
-();
+		this._eaResponsesObjects = new ank.utils.();
 		var var6 = 0;
 		while(var6 < var3.length)
 		{

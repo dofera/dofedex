@@ -9,16 +9,16 @@ class dofus.utils.ApiElement extends Object
 	{
 		return _global.API;
 	}
-	function __set__api(§\x1e\x1a\x15§)
+	function __set__api(var2)
 	{
 		this._oAPI = var2;
 		return this.__get__api();
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		this._oAPI = var2;
+		this._oAPI = oAPI;
 	}
-	function addToQueue(§\x1e\x1a\x0e§)
+	function addToQueue(var2)
 	{
 		dofus.utils.ApiElement._aQueue.push(var2);
 		if(_root.onEnterFrame == undefined)

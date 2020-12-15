@@ -1,8 +1,8 @@
 class dofus.aks.Conquest extends dofus.aks.Handler
 {
-	function Conquest(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Conquest(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 	}
 	function getAlignedBonus()
 	{
@@ -33,7 +33,7 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 	{
 		this.aks.send("CWV",false);
 	}
-	function switchPlaces(§\r\b§)
+	function switchPlaces(var2)
 	{
 		this.aks.send("CFS" + var2,true);
 	}
@@ -41,7 +41,7 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 	{
 		this.aks.send("Cb",true);
 	}
-	function onAreaAlignmentChanged(§\x1e\x12\x1a§)
+	function onAreaAlignmentChanged(var2)
 	{
 		var var3 = String(var2).split("|");
 		var var4 = Number(var3[0]);
@@ -57,21 +57,21 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,"<b>" + this.api.lang.getText("AREA_ALIGNMENT_IS",[var6,var7]) + "</b>","PVP_CHAT");
 		}
 	}
-	function onConquestBonus(§\x1e\x12\x1a§)
+	function onConquestBonus(var2)
 	{
 		var var3 = var2.split(";");
 		var var4 = String(var3[0]).split(",");
-		var var5 = new dofus.datacenter.();
+		var var5 = new dofus.datacenter.();
 		var5.xp = Number(var4[0]);
 		var5.drop = Number(var4[1]);
 		var5.recolte = Number(var4[2]);
 		var4 = String(var3[1]).split(",");
-		var var6 = new dofus.datacenter.();
+		var var6 = new dofus.datacenter.();
 		var6.xp = Number(var4[0]);
 		var6.drop = Number(var4[1]);
 		var6.recolte = Number(var4[2]);
 		var4 = String(var3[2]).split(",");
-		var var7 = new dofus.datacenter.();
+		var var7 = new dofus.datacenter.();
 		var7.xp = Number(var4[0]);
 		var7.drop = Number(var4[1]);
 		var7.recolte = Number(var4[2]);
@@ -79,28 +79,27 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 		this.api.datacenter.Conquest.rankMultiplicator = var6;
 		this.api.datacenter.Conquest.alignMalus = var7;
 	}
-	function onConquestBalance(§\x1e\x12\x1a§)
+	function onConquestBalance(var2)
 	{
 		var var3 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
 		var var4 = var2.split(";");
 		var3.setBalance(Number(var4[0]),Number(var4[1]));
 	}
-	function onWorldData(§\x1e\x12\x1a§)
+	function onWorldData(var2)
 	{
 		var var3 = var2.split("|");
-		var var4 = new dofus.datacenter.();
+		var var4 = new dofus.datacenter.();
 		var4.ownedAreas = Number(var3[0]);
 		var4.totalAreas = Number(var3[1]);
 		var4.possibleAreas = Number(var3[2]);
 		var var5 = var3[3];
 		var var6 = var5.split(";");
-		var4.areas = new ank.utils.
-();
+		var4.areas = new ank.utils.();
 		for(var var7 in var6)
 		{
 			if(var7.length >= 5)
 			{
-				var var8 = new dofus.datacenter.(Number(var7[0]),Number(var7[1]),Number(var7[2]) == 1,Number(var7[3]),Number(var7[4]) == 1);
+				var var8 = new dofus.datacenter.(Number(var7[0]),Number(var7[1]),Number(var7[2]) == 1,Number(var7[3]),Number(var7[4]) == 1);
 				var4.areas.push(var8);
 			}
 		}
@@ -109,20 +108,19 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 		var4.totalVillages = Number(var3[5]);
 		var var9 = var3[6];
 		var var10 = var9.split(";");
-		var4.villages = new ank.utils.
-();
+		var4.villages = new ank.utils.();
 		for(var var11 in var10)
 		{
 			if(var11.length == 4)
 			{
-				var var12 = new dofus.datacenter.(Number(var11[0]),Number(var11[1]),Number(var11[2]) == 1,Number(var11[3]) == 1);
+				var var12 = new dofus.datacenter.	(Number(var11[0]),Number(var11[1]),Number(var11[2]) == 1,Number(var11[3]) == 1);
 				var4.villages.push(var12);
 			}
 		}
 		var4.villages.sortOn("areaName");
 		this.api.datacenter.Conquest.worldDatas = var4;
 	}
-	function onPrismInfosJoined(§\x1e\x12\x1a§)
+	function onPrismInfosJoined(var2)
 	{
 		var var3 = var2.split(";");
 		var var4 = Number(var3[0]);
@@ -161,13 +159,13 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 			var5.sharePropertiesWithTab(var10);
 		}
 	}
-	function onPrismInfosClosing(§\x1e\x12\x1a§)
+	function onPrismInfosClosing(var2)
 	{
 		var var3 = (dofus.graphics.gapi.ui.Conquest)this.api.ui.getUIComponent("Conquest");
 		var3.sharePropertiesWithTab({noUnsubscribe:true});
 		this.api.ui.unloadUIComponent("Conquest");
 	}
-	function onPrismAttacked(§\x1e\x12\x1a§)
+	function onPrismAttacked(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -186,7 +184,7 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED",[var9,var7]),"PVP_CHAT");
 		}
 	}
-	function onPrismSurvived(§\x1e\x12\x1a§)
+	function onPrismSurvived(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -197,7 +195,7 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 		var var9 = String(this.api.lang.getMapSubAreaText(var8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(var8).n:String(this.api.lang.getMapSubAreaText(var8).n).substr(2);
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED_SUVIVED",[var9,var7]),"PVP_CHAT");
 	}
-	function onPrismDead(§\x1e\x12\x1a§)
+	function onPrismDead(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -208,7 +206,7 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 		var var9 = String(this.api.lang.getMapSubAreaText(var8).n).substr(0,2) != "//"?this.api.lang.getMapSubAreaText(var8).n:String(this.api.lang.getMapSubAreaText(var8).n).substr(2);
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("PRISM_ATTACKED_DIED",[var9,var7]),"PVP_CHAT");
 	}
-	function onPrismFightAddPlayer(§\x1e\x12\x1a§)
+	function onPrismFightAddPlayer(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -250,7 +248,7 @@ class dofus.aks.Conquest extends dofus.aks.Handler
 			var6 = var6 + 1;
 		}
 	}
-	function onPrismFightAddEnemy(§\x1e\x12\x1a§)
+	function onPrismFightAddEnemy(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");

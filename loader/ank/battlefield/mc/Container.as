@@ -1,6 +1,6 @@
 class ank.battlefield.mc.Container extends MovieClip
 {
-	function Container(§\x1d\x03§, §\x11\x17§, §\x1e\x19\x13§)
+	function Container(var2, var3, var4)
 	{
 		super();
 		if(var3 != undefined)
@@ -8,7 +8,7 @@ class ank.battlefield.mc.Container extends MovieClip
 			this.initialize(var3,var4,var5);
 		}
 	}
-	function initialize(§\x1d\x03§, §\x11\x17§, §\x1e\x19\x13§)
+	function initialize(var2, var3, var4)
 	{
 		if(var3 == undefined)
 		{
@@ -19,7 +19,7 @@ class ank.battlefield.mc.Container extends MovieClip
 		this._sObjectsFile = var4;
 		this.clear(true);
 	}
-	function clear(§\x19\x16§)
+	function clear(var2)
 	{
 		this.maxDepth = 0;
 		this.minDepth = -1000;
@@ -33,7 +33,6 @@ class ank.battlefield.mc.Container extends MovieClip
 			{
 				this.ExternalContainer.clear();
 			}
-			org.flashdevelop.utils.FlashConnect.mtrace("LOAD " + this._sObjectsFile,"ank.battlefield.mc.Container::clear","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/mc/Container.as",89);
 			var3.loadClip(this._sObjectsFile,this.ExternalContainer);
 		}
 		else
@@ -53,7 +52,7 @@ class ank.battlefield.mc.Container extends MovieClip
 			this.createEmptyMovieClip("LoadManager",600);
 		}
 	}
-	function applyMask(§\x1a\n§)
+	function applyMask(var2)
 	{
 		var var3 = this._oDatacenter.Map.width - 1;
 		var var4 = this._oDatacenter.Map.height - 1;
@@ -84,12 +83,12 @@ class ank.battlefield.mc.Container extends MovieClip
 		}
 		this.setMask(this._mcMask);
 	}
-	function adjusteMap(§\x1e\n\f§)
+	function adjusteMap(var2)
 	{
 		this.zoomMap();
 		this.center();
 	}
-	function setColor(§\x1e\x17\x18§)
+	function setColor(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -104,7 +103,7 @@ class ank.battlefield.mc.Container extends MovieClip
 		var var3 = new Color(this);
 		var3.setTransform(var2);
 	}
-	function zoom(§\x1e\t\x11§)
+	function zoom(var2)
 	{
 		this._xscale = var2;
 		this._yscale = var2;
@@ -113,12 +112,12 @@ class ank.battlefield.mc.Container extends MovieClip
 	{
 		return this._xscale;
 	}
-	function setXY(§\x1e\n\x04§, §\x1e\t\x18§)
+	function setXY(var2, var3)
 	{
 		this._x = var2;
 		this._y = var3;
 	}
-	function center(§\x1e\n\f§)
+	function center(var2)
 	{
 		var var3 = this._xscale / 100;
 		var var4 = this._yscale / 100;
@@ -126,7 +125,7 @@ class ank.battlefield.mc.Container extends MovieClip
 		var var6 = (this._mcBattlefield.screenHeight - ank.battlefield.Constants.CELL_HEIGHT * var4 * (this._oDatacenter.Map.height - 1)) / 2;
 		this.setXY(var5,var6);
 	}
-	function zoomMap(§\x1e\n\f§)
+	function zoomMap(var2)
 	{
 		var var3 = this.getZoomFactor();
 		if(var3 == 100)
@@ -136,7 +135,7 @@ class ank.battlefield.mc.Container extends MovieClip
 		this.zoom(var3,false);
 		return true;
 	}
-	function getZoomFactor(§\x1e\n\f§)
+	function getZoomFactor(var2)
 	{
 		var var3 = this._oDatacenter.Map.width;
 		var var4 = this._oDatacenter.Map.height;

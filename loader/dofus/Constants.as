@@ -16,10 +16,10 @@ class dofus.Constants extends Object
 	static var SAVING_THE_WORLD = false;
 	static var VERSION = 1;
 	static var SUBVERSION = 34;
-	static var SUBSUBVERSION = 0;
+	static var SUBSUBVERSION = 1;
 	static var BETAVERSION = 0;
 	static var ALPHA = false;
-	static var VERSIONDATE = "07/12/2020 11:21 GMT+1";
+	static var VERSIONDATE = "14/12/2020 11:37 GMT+1";
 	static var LANG_SHAREDOBJECT_NAME = "ANKLANGSO";
 	static var XTRA_SHAREDOBJECT_NAME = "ANKXTRASO";
 	static var OPTIONS_SHAREDOBJECT_NAME = "ANKOPTIONSSO";
@@ -206,7 +206,7 @@ class dofus.Constants extends Object
 	{
 		return dofus.utils.Api.getInstance().lang.getConfigText("ZONE_COLOR");
 	}
-	static function isItemSuperTypeSkinable(§\x1e\x1c\x1d§)
+	static function isItemSuperTypeSkinable(var2)
 	{
 		switch(var2)
 		{
@@ -219,7 +219,7 @@ class dofus.Constants extends Object
 				return false;
 		}
 	}
-	static function getTeamFileFromType(§\x1e\x1c\x03§, §\t\f§)
+	static function getTeamFileFromType(var2, var3)
 	{
 		switch(var2)
 		{
@@ -259,7 +259,7 @@ class dofus.Constants extends Object
 		}
 		return var4;
 	}
-	static function getElementColorById(§\x06\x06§)
+	static function getElementColorById(var2)
 	{
 		if(var2 == undefined)
 		{

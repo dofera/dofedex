@@ -6,10 +6,10 @@ class ank.battlefield.mc.Sprite extends MovieClip
 	static var WALK_SPEEDS = [0.07,0.06,0.06,0.06,0.07,0.06,0.06,0.06];
 	static var MOUNT_SPEEDS = [0.23,0.2,0.2,0.2,0.23,0.2,0.2,0.2];
 	static var RUN_SPEEDS = [0.17,0.15,0.15,0.15,0.17,0.15,0.15,0.15];
-	function Sprite(§\x1d\x03§, §\x1e\x13\x11§, §\x11\x17§)
+	function Sprite(var3, var4, var5)
 	{
 		super();
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 		this.initialize(var3,var4,var5);
 	}
 	function __get__gfx()
@@ -20,17 +20,17 @@ class ank.battlefield.mc.Sprite extends MovieClip
 	{
 		return this._oData;
 	}
-	function __set__mcCarried(§\x0b\r§)
+	function __set__mcCarried(var2)
 	{
 		this._mcCarried = var2;
 		return this.__get__mcCarried();
 	}
-	function __set__mcChevauchorPos(§\x0b\r§)
+	function __set__mcChevauchorPos(var2)
 	{
 		this._mcChevauchorPos = var2;
 		return this.__get__mcChevauchorPos();
 	}
-	function __set__isHidden(§\x1d\x03§)
+	function __set__isHidden(var2)
 	{
 		this.setHidden(var2);
 		return this.__get__isHidden();
@@ -39,7 +39,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 	{
 		return this._bHidden;
 	}
-	function initialize(§\x1d\x03§, §\x1e\x13\x11§, §\x11\x17§)
+	function initialize(var2, var3, var4)
 	{
 		_global.GAC.addSprite(this,var4);
 		this._mcBattlefield = var2;
@@ -69,7 +69,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		this.removeExtraClip();
 		this._oData.isClear = true;
 	}
-	function select(§\x16\x1d§)
+	function select(var2)
 	{
 		var var3 = new Object();
 		if(var2)
@@ -82,7 +82,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		this.setColorTransform(var3);
 	}
-	function addExtraClip(§\x1e\x12\x18§, §\x07\x0e§, §\x14\x12§)
+	function addExtraClip(var2, var3, var4)
 	{
 		if(var2 == undefined)
 		{
@@ -112,7 +112,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		var6.loadMovie(var2);
 	}
-	function removeExtraClip(§\x14\x12§)
+	function removeExtraClip(var2)
 	{
 		switch(var2)
 		{
@@ -131,16 +131,16 @@ class ank.battlefield.mc.Sprite extends MovieClip
 				this.createEmptyMovieClip("_mcXtraBack",10);
 		}
 	}
-	function setColorTransform(§\x1e\f\x02§)
+	function setColorTransform(var2)
 	{
 		var var3 = new Color(this);
 		var3.setTransform(var2);
 	}
-	function setNewCellNum(§\b\x02§)
+	function setNewCellNum(var2)
 	{
 		this._oData.cellNum = Number(var2);
 	}
-	function setDirection(§\x06\x14§)
+	function setDirection(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -149,7 +149,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		this._oData.direction = var2;
 		this.setAnim(this._oData.animation);
 	}
-	function setPosition(§\b\x02§)
+	function setPosition(var2)
 	{
 		this.updateMap(var2,this._oData.isVisible);
 		this.setDepth(var2);
@@ -167,7 +167,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		this._x = var3.x;
 		this._y = var3.y - var5 * ank.battlefield.Constants.LEVEL_HEIGHT;
 	}
-	function setDepth(§\b\x02§)
+	function setDepth(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -180,17 +180,17 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			this._oData.carriedChild.mc.setDepth(var2);
 		}
 	}
-	function setVisible(§\x16\x1d§)
+	function setVisible(var2)
 	{
 		this._oData.isVisible = var2;
 		this._visible = var2;
 		this.updateMap(this._oData.cellNum,var2);
 	}
-	function setAlpha(§\x1e\n\x0f§)
+	function setAlpha(var2)
 	{
 		this._mcGfx._alpha = var2;
 	}
-	function setHidden(§\x1d\x03§)
+	function setHidden(var2)
 	{
 		this._bHidden = var2;
 		if(this._bHidden)
@@ -204,7 +204,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			this._mcGfx._visible = true;
 		}
 	}
-	function setGhostView(§\x16\x1d§)
+	function setGhostView(var2)
 	{
 		this.setDepth();
 		if(var2)
@@ -217,7 +217,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			this.setAlpha(this._nLastAlphaValue);
 		}
 	}
-	function moveToCell(§\x1e\x13\x05§, §\x13\n§, §\x15\x01§, §\x1e\r\x1c§, §\x1e\x15\x04§, §\x1a\x01§)
+	function moveToCell(var2, var3, var4, var5, var6, var7)
 	{
 		if(var3 != this._oData.cellNum)
 		{
@@ -320,7 +320,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			var2.onActionEnd();
 		}
 	}
-	function basicMove(speed, §\x12\b§, §\x1e\x11\x16§)
+	function basicMove(speed, §\x12\x03§, §\x1e\x11\t§)
 	{
 		var var5 = getTimer() - this._nLastTimer;
 		var var6 = speed * (var5 <= 125?var5:125);
@@ -334,7 +334,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		return true;
 	}
-	function basicMoveEnd(§\x1e\x13\x05§, xDest, yDest, §\x13\n§, §\x15\x01§, §\x15\t§, §\x15\x17§)
+	function basicMoveEnd(var2, var3, var4, var5, var6, var7, var8)
 	{
 		if(this._nOldCellNum != undefined)
 		{
@@ -358,7 +358,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		var2.onActionEnd();
 	}
-	function saveLastAnimation(§\x1e\x15\x05§)
+	function saveLastAnimation(var2)
 	{
 		if(!this._oData.isMounting)
 		{
@@ -371,7 +371,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			this._mcGfx.mcAnimBack.lastAnimation = var2;
 		}
 	}
-	function setAnimTimer(§\x1e\x03§, §\x18\x01§, §\x19\x1d§, §\x1e\x1c\n§)
+	function setAnimTimer(var2, var3, var4, var5)
 	{
 		this.setAnim(var2,var3,var4);
 		if(_global.isNaN(Number(var5)))
@@ -384,8 +384,9 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		ank.utils.Timer.setTimer(this,"battlefield",this,this.setAnim,var5,[this._oData.defaultAnimation]);
 	}
-	static function getDirNumByChar(§\x1e\x13\f§)
+	static function getDirNumByChar(var2)
 	{
+		loop0:
 		switch(var2)
 		{
 			case "S":
@@ -397,21 +398,22 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			case "F":
 				var3 = 2;
 				break;
-			case "L":
-				var3 = 5;
-				break;
 			default:
-				if(var0 !== "B")
+				switch(null)
 				{
-					var3 = -1;
-					break;
+					case "L":
+						var3 = 5;
+						break loop0;
+					case "B":
+						var3 = 6;
+						break loop0;
+					default:
+						var3 = -1;
 				}
-				var3 = 6;
-				break;
 		}
 		return var3;
 	}
-	function setAnim(§\x1e\x03§, §\x18\x01§, §\x19\x1d§)
+	function setAnim(var2, var3, var4)
 	{
 		if(var2 == undefined)
 		{
@@ -594,7 +596,7 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		}
 		return this._oData.animation != "static" || this._oData.isInMove;
 	}
-	function updateMap(§\b\x02§, §\x14\x02§, §\x1a\x1b§)
+	function updateMap(var2, var3, var4)
 	{
 		var var5 = this._mcBattlefield.mapHandler.getCellData(var2);
 		if(var5 == undefined)
@@ -622,12 +624,12 @@ class ank.battlefield.mc.Sprite extends MovieClip
 			var5.addSpriteOnID(this._oData.id);
 		}
 	}
-	function setScale(§\x1e\x1e\t§, §\x1e\x1e\b§)
+	function setScale(var2, var3)
 	{
 		this._mcGfx._xscale = var2;
 		this._mcGfx._yscale = var3 == undefined?var2:var3;
 	}
-	function onLoadInit(§\x0b\r§)
+	function onLoadInit(var2)
 	{
 		this.onEnterFrame = function()
 		{
@@ -659,15 +661,15 @@ class ank.battlefield.mc.Sprite extends MovieClip
 		};
 		this.dispatchEvent({type:"onLoadInit",clip:this});
 	}
-	function _release(§\x1e\n\f§)
+	function _release(var2)
 	{
 		this._mcBattlefield.onSpriteRelease(this);
 	}
-	function _rollOver(§\x1a\f§)
+	function _rollOver(var2)
 	{
 		this._mcBattlefield.onSpriteRollOver(this,var2);
 	}
-	function _rollOut(§\x1a\f§)
+	function _rollOut(var2)
 	{
 		this._mcBattlefield.onSpriteRollOut(this,var2);
 	}

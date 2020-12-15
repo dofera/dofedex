@@ -7,12 +7,12 @@ class dofus.graphics.gapi.ui.subway.SubwayItem extends dofus.graphics.gapi.core.
 		this._mcUnderAttackInteractivity._visible = false;
 		this.api = _global.API;
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -25,6 +25,7 @@ class dofus.graphics.gapi.ui.subway.SubwayItem extends dofus.graphics.gapi.core.
 			{
 				this._mcUnderAttack._visible = true;
 				this._mcUnderAttackInteractivity._visible = true;
+				var ref = this;
 				this._mcUnderAttackInteractivity.onRollOver = function()
 				{
 					ref.over({target:this});
@@ -62,18 +63,18 @@ class dofus.graphics.gapi.ui.subway.SubwayItem extends dofus.graphics.gapi.core.
 	{
 		this._btnLocate.addEventListener("click",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		this.api.kernel.GameManager.updateCompass(this._oItem.x,this._oItem.y,true);
 	}
-	function over(§\x0f\r§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._mcUnderAttackInteractivity)
 		{
 			this.api.ui.showTooltip(this.api.lang.getText("CONQUEST_NEAR_PRISM_UNDER_ATTACK"),_root._xmouse,_root._ymouse);
 		}
 	}
-	function out(§\x0f\r§)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

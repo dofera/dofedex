@@ -4,7 +4,7 @@ class dofus.graphics.gapi.ui.mountstorage.MountStorageMountItem extends ank.gapi
 	{
 		super();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -53,7 +53,7 @@ class dofus.graphics.gapi.ui.mountstorage.MountStorageMountItem extends ank.gapi
 	{
 		this._lbl.setSize(this.__width,this.__height);
 	}
-	function applyRideColor(§\x0b\r§, §\x1e\t\x10§)
+	function applyRideColor(var2, var3)
 	{
 		var var4 = this._oItem["color" + var3];
 		if(var4 == -1 || var4 == undefined)
@@ -68,10 +68,9 @@ class dofus.graphics.gapi.ui.mountstorage.MountStorageMountItem extends ank.gapi
 		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
 		var8.setTransform(var9);
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
-		var ref = this;
-		this._ldrIcon.content.applyRideColor = function(§\x0b\r§, §\x1e\t\x14§)
+		this._ldrIcon.content.applyRideColor = function(var2, var3)
 		{
 			ref.applyRideColor(var2,var3);
 		};

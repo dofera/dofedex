@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 	{
 		var var2 = SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
 		var2._parentRef = this;
-		var2.onStatus = function(§\x1e\x19\x18§)
+		var2.onStatus = function(var2)
 		{
 			if(var2.level == "status" && var2.code == "SharedObject.Flush.Success")
 			{
@@ -70,7 +70,7 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 			this._btnTipsOnStart.selected = this.api.kernel.OptionsManager.getOption("TipsOnStart");
 		}
 	}
-	function showTip(§\x05\x02§)
+	function showTip(var2)
 	{
 		var var3 = this.api.lang.getTips().length - 1;
 		if(var2 == undefined)
@@ -96,7 +96,7 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 			this.unloadThis();
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -118,14 +118,14 @@ class dofus.graphics.gapi.ui.Tips extends dofus.graphics.gapi.core.DofusAdvanced
 				}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if(this._bSOEnabled == false)
 		{
 			this.gapi.showTooltip("Les cookies flash doivent être activés pour accèder à cette fonctionnalité.",this._btnTipsOnStart,-30);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

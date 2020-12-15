@@ -7,7 +7,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__background(§\x1e\x14\x1a§)
+	function __set__background(var2)
 	{
 		this._sBackground = var2;
 		return this.__get__background();
@@ -16,7 +16,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackground;
 	}
-	function __set__arrowHours(§\x1e\x15\x01§)
+	function __set__arrowHours(var2)
 	{
 		this._sArrowHours = var2;
 		return this.__get__arrowHours();
@@ -25,7 +25,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sArrowHours;
 	}
-	function __set__arrowMinutes(§\x1e\x14\x1d§)
+	function __set__arrowMinutes(var2)
 	{
 		this._sArrowMinutes = var2;
 		return this.__get__arrowMinutes();
@@ -34,7 +34,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sArrowMinutes;
 	}
-	function __set__hours(§\x05\x05§)
+	function __set__hours(var2)
 	{
 		this._nHours = var2 % 12;
 		if(this.initialized)
@@ -47,7 +47,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nHours;
 	}
-	function __set__minutes(§\x02\x1b§)
+	function __set__minutes(var2)
 	{
 		this._nMinutes = var2 % 59;
 		if(this.initialized)
@@ -60,7 +60,7 @@ class ank.gapi.controls.Clock extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMinutes;
 	}
-	function __set__updateFunction(§\x1e\x17\x14§)
+	function __set__updateFunction(var2)
 	{
 		this._oUpdateFunction = var2;
 		return this.__get__updateFunction();

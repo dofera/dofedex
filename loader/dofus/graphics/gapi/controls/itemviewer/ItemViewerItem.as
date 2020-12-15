@@ -4,12 +4,12 @@ class dofus.graphics.gapi.controls.itemviewer.ItemViewerItem extends ank.gapi.co
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		this._oItem = var4;
 		if(var2)
@@ -53,20 +53,21 @@ class dofus.graphics.gapi.controls.itemviewer.ItemViewerItem extends ank.gapi.co
 						case "E":
 							this.showLoader(true,"IconEarthDommage");
 							break;
+						case "A":
+							this.showLoader(true,"IconAirDommage");
+							break;
 						default:
-							switch(null)
+							if(var0 !== "N")
 							{
-								case "A":
-									this.showLoader(true,"IconAirDommage");
-									break;
-								case "N":
-									this.showLoader(true,"IconNeutralDommage");
+								break;
 							}
+							this.showLoader(true,"IconNeutralDommage");
+							break;
 					}
 				}
 				else
 				{
-					loop3:
+					loop2:
 					switch(Number(var4.characteristic))
 					{
 						case 13:
@@ -86,34 +87,34 @@ class dofus.graphics.gapi.controls.itemviewer.ItemViewerItem extends ank.gapi.co
 							{
 								case 10:
 									this.showLoader(true,"IconEarthBonus");
-									break loop3;
+									break loop2;
 								case 33:
 									this.showLoader(true,"IconEarth");
-									break loop3;
+									break loop2;
 								case 14:
 									this.showLoader(true,"IconAirBonus");
-									break loop3;
+									break loop2;
 								case 36:
 									this.showLoader(true,"IconAir");
-									break loop3;
+									break loop2;
 								case 37:
 									this.showLoader(true,"IconNeutral");
-									break loop3;
+									break loop2;
 								default:
 									switch(null)
 									{
 										case 1:
 											this.showLoader(true,"Star");
-											break loop3;
+											break loop2;
 										case 11:
 											this.showLoader(true,"IconVita");
-											break loop3;
+											break loop2;
 										case 12:
 											this.showLoader(true,"IconWisdom");
-											break loop3;
+											break loop2;
 										case 44:
 											this.showLoader(true,"IconInit");
-											break loop3;
+											break loop2;
 										default:
 											switch(null)
 											{
@@ -162,7 +163,7 @@ class dofus.graphics.gapi.controls.itemviewer.ItemViewerItem extends ank.gapi.co
 	{
 		this._lbl.setSize(this.__width,this.__height);
 	}
-	function showButton(§\x15\x13§, §\x1e\x11\x1b§)
+	function showButton(var2, var3)
 	{
 		this._btn._visible = var2;
 		this._btn.icon = var3;
@@ -172,13 +173,13 @@ class dofus.graphics.gapi.controls.itemviewer.ItemViewerItem extends ank.gapi.co
 			this._btn.removeEventListener("click",this);
 		}
 	}
-	function showLoader(§\x15\x13§, §\x1e\x11\x1b§)
+	function showLoader(var2, var3)
 	{
 		this._ldr._visible = var2;
 		this._ldr.contentPath = var3;
 		this._ldr._x = this.__width - 17;
 	}
-	function moveLabel(§\x1e\n\x04§)
+	function moveLabel(var2)
 	{
 		this._lbl._x = var2;
 	}

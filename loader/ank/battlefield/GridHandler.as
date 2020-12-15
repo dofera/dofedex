@@ -1,15 +1,15 @@
 class ank.battlefield.GridHandler
 {
-	function GridHandler(§\x13\x14§, §\x11\x17§)
+	function GridHandler(var3, var4)
 	{
 		this.initialize(var2,var3);
 	}
-	function initialize(§\x13\x14§, §\x11\x17§)
+	function initialize(var2, var3)
 	{
 		this._mcContainer = var2;
 		this._oDatacenter = var3;
 	}
-	function draw(§\x1c\x18§)
+	function draw(var2)
 	{
 		this._mcGrid = this._mcContainer.createEmptyMovieClip("mcGrid",10);
 		var var3 = this._oDatacenter.Map.data;
@@ -56,7 +56,7 @@ class ank.battlefield.GridHandler
 		}
 		this.bGridVisible = true;
 	}
-	function clear(§\x1e\n\f§)
+	function clear(var2)
 	{
 		this._mcGrid.removeMovieClip();
 		this.bGridVisible = false;

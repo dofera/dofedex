@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.PayZone extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		super();
 	}
-	function __set__dialogID(§\x06\x16§)
+	function __set__dialogID(var2)
 	{
 		this._nDialogID = var2;
 		return this.__get__dialogID();
@@ -26,7 +26,7 @@ class dofus.graphics.gapi.ui.PayZone extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		this._btnInfos.addEventListener("click",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		this.gapi.loadUIComponent("PayZoneDialog2","PayZoneDialog2",{name:"El Pemy",gfx:"9059",dialogID:this._nDialogID});
 	}

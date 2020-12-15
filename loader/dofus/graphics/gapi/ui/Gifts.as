@@ -5,12 +5,12 @@ class dofus.graphics.gapi.ui.Gifts extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		super();
 	}
-	function __set__gift(§\x1e\x19\x11§)
+	function __set__gift(var2)
 	{
 		this._oGift = var2;
 		return this.__get__gift();
 	}
-	function __set__spriteList(§\x1d\x0b§)
+	function __set__spriteList(var2)
 	{
 		this._aSpriteList = var2;
 		return this.__get__spriteList();
@@ -95,7 +95,7 @@ class dofus.graphics.gapi.ui.Gifts extends dofus.graphics.gapi.core.DofusAdvance
 			}
 		}
 	}
-	function select(§\x1e\x19\x18§)
+	function select(var2)
 	{
 		var var3 = var2.target.params.index;
 		this["_ccs" + this._nSelectedIndex].selected = false;
@@ -115,11 +115,11 @@ class dofus.graphics.gapi.ui.Gifts extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this._nSaveLastClick = getTimer();
 	}
-	function selectItem(§\x1e\x19\x18§)
+	function selectItem(var2)
 	{
 		this._itvItemViewer.itemData = var2.target.contentData;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -137,7 +137,7 @@ class dofus.graphics.gapi.ui.Gifts extends dofus.graphics.gapi.core.DofusAdvance
 				break;
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoGiftAttribution")
 		{

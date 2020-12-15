@@ -1,14 +1,14 @@
-class org.utils.Bitmap
+class eval(org).utils.Bitmap
 {
 	function Bitmap()
 	{
 	}
-	static function loadBitmapSmoothed(§\x1e\n\x14§, §\x1e\f\x01§)
+	static function loadBitmapSmoothed(var2, var3)
 	{
 		var var4 = var3.createEmptyMovieClip("bmc",var3.getNextHighestDepth());
 		var var5 = new Object();
 		var5.tmc = var3;
-		var5.onLoadInit = function(§\x0b\r§)
+		var5.onLoadInit = function(var2)
 		{
 			var2._visible = false;
 			var2.forceSmoothing = true;

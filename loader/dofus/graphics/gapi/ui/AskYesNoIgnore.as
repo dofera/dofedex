@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(§\x1e\r\x02§)
+	function __set__text(var2)
 	{
 		this._sText = var2;
 		return this.__get__text();
@@ -14,7 +14,7 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 	{
 		return this._sText;
 	}
-	function __set__player(§\x1e\x0f\x05§)
+	function __set__player(var2)
 	{
 		this._sPlayer = var2;
 		return this.__get__player();
@@ -41,7 +41,7 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 		var2._txtText.addEventListener("change",this);
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -53,7 +53,7 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 		}
 		this.unloadThis();
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		var var3 = this._winBackground.content;
 		var3._btnYes._y = var3._txtText._y + var3._txtText.height + 20;
@@ -61,7 +61,7 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 		var3._txtIgnore._y = var3._btnNo._y + var3._btnNo.height + 10;
 		this._winBackground.setPreferedSize();
 	}
-	function onShortcut(§\x1e\x0e\x04§)
+	function onShortcut(var2)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{
@@ -70,7 +70,7 @@ class dofus.graphics.gapi.ui.AskYesNoIgnore extends ank.gapi.ui.FlyWindow
 		}
 		return true;
 	}
-	function href(§\x1e\x19\x18§)
+	function href(var2)
 	{
 		this.params.player = this._sPlayer;
 		this.dispatchEvent({type:"ignore",params:this.params});

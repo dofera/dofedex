@@ -3,7 +3,7 @@ class ank.battlefield.utils.SpriteDepthFinder
 	function SpriteDepthFinder()
 	{
 	}
-	static function getFreeDepthOnCell(mapHandler, §\x1e\x18\x01§, §\b\x02§, bGhostView)
+	static function getFreeDepthOnCell(mapHandler, §\x1e\x17\x14§, §\x07\x11§, bGhostView)
 	{
 		if(var4 < 0)
 		{
@@ -17,8 +17,9 @@ class ank.battlefield.utils.SpriteDepthFinder
 		}
 		var var6 = mapHandler.getCellData(var4).allSpritesOn;
 		var var7 = new Object();
-		for(var7[var3.getItemAt(k).mc.getDepth()] in var6)
+		for(var k in var6)
 		{
+			var7[var3.getItemAt(k).mc.getDepth()] = true;
 		}
 		var var8 = var4 * 100 + ank.battlefield.Constants.FIRST_SPRITE_DEPTH_ON_CELL + (!bGhostView?0:ank.battlefield.Constants.MAX_DEPTH_IN_MAP);
 		var var9 = 0;

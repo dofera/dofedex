@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__item(§\x1e\x19\r§)
+	function __set__item(var2)
 	{
 		this._oItem = var2;
 		if(this.initialized)
@@ -52,18 +52,16 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 			this.search(this._oItem);
 		}
 	}
-	function search(§\x1e\x19\r§)
+	function search(var2)
 	{
-		this._eaReceipts = new ank.utils.
-();
+		this._eaReceipts = new ank.utils.();
 		var var3 = this.api.lang.getAllCrafts();
 		var var4 = new Array();
 		for(var a in var3)
 		{
 			if(a == var2.unicID)
 			{
-				var var5 = new ank.utils.
-();
+				var var5 = new ank.utils.();
 				var5.push(this.createCraftObject(Number(a),var3));
 				this._lstReceipt.dataProvider = var5;
 			}
@@ -81,8 +79,7 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 				}
 			}
 		}
-		var var8 = new ank.utils.
-();
+		var var8 = new ank.utils.();
 		var8.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),id:0});
 		var var9 = new Object();
 		if(var4.length > 0)
@@ -111,38 +108,37 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 		}
 		this.hideReceiptViewer(this._lstReceipt.dataProvider.length != 1);
 	}
-	function createCraftObject(§\x07\x06§, §\x18§)
+	function createCraftObject(var2, var3)
 	{
 		var var4 = var3[var2];
 		var var5 = new Object();
-		var5.craftItem = new dofus.datacenter.(0,var2,1);
+		var5.craftItem = new dofus.datacenter.(0,var2,1);
 		var5.items = new Array();
 		var var6 = 0;
 		while(var6 < var4.length)
 		{
 			var var7 = var4[var6][0];
 			var var8 = var4[var6][1];
-			var var9 = new dofus.datacenter.(0,var7,var8);
+			var var9 = new dofus.datacenter.(0,var7,var8);
 			var5.items.push(var9);
 			var6 = var6 + 1;
 		}
 		return var5;
 	}
-	function hideReceiptViewer(§\x19\x0e§)
+	function hideReceiptViewer(var2)
 	{
 		this._lstReceipt._visible = !var2;
 		this._lblNoReceipt._visible = var2;
 	}
-	function hideCraftsViewer(§\x19\x0e§)
+	function hideCraftsViewer(var2)
 	{
 		this._lstCrafts._visible = !var2;
 		this._cbReceiptTypes.enabled = !var2;
 		this._lblNoCrafts._visible = var2;
 	}
-	function setReceiptType(§\x1e\x1c\x02§)
+	function setReceiptType(var2)
 	{
-		var var3 = new ank.utils.
-();
+		var var3 = new ank.utils.();
 		if(var2 == 0)
 		{
 			var3 = this._eaReceipts;
@@ -173,7 +169,7 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 			var7 = var7 + 1;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if(var2.target == this._btnClose)
 		{
@@ -181,7 +177,7 @@ class dofus.graphics.gapi.ui.ItemUtility extends dofus.graphics.gapi.core.DofusA
 			return undefined;
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		if((var var0 = var2.target._name) === "_cbReceiptTypes")
 		{

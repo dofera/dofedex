@@ -1,6 +1,6 @@
 class dofus.datacenter.CloseCombat extends Object
 {
-	function CloseCombat(§\x1e\x19\r§, §\x07\x0f§)
+	function CloseCombat(var3, var4)
 	{
 		super();
 		this.initialize(var3,var4);
@@ -210,29 +210,25 @@ class dofus.datacenter.CloseCombat extends Object
 		for(var k in var3)
 		{
 			var var4 = var3[k].element;
-			if((var var0 = var4) !== "N")
+			switch(var4)
 			{
-				switch(null)
-				{
-					case "E":
-						var2.earth = true;
-						break;
-					case "F":
-						var2.fire = true;
-						break;
-					case "W":
-						var2.water = true;
-						break;
-					case "A":
-						var2.air = true;
-						break;
-					default:
-						var2.none = true;
-				}
-			}
-			else
-			{
-				var2.neutral = true;
+				case "N":
+					var2.neutral = true;
+					break;
+				case "E":
+					var2.earth = true;
+					break;
+				case "F":
+					var2.fire = true;
+					break;
+				case "W":
+					var2.water = true;
+					break;
+				case "A":
+					var2.air = true;
+					break;
+				default:
+					var2.none = true;
 			}
 		}
 		return var2;
@@ -253,7 +249,7 @@ class dofus.datacenter.CloseCombat extends Object
 	{
 		return this._aRequiredStates.length > 0 || this._aForbiddenStates.length > 0;
 	}
-	function initialize(§\x1e\x19\r§, §\x07\x0f§)
+	function initialize(var2, var3)
 	{
 		this.api = _global.API;
 		this._oItem = var2;
@@ -278,7 +274,7 @@ class dofus.datacenter.CloseCombat extends Object
 		this._aRequiredStates = var7[9];
 		this._aForbiddenStates = var7[10];
 	}
-	function getDefaultProperty(§\x01\x12§)
+	function getDefaultProperty(var2)
 	{
 		return this._oCloseCombatClassInfos[var2];
 	}

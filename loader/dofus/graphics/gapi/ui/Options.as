@@ -10,22 +10,19 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 	{
 		super.init(false,dofus.graphics.gapi.ui.Options.CLASS_NAME);
 		var var3 = System.capabilities.playerType == "StandAlone" && System.capabilities.os.indexOf("Windows") != -1;
-		this._eaDisplayStyles = new ank.utils.
-();
+		this._eaDisplayStyles = new ank.utils.();
 		this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_NORMAL"),style:"normal"});
 		if(System.capabilities.screenResolutionY > 950 || var3)
 		{
 			this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_MEDIUM" + (!var3?"":"_RES")),style:"medium"});
 		}
 		this._eaDisplayStyles.push({label:this.api.lang.getText("DISPLAYSTYLE_MAXIMIZED" + (!var3?"":"_RES")),style:"maximized"});
-		this._eaFlashQualities = new ank.utils.
-();
+		this._eaFlashQualities = new ank.utils.();
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_LOW"),quality:"low"});
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_MEDIUM"),quality:"medium"});
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_HIGH"),quality:"high"});
 		this._eaFlashQualities.push({label:this.api.lang.getText("QUALITY_BEST"),quality:"best"});
-		this._eaSpellIconsPacks = new ank.utils.
-();
+		this._eaSpellIconsPacks = new ank.utils.();
 		this._eaSpellIconsPacks.push({label:this.api.lang.getText("UI_OPTION_SPELLCOLOR_CLASSIC"),frame:3});
 		this._eaSpellIconsPacks.push({label:this.api.lang.getText("UI_OPTION_SPELLCOLOR_REMASTERED"),frame:1});
 		this._eaSpellIconsPacks.push({label:this.api.lang.getText("UI_OPTION_SPELLCOLOR_CONTRAST"),frame:2});
@@ -236,7 +233,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 		var var4 = new Color(this._mcTabViewer._cbDisplayStyle);
 		var4.setTransform(!var3?{ra:30,rb:149,ga:30,gb:145,ba:30,bb:119}:{ra:100,rb:0,ga:100,gb:0,ba:100,bb:0});
 	}
-	function selectQuality(§\x1e\x0e\x16§)
+	function selectQuality(var2)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -251,7 +248,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this._mcTabViewer._cbDefaultQuality.selectedIndex = var3;
 	}
-	function selectRemasteredSpellIconsPack(§\x02\f§)
+	function selectRemasteredSpellIconsPack(var2)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -266,7 +263,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 		}
 		this._mcTabViewer._cbSpellIconsPack.selectedIndex = var3;
 	}
-	function selectDisplayStyle(§\x1e\r\x14§)
+	function selectDisplayStyle(var2)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -301,7 +298,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 		this.addToQueue({object:this,method:this.initTabTexts});
 		this.addToQueue({object:this,method:this.addTabListeners});
 	}
-	function setCurrentTab(§\x1e\x10\x04§)
+	function setCurrentTab(var2)
 	{
 		this._mcComboBoxPopup.removeMovieClip();
 		var var3 = this["_btnTab" + this._sCurrentTab];
@@ -314,7 +311,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 		this._sbOptions.scrollPosition = 0;
 		this.updateCurrentTabInformations();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -358,12 +355,12 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 							case "_btnTransparency":
 								this.api.kernel.OptionsManager.setOption("Transparency",var2.target.selected);
 								break loop0;
-							case "_btnSpriteInfos":
-								this.api.kernel.OptionsManager.setOption("SpriteInfos",var2.target.selected);
-								break loop0;
 							default:
 								switch(null)
 								{
+									case "_btnSpriteInfos":
+										this.api.kernel.OptionsManager.setOption("SpriteInfos",var2.target.selected);
+										break loop0;
 									case "_btnSpriteMove":
 										this.api.kernel.OptionsManager.setOption("SpriteMove",var2.target.selected);
 										break loop0;
@@ -394,12 +391,12 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 											case "_btnGuildMessageSound":
 												this.api.kernel.OptionsManager.setOption("GuildMessageSound",var2.target.selected);
 												break loop0;
-											case "_btnStartTurnSound":
-												this.api.kernel.OptionsManager.setOption("StartTurnSound",var2.target.selected);
-												break loop0;
 											default:
 												switch(null)
 												{
+													case "_btnStartTurnSound":
+														this.api.kernel.OptionsManager.setOption("StartTurnSound",var2.target.selected);
+														break loop0;
 													case "_btnBannerShortcuts":
 														this.api.kernel.OptionsManager.setOption("BannerShortcuts",var2.target.selected);
 														break loop0;
@@ -430,12 +427,12 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 															case "_btnCensorshipFilter":
 																this.api.kernel.OptionsManager.setOption("CensorshipFilter",var2.target.selected);
 																break loop0;
+															case "_btnAdvancedLineOfSight":
+																this.api.kernel.OptionsManager.setOption("AdvancedLineOfSight",var2.target.selected);
+																break loop0;
 															default:
 																switch(null)
 																{
-																	case "_btnAdvancedLineOfSight":
-																		this.api.kernel.OptionsManager.setOption("AdvancedLineOfSight",var2.target.selected);
-																		break loop0;
 																	case "_btnRemindTurnTime":
 																		this.api.kernel.OptionsManager.setOption("RemindTurnTime",var2.target.selected);
 																		break loop0;
@@ -445,29 +442,24 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 																	case "_btnSeeAllSpell":
 																		this.api.kernel.OptionsManager.setOption("SeeAllSpell",!var2.target.selected);
 																		break loop0;
+																	case "_btnSpeakingItems":
+																		this.api.kernel.OptionsManager.setOption("UseSpeakingItems",var2.target.selected);
+																		break loop0;
 																	default:
 																		switch(null)
 																		{
-																			case "_btnSpeakingItems":
-																				this.api.kernel.OptionsManager.setOption("UseSpeakingItems",var2.target.selected);
-																				break loop0;
 																			case "_btnConfirmDropItem":
 																				this.api.kernel.OptionsManager.setOption("ConfirmDropItem",var2.target.selected);
-																				break loop0;
+																				break;
 																			case "_btnChatTimestamp":
 																				this.api.kernel.OptionsManager.setOption("TimestampInChat",var2.target.selected);
 																				this.api.kernel.ChatManager.refresh();
-																				break loop0;
+																				break;
 																			case "_btnViewDicesDammages":
 																				this.api.kernel.OptionsManager.setOption("ViewDicesDammages",var2.target.selected);
-																				break loop0;
-																			default:
-																				if(var0 !== "_btnSeeDamagesColor")
-																				{
-																					break loop0;
-																				}
+																				break;
+																			case "_btnSeeDamagesColor":
 																				this.api.kernel.OptionsManager.setOption("SeeDamagesColor",var2.target.selected);
-																				break loop0;
 																		}
 																}
 														}
@@ -478,7 +470,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				}
 		}
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -515,7 +507,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				}
 		}
 	}
-	function optionChanged(§\x1e\x19\x18§)
+	function optionChanged(var2)
 	{
 		loop0:
 		switch(var2.key)
@@ -550,34 +542,34 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 					case "ChatEffects":
 						this._mcTabViewer._btnChatEffects.selected = var2.value;
 						break loop0;
-					case "CreaturesMode":
-						this._mcTabViewer._vsCreaturesMode.value = var2.value;
-						this._mcTabViewer._lblCreaturesModeValue.text = !_global.isFinite(var2.value)?this.api.lang.getText("INFINIT"):var2.value;
-						break loop0;
-					case "Buff":
-						this._mcTabViewer._btnBuff.selected = var2.value;
-						break loop0;
-					case "GuildMessageSound":
-						this._mcTabViewer._btnGuildMessageSound.selected = var2.value;
-						break loop0;
 					default:
 						switch(null)
 						{
+							case "CreaturesMode":
+								this._mcTabViewer._vsCreaturesMode.value = var2.value;
+								this._mcTabViewer._lblCreaturesModeValue.text = !_global.isFinite(var2.value)?this.api.lang.getText("INFINIT"):var2.value;
+								break loop0;
+							case "Buff":
+								this._mcTabViewer._btnBuff.selected = var2.value;
+								break loop0;
+							case "GuildMessageSound":
+								this._mcTabViewer._btnGuildMessageSound.selected = var2.value;
+								break loop0;
 							case "StartTurnSound":
 								this._mcTabViewer._btnStartTurnSound.selected = var2.value;
 								break loop0;
 							case "BannerShortcuts":
 								this._mcTabViewer._btnBannerShortcuts.selected = var2.value;
 								break loop0;
-							case "TipsOnStart":
-								this._mcTabViewer._btnTipsOnStart.selected = var2.value;
-								break loop0;
-							case "DisplayStyle":
-								this._mcTabViewer.selectDisplayStyle(var2.value);
-								break loop0;
 							default:
 								switch(null)
 								{
+									case "TipsOnStart":
+										this._mcTabViewer._btnTipsOnStart.selected = var2.value;
+										break loop0;
+									case "DisplayStyle":
+										this._mcTabViewer.selectDisplayStyle(var2.value);
+										break loop0;
 									case "MovableBar":
 										this._mcTabViewer._btnMovableBar.selected = var2.value;
 										break loop0;
@@ -587,60 +579,65 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 									case "ViewAllMonsterInGroup":
 										this._mcTabViewer._btnViewAllMonsterInGroup.selected = var2.value;
 										break loop0;
-									case "CharacterPreview":
-										this._mcTabViewer._btnCharacterPreview.selected = var2.value;
-										break loop0;
-									case "Aura":
-										this._mcTabViewer._btnAura.selected = var2.value;
-										break loop0;
-									case "DisplayingFreshTips":
-										this._mcTabViewer._btnTutorialTips.selected = var2.value;
-										break loop0;
 									default:
 										switch(null)
 										{
+											case "CharacterPreview":
+												this._mcTabViewer._btnCharacterPreview.selected = var2.value;
+												break loop0;
+											case "Aura":
+												this._mcTabViewer._btnAura.selected = var2.value;
+												break loop0;
+											case "DisplayingFreshTips":
+												this._mcTabViewer._btnTutorialTips.selected = var2.value;
+												break loop0;
 											case "CensorshipFilter":
 												this._mcTabViewer._btnCensorshipFilter.selected = var2.value;
-												break loop0;
-											case "AskForWrongCraft":
-												this._mcTabViewer._btnCraftWrongConfirm.selected = var2.value;
-												break loop0;
-											case "AdvancedLineOfSight":
-												this._mcTabViewer._btnAdvancedLineOfSight.selected = var2.value;
-												break loop0;
-											case "RemindTurnTime":
-												this._mcTabViewer._btnRemindTurnTime.selected = var2.value;
-												break loop0;
-											case "HideSpellBar":
-												this._mcTabViewer._btnHideSpellBar.selected = var2.value;
 												break loop0;
 											default:
 												switch(null)
 												{
+													case "AskForWrongCraft":
+														this._mcTabViewer._btnCraftWrongConfirm.selected = var2.value;
+														break loop0;
+													case "AdvancedLineOfSight":
+														this._mcTabViewer._btnAdvancedLineOfSight.selected = var2.value;
+														break loop0;
+													case "RemindTurnTime":
+														this._mcTabViewer._btnRemindTurnTime.selected = var2.value;
+														break loop0;
+													case "HideSpellBar":
+														this._mcTabViewer._btnHideSpellBar.selected = var2.value;
+														break loop0;
 													case "SeeAllSpell":
 														this._mcTabViewer._btnSeeAllSpell.selected = !var2.value;
-														break loop0;
-													case "UseSpeakingItems":
-														this._mcTabViewer._btnSpeakingItems.selected = var2.value;
-														break loop0;
-													case "ConfirmDropItem":
-														this._mcTabViewer._btnConfirmDropItem.selected = var2.value;
-														break loop0;
-													case "TimestampInChat":
-														this._mcTabViewer._btnChatTimestamp.selected = var2.value;
-														this.api.kernel.ChatManager.refresh();
-														break loop0;
-													case "AudioMusicMute":
-														this._mcTabViewer._btnMuteMusic.selected = var2.value;
 														break loop0;
 													default:
 														switch(null)
 														{
+															case "UseSpeakingItems":
+																this._mcTabViewer._btnSpeakingItems.selected = var2.value;
+																break loop0;
+															case "ConfirmDropItem":
+																this._mcTabViewer._btnConfirmDropItem.selected = var2.value;
+																break loop0;
+															case "TimestampInChat":
+																this._mcTabViewer._btnChatTimestamp.selected = var2.value;
+																this.api.kernel.ChatManager.refresh();
+																break loop0;
+															case "AudioMusicMute":
+																this._mcTabViewer._btnMuteMusic.selected = var2.value;
+																break loop0;
 															case "AudioEffectMute":
 																this._mcTabViewer._btnMuteSounds.selected = var2.value;
-																break;
-															case "AudioEnvMute":
+																break loop0;
+															default:
+																if(var0 !== "AudioEnvMute")
+																{
+																	break loop0;
+																}
 																this._mcTabViewer._btnMuteEnvironment.selected = var2.value;
+																break loop0;
 														}
 												}
 										}
@@ -649,13 +646,12 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				}
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		switch(var2.target._name)
 		{
 			case "_cbDisplayStyle":
 				var var3 = var2.target.selectedItem;
-				org.flashdevelop.utils.FlashConnect.mtrace(this.api,"dofus.graphics.gapi.ui.Options::itemSelected","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Options.as",838);
 				if(var3.style == "normal")
 				{
 					this.api.kernel.OptionsManager.setOption("DisplayStyle",var3.style);
@@ -703,7 +699,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				break;
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -722,7 +718,7 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				break;
 		}
 	}
-	function no(§\x1e\x19\x18§)
+	function no(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -733,13 +729,13 @@ class dofus.graphics.gapi.ui.Options extends dofus.graphics.gapi.core.DofusAdvan
 				this.selectQuality(this.api.kernel.OptionsManager.getOption("DefaultQuality"));
 		}
 	}
-	function scroll(§\x1e\x19\x18§)
+	function scroll(var2)
 	{
 		this._mcTabViewer._y = this._mcPlacer._y - this._sbOptions.scrollPosition;
 	}
-	function onMouseWheel(§\x06\x17§, §\x0b\r§)
+	function onMouseWheel(var2, var3)
 	{
-		if(Key.isDown(Key.CONTROL))
+		if(dofus.graphics.gapi.ui.Zoom.isZooming())
 		{
 			return undefined;
 		}

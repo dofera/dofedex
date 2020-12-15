@@ -11,7 +11,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__useButton(§\x14\n§)
+	function __set__useButton(var2)
 	{
 		this._bUseButton = var2;
 		return this.__get__useButton();
@@ -20,7 +20,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		return this._bUseButton;
 	}
-	function __set__destroyButton(§\x1b\f§)
+	function __set__destroyButton(var2)
 	{
 		this._bDestroyButton = var2;
 		return this.__get__destroyButton();
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		return this._bDestroyButton;
 	}
-	function __set__targetButton(§\x14\x18§)
+	function __set__targetButton(var2)
 	{
 		this._bTargetButton = var2;
 		return this.__get__targetButton();
@@ -38,7 +38,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		return this._bTargetButton;
 	}
-	function __set__displayPrice(§\x1b\x05§)
+	function __set__displayPrice(var2)
 	{
 		this._bPrice = var2;
 		this._lblPrice._visible = var2;
@@ -49,7 +49,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		return this._bPrice;
 	}
-	function __set__hideDesc(§\x1b\t§)
+	function __set__hideDesc(var2)
 	{
 		this._bDesc = !var2;
 		this._txtDescription._visible = this._bDesc;
@@ -60,7 +60,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		return this._bDesc;
 	}
-	function __set__itemData(§\x1e\x19\r§)
+	function __set__itemData(var2)
 	{
 		this._oItem = var2;
 		this.addToQueue({object:this,method:this.showItemData,params:[var2]});
@@ -70,7 +70,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	{
 		return this._oItem;
 	}
-	function __set__displayWidth(§\x06\x0e§)
+	function __set__displayWidth(var2)
 	{
 		this._nDisplayWidth = Math.max(316,var2 + 2);
 		return this.__get__displayWidth();
@@ -113,7 +113,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 		this._ldrTwoHanded.addEventListener("over",this);
 		this._ldrTwoHanded.addEventListener("out",this);
 	}
-	function showItemData(§\x1e\x19\r§)
+	function showItemData(var2)
 	{
 		if(var2 != undefined)
 		{
@@ -154,7 +154,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				}
 				this._btnTabCharacteristics._visible = false;
 			}
-			this._lblPrice.text = var2.price != undefined?new ank.utils.(var2.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3):"";
+			this._lblPrice.text = var2.price != undefined?new ank.utils.(var2.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3):"";
 			this._lblWeight.text = var2.weight + " " + ank.utils.PatternDecoder.combine(this._parent.api.lang.getText("PODS"),"m",var2.weight < 2);
 			if(var2.isEthereal)
 			{
@@ -192,12 +192,12 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 	}
 	function updateCurrentTabInformations()
 	{
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		switch(this._sCurrentTab)
 		{
 			case "Effects":
-				for(var s in this._oItem.effects)
+				§§enumerate(this._oItem.effects);
+				while((var0 = §§enumeration()) != null)
 				{
 					if(this._oItem.effects[s].description.length > 0)
 					{
@@ -206,7 +206,8 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				}
 				break;
 			case "Characteristics":
-				for(var s in this._oItem.characteristics)
+				§§enumerate(this._oItem.characteristics);
+				while((var var0 = §§enumeration()) != null)
 				{
 					if(this._oItem.characteristics[s].length > 0)
 					{
@@ -215,7 +216,8 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				}
 				break;
 			case "Conditions":
-				for(var s in this._oItem.conditions)
+				§§enumerate(this._oItem.conditions);
+				while((var var0 = §§enumeration()) != null)
 				{
 					if(this._oItem.conditions[s].length > 0)
 					{
@@ -225,7 +227,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 		}
 		break loop2;
 	}
-	function setCurrentTab(§\x1e\x10\x04§)
+	function setCurrentTab(var2)
 	{
 		this._bShowBaseEffects = false;
 		var var3 = this["_btnTab" + this._sCurrentTab];
@@ -240,7 +242,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -258,8 +260,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 						var var4 = this.api.lang.getItemStats(this._oItem.unicID);
 						if(var4 != undefined)
 						{
-							var var5 = new ank.utils.
-();
+							var var5 = new ank.utils.();
 							var var6 = new Array();
 							var var7 = var4.split(",");
 							var var8 = 0;
@@ -307,7 +308,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				break;
 		}
 	}
-	function createActionPopupMenu(§\x1e\x19\r§)
+	function createActionPopupMenu(var2)
 	{
 		var var3 = this.api.ui.createPopupMenu();
 		var3.addStaticItem(var2.name);
@@ -332,9 +333,8 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				var3.addItem(this.api.lang.getText("CLICK_TO_DESTROY_MIMIBIOTE"),this,this.dispatchEvent,[{type:"destroyMimibiote",item:var2}]);
 			}
 		}
-		for(var s in var2.effects)
+		for(var var4 in var2.effects)
 		{
-			var var4 = var2.effects[s];
 			if(var4.type == 995)
 			{
 				var3.addItem(this.api.lang.getText("VIEW_MOUNT_DETAILS"),this.api.network.Mount,this.api.network.Mount.data,[var4.param1,var4.param2]);
@@ -343,7 +343,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 		}
 		var3.show(_root._xmouse,_root._ymouse);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -355,7 +355,7 @@ class dofus.graphics.gapi.controls.ItemViewer extends dofus.graphics.gapi.core.D
 				this.gapi.showTooltip(this.api.lang.getText("TWO_HANDS_WEAPON"),this._ldrTwoHanded,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

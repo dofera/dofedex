@@ -8,12 +8,12 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__background(§\x1e\x14\x1a§)
+	function __set__background(var2)
 	{
 		this._sBackgroundLink = var2;
 		return this.__get__background();
 	}
-	function __set__finalCountDownTrigger(§\x05\x0f§)
+	function __set__finalCountDownTrigger(var2)
 	{
 		var2 = Number(var2);
 		if(_global.isNaN(var2))
@@ -27,7 +27,7 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 		this._nFinalCountDownTrigger = var2;
 		return this.__get__finalCountDownTrigger();
 	}
-	function setGaugeChrono(§\x02\x02§, §\x06\x1d§)
+	function setGaugeChrono(var2, var3)
 	{
 		_global.clearInterval(this._nIntervalID);
 		this.dispatchEvent({type:"finish"});
@@ -44,7 +44,7 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 		this.draw(var3);
 		this.chronoUpdate();
 	}
-	function startTimer(§\x06\t§)
+	function startTimer(var2)
 	{
 		_global.clearInterval(this._nIntervalID);
 		var2 = Number(var2);
@@ -89,7 +89,7 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 		this._mcLeft._x = this._mcRight._x = this.__width / 2;
 		this._mcLeft._y = this._mcRight._y = this.__height / 2;
 	}
-	function draw(§\x06\x1d§)
+	function draw(var2)
 	{
 		var var3 = var2 == undefined?this.getStyle().bgcolor:var2;
 		if(var3 != undefined && this._nBackgroundColor != var2)
@@ -137,7 +137,7 @@ class ank.gapi.controls.CircleChrono extends ank.gapi.core.UIBasicComponent
 		this.setRtation(this._mcLeft,0);
 		this.setRtation(this._mcRight,0);
 	}
-	function setRtation(§\x0b\r§, §\t\x04§)
+	function setRtation(var2, var3)
 	{
 		var2._mcMask._rotation = var3;
 	}

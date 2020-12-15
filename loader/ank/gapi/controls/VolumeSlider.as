@@ -11,7 +11,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__min(§\x03\x02§)
+	function __set__min(var2)
 	{
 		this._nMin = Number(var2);
 		return this.__get__min();
@@ -20,7 +20,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMin;
 	}
-	function __set__max(§\x03\x14§)
+	function __set__max(var2)
 	{
 		this._nMax = Number(var2);
 		return this.__get__max();
@@ -29,7 +29,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMax;
 	}
-	function __set__value(§\x1e\x1b\x17§)
+	function __set__value(var2)
 	{
 		var2 = Number(var2);
 		if(_global.isNaN(var2))
@@ -56,7 +56,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nValue;
 	}
-	function __set__markerCount(§\x03\x16§)
+	function __set__markerCount(var2)
 	{
 		if(Number(var2) > 0)
 		{
@@ -72,7 +72,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMarkerCount;
 	}
-	function __set__markerWidthRatio(§\x03\x15§)
+	function __set__markerWidthRatio(var2)
 	{
 		if(Number(var2) >= 0 && Number(var2) <= 1)
 		{
@@ -88,7 +88,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMarkerWidthRatio;
 	}
-	function __set__markerSkin(§\x1e\x10\x14§)
+	function __set__markerSkin(var2)
 	{
 		this._sMarkerSkin = var2;
 		return this.__get__markerSkin();
@@ -166,7 +166,7 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 			var2 = var2 + 1;
 		}
 	}
-	function setValueByIndex(§\x04\x17§)
+	function setValueByIndex(var2)
 	{
 		if(var2 > this._nMarkerCount - 1)
 		{
@@ -195,16 +195,16 @@ class ank.gapi.controls.VolumeSlider extends ank.gapi.core.UIBasicComponent
 			var6 = var6 + 1;
 		}
 	}
-	function getValueByIndex(§\x04\x17§)
+	function getValueByIndex(var2)
 	{
 		return var2 * (this._nMax - this._nMin) / (this._nMarkerCount - 1) + this._nMin;
 	}
-	function dragOver(§\x1e\x19\x18§)
+	function dragOver(var2)
 	{
 		this.value = this.getValueByIndex(var2.target.index);
 		this.dispatchEvent({type:"change"});
 	}
-	function press(§\x1e\x19\x18§)
+	function press(var2)
 	{
 		this.value = this.getValueByIndex(var2.target.index);
 		this.dispatchEvent({type:"change"});

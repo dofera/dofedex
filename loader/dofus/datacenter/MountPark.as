@@ -1,6 +1,6 @@
 class dofus.datacenter.MountPark extends Object
 {
-	function MountPark(nOwner, §\x01\x14§, §\x1e\x1d\x1a§, nItems, §\x1e\x12\b§, §\x1e\x19\x10§)
+	function MountPark(nOwner, §\x01\x07§, §\x1e\x1d\r§, nItems, §\x1e\x11\x18§, §\x1e\x19\x06§)
 	{
 		super();
 		this.owner = nOwner;
@@ -18,7 +18,7 @@ class dofus.datacenter.MountPark extends Object
 	{
 		return this.owner == 0;
 	}
-	function isMine(§\x1e\x1a\x15§)
+	function isMine(var2)
 	{
 		return this.guildName == var2.datacenter.Player.guildInfos.name;
 	}

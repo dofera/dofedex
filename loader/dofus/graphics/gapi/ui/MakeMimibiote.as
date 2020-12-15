@@ -52,23 +52,19 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 	{
 		this._ivInventoryViewer.showKamas = false;
 		this._ivInventoryViewer.dataProvider = this.api.datacenter.Player.Inventory;
-		this._cgItemToAttach.dataProvider = new ank.utils.
-();
-		this._cgItemToEat.dataProvider = new ank.utils.
-();
-		this._cgResult.dataProvider = new ank.utils.
-();
+		this._cgItemToAttach.dataProvider = new ank.utils.();
+		this._cgItemToEat.dataProvider = new ank.utils.();
+		this._cgResult.dataProvider = new ank.utils.();
 		this.refreshPreview();
 	}
-	function putItem(§\x11\x1c§, §\x1e\x19\r§, §\x16\x17§)
+	function putItem(var2, var3, var4)
 	{
 		if(var3 != undefined && !this.canPutItem(var3,var2))
 		{
 			this.refreshPreview();
 			return undefined;
 		}
-		var var5 = new ank.utils.
-();
+		var var5 = new ank.utils.();
 		var3 = var3.clone();
 		var3.Quantity = 1;
 		if(!(!var4 && var2.dataProvider.length > 0))
@@ -81,11 +77,11 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		var2.dataProvider = var5;
 		this.refreshPreview();
 	}
-	function removeItem(§\x11\x1c§)
+	function removeItem(var2)
 	{
 		this.putItem(var2,undefined,false);
 	}
-	function canPutItem(§\x1e\x19\r§, §\x13\b§)
+	function canPutItem(var2, var3)
 	{
 		if(!dofus.Constants.isItemSuperTypeSkinable(var2.superType))
 		{
@@ -175,7 +171,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		this._mcFiligrane._visible = var2;
 		this._ctrResult._visible = var2;
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoCreateMimibiote")
 		{
@@ -188,7 +184,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			}
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target) !== this._btnValidate)
 		{
@@ -200,7 +196,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			var3.addEventListener("yes",this);
 		}
 	}
-	function dblClickItem(§\x1e\x19\x18§)
+	function dblClickItem(var2)
 	{
 		if(var2.owner != undefined)
 		{
@@ -239,7 +235,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._ctrResult)
 		{
@@ -250,20 +246,20 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 			}
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}
-	function overItem(§\x1e\x19\x18§)
+	function overItem(var2)
 	{
 		var var3 = var2.target.contentData;
 		var3.showStatsTooltip(var2.target,var2.target.contentData.style);
 	}
-	function outItem(§\x1e\x19\x18§)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function dragItem(§\x1e\x19\x18§)
+	function dragItem(var2)
 	{
 		this.gapi.removeCursor();
 		if(var2.target.contentData == undefined)
@@ -272,7 +268,7 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		}
 		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(§\x1e\x19\x18§)
+	function dropItem(var2)
 	{
 		if(var2.item != undefined)
 		{
@@ -299,23 +295,26 @@ class dofus.graphics.gapi.ui.MakeMimibiote extends dofus.graphics.gapi.core.Dofu
 		this.gapi.removeCursor();
 		var var6 = var2.target._parent._parent;
 		var var7 = var6._name;
-		switch(var7)
+		if((var var0 = var7) !== "_cgItemToAttach")
 		{
-			case "_cgItemToAttach":
-				var var8 = this._cgItemToEat.dataProvider[0];
-				if(var8 != undefined && var8.unicID == var3.unicID)
-				{
-					this.removeItem(this._cgItemToEat);
-				}
-				this.putItem(var6,var3,true);
-				break;
-			case "_cgItemToEat":
+			if(var0 === "_cgItemToEat")
+			{
 				var var9 = this._cgItemToAttach.dataProvider[0];
 				if(var9 != undefined && var9.unicID == var3.unicID)
 				{
 					this.removeItem(this._cgItemToAttach);
 				}
 				this.putItem(var6,var3,true);
+			}
+		}
+		else
+		{
+			var var8 = this._cgItemToEat.dataProvider[0];
+			if(var8 != undefined && var8.unicID == var3.unicID)
+			{
+				this.removeItem(this._cgItemToEat);
+			}
+			this.putItem(var6,var3,true);
 		}
 	}
 }

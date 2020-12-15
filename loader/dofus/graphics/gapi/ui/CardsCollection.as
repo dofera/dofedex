@@ -49,9 +49,8 @@ class dofus.graphics.gapi.ui.CardsCollection extends dofus.graphics.gapi.core.Do
 		this._ctr5.contentData = {iconFile:"Card",params:{name:"Gross",background:4,gfxFile:dofus.Constants.ARTWORKS_BIG_PATH + (random(150) + 1000) + ".swf"}};
 		this._ctr6.contentData = {iconFile:"Card",params:{name:Monster,background:5,gfxFile:dofus.Constants.ARTWORKS_BIG_PATH + (random(150) + 1000) + ".swf"}};
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
-		loop0:
 		switch(var2.target._name)
 		{
 			case "_btnClose":
@@ -60,21 +59,17 @@ class dofus.graphics.gapi.ui.CardsCollection extends dofus.graphics.gapi.core.Do
 			default:
 				switch(null)
 				{
-					default:
-						if(var0 !== "_ctr9")
-						{
-							break loop0;
-						}
-						break;
+					case "_ctr2":
 					case "_ctr3":
 					case "_ctr4":
 					case "_ctr5":
 					case "_ctr6":
 					case "_ctr7":
 					case "_ctr8":
+					case "_ctr9":
 				}
+				break;
 			case "_ctr1":
-			case "_ctr2":
 				var var3 = var2.target.contentData;
 				if(var3 != undefined)
 				{

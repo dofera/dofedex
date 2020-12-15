@@ -5,11 +5,11 @@ class dofus.aks.Tutorial extends dofus.aks.Handler
 	static var INTRO_CINEMATIC_PATH_LIGHT = "";
 	static var INTRO_CINEMATIC_MAX_LEN_LIGHT = 120;
 	static var NOOB_AREA_MUSIC_ID = 129;
-	function Tutorial(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Tutorial(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 	}
-	function end(§\t\x0e§, §\b\x02§, §\x06\x14§)
+	function end(var2, var3, var4)
 	{
 		if(var2 == undefined)
 		{
@@ -24,12 +24,12 @@ class dofus.aks.Tutorial extends dofus.aks.Handler
 			this.aks.send("TV" + String(var2) + "|" + String(var3) + "|" + String(var4),false);
 		}
 	}
-	function onShowTip(§\x1e\x12\x1a§)
+	function onShowTip(var2)
 	{
 		var var3 = Number(var2);
 		this.api.kernel.TipsManager.showNewTip(var3);
 	}
-	function onCreate(§\x1e\x12\x1a§)
+	function onCreate(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -39,7 +39,7 @@ class dofus.aks.Tutorial extends dofus.aks.Handler
 	}
 	function onGameBegin()
 	{
-		var var2 = new ank.utils.((!this.api.config.isStreaming?dofus.aks.Tutorial.INTRO_CINEMATIC_MAX_LEN:dofus.aks.Tutorial.INTRO_CINEMATIC_MAX_LEN_LIGHT) * 1000);
+		var var2 = new ank.utils.((!this.api.config.isStreaming?dofus.aks.Tutorial.INTRO_CINEMATIC_MAX_LEN:dofus.aks.Tutorial.INTRO_CINEMATIC_MAX_LEN_LIGHT) * 1000);
 		dofus.aks.Tutorial.INTRO_CINEMATIC_PATH_LIGHT = dofus.Constants.CINEMATICS_PATH + "9_" + this.api.config.language + ".swf";
 		var2.addAction(118,false,this.api.sounds,this.api.sounds.stopAllSounds);
 		if(!this.api.config.isStreaming)

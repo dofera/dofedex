@@ -1,6 +1,6 @@
 class dofus.graphics.battlefield.CraftResultOverHead extends ank.gapi.core.UIBasicComponent
 {
-	function CraftResultOverHead(§\x1c\x1a§, §\x1e\x19\r§)
+	function CraftResultOverHead(var3, var4)
 	{
 		super();
 		this.initialize();
@@ -23,7 +23,7 @@ class dofus.graphics.battlefield.CraftResultOverHead extends ank.gapi.core.UIBas
 		this._mcBack._yscale = -100;
 		this._mcBack._y = this._mcBack._y + (this._mcBack._height - 7);
 	}
-	function draw(§\x1c\x1a§, §\x1e\x19\r§)
+	function draw(var2, var3)
 	{
 		if(var3 == undefined)
 		{

@@ -1,6 +1,6 @@
 class dofus.datacenter.ServerProblem extends Object
 {
-	function ServerProblem(§\x05\x02§, nDate, §\x1e\x1c\x03§, nStatus, §\x1d\x0f§, aHistory)
+	function ServerProblem(§\x04\x12§, nDate, §\x1e\x1b\x13§, nStatus, §\x1d\r§, aHistory)
 	{
 		super();
 		this._nID = var3;
@@ -16,7 +16,7 @@ class dofus.datacenter.ServerProblem extends Object
 		var var11 = var9.config.language;
 		var var12 = String(this._nDate);
 		var var13 = new Date(Number(var12.substr(0,4)),Number(var12.substr(4,2)) - 1,Number(var12.substr(6,2)));
-		this._sDate = org.utils.SimpleDateFormatter.formatDate(var13,var10,var11);
+		this._sDate = eval(org).utils.SimpleDateFormatter.formatDate(var13,var10,var11);
 	}
 	function __get__id()
 	{

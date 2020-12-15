@@ -1,12 +1,12 @@
 class dofus.datacenter.Monster extends dofus.datacenter.PlayableCharacter
 {
 	var _nSpeedModerator = 1;
-	function Monster(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, gfxID)
+	function Monster(sID, clipClass, §\x1e\x11\x1c§, §\x13\x05§, §\x10\x1d§, gfxID)
 	{
 		super();
 		this.initialize(sID,clipClass,var5,var6,var7,gfxID);
 	}
-	function __set__name(§\x02\x14§)
+	function __set__name(var2)
 	{
 		this._nNameID = Number(var2);
 		return this.__get__name();
@@ -19,7 +19,7 @@ class dofus.datacenter.Monster extends dofus.datacenter.PlayableCharacter
 	{
 		return this.api.lang.getMonstersText(this._nNameID).k;
 	}
-	function __set__powerLevel(§\x01\x16§)
+	function __set__powerLevel(var2)
 	{
 		this._nPowerLevel = Number(var2);
 		return this.__get__powerLevel();
@@ -48,7 +48,7 @@ class dofus.datacenter.Monster extends dofus.datacenter.PlayableCharacter
 	}
 	function __get__alignment()
 	{
-		return new dofus.datacenter.(this.api.lang.getMonstersText(this._nNameID).a,0);
+		return new dofus.datacenter.(this.api.lang.getMonstersText(this._nNameID).a,0);
 	}
 	function alertChatText()
 	{

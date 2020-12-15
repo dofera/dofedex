@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.AskCancel extends ank.gapi.ui.FlyWindow
 	{
 		super();
 	}
-	function __set__text(§\x1e\r\x02§)
+	function __set__text(var2)
 	{
 		this._sText = var2;
 		return this.__get__text();
@@ -22,7 +22,7 @@ class dofus.graphics.gapi.ui.AskCancel extends ank.gapi.ui.FlyWindow
 		var2._btnCancel.addEventListener("click",this);
 		var2._txtText.addEventListener("change",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target._name) === "_btnCancel")
 		{
@@ -30,7 +30,7 @@ class dofus.graphics.gapi.ui.AskCancel extends ank.gapi.ui.FlyWindow
 		}
 		this.unloadThis();
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		var var3 = this._winBackground.content;
 		var3._btnCancel._y = var3._txtText._y + var3._txtText.height + 20;

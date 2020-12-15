@@ -1,6 +1,6 @@
 class dofus.datacenter.Rank extends Object
 {
-	function Rank(§\x1e\x1b\x17§, §\x05\x06§, §\x06\x11§, §\x1a\x11§)
+	function Rank(var2, var3, var4, var5)
 	{
 		super();
 		this.api = _global.API;
@@ -10,7 +10,7 @@ class dofus.datacenter.Rank extends Object
 	{
 		return this._nValue;
 	}
-	function __set__value(§\x1e\n\x13§)
+	function __set__value(var2)
 	{
 		this._nValue = var2;
 		return this.__get__value();
@@ -19,7 +19,7 @@ class dofus.datacenter.Rank extends Object
 	{
 		return this._nHonour;
 	}
-	function __set__honour(§\x1e\n\x13§)
+	function __set__honour(var2)
 	{
 		this._nHonour = var2;
 		return this.__get__honour();
@@ -28,7 +28,7 @@ class dofus.datacenter.Rank extends Object
 	{
 		return this._nDisgrace;
 	}
-	function __set__disgrace(§\x1e\n\x13§)
+	function __set__disgrace(var2)
 	{
 		this._nDisgrace = var2;
 		return this.__get__disgrace();
@@ -37,12 +37,12 @@ class dofus.datacenter.Rank extends Object
 	{
 		return this._bEnabled;
 	}
-	function __set__enable(§\x1e\n\x13§)
+	function __set__enable(var2)
 	{
 		this._bEnabled = var2;
 		return this.__get__enable();
 	}
-	function initialize(§\x1e\x1b\x17§, §\x05\x06§, §\x06\x11§, §\x1a\x11§)
+	function initialize(var2, var3, var4, var5)
 	{
 		this._nValue = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		this._nHonour = !(_global.isNaN(var3) || var3 == undefined)?var3:0;

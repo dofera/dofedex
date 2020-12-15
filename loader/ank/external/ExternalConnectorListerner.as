@@ -2,14 +2,14 @@ class ank.external.ExternalConnectorListerner
 {
 	function ExternalConnectorListerner()
 	{
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 		ank.external.ExternalConnector.getInstance().addEventListener("onExternalConnectionFaild",this);
 	}
 	function getParams()
 	{
 		return this._oParams;
 	}
-	function setParams(§\x1e\x18\x15§)
+	function setParams(var2)
 	{
 		this._oParams = var2;
 	}
@@ -17,7 +17,7 @@ class ank.external.ExternalConnectorListerner
 	{
 		ank.external.ExternalConnector.getInstance().removeEventListener("onExternalConnectionFaild",this);
 	}
-	function onExternalConnectionFaild(§\x1e\x19\x18§)
+	function onExternalConnectionFaild(var2)
 	{
 		this.dispatchEvent({type:"onExternalError"});
 	}

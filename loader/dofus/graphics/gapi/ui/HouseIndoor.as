@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.HouseIndoor extends dofus.graphics.gapi.core.DofusA
 	{
 		super();
 	}
-	function __set__house(§\x1e\x19\x0f§)
+	function __set__house(var2)
 	{
 		this._oHouse = var2;
 		var2.addEventListener("forsale",this);
@@ -14,7 +14,7 @@ class dofus.graphics.gapi.ui.HouseIndoor extends dofus.graphics.gapi.core.DofusA
 		this._mcLock._visible = var2.isLocked;
 		return this.__get__house();
 	}
-	function __set__skills(§\x1d\r§)
+	function __set__skills(var2)
 	{
 		this._aSkills = var2;
 		return this.__get__skills();
@@ -57,11 +57,11 @@ class dofus.graphics.gapi.ui.HouseIndoor extends dofus.graphics.gapi.core.DofusA
 	{
 		this.api.ui.loadUIComponent("GuildHouseRights","GuildHouseRights",{house:this._oHouse});
 	}
-	function forsale(§\x1e\x19\x18§)
+	function forsale(var2)
 	{
 		this._mcForSale._visible = var2.value;
 	}
-	function locked(§\x1e\x19\x18§)
+	function locked(var2)
 	{
 		this._mcLock._visible = var2.value;
 	}

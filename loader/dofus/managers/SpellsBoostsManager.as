@@ -13,19 +13,19 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 	static var ACTION_BOOST_SPELL_MAXPERTARGET = 291;
 	static var ACTION_BOOST_SPELL_SET_INTVL = 292;
 	static var _sSelf = null;
-	function SpellsBoostsManager(§\x1e\x1a\x16§)
+	function SpellsBoostsManager(oAPI)
 	{
 		super();
 		dofus.managers.SpellsBoostsManager._sSelf = this;
-		this.initialize(var3);
+		this.initialize(oAPI);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.SpellsBoostsManager._sSelf;
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3);
+		super.initialize(oAPI);
 		this.clear();
 	}
 	function clear()
@@ -35,7 +35,7 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		delete dofus.managers.SpellsBoostsManager._aDamagingEffects;
 		delete dofus.managers.SpellsBoostsManager._aHealingEffects;
 	}
-	function getSpellModificator(§\x05§, §\x1e\x0f\x07§)
+	function getSpellModificator(var2, var3)
 	{
 		if(_global.isNaN(this._oSpellsModificators[var2][var3]) || this._oSpellsModificators[var2][var3] == undefined)
 		{
@@ -43,7 +43,7 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		}
 		return Number(this._oSpellsModificators[var2][var3]);
 	}
-	function setSpellModificator(§\x05§, §\x1e\x0f\x07§, §\n\x0e§)
+	function setSpellModificator(var2, var3, var4)
 	{
 		if(typeof this._oSpellsModificators[var2] != "object" && this._oSpellsModificators[var2] == undefined)
 		{
@@ -51,7 +51,7 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		}
 		this._oSpellsModificators[var2][var3] = var4;
 	}
-	function isBoostedDamagingEffect(§\x0f\x14§)
+	function isBoostedDamagingEffect(var2)
 	{
 		if(dofus.managers.SpellsBoostsManager._aDamagingEffects == undefined)
 		{
@@ -68,7 +68,7 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		}
 		return false;
 	}
-	function isBoostedHealingEffect(§\x0f\x14§)
+	function isBoostedHealingEffect(var2)
 	{
 		if(dofus.managers.SpellsBoostsManager._aHealingEffects == undefined)
 		{
@@ -85,7 +85,7 @@ class dofus.managers.SpellsBoostsManager extends dofus.utils.ApiElement
 		}
 		return false;
 	}
-	function isBoostedHealingOrDamagingEffect(§\x0f\x14§)
+	function isBoostedHealingOrDamagingEffect(var2)
 	{
 		if(dofus.managers.SpellsBoostsManager._aBoostedEffects == undefined)
 		{

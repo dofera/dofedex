@@ -1,10 +1,10 @@
 class dofus.aks.Specialization extends dofus.aks.Handler
 {
-	function Specialization(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Specialization(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 	}
-	function onSet(§\x1e\x12\x1a§)
+	function onSet(var2)
 	{
 		var var3 = Number(var2);
 		if(_global.isNaN(var3) || (var2.length == 0 || var3 == 0))
@@ -17,7 +17,7 @@ class dofus.aks.Specialization extends dofus.aks.Handler
 			this.api.datacenter.Player.specialization = var4;
 		}
 	}
-	function onChange(§\x1e\x12\x1a§)
+	function onChange(var2)
 	{
 		this.onSet(var2);
 		var var3 = this.api.datacenter.Player.specialization;

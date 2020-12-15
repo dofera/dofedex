@@ -1,6 +1,6 @@
 class dofus.datacenter.DofusMap extends ank.battlefield.datacenter.Map
 {
-	function DofusMap(§\x05\x02§)
+	function DofusMap(var3)
 	{
 		super(var3);
 	}
@@ -37,7 +37,7 @@ class dofus.datacenter.DofusMap extends ank.battlefield.datacenter.Map
 		var var2 = _global.API.lang;
 		return var2.getMapSubAreaText(this.subarea).m;
 	}
-	static function isJail(§\x03\x19§)
+	static function isJail(var2)
 	{
 		switch(var2)
 		{

@@ -20,7 +20,7 @@ class com.ankamagames.tools.Logger
 	}
 	static function initialize()
 	{
-		com.ankamagames.tools.Logger.instance = new com.ankamagames.tools.Logger();
+		com.ankamagames.tools.Logger.instance = new com.ankamagames.tools.();
 	}
 	static function out()
 	{
@@ -55,7 +55,7 @@ class com.ankamagames.tools.Logger
 	{
 		this._socket = new XMLSocket();
 		this._connected = false;
-		this._socket.onConnect = function(§\x1e\f\x0e§)
+		this._socket.onConnect = function(var2)
 		{
 			var var3 = arguments.callee.tracer;
 			var3.onConnected(var2);
@@ -68,7 +68,7 @@ class com.ankamagames.tools.Logger
 		this._socket.onConnect.tracer = this;
 		this._socket.connect(com.ankamagames.tools.Logger.SERVER_HOST,com.ankamagames.tools.Logger.SERVER_PORT);
 	}
-	function trace(§\n\x15§, §\x12\x19§)
+	function trace(var2, var3)
 	{
 		if(this._connected)
 		{
@@ -90,7 +90,7 @@ class com.ankamagames.tools.Logger
 			this._nCurrentReconnection++;
 		}
 	}
-	function onConnected(§\x1e\f\x0e§)
+	function onConnected(var2)
 	{
 		var var3 = 0;
 		while(var3 < com.ankamagames.tools.Logger.LEVELS_LIST.length)

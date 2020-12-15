@@ -15,7 +15,7 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 	{
 		return this._lstInventory;
 	}
-	function __set__displayKamas(§\x1b\x06§)
+	function __set__displayKamas(var2)
 	{
 		this._bDisplayKama = var2;
 		if(this.initialized)
@@ -24,7 +24,7 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 		}
 		return this.__get__displayKamas();
 	}
-	function __set__displayPrices(§\x1b\x04§)
+	function __set__displayPrices(var2)
 	{
 		if(this.initialized)
 		{
@@ -67,12 +67,12 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 	{
 		this.kamaChanged({value:this._oKamasProvider.Kama});
 	}
-	function showKamas(§\x15\x13§)
+	function showKamas(var2)
 	{
 		this._lblKama._visible = var2;
 		this._mcKamaSymbol._visible = var2;
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		super.itemSelected(var3);
 		if(var3.target != this._cbTypes)
@@ -85,17 +85,17 @@ class dofus.graphics.gapi.controls.ListInventoryViewer extends dofus.graphics.ga
 			this.dispatchEvent({type:"selectedItem",item:var3.row.item,targets:var3.targets});
 		}
 	}
-	function itemdblClick(§\x1e\x19\x18§)
+	function itemdblClick(var2)
 	{
 		this.dispatchEvent({type:"itemdblClick",item:var2.row.item,targets:var2.targets});
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 		var var3 = var2.row.item;
 		this._oOverItem = var3;
 		this.dispatchEvent({type:"rollOverItem",item:var2.row.item,targets:var2.targets});
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 		this._oOverItem = undefined;
 		var var3 = var2.row.item;

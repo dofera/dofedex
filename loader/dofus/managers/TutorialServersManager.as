@@ -10,15 +10,15 @@ class dofus.managers.TutorialServersManager extends dofus.managers.ServersManage
 	{
 		return dofus.managers.TutorialServersManager._sSelf;
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3,"tutorials","tutorials/");
+		super.initialize(oAPI,"tutorials","tutorials/");
 	}
 	function loadTutorial(sID)
 	{
 		this.loadData(sID + ".swf");
 	}
-	function onComplete(§\x0b\r§)
+	function onComplete(var2)
 	{
 		var var3 = new dofus.datacenter.Tutorial(var2);
 		this.addToQueue({object:this.api.kernel.TutorialManager,method:this.api.kernel.TutorialManager.start,params:[var3]});

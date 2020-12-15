@@ -5,7 +5,7 @@ class ank.gapi.controls.VerticalChrono extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function startTimer(§\x06\t§, §\x03\x06§)
+	function startTimer(var2, var3)
 	{
 		this._nTimerValue = Math.ceil(var2);
 		this._nMaxTime = var3 != undefined?var3:this._nTimerValue;

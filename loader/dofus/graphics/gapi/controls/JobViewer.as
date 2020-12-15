@@ -6,7 +6,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__job(§\x1e\x19\x0b§)
+	function __set__job(var2)
 	{
 		this._oJob = var2;
 		this.addToQueue({object:this,method:this.layoutContent});
@@ -56,7 +56,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 		this._pbXP.value = this._oJob.xp;
 		this._mcXP.onRollOver = function()
 		{
-			this._parent._parent.gapi.showTooltip(new ank.utils.(this._parent._oJob.xp).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oJob.xpMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent._parent.gapi.showTooltip(new ank.utils.(this._parent._oJob.xp).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._oJob.xpMax).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcXP.onRollOut = function()
 		{
@@ -81,7 +81,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 			this._itvItemViewer._visible = false;
 		}
 	}
-	function showCraftViewer(§\x15\x13§)
+	function showCraftViewer(var2)
 	{
 		if(var2)
 		{
@@ -95,7 +95,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 			this._cvCraftViewer.removeMovieClip();
 		}
 	}
-	function showOptionViewer(§\x15\x13§)
+	function showOptionViewer(var2)
 	{
 		if(var2)
 		{
@@ -126,7 +126,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 				this.showOptionViewer(true);
 		}
 	}
-	function setCurrentTab(§\x1e\x10\x04§)
+	function setCurrentTab(var2)
 	{
 		var var3 = this["_btnTab" + this._sCurrentTab];
 		var var4 = this["_btnTab" + var2];
@@ -137,7 +137,7 @@ class dofus.graphics.gapi.controls.JobViewer extends dofus.graphics.gapi.core.Do
 		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{

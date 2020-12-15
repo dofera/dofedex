@@ -17,7 +17,6 @@ class dofus.graphics.gapi.ui.Zoom extends dofus.graphics.gapi.core.DofusAdvanced
 	}
 	function createChildren()
 	{
-		Mouse.addListener(this);
 		this.addToQueue({object:this,method:this.addListeners});
 	}
 	function addListeners()
@@ -27,14 +26,21 @@ class dofus.graphics.gapi.ui.Zoom extends dofus.graphics.gapi.core.DofusAdvanced
 		this._btnCancel.addEventListener("out",this);
 		this._vsZoom.addEventListener("change",this);
 		this._vsZoom.min = this.api.gfx.getZoom();
+		var var2 = this.createEmptyMovieClip("mouseupevent",this.getNextHighestDepth());
+		var oAPI = this.api;
+		var2.onMouseUp = function()
+		{
+			oAPI.mouseClicksMemorizer.storeCurrentMouseClick(false);
+		};
+		Mouse.addListener(this);
 	}
 	function setZoom()
 	{
 		this.api.kernel.GameManager.zoomGfxRoot(this._vsZoom.value,this._nXScreenPos,this._nYScreenPos);
 	}
-	function onMouseWheel(§\x1e\x1b\x17§)
+	function onMouseWheel(var2, var3)
 	{
-		if(!Key.isDown(Key.CONTROL))
+		if(!dofus.graphics.gapi.ui.Zoom.isZooming())
 		{
 			return undefined;
 		}
@@ -46,11 +52,15 @@ class dofus.graphics.gapi.ui.Zoom extends dofus.graphics.gapi.core.DofusAdvanced
 		this._vsZoom.value = this._vsZoom.value + var2 * 10;
 		this.setZoom();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target) === this._btnCancel)
 		{
 			this.callClose();
 		}
+	}
+	static function isZooming()
+	{
+		return Key.isDown(Key.CONTROL) && !Key.isDown(Key.SHIFT);
 	}
 }

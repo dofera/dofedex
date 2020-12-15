@@ -7,7 +7,7 @@ class dofus.graphics.gapi.controls.InventoryViewerWithAllFilter extends dofus.gr
 	{
 		super();
 	}
-	function setFilter(§\x05\x10§)
+	function setFilter(var2)
 	{
 		if(var3 == this._nCurrentFilterID)
 		{
@@ -42,7 +42,7 @@ class dofus.graphics.gapi.controls.InventoryViewerWithAllFilter extends dofus.gr
 	{
 		this.setFilter(this.getDefaultFilter());
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if(var3.target == this._btnFilterAll)
 		{
@@ -65,7 +65,7 @@ class dofus.graphics.gapi.controls.InventoryViewerWithAllFilter extends dofus.gr
 			super.click(var3);
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if(var3.target == this._btnFilterAll)
 		{

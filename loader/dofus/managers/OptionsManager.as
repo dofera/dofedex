@@ -1,21 +1,21 @@
 class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 {
-	static var DEFAULT_VALUES = {loaded:true,Grid:false,Transparency:false,SpriteInfos:true,SpriteMove:true,MapInfos:true,AutoHideSmileys:false,StringCourse:true,PointsOverHead:true,ChatEffects:true,CreaturesMode:50,Buff:true,GuildMessageSound:false,BannerShortcuts:true,StartTurnSound:true,TipsOnStart:true,DisplayStyle:"normal",DebugSizeIndex:0,ServerPortIndex:0,MovableBar:false,ViewAllMonsterInGroup:true,MovableBarSize:5,ShortcutSet:1,ShortcutSetDefault:1,CharacterPreview:true,MapFilters:[0,1,1,1,1,1,1],Aura:true,AudioMusicVol:60,AudioEffectVol:100,AudioEnvVol:60,AudioMusicMute:false,AudioEffectMute:false,AudioEnvMute:false,FloatingTipsCoord:new com.ankamagames.types.(415,30),DisplayingFreshTips:true,CensorshipFilter:true,BigStoreSellFilter:false,RememberAccountName:false,LastAccountNameUsed:"",DefaultQuality:"high",ConquestFilter:-2,FightGroupAutoLock:false,BannerIllustrationMode:"artwork",BannerGaugeMode:"xp",AskForWrongCraft:true,AdvancedLineOfSight:true,RemindTurnTime:true,HideSpellBar:false,SeeAllSpell:true,UseSpeakingItems:true,ConfirmDropItem:true,TimestampInChat:true,ViewDicesDammages:false,SeeDamagesColor:true,RemasteredSpellIconsPack:1};
+	static var DEFAULT_VALUES = {loaded:true,Grid:false,Transparency:false,SpriteInfos:true,SpriteMove:true,MapInfos:true,AutoHideSmileys:false,StringCourse:true,PointsOverHead:true,ChatEffects:true,CreaturesMode:50,Buff:true,GuildMessageSound:false,BannerShortcuts:true,StartTurnSound:true,TipsOnStart:true,DisplayStyle:"normal",DebugSizeIndex:0,ServerPortIndex:0,MovableBar:false,ViewAllMonsterInGroup:true,MovableBarSize:5,ShortcutSet:1,ShortcutSetDefault:1,CharacterPreview:true,MapFilters:[0,1,1,1,1,1,1],Aura:true,AudioMusicVol:60,AudioEffectVol:100,AudioEnvVol:60,AudioMusicMute:false,AudioEffectMute:false,AudioEnvMute:false,FloatingTipsCoord:new com.ankamagames.types.(415,30),DisplayingFreshTips:true,CensorshipFilter:true,BigStoreSellFilter:false,RememberAccountName:false,LastAccountNameUsed:"",DefaultQuality:"high",ConquestFilter:-2,FightGroupAutoLock:false,BannerIllustrationMode:"artwork",BannerGaugeMode:"xp",AskForWrongCraft:true,AdvancedLineOfSight:true,RemindTurnTime:true,HideSpellBar:false,SeeAllSpell:true,UseSpeakingItems:true,ConfirmDropItem:true,TimestampInChat:true,ViewDicesDammages:false,SeeDamagesColor:true,RemasteredSpellIconsPack:1};
 	static var _sSelf = null;
-	function OptionsManager(§\x1e\x1a\x16§)
+	function OptionsManager(oAPI)
 	{
 		super();
 		dofus.managers.OptionsManager._sSelf = this;
-		this.initialize(var3);
+		this.initialize(oAPI);
 	}
 	static function getInstance()
 	{
 		return dofus.managers.OptionsManager._sSelf;
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3);
-		mx.events.EventDispatcher.initialize(this);
+		super.initialize(oAPI);
+		eval(mx).events.EventDispatcher.initialize(this);
 		this._so = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME];
 		if(this._so.data.loaded == undefined)
 		{
@@ -48,7 +48,7 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 		this._so.data.language = var2;
 		this._so.flush();
 	}
-	function setOption(§\x1e\x11\x10§, §\t\x14§)
+	function setOption(var2, var3)
 	{
 		var var4 = this.saveValue(var2,var3);
 		if(this.applyOption(var2,var4))
@@ -56,7 +56,7 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 			this.dispatchEvent({type:"optionChanged",key:var2,value:var4});
 		}
 	}
-	function getOption(§\x1e\x11\x10§)
+	function getOption(var2)
 	{
 		return this.loadValue(var2);
 	}
@@ -76,7 +76,7 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function saveValue(§\x1e\x11\x10§, §\t\x14§)
+	function saveValue(var2, var3)
 	{
 		var var4 = this._so.data;
 		if(var3 == undefined)
@@ -97,11 +97,11 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 		this._so.flush();
 		return var4[var2];
 	}
-	function loadValue(§\x1e\x11\x10§)
+	function loadValue(var2)
 	{
 		return this._so.data[var2];
 	}
-	function applyOption(§\x1e\x11\x10§, §\t\x14§)
+	function applyOption(var2, var3)
 	{
 		loop0:
 		switch(var2)
@@ -167,7 +167,6 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 							default:
 								switch(null)
 								{
-									case "TipsOnStart":
 									case "DebugSizeIndex":
 									case "ServerPortIndex":
 									case "ViewAllMonsterInGroup":
@@ -197,12 +196,12 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 											case "HideSpellBar":
 												this.api.ui.getUIComponent("Banner").displayMovableBar(this.getOption("MovableBar") && (this.api.datacenter.Game.isFight || !var3));
 												break loop0;
+											case "MovableBarSize":
+												this.api.ui.getUIComponent("Banner").setMovableBarSize(var3);
+												break loop0;
 											default:
 												switch(null)
 												{
-													case "MovableBarSize":
-														this.api.ui.getUIComponent("Banner").setMovableBarSize(var3);
-														break loop0;
 													case "ShortcutSet":
 														this.api.kernel.KeyManager.onSetChange(var3);
 														break loop0;
@@ -212,31 +211,26 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 													case "AudioMusicVol":
 														this.api.kernel.AudioManager.musicVolume = var3;
 														break loop0;
+													case "AudioEffectVol":
+														this.api.kernel.AudioManager.effectVolume = var3;
+														break loop0;
+													case "AudioEnvVol":
+														this.api.kernel.AudioManager.environmentVolume = var3;
+														break loop0;
 													default:
 														switch(null)
 														{
-															case "AudioEffectVol":
-																this.api.kernel.AudioManager.effectVolume = var3;
-																break loop0;
-															case "AudioEnvVol":
-																this.api.kernel.AudioManager.environmentVolume = var3;
-																break loop0;
 															case "AudioMusicMute":
 																this.api.kernel.AudioManager.musicMute = var3;
-																break loop0;
+																break;
 															case "AudioEffectMute":
 																this.api.kernel.AudioManager.effectMute = var3;
-																break loop0;
+																break;
 															case "AudioEnvMute":
 																this.api.kernel.AudioManager.environmentMute = var3;
-																break loop0;
-															default:
-																if(var0 !== "TimestampInChat")
-																{
-																	break loop0;
-																}
+																break;
+															case "TimestampInChat":
 																this.api.kernel.ChatManager.refresh();
-																break loop0;
 														}
 												}
 										}
@@ -245,6 +239,7 @@ class dofus.managers.OptionsManager extends dofus.utils.ApiElement
 							case "GuildMessageSound":
 							case "StartTurnSound":
 							case "BannerShortcuts":
+							case "TipsOnStart":
 						}
 					case "PointsOverHead":
 				}

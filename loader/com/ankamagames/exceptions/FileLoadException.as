@@ -1,10 +1,10 @@
 class com.ankamagames.exceptions.FileLoadException extends com.ankamagames.exceptions.AbstractException
 {
-	function FileLoadException(objectErrorSource, className, methodName, §\x0e\x12§)
+	function FileLoadException(objectErrorSource, className, methodName, §\x0e\t§)
 	{
 		super(objectErrorSource,className,methodName,var6 + " can\'t be loaded.");
 	}
-	function getExceptionName(§\x1e\n\f§)
+	function getExceptionName(var2)
 	{
 		return "com.ankamagames.exceptions.FileLoadException";
 	}

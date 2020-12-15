@@ -65,7 +65,7 @@ class ank.gapi.controls.Window extends ank.gapi.core.UIBasicComponent
 	{
 		return this._ldrContent.content;
 	}
-	function __set__centerScreen(§\x1b\x16§)
+	function __set__centerScreen(var2)
 	{
 		this._bCenterScreen = var2;
 		return this.__get__centerScreen();
@@ -74,7 +74,7 @@ class ank.gapi.controls.Window extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bCenterScreen;
 	}
-	function __set__interceptMouseEvent(§\x18\x1b§)
+	function __set__interceptMouseEvent(var2)
 	{
 		this._bInterceptMouseEvent = var2;
 		this.useHandCursor = false;

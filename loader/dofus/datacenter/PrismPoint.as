@@ -1,6 +1,6 @@
 class dofus.datacenter.PrismPoint extends Object
 {
-	function PrismPoint(§\x0b\x13§, cost, attackNear)
+	function PrismPoint(§\x0b\x07§, cost, attackNear)
 	{
 		super();
 		this.api = _global.API;

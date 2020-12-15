@@ -3,7 +3,7 @@ class ank.utils.rss.RSSItem
 	function RSSItem()
 	{
 	}
-	function parse(§\x1e\t\x1d§)
+	function parse(var2)
 	{
 		this.initialize();
 		if(var2.nodeName.toLowerCase() != "item")
@@ -25,18 +25,23 @@ class ank.utils.rss.RSSItem
 					break;
 				case "pubdate":
 					this._sPubDate = var3.childNodes.join("");
-					this._dPubDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
+					this._dPubDate = eval(org).utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E, d MMM yyyy H:m:s");
 					if(this._dPubDate == null)
 					{
-						this._dPubDate = org.utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E,  d MMM yyyy H:m:s");
+						this._dPubDate = eval(org).utils.SimpleDateFormatter.getDateFromFormat(this._sPubDate.substr(0,25),"E,  d MMM yyyy H:m:s");
 					}
-					this.sortByDate = org.utils.SimpleDateFormatter.formatDate(this._dPubDate,"yyyyMMdd");
+					this.sortByDate = eval(org).utils.SimpleDateFormatter.formatDate(this._dPubDate,"yyyyMMdd");
 					break;
 				case "guid":
 					this._sGuid = var3.childNodes.join("");
 					break;
-				case "icon":
+				default:
+					if(var0 !== "icon")
+					{
+						break;
+					}
 					this._sIcon = var3.childNodes.join("");
+					break;
 			}
 			var3 = var3.nextSibling;
 		}
@@ -58,9 +63,9 @@ class ank.utils.rss.RSSItem
 	{
 		return this._dPubDate;
 	}
-	function getPubDateStr(§\x1e\x12\x11§, §\x1e\x11\x06§)
+	function getPubDateStr(var2, var3)
 	{
-		return this._dPubDate != null?org.utils.SimpleDateFormatter.formatDate(this._dPubDate,var2,var3):this._sPubDate;
+		return this._dPubDate != null?eval(org).utils.SimpleDateFormatter.formatDate(this._dPubDate,var2,var3):this._sPubDate;
 	}
 	function getGuid()
 	{

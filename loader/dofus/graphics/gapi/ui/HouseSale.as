@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__house(§\x1e\x19\x0f§)
+	function __set__house(var2)
 	{
 		this._oHouse = var2;
 		return this.__get__house();
@@ -49,7 +49,7 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 		{
 			return undefined;
 		}
-		this._txtDescription.text = this._oHouse.name + MountPark + this._oHouse.description;
+		this._txtDescription.text = this._oHouse.name + "\n\n" + this._oHouse.description;
 		if(this._oHouse.localOwner)
 		{
 			this._txtPrice.text = this._oHouse.price;
@@ -80,7 +80,7 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 			this._btnValidate.label = this.api.lang.getText("BUY");
 		}
 	}
-	function onShortcut(§\x1e\x0e\x04§)
+	function onShortcut(var2)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && eval(Selection.getFocus())._name == "_txtPrice")
 		{
@@ -89,7 +89,7 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 		}
 		return true;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -121,13 +121,18 @@ class dofus.graphics.gapi.ui.HouseSale extends dofus.graphics.gapi.core.DofusAdv
 					}
 				}
 				break;
-			case "_btnClose":
+			default:
+				if(var0 !== "_btnClose")
+				{
+					break;
+				}
 				this.callClose();
+				break;
 		}
 	}
 	function getFormattedPrice()
 	{
-		return new ank.utils.(this._oHouse.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
+		return new ank.utils.(this._oHouse.price).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
 	}
 	function yes()
 	{

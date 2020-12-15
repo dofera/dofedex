@@ -1,63 +1,75 @@
-class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvancedComponent
+if(!dofus.graphics.gapi.ui.Banner)
 {
-	static var CHECK_MOUSE_POSITION_REFRESH_RATE = 250;
-	static var CLASS_NAME = "Banner";
-	static var NO_TRANSFORM = {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0};
-	static var INACTIVE_TRANSFORM = {ra:50,rb:0,ga:50,gb:0,ba:50,bb:0};
-	var _nFightsCount = 0;
-	var _bChatAutoFocus = true;
-	var _sChatPrefix = "";
-	var _bHeartMovedTop = false;
-	function Banner()
+	if(!dofus)
+	{
+		_global.dofus = new Object();
+	}
+	if(!dofus.graphics)
+	{
+		_global.dofus.graphics = new Object();
+	}
+	if(!dofus.graphics.gapi)
+	{
+		_global.dofus.graphics.gapi = new Object();
+	}
+	if(!dofus.graphics.gapi.ui)
+	{
+		_global.dofus.graphics.gapi.ui = new Object();
+	}
+	dofus.graphics.gapi.ui.Banner = function()
 	{
 		super();
-	}
-	function __set__data(§\x1e\x1a\x02§)
+	} extends dofus.graphics.gapi.core.DofusAdvancedComponent;
+	var var1 = dofus.graphics.gapi.ui.Banner = function()
+	{
+		super();
+	}.prototype;
+	var1.__set__data = function __set__data(var2)
 	{
 		this._oData = var2;
 		return this.__get__data();
-	}
-	function __get__fightsCount()
+	};
+	var1.__get__fightsCount = function __get__fightsCount()
 	{
 		return this._nFightsCount;
-	}
-	function __set__fightsCount(§\x05\x15§)
+	};
+	var1.__set__fightsCount = function __set__fightsCount(var2)
 	{
 		this._nFightsCount = var2;
 		this.updateEye();
 		return this.__get__fightsCount();
-	}
-	function __get__chatAutoFocus()
+	};
+	var1.__get__chatAutoFocus = function __get__chatAutoFocus()
 	{
 		return this._bChatAutoFocus;
-	}
-	function __set__chatAutoFocus(§\x1b\x15§)
+	};
+	var1.__set__chatAutoFocus = function __set__chatAutoFocus(var2)
 	{
 		this._bChatAutoFocus = var2;
 		return this.__get__chatAutoFocus();
-	}
-	function __set__txtConsole(§\x1e\r\x02§)
+	};
+	var1.__set__txtConsole = function __set__txtConsole(var2)
 	{
 		this._txtConsole.text = var2;
 		return this.__get__txtConsole();
-	}
-	function __get__chat()
+	};
+	var1.__get__chat = function __get__chat()
 	{
 		return this._cChat;
-	}
-	function __get__shortcuts()
+	};
+	var1.__get__shortcuts = function __get__shortcuts()
 	{
 		return this._msShortcuts;
-	}
-	function __get__illustration()
+	};
+	var1.__get__illustration = function __get__illustration()
 	{
 		return this._mcXtra;
-	}
-	function __get__illustrationType()
+	};
+	var1.__get__illustrationType = function __get__illustrationType()
 	{
 		return this._sCurrentCircleXtra;
-	}
-	function updateEye()
+	};
+	var1.updateEye = function updateEye()
 	{
 		if(this._btnFights.icon == "")
 		{
@@ -65,28 +77,28 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		var var2 = this._nFightsCount != 0 && !this.api.datacenter.Game.isFight;
 		this._btnFights._visible = var2;
-	}
-	function setSelectable(§\x15\x1a§)
+	};
+	var1.setSelectable = function setSelectable(var2)
 	{
 		this._cChat.selectable = var2;
-	}
-	function insertChat(§\x1e\r\x02§)
+	};
+	var1.insertChat = function insertChat(var2)
 	{
 		this._txtConsole.text = this._txtConsole.text + var2;
-	}
-	function showNextTurnButton(§\x15\x13§)
+	};
+	var1.showNextTurnButton = function showNextTurnButton(var2)
 	{
 		this._btnNextTurn._visible = var2;
-	}
-	function showGiveUpButton(§\x15\x13§)
+	};
+	var1.showGiveUpButton = function showGiveUpButton(var2)
 	{
 		if(var2)
 		{
 			this.setXtraFightMask(true);
 		}
 		this._btnGiveUp._visible = var2;
-	}
-	function moveHeart(§\x14\x12§)
+	};
+	var1.moveHeart = function moveHeart(var2)
 	{
 		if(var2)
 		{
@@ -100,8 +112,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			this._hHeart._y = this._hHeart._y + 30;
 		}
 		this._bHeartMovedTop = var2;
-	}
-	function showPoints(§\x15\x13§)
+	};
+	var1.showPoints = function showPoints(var2)
 	{
 		this._pvAP._visible = var2;
 		this._pvMP._visible = var2;
@@ -114,8 +126,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			this.apChanged({value:Math.max(0,this._oData.data.AP)});
 			this.mpChanged({value:Math.max(0,this._oData.data.MP)});
 		}
-	}
-	function setXtraFightMask(§\x19\x01§)
+	};
+	var1.setXtraFightMask = function setXtraFightMask(var2)
 	{
 		this._mcChronoGrid._visible = var2;
 		if(!var2)
@@ -146,13 +158,13 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			this.setMiniMapScale(dofus.graphics.gapi.controls.MiniMap.SCALE_SMALL);
 		}
 		this.displayMovableBar(this.api.kernel.OptionsManager.getOption("MovableBar") && (!this.api.kernel.OptionsManager.getOption("HideSpellBar") || this.api.datacenter.Game.isFight));
-	}
-	function setXtraMask(§\x0b\x04§)
+	};
+	var1.setXtraMask = function setXtraMask(var2)
 	{
 		this._mcCurrentXtraMask = var2;
 		this._mcXtra.setMask(var2);
-	}
-	function showCircleXtra(§\x1e\f\x03§, §\x15\x13§, §\x1e\x18\x15§, §\x1e\x1a\x07§)
+	};
+	var1.showCircleXtra = function showCircleXtra(var2, var3, var4, var5)
 	{
 		if(var2 == undefined)
 		{
@@ -181,6 +193,7 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			_global.clearInterval(this._nMiniMapCheckInterval);
 		}
+		loop3:
 		switch(var2)
 		{
 			case "artwork":
@@ -200,35 +213,35 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 				var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,_width:this._mcCircleXtraPlacer._width,_height:this._mcCircleXtraPlacer._height,arrowHours:"UI_BannerClockArrowHours",arrowMinutes:"UI_BannerClockArrowMinutes",background:"UI_BannerClockBack",updateFunction:{object:this.api.kernel.NightManager,method:this.api.kernel.NightManager.getCurrentTime}};
 				var9 = ["click","over","out"];
 				break;
-			case "helper":
-				var6 = "Loader";
-				if(dofus.Constants.DOUBLEFRAMERATE)
-				{
-					var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,contentPath:"Helper_DoubleFramerate",enabled:true};
-				}
-				else
-				{
-					var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,contentPath:"Helper",enabled:true};
-				}
-				var9 = ["click","over","out"];
-				break;
 			default:
-				if(var0 !== "map")
+				switch(null)
 				{
-					var6 = "Loader";
-					var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,_width:this._mcCircleXtraPlacer._width,_height:this._mcCircleXtraPlacer._height};
-					break;
+					case "helper":
+						var6 = "Loader";
+						if(dofus.Constants.DOUBLEFRAMERATE)
+						{
+							var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,contentPath:"Helper_DoubleFramerate",enabled:true};
+						}
+						else
+						{
+							var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,contentPath:"Helper",enabled:true};
+						}
+						var9 = ["click","over","out"];
+						break loop3;
+					case "map":
+						this._nMiniMapCheckInterval = _global.setInterval(this,"checkMouseOnMiniMap",dofus.graphics.gapi.ui.Banner.CHECK_MOUSE_POSITION_REFRESH_RATE);
+						var6 = "MiniMap";
+						var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,contentPath:"Map",enabled:true};
+						var9 = ["over"];
+						break loop3;
+					default:
+						var6 = "Loader";
+						var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,_width:this._mcCircleXtraPlacer._width,_height:this._mcCircleXtraPlacer._height};
 				}
-				this._nMiniMapCheckInterval = _global.setInterval(this,"checkMouseOnMiniMap",dofus.graphics.gapi.ui.Banner.CHECK_MOUSE_POSITION_REFRESH_RATE);
-				var6 = "MiniMap";
-				var8 = {_x:this._mcCircleXtraPlacer._x,_y:this._mcCircleXtraPlacer._y,contentPath:"Map",enabled:true};
-				var9 = ["over"];
-				break;
 		}
 		var var12 = null;
 		if(var3)
 		{
-			org.flashdevelop.utils.FlashConnect.mtrace("show","dofus.graphics.gapi.ui.Banner::showCircleXtra","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Banner.as",396);
 			for(var k in var8)
 			{
 				var5[k] = var8[k];
@@ -268,33 +281,33 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
 		}
 		return var12;
-	}
-	function setCircleXtraParams(§\x1e\x18\x15§)
+	};
+	var1.setCircleXtraParams = function setCircleXtraParams(var2)
 	{
 		for(var k in var2)
 		{
 			this._mcXtra[k] = var2[k];
 		}
-	}
-	function startTimer(§\x06\t§)
+	};
+	var1.startTimer = function startTimer(var2)
 	{
 		this.moveHeart(false);
 		this.setXtraFightMask(true);
 		this._ccChrono.startTimer(var2);
-	}
-	function redrawChrono()
+	};
+	var1.redrawChrono = function redrawChrono()
 	{
 		this._ccChrono.redraw();
-	}
-	function stopTimer()
+	};
+	var1.stopTimer = function stopTimer()
 	{
 		this._ccChrono.stopTimer();
-	}
-	function setChatText(§\x1e\r\x02§)
+	};
+	var1.setChatText = function setChatText(var2)
 	{
 		this._cChat.setText(var2);
-	}
-	function showRightPanel(§\x1e\x0f\x14§, §\x1e\x18\x15§, §\x15\x07§, §\x17\x18§)
+	};
+	var1.showRightPanel = function showRightPanel(var2, var3, var4, var5)
 	{
 		if(this.api.datacenter.Game.isSpectator && this._mcRightPanel.bMouseSpriteRollover == true)
 		{
@@ -328,8 +341,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			}
 			this._mcRightPanel.bMouseSpriteRollover = var5;
 		}
-	}
-	function hideRightPanel(§\x15\x07§, §\x17\x19§)
+	};
+	var1.hideRightPanel = function hideRightPanel(var2, var3)
 	{
 		if(var3)
 		{
@@ -340,12 +353,12 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			this._mcRightPanel.swapDepths(this._mcRightPanelPlacer);
 			this._mcRightPanel.removeMovieClip();
 		}
-	}
-	function updateSmileysEmotes()
+	};
+	var1.updateSmileysEmotes = function updateSmileysEmotes()
 	{
 		this._cChat.updateSmileysEmotes();
-	}
-	function showSmileysEmotesPanel(§\x15\x13§)
+	};
+	var1.showSmileysEmotesPanel = function showSmileysEmotesPanel(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -353,8 +366,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		this._cChat.hideSmileys(!var2);
 		this._cChat._btnSmileys.selected = var2;
-	}
-	function updateArtwork(§\x19\x16§)
+	};
+	var1.updateArtwork = function updateArtwork(var2)
 	{
 		if(this._sCurrentCircleXtra == "artwork")
 		{
@@ -370,17 +383,17 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 				this._mcXtra.contentPath = dofus.Constants.GUILDS_FACES_PATH + this._oData.data.gfxID + ".swf";
 			}
 		}
-	}
-	function updateLocalPlayer()
+	};
+	var1.updateLocalPlayer = function updateLocalPlayer()
 	{
 		this.updateArtwork(false);
 		this._msShortcuts.meleeVisible = !this._oData.isMutant && this._msShortcuts.currentTab == dofus.graphics.gapi.controls.MouseShortcuts.TAB_SPELLS;
-	}
-	function init()
+	};
+	var1.init = function init()
 	{
 		super.init(false,dofus.graphics.gapi.ui.Banner.CLASS_NAME);
-	}
-	function createChildren()
+	};
+	var1.createChildren = function createChildren()
 	{
 		this._btnFights._visible = false;
 		this.addToQueue({object:this,method:this.hideEpisodicContent});
@@ -406,8 +419,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		};
 		this._txtConsole.maxChars = dofus.Constants.MAX_MESSAGE_LENGTH + dofus.Constants.MAX_MESSAGE_LENGTH_MARGIN;
 		ank.battlefield.Battlefield.useCacheAsBitmapOnStaticAnim = this.api.lang.getConfigText("USE_CACHEASBITMAP_ON_STATICANIM");
-	}
-	function linkMovableContainer()
+	};
+	var1.linkMovableContainer = function linkMovableContainer()
 	{
 		var var2 = this._mcbMovableBar.containers;
 		var var3 = 0;
@@ -425,8 +438,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			var4.params = {position:var3 + 15};
 			var3 = var3 + 1;
 		}
-	}
-	function addListeners()
+	};
+	var1.addListeners = function addListeners()
 	{
 		this._btnPvP.addEventListener("click",this);
 		this._btnMount.addEventListener("click",this);
@@ -504,27 +517,27 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this.toggleDisplay();
 		};
-	}
-	function initData()
+	};
+	var1.initData = function initData()
 	{
-		switch(this.api.kernel.OptionsManager.getOption("BannerIllustrationMode"))
+		if((var var0 = this.api.kernel.OptionsManager.getOption("BannerIllustrationMode")) !== "artwork")
 		{
-			case "artwork":
-				this.showCircleXtra("artwork",true,{bMask:true});
-				break;
-			case "clock":
-				this.showCircleXtra("clock",true,{bMask:true});
-				break;
-			default:
-				switch(null)
-				{
-					case "compass":
-						this.showCircleXtra("compass",true);
-					case "helper":
-						this.showCircleXtra("helper",true);
-					case "map":
-						this.showCircleXtra("map",true,{bMask:true});
-				}
+			switch(null)
+			{
+				case "clock":
+					this.showCircleXtra("clock",true,{bMask:true});
+					break;
+				case "compass":
+					this.showCircleXtra("compass",true);
+				case "helper":
+					this.showCircleXtra("helper",true);
+				case "map":
+					this.showCircleXtra("map",true,{bMask:true});
+			}
+		}
+		else
+		{
+			this.showCircleXtra("artwork",true,{bMask:true});
 		}
 		this.drawBar();
 		this.lpMaxChanged({value:this._oData.LPmax});
@@ -535,21 +548,21 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this.displayMovableBar(this.api.kernel.OptionsManager.getOption("MovableBar") && (!this.api.kernel.OptionsManager.getOption("HideSpellBar") || this.api.datacenter.Game.isFight));
 		}
-	}
-	function setChatFocus()
+	};
+	var1.setChatFocus = function setChatFocus()
 	{
 		Selection.setFocus(this._txtConsole);
-	}
-	function isChatFocus()
+	};
+	var1.isChatFocus = function isChatFocus()
 	{
 		return eval(Selection.getFocus())._name == "_txtConsole";
-	}
-	function placeCursorAtTheEnd()
+	};
+	var1.placeCursorAtTheEnd = function placeCursorAtTheEnd()
 	{
 		Selection.setFocus(this._txtConsole);
 		Selection.setSelection(this._txtConsole.text.length,dofus.Constants.MAX_MESSAGE_LENGTH + dofus.Constants.MAX_MESSAGE_LENGTH_MARGIN);
-	}
-	function setChatFocusWithLastKey()
+	};
+	var1.setChatFocusWithLastKey = function setChatFocusWithLastKey()
 	{
 		if(!this._bChatAutoFocus)
 		{
@@ -561,8 +574,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		this.setChatFocus();
 		this.placeCursorAtTheEnd();
-	}
-	function setChatPrefix(§\x1e\x0f\x02§)
+	};
+	var1.setChatPrefix = function setChatPrefix(var2)
 	{
 		this._sChatPrefix = var2;
 		if(var2 != "" && var2 != "/s")
@@ -576,8 +589,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			this._btnHelp.icon = "UI_BannerChatCommandAll";
 		}
 		this.addToQueue({object:this,method:this.placeCursorAtTheEnd});
-	}
-	function getChatCommand()
+	};
+	var1.getChatCommand = function getChatCommand()
 	{
 		var var2 = this._txtConsole.text;
 		var var3 = var2.split(" ");
@@ -590,8 +603,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			return this._sChatPrefix + " " + var2;
 		}
 		return var2;
-	}
-	function hideEpisodicContent()
+	};
+	var1.hideEpisodicContent = function hideEpisodicContent()
 	{
 		this._btnPvP._visible = this.api.datacenter.Basics.aks_current_regional_version >= 16;
 		this._btnMount._visible = this.api.datacenter.Basics.aks_current_regional_version >= 20;
@@ -624,41 +637,41 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			var4[var6]._x = var6 * var5 + var2;
 			var6 = var6 + 1;
 		}
-	}
-	function displayChatHelp()
+	};
+	var1.displayChatHelp = function displayChatHelp()
 	{
 		this.api.kernel.Console.process("/help");
 		this._cChat.open(false);
-	}
-	function xpChanged()
+	};
+	var1.xpChanged = function xpChanged()
 	{
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
-	}
-	function energyChanged()
+	};
+	var1.energyChanged = function energyChanged()
 	{
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
-	}
-	function currentWeightChanged()
+	};
+	var1.currentWeightChanged = function currentWeightChanged()
 	{
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
-	}
-	function mountChanged()
+	};
+	var1.mountChanged = function mountChanged()
 	{
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
-	}
-	function currentJobChanged()
+	};
+	var1.currentJobChanged = function currentJobChanged()
 	{
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
-	}
-	function setMiniMapScale(§\x1e\x1e\n§)
+	};
+	var1.setMiniMapScale = function setMiniMapScale(var2)
 	{
 		if(this._sCurrentCircleXtra != "map")
 		{
 			return undefined;
 		}
 		this._mcXtra.setScale(var2,true);
-	}
-	function displayMovableBar(§\x15\x13§)
+	};
+	var1.displayMovableBar = function displayMovableBar(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -684,16 +697,16 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this.api.ui.unloadUIComponent("MovableBar");
 		}
-	}
-	function setMovableBarSize(§\x1e\x1d\x1a§)
+	};
+	var1.setMovableBarSize = function setMovableBarSize(var2)
 	{
 		this._mcbMovableBar.size = var2;
-	}
-	function chatInputHasText()
+	};
+	var1.chatInputHasText = function chatInputHasText()
 	{
 		return this._txtConsole.text != undefined && this._txtConsole.text != "";
-	}
-	function onKeys(§\x1e\x11\x10§)
+	};
+	var1.onKeys = function onKeys(var2)
 	{
 		if(this._lastKeyIsShortcut)
 		{
@@ -701,8 +714,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			return undefined;
 		}
 		this.setChatFocusWithLastKey();
-	}
-	function onShortcut(§\x1e\x0e\x04§)
+	};
+	var1.onShortcut = function onShortcut(var2)
 	{
 		var var3 = true;
 		loop1:
@@ -723,7 +736,6 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			case "ESCAPE":
 				if(this.isChatFocus())
 				{
-					org.flashdevelop.utils.FlashConnect.mtrace("ESCAPE ON BANNER","dofus.graphics.gapi.ui.Banner::onShortcut","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Banner.as",1019);
 					Selection.setFocus(null);
 					var3 = false;
 				}
@@ -814,17 +826,17 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 							var3 = false;
 						}
 						break loop1;
-					case "WHISPER_HISTORY_DOWN":
-						if(this.isChatFocus())
-						{
-							this._txtConsole.text = this.api.kernel.Console.getWhisperHistoryDown();
-							this.addToQueue({object:this,method:this.placeCursorAtTheEnd});
-							var3 = false;
-						}
-						break loop1;
 					default:
 						switch(null)
 						{
+							case "WHISPER_HISTORY_DOWN":
+								if(this.isChatFocus())
+								{
+									this._txtConsole.text = this.api.kernel.Console.getWhisperHistoryDown();
+									this.addToQueue({object:this,method:this.placeCursorAtTheEnd});
+									var3 = false;
+								}
+								break loop1;
 							case "HISTORY_UP":
 								if(this.isChatFocus())
 								{
@@ -880,31 +892,31 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 								this._txtConsole.text = var11.result + (!var11.isFull?"":" ");
 								this.placeCursorAtTheEnd();
 								break loop1;
-							case "NEXTTURN":
-								if(!this.isChatFocus() && this.api.datacenter.Game.isFight)
-								{
-									if(!this.api.datacenter.Game.isRunning)
-									{
-										var var12 = (dofus.graphics.gapi.ui.ChallengeMenu)this.gapi.getUIComponent("ChallengeMenu");
-										if(var12 != undefined)
-										{
-											var12.sendReadyState();
-										}
-									}
-									else
-									{
-										this.api.network.Game.prepareTurnEnd();
-									}
-									var3 = false;
-								}
-								break loop1;
-							case "MAXI":
-								this._cChat.open(false);
-								var3 = false;
-								break loop1;
 							default:
 								switch(null)
 								{
+									case "NEXTTURN":
+										if(!this.isChatFocus() && this.api.datacenter.Game.isFight)
+										{
+											if(!this.api.datacenter.Game.isRunning)
+											{
+												var var12 = (dofus.graphics.gapi.ui.ChallengeMenu)this.gapi.getUIComponent("ChallengeMenu");
+												if(var12 != undefined)
+												{
+													var12.sendReadyState();
+												}
+											}
+											else
+											{
+												this.api.network.Game.prepareTurnEnd();
+											}
+											var3 = false;
+										}
+										break loop1;
+									case "MAXI":
+										this._cChat.open(false);
+										var3 = false;
+										break loop1;
 									case "MINI":
 										this._cChat.open(true);
 										var3 = false;
@@ -923,51 +935,56 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 											var3 = false;
 										}
 										break loop1;
-									case "INVENTORY":
-										if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
-										{
-											this.click({target:this._btnInventory});
-											var3 = false;
-										}
-										break loop1;
 									default:
 										switch(null)
 										{
+											case "INVENTORY":
+												if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
+												{
+													this.click({target:this._btnInventory});
+													var3 = false;
+												}
+												break loop1;
 											case "QUESTS":
 												if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
 												{
 													this.click({target:this._btnQuests});
 													var3 = false;
 												}
-												break;
+												break loop1;
 											case "MAP":
 												if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
 												{
 													this.click({target:this._btnMap});
 													var3 = false;
 												}
-												break;
+												break loop1;
 											case "FRIENDS":
 												if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
 												{
 													this.click({target:this._btnFriends});
 													var3 = false;
 												}
-												break;
+												break loop1;
 											case "GUILD":
 												if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
 												{
 													this.click({target:this._btnGuild});
 													var3 = false;
 												}
-												break;
-											case "MOUNT":
+												break loop1;
+											default:
+												if(§§enum_assign() !== "MOUNT")
+												{
+													break loop1;
+												}
 												if(this.api.kernel.OptionsManager.getOption("BannerShortcuts"))
 												{
 													this.click({target:this._btnMount});
 													var3 = false;
-													break;
+													break loop1;
 												}
+												break loop1;
 										}
 								}
 						}
@@ -975,8 +992,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		this._lastKeyIsShortcut = var3;
 		return var3;
-	}
-	function checkMouseOnMiniMap()
+	};
+	var1.checkMouseOnMiniMap = function checkMouseOnMiniMap()
 	{
 		if(this._sCurrentCircleXtra != "map")
 		{
@@ -1000,8 +1017,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			this.setXtraMask(this._mcCircleXtraMask);
 		}
 		dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
-	}
-	function click(§\x1e\x19\x18§)
+	};
+	var1.click = function click(var2)
 	{
 		this.api.kernel.GameManager.signalFightActivity();
 		loop0:
@@ -1048,26 +1065,26 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("UI_ONLY_FOR_MOUNT"),"ERROR_CHAT");
 				}
 				break;
-			case "_btnGuild":
-				this.api.sounds.events.onBannerRoundButtonClick();
-				if(this._oData.isMutant && !this.api.datacenter.Player.isAuthorized)
-				{
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_U_ARE_MUTANT"),"ERROR_CHAT");
-					return undefined;
-				}
-				if(this._oData.guildInfos != undefined)
-				{
-					this.showSmileysEmotesPanel(false);
-					this.gapi.loadUIAutoHideComponent("Guild","Guild",{currentTab:"Members"});
-				}
-				else
-				{
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("UI_ONLY_FOR_GUILD"),"ERROR_CHAT");
-				}
-				break;
 			default:
 				switch(null)
 				{
+					case "_btnGuild":
+						this.api.sounds.events.onBannerRoundButtonClick();
+						if(this._oData.isMutant && !this.api.datacenter.Player.isAuthorized)
+						{
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_U_ARE_MUTANT"),"ERROR_CHAT");
+							return undefined;
+						}
+						if(this._oData.guildInfos != undefined)
+						{
+							this.showSmileysEmotesPanel(false);
+							this.gapi.loadUIAutoHideComponent("Guild","Guild",{currentTab:"Members"});
+						}
+						else
+						{
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("UI_ONLY_FOR_GUILD"),"ERROR_CHAT");
+						}
+						break loop0;
 					case "_btnStatsJob":
 						this.api.sounds.events.onBannerRoundButtonClick();
 						if(this._oData.isMutant && !this.api.datacenter.Player.isAuthorized)
@@ -1264,40 +1281,39 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 						}
 				}
 		}
-	}
-	function dblClick(§\x1e\x19\x18§)
+	};
+	var1.dblClick = function dblClick(var2)
 	{
 		if(var2.target == this._mcbMovableBar)
 		{
 			this._mcbMovableBar.size = this._mcbMovableBar.size != 0?0:this.api.kernel.OptionsManager.getOption("MovableBarSize");
 			return undefined;
 		}
-	}
-	function beforeFinalCountDown(§\x1e\x19\x18§)
+	};
+	var1.beforeFinalCountDown = function beforeFinalCountDown(var2)
 	{
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_FINAL_COUNTDOWN);
-	}
-	function finalCountDown(§\x1e\x19\x18§)
+	};
+	var1.finalCountDown = function finalCountDown(var2)
 	{
 		this._mcXtra._visible = false;
 		this._lblFinalCountDown.text = var2.value;
-	}
-	function tictac(§\x1e\x19\x18§)
+	};
+	var1.tictac = function tictac(var2)
 	{
 		this.api.sounds.events.onBannerTimer();
-	}
-	function finish(§\x1e\x19\x18§)
+	};
+	var1.finish = function finish(var2)
 	{
 		this._mcXtra._visible = true;
 		if(this._lblFinalCountDown.text != undefined)
 		{
 			this._lblFinalCountDown.text = "";
 		}
-	}
-	function complete(§\x1e\x19\x18§)
+	};
+	var1.complete = function complete(var2)
 	{
 		var var3 = this.api.kernel.OptionsManager.getOption("BannerIllustrationMode");
-		org.flashdevelop.utils.FlashConnect.mtrace(var3 + " : " + var2.target.contentPath,"dofus.graphics.gapi.ui.Banner::complete","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Banner.as",1698);
 		if(var2.target.contentPath.indexOf("artworks") != -1 && var3 == "helper")
 		{
 			this.showCircleXtra("helper",true);
@@ -1306,8 +1322,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this.api.colors.addSprite(this._mcXtra.content,this._oData.data);
 		}
-	}
-	function over(§\x1e\x19\x18§)
+	};
+	var1.over = function over(var2)
 	{
 		if(!this.gapi.isCursorHidden())
 		{
@@ -1359,10 +1375,10 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 								this.gapi.showTooltip(this.api.lang.getText("YOUR_QUESTS"),var2.target,-20,{bXLimit:true,bYLimit:false});
 								break loop0;
 							case "_btnInventory":
-								var var4 = new ank.utils.(this.api.datacenter.Player.currentWeight).addMiddleChar(" ",3);
-								var var5 = new ank.utils.(this.api.datacenter.Player.maxWeight).addMiddleChar(" ",3);
+								var var4 = new ank.utils.(this.api.datacenter.Player.currentWeight).addMiddleChar(" ",3);
+								var var5 = new ank.utils.(this.api.datacenter.Player.maxWeight).addMiddleChar(" ",3);
 								var var6 = this.api.lang.getText("PLAYER_WEIGHT",[var4,var5]);
-								this.gapi.showTooltip(this.api.lang.getText("YOUR_INVENTORY") + MountPark + var6,var2.target,-43,{bXLimit:true,bYLimit:false});
+								this.gapi.showTooltip(this.api.lang.getText("YOUR_INVENTORY") + "\n\n" + var6,var2.target,-43,{bXLimit:true,bYLimit:false});
 								break loop0;
 							case "_btnMap":
 								this.gapi.showTooltip(this.api.lang.getText("YOUR_BOOK"),var2.target,-20,{bXLimit:true,bYLimit:false});
@@ -1415,43 +1431,41 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 									default:
 										if(var0 !== "_hHeart")
 										{
-											if((var0 = this._msShortcuts.currentTab) !== "Spells")
+											switch(this._msShortcuts.currentTab)
 											{
-												if(var0 !== "Items")
-												{
-													break loop0;
-												}
-												var var9 = var2.target.contentData;
-												if(var9 != undefined)
-												{
-													var var10 = var9.name;
-													if(this.gapi.getUIComponent("Inventory") == undefined)
+												case "Spells":
+													var var8 = var2.target.contentData;
+													if(var8 != undefined)
 													{
-														if(var9.canUse && var9.canTarget)
-														{
-															var10 = var10 + ("\n" + this.api.lang.getText("HELP_SHORTCUT_DBLCLICK_CLICK"));
-														}
-														else
-														{
-															if(var9.canUse)
-															{
-																var10 = var10 + ("\n" + this.api.lang.getText("HELP_SHORTCUT_DBLCLICK"));
-															}
-															if(var9.canTarget)
-															{
-																var10 = var10 + ("\n" + this.api.lang.getText("HELP_SHORTCUT_CLICK"));
-															}
-														}
+														this.gapi.showTooltip(var8.name + " (" + var8.apCost + " " + this.api.lang.getText("AP") + (var8.actualCriticalHit <= 0?"":", " + this.api.lang.getText("ACTUAL_CRITICAL_CHANCE") + ": 1/" + var8.actualCriticalHit) + ")",var2.target,-20,{bXLimit:true,bYLimit:false});
 													}
-													this.gapi.showTooltip(var10,var2.target,-30,{bXLimit:true,bYLimit:false});
-													break loop0;
-												}
-												break loop0;
-											}
-											var var8 = var2.target.contentData;
-											if(var8 != undefined)
-											{
-												this.gapi.showTooltip(var8.name + " (" + var8.apCost + " " + this.api.lang.getText("AP") + (var8.actualCriticalHit <= 0?"":", " + this.api.lang.getText("ACTUAL_CRITICAL_CHANCE") + ": 1/" + var8.actualCriticalHit) + ")",var2.target,-20,{bXLimit:true,bYLimit:false});
+													break;
+												case "Items":
+													var var9 = var2.target.contentData;
+													if(var9 != undefined)
+													{
+														var var10 = var9.name;
+														if(this.gapi.getUIComponent("Inventory") == undefined)
+														{
+															if(var9.canUse && var9.canTarget)
+															{
+																var10 = var10 + ("\n" + this.api.lang.getText("HELP_SHORTCUT_DBLCLICK_CLICK"));
+															}
+															else
+															{
+																if(var9.canUse)
+																{
+																	var10 = var10 + ("\n" + this.api.lang.getText("HELP_SHORTCUT_DBLCLICK"));
+																}
+																if(var9.canTarget)
+																{
+																	var10 = var10 + ("\n" + this.api.lang.getText("HELP_SHORTCUT_CLICK"));
+																}
+															}
+														}
+														this.gapi.showTooltip(var10,var2.target,-30,{bXLimit:true,bYLimit:false});
+														break;
+													}
 											}
 											break loop0;
 										}
@@ -1461,8 +1475,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 						}
 				}
 		}
-	}
-	function out(§\x1e\x19\x18§)
+	};
+	var1.out = function out(var2)
 	{
 		if((var var0 = var2.target._name) === "_mcXtra")
 		{
@@ -1478,8 +1492,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 			dofus.graphics.gapi.ui.banner.Gauge.showGaugeMode(this);
 		}
 		this.gapi.hideTooltip();
-	}
-	function drag(§\x1e\x19\x18§)
+	};
+	var1.drag = function drag(var2)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 == undefined)
@@ -1503,8 +1517,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		this.gapi.removeCursor();
 		this.gapi.setCursor(var3,undefined,this._msShortcuts.currentTab == "Spells");
-	}
-	function drop(§\x1e\x19\x18§)
+	};
+	var1.drop = function drop(var2)
 	{
 		if((var var0 = var2.target) !== this._mcbMovableBar)
 		{
@@ -1582,48 +1596,48 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this.api.kernel.OptionsManager.setOption("MovableBarCoord",{x:this._mcbMovableBar._x,y:this._mcbMovableBar._y,v:this._mcbMovableBar._bVertical});
 		}
-	}
-	function filterChanged(§\x1e\x19\x18§)
+	};
+	var1.filterChanged = function filterChanged(var2)
 	{
 		this.api.network.Chat.subscribeChannels(var2.filter,var2.selected);
-	}
-	function lpChanged(§\x1e\x19\x18§)
+	};
+	var1.lpChanged = function lpChanged(var2)
 	{
 		this._hHeart.value = var2.value;
-	}
-	function lpMaxChanged(§\x1e\x19\x18§)
+	};
+	var1.lpMaxChanged = function lpMaxChanged(var2)
 	{
 		this._hHeart.max = var2.value;
-	}
-	function apChanged(§\x1e\x19\x18§)
+	};
+	var1.apChanged = function apChanged(var2)
 	{
 		this._pvAP.value = var2.value;
 		if(!this.api.datacenter.Game.isFight)
 		{
 		}
 		this._msShortcuts.setSpellStateOnAllContainers();
-	}
-	function mpChanged(§\x1e\x19\x18§)
+	};
+	var1.mpChanged = function mpChanged(var2)
 	{
 		this._pvMP.value = Math.max(0,var2.value);
-	}
-	function selectSmiley(§\x1e\x19\x18§)
+	};
+	var1.selectSmiley = function selectSmiley(var2)
 	{
 		this.api.network.Chat.useSmiley(var2.index);
-	}
-	function selectEmote(§\x1e\x19\x18§)
+	};
+	var1.selectEmote = function selectEmote(var2)
 	{
 		this.api.network.Emotes.useEmote(var2.index);
-	}
-	function spellLaunched(§\x1e\x19\x18§)
+	};
+	var1.spellLaunched = function spellLaunched(var2)
 	{
 		this._msShortcuts.setSpellStateOnContainer(var2.spell.position);
-	}
-	function nextTurn(§\x1e\x19\x18§)
+	};
+	var1.nextTurn = function nextTurn(var2)
 	{
 		this._msShortcuts.setSpellStateOnAllContainers();
-	}
-	function href(§\x1e\x19\x18§)
+	};
+	var1.href = function href(var2)
 	{
 		var var3 = var2.params.split(",");
 		if((var var0 = var3[0]) !== "OpenGuildTaxCollectors")
@@ -1678,8 +1692,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this.addToQueue({object:this.gapi,method:this.gapi.loadUIAutoHideComponent,params:["Guild","Guild",{currentTab:"TaxCollectors"},{bStayIfPresent:true}]});
 		}
-	}
-	function validate(§\x1e\x19\x18§)
+	};
+	var1.validate = function validate(var2)
 	{
 		if((var var0 = var2.params.type) === "drop")
 		{
@@ -1689,14 +1703,14 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 				this.api.network.Items.movement(var2.params.item.ID,var2.params.position,Math.min(var2.value,var2.params.item.Quantity));
 			}
 		}
-	}
-	function drawBar(§\x1e\x19\x18§)
+	};
+	var1.drawBar = function drawBar(var2)
 	{
 		this.linkMovableContainer();
 		this._msShortcuts.updateCurrentTabInformations();
 		this.updateEye();
-	}
-	function onSetFocus()
+	};
+	var1.onSetFocus = function onSetFocus()
 	{
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		if(this.api.config.isLinux || this.api.config.isMac)
@@ -1707,8 +1721,8 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this._bIsOnFocus = true;
 		}
-	}
-	function onKillFocus()
+	};
+	var1.onKillFocus = function onKillFocus()
 	{
 		if(this.api.config.isLinux || this.api.config.isMac)
 		{
@@ -1718,5 +1732,58 @@ class dofus.graphics.gapi.ui.Banner extends dofus.graphics.gapi.core.DofusAdvanc
 		{
 			this._bIsOnFocus = false;
 		}
+	};
+	var1.addProperty("chatAutoFocus",var1.__get__chatAutoFocus,var1.__set__chatAutoFocus);
+	var1.addProperty("illustrationType",var1.__get__illustrationType,function()
+	{
 	}
+	);
+	var1.addProperty("data",function()
+	{
+	}
+	,var1.__set__data);
+	var1.addProperty("chat",var1.__get__chat,function()
+	{
+	}
+	);
+	var1.addProperty("illustration",var1.__get__illustration,function()
+	{
+	}
+	);
+	var1.addProperty("fightsCount",var1.__get__fightsCount,var1.__set__fightsCount);
+	var1.addProperty("txtConsole",function()
+	{
+	}
+	,var1.__set__txtConsole);
+	var1.addProperty("shortcuts",var1.__get__shortcuts,function()
+	{
+	}
+	);
+	ASSetPropFlags(var1,null,1);
+	dofus.graphics.gapi.ui.Banner = function()
+	{
+		super();
+	}.CHECK_MOUSE_POSITION_REFRESH_RATE = 250;
+	dofus.graphics.gapi.ui.Banner = function()
+	{
+		super();
+	}.CLASS_NAME = "Banner";
+	dofus.graphics.gapi.ui.Banner = function()
+	{
+		super();
+	}.NO_TRANSFORM = {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0};
+	dofus.graphics.gapi.ui.Banner = function()
+	{
+		super();
+	}.INACTIVE_TRANSFORM = {ra:50,rb:0,ga:50,gb:0,ba:50,bb:0};
+	var1._nFightsCount = 0;
+	var1._bChatAutoFocus = true;
+	var1._sChatPrefix = "";
+	var1._bHeartMovedTop = false;
 }
+var var4 = §§pop();
+if(!var4)
+{
+	var4 = -1;
+}
+return var4;

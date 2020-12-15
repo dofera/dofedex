@@ -14,7 +14,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__multipleSelection(§\x17\x14§)
+	function __set__multipleSelection(var2)
 	{
 		this._bMultipleSelection = var2;
 		return this.__get__multipleSelection();
@@ -23,7 +23,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bMultipleSelection;
 	}
-	function __set__rowHeight(§\x1e\x1e\x0f§)
+	function __set__rowHeight(var2)
 	{
 		if(var2 == 0)
 		{
@@ -36,7 +36,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nRowHeight;
 	}
-	function __set__cellRenderer(§\x1e\x14\x12§)
+	function __set__cellRenderer(var2)
 	{
 		if(var2 != undefined)
 		{
@@ -48,7 +48,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sCellRenderer;
 	}
-	function __set__dataProvider(§\x10\x19§)
+	function __set__dataProvider(var2)
 	{
 		delete this._nSelectedIndex;
 		this._eaDataProvider = var2;
@@ -65,7 +65,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider;
 	}
-	function __set__selectedIndex(§\x04\x17§)
+	function __set__selectedIndex(var2)
 	{
 		var var3 = this._mcContent["row" + var2];
 		this._nSelectedIndex = var2;
@@ -80,7 +80,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider[this._nSelectedIndex];
 	}
-	function __set__autoScroll(§\x1c\t§)
+	function __set__autoScroll(var2)
 	{
 		this._bAutoScroll = var2;
 		return this.__get__autoScroll();
@@ -89,7 +89,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bAutoScroll;
 	}
-	function __set__dblClickEnabled(§\x1b\r§)
+	function __set__dblClickEnabled(var2)
 	{
 		this._bDblClickEnabled = var2;
 		return this.__get__dblClickEnabled();
@@ -98,19 +98,19 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bDblClickEnabled;
 	}
-	function addItem(§\x1e\x19\r§)
+	function addItem(var2)
 	{
 		this._aRows.push({item:var2,selected:false});
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function addItemAt(§\x1e\x19\r§, §\x04\x17§)
+	function addItemAt(var2, var3)
 	{
 		this._aRows.splice(var3,0,{item:var2,selected:false});
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function removeItemAt(§\x1e\x19\r§, §\x04\x17§)
+	function removeItemAt(var2, var3)
 	{
 		this._aRows.splice(var3,1);
 		this.setScrollBarProperties(true);
@@ -122,7 +122,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.setScrollBarProperties(true);
 		this.layoutContent();
 	}
-	function setVPosition(§\x01\x17§, §\x19\x1d§)
+	function setVPosition(var2, var3)
 	{
 		var var4 = this._eaDataProvider.length - Math.floor(this.__height / this._nRowHeight);
 		if(var2 > var4)
@@ -140,7 +140,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this.layoutContent();
 		}
 	}
-	function sortOn(§\x1e\x0e\x17§, §\x02\r§)
+	function sortOn(var2, var3)
 	{
 		this._eaDataProvider.sortOn(var2,var3);
 		this.modelChanged();
@@ -233,7 +233,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		}
 		this._bInvalidateLayout = false;
 	}
-	function addScrollBar(§\x1c\x11§)
+	function addScrollBar(var2)
 	{
 		if(!this._sbVertical._visible)
 		{
@@ -244,7 +244,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			}
 		}
 	}
-	function removeScrollBar(§\x1c\x11§)
+	function removeScrollBar(var2)
 	{
 		if(this._sbVertical._visible)
 		{
@@ -255,7 +255,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			}
 		}
 	}
-	function setScrollBarProperties(§\x1c\x11§)
+	function setScrollBarProperties(var2)
 	{
 		this._bInvalidateScrollBar = false;
 		var var3 = Math.floor(this.__height / this._nRowHeight);
@@ -272,7 +272,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this._sbVertical.scrollPosition = this._nScrollPosition;
 		}
 	}
-	function layoutSelection(§\x04\x17§, §\x1e\x0e\x0e§, §\x16\x07§)
+	function layoutSelection(var2, var3, var4)
 	{
 		if(var4 == undefined)
 		{
@@ -349,11 +349,11 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 			this.layoutContent();
 		}
 	}
-	function scroll(§\x1e\x19\x18§)
+	function scroll(var2)
 	{
 		this.setVPosition(var2.target.scrollPosition);
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		var var3 = var2.target.itemIndex;
 		var var4 = var2.target;
@@ -361,7 +361,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.layoutSelection(var3,var4);
 		this.dispatchEvent({type:"itemSelected",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemdblClick(§\x1e\x19\x18§)
+	function itemdblClick(var2)
 	{
 		var var3 = var2.target.itemIndex;
 		var var4 = var2.target;
@@ -369,7 +369,7 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		this.layoutSelection(var3,var4);
 		this.dispatchEvent({type:"itemdblClick",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 		var var3 = this._bMultipleSelection && (Key.isDown(dofus.Constants.SELECT_MULTIPLE_ITEMS_KEY) && Key.isDown(Key.SHIFT));
 		if(var3)
@@ -380,21 +380,21 @@ class ank.gapi.controls.List extends ank.gapi.core.UIBasicComponent
 		}
 		this.dispatchEvent({type:"itemRollOver",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 		this.dispatchEvent({type:"itemRollOut",row:var2.target,targets:this.getSelectedItems()});
 	}
-	function itemDrag(§\x1e\x19\x18§)
+	function itemDrag(var2)
 	{
 		this.dispatchEvent({type:"itemDrag",row:var2.target});
 	}
-	function itemDrop(§\x1e\x19\x18§)
+	function itemDrop(var2)
 	{
 		this.dispatchEvent({type:"itemDrop",row:var2.target});
 	}
-	function onMouseWheel(§\x06\x17§, §\x0b\r§)
+	function onMouseWheel(var2, var3)
 	{
-		if(Key.isDown(Key.CONTROL))
+		if(dofus.graphics.gapi.ui.Zoom.isZooming())
 		{
 			return undefined;
 		}

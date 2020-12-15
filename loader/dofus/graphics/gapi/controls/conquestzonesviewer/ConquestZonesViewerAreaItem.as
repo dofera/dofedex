@@ -11,12 +11,12 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 		this._mcLocate._alpha = 0;
 		this._mcSubtitleBackground._alpha = 0;
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -196,19 +196,19 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 			}
 		}
 	}
-	function click(§\x0f\r§)
+	function click(var2)
 	{
 		if((var var0 = var2.target) === this._mcLocate)
 		{
 			this.api.kernel.GameManager.updateCompass(this._oPrismData.x,this._oPrismData.y,true);
 		}
 	}
-	function over(§\x0f\r§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
 			case this._mcAlignmentInteractivity:
-				this.api.ui.showTooltip(this.api.lang.getText("ALIGNMENT") + ": " + (this._oItem.alignment <= 0?this._oItem.alignment != -1?this.api.lang.getText("NEUTRAL_WORD"):this.api.lang.getText("NON_ALIGNED"):new dofus.datacenter.(this._oItem.alignment,1).name),_root._xmouse,_root._ymouse - 20);
+				this.api.ui.showTooltip(this.api.lang.getText("ALIGNMENT") + ": " + (this._oItem.alignment <= 0?this._oItem.alignment != -1?this.api.lang.getText("NEUTRAL_WORD"):this.api.lang.getText("NON_ALIGNED"):new dofus.datacenter.(this._oItem.alignment,1).name),_root._xmouse,_root._ymouse - 20);
 				break;
 			case this._mcFightingInteractivity:
 				this.api.ui.showTooltip(this.api.lang.getText("FIGHTING_PRISM"),_root._xmouse,_root._ymouse - 20);
@@ -232,11 +232,11 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 						}
 						else if(this._oItem.isCapturable())
 						{
-							var3 = this.api.lang.getText("CONQUEST_AREA_CAN_BE_CAPTURED") + MountPark;
+							var3 = this.api.lang.getText("CONQUEST_AREA_CAN_BE_CAPTURED") + "\n\n";
 						}
 						else
 						{
-							var3 = this.api.lang.getText("CONQUEST_AREA_CANT_BE_CAPTURED") + MountPark;
+							var3 = this.api.lang.getText("CONQUEST_AREA_CANT_BE_CAPTURED") + "\n\n";
 						}
 						var3 = var3 + (this.api.lang.getText("CONQUEST_NEAR_ZONES") + ":\n");
 						var var4 = this._oItem.getNearZonesList();
@@ -253,7 +253,7 @@ class dofus.graphics.gapi.controls.conquestzonesviewer.ConquestZonesViewerAreaIt
 				}
 		}
 	}
-	function out(§\x0f\r§)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

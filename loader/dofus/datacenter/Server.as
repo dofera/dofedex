@@ -12,12 +12,12 @@ class dofus.datacenter.Server
 	static var SERVER_RETRO = 4;
 	static var SERVER_MONOACCOUNT = 5;
 	static var SERVER_COMMUNITY_INTERNATIONAL = 2;
-	function Server(§\x05\x02§, §\x1e\x1d\x07§, §\x07\t§, §\x1b\x19§)
+	function Server(var3, var4, var5, var6)
 	{
 		this.initialize(var2,var3,var4,var5);
 		this._nCharactersCount = 0;
 	}
-	function __set__id(§\x05\x02§)
+	function __set__id(var2)
 	{
 		this._nID = var2;
 		return this.__get__id();
@@ -26,16 +26,16 @@ class dofus.datacenter.Server
 	{
 		return this._nID;
 	}
-	function __set__charactersCount(§\x07\b§)
+	function __set__charactersCount(nCount)
 	{
-		this._nCharactersCount = var2;
+		this._nCharactersCount = nCount;
 		return this.__get__charactersCount();
 	}
 	function __get__charactersCount()
 	{
 		return this._nCharactersCount;
 	}
-	function __set__state(§\x1e\x1d\x07§)
+	function __set__state(var2)
 	{
 		this._nState = var2;
 		return this.__get__state();
@@ -46,17 +46,19 @@ class dofus.datacenter.Server
 	}
 	function __get__stateStr()
 	{
-		switch(this._nState)
+		if((var var0 = this._nState) !== dofus.datacenter.Server.SERVER_OFFLINE)
 		{
-			case dofus.datacenter.Server.SERVER_OFFLINE:
-				return this.api.lang.getText("SERVER_OFFLINE");
-			case dofus.datacenter.Server.SERVER_ONLINE:
-				return this.api.lang.getText("SERVER_ONLINE");
-			case dofus.datacenter.Server.SERVER_STARTING:
+			if(var0 !== dofus.datacenter.Server.SERVER_ONLINE)
+			{
+				if(var0 !== dofus.datacenter.Server.SERVER_STARTING)
+				{
+					return "";
+				}
 				return this.api.lang.getText("SERVER_STARTING");
-			default:
-				return "";
+			}
+			return this.api.lang.getText("SERVER_ONLINE");
 		}
+		return this.api.lang.getText("SERVER_OFFLINE");
 	}
 	function __get__stateStrShort()
 	{
@@ -74,7 +76,7 @@ class dofus.datacenter.Server
 		}
 		return this.api.lang.getText("SERVER_OFFLINE_SHORT");
 	}
-	function __set__canLog(§\x1b\x19§)
+	function __set__canLog(var2)
 	{
 		this._bCanLog = var2;
 		return this.__get__canLog();
@@ -119,7 +121,7 @@ class dofus.datacenter.Server
 	function __get__dateStr()
 	{
 		var var2 = new Date(Number(this.api.lang.getServerInfos(this._nID).date));
-		return org.utils.SimpleDateFormatter.formatDate(var2,this.api.lang.getConfigText("LONG_DATE_FORMAT"),this.api.config.language);
+		return eval(org).utils.SimpleDateFormatter.formatDate(var2,this.api.lang.getConfigText("LONG_DATE_FORMAT"),this.api.config.language);
 	}
 	function __get__type()
 	{
@@ -132,24 +134,22 @@ class dofus.datacenter.Server
 	function getRulesType()
 	{
 		var var2 = this.typeNum;
-		if((var var0 = var2) !== dofus.datacenter.Server.SERVER_MONOACCOUNT)
+		switch(var2)
 		{
-			if(var0 !== dofus.datacenter.Server.SERVER_129)
-			{
-				if(var0 !== dofus.datacenter.Server.SERVER_RETRO)
-				{
-					return var2;
-				}
-			}
-			return dofus.datacenter.Server.SERVER_RULES_CLASSIC;
+			case dofus.datacenter.Server.SERVER_MONOACCOUNT:
+				return dofus.datacenter.Server.SERVER_RULES_MONOACCOUNT;
+			case dofus.datacenter.Server.SERVER_129:
+			case dofus.datacenter.Server.SERVER_RETRO:
+				return dofus.datacenter.Server.SERVER_RULES_CLASSIC;
+			default:
+				return var2;
 		}
-		return dofus.datacenter.Server.SERVER_RULES_MONOACCOUNT;
 	}
 	function isHardcore()
 	{
 		return this.typeNum == dofus.datacenter.Server.SERVER_HARDCORE;
 	}
-	function initialize(§\x05\x02§, §\x1e\x1d\x07§, §\x07\t§, §\x1b\x19§)
+	function initialize(var2, var3, var4, var5)
 	{
 		this.api = _global.API;
 		this._nID = var2;

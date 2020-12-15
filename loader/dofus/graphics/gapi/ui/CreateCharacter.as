@@ -8,12 +8,12 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 	{
 		super();
 	}
-	function __set__remainingTime(§\x1e\x1e\x17§)
+	function __set__remainingTime(var2)
 	{
 		this._nRemainingTime = var2;
 		return this.__get__remainingTime();
 	}
-	function __set__characterName(§\x1e\x10\x05§)
+	function __set__characterName(var2)
 	{
 		if(this._itCharacterName.text != undefined)
 		{
@@ -204,7 +204,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 		this.setClass(var2,this._nSex);
 		this._bLoaded = true;
 	}
-	function setClass(§\x07\x0f§, §\x1e\x1d\x1c§)
+	function setClass(var2, var3)
 	{
 		this._csColors.breed = var2;
 		this._csColors.sex = var3;
@@ -212,7 +212,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 		{
 			return undefined;
 		}
-		this._svCharacter.spriteData = new ank.battlefield.datacenter.("viewer",ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var2 + var3 + ".swf",undefined,5);
+		this._svCharacter.spriteData = new ank.battlefield.datacenter.("viewer",ank.battlefield.mc.Sprite,dofus.Constants.CLIPS_PERSOS_PATH + var2 + var3 + ".swf",undefined,5);
 		this._ldrClassIcon.contentPath = dofus.Constants.BREEDS_SYMBOL_PATH + var2 + ".swf";
 		var var4 = 0;
 		while(var4 < dofus.Constants.GUILD_ORDER.length)
@@ -268,7 +268,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 			this._svCharacter.setColor(nIndex,!(bWhite = !bWhite)?16746632:16733525);
 		};
 	}
-	function hideColorPosition(§\x04\x17§)
+	function hideColorPosition(var2)
 	{
 		delete this.onEnterFrame;
 		this._svCharacter.setColor(var2,this._nSavedColor);
@@ -288,12 +288,12 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 		}
 		if(this.api.lang.getConfigText("CHAR_NAME_FILTER") && !this.api.datacenter.Player.isAuthorized)
 		{
-			var var3 = new dofus.utils.nameChecker.	(var2);
+			var var3 = new dofus.utils.nameChecker.(var2);
 			var var4 = new dofus.utils.nameChecker.rules.NameCheckerCharacterNameRules();
 			var var5 = var3.isValidAgainstWithDetails(var4);
 			if(!var5.IS_SUCCESS)
 			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + IComparable + var5.toString(IComparable),"ERROR_BOX");
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("INVALID_CHARACTER_NAME") + "\r\n" + var5.toString("\r\n"),"ERROR_BOX");
 				return undefined;
 			}
 		}
@@ -316,7 +316,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 		}
 		this.api.network.Account.addCharacter(var2,this._nBreed,this._oColors.color1,this._oColors.color2,this._oColors.color3,this._nSex);
 	}
-	function setColors(§\x1e\x1a\t§)
+	function setColors(var2)
 	{
 		this._oColors = var2;
 		this._svCharacter.setColors(this._oColors);
@@ -328,7 +328,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 	{
 		this._mcRandomName._visible = false;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target)
@@ -339,54 +339,51 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 			case this._mcLeft:
 				this._csBreedSelection.slide(-1);
 				break;
+			case this._mcMaleButton:
+				this.setClass(this._nBreed,0);
+				break;
 			default:
 				switch(null)
 				{
-					case this._mcMaleButton:
-						this.setClass(this._nBreed,0);
-						break loop0;
 					case this._mcFemaleButton:
 						this.setClass(this._nBreed,1);
+						break loop0;
+					case this._mcSpellButton2:
+					case this._mcSpellButton:
+						this.api.ui.loadUIComponent("SpellViewerOnCreate","SpellViewerOnCreate",{breed:this._nBreed});
+						break loop0;
+					case this._mcHistoryButton:
+						this.api.ui.loadUIComponent("HistoryViewerOnCreate","HistoryViewerOnCreate",{breed:this._nBreed});
 						break loop0;
 					default:
 						switch(null)
 						{
-							case this._mcSpellButton:
-							case this._mcHistoryButton:
-								this.api.ui.loadUIComponent("HistoryViewerOnCreate","HistoryViewerOnCreate",{breed:this._nBreed});
-								break loop0;
 							case this._btnValidate:
 								this.validateCreation();
-								break loop0;
-							default:
-								switch(null)
+								break;
+							case this._btnBack:
+								if(this.api.datacenter.Basics.createCharacter)
 								{
-									case this._btnBack:
-										if(this.api.datacenter.Basics.createCharacter)
-										{
-											this.api.kernel.changeServer(true);
-										}
-										else
-										{
-											this.api.datacenter.Basics.ignoreCreateCharacter = true;
-											this.api.network.Account.getCharactersForced();
-										}
-										break;
-									case this._mcRandomName:
-										if(this._nLastRegenerateTimer + dofus.graphics.gapi.ui.CreateCharacter.NAME_GENERATION_DELAY < getTimer())
-										{
-											this.api.network.Account.getRandomCharacterName();
-											this._nLastRegenerateTimer = getTimer();
-											break;
-										}
+									this.api.kernel.changeServer(true);
+								}
+								else
+								{
+									this.api.datacenter.Basics.ignoreCreateCharacter = true;
+									this.api.network.Account.getCharactersForced();
+								}
+								break;
+							case this._mcRandomName:
+								if(this._nLastRegenerateTimer + dofus.graphics.gapi.ui.CreateCharacter.NAME_GENERATION_DELAY < getTimer())
+								{
+									this.api.network.Account.getRandomCharacterName();
+									this._nLastRegenerateTimer = getTimer();
+									break;
 								}
 						}
-					case this._mcSpellButton2:
-						this.api.ui.loadUIComponent("SpellViewerOnCreate","SpellViewerOnCreate",{breed:this._nBreed});
 				}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		loop0:
 		switch(var2.target)
@@ -397,31 +394,32 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 			case this._mcRandomName:
 				this.gapi.showTooltip(this.api.lang.getText("RANDOM_NICKNAME"),_root._xmouse,_root._ymouse - 20);
 				break;
+			case this._mcMaleButton:
+				this.gapi.showTooltip(this.api.lang.getText("ANIMAL_MEN"),_root._xmouse,_root._ymouse - 20);
+				break;
 			default:
 				switch(null)
 				{
-					case this._mcMaleButton:
-						this.gapi.showTooltip(this.api.lang.getText("ANIMAL_MEN"),_root._xmouse,_root._ymouse - 20);
-						break loop0;
 					case this._mcFemaleButton:
 						this.gapi.showTooltip(this.api.lang.getText("ANIMAL_WOMEN"),_root._xmouse,_root._ymouse - 20);
 						break loop0;
 					case this._mcSpellButton:
 						this.gapi.showTooltip(this.api.lang.getText("CLASS_SPELLS"),_root._xmouse,_root._ymouse - 20);
 						break loop0;
+					case this._mcRight:
+						this.gapi.showTooltip(this.api.lang.getText("NEXT_WORD"),_root._xmouse,_root._ymouse - 20);
+						break loop0;
 					default:
-						switch(null)
+						if(var0 !== this._mcLeft)
 						{
-							case this._mcRight:
-								this.gapi.showTooltip(this.api.lang.getText("NEXT_WORD"),_root._xmouse,_root._ymouse - 20);
-								break;
-							case this._mcLeft:
-								this.gapi.showTooltip(this.api.lang.getText("PREVIOUS_WORD"),_root._xmouse,_root._ymouse - 20);
+							break loop0;
 						}
+						this.gapi.showTooltip(this.api.lang.getText("PREVIOUS_WORD"),_root._xmouse,_root._ymouse - 20);
+						break loop0;
 				}
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		if((var var0 = var2.target) !== this._csColors)
 		{
@@ -432,7 +430,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 			this.hideColorPosition(var2.index);
 		}
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		switch(var2.target)
 		{
@@ -445,11 +443,7 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 					this.setClass(dofus.Constants.GUILD_ORDER[var2.value],this._nSex);
 				}
 				break;
-			default:
-				if(var0 !== this._itCharacterName)
-				{
-					break;
-				}
+			case this._itCharacterName:
 				var var3 = this._itCharacterName.text;
 				if(!this.api.datacenter.Player.isAuthorized)
 				{
@@ -473,7 +467,6 @@ class dofus.graphics.gapi.ui.CreateCharacter extends dofus.graphics.gapi.core.Do
 					this._itCharacterName.addEventListener("change",this);
 					break;
 				}
-				break;
 		}
 	}
 }

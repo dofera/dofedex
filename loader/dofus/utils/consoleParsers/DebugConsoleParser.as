@@ -1,15 +1,15 @@
 class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleParsers.AbstractConsoleParser
 {
-	function DebugConsoleParser(§\x1e\x1a\x16§)
+	function DebugConsoleParser(oAPI)
 	{
 		super();
-		this.initialize(var3);
+		this.initialize(oAPI);
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3);
+		super.initialize(oAPI);
 	}
-	function process(§\x1e\x14\b§)
+	function process(var2)
 	{
 		super.process(var3);
 		if(var3.charAt(0) == "/")
@@ -36,8 +36,9 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 					break;
 				case "SEQACTIONS":
 					var var6 = this.api.datacenter.Sprites.getItems();
-					for(var var7 in var6)
+					for(var k in var6)
 					{
+						var var7 = k;
 						var var8 = var6[var7];
 						var var9 = var8.sequencer;
 						this.api.kernel.showMessage(undefined,"    Print Sequencer Actions List for " + var7 + ", " + var8.name,"DEBUG_LOG");
@@ -88,22 +89,22 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 						case "SCALE":
 							this.api.gfx.setSpriteScale(this.api.datacenter.Player.ID,var4[0],var4.length != 2?var4[0]:var4[1]);
 							break loop17;
+						case "ANIM":
+							if(dofus.Constants.DEBUG)
+							{
+								if(var4.length > 1)
+								{
+									this.api.gfx.setSpriteLoopAnim(this.api.datacenter.Player.ID,var4[0],var4[1]);
+								}
+								else
+								{
+									this.api.gfx.setSpriteAnim(this.api.datacenter.Player.ID,var4.join(""));
+								}
+							}
+							break loop17;
 						default:
 							switch(null)
 							{
-								case "ANIM":
-									if(dofus.Constants.DEBUG)
-									{
-										if(var4.length > 1)
-										{
-											this.api.gfx.setSpriteLoopAnim(this.api.datacenter.Player.ID,var4[0],var4[1]);
-										}
-										else
-										{
-											this.api.gfx.setSpriteAnim(this.api.datacenter.Player.ID,var4.join(""));
-										}
-									}
-									break loop17;
 								case "C":
 									if(dofus.Constants.DEBUG)
 									{
@@ -148,72 +149,72 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 										this.api.kernel.showMessage(undefined,var18,"DEBUG_LOG");
 									}
 									break loop17;
+								case "MAKEREPORT":
+									if(!this.api.electron.enabled)
+									{
+										this.api.kernel.showMessage(undefined,"This feature is not compatible on a Flash Projector","ERROR_CHAT");
+										return undefined;
+									}
+									if(!dofus.managers.AdminManager.getInstance().isExecutingBatch)
+									{
+										this.api.kernel.showMessage(undefined,"You can\'t do this out of a batch execution.","ERROR_CHAT");
+										return undefined;
+									}
+									var var19 = var3.split("|");
+									var var20 = var19[0].substring(var5.length + 2);
+									var var21 = var19[1] == "allaccounts";
+									var var22 = var19[2];
+									var var23 = var19[3].split(",");
+									if(var20 == undefined || (var20.length < 1 || (var22 == undefined || var22.length < 1)))
+									{
+										this.api.kernel.showMessage(undefined,"/makereport &lt;target pseudos|\'allaccounts\'|reason|[autocomplete action]&gt;","DEBUG_LOG");
+										return undefined;
+									}
+									var var24 = undefined;
+									var var25 = undefined;
+									if(var23 != undefined)
+									{
+										var var26 = 0;
+										while(var26 < var23.length)
+										{
+											var var27 = var23[var26];
+											switch(var27)
+											{
+												case "chatmessage":
+													var24 = this.api.kernel.GameManager.lastClickedMessage;
+													break;
+												case "jaildialog":
+													var25 = this.api.kernel.ChatManager.getJailDialog();
+											}
+											var26 = var26 + 1;
+										}
+									}
+									var var28 = (dofus.graphics.gapi.ui.MakeReport)this.api.ui.getUIComponent("MakeReport");
+									if(var28 == undefined)
+									{
+										this.api.datacenter.Temporary.Report = new Object();
+										var var29 = this.api.datacenter.Temporary.Report;
+										var29.currentTargetPseudos = var20;
+										var29.currentTargetIsAllAccounts = var21;
+										var29.targetPseudos = var20;
+										var29.description = var24;
+										var29.jailDialog = var25;
+										var29.isAllAccounts = var21;
+										var29.reason = var22;
+									}
+									else
+									{
+										var var30 = this.api.datacenter.Temporary.Report;
+										var30.currentTargetPseudos = var20;
+										var30.currentTargetIsAllAccounts = var21;
+										var30.targetPseudos = var30.targetPseudos + ("," + var20);
+										var30.description = var24;
+									}
+									this.api.network.Basics.askReportInfos(1,var20,var21);
+									break loop17;
 								default:
 									switch(null)
 									{
-										case "MAKEREPORT":
-											if(!this.api.electron.enabled)
-											{
-												this.api.kernel.showMessage(undefined,"This feature is not compatible on a Flash Projector","ERROR_CHAT");
-												return undefined;
-											}
-											if(!dofus.managers.AdminManager.getInstance().isExecutingBatch)
-											{
-												this.api.kernel.showMessage(undefined,"You can\'t do this out of a batch execution.","ERROR_CHAT");
-												return undefined;
-											}
-											var var19 = var3.split("|");
-											var var20 = var19[0].substring(var5.length + 2);
-											var var21 = var19[1] == "allaccounts";
-											var var22 = var19[2];
-											var var23 = var19[3].split(",");
-											if(var20 == undefined || (var20.length < 1 || (var22 == undefined || var22.length < 1)))
-											{
-												this.api.kernel.showMessage(undefined,"/makereport &lt;target pseudos|\'allaccounts\'|reason|[autocomplete action]&gt;","DEBUG_LOG");
-												return undefined;
-											}
-											var var24 = undefined;
-											var var25 = undefined;
-											if(var23 != undefined)
-											{
-												var var26 = 0;
-												while(var26 < var23.length)
-												{
-													var var27 = var23[var26];
-													switch(var27)
-													{
-														case "chatmessage":
-															var24 = this.api.kernel.GameManager.lastClickedMessage;
-															break;
-														case "jaildialog":
-															var25 = this.api.kernel.ChatManager.getJailDialog();
-													}
-													var26 = var26 + 1;
-												}
-											}
-											var var28 = (dofus.graphics.gapi.ui.MakeReport)this.api.ui.getUIComponent("MakeReport");
-											if(var28 == undefined)
-											{
-												this.api.datacenter.Temporary.Report = new Object();
-												var var29 = this.api.datacenter.Temporary.Report;
-												var29.currentTargetPseudos = var20;
-												var29.currentTargetIsAllAccounts = var21;
-												var29.targetPseudos = var20;
-												var29.description = var24;
-												var29.jailDialog = var25;
-												var29.isAllAccounts = var21;
-												var29.reason = var22;
-											}
-											else
-											{
-												var var30 = this.api.datacenter.Temporary.Report;
-												var30.currentTargetPseudos = var20;
-												var30.currentTargetIsAllAccounts = var21;
-												var30.targetPseudos = var30.targetPseudos + ("," + var20);
-												var30.description = var24;
-											}
-											this.api.network.Basics.askReportInfos(1,var20,var21);
-											break loop17;
 										case "FASTSERVERSWITCH":
 											var var31 = Number(var4[0]);
 											if(_global.isNaN(var31) || var31 == undefined)
@@ -259,8 +260,13 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 													case 1:
 														var36 = "Enabled";
 														break;
-													case 2:
+													default:
+														if(var0 !== 2)
+														{
+															break;
+														}
 														var36 = "Enabled (full)";
+														break;
 												}
 												var34.fileOutput = var35;
 												this.api.kernel.showMessage(undefined,"File Output (Console) : " + var36,"DEBUG_LOG");
@@ -285,12 +291,12 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 											}
 											this.api.kernel.showMessage(undefined,"LOG DISCONNECTIONS ON MAP : " + this.api.datacenter.Game.isLoggingMapDisconnections,"DEBUG_LOG");
 											break loop17;
+										case "PING":
+											this.api.network.ping();
+											break loop17;
 										default:
 											switch(null)
 											{
-												case "PING":
-													this.api.network.ping();
-													break loop17;
 												case "MAPID":
 													this.api.kernel.showMessage(undefined,"carte : " + this.api.datacenter.Map.id,"DEBUG_LOG");
 													this.api.kernel.showMessage(undefined,"Area : " + this.api.datacenter.Map.area,"DEBUG_LOG");
@@ -303,15 +309,15 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 												case "TIME":
 													this.api.kernel.showMessage(undefined,"Heure : " + this.api.kernel.NightManager.time,"DEBUG_LOG");
 													break loop17;
+												case "CACHE":
+													this.api.kernel.askClearCache();
+													break loop17;
+												case "REBOOT":
+													this.api.kernel.reboot();
+													break loop17;
 												default:
 													switch(null)
 													{
-														case "CACHE":
-															this.api.kernel.askClearCache();
-															break loop17;
-														case "REBOOT":
-															this.api.kernel.reboot();
-															break loop17;
 														case "FPS":
 															this.api.ui.getUIComponent("Debug").showFps();
 															break loop17;
@@ -322,26 +328,26 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 															dofus.Constants.DEBUG = !dofus.Constants.DEBUG;
 															this.api.kernel.showMessage(undefined,"DEBUG : " + dofus.Constants.DEBUG,"DEBUG_LOG");
 															break loop17;
+														case "ASKOK":
+															this.api.ui.loadUIComponent("AskOk","AskOkContent",{title:"AskOKDebug",text:this.api.lang.getText(var4[0],var4.splice(1))});
+															break loop17;
+														case "ASKOK2":
+															var var37 = "";
+															var var38 = 0;
+															while(var38 < var4.length)
+															{
+																if(var38 > 0)
+																{
+																	var37 = var37 + " ";
+																}
+																var37 = var37 + var4[var38];
+																var38 = var38 + 1;
+															}
+															this.api.ui.loadUIComponent("AskOk","AskOkContent",{title:"AskOKDebug",text:var37});
+															break loop17;
 														default:
 															switch(null)
 															{
-																case "ASKOK":
-																	this.api.ui.loadUIComponent("AskOk","AskOkContent",{title:"AskOKDebug",text:this.api.lang.getText(var4[0],var4.splice(1))});
-																	break loop17;
-																case "ASKOK2":
-																	var var37 = "";
-																	var var38 = 0;
-																	while(var38 < var4.length)
-																	{
-																		if(var38 > 0)
-																		{
-																			var37 = var37 + " ";
-																		}
-																		var37 = var37 + var4[var38];
-																		var38 = var38 + 1;
-																	}
-																	this.api.ui.loadUIComponent("AskOk","AskOkContent",{title:"AskOKDebug",text:var37});
-																	break loop17;
 																case "MOVIECLIP":
 																	this.api.kernel.findMovieClipPath();
 																	break loop17;
@@ -355,74 +361,70 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																	}
 																	this.api.kernel.showMessage(undefined,"Line of sight between " + var39 + " and " + var40 + " -> " + ank.battlefield.utils.Pathfinding.checkView(this.api.gfx.mapHandler,var39,var40),"DEBUG_LOG");
 																	break loop17;
+																case "CLEARCELL":
+																	var var41 = Number(var4[0]);
+																	if(_global.isNaN(var41) || var41 == undefined)
+																	{
+																		this.api.kernel.showMessage(undefined,"I\'ll need an ID!","DEBUG_LOG");
+																		return undefined;
+																	}
+																	this.api.gfx.mapHandler.getCellData(var41).removeAllSpritesOnID();
+																	this.api.kernel.showMessage(undefined,"Cell " + var41 + " cleaned.","DEBUG_LOG");
+																	break loop17;
+																case "CELLINFO":
+																	var var42 = Number(var4[0]);
+																	if(_global.isNaN(var42) || var42 == undefined)
+																	{
+																		this.api.kernel.showMessage(undefined,"I\'ll need an ID!","DEBUG_LOG");
+																		return undefined;
+																	}
+																	var var43 = this.api.gfx.mapHandler.getCellData(var42);
+																	this.api.kernel.showMessage(undefined,"Datas about cell " + var42 + ":","DEBUG_LOG");
+																	for(var k in var43)
+																	{
+																		this.api.kernel.showMessage(undefined,"    " + k + " -> " + var43[k],"DEBUG_LOG");
+																		if(var43[k] instanceof Object)
+																		{
+																			for(var l in var43[k])
+																			{
+																				this.api.kernel.showMessage(undefined,"        " + l + " -> " + var43[k][l],"DEBUG_LOG");
+																			}
+																		}
+																	}
+																	break loop17;
 																default:
 																	switch(null)
 																	{
-																		case "CLEARCELL":
-																			var var41 = Number(var4[0]);
-																			if(_global.isNaN(var41) || var41 == undefined)
-																			{
-																				this.api.kernel.showMessage(undefined,"I\'ll need an ID!","DEBUG_LOG");
-																				return undefined;
-																			}
-																			this.api.gfx.mapHandler.getCellData(var41).removeAllSpritesOnID();
-																			this.api.kernel.showMessage(undefined,"Cell " + var41 + " cleaned.","DEBUG_LOG");
-																			break loop17;
-																		case "CELLINFO":
-																			var var42 = Number(var4[0]);
-																			if(_global.isNaN(var42) || var42 == undefined)
-																			{
-																				this.api.kernel.showMessage(undefined,"I\'ll need an ID!","DEBUG_LOG");
-																				return undefined;
-																			}
-																			var var43 = this.api.gfx.mapHandler.getCellData(var42);
-																			this.api.kernel.showMessage(undefined,"Datas about cell " + var42 + ":","DEBUG_LOG");
-																			§§enumerate(var43);
-																			while((var0 = §§enumeration()) != null)
-																			{
-																				this.api.kernel.showMessage(undefined,"    " + k + " -> " + var43[k],"DEBUG_LOG");
-																				if(var43[k] instanceof Object)
-																				{
-																					§§enumerate(var43[k]);
-																					while((var var0 = §§enumeration()) != null)
-																					{
-																						this.api.kernel.showMessage(undefined,"        " + l + " -> " + var43[k][l],"DEBUG_LOG");
-																					}
-																				}
-																			}
-																			break loop17;
 																		case "LANGFILE":
 																			this.api.kernel.showMessage(undefined,var4[0] + " lang file size : " + this.api.lang.getLangFileSize(var4[0]) + " octets","DEBUG_LOG");
 																			break loop17;
 																		case "POINTSPRITE":
 																			this.api.kernel.TipsManager.pointSprite(-1,Number(var4[0]));
 																			break loop17;
+																		case "LISTSPRITES":
+																			var var44 = this.api.gfx.spriteHandler.getSprites().getItems();
+																			for(var k in var44)
+																			{
+																				this.api.kernel.showMessage(undefined,"Sprite " + var44[k].gfxFile,"DEBUG_LOG");
+																			}
+																			break loop17;
+																		case "LISTPICTOS":
+																			var var45 = this.api.gfx.mapHandler.getCellsData();
+																			for(var k in var45)
+																			{
+																				if(var45[k].layerObject1Num != undefined && (!_global.isNaN(var45[k].layerObject1Num) && var45[k].layerObject1Num > 0))
+																				{
+																					this.api.kernel.showMessage(undefined,"Picto " + var45[k].layerObject1Num,"DEBUG_LOG");
+																				}
+																				if(var45[k].layerObject2Num != undefined && (!_global.isNaN(var45[k].layerObject2Num) && var45[k].layerObject2Num > 0))
+																				{
+																					this.api.kernel.showMessage(undefined,"Picto " + var45[k].layerObject2Num,"DEBUG_LOG");
+																				}
+																			}
+																			break loop17;
 																		default:
 																			switch(null)
 																			{
-																				case "LISTSPRITES":
-																					var var44 = this.api.gfx.spriteHandler.getSprites().getItems();
-																					§§enumerate(var44);
-																					while((var var0 = §§enumeration()) != null)
-																					{
-																						this.api.kernel.showMessage(undefined,"Sprite " + var44[k].gfxFile,"DEBUG_LOG");
-																					}
-																					break loop17;
-																				case "LISTPICTOS":
-																					var var45 = this.api.gfx.mapHandler.getCellsData();
-																					§§enumerate(var45);
-																					while((var var0 = §§enumeration()) != null)
-																					{
-																						if(var45[k].layerObject1Num != undefined && (!_global.isNaN(var45[k].layerObject1Num) && var45[k].layerObject1Num > 0))
-																						{
-																							this.api.kernel.showMessage(undefined,"Picto " + var45[k].layerObject1Num,"DEBUG_LOG");
-																						}
-																						if(var45[k].layerObject2Num != undefined && (!_global.isNaN(var45[k].layerObject2Num) && var45[k].layerObject2Num > 0))
-																						{
-																							this.api.kernel.showMessage(undefined,"Picto " + var45[k].layerObject2Num,"DEBUG_LOG");
-																						}
-																					}
-																					break loop17;
 																				case "POINTPICTO":
 																					this.api.kernel.TipsManager.pointPicto(-1,Number(var4[0]));
 																					break loop17;
@@ -446,19 +448,19 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																						this.api.kernel.showMessage(undefined,this.api.lang.getText("UNKNOW_COMMAND",[var5]),"DEBUG_ERROR");
 																					}
 																					break loop17;
+																				case "NEXTSAVE":
+																					if(dofus.Constants.SAVING_THE_WORLD)
+																					{
+																						dofus.SaveTheWorld.getInstance().nextAction();
+																					}
+																					else
+																					{
+																						this.api.kernel.showMessage(undefined,this.api.lang.getText("UNKNOW_COMMAND",[var5]),"DEBUG_ERROR");
+																					}
+																					break loop17;
 																				default:
 																					switch(null)
 																					{
-																						case "NEXTSAVE":
-																							if(dofus.Constants.SAVING_THE_WORLD)
-																							{
-																								dofus.SaveTheWorld.getInstance().nextAction();
-																							}
-																							else
-																							{
-																								this.api.kernel.showMessage(undefined,this.api.lang.getText("UNKNOW_COMMAND",[var5]),"DEBUG_ERROR");
-																							}
-																							break loop17;
 																						case "SOMAPLAY":
 																							var var46 = var4.join(" ");
 																							this.api.kernel.AudioManager.playSound(var46);
@@ -550,8 +552,7 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																							var var49 = "";
 																							var49 = var49 + ("Looking for npc : " + var48);
 																							var var50 = this.api.lang.getNonPlayableCharactersTexts();
-																							§§enumerate(var50);
-																							while((var var0 = §§enumeration()) != null)
+																							for(var i in var50)
 																							{
 																								if(var50[i].n.toUpperCase().indexOf(var48.toUpperCase()) != -1)
 																								{
@@ -570,8 +571,7 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																							var var52 = "";
 																							var52 = var52 + ("Looking for breed : " + var51);
 																							var var53 = this.api.lang.getAllClassText();
-																							§§enumerate(var53);
-																							while((var var0 = §§enumeration()) != null)
+																							for(var i in var53)
 																							{
 																								if(var53[i].sn.toUpperCase().indexOf(var51.toUpperCase()) != -1)
 																								{
@@ -580,49 +580,47 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																							}
 																							this.api.kernel.showMessage(undefined,var52,"DEBUG_LOG");
 																							break loop17;
-																						case "SEARCHALIGNMENT":
-																							var var54 = var3.substr(var5.length + 2);
-																							if(var54 == undefined || var54.length < 2)
-																							{
-																								this.api.kernel.showMessage(undefined,"Syntax : /searchalignment [name]","DEBUG_LOG");
-																								return undefined;
-																							}
-																							var var55 = "";
-																							var55 = var55 + ("Looking for alignment : " + var54);
-																							var var56 = this.api.lang.getAlignments();
-																							§§enumerate(var56);
-																							while((var var0 = §§enumeration()) != null)
-																							{
-																								if(var56[i].n.toUpperCase().indexOf(var54.toUpperCase()) != -1)
-																								{
-																									var55 = var55 + ("\n " + var56[i].n + " : " + i);
-																								}
-																							}
-																							this.api.kernel.showMessage(undefined,var55,"DEBUG_LOG");
-																							break loop17;
-																						case "SEARCHITEM":
-																							var var57 = var3.substr(var5.length + 2);
-																							if(var57 == undefined || var57.length < 2)
-																							{
-																								this.api.kernel.showMessage(undefined,"Syntax : /searchitem [name]","DEBUG_LOG");
-																								return undefined;
-																							}
-																							var var58 = "";
-																							var58 = var58 + ("Looking for item : " + var57);
-																							var var59 = this.api.lang.getItemUnics();
-																							§§enumerate(var59);
-																							while((var var0 = §§enumeration()) != null)
-																							{
-																								if(var59[i].n.toUpperCase().indexOf(var57.toUpperCase()) != -1)
-																								{
-																									var58 = var58 + ("\n " + var59[i].n + " : " + i);
-																								}
-																							}
-																							this.api.kernel.showMessage(undefined,var58,"DEBUG_LOG");
-																							break loop17;
 																						default:
 																							switch(null)
 																							{
+																								case "SEARCHALIGNMENT":
+																									var var54 = var3.substr(var5.length + 2);
+																									if(var54 == undefined || var54.length < 2)
+																									{
+																										this.api.kernel.showMessage(undefined,"Syntax : /searchalignment [name]","DEBUG_LOG");
+																										return undefined;
+																									}
+																									var var55 = "";
+																									var55 = var55 + ("Looking for alignment : " + var54);
+																									var var56 = this.api.lang.getAlignments();
+																									for(var i in var56)
+																									{
+																										if(var56[i].n.toUpperCase().indexOf(var54.toUpperCase()) != -1)
+																										{
+																											var55 = var55 + ("\n " + var56[i].n + " : " + i);
+																										}
+																									}
+																									this.api.kernel.showMessage(undefined,var55,"DEBUG_LOG");
+																									break loop17;
+																								case "SEARCHITEM":
+																									var var57 = var3.substr(var5.length + 2);
+																									if(var57 == undefined || var57.length < 2)
+																									{
+																										this.api.kernel.showMessage(undefined,"Syntax : /searchitem [name]","DEBUG_LOG");
+																										return undefined;
+																									}
+																									var var58 = "";
+																									var58 = var58 + ("Looking for item : " + var57);
+																									var var59 = this.api.lang.getItemUnics();
+																									for(var i in var59)
+																									{
+																										if(var59[i].n.toUpperCase().indexOf(var57.toUpperCase()) != -1)
+																										{
+																											var58 = var58 + ("\n " + var59[i].n + " : " + i);
+																										}
+																									}
+																									this.api.kernel.showMessage(undefined,var58,"DEBUG_LOG");
+																									break loop17;
 																								case "SEARCHJOB":
 																									var var60 = var3.substr(var5.length + 2);
 																									if(var60 == undefined || var60.length < 2)
@@ -633,8 +631,9 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																									var var61 = "";
 																									var61 = var61 + ("Looking for job : " + var60);
 																									var var62 = this.api.lang.getAllJobsText();
-																									for(var var63 in var62)
+																									for(var i in var62)
 																									{
+																										var var63 = var62[i];
 																										if(!(_global.isNaN(var63.g) || var63.g < 1))
 																										{
 																											if(var63.n.toUpperCase().indexOf(var60.toUpperCase()) != -1)
@@ -655,8 +654,7 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																									var var65 = "";
 																									var65 = var65 + ("Looking for monster : " + var64);
 																									var var66 = this.api.lang.getMonsters();
-																									§§enumerate(var66);
-																									while((var var0 = §§enumeration()) != null)
+																									for(var i in var66)
 																									{
 																										if(var66[i].n.toUpperCase().indexOf(var64.toUpperCase()) != -1)
 																										{
@@ -665,68 +663,69 @@ class dofus.utils.consoleParsers.DebugConsoleParser extends dofus.utils.consoleP
 																									}
 																									this.api.kernel.showMessage(undefined,var65,"DEBUG_LOG");
 																									break loop17;
-																								case "SEARCHSUBAREA":
-																									var var67 = var3.substr(var5.length + 2);
-																									if(var67 == undefined || var67.length < 2)
-																									{
-																										this.api.kernel.showMessage(undefined,"Syntax : /searchsubarea [name]","DEBUG_LOG");
-																										return undefined;
-																									}
-																									var var68 = "";
-																									var68 = var68 + ("Looking for subarea : " + var67);
-																									var var69 = this.api.lang.getMapSubAreas();
-																									§§enumerate(var69);
-																									while((var var0 = §§enumeration()) != null)
-																									{
-																										if(var69[i].n.toUpperCase().indexOf(var67.toUpperCase()) != -1)
-																										{
-																											var68 = var68 + ("\n " + var69[i].n + " : " + i);
-																										}
-																									}
-																									this.api.kernel.showMessage(undefined,var68,"DEBUG_LOG");
-																									break loop17;
-																								case "SEARCHSPELL":
-																									var var70 = var3.substr(var5.length + 2);
-																									if(var70 == undefined || var70.length < 2)
-																									{
-																										this.api.kernel.showMessage(undefined,"Syntax : /searchspell [name]","DEBUG_LOG");
-																										return undefined;
-																									}
-																									var var71 = "";
-																									var71 = var71 + ("Looking for spell : " + var70);
-																									var var72 = this.api.lang.getSpells();
-																									§§enumerate(var72);
-																									while((var var0 = §§enumeration()) != null)
-																									{
-																										if(var72[i].n.toUpperCase().indexOf(var70.toUpperCase()) != -1)
-																										{
-																											var71 = var71 + ("\n " + var72[i].n + " : " + i);
-																										}
-																									}
-																									this.api.kernel.showMessage(undefined,var71,"DEBUG_LOG");
-																									break loop17;
-																								case "SEARCHQUEST":
-																									var var73 = var3.substr(var5.length + 2);
-																									if(var73 == undefined || var73.length < 2)
-																									{
-																										this.api.kernel.showMessage(undefined,"Syntax : /searchquest [name]","DEBUG_LOG");
-																										return undefined;
-																									}
-																									var var74 = "";
-																									var74 = var74 + ("Looking for quest : " + var73);
-																									var var75 = this.api.lang.getQuests();
-																									§§enumerate(var75);
-																									while((var var0 = §§enumeration()) != null)
-																									{
-																										if(var75[i].toUpperCase().indexOf(var73.toUpperCase()) != -1)
-																										{
-																											var74 = var74 + ("\n " + var75[i] + " : " + i);
-																										}
-																									}
-																									this.api.kernel.showMessage(undefined,var74,"DEBUG_LOG");
-																									break loop17;
 																								default:
-																									this.api.kernel.showMessage(undefined,this.api.lang.getText("UNKNOW_COMMAND",[var5]),"DEBUG_ERROR");
+																									switch(null)
+																									{
+																										case "SEARCHSUBAREA":
+																											var var67 = var3.substr(var5.length + 2);
+																											if(var67 == undefined || var67.length < 2)
+																											{
+																												this.api.kernel.showMessage(undefined,"Syntax : /searchsubarea [name]","DEBUG_LOG");
+																												return undefined;
+																											}
+																											var var68 = "";
+																											var68 = var68 + ("Looking for subarea : " + var67);
+																											var var69 = this.api.lang.getMapSubAreas();
+																											for(var i in var69)
+																											{
+																												if(var69[i].n.toUpperCase().indexOf(var67.toUpperCase()) != -1)
+																												{
+																													var68 = var68 + ("\n " + var69[i].n + " : " + i);
+																												}
+																											}
+																											this.api.kernel.showMessage(undefined,var68,"DEBUG_LOG");
+																											break loop17;
+																										case "SEARCHSPELL":
+																											var var70 = var3.substr(var5.length + 2);
+																											if(var70 == undefined || var70.length < 2)
+																											{
+																												this.api.kernel.showMessage(undefined,"Syntax : /searchspell [name]","DEBUG_LOG");
+																												return undefined;
+																											}
+																											var var71 = "";
+																											var71 = var71 + ("Looking for spell : " + var70);
+																											var var72 = this.api.lang.getSpells();
+																											for(var i in var72)
+																											{
+																												if(var72[i].n.toUpperCase().indexOf(var70.toUpperCase()) != -1)
+																												{
+																													var71 = var71 + ("\n " + var72[i].n + " : " + i);
+																												}
+																											}
+																											this.api.kernel.showMessage(undefined,var71,"DEBUG_LOG");
+																											break loop17;
+																										case "SEARCHQUEST":
+																											var var73 = var3.substr(var5.length + 2);
+																											if(var73 == undefined || var73.length < 2)
+																											{
+																												this.api.kernel.showMessage(undefined,"Syntax : /searchquest [name]","DEBUG_LOG");
+																												return undefined;
+																											}
+																											var var74 = "";
+																											var74 = var74 + ("Looking for quest : " + var73);
+																											var var75 = this.api.lang.getQuests();
+																											for(var i in var75)
+																											{
+																												if(var75[i].toUpperCase().indexOf(var73.toUpperCase()) != -1)
+																												{
+																													var74 = var74 + ("\n " + var75[i] + " : " + i);
+																												}
+																											}
+																											this.api.kernel.showMessage(undefined,var74,"DEBUG_LOG");
+																											break loop17;
+																										default:
+																											this.api.kernel.showMessage(undefined,this.api.lang.getText("UNKNOW_COMMAND",[var5]),"DEBUG_ERROR");
+																									}
 																							}
 																					}
 																			}

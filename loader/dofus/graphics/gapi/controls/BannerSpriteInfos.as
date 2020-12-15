@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.BannerSpriteInfos extends dofus.graphics.gapi
 	{
 		super();
 	}
-	function __set__data(§\x1e\x1a\x02§)
+	function __set__data(var2)
 	{
 		this._oSprite = var2;
 		return this.__get__data();
@@ -14,7 +14,7 @@ class dofus.graphics.gapi.controls.BannerSpriteInfos extends dofus.graphics.gapi
 	{
 		super.init(false,dofus.graphics.gapi.controls.BannerSpriteInfos.CLASS_NAME);
 	}
-	function update(§\x1e\x1a\x02§)
+	function update(var2)
 	{
 		this.data = var2;
 		this.addToQueue({object:this,method:this.initTexts});
@@ -53,7 +53,7 @@ class dofus.graphics.gapi.controls.BannerSpriteInfos extends dofus.graphics.gapi
 		this._lblDodgeAP.text = var2[5] != undefined?var2[5] + "%":"0%";
 		this._lblDodgeMP.text = var2[6] != undefined?var2[6] + "%":"0%";
 	}
-	function applyColor(§\x0b\r§, §\x1e\t\x10§)
+	function applyColor(var2, var3)
 	{
 		var var4 = 0;
 		switch(var3)
@@ -64,8 +64,13 @@ class dofus.graphics.gapi.controls.BannerSpriteInfos extends dofus.graphics.gapi
 			case 2:
 				var4 = this._oSprite.color2;
 				break;
-			case 3:
+			default:
+				if(var0 !== 3)
+				{
+					break;
+				}
 				var4 = this._oSprite.color3;
+				break;
 		}
 		if(var4 == -1 || var4 == undefined)
 		{
@@ -79,7 +84,7 @@ class dofus.graphics.gapi.controls.BannerSpriteInfos extends dofus.graphics.gapi
 		var9 = {ra:0,ga:0,ba:0,rb:var5,gb:var6,bb:var7};
 		var8.setTransform(var9);
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.target.content;
 		var var4 = var3._mcMask;
@@ -88,10 +93,10 @@ class dofus.graphics.gapi.controls.BannerSpriteInfos extends dofus.graphics.gapi
 		this._ldrSprite._xscale = 10000 / var4._xscale;
 		this._ldrSprite._yscale = 10000 / var4._yscale;
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		var ref = this;
-		this._ldrSprite.content.stringCourseColor = function(§\x0b\r§, §\x1e\t\x14§)
+		this._ldrSprite.content.stringCourseColor = function(var2, var3)
 		{
 			ref.applyColor(var2,var3);
 		};

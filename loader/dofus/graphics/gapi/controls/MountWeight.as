@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.MountWeight extends dofus.graphics.gapi.core.
 	{
 		super();
 	}
-	function __set__styleName(§\x1e\r\x14§)
+	function __set__styleName(var2)
 	{
 		this._sStyleName = var2;
 		if(this.initialized)
@@ -37,7 +37,7 @@ class dofus.graphics.gapi.controls.MountWeight extends dofus.graphics.gapi.core.
 		}
 		this.podsChanged();
 	}
-	function podsChanged(§\x1e\x19\x18§)
+	function podsChanged(var2)
 	{
 		var var3 = this.api.datacenter.Player.mount.podsMax;
 		var var4 = this.api.datacenter.Player.mount.pods;
@@ -45,17 +45,17 @@ class dofus.graphics.gapi.controls.MountWeight extends dofus.graphics.gapi.core.
 		this._pbWeight.maximum = var3;
 		this._pbWeight.value = var4;
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._pbWeight)
 		{
 			var var3 = var2.target.maximum;
-			var var4 = new ank.utils.(this._nCurrentWeight).addMiddleChar(" ",3);
-			var var5 = new ank.utils.(var3).addMiddleChar(" ",3);
+			var var4 = new ank.utils.(this._nCurrentWeight).addMiddleChar(" ",3);
+			var var5 = new ank.utils.(var3).addMiddleChar(" ",3);
 			this.gapi.showTooltip(this.api.lang.getText("PLAYER_WEIGHT",[var4,var5]),var2.target,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

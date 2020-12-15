@@ -1,14 +1,14 @@
 class dofus.aks.Dialog extends dofus.aks.Handler
 {
-	function Dialog(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Dialog(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 	}
-	function begining(§\x1e\x0f\x1d§)
+	function begining(var2)
 	{
 		this.aks.send("DB" + var2,true);
 	}
-	function create(§\x1e\x0f\x1d§)
+	function create(var2)
 	{
 		this.aks.send("DC" + var2,true);
 	}
@@ -16,18 +16,18 @@ class dofus.aks.Dialog extends dofus.aks.Handler
 	{
 		this.aks.send("DV",true);
 	}
-	function response(§\x01\b§, §\x1e\x1e\x15§)
+	function response(var2, var3)
 	{
 		this.aks.send("DR" + var2 + "|" + var3,true);
 	}
-	function onCustomAction(§\x1e\x12\x1a§)
+	function onCustomAction(var2)
 	{
 		if((var var0 = var2) === "1")
 		{
 			getURL("javascript:DownloadOs()","_self");
 		}
 	}
-	function onCreate(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onCreate(var2, var3)
 	{
 		if(!var2)
 		{
@@ -46,14 +46,14 @@ class dofus.aks.Dialog extends dofus.aks.Handler
 		var6[3] = var5.color3 != undefined?var5.color3:-1;
 		this.api.ui.loadUIComponent("NpcDialog","NpcDialog",{name:var7,gfx:var5.gfxID,id:var4,customArtwork:var5.customArtwork,colors:var6});
 	}
-	function onQuestion(§\x1e\x12\x1a§)
+	function onQuestion(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0].split(";");
 		var var5 = Number(var4[0]);
 		var var6 = var4[1].split(",");
 		var var7 = var3[1].split(";");
-		var var8 = new dofus.datacenter.(var5,var7,var6);
+		var var8 = new dofus.datacenter.(var5,var7,var6);
 		this.api.ui.getUIComponent("NpcDialog").setQuestion(var8);
 	}
 	function onPause()

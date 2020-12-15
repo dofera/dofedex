@@ -6,7 +6,7 @@ class ank.utils.SWFLoader extends MovieClip
 		AsBroadcaster.initialize(this);
 		this.initialize(0);
 	}
-	function initialize(§\x0e\x0b§, §\x1d\x13§)
+	function initialize(var2, var3)
 	{
 		this.clear();
 		this._frameStart = var2;
@@ -21,18 +21,18 @@ class ank.utils.SWFLoader extends MovieClip
 		this.swf_mc.__proto__ = MovieClip.prototype;
 		this.swf_mc.removeMovieClip();
 	}
-	function loadSWF(§\x0e\x12§, §\x0e\x0b§, §\x1d\x13§)
+	function loadSWF(var2, var3, var4)
 	{
 		this.initialize(var3,var4);
 		var var5 = new MovieClipLoader();
 		var5.addListener(this);
 		var5.loadClip(var2,this.swf_mc);
 	}
-	function onLoadComplete(§\x0b\r§)
+	function onLoadComplete(var2)
 	{
 		this.broadcastMessage("onLoadComplete",var2,this._aArgs);
 	}
-	function onLoadInit(§\x0b\r§)
+	function onLoadInit(var2)
 	{
 		if(this._frameStart != undefined)
 		{

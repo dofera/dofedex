@@ -41,7 +41,7 @@ class dofus.graphics.gapi.ui.GameOver extends dofus.graphics.gapi.core.DofusAdva
 			this._mcLol._y = this._mcPlacer._y;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		this.callClose();
 	}

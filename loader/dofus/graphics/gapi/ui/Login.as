@@ -1,56 +1,35 @@
-if(!dofus.graphics.gapi.ui.Login)
+class dofus.graphics.gapi.ui.Login extends dofus.graphics.gapi.core.DofusAdvancedComponent
 {
-	if(!dofus)
-	{
-		_global.dofus = new Object();
-	}
-	if(!dofus.graphics)
-	{
-		_global.dofus.graphics = new Object();
-	}
-	if(!dofus.graphics.gapi)
-	{
-		_global.dofus.graphics.gapi = new Object();
-	}
-	if(!dofus.graphics.gapi.ui)
-	{
-		_global.dofus.graphics.gapi.ui = new Object();
-	}
-	dofus.graphics.gapi.ui.Login = function()
+	static var CLASS_NAME = "Login";
+	var _bHideNext = false;
+	var _nLastRegisterTime = 0;
+	function Login()
 	{
 		super();
 		this._mcGoToStatus._visible = false;
 		this._lblGoToStatus._visible = false;
 		this._mcNoGiftsBanner._visible = false;
 		this.fillCommunityID();
-	} extends dofus.graphics.gapi.core.DofusAdvancedComponent;
-	var var1 = dofus.graphics.gapi.ui.Login = function()
-	{
-		super();
-		this._mcGoToStatus._visible = false;
-		this._lblGoToStatus._visible = false;
-		this._mcNoGiftsBanner._visible = false;
-		this.fillCommunityID();
-	}.prototype;
-	var1.__set__language = function __set__language(§\x1e\x11\x06§)
+	}
+	function __set__language(var2)
 	{
 		this._sLanguage = var2;
 		return this.__get__language();
-	};
-	var1.__set__canAutoLogOn = function __set__canAutoLogOn(§\x1b\x1b§)
+	}
+	function __set__canAutoLogOn(var2)
 	{
 		this._bCanAutoLogOn = var2;
 		return this.__get__canAutoLogOn();
-	};
-	var1.isLoaded = function isLoaded()
+	}
+	function isLoaded()
 	{
 		return this._bLoaded;
-	};
-	var1.onLoaded = function onLoaded()
+	}
+	function onLoaded()
 	{
 		this._bLoaded = true;
-	};
-	var1.autoLogin = function autoLogin(§\x1e\x10\x18§, §\x1e\x0f\x11§)
+	}
+	function autoLogin(var2, var3)
 	{
 		if(var2 != undefined && (var3 != undefined && (var2 != null && (var3 != null && (var2 != "null" && (var3 != "null" && (var2 != "" && var3 != "")))))))
 		{
@@ -65,8 +44,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this.click({target:this._btnOK});
 			return undefined;
 		}
-	};
-	var1.zaapAutoLogin = function zaapAutoLogin(§\x1a\x02§)
+	}
+	function zaapAutoLogin(var2)
 	{
 		if(!this.usingZaapConnect())
 		{
@@ -85,8 +64,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		}
 		var var4 = dofus.ZaapConnect.LOGIN_TOKEN_NAME;
 		this.onLogin(var4,var3,true);
-	};
-	var1.refreshAutoLoginUi = function refreshAutoLoginUi()
+	}
+	function refreshAutoLoginUi()
 	{
 		var var2 = this.usingZaapConnect();
 		this._btnOK._visible = !var2;
@@ -102,8 +81,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		this._lblAutoconnect._visible = var2;
 		this._mcAutoconnect._visible = var2;
 		this._mcCaution._visible = !_global.CONFIG.isStreaming && !var2;
-	};
-	var1.usingZaapConnect = function usingZaapConnect()
+	}
+	function usingZaapConnect()
 	{
 		if(!dofus.ZaapConnect.ENABLED)
 		{
@@ -111,12 +90,12 @@ if(!dofus.graphics.gapi.ui.Login)
 		}
 		var var2 = dofus.ZaapConnect.getInstance();
 		return var2 != null && var2.getSessionToken() != null;
-	};
-	var1.init = function init()
+	}
+	function init()
 	{
 		super.init(false,dofus.graphics.gapi.ui.Login.CLASS_NAME);
-	};
-	var1.createChildren = function createChildren()
+	}
+	function createChildren()
 	{
 		this.api.datacenter.Basics.inGame = false;
 		this._cbPorts._visible = false;
@@ -152,7 +131,7 @@ if(!dofus.graphics.gapi.ui.Login)
 				this._xAlert = new XML();
 				this._xAlert.ignoreWhite = true;
 				var _owner = this;
-				this._xAlert.onLoad = function(§\x14\x1b§)
+				this._xAlert.onLoad = function(var2)
 				{
 					_owner.onAlertLoad(var2);
 				};
@@ -173,8 +152,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		{
 			this.getURL("JavaScript:WriteLog(\'LoginScreen\')");
 		}
-	};
-	var1.initSavedAccount = function initSavedAccount()
+	}
+	function initSavedAccount()
 	{
 		this._btnRememberMe.selected = this.api.kernel.OptionsManager.getOption("RememberAccountName");
 		if(!dofus.Constants.DEBUG && this.api.kernel.OptionsManager.getOption("RememberAccountName"))
@@ -182,8 +161,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this._tiAccount.text = this.api.kernel.OptionsManager.getOption("LastAccountNameUsed");
 			this._tiPassword.setFocus();
 		}
-	};
-	var1.initPayingCommunity = function initPayingCommunity()
+	}
+	function initPayingCommunity()
 	{
 		var var2 = this.api.lang.getConfigText("FREE_COMMUNITIES");
 		var var3 = 0;
@@ -199,12 +178,12 @@ if(!dofus.graphics.gapi.ui.Login)
 			var3 = var3 + 1;
 		}
 		this.api.datacenter.Basics.aks_is_free_community = dofus.Constants.BETAVERSION <= 0?false:true;
-	};
-	var1.loadNews = function loadNews()
+	}
+	function loadNews()
 	{
 		if(this.api.lang.getConfigText("ENABLE_RSS_NEWS"))
 		{
-			var var2 = new ank.utils.rss.();
+			var var2 = new ank.utils.rss.();
 			var2.addEventListener("onRSSLoadError",this);
 			var2.addEventListener("onBadRSSFile",this);
 			var2.addEventListener("onRSSLoaded",this);
@@ -214,8 +193,8 @@ if(!dofus.graphics.gapi.ui.Login)
 				var2.load(var3);
 			}
 		}
-	};
-	var1.loadGifts = function loadGifts()
+	}
+	function loadGifts()
 	{
 		if(!this.api.lang.getConfigText("ENABLE_GIFTS_LINK"))
 		{
@@ -224,7 +203,7 @@ if(!dofus.graphics.gapi.ui.Login)
 		}
 		var var2 = new LoadVars();
 		var2.owner = this;
-		var2.onLoad = function(§\x14\x1b§)
+		var2.onLoad = function(var2)
 		{
 			this.owner.onGifts(this,var2);
 		};
@@ -236,8 +215,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		{
 			var2.load(this.api.lang.getConfigText("GIFTS_LINK"));
 		}
-	};
-	var1.loadFlags = function loadFlags()
+	}
+	function loadFlags()
 	{
 		var ref = this;
 		var var5 = _global.CONFIG.languages;
@@ -274,8 +253,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			var2 = var2 + (var4 + var8._width);
 			var6 = var6 + 1;
 		}
-	};
-	var1.addListeners = function addListeners()
+	}
+	function addListeners()
 	{
 		this._btnShowLastAlert.addEventListener("click",this);
 		var ref = this;
@@ -306,8 +285,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		this._lstNews.addEventListener("itemSelected",this);
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		this.disableMyFlag();
-	};
-	var1.initTexts = function initTexts()
+	}
+	function initTexts()
 	{
 		this._lblAccount.text = this.api.lang.getText("LOGIN_ACCOUNT");
 		this._lblPassword.text = this.api.lang.getText("LOGIN_PASSWORD");
@@ -340,7 +319,6 @@ if(!dofus.graphics.gapi.ui.Login)
 		this._btnBackToNews.label = this.api.lang.getText("BACK_TO_NEWS");
 		this._lblGoToStatus.text = this.api.lang.getText("GO_TO_STATUS");
 		this._lblRememberMe.text = this.api.lang.getText("REMEMBER_ME");
-		org.flashdevelop.utils.FlashConnect.mtrace("api.config.isStreaming : " + _global.CONFIG.isStreaming,"dofus.graphics.gapi.ui.Login::initTexts","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Login.as",548);
 		if(_global.CONFIG.isStreaming)
 		{
 			this._lblAccount.text = this.api.lang.getText("STREAMING_LOGIN_ACCOUNT");
@@ -406,8 +384,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this._lblRememberMe._visible = true;
 			this._btnRememberMe._visible = true;
 		}
-	};
-	var1.initInput = function initInput()
+	}
+	function initInput()
 	{
 		this._tiAccount.tabIndex = 1;
 		this._tiPassword.tabIndex = 2;
@@ -435,11 +413,10 @@ if(!dofus.graphics.gapi.ui.Login)
 		{
 			this._tiAccount.setFocus();
 		}
-	};
-	var1.initLanguages = function initLanguages()
+	}
+	function initLanguages()
 	{
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		var var3 = _global.CONFIG.languages;
 		var var4 = 0;
 		while(var4 < var3.length)
@@ -447,8 +424,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this["_mcFlag" + String(var3[var4]).toUpperCase()]._visible = true;
 			var4 = var4 + 1;
 		}
-	};
-	var1.showAlert = function showAlert(§\x1e\t\x1b§)
+	}
+	function showAlert(var2)
 	{
 		while(var2 != undefined)
 		{
@@ -457,8 +434,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		}
 		var var4 = this.gapi.loadUIComponent("AskAlertServer","AskAlertServer",{title:this.api.lang.getText("SERVER_ALERT"),text:var3,hideNext:this._bHideNext});
 		var4.addEventListener("close",this);
-	};
-	var1.fillCommunityID = function fillCommunityID()
+	}
+	function fillCommunityID()
 	{
 		var var2 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME].data.communityID;
 		var var3 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME].data.detectedCountry;
@@ -481,7 +458,7 @@ if(!dofus.graphics.gapi.ui.Login)
 			{
 				var ref = this;
 				this._lvCountry = new LoadVars();
-				this._lvCountry.onLoad = function(§\x14\x1b§)
+				this._lvCountry.onLoad = function(var2)
 				{
 					ref.onCountryLoad(var2);
 				};
@@ -494,8 +471,8 @@ if(!dofus.graphics.gapi.ui.Login)
 				this.updateFromCommunity();
 			}
 		}
-	};
-	var1.updateFromCommunity = function updateFromCommunity()
+	}
+	function updateFromCommunity()
 	{
 		this.addToQueue({object:this,method:this.loadNews});
 		this.addToQueue({object:this,method:this.loadGifts});
@@ -508,75 +485,71 @@ if(!dofus.graphics.gapi.ui.Login)
 			this.api.datacenter.Basics.aks_is_free_community = true;
 		}
 		this.disableMyFlag();
-	};
-	var1.disableMyFlag = function disableMyFlag()
+	}
+	function disableMyFlag()
 	{
 		if(this.api.datacenter.Basics.aks_community_id == undefined || _global.isNaN(this.api.datacenter.Basics.aks_community_id))
 		{
 			return undefined;
 		}
-		if((var var0 = this.api.datacenter.Basics.aks_community_id) !== 0)
+		switch(this.api.datacenter.Basics.aks_community_id)
 		{
-			switch(null)
-			{
-				case 1:
-					this._mcFlagUK.onRelease = undefined;
-					this._mcFlagUK.onRollOver = undefined;
-					this._mcFlagUK.onRollOut = undefined;
-					break;
-				case 2:
-					this._mcFlagEN.onRelease = undefined;
-					this._mcFlagEN.onRollOver = undefined;
-					this._mcFlagEN.onRollOut = undefined;
-					break;
-				case 3:
-					this._mcFlagDE.onRelease = undefined;
-					this._mcFlagDE.onRollOver = undefined;
-					this._mcFlagDE.onRollOut = undefined;
-					break;
-				case 4:
-					this._mcFlagES.onRelease = undefined;
-					this._mcFlagES.onRollOver = undefined;
-					this._mcFlagES.onRollOut = undefined;
-					break;
-				default:
-					switch(null)
-					{
-						case 5:
-							this._mcFlagRU.onRelease = undefined;
-							this._mcFlagRU.onRollOver = undefined;
-							this._mcFlagRU.onRollOut = undefined;
-							break;
-						case 6:
-							this._mcFlagPT.onRelease = undefined;
-							this._mcFlagPT.onRollOver = undefined;
-							this._mcFlagPT.onRollOut = undefined;
-							break;
-						case 7:
-							this._mcFlagNL.onRelease = undefined;
-							this._mcFlagNL.onRollOver = undefined;
-							this._mcFlagNL.onRollOut = undefined;
-							break;
-						case 9:
-							this._mcFlagIT.onRelease = undefined;
-							this._mcFlagIT.onRollOver = undefined;
-							this._mcFlagIT.onRollOut = undefined;
-					}
-			}
+			case 0:
+				this._mcFlagFR.onRelease = undefined;
+				this._mcFlagFR.onRollOver = undefined;
+				this._mcFlagFR.onRollOut = undefined;
+				break;
+			case 1:
+				this._mcFlagUK.onRelease = undefined;
+				this._mcFlagUK.onRollOver = undefined;
+				this._mcFlagUK.onRollOut = undefined;
+				break;
+			case 2:
+				this._mcFlagEN.onRelease = undefined;
+				this._mcFlagEN.onRollOver = undefined;
+				this._mcFlagEN.onRollOut = undefined;
+				break;
+			case 3:
+				this._mcFlagDE.onRelease = undefined;
+				this._mcFlagDE.onRollOver = undefined;
+				this._mcFlagDE.onRollOut = undefined;
+				break;
+			case 4:
+				this._mcFlagES.onRelease = undefined;
+				this._mcFlagES.onRollOver = undefined;
+				this._mcFlagES.onRollOut = undefined;
+				break;
+			default:
+				switch(null)
+				{
+					case 5:
+						this._mcFlagRU.onRelease = undefined;
+						this._mcFlagRU.onRollOver = undefined;
+						this._mcFlagRU.onRollOut = undefined;
+						break;
+					case 6:
+						this._mcFlagPT.onRelease = undefined;
+						this._mcFlagPT.onRollOver = undefined;
+						this._mcFlagPT.onRollOut = undefined;
+						break;
+					case 7:
+						this._mcFlagNL.onRelease = undefined;
+						this._mcFlagNL.onRollOver = undefined;
+						this._mcFlagNL.onRollOut = undefined;
+						break;
+					case 9:
+						this._mcFlagIT.onRelease = undefined;
+						this._mcFlagIT.onRollOver = undefined;
+						this._mcFlagIT.onRollOut = undefined;
+				}
 		}
-		else
-		{
-			this._mcFlagFR.onRelease = undefined;
-			this._mcFlagFR.onRollOver = undefined;
-			this._mcFlagFR.onRollOut = undefined;
-		}
-	};
-	var1.saveCommunityAndCountry = function saveCommunityAndCountry()
+	}
+	function saveCommunityAndCountry()
 	{
 		_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME].data.communityID = this.api.datacenter.Basics.aks_community_id;
 		_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME].data.detectedCountry = this.api.datacenter.Basics.aks_detected_country;
-	};
-	var1.showServerStatus = function showServerStatus()
+	}
+	function showServerStatus()
 	{
 		this._mcBgServerStatus._visible = true;
 		this._mcServerStateBackground._visible = true;
@@ -586,8 +559,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		this._lstNews._visible = false;
 		this._mcGoToStatus._visible = false;
 		this._lblGoToStatus._visible = false;
-	};
-	var1.hideServerStatus = function hideServerStatus()
+	}
+	function hideServerStatus()
 	{
 		this._mcBgServerStatus._visible = false;
 		this._mcServerStateBackground._visible = false;
@@ -599,8 +572,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		{
 			this.showGoToStatus();
 		}
-	};
-	var1.showGoToStatus = function showGoToStatus()
+	}
+	function showGoToStatus()
 	{
 		if(!this.api.lang.getConfigText("ENABLE_SERVER_STATUS"))
 		{
@@ -609,14 +582,14 @@ if(!dofus.graphics.gapi.ui.Login)
 		this._bGoToStatusIsShown = true;
 		this._mcGoToStatus._visible = true;
 		this._lblGoToStatus._visible = true;
-	};
-	var1.hideGoToStatus = function hideGoToStatus()
+	}
+	function hideGoToStatus()
 	{
 		this._bGoToStatusIsShown = false;
 		this._mcGoToStatus._visible = false;
 		this._lblGoToStatus._visible = false;
-	};
-	var1.showLastAlertButton = function showLastAlertButton(§\x15\x13§)
+	}
+	function showLastAlertButton(var2)
 	{
 		if(this.usingZaapConnect() && var2)
 		{
@@ -624,17 +597,16 @@ if(!dofus.graphics.gapi.ui.Login)
 		}
 		this._btnShowLastAlert._visible = var2;
 		this._mcCaution._visible = var2;
-	};
-	var1.switchLanguage = function switchLanguage(§\x1e\x11\x06§)
+	}
+	function switchLanguage(var2)
 	{
 		this.api.config.language = var2;
 		this.api.kernel.clearCache();
-	};
-	var1.constructPortsList = function constructPortsList()
+	}
+	function constructPortsList()
 	{
 		var var2 = this.api.lang.getConfigText("SERVER_PORT");
-		var var3 = new ank.utils.
-();
+		var var3 = new ank.utils.();
 		var var4 = 0;
 		while(var4 < var2.length)
 		{
@@ -671,8 +643,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this._nServerPort = var2[var5];
 			this.api.kernel.OptionsManager.setOption("ServerPortIndex",var5);
 		}
-	};
-	var1.getCommunityFromCountry = function getCommunityFromCountry(§\x1e\x13\x1b§)
+	}
+	function getCommunityFromCountry(var2)
 	{
 		var var3 = this.api.lang.getServerCommunities();
 		var var4 = 0;
@@ -691,20 +663,19 @@ if(!dofus.graphics.gapi.ui.Login)
 			var4 = var4 + 1;
 		}
 		return -1;
-	};
-	var1.onShortcut = function onShortcut(§\x1e\x0e\x04§)
+	}
+	function onShortcut(var2)
 	{
 		var var3 = this.api.ui.getUIComponent("ChooseNickName");
 		var var4 = this.api.ui.getUIComponent("AskOkOnLogin");
-		org.flashdevelop.utils.FlashConnect.mtrace(var2,"dofus.graphics.gapi.ui.Login::onShortcut","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Login.as",974);
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && (Selection.getFocus() != undefined && (var3 == undefined && var4 == undefined || var3 == null && var4 == null)))
 		{
 			this.onLogin(this._tiAccount.text,this._tiPassword.text);
 			return false;
 		}
 		return true;
-	};
-	var1.onAlertLoad = function onAlertLoad(§\x14\x1b§)
+	}
+	function onAlertLoad(var2)
 	{
 		var var3 = false;
 		if(var2)
@@ -737,8 +708,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		{
 			this.zaapAutoLogin(false);
 		}
-	};
-	var1.itemSelected = function itemSelected(§\x1e\x19\x18§)
+	}
+	function itemSelected(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -751,8 +722,8 @@ if(!dofus.graphics.gapi.ui.Login)
 				var var4 = (ank.utils.rss.RSSItem)var2.row.item;
 				this.getURL(var4.getLink(),"_blank");
 		}
-	};
-	var1.onLogin = function onLogin(§\x1e\x10\x18§, §\x1e\x0f\x10§, §\x13\x16§)
+	}
+	function onLogin(var2, var3, var4)
 	{
 		if(!dofus.Constants.DEBUG && this._tiPassword.text != undefined)
 		{
@@ -810,8 +781,7 @@ if(!dofus.graphics.gapi.ui.Login)
 		if(this._sServerIP == undefined)
 		{
 			var var6 = this.api.lang.getConfigText("SERVER_NAME");
-			var var7 = new ank.utils.
-();
+			var var7 = new ank.utils.();
 			var var8 = Math.floor(Math.random() * var6.length);
 			var var9 = 0;
 			while(var9 < var6.length)
@@ -819,7 +789,6 @@ if(!dofus.graphics.gapi.ui.Login)
 				var7.push(var6[(var8 + var9) % var6.length]);
 				var9 = var9 + 1;
 			}
-			org.flashdevelop.utils.FlashConnect.mtrace("[wtf] IP : " + var7,"dofus.graphics.gapi.ui.Login::onLogin","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Login.as",1188);
 			this.api.datacenter.Basics.aks_connection_server = var7;
 			this._sServerIP = String(var7.shift());
 		}
@@ -839,8 +808,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this.api.network.connect(this._sServerIP,this._nServerPort);
 			this.api.ui.loadUIComponent("WaitingMessage","WaitingMessage",{text:this.api.lang.getText("CONNECTING")},{bAlwaysOnTop:true,bForceLoad:true});
 		}
-	};
-	var1.close = function close(§\x1e\x19\x18§)
+	}
+	function close(var2)
 	{
 		this._bHideNext = var2.hideNext;
 		var var3 = SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
@@ -849,8 +818,8 @@ if(!dofus.graphics.gapi.ui.Login)
 		this._tiAccount.tabEnabled = true;
 		this._tiPassword.tabEnabled = true;
 		this._btnOK.tabEnabled = true;
-	};
-	var1.click = function click(§\x1e\x19\x18§)
+	}
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -899,7 +868,6 @@ if(!dofus.graphics.gapi.ui.Login)
 						}
 						else
 						{
-							org.flashdevelop.utils.FlashConnect.mtrace("open : " + this.api.lang.getConfigText("REGISTER_POPUP_LINK"),"dofus.graphics.gapi.ui.Login::click","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/Login.as",1288);
 							this.getURL(this.api.lang.getConfigText("REGISTER_POPUP_LINK"),"_blank");
 						}
 						break loop0;
@@ -1019,6 +987,8 @@ if(!dofus.graphics.gapi.ui.Login)
 													case "en":
 														this.switchLanguage("en");
 														this.api.datacenter.Basics.aks_detected_country = var7.toUpperCase();
+														this.api.datacenter.Basics.aks_community_id = 2;
+														this.saveCommunityAndCountry();
 														break;
 													case "uk":
 														this.switchLanguage("en");
@@ -1032,12 +1002,7 @@ if(!dofus.graphics.gapi.ui.Login)
 														this.api.datacenter.Basics.aks_community_id = this.getCommunityFromCountry(var7.toUpperCase());
 														this.saveCommunityAndCountry();
 												}
-												§§push(this);
-												§§push("api");
-												break loop0;
 											}
-											§§pop()[§§pop()].datacenter.Basics.aks_community_id = 2;
-											this.saveCommunityAndCountry();
 											break loop0;
 										}
 										var var8 = var2.target.params.url;
@@ -1051,24 +1016,23 @@ if(!dofus.graphics.gapi.ui.Login)
 						}
 				}
 		}
-	};
-	var1.onRSSLoadError = function onRSSLoadError(§\x1e\x19\x18§)
+	}
+	function onRSSLoadError(var2)
 	{
 		ank.utils.Logger.err("Impossible de charger le fichier RSS");
-	};
-	var1.onBadRSSFile = function onBadRSSFile(§\x1e\x19\x18§)
+	}
+	function onBadRSSFile(var2)
 	{
 		ank.utils.Logger.err("Fichier RSS invalide");
-	};
-	var1.onRSSLoaded = function onRSSLoaded(§\x1e\x19\x18§)
+	}
+	function onRSSLoaded(var2)
 	{
 		var var3 = (ank.utils.rss.RSSLoader)var2.target;
-		var var4 = new ank.utils.
-();
+		var var4 = new ank.utils.();
 		var4.createFromArray(var3.getChannels()[0].getItems());
 		this._lstNews.dataProvider = var4;
-	};
-	var1.onGifts = function onGifts(§\x1e\x19\x05§, §\x14\x1b§)
+	}
+	function onGifts(var2, var3)
 	{
 		var var4 = 0;
 		if(var3 && !_global.CONFIG.isStreaming)
@@ -1086,8 +1050,7 @@ if(!dofus.graphics.gapi.ui.Login)
 			};
 			this._mcGifts.setMask(var5);
 			var4 = Number(var2.c);
-			this._aGiftsURLs = new ank.utils.
-();
+			this._aGiftsURLs = new ank.utils.();
 			var var6 = 1;
 			while(var6 <= var4)
 			{
@@ -1113,8 +1076,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this._mcArrowRight._visible = false;
 			this._mcNoGiftsBanner._visible = true;
 		}
-	};
-	var1.onEnterFrame = function onEnterFrame()
+	}
+	function onEnterFrame()
 	{
 		if(this._ymouse > 400 && this._ymouse < 500)
 		{
@@ -1169,8 +1132,8 @@ if(!dofus.graphics.gapi.ui.Login)
 				}
 			}
 		}
-	};
-	var1.over = function over(§\x1e\x19\x18§)
+	}
+	function over(var2)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -1181,12 +1144,12 @@ if(!dofus.graphics.gapi.ui.Login)
 			case "_mcEmerald":
 				this.gapi.showTooltip(this.api.lang.getText("EMERALD_DOFUS"),var2.target,-50);
 				break;
-			case "_mcTurquoise":
-				this.gapi.showTooltip(this.api.lang.getText("TURQUOISE_DOFUS"),var2.target,-50);
-				break;
 			default:
 				switch(null)
 				{
+					case "_mcTurquoise":
+						this.gapi.showTooltip(this.api.lang.getText("TURQUOISE_DOFUS"),var2.target,-50);
+						break loop0;
 					case "_mcEbony":
 						this.gapi.showTooltip(this.api.lang.getText("EBONY_DOFUS"),var2.target,-50);
 						break loop0;
@@ -1208,12 +1171,12 @@ if(!dofus.graphics.gapi.ui.Login)
 						break loop0;
 				}
 		}
-	};
-	var1.out = function out(§\x1e\x19\x18§)
+	}
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
-	};
-	var1.onEvolutionsPostCount = function onEvolutionsPostCount(§\x1e\x19\x05§)
+	}
+	function onEvolutionsPostCount(var2)
 	{
 		var var3 = SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
 		this._nForumEvolutionsPostCount = Number(var2.c);
@@ -1223,8 +1186,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this._mcEvolutionsHighlight._visible = true;
 			this._mcEvolutionsHighlight.play();
 		}
-	};
-	var1.onServersStatePostCount = function onServersStatePostCount(§\x1e\x19\x05§)
+	}
+	function onServersStatePostCount(var2)
 	{
 		var var3 = SharedObject.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
 		this._nForumServersStatePostCount = Number(var2.c);
@@ -1234,8 +1197,8 @@ if(!dofus.graphics.gapi.ui.Login)
 			this._mcServersStateHighlight._visible = true;
 			this._mcServersStateHighlight.play();
 		}
-	};
-	var1.onData = function onData()
+	}
+	function onData()
 	{
 		var var2 = "<font color=\"#EBE3CB\">";
 		var var3 = 0;
@@ -1288,46 +1251,27 @@ if(!dofus.graphics.gapi.ui.Login)
 		{
 			this.hideGoToStatus();
 		}
-	};
-	var1.error = function error(§\x1e\x19\x18§)
+	}
+	function error(var2)
 	{
 		var var3 = var2.target._name.substr(3);
 		var var4 = this._aGiftsURLs.findFirstItem("id",var3).item.url;
 		this._mcGifts["ldr" + var3].removeEventListener("error",this);
 		this._mcGifts["ldr" + var3].contentPath = var4;
-	};
-	var1.onCountryLoad = function onCountryLoad(§\x14\x1b§)
+	}
+	function onCountryLoad(var2)
 	{
-		var var3 = this[§§constant(276)][§§constant(312)];
-		if(var2 && var3[§§constant(128)] > 0)
+		var var3 = this._lvCountry.c;
+		if(var2 && var3.length > 0)
 		{
-			this[§§constant(70)][§§constant(71)][§§constant(72)][§§constant(269)] = var3;
-			this[§§constant(70)][§§constant(71)][§§constant(72)][§§constant(129)] = this[§§constant(267)](var3);
+			this.api.datacenter.Basics.aks_detected_country = var3;
+			this.api.datacenter.Basics.aks_community_id = this.getCommunityFromCountry(var3);
 		}
 		else
 		{
-			this[§§constant(70)][§§constant(71)][§§constant(72)][§§constant(269)] = this[§§constant(70)][§§constant(238)][§§constant(298)][§§constant(156)]();
-			this[§§constant(70)][§§constant(71)][§§constant(72)][§§constant(129)] = this[§§constant(267)](this[§§constant(70)][§§constant(71)][§§constant(72)][§§constant(269)]);
+			this.api.datacenter.Basics.aks_detected_country = this.api.config.language.toUpperCase();
+			this.api.datacenter.Basics.aks_community_id = this.getCommunityFromCountry(this.api.datacenter.Basics.aks_detected_country);
 		}
-		this[§§constant(270)]();
-	};
-	var1[§§constant(491)](§§constant(490),function()
-	{
+		this.updateFromCommunity();
 	}
-	,var1[§§constant(18)]);
-	var1[§§constant(491)](§§constant(298),function()
-	{
-	}
-	,var1[§§constant(15)]);
-	§§constant(492)(var1,null,1);
-	dofus.graphics.gapi.ui.Login = function()
-	{
-		super();
-		this._mcGoToStatus._visible = false;
-		this._lblGoToStatus._visible = false;
-		this._mcNoGiftsBanner._visible = false;
-		this.fillCommunityID();
-	}[§§constant(68)] = §§constant(4);
-	var1[§§constant(259)] = false;
-	var1._nLastRegisterTime = 0;
 }

@@ -3,13 +3,13 @@ class dofus.Electron extends dofus.utils.ApiElement
 	var _bEnabled = _root.electron != undefined;
 	var _bUseRsaCrypto = _root.RSACrypto != undefined;
 	var _bFocused = true;
-	function Electron(§\x1e\x1a\x16§)
+	function Electron(oAPI)
 	{
 		super();
 		flash.external.ExternalInterface.addCallback("onRightClick",this,this.onRightClick);
 		flash.external.ExternalInterface.addCallback("onWindowFocus",this,this.onWindowFocus);
 		flash.external.ExternalInterface.addCallback("onWindowBlur",this,this.onWindowBlur);
-		this.initialize(var3);
+		this.initialize(oAPI);
 	}
 	function __get__enabled()
 	{
@@ -59,11 +59,11 @@ class dofus.Electron extends dofus.utils.ApiElement
 		}
 		this._bFocused = false;
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3);
+		super.initialize(oAPI);
 	}
-	function makeReport(§\x1e\x0e\f§, §\x1e\r\r§, §\x1e\r\x0e§, §\x1e\x0e\r§, §\x1e\x13\x0e§, §\x1e\x12\x14§, §\x1e\x0f\x06§, §\x1e\x11\x13§, §\x1e\x14\x05§)
+	function makeReport(var2, var3, var4, var5, var6, var7, var8, var9, var10)
 	{
 		if(!this._bEnabled)
 		{
@@ -109,7 +109,7 @@ class dofus.Electron extends dofus.utils.ApiElement
 		var var8 = this.api.datacenter.Player.Sex;
 		flash.external.ExternalInterface.call("setIngameDiscordActivity",var2,var3,var4,var5,var6,var7,var8);
 	}
-	function log(§\x1e\x10\x0f§, §\x1a\x10§)
+	function log(var2, var3)
 	{
 		if(!this._bEnabled)
 		{
@@ -121,7 +121,7 @@ class dofus.Electron extends dofus.utils.ApiElement
 		}
 		flash.external.ExternalInterface.call("userLog",var2,var3);
 	}
-	function consoleLog(§\x1e\f\x14§, §\x1e\x0e\x07§)
+	function consoleLog(var2, var3)
 	{
 		if(!this._bEnabled)
 		{
@@ -129,7 +129,7 @@ class dofus.Electron extends dofus.utils.ApiElement
 		}
 		flash.external.ExternalInterface.call("consoleLog",var2,var3);
 	}
-	function chatLog(§\x1e\r\x02§)
+	function chatLog(var2)
 	{
 		if(!this._bEnabled)
 		{
@@ -137,7 +137,7 @@ class dofus.Electron extends dofus.utils.ApiElement
 		}
 		flash.external.ExternalInterface.call("chatLog",var2);
 	}
-	function debugRequest(§\x15\x18§, §\x1e\x13\x10§)
+	function debugRequest(var2, var3)
 	{
 		if(!this._bEnabled)
 		{
@@ -157,7 +157,7 @@ class dofus.Electron extends dofus.utils.ApiElement
 		var var3 = "Build " + dofus.Constants.VERSIONDATE;
 		flash.external.ExternalInterface.call("setLoginDiscordActivity",var2,var3);
 	}
-	function makeNotification(§\x1e\x13\x1d§)
+	function makeNotification(var2)
 	{
 		if(!this._bEnabled || var2 == undefined)
 		{
@@ -169,7 +169,7 @@ class dofus.Electron extends dofus.utils.ApiElement
 		var2 = var2.split("</u>").join("");
 		flash.external.ExternalInterface.call("makeNotification",var2);
 	}
-	function updateWindowTitle(§\x1e\x0f\x04§)
+	function updateWindowTitle(var2)
 	{
 		if(!this._bEnabled)
 		{

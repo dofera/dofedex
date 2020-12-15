@@ -17,7 +17,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 	{
 		this._tl.update();
 	}
-	function nextTurn(§\r\b§, §\x13\x18§)
+	function nextTurn(var2, var3)
 	{
 		this.refreshCurrentTableTurnTxtFields();
 		this._tl.nextTurn(var2,var3);
@@ -26,15 +26,15 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 	{
 		return this._tl;
 	}
-	function hideItem(§\r\b§)
+	function hideItem(var2)
 	{
 		this._tl.hideItem(var2);
 	}
-	function showItem(§\r\b§)
+	function showItem(var2)
 	{
 		this._tl.showItem(var2);
 	}
-	function startChrono(§\x06\t§)
+	function startChrono(var2)
 	{
 		this._tl.startChrono(var2);
 	}
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 		this._txtTableTurnDown.text = String(this.api.datacenter.Game.currentTableTurn);
 		this._txtTableTurnUp.text = String(this.api.datacenter.Game.currentTableTurn);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if(!this.gapi.isCursorHidden())
 		{
@@ -120,7 +120,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 			this._parent.out({target:this});
 		};
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		var var3 = var2.target._name;
 		switch(var3)
@@ -166,7 +166,7 @@ class dofus.graphics.gapi.ui.Timeline extends dofus.graphics.gapi.core.DofusAdva
 			}
 		}
 	}
-	function moveTimeline(§\x06\r§)
+	function moveTimeline(var2)
 	{
 		this._tl._y = this._tl._y + var2;
 		this._btnUp._y = this._btnUp._y + var2;

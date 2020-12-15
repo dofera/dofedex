@@ -1,52 +1,62 @@
-class dofus.aks.Items extends dofus.aks.Handler
+if(!dofus.aks.Items)
 {
-	static var EFFECT_APPEND_CHAR = ":";
-	static var COMPRESSION_RADIX = 16;
-	function Items(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	if(!dofus)
 	{
-		super.initialize(var3,var4);
+		_global.dofus = new Object();
 	}
-	function movement(§\x05\x02§, §\x01\x17§, §\x01\x0e§)
+	if(!dofus.aks)
+	{
+		_global.dofus.aks = new Object();
+	}
+	dofus.aks.Items = function(§\x1e\x1a\x0e§, oAPI)
+	{
+		super.initialize(var3,oAPI);
+	} extends dofus.aks.Handler;
+	var var1 = dofus.aks.Items = function(§\x1e\x1a\x0e§, oAPI)
+	{
+		super.initialize(var3,oAPI);
+	}.prototype;
+	var1.movement = function movement(var2, var3, var4)
 	{
 		if(var3 > 0)
 		{
 			this.api.kernel.GameManager.setAsModified(var3);
 		}
 		this.aks.send("OM" + var2 + "|" + var3 + (!_global.isNaN(var4)?"|" + var4:""),true);
-	}
-	function drop(§\x05\x02§, §\x01\x0e§)
+	};
+	var1.drop = function drop(var2, var3)
 	{
 		this.aks.send("OD" + var2 + "|" + var3,false);
-	}
-	function associateMimibiote(§\x04\x1a§, §\x04\x19§)
+	};
+	var1.associateMimibiote = function associateMimibiote(var2, var3)
 	{
 		this.aks.send("AEi1|" + var2 + "|" + var3);
-	}
-	function destroyMimibiote(§\x05\x02§)
+	};
+	var1.destroyMimibiote = function destroyMimibiote(var2)
 	{
 		this.aks.send("AEi0|" + var2);
-	}
-	function destroy(§\x05\x02§, §\x01\x0e§)
+	};
+	var1.destroy = function destroy(var2, var3)
 	{
 		this.aks.send("Od" + var2 + "|" + var3,false);
-	}
-	function use(§\x05\x02§, §\x1e\r\x1b§, §\b\x02§, §\x1b\x11§)
+	};
+	var1.use = function use(var2, var3, var4, var5)
 	{
 		this.aks.send("O" + (!var5?"U":"u") + var2 + (!(var3 != undefined && !_global.isNaN(Number(var3)))?"|":"|" + var3) + (var4 == undefined?"":"|" + var4),true);
-	}
-	function dissociate(§\x05\x02§, §\x01\x17§)
+	};
+	var1.dissociate = function dissociate(var2, var3)
 	{
 		this.aks.send("Ox" + var2 + "|" + var3,false);
-	}
-	function setSkin(§\x05\x02§, §\x01\x17§, §\x1e\x1d\x17§)
+	};
+	var1.setSkin = function setSkin(var2, var3, var4)
 	{
 		this.aks.send("Os" + var2 + "|" + var3 + "|" + var4,false);
-	}
-	function feed(§\x05\x02§, §\x01\x17§, §\x05\x17§)
+	};
+	var1.feed = function feed(var2, var3, var4)
 	{
 		this.aks.send("Of" + var2 + "|" + var3 + "|" + var4,false);
-	}
-	function onAccessories(§\x1e\x12\x1a§)
+	};
+	var1.onAccessories = function onAccessories(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -86,8 +96,8 @@ class dofus.aks.Items extends dofus.aks.Handler
 		{
 			this.api.datacenter.Player.updateCloseCombat();
 		}
-	}
-	function onDrop(§\x14\x1b§, §\x1e\x12\x1a§)
+	};
+	var1.onDrop = function onDrop(var2, var3)
 	{
 		if(!var2)
 		{
@@ -100,8 +110,8 @@ class dofus.aks.Items extends dofus.aks.Handler
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_DROP_ITEM"),"ERROR_BOX");
 			}
 		}
-	}
-	function onAdd(§\x14\x1b§, §\x1e\x12\x1a§)
+	};
+	var1.onAdd = function onAdd(var2, var3)
 	{
 		if(!var2)
 		{
@@ -111,6 +121,7 @@ class dofus.aks.Items extends dofus.aks.Handler
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("INVENTORY_FULL"),"ERROR_BOX",{name:"Full"});
 					break;
 				case "L":
+				default:
 					this.api.kernel.showMessage(undefined,this.api.lang.getText("TOO_LOW_LEVEL_FOR_ITEM"),"ERROR_BOX",{name:"LowLevel"});
 					break;
 				case "A":
@@ -126,11 +137,14 @@ class dofus.aks.Items extends dofus.aks.Handler
 				var var6 = var4[var5];
 				var var7 = var6.charAt(0);
 				var6 = var6.substr(1);
-				switch(var7)
+				if((var0 = var7) !== "G")
 				{
-					case "G":
-						break;
-					case "O":
+					if(var0 !== "O")
+					{
+						ank.utils.Logger.err("Ajout d\'un type obj inconnu");
+					}
+					else
+					{
 						var var8 = var6.split(";");
 						var var9 = 0;
 						while(var9 < var8.length)
@@ -142,15 +156,13 @@ class dofus.aks.Items extends dofus.aks.Handler
 							}
 							var9 = var9 + 1;
 						}
-						break;
-					default:
-						ank.utils.Logger.err("Ajout d\'un type obj inconnu");
+					}
 				}
 				var5 = var5 + 1;
 			}
 		}
-	}
-	function onChange(§\x1e\x12\x1a§)
+	};
+	var1.onChange = function onChange(var2)
 	{
 		var var3 = var2.split("*");
 		var var4 = 0;
@@ -170,27 +182,27 @@ class dofus.aks.Items extends dofus.aks.Handler
 			}
 			var4 = var4 + 1;
 		}
-	}
-	function onRemove(§\x1e\x12\x1a§)
+	};
+	var1.onRemove = function onRemove(var2)
 	{
 		var var3 = Number(var2);
 		this.api.datacenter.Player.dropItem(var3);
-	}
-	function onQuantity(§\x1e\x12\x1a§)
+	};
+	var1.onQuantity = function onQuantity(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = Number(var3[1]);
 		this.api.datacenter.Player.updateItemQuantity(var4,var5);
-	}
-	function onMovement(§\x1e\x12\x1a§)
+	};
+	var1.onMovement = function onMovement(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = !_global.isNaN(Number(var3[1]))?Number(var3[1]):-1;
 		this.api.datacenter.Player.updateItemPosition(var4,var5);
-	}
-	function onTool(§\x1e\x12\x1a§)
+	};
+	var1.onTool = function onTool(var2)
 	{
 		var var3 = Number(var2);
 		if(_global.isNaN(var3))
@@ -201,16 +213,16 @@ class dofus.aks.Items extends dofus.aks.Handler
 		{
 			this.api.datacenter.Player.currentJobID = var3;
 		}
-	}
-	function onWeight(§\x1e\x12\x1a§)
+	};
+	var1.onWeight = function onWeight(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
 		var var5 = Number(var3[1]);
 		this.api.datacenter.Player.maxWeight = var5;
 		this.api.datacenter.Player.currentWeight = var4;
-	}
-	function onItemSet(§\x1e\x12\x1a§)
+	};
+	var1.onItemSet = function onItemSet(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -226,8 +238,8 @@ class dofus.aks.Items extends dofus.aks.Handler
 		{
 			this.api.datacenter.Player.ItemSets.removeItemAt(var5);
 		}
-	}
-	function onItemUseCondition(§\x1e\x12\x1a§)
+	};
+	var1.onItemUseCondition = function onItemUseCondition(var2)
 	{
 		var var3 = var2.charAt(0);
 		switch(var3)
@@ -248,11 +260,11 @@ class dofus.aks.Items extends dofus.aks.Handler
 				var var13 = !_global.isNaN(Number(var10[2]))?Number(var10[2]):undefined;
 				var var14 = !_global.isNaN(Number(var10[3]))?Number(var10[3]):undefined;
 				var var15 = {name:"UseItem",listener:this,params:{objectID:var11,spriteID:var12,cellID:var13}};
-				var var16 = new dofus.datacenter.(-1,var14,1,0,"",0);
+				var var16 = new dofus.datacenter.(-1,var14,1,0,"",0);
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("ITEM_USE_CONFIRMATION",[var16.name]),"CAUTION_YESNO",var15);
 		}
-	}
-	function onItemFound(§\x1e\x12\x1a§)
+	};
+	var1.onItemFound = function onItemFound(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = !_global.isNaN(Number(var3[0]))?Number(var3[0]):0;
@@ -268,20 +280,29 @@ class dofus.aks.Items extends dofus.aks.Handler
 			}
 			else
 			{
-				var9 = new dofus.datacenter.(0,var7,var8);
+				var9 = new dofus.datacenter.(0,var7,var8);
 			}
 			this.api.gfx.addSpriteOverHeadItem(this.api.datacenter.Player.ID,"itemFound",dofus.graphics.battlefield.CraftResultOverHead,[true,var9],2000);
 		}
-	}
-	function yes(§\x1e\x19\x18§)
+	};
+	var1.yes = function yes(var2)
 	{
-		switch(var2.target._name)
+		switch(var2[§§constant(128)][§§constant(129)])
 		{
-			case "AskYesNoUseItemGold":
-				this.use(var2.params.objectID,var2.params.spriteID,var2.params.cellID,true);
+			case §§constant(130):
+				this[§§constant(26)](var2[§§constant(110)][§§constant(111)],var2[§§constant(110)][§§constant(112)],var2[§§constant(110)][§§constant(113)],true);
 				break;
-			case "AskYesNoUseItem":
-				this.use(var2.params.objectID,var2.params.spriteID,var2.params.cellID,true);
+			case §§constant(131):
+				this[§§constant(26)](var2[§§constant(110)][§§constant(111)],var2[§§constant(110)][§§constant(112)],var2[§§constant(110)][§§constant(113)],true);
 		}
-	}
+	};
+	§§constant(132)(var1,null,1);
+	dofus.aks.Items = function(§\x1e\x1a\x0e§, oAPI)
+	{
+		super.initialize(var3,oAPI);
+	}[§§constant(133)] = §§constant(134);
+	dofus.aks.Items = function(§\x1e\x1a\x0e§, oAPI)
+	{
+		super.initialize(var3,oAPI);
+	}[§§constant(135)] = 16;
 }

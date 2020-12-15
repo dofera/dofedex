@@ -12,12 +12,12 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__contentPath(§\x1e\x13\x1c§)
+	function __set__contentPath(var2)
 	{
 		this._ldrContent.contentPath = var2;
 		return this.__get__contentPath();
 	}
-	function __set__forceReload(§\x16\x0b§)
+	function __set__forceReload(var2)
 	{
 		this._ldrContent.forceReload = var2;
 		return this.__get__forceReload();
@@ -26,7 +26,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._ldrContent.contentPath;
 	}
-	function __set__contentData(§\x1e\x1a\x04§)
+	function __set__contentData(var2)
 	{
 		this._oContentData = var2;
 		if(this._oContentData.params != undefined)
@@ -83,7 +83,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelected;
 	}
-	function __set__backgroundRenderer(§\x1e\x14\x1a§)
+	function __set__backgroundRenderer(var2)
 	{
 		if(var2.length == 0 || var2 == undefined)
 		{
@@ -97,7 +97,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__backgroundRenderer();
 	}
-	function __set__borderRenderer(§\x1e\x14\x16§)
+	function __set__borderRenderer(var2)
 	{
 		if(var2.length == 0 || var2 == undefined)
 		{
@@ -111,7 +111,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__borderRenderer();
 	}
-	function __set__highlightRenderer(§\x1e\x12\x04§)
+	function __set__highlightRenderer(var2)
 	{
 		if(var2.length == 0 || var2 == undefined)
 		{
@@ -125,7 +125,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__highlightRenderer();
 	}
-	function __set__dragAndDrop(§\x1a\x17§)
+	function __set__dragAndDrop(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -142,7 +142,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bDragAndDrop;
 	}
-	function __set__showLabel(§\x15\f§)
+	function __set__showLabel(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -171,7 +171,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bShowLabel;
 	}
-	function __set__label(§\x1e\x11\x0b§)
+	function __set__label(var2)
 	{
 		this._sLabel = var2;
 		if(this._bShowLabel)
@@ -188,7 +188,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sLabel;
 	}
-	function __set__margin(§\x03\x17§)
+	function __set__margin(var2)
 	{
 		var2 = Number(var2);
 		if(_global.isNaN(var2))
@@ -206,7 +206,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nMargin;
 	}
-	function __set__highlightFront(§\x19\x0b§)
+	function __set__highlightFront(var2)
 	{
 		this._bHighlightFront = var2;
 		if(!var2 && this._mcHighlight != undefined)
@@ -219,7 +219,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bHighlightFront;
 	}
-	function __set__id(§\x05\x01§)
+	function __set__id(var2)
 	{
 		this._nId = var2;
 		return this.__get__id();
@@ -364,7 +364,7 @@ class ank.gapi.controls.Container extends ank.gapi.core.UIBasicComponent
 		this.attachMovie(this._sHighlight,"_mcHighlight",!this._bHighlightFront?5:100);
 		this._mcHighlight._visible = false;
 	}
-	function setLabel(§\x1e\x11\x0b§)
+	function setLabel(var2)
 	{
 		if(this._bShowLabel)
 		{

@@ -16,9 +16,9 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		return this.pmPopupMenu;
 	}
-	function __set__api(§\x1e\x1a\x16§)
+	function __set__api(oAPI)
 	{
-		this._oAPI = var2;
+		this._oAPI = oAPI;
 		return this.__get__api();
 	}
 	function __get__api()
@@ -41,15 +41,14 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		this.createEmptyMovieClip("_mcLayer_Popup",40).cacheAsBitmap = _global.CONFIG.cacheAsBitmap["GAPI/Popup"];
 		this.createEmptyMovieClip("_mcLayer_Cursor",50).cacheAsBitmap = _global.CONFIG.cacheAsBitmap["GAPI/Cursor"];
 		this._oUIComponentsList = new Object();
-		this._eaUIComponentsInstances = new ank.utils.
-();
+		this._eaUIComponentsInstances = new ank.utils.();
 	}
-	function setScreenSize(§\x1e\x1b\x0f§, §\x05\x07§)
+	function setScreenSize(var2, var3)
 	{
 		this._nScreenWidth = var2;
 		this._nScreenHeight = var3;
 	}
-	function createPopupMenu(§\x1e\r\x14§, §\x1c\x19§)
+	function createPopupMenu(var2, var3)
 	{
 		if(var3 == undefined)
 		{
@@ -74,7 +73,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		this.pmPopupMenu.removeMovieClip();
 	}
-	function showFixedTooltip(§\x1e\r\x02§, §\x1e\t\x1a§, §\x1e\t\x18§, §\x1e\x18\x15§, §\x1e\x10\x06§)
+	function showFixedTooltip(var2, var3, var4, var5, var6)
 	{
 		if(var2 == undefined)
 		{
@@ -105,7 +104,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 			this._mcLayer_Popup.attachMovie("ToolTip","_mcToolTip" + var6,this._mcLayer_Popup.getNextHighestDepth(),{text:var2,x:var7,y:var4,params:var5,gapi:this});
 		}
 	}
-	function showTooltip(§\x1e\r\x02§, §\x1e\t\x1a§, §\x1e\t\x18§, §\x1e\x18\x15§, §\x1e\r\x14§)
+	function showTooltip(var2, var3, var4, var5, var6)
 	{
 		if(var2 == undefined)
 		{
@@ -141,7 +140,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		this._mcLayer_Popup._mcToolTip.removeMovieClip();
 	}
-	function onContentLoaded(§\x1e\x19\x18§)
+	function onContentLoaded(var2)
 	{
 		if(!dofus.Constants.DOUBLEFRAMERATE)
 		{
@@ -151,7 +150,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		var var4 = this.api.kernel.OptionsManager.getOption("RemasteredSpellIconsPack");
 		var3.gotoAndStop(var4);
 	}
-	function setCursor(§\x1e\x1a\x02§, §\x1e\x1a\x18§, §\x15\x04§)
+	function setCursor(var2, var3, var4)
 	{
 		if(var4 == undefined)
 		{
@@ -179,7 +178,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		this._oCursorData = var2;
 		this._mcLayer_Cursor.startDrag(true);
 	}
-	function setCursorForbidden(§\x1a\x03§, §\x1e\x13\x12§)
+	function setCursorForbidden(var2, var3)
 	{
 		if(this.isCursorHidden())
 		{
@@ -212,7 +211,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		return this._mcLayer_Cursor.cursor1 == undefined;
 	}
-	function removeCursor(§\x1b\n§)
+	function removeCursor(var2)
 	{
 		this.hideCursor(var2);
 		if(this._oCursorData == undefined)
@@ -222,7 +221,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		delete this._oCursorData;
 		return true;
 	}
-	function hideCursor(§\x1b\n§)
+	function hideCursor(var2)
 	{
 		this.setCursorForbidden(false);
 		this._mcLayer_Cursor.stopDrag();
@@ -236,7 +235,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		return this.unloadUIComponent(this._sLastAutoHideComponent);
 	}
-	function loadUIAutoHideComponent(§\x1e\x10\x1b§, §\x1e\x11\x15§, §\x1e\x1a\x07§, §\x1e\x17\x15§)
+	function loadUIAutoHideComponent(var2, var3, var4, var5)
 	{
 		if(this._sLastAutoHideComponent != var2)
 		{
@@ -245,7 +244,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		this._sLastAutoHideComponent = var2;
 		return this.loadUIComponent(var2,var3,var4,var5);
 	}
-	function loadUIComponent(§\x1e\x10\x1b§, §\x1e\x11\x15§, §\x1e\x1a\x07§, §\x1e\x17\x15§)
+	function loadUIComponent(var2, var3, var4, var5)
 	{
 		if(var5.bForceLoad == undefined)
 		{
@@ -286,20 +285,15 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 				default:
 					switch(null)
 					{
-						default:
-							if(var0 === "Inventory")
-							{
-								break;
-							}
-						case "StringCourse":
 						case "Waiting":
 						case "AskGameBegin":
 						case "Login":
+						case "Inventory":
 					}
-					break;
 				case "AutomaticServer":
 				case "BigStoreBuy":
 				case "JoinFriend":
+				case "StringCourse":
 			}
 			var2 = var2 + "_DoubleFramerate";
 		}
@@ -348,7 +342,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		this._eaUIComponentsInstances.push({name:var3});
 		return var12;
 	}
-	function unloadUIComponent(§\x1e\x11\x15§)
+	function unloadUIComponent(var2)
 	{
 		var var3 = this.getUIComponent(var2);
 		delete this._oUIComponentsList.register2;
@@ -368,7 +362,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		var3.removeMovieClip();
 		return true;
 	}
-	function getUIComponent(§\x1e\x11\x15§)
+	function getUIComponent(var2)
 	{
 		var var3 = this._mcLayer_UI[var2];
 		if(var3 == undefined)
@@ -385,7 +379,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 		}
 		return var3;
 	}
-	function callCloseOnLastUI(§\x04\x17§)
+	function callCloseOnLastUI(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -410,7 +404,7 @@ class ank.gapi.Gapi extends ank.utils.QueueEmbedMovieClip
 	{
 		this.clear();
 		ank.gapi.styles.StylesManager.loadStylePackage(ank.gapi.styles.DefaultStylePackage);
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 	}
 	function addDragClip()
 	{

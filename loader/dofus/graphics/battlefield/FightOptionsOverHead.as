@@ -1,7 +1,7 @@
 class dofus.graphics.battlefield.FightOptionsOverHead extends MovieClip
 {
 	static var ICON_WIDTH = 20;
-	function FightOptionsOverHead(§\x1e\x0b\x07§)
+	function FightOptionsOverHead(var3)
 	{
 		super();
 		this.initialize(var3);
@@ -11,7 +11,7 @@ class dofus.graphics.battlefield.FightOptionsOverHead extends MovieClip
 	{
 		return 20;
 	}
-	function initialize(§\x1e\x0b\x07§)
+	function initialize(var2)
 	{
 		this._mc.removeMovieClip();
 		this.createEmptyMovieClip("_mc",10);
@@ -19,14 +19,14 @@ class dofus.graphics.battlefield.FightOptionsOverHead extends MovieClip
 	}
 	function draw()
 	{
-		§§enumerate(this._mc);
-		while((var var0 = §§enumeration()) != null)
+		for(var a in this._mc)
 		{
 			this._mc[a].removeMovieClip();
 		}
 		var var2 = 0;
-		for(var var3 in this._tTeam.options)
+		for(var a in this._tTeam.options)
 		{
+			var var3 = this._tTeam.options[a];
 			if(var3 == true)
 			{
 				var var4 = "UI_FightOption" + a + "Up";

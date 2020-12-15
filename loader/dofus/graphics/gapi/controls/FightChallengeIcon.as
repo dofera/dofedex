@@ -23,7 +23,6 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 	}
 	function initCpt()
 	{
-		org.flashdevelop.utils.FlashConnect.mtrace(this.challenge.id + " : " + this.challenge.iconPath,"dofus.graphics.gapi.controls.FightChallengeIcon::initCpt","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/controls/FightChallengeIcon.as",65);
 		this._ldr.contentPath = this.challenge.iconPath;
 		this.update();
 	}
@@ -36,7 +35,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 		this.onRollOver = this.virtualEvent(this,"over",this);
 		this.onRollOut = this.virtualEvent(this,"out",this);
 	}
-	function onEventRelease(§\x1e\x1a\x15§, attachTarget, §\x1e\x17\x01§, challenge)
+	function onEventRelease(§\x1e\x1a\x0b§, attachTarget, §\x1e\x16\x14§, challenge)
 	{
 		return function()
 		{
@@ -51,7 +50,7 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 			}
 		};
 	}
-	function over(§\x10\x1a§)
+	function over(var2)
 	{
 		var var3 = this.api.lang.getFightChallenge(this.challenge.id);
 		var var4 = "<b>" + var3.n + "</b>\n";
@@ -61,20 +60,24 @@ class dofus.graphics.gapi.controls.FightChallengeIcon extends dofus.graphics.gap
 		var4 = var4 + this.api.lang.getText("WORD_XP");
 		var4 = var4 + (" : +" + (this.challenge.teamXpBonus + this.challenge.basicXpBonus) + "%\n");
 		var4 = var4 + (this.api.lang.getText("STATE") + " : ");
-		switch(this.challenge.state)
+		if((var var0 = this.challenge.state) !== 0)
 		{
-			case 0:
-				var4 = var4 + this.api.lang.getText("CURRENT_FIGHT_CHALLENGE");
-				break;
-			case 1:
-				var4 = var4 + this.api.lang.getText("FIGHT_CHALLENGE_DONE");
-				break;
-			case 2:
-				var4 = var4 + this.api.lang.getText("FIGHT_CHALLENGE_FAILED");
+			switch(null)
+			{
+				case 1:
+					var4 = var4 + this.api.lang.getText("FIGHT_CHALLENGE_DONE");
+					break;
+				case 2:
+					var4 = var4 + this.api.lang.getText("FIGHT_CHALLENGE_FAILED");
+			}
+		}
+		else
+		{
+			var4 = var4 + this.api.lang.getText("CURRENT_FIGHT_CHALLENGE");
 		}
 		this.gapi.showTooltip(var4,var2.target,40);
 	}
-	function out(§\x10\x1a§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

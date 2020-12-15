@@ -6,12 +6,12 @@ class dofus.graphics.gapi.controls.guildboostsviewer.GuildBoostsViewerSpell exte
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -64,17 +64,17 @@ class dofus.graphics.gapi.controls.guildboostsviewer.GuildBoostsViewerSpell exte
 		this._btnBoost.addEventListener("over",this);
 		this._btnBoost.addEventListener("out",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		this._mcList.gapi.api.network.Guild.boostSpell(this._oItem.ID);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var var3 = this._mcList.gapi.api;
 		var var4 = var3.datacenter.Player.guildInfos.getBoostCostAndCountForCharacteristic("s",this._oItem.ID);
 		this._mcList.gapi.showTooltip(var3.lang.getText("COST") + " : " + var4.cost,var2.target,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this._mcList.gapi.hideTooltip();
 	}

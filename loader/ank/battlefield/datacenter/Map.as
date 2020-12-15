@@ -1,21 +1,20 @@
 class ank.battlefield.datacenter.Map extends Object
 {
-	function Map(§\x05\x02§)
+	function Map(var2)
 	{
 		super();
 		this.initialize(var3);
 	}
-	function initialize(§\x05\x02§)
+	function initialize(var2)
 	{
 		this.id = var2;
-		this.originalsCellsBackup = new ank.utils.	();
+		this.originalsCellsBackup = new ank.utils.();
 	}
 	function cleanSpritesOn()
 	{
 		if(this.data != undefined)
 		{
-			§§enumerate(this.data);
-			while((var var0 = §§enumeration()) != null)
+			for(var k in this.data)
 			{
 				this.data[k].removeAllSpritesOnID();
 			}

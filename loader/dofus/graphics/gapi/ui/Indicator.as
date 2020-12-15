@@ -9,17 +9,17 @@ class dofus.graphics.gapi.ui.Indicator extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__rotate(§\x16\x06§)
+	function __set__rotate(var2)
 	{
 		this._bRotate = var2;
 		return this.__get__rotate();
 	}
-	function __set__coordinates(§\x07§)
+	function __set__coordinates(var2)
 	{
 		this._aCoordinates = var2;
 		return this.__get__coordinates();
 	}
-	function __set__offset(§\x02\x0f§)
+	function __set__offset(var2)
 	{
 		this._nOffset = var2;
 		return this.__get__offset();

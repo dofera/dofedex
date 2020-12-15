@@ -16,7 +16,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 	{
 		super();
 	}
-	function __set__dataProvider(§\x10\x14§)
+	function __set__dataProvider(var2)
 	{
 		this._eaDataProvider.removeEventListener("modelChanged",this);
 		this._eaDataProvider = var2;
@@ -31,7 +31,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 	{
 		return this._eaDataProvider;
 	}
-	function __set__kamasProvider(§\x1e\x19\n§)
+	function __set__kamasProvider(var2)
 	{
 		var2.removeEventListener("kamaChanged",this);
 		this._oKamasProvider = var2;
@@ -42,12 +42,12 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 		}
 		return this.__get__kamasProvider();
 	}
-	function __set__autoFilter(§\x1c\f§)
+	function __set__autoFilter(var2)
 	{
 		this._bAutoFilter = var2;
 		return this.__get__autoFilter();
 	}
-	function __set__filterAtStart(§\x1a\t§)
+	function __set__filterAtStart(var2)
 	{
 		this._bFilterAtStart = var2;
 		return this.__get__filterAtStart();
@@ -60,7 +60,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 	{
 		return this._iifFilter;
 	}
-	function __set__customInventoryFilter(§\r\x05§)
+	function __set__customInventoryFilter(var2)
 	{
 		this._iifFilter = var2;
 		if(this.initialized)
@@ -73,7 +73,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 	{
 		return this._oDataViewer.selectedIndex;
 	}
-	function setFilter(§\x05\x10§)
+	function setFilter(var2)
 	{
 		if(var2 == this._nCurrentFilterID)
 		{
@@ -161,10 +161,8 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 	{
 		var var2 = this.api.datacenter.Basics[dofus.graphics.gapi.controls.InventoryViewer.CLASS_NAME + "_subfilter_" + this._btnSelectedFilterButton._name + "_" + this._name];
 		this._nSelectedTypeID = var2 != undefined?var2:0;
-		var var3 = new ank.utils.
-();
-		var var4 = new ank.utils.
-();
+		var var3 = new ank.utils.();
+		var var4 = new ank.utils.();
 		var var5 = new Object();
 		for(var k in this._eaDataProvider)
 		{
@@ -194,7 +192,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 		this._oDataViewer.dataProvider = var3;
 		this.sortInventory(this._sCurrentSort);
 	}
-	function setType(§\x1e\x1c\x02§)
+	function setType(var2)
 	{
 		var var3 = this._cbTypes.dataProvider;
 		var var4 = 0;
@@ -215,7 +213,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 		var var2 = this.gapi.loadUIComponent("InventorySearch","InventorySearch",{_oDataProvider:this._oDataViewer.dataProvider});
 		var2.addEventListener("select",this);
 	}
-	function sortInventory(§\x1e\x12\x19§)
+	function sortInventory(var2)
 	{
 		if(!var2)
 		{
@@ -231,7 +229,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 	{
 		this.updateData();
 	}
-	function kamaChanged(§\x1e\x19\x18§)
+	function kamaChanged(var2)
 	{
 		if(var2.value == undefined)
 		{
@@ -239,10 +237,10 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 		}
 		else
 		{
-			this._lblKama.text = new ank.utils.(var2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
+			this._lblKama.text = new ank.utils.(var2.value).addMiddleChar(this.api.lang.getConfigText("THOUSAND_SEPARATOR"),3);
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if(var2.target == this._btnMoreChoice)
 		{
@@ -273,10 +271,15 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 					this._lblFilter.text = this.api.lang.getText("NONEQUIPEMENT");
 					this._nCurrentFilterID = dofus.graphics.gapi.controls.InventoryViewer.FILTER_ID_NONEQUIPEMENT;
 					break;
-				case "_btnFilterRessoureces":
+				default:
+					if(var0 !== "_btnFilterRessoureces")
+					{
+						break;
+					}
 					this._aSelectedSuperTypes = dofus.graphics.gapi.controls.InventoryViewer.FILTER_RESSOURECES;
 					this._lblFilter.text = this.api.lang.getText("RESSOURECES");
 					this._nCurrentFilterID = dofus.graphics.gapi.controls.InventoryViewer.FILTER_ID_RESSOURECES;
+					break;
 			}
 			this.updateData();
 		}
@@ -285,7 +288,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 			var2.target.selected = true;
 		}
 	}
-	function select(§\x1e\x19\x18§)
+	function select(var2)
 	{
 		var var3 = var2.value;
 		var var4 = 0;
@@ -299,7 +302,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 			var4 = var4 + 1;
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		if((var var0 = var2.target._name) === "_cbTypes")
 		{
@@ -308,7 +311,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 			this.updateData();
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -329,7 +332,7 @@ class dofus.graphics.gapi.controls.InventoryViewer extends dofus.graphics.gapi.c
 				}
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

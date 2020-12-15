@@ -4,7 +4,7 @@ class com.ankamagames.exceptions.NullPointerException extends com.ankamagames.ex
 	{
 		super(objectErrorSource,className,methodName,variableName + " is NULL!");
 	}
-	function getExceptionName(§\x1e\n\f§)
+	function getExceptionName(var2)
 	{
 		return "com.ankamagames.exceptions.NullPointerException";
 	}

@@ -12,12 +12,12 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		super();
 	}
-	function __set__showComboBox(§\x15\x11§)
+	function __set__showComboBox(var2)
 	{
 		this._bShowComboBox = var2;
 		return this.__get__showComboBox();
 	}
-	function __set__data(§\x1e\x1a\x02§)
+	function __set__data(var2)
 	{
 		this._oData = var2;
 		this.updateData();
@@ -27,7 +27,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		return this._oData;
 	}
-	function __set__selected(§\x15\x19§)
+	function __set__selected(var2)
 	{
 		this._bSelected = var2;
 		this.updateSelected(!var2?this.getStyle().overcolor:this.getStyle().selectedcolor);
@@ -37,7 +37,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		return this._bSelected;
 	}
-	function __set__deleteButton(§\x15\x13§)
+	function __set__deleteButton(var2)
 	{
 		this._bDeleteButton = var2;
 		this._btnDelete._visible = var2;
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		return this._bDeleteButton;
 	}
-	function __set__isDead(§\x18\x16§)
+	function __set__isDead(var2)
 	{
 		this._isDead = var2;
 		if(this._isDead)
@@ -72,13 +72,13 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 	{
 		return this._isDead && this._isDead != undefined;
 	}
-	function __set__death(§\x06\x1b§)
+	function __set__death(var2)
 	{
 		this._dcCharacter.death = var2;
 		this._dcCharacter._alpha = 50;
 		return this.__get__death();
 	}
-	function __set__deathState(§\x1e\x1d\x07§)
+	function __set__deathState(var2)
 	{
 		this._nDeathState = var2;
 		var ref = this;
@@ -221,7 +221,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._mcStateBack._visible = false;
 		}
 	}
-	function updateServer(§\x1e\x1e\x01§)
+	function updateServer(var2)
 	{
 		if(var2 != undefined)
 		{
@@ -266,7 +266,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._cbServers.enabled = false;
 		}
 	}
-	function updateSelected(§\x07\x0e§)
+	function updateSelected(var2)
 	{
 		if(this._bSelected || this._bOver && this._bEnabled)
 		{
@@ -280,7 +280,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._mcSelect._visible = false;
 		}
 	}
-	function changeSpriteOrientation(§\n\x1b§)
+	function changeSpriteOrientation(var2)
 	{
 		_global.clearInterval(this._nIntervalID);
 		var var3 = var2.attachMovie("staticF","mcAnim",10);
@@ -293,7 +293,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this.addToQueue({object:this,method:this.changeSpriteOrientation,params:[var2]});
 		}
 	}
-	function animCharacter(§\t\x04§, §\x1a\x06§)
+	function animCharacter(var2, var3)
 	{
 		var var4 = 55;
 		var var5 = 100;
@@ -370,7 +370,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			}
 		}
 	}
-	function setAnim(§\x1e\x15\x05§, §\x16\t§)
+	function setAnim(var2, var3)
 	{
 		if(var3)
 		{
@@ -385,7 +385,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this._sOldAnim = var4;
 		}
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		this._mcSprite = var2.clip;
 		this.gapi.api.colors.addSprite(this._mcSprite,this._oData);
@@ -415,7 +415,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 		this._bOver = false;
 		this.updateSelected(this.getStyle().selectedcolor);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -437,7 +437,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 				break;
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -456,11 +456,11 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 				break;
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		var var3 = var2.target.selectedItem;
 		this._nServerID = var3.id;
@@ -474,7 +474,7 @@ class dofus.graphics.gapi.controls.ChooseCharacterSprite extends dofus.graphics.
 			this.dispatchEvent({type:"unselect"});
 		}
 	}
-	function modelChanged(§\x1e\x19\x18§)
+	function modelChanged(var2)
 	{
 		if(this._oData != undefined)
 		{

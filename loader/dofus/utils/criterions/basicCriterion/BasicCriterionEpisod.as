@@ -1,6 +1,6 @@
 class dofus.utils.criterions.basicCriterion.BasicCriterionEpisod extends dofus.utils.ApiElement implements dofus.utils.criterions.ICriterion
 {
-	function BasicCriterionEpisod(§\x1e\x0f\x18§, §\x1e\x1b\x17§)
+	function BasicCriterionEpisod(var3, var4)
 	{
 		super();
 		this._sOperator = var3;
@@ -17,10 +17,12 @@ class dofus.utils.criterions.basicCriterion.BasicCriterionEpisod extends dofus.u
 				return var2 != this._nValue;
 			case ">":
 				return var2 > this._nValue;
-			case "<":
-				return var2 < this._nValue;
 			default:
-				return false;
+				if(var0 !== "<")
+				{
+					return false;
+				}
+				return var2 < this._nValue;
 		}
 	}
 	function check()

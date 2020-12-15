@@ -10,14 +10,15 @@ class dofus.managers.AreasManager extends dofus.utils.ApiElement
 	{
 		return dofus.managers.AreasManager._sSelf;
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3);
+		super.initialize(oAPI);
 		this._oAreasCoords = new Object();
 		this._oSubAreasCoords = new Object();
 		var var4 = this.api.lang.getAllMapsInfos();
-		for(var var5 in var4)
+		for(var k in var4)
 		{
+			var var5 = var4[k];
 			var var6 = this.api.lang.getMapSubAreaText(var5.sa).a;
 			var var7 = this.api.lang.getMapAreaText(var6).sua;
 			var var8 = var7 + "_" + var5.x + "_" + var5.y;
@@ -28,20 +29,20 @@ class dofus.managers.AreasManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function getAreaIDFromCoordinates(§\x1e\x1b\r§, §\x1e\x1b\x05§, §\x1e\x1d\x02§)
+	function getAreaIDFromCoordinates(nX, nY, §\x1e\x1c\x12§)
 	{
 		if(var4 == undefined)
 		{
 			var4 = 0;
 		}
-		return this._oAreasCoords[var4 + "_" + var2 + "_" + var3];
+		return this._oAreasCoords[var4 + "_" + nX + "_" + nY];
 	}
-	function getSubAreaIDFromCoordinates(§\x1e\x1b\r§, §\x1e\x1b\x05§, §\x1e\x1d\x02§)
+	function getSubAreaIDFromCoordinates(nX, nY, §\x1e\x1c\x12§)
 	{
 		if(var4 == undefined)
 		{
 			var4 = 0;
 		}
-		return this._oSubAreasCoords[var4 + "_" + var2 + "_" + var3];
+		return this._oSubAreasCoords[var4 + "_" + nX + "_" + nY];
 	}
 }

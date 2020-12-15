@@ -4,7 +4,7 @@ class ank.gapi.controls.button.ButtonBackground extends ank.gapi.core.UIBasicCom
 	{
 		super();
 	}
-	function setSize(§\x1e\x1b\x0f§, §\x05\x07§, §\x1c\x03§)
+	function setSize(var2, var3, var4)
 	{
 		this.left_mc._x = this.left_mc._y = this.middle_mc._y = this.right_mc._y = 0;
 		this.left_mc._height = this.middle_mc._height = this.right_mc._height = var3;
@@ -17,12 +17,11 @@ class ank.gapi.controls.button.ButtonBackground extends ank.gapi.core.UIBasicCom
 		this.middle_mc._width = var2 - (this.left_mc != undefined?this.left_mc._width:0) - (this.right_mc != undefined?this.right_mc._width:0);
 		this.right_mc._x = var2 - this.right_mc._width;
 	}
-	function setStyleColor(§\x1e\x17\x1a§, §\x1e\r\x12§)
+	function setStyleColor(var2, var3)
 	{
 		var var4 = this.left_mc;
-		for(var k in var4)
+		for(var var5 in var4)
 		{
-			var var5 = k.split("_")[0];
 			var var6 = var2[var5 + var3];
 			if(var6 != undefined)
 			{
@@ -30,9 +29,8 @@ class ank.gapi.controls.button.ButtonBackground extends ank.gapi.core.UIBasicCom
 			}
 		}
 		var4 = this.middle_mc;
-		for(var k in var4)
+		for(var var7 in var4)
 		{
-			var var7 = k.split("_")[0];
 			var var8 = var2[var7 + var3];
 			if(var8 != undefined)
 			{

@@ -1,6 +1,6 @@
 class dofus.datacenter.FightChallengeData extends Object
 {
-	function FightChallengeData(§\r\b§, showTarget, targetId, basicXpBonus, teamXpBonus, basicDropBonus, teamDropBonus, state)
+	function FightChallengeData(§\f\x1c§, showTarget, targetId, basicXpBonus, teamXpBonus, basicDropBonus, teamDropBonus, state)
 	{
 		super();
 		if(_global.isNaN(state))
@@ -25,6 +25,6 @@ class dofus.datacenter.FightChallengeData extends Object
 	}
 	function clone()
 	{
-		return new dofus.datacenter.(this.id,this.showTarget,this.targetId,this.basicXpBonus,this.teamXpBonus,this.basicDropBonus,this.teamDropBonus,this.state);
+		return new dofus.datacenter.(this.id,this.showTarget,this.targetId,this.basicXpBonus,this.teamXpBonus,this.basicDropBonus,this.teamDropBonus,this.state);
 	}
 }

@@ -21,9 +21,9 @@ class dofus.datacenter.ServerInformations extends Object
 	function initialize()
 	{
 		this.api = _global.API;
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 	}
-	function parseXml(§\x1e\t\x1c§)
+	function parseXml(var2)
 	{
 		this._pProblems = new Array();
 		var var3 = var2.firstChild;
@@ -66,17 +66,17 @@ class dofus.datacenter.ServerInformations extends Object
 				var var19 = Number(var17.attributes.id);
 				var var20 = var17.attributes.translated == "true";
 				var var21 = var17.firstChild.nodeValue;
-				var var22 = new dofus.datacenter.(var18,var19,var20,var21);
+				var var22 = new dofus.datacenter.(var18,var19,var20,var21);
 				var15.push(var22);
 				var16 = var16 + 1;
 			}
-			var var23 = new dofus.datacenter.(var6,var7,var8,var9,var12,var15);
+			var var23 = new dofus.datacenter.(var6,var7,var8,var9,var12,var15);
 			this._pProblems.push(var23);
 			var4 = var4 + 1;
 		}
 		this.dispatchEvent({type:"onData"});
 	}
-	function onXMLLoadComplete(§\x1e\x19\x18§)
+	function onXMLLoadComplete(var2)
 	{
 		var var3 = var2.value;
 		this.parseXml(var3);

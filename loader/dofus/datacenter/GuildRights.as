@@ -1,6 +1,6 @@
 class dofus.datacenter.GuildRights extends Object
 {
-	function GuildRights(§\x1e\x1e\x11§)
+	function GuildRights(var3)
 	{
 		super();
 		this._nRights = var3;
@@ -9,7 +9,7 @@ class dofus.datacenter.GuildRights extends Object
 	{
 		return this._nRights;
 	}
-	function __set__value(§\x1e\x1b\x17§)
+	function __set__value(var2)
 	{
 		this._nRights = var2;
 		return this.__get__value();

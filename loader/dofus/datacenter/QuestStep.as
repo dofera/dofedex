@@ -1,6 +1,6 @@
 class dofus.datacenter.QuestStep extends Object
 {
-	function QuestStep(§\x05\x02§, §\x1e\x1d\x07§, §\x10\t§, §\x1d\x1a§, §\x1e\x04§, §\x06\x16§, §\x02§)
+	function QuestStep(var3, var4, var5, var6, var7, var8, var9)
 	{
 		super();
 		this.initialize(var3,var4,var5,var6,var7,var8,var9);
@@ -28,27 +28,25 @@ class dofus.datacenter.QuestStep extends Object
 	}
 	function __get__allSteps()
 	{
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		var var3 = 0;
 		while(var3 < this._aPreviousSteps.length)
 		{
-			var2.push(new dofus.datacenter.(this._aPreviousSteps[var3],2));
+			var2.push(new dofus.datacenter.(this._aPreviousSteps[var3],2));
 			var3 = var3 + 1;
 		}
 		var2.push(this);
 		var var4 = 0;
 		while(var4 < this._aNextSteps.length)
 		{
-			var2.push(new dofus.datacenter.(this._aNextSteps[var4],0));
+			var2.push(new dofus.datacenter.(this._aNextSteps[var4],0));
 			var4 = var4 + 1;
 		}
 		return var2;
 	}
 	function __get__rewards()
 	{
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		var var3 = this.api.lang.getQuestStepText(this._nID).r;
 		if(var3[0] != undefined)
 		{
@@ -66,7 +64,7 @@ class dofus.datacenter.QuestStep extends Object
 			{
 				var var6 = Number(var4[var5][0]);
 				var var7 = var4[var5][1];
-				var var8 = new dofus.datacenter.(0,var6,var7);
+				var var8 = new dofus.datacenter.(0,var6,var7);
 				var2.push({iconFile:var8.iconFile,label:(var7 == 0?"":"x" + var7 + " ") + var8.name});
 				var5 = var5 + 1;
 			}
@@ -101,7 +99,7 @@ class dofus.datacenter.QuestStep extends Object
 			while(var17 < var16.length)
 			{
 				var var18 = Number(var16[var17]);
-				var var19 = new dofus.datacenter.(var18,1);
+				var var19 = new dofus.datacenter.(var18,1);
 				var2.push({iconFile:var19.iconFile,label:var19.name});
 				var17 = var17 + 1;
 			}
@@ -136,7 +134,7 @@ class dofus.datacenter.QuestStep extends Object
 	{
 		return true;
 	}
-	function initialize(§\x05\x02§, §\x1e\x1d\x07§, §\x10\t§, §\x1d\x1a§, §\x1e\x04§, §\x06\x16§, §\x02§)
+	function initialize(var2, var3, var4, var5, var6, var7, var8)
 	{
 		this.api = _global.API;
 		this._nID = var2;

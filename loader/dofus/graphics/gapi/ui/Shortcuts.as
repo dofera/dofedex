@@ -38,8 +38,7 @@ class dofus.graphics.gapi.ui.Shortcuts extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function initData()
 	{
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		var var3 = this.api.lang.getKeyboardShortcutsSets();
 		var3.sortOn("d");
 		var var4 = 0;
@@ -58,16 +57,14 @@ class dofus.graphics.gapi.ui.Shortcuts extends dofus.graphics.gapi.core.DofusAdv
 		var var5 = this.api.lang.getKeyboardShortcutsCategories();
 		var5.sortOn("o",Array.NUMERIC);
 		var var6 = this.api.lang.getKeyboardShortcuts();
-		var var7 = new ank.utils.
-();
+		var var7 = new ank.utils.();
 		var var8 = 0;
 		while(var8 < var5.length)
 		{
 			if(var5[var8] != undefined)
 			{
 				var7.push({c:true,d:var5[var8].d});
-				§§enumerate(var6);
-				while((var var0 = §§enumeration()) != null)
+				for(var k in var6)
 				{
 					if(var6[k] != undefined)
 					{
@@ -86,7 +83,7 @@ class dofus.graphics.gapi.ui.Shortcuts extends dofus.graphics.gapi.core.DofusAdv
 		this._lstShortcuts.dataProvider = var7;
 		this._cbSetList.dataProvider = var2;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -98,11 +95,11 @@ class dofus.graphics.gapi.ui.Shortcuts extends dofus.graphics.gapi.core.DofusAdv
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("SHORTCUTS_RESET_TO_DEFAULT"),"CAUTION_YESNO",{listener:this});
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		this.api.kernel.OptionsManager.setOption("ShortcutSetDefault",this._cbSetList.selectedItem.id);
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this.api.kernel.KeyManager.clearCustomShortcuts();
 		this.api.kernel.OptionsManager.setOption("ShortcutSet",this._cbSetList.selectedItem.id);

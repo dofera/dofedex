@@ -5,7 +5,7 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 	{
 		super();
 	}
-	function __set__itemIndex(§\x04\x12§)
+	function __set__itemIndex(var2)
 	{
 		this._nItemIndex = var2;
 		return this.__get__itemIndex();
@@ -18,7 +18,7 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 	{
 		return this._oItem;
 	}
-	function __set__index(§\x04\x17§)
+	function __set__index(var2)
 	{
 		this._nIndex = var2;
 		return this.__get__index();
@@ -27,12 +27,12 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 	{
 		return this._nIndex;
 	}
-	function setCellRenderer(§\x0b\x1a§)
+	function setCellRenderer(var2)
 	{
 		this.cellRenderer_mc.removeMovieClip();
 		this.attachMovie(var2,"cellRenderer_mc",100,{styleName:this.getStyle().cellrendererstyle,list:this._parent._parent,row:this});
 	}
-	function setState(§\x1e\r\x16§)
+	function setState(var2)
 	{
 		this.cellRenderer_mc.setState(var2);
 		switch(var2)
@@ -44,7 +44,7 @@ class ank.gapi.controls.list.SelectableRow extends ank.gapi.core.UIBasicComponen
 				this.selected_mc._visible = false;
 		}
 	}
-	function setValue(§\x1e\r\x11§, §\x1e\x19\r§, §\x1e\r\x16§)
+	function setValue(var2, var3, var4)
 	{
 		this._bUsed = var3 != undefined;
 		this._oItem = var3;

@@ -6,7 +6,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__shadow(§\x15\x16§)
+	function __set__shadow(var2)
 	{
 		this._bShadow = var2;
 		return this.__get__shadow();
@@ -15,7 +15,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bShadow;
 	}
-	function __set__backID(§\b\x17§)
+	function __set__backID(var2)
 	{
 		if(var2 < 1 || var2 > dofus.Constants.EMBLEM_BACKS_COUNT)
 		{
@@ -28,7 +28,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__backID();
 	}
-	function __set__backColor(§\b\x1b§)
+	function __set__backColor(var2)
 	{
 		this._nBackColor = var2;
 		if(this.initialized)
@@ -37,7 +37,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__backColor();
 	}
-	function __set__upID(§\x1e\x1b\x18§)
+	function __set__upID(var2)
 	{
 		if(var2 < 1 || var2 > dofus.Constants.EMBLEM_UPS_COUNT)
 		{
@@ -50,7 +50,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__upID();
 	}
-	function __set__upColor(§\x1e\x1b\x1b§)
+	function __set__upColor(var2)
 	{
 		this._nUpColor = var2;
 		if(this.initialized)
@@ -59,7 +59,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__upColor();
 	}
-	function __set__data(§\x1e\x1a\x02§)
+	function __set__data(var2)
 	{
 		this._sBackFile = dofus.Constants.EMBLEMS_BACK_PATH + var2.backID + ".swf";
 		this._nBackColor = var2.backColor;
@@ -134,7 +134,7 @@ class dofus.graphics.gapi.controls.Emblem extends ank.gapi.core.UIBasicComponent
 	{
 		this.setMovieClipColor(this._ldrEmblemUp.content,this._nUpColor);
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.target;
 		switch(var3._name)

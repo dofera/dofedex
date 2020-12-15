@@ -49,12 +49,10 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 	}
 	function initData()
 	{
-		this._eaItems = new ank.utils.
-();
+		this._eaItems = new ank.utils.();
 		this._tiQuantity.restrict = "0-9";
 		this._tiQuantity.text = "1";
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		var var3 = this.api.lang.getAllItemTypes();
 		for(var a in var3)
 		{
@@ -63,16 +61,15 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		var2.sortOn("label");
 		var2.push({label:"All",id:-1});
 		this._cbType.dataProvider = var2;
-		this._eaGridItems = new ank.utils.
-();
+		this._eaGridItems = new ank.utils.();
 		this._cgGrid.dataProvider = this._eaGridItems;
 	}
-	function hideItemViewer(§\x19\x0e§)
+	function hideItemViewer(var2)
 	{
 		this._winItemViewer._visible = !var2;
 		this._itvItemViewer._visible = !var2;
 	}
-	function generateIndexes(§\x1d\x03§)
+	function generateIndexes(var2)
 	{
 		var var3 = new Object();
 		for(var k in this._aTypes)
@@ -80,10 +77,8 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 			var3[this._aTypes[k]] = true;
 		}
 		var var4 = this.api.lang.getItemUnics();
-		this._eaItems = new ank.utils.
-();
-		this._eaItemsOriginal = new ank.utils.
-();
+		this._eaItems = new ank.utils.();
+		this._eaItemsOriginal = new ank.utils.();
 		for(var k in var4)
 		{
 			var var5 = var4[k];
@@ -93,17 +88,16 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 				{
 					var var6 = var5.n;
 					this._eaItems.push({id:k,name:var6.toUpperCase()});
-					this._eaItemsOriginal.push(new dofus.datacenter.(0,Number(k)));
+					this._eaItemsOriginal.push(new dofus.datacenter.(0,Number(k)));
 				}
 			}
 		}
 		this._lblNumber.text = this._eaItemsOriginal.length + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("OBJECTS"),"m",this._eaItemsOriginal.length < 2);
 	}
-	function searchItem(§\x1e\r\x02§)
+	function searchItem(var2)
 	{
 		var var3 = var2.split(" ");
-		var var4 = new ank.utils.
-();
+		var var4 = new ank.utils.();
 		var var5 = new Object();
 		var var6 = 0;
 		var var7 = 0;
@@ -122,12 +116,12 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		{
 			if(var5[k] >= var6)
 			{
-				var4.push(new dofus.datacenter.(0,Number(k)));
+				var4.push(new dofus.datacenter.(0,Number(k)));
 			}
 		}
 		this._lst.dataProvider = var4;
 	}
-	function searchWordsInName(§\x1d\x04§, §\x1e\x10\x06§, §\x03\x04§)
+	function searchWordsInName(var2, var3, var4)
 	{
 		var var5 = 0;
 		var var6 = var2.length;
@@ -146,7 +140,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		}
 		return var5;
 	}
-	function validateDrop(§\r\x03§, §\x01\x0e§)
+	function validateDrop(var2, var3)
 	{
 		var var4 = false;
 		for(var i in this._eaGridItems)
@@ -172,11 +166,10 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 			var var2 = (dofus.datacenter.Item)this._eaGridItems[i];
 			this.api.network.Basics.autorisedCommand("getitem " + var2.unicID + " " + var2.Quantity);
 		}
-		this._eaGridItems = new ank.utils.
-();
+		this._eaGridItems = new ank.utils.();
 		this._cgGrid.dataProvider = this._eaGridItems;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -193,7 +186,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 				this.summonItems();
 		}
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		if(this._tiSearch.text.length >= 2)
 		{
@@ -204,7 +197,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 			this._lst.dataProvider = this._eaItemsOriginal;
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		switch(var2.target)
 		{
@@ -246,15 +239,15 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 				break;
 		}
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 		this.gapi.showTooltip(var2.row.item.name + " (" + var2.row.item.unicID + ")",var2.row,20,{bXLimit:true,bYLimit:false});
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function itemDrag(§\x1e\x19\x18§)
+	function itemDrag(var2)
 	{
 		if(var2.row.item == undefined)
 		{
@@ -263,7 +256,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		this.gapi.removeCursor();
 		this.gapi.setCursor(var2.row.item);
 	}
-	function dragItem(§\x1e\x19\x18§)
+	function dragItem(var2)
 	{
 		this.gapi.removeCursor();
 		if(var2.target.contentData == undefined)
@@ -272,7 +265,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		}
 		this.gapi.setCursor(var2.target.contentData);
 	}
-	function dropItem(§\x1e\x19\x18§)
+	function dropItem(var2)
 	{
 		var var3 = (dofus.datacenter.Item)this.gapi.getCursor();
 		if(var3 == undefined)
@@ -293,14 +286,14 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 		}
 		this.gapi.removeCursor();
 	}
-	function validate(§\x1e\x19\x18§)
+	function validate(var2)
 	{
 		if((var var0 = var2.params.targetType) === "validateDrop")
 		{
 			this.validateDrop((dofus.datacenter.Item)var2.params.item,var2.value);
 		}
 	}
-	function selectItem(§\x1e\x19\x18§)
+	function selectItem(var2)
 	{
 		var var3 = (dofus.datacenter.Item)var2.target.contentData;
 		if(var3 == undefined)
@@ -316,8 +309,7 @@ class dofus.graphics.gapi.ui.ItemSummoner extends dofus.graphics.gapi.core.Dofus
 			}
 			if(Key.isDown(Key.CONTROL))
 			{
-				var var4 = new ank.utils.
-();
+				var var4 = new ank.utils.();
 				for(var i in this._eaGridItems)
 				{
 					if(this._eaGridItems[i].unicID != var3.unicID)

@@ -9,22 +9,22 @@ class dofus.graphics.gapi.ui.PopupQuantity extends dofus.graphics.gapi.core.Dofu
 	{
 		super();
 	}
-	function __set__value(§\x1e\x1b\x17§)
+	function __set__value(var2)
 	{
 		this._nValue = var2;
 		return this.__get__value();
 	}
-	function __set__max(§\x03\x14§)
+	function __set__max(var2)
 	{
 		this._nMax = var2;
 		return this.__get__max();
 	}
-	function __set__min(§\x03\x02§)
+	function __set__min(var2)
 	{
 		this._nMin = var2;
 		return this.__get__min();
 	}
-	function __set__useAllStage(§\x14\x0b§)
+	function __set__useAllStage(var2)
 	{
 		this._bUseAllStage = var2;
 		return this.__get__useAllStage();
@@ -85,12 +85,12 @@ class dofus.graphics.gapi.ui.PopupQuantity extends dofus.graphics.gapi.core.Dofu
 		this.api.kernel.KeyManager.removeShortcutsListener(this);
 		this.dispatchEvent({type:"validate",value:_global.parseInt(this._winBackground.content._tiInput.text,10),params:this._oParams});
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		this.placeWindow();
 		this.addToQueue({object:this,method:this.initWindowContent});
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -119,7 +119,7 @@ class dofus.graphics.gapi.ui.PopupQuantity extends dofus.graphics.gapi.core.Dofu
 		}
 		this.unloadThis();
 	}
-	function onShortcut(§\x1e\x0e\x04§)
+	function onShortcut(var2)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG")
 		{

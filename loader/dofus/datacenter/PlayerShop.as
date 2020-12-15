@@ -5,7 +5,7 @@ class dofus.datacenter.PlayerShop extends Object
 		super();
 		this.initialize();
 	}
-	function __set__inventory(§\x10\x0f§)
+	function __set__inventory(var2)
 	{
 		this._eaInventory = var2;
 		this.dispatchEvent({type:"modelChanged"});
@@ -17,6 +17,6 @@ class dofus.datacenter.PlayerShop extends Object
 	}
 	function initialize()
 	{
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 	}
 }

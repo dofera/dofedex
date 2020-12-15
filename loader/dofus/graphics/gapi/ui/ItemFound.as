@@ -6,22 +6,22 @@ class dofus.graphics.gapi.ui.ItemFound extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__itemId(§\x05\x01§)
+	function __set__itemId(var2)
 	{
 		this._nItemId = var2;
 		return this.__get__itemId();
 	}
-	function __set__qty(§\x01\x0f§)
+	function __set__qty(var2)
 	{
 		this._nQty = var2;
 		return this.__get__qty();
 	}
-	function __set__ressourceId(§\x1e\x1e\x14§)
+	function __set__ressourceId(var2)
 	{
 		this._nRessourceId = var2;
 		return this.__get__ressourceId();
 	}
-	function __set__timer(§\x1e\x1c\n§)
+	function __set__timer(var2)
 	{
 		this._nTimer = var2;
 		return this.__get__timer();
@@ -40,8 +40,8 @@ class dofus.graphics.gapi.ui.ItemFound extends dofus.graphics.gapi.core.DofusAdv
 	}
 	function initTexts()
 	{
-		var var2 = new dofus.datacenter.(0,this._nItemId,this._nQty);
-		var var3 = new dofus.datacenter.(0,this._nRessourceId,1);
+		var var2 = new dofus.datacenter.(0,this._nItemId,this._nQty);
+		var var3 = new dofus.datacenter.(0,this._nRessourceId,1);
 		this._ldrItem.contentPath = var2.iconFile;
 		this._txtDescription.text = this.api.lang.getText("ITEM_FOUND",[this._nQty,var2.name,var3.name]);
 	}

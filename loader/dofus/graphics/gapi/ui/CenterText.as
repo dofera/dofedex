@@ -8,17 +8,17 @@ class dofus.graphics.gapi.ui.CenterText extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__text(§\x1e\r\x02§)
+	function __set__text(var2)
 	{
 		this._sText = var2;
 		return this.__get__text();
 	}
-	function __set__background(§\x1c\x07§)
+	function __set__background(var2)
 	{
 		this._bBackground = var2;
 		return this.__get__background();
 	}
-	function __set__timer(§\x1e\x1c\n§)
+	function __set__timer(var2)
 	{
 		this._nTimer = var2;
 		return this.__get__timer();
@@ -48,7 +48,7 @@ class dofus.graphics.gapi.ui.CenterText extends dofus.graphics.gapi.core.DofusAd
 		this._mcBackground._visible = this._bBackground;
 		this._mcBackground._height = var2 + 2.5 * (this._lblWhite._y - this._mcBackground._y);
 	}
-	function updateProgressBar(§\x1e\x11\x0b§, §\x07\x02§, §\x03\x07§)
+	function updateProgressBar(var2, var3, var4)
 	{
 		var var5 = Math.floor(var3 / var4 * 100);
 		if(_global.isNaN(var5))
@@ -56,8 +56,8 @@ class dofus.graphics.gapi.ui.CenterText extends dofus.graphics.gapi.core.DofusAd
 			var5 = 0;
 		}
 		this._prgbGfxLoad._visible = true;
-		this._prgbGfxLoad["\x1e\n\x1d"].text = var2;
-		this._prgbGfxLoad["\x1e\n\x1c"].text = var5 + "%";
-		this._prgbGfxLoad["\x0b\x02"]._width = var5;
+		this._prgbGfxLoad["\x1e\n\x11"].text = var2;
+		this._prgbGfxLoad["\x1e\n\x10"].text = var5 + "%";
+		this._prgbGfxLoad["\n\x12"]._width = var5;
 	}
 }

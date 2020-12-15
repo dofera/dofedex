@@ -13,7 +13,7 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 	{
 		return this._oBounds;
 	}
-	function __set__bounds(§\x1e\x17\x12§)
+	function __set__bounds(var2)
 	{
 		this._oBounds = var2;
 		return this.__get__bounds();
@@ -22,7 +22,7 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 	{
 		return this._nSnap;
 	}
-	function __set__snap(§\x1e\x1b\x17§)
+	function __set__snap(var2)
 	{
 		this._nSnap = var2;
 		return this.__get__snap();
@@ -31,7 +31,7 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 	{
 		return this._nTipID;
 	}
-	function __set__tip(§\x1e\x1b\x17§)
+	function __set__tip(var2)
 	{
 		this._nTipID = var2;
 		this.refreshData();
@@ -39,9 +39,9 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 	}
 	function __get__position()
 	{
-		return new com.ankamagames.types.(this._x,this._y);
+		return new com.ankamagames.types.(this._x,this._y);
 	}
-	function __set__position(§\x1e\x16\r§)
+	function __set__position(var2)
 	{
 		this._x = var2.x;
 		this._y = var2.y;
@@ -95,12 +95,12 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 		}
 		this._taTipsContent.text = "<p class=\'body\'>" + this.api.lang.getKnownledgeBaseTip(this._nTipID).c + "</p>";
 	}
-	function move(§\x1e\x1b\r§, §\x1e\x1b\x05§)
+	function move(nX, nY)
 	{
-		this._x = var2;
-		this._y = var3;
+		this._x = nX;
+		this._y = nY;
 		this.snapWindow();
-		this.api.kernel.OptionsManager.setOption("FloatingTipsCoord",new com.ankamagames.types.(this._x,this._y));
+		this.api.kernel.OptionsManager.setOption("FloatingTipsCoord",new com.ankamagames.types.(this._x,this._y));
 	}
 	function snapWindow()
 	{
@@ -130,7 +130,7 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 		this._y = var3;
 		this._x = var2;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -158,7 +158,7 @@ class dofus.graphics.gapi.ui.FloatingTips extends dofus.graphics.gapi.core.Dofus
 			this.move(_root._xmouse - this._nOffsetX,_root._ymouse - this._nOffsetY);
 		}
 	}
-	function href(§\x1e\x19\x18§)
+	function href(var2)
 	{
 		this.api.kernel.TipsManager.onLink(var2);
 	}

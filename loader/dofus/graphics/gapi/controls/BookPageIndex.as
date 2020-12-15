@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.BookPageIndex extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__page(§\x1e\x18\x16§)
+	function __set__page(var2)
 	{
 		this._oPage = var2;
 		if(this.initialized)
@@ -36,7 +36,7 @@ class dofus.graphics.gapi.controls.BookPageIndex extends dofus.graphics.gapi.cor
 	{
 		this._lstChapters.dataProvider = this._oPage.chapters;
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		var var3 = var2.row.item[4];
 		this.dispatchEvent({type:"chapterChange",pageNum:var3});

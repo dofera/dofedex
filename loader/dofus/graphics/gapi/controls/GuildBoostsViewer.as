@@ -73,11 +73,11 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 		this._btnHireTaxCollector.enabled = var2.playerRights.canHireTaxCollector && (var2.taxCount < var2.taxCountMax && !this.api.datacenter.Player.cantInteractWithTaxCollector);
 		this._btnHireTaxCollector._visible = true;
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		this.gapi.loadUIComponent("SpellInfos","SpellInfos",{spell:var2.row.item});
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -89,13 +89,13 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 				this.api.sounds.events.onGuildButtonClick();
 				this.api.network.Guild.boostCharacteristic("p");
 				break;
+			case "_btnBoostWisdom":
+				this.api.sounds.events.onGuildButtonClick();
+				this.api.network.Guild.boostCharacteristic("x");
+				break;
 			default:
 				switch(null)
 				{
-					case "_btnBoostWisdom":
-						this.api.sounds.events.onGuildButtonClick();
-						this.api.network.Guild.boostCharacteristic("x");
-						break;
 					case "_btnBoostPop":
 						this.api.sounds.events.onGuildButtonClick();
 						this.api.network.Guild.boostCharacteristic("c");
@@ -112,7 +112,7 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 				}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -144,11 +144,11 @@ class dofus.graphics.gapi.controls.GuildBoostsViewer extends dofus.graphics.gapi
 				}
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this.api.network.Guild.hireTaxCollector();
 	}

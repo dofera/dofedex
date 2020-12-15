@@ -1,6 +1,6 @@
 class ank.utils.CyclicTimer extends Object
 {
-	static var _instance = new ank.utils.();
+	static var _instance = new ank.utils.();
 	var _aFunctions = new Array();
 	var _bPlaying = false;
 	function CyclicTimer()
@@ -11,7 +11,7 @@ class ank.utils.CyclicTimer extends Object
 	{
 		return ank.utils.CyclicTimer._instance;
 	}
-	function addFunction(§\x1e\x18\x0e§, §\x1e\x18\x19§, §\x0e\x1a§, §\x1e\x02§, §\x1e\x18\x18§, §\x0e\x19§, §\x1e\x01§)
+	function addFunction(var2, var3, var4, var5, var6, var7, var8)
 	{
 		var var9 = new Object();
 		var9.objRef = var2;
@@ -24,7 +24,7 @@ class ank.utils.CyclicTimer extends Object
 		this._aFunctions.push(var9);
 		this.play();
 	}
-	function removeFunction(§\x1e\x18\x0e§)
+	function removeFunction(var2)
 	{
 		var var3 = this._aFunctions.length - 1;
 		while(var3 >= 0)
@@ -96,7 +96,7 @@ class ank.utils.CyclicTimer extends Object
 			this.stop();
 		}
 	}
-	function onFunctionEnd(§\x04\x17§, §\x1e\x19\x12§)
+	function onFunctionEnd(var2, var3)
 	{
 		var3.fnEnd.apply(var3.objFnEnd,var3.paramsEnd);
 		this._aFunctions.splice(var2,1);

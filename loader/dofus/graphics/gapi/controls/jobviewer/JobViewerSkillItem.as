@@ -4,12 +4,12 @@ class dofus.graphics.gapi.controls.jobviewer.JobViewerSkillItem extends ank.gapi
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -59,12 +59,12 @@ class dofus.graphics.gapi.controls.jobviewer.JobViewerSkillItem extends ank.gapi
 		this._ctrIcon.addEventListener("over",this);
 		this._ctrIcon.addEventListener("out",this);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var var3 = var2.target.contentData;
 		this._mcList._parent._parent.gapi.showTooltip(var3.name,var2.target,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this._mcList._parent._parent.gapi.hideTooltip();
 	}

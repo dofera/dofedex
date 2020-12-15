@@ -4,14 +4,14 @@ class dofus.datacenter.Mount extends Object
 	function Mount(nModelID, nChevauchorGfxID, bNewBorn)
 	{
 		super();
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 		this.newBorn = bNewBorn;
 		this.modelID = nModelID;
 		this._lang = _global.API.lang.getMountText(this.modelID);
 		this.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + this._lang.g + ".swf";
 		this.chevauchorGfxID = nChevauchorGfxID;
 	}
-	function __set__name(§\x1e\n\x0f§)
+	function __set__name(var2)
 	{
 		this._sName = var2;
 		this.dispatchEvent({type:"nameChanged",name:var2});
@@ -21,7 +21,7 @@ class dofus.datacenter.Mount extends Object
 	{
 		return this._sName;
 	}
-	function __set__pods(§\x1e\n\x0f§)
+	function __set__pods(var2)
 	{
 		this._nPods = var2;
 		this.dispatchEvent({type:"podsChanged",pods:var2});
@@ -43,7 +43,7 @@ class dofus.datacenter.Mount extends Object
 	{
 		return this._lang.g;
 	}
-	function __set__chevauchorGfxID(§\x05\x02§)
+	function __set__chevauchorGfxID(var2)
 	{
 		this._nChevauchorGfxID = var2;
 		this.chevauchorGfxFile = dofus.Constants.CHEVAUCHOR_PATH + var2 + ".swf";
@@ -55,8 +55,9 @@ class dofus.datacenter.Mount extends Object
 	}
 	function __get__isChameleon()
 	{
-		for(var var2 in this.capacities)
+		for(var k in this.capacities)
 		{
+			var var2 = this.capacities[k].data;
 			if(var2 == 9)
 			{
 				return true;
@@ -96,7 +97,7 @@ class dofus.datacenter.Mount extends Object
 	{
 		return dofus.datacenter.Item.getItemDescriptionEffects(this._aEffects);
 	}
-	function setEffects(§\x12\x14§)
+	function setEffects(var2)
 	{
 		this._sEffects = var2;
 		this._aEffects = new Array();

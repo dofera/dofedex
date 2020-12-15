@@ -1,10 +1,10 @@
 class dofus.aks.Guild extends dofus.aks.Handler
 {
-	function Guild(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Guild(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 	}
-	function create(§\b\x17§, §\b\x1b§, §\x1e\x1c\x1a§, §\x1e\x1c\x1b§, §\x1e\x10\x06§)
+	function create(var2, var3, var4, var5, var6)
 	{
 		this.aks.send("gC" + var2 + "|" + var3 + "|" + var4 + "|" + var5 + "|" + var6);
 	}
@@ -16,15 +16,15 @@ class dofus.aks.Guild extends dofus.aks.Handler
 	{
 		this.aks.send("gITV",false);
 	}
-	function invite(§\x1e\x0f\x04§)
+	function invite(var2)
 	{
 		this.aks.send("gJR" + var2);
 	}
-	function acceptInvitation(§\x01\x1b§)
+	function acceptInvitation(var2)
 	{
 		this.aks.send("gJK" + var2);
 	}
-	function refuseInvitation(§\x01\x1b§)
+	function refuseInvitation(var2)
 	{
 		this.aks.send("gJE" + var2,false);
 	}
@@ -52,15 +52,15 @@ class dofus.aks.Guild extends dofus.aks.Handler
 	{
 		this.aks.send("gIH",false);
 	}
-	function bann(§\x1e\x0f\x04§)
+	function bann(var2)
 	{
 		this.aks.send("gK" + var2);
 	}
-	function changeMemberProfil(§\x1e\x19\x03§)
+	function changeMemberProfil(var2)
 	{
 		this.aks.send("gP" + var2.id + "|" + var2.rank + "|" + var2.percentxp + "|" + var2.rights.value,true);
 	}
-	function boostCharacteristic(§\x1e\x14\r§)
+	function boostCharacteristic(var2)
 	{
 		var var3 = var2;
 		switch(var3)
@@ -73,7 +73,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		}
 		this.aks.send("gB" + var3,true);
 	}
-	function boostSpell(§\x1e\x1d\r§)
+	function boostSpell(var2)
 	{
 		this.aks.send("gb" + var2,true);
 	}
@@ -81,23 +81,23 @@ class dofus.aks.Guild extends dofus.aks.Handler
 	{
 		this.aks.send("gH");
 	}
-	function joinTaxCollector(§\x1e\x1c\x12§)
+	function joinTaxCollector(var2)
 	{
 		this.aks.send("gTJ" + var2,false);
 	}
-	function leaveTaxCollector(§\x1e\x1c\x12§, §\x05\x02§)
+	function leaveTaxCollector(var2, var3)
 	{
 		this.aks.send("gTV" + var2 + (var3 == undefined?"":"|" + var3),false);
 	}
-	function removeTaxCollector(§\x05\x02§)
+	function removeTaxCollector(var2)
 	{
 		this.aks.send("gF" + var2,false);
 	}
-	function teleportToGuildHouse(§\x05\x04§)
+	function teleportToGuildHouse(var2)
 	{
 		this.aks.send("gh" + var2,false);
 	}
-	function teleportToGuildFarm(§\x05\x02§)
+	function teleportToGuildFarm(var2)
 	{
 		this.aks.send("gf" + var2,false);
 	}
@@ -105,7 +105,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 	{
 		this.api.ui.loadUIComponent("CreateGuild","CreateGuild");
 	}
-	function onCreate(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onCreate(var2, var3)
 	{
 		if(var2)
 		{
@@ -128,7 +128,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			this.api.ui.getUIComponent("CreateGuild").enabled = true;
 		}
 	}
-	function onStats(§\x1e\x12\x1a§)
+	function onStats(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -139,14 +139,14 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		var var9 = _global.parseInt(var3[5],36);
 		if(this.api.datacenter.Player.guildInfos == undefined)
 		{
-			this.api.datacenter.Player.guildInfos = new dofus.datacenter.(var4,var5,var6,var7,var8,var9);
+			this.api.datacenter.Player.guildInfos = new dofus.datacenter.(var4,var5,var6,var7,var8,var9);
 		}
 		else
 		{
 			this.api.datacenter.Player.guildInfos.initialize(true,var4,var5,var6,var7,var8,var9);
 		}
 	}
-	function onInfosGeneral(§\x1e\x12\x1a§)
+	function onInfosGeneral(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0] == "1";
@@ -156,7 +156,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		var var8 = Number(var3[4]);
 		this.api.datacenter.Player.guildInfos.setGeneralInfos(var4,var5,var6,var7,var8);
 	}
-	function onInfosMembers(§\x1e\x12\x1a§)
+	function onInfosMembers(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -177,7 +177,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 				var8.rankOrder = this.api.lang.getRankInfos(var8.rank).o;
 				var8.winxp = Number(var7[5]);
 				var8.percentxp = Number(var7[6]);
-				var8.rights = new dofus.datacenter.(Number(var7[7]));
+				var8.rights = new dofus.datacenter.(Number(var7[7]));
 				var8.state = Number(var7[8]);
 				var8.alignement = Number(var7[9]);
 				var8.lastConnection = Number(var7[10]);
@@ -212,7 +212,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		}
 		var5.setMembers();
 	}
-	function onInfosBoosts(§\x1e\x12\x1a§)
+	function onInfosBoosts(var2)
 	{
 		if(var2.length == 0)
 		{
@@ -239,25 +239,23 @@ class dofus.aks.Guild extends dofus.aks.Handler
 				var14 = var14 + 1;
 			}
 			var3.sortOn("0");
-			var var15 = new ank.utils.
-();
+			var var15 = new ank.utils.();
 			var var16 = 0;
 			while(var16 < var3.length)
 			{
 				var var17 = Number(var3[var16][0]);
 				var var18 = Number(var3[var16][1]);
-				var15.push(new dofus.datacenter.(var17,var18));
+				var15.push(new dofus.datacenter.(var17,var18));
 				var16 = var16 + 1;
 			}
 			this.api.datacenter.Player.guildInfos.setBoosts(var5,var4,var6,var7,var8,var9,var10,var11,var12,var13,var15);
 		}
 	}
-	function onInfosMountPark(§\x1e\x12\x1a§)
+	function onInfosMountPark(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
-		var var5 = new ank.utils.
-();
+		var var5 = new ank.utils.();
 		var var6 = 1;
 		while(var6 < var3.length)
 		{
@@ -265,12 +263,9 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			var var8 = Number(var7[0]);
 			var var9 = Number(var7[1]);
 			var var10 = Number(var7[2]);
-			var var11 = new dofus.datacenter.
-
-(0,-1,var9,var10,this.api.datacenter.Player.guildInfos.name);
+			var var11 = new dofus.datacenter.	(0,-1,var9,var10,this.api.datacenter.Player.guildInfos.name);
 			var11.map = var8;
-			var11.mounts = new ank.utils.
-();
+			var11.mounts = new ank.utils.();
 			if(var7[3] != "")
 			{
 				var var12 = var7[3].split(",");
@@ -289,7 +284,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		}
 		this.api.datacenter.Player.guildInfos.setMountParks(var4,var5);
 	}
-	function onInfosTaxCollectorsMovement(§\x1e\x12\x1a§)
+	function onInfosTaxCollectorsMovement(var2)
 	{
 		if(var2.length == 0)
 		{
@@ -338,10 +333,8 @@ class dofus.aks.Guild extends dofus.aks.Handler
 						var8.lastHarvestDate = -1;
 						var8.nextHarvestDate = -1;
 					}
-					var8.players = new ank.utils.
-();
-					var8.attackers = new ank.utils.
-();
+					var8.players = new ank.utils.();
+					var8.attackers = new ank.utils.();
 					if(var9)
 					{
 						var5.taxCollectors.push(var8);
@@ -372,7 +365,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			var5.setTaxCollectors();
 		}
 	}
-	function onInfosTaxCollectorsPlayers(§\x1e\x12\x1a§)
+	function onInfosTaxCollectorsPlayers(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -431,7 +424,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			ank.utils.Logger.err("[gITP] impossible de trouver le percepteur");
 		}
 	}
-	function onInfosTaxCollectorsAttackers(§\x1e\x12\x1a§)
+	function onInfosTaxCollectorsAttackers(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		var var4 = var2.substr(1).split("|");
@@ -478,7 +471,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			ank.utils.Logger.err("[gITp] impossible de trouver le percepteur");
 		}
 	}
-	function onInfosHouses(§\x1e\x12\x1a§)
+	function onInfosHouses(var2)
 	{
 		var var3 = var2.charAt(0) == "+";
 		if(var2.length <= 1)
@@ -488,8 +481,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		else
 		{
 			var var4 = var2.substr(1).split("|");
-			var var5 = new ank.utils.
-();
+			var var5 = new ank.utils.();
 			var var6 = 0;
 			while(var6 < var4.length)
 			{
@@ -497,7 +489,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 				var var8 = Number(var7[0]);
 				var var9 = var7[1];
 				var var10 = var7[2].split(",");
-				var var11 = new com.ankamagames.types.(Number(var10[0]),Number(var10[1]));
+				var var11 = new com.ankamagames.types.(Number(var10[0]),Number(var10[1]));
 				var var12 = new Array();
 				var var13 = var7[3].split(",");
 				var var14 = 0;
@@ -507,7 +499,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 					var14 = var14 + 1;
 				}
 				var var15 = var7[4];
-				var var16 = new dofus.datacenter.(var8);
+				var var16 = new dofus.datacenter.(var8);
 				var16.ownerName = var9;
 				var16.coords = var11;
 				var16.skills = var12;
@@ -518,11 +510,11 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			this.api.datacenter.Player.guildInfos.setHouses(var5);
 		}
 	}
-	function onRequestLocal(§\x1e\x12\x1a§)
+	function onRequestLocal(var2)
 	{
 		this.api.kernel.showMessage(this.api.lang.getText("GUILD"),this.api.lang.getText("YOU_INVIT_B_IN_GUILD",[var2]),"INFO_CANCEL",{name:"Guild",listener:this,params:{spriteID:this.api.datacenter.Player.ID}});
 	}
-	function onRequestDistant(§\x1e\x12\x1a§)
+	function onRequestDistant(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0];
@@ -537,7 +529,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("CHAT_A_INVIT_YOU_IN_GUILD",[this.api.kernel.ChatManager.getLinkName(var5),var6]),"INFO_CHAT");
 		this.api.kernel.showMessage(this.api.lang.getText("GUILD"),this.api.lang.getText("A_INVIT_YOU_IN_GUILD",[var5,var6]),"CAUTION_YESNOIGNORE",{name:"Guild",player:var5,listener:this,params:{spriteID:var4,player:var5}});
 	}
-	function onJoinError(§\x1e\x12\x1a§)
+	function onJoinError(var2)
 	{
 		var var3 = var2.charAt(0);
 		switch(var3)
@@ -548,12 +540,12 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			case "d":
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("GUILD_JOIN_NO_RIGHTS"),"ERROR_CHAT");
 				break;
-			case "u":
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("GUILD_JOIN_UNKNOW"),"ERROR_CHAT");
-				break;
 			default:
 				switch(null)
 				{
+					case "u":
+						this.api.kernel.showMessage(undefined,this.api.lang.getText("GUILD_JOIN_UNKNOW"),"ERROR_CHAT");
+						break;
 					case "o":
 						this.api.kernel.showMessage(undefined,this.api.lang.getText("GUILD_JOIN_OCCUPED"),"ERROR_CHAT");
 						break;
@@ -568,7 +560,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 				}
 		}
 	}
-	function onJoinOk(§\x1e\x12\x1a§)
+	function onJoinOk(var2)
 	{
 		var var3 = var2.charAt(0);
 		switch(var3)
@@ -589,7 +581,7 @@ class dofus.aks.Guild extends dofus.aks.Handler
 	{
 		this.api.ui.unloadUIComponent("CreateGuild");
 	}
-	function onBann(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onBann(var2, var3)
 	{
 		if(var2)
 		{
@@ -630,45 +622,41 @@ class dofus.aks.Guild extends dofus.aks.Handler
 			}
 		}
 	}
-	function onHireTaxCollector(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onHireTaxCollector(var2, var3)
 	{
 		if(!var2)
 		{
 			var var4 = var3.charAt(0);
-			if((var var0 = var4) !== "d")
+			switch(var4)
 			{
-				switch(null)
-				{
-					case "a":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("ALREADY_TAXCOLLECTOR_ON_MAP"),"ERROR_CHAT");
-						break;
-					case "k":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGTH_RICH_TO_HIRE_TAX"),"ERROR_CHAT");
-						break;
-					case "m":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_HIRE_MAX_TAXCOLLECTORS"),"ERROR_CHAT");
-						break;
-					case "b":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_YOUR_TAXCOLLECTORS"),"ERROR_CHAT");
-						break;
-					default:
-						switch(null)
-						{
-							case "y":
-								this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_HIRE_TAXCOLLECTORS_TOO_TIRED"),"ERROR_CHAT");
-								break;
-							case "h":
-								this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_HIRE_TAXCOLLECTORS_HERE"),"ERROR_CHAT");
-						}
-				}
-			}
-			else
-			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_RIGHTS_FROM_GUILD"),"ERROR_CHAT");
+				case "d":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGHT_RIGHTS_FROM_GUILD"),"ERROR_CHAT");
+					break;
+				case "a":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("ALREADY_TAXCOLLECTOR_ON_MAP"),"ERROR_CHAT");
+					break;
+				case "k":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGTH_RICH_TO_HIRE_TAX"),"ERROR_CHAT");
+					break;
+				case "m":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_HIRE_MAX_TAXCOLLECTORS"),"ERROR_CHAT");
+					break;
+				case "b":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_YOUR_TAXCOLLECTORS"),"ERROR_CHAT");
+					break;
+				default:
+					switch(null)
+					{
+						case "y":
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_HIRE_TAXCOLLECTORS_TOO_TIRED"),"ERROR_CHAT");
+							break;
+						case "h":
+							this.api.kernel.showMessage(undefined,this.api.lang.getText("CANT_HIRE_TAXCOLLECTORS_HERE"),"ERROR_CHAT");
+					}
 			}
 		}
 	}
-	function onTaxCollectorAttacked(§\x1e\x12\x1a§)
+	function onTaxCollectorAttacked(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0].charAt(0);
@@ -677,21 +665,25 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		var var7 = var3[2];
 		var var8 = var3[3];
 		var var9 = "(" + var7 + ", " + var8 + ")";
-		switch(var4)
+		if((var var0 = var4) !== "A")
 		{
-			case "A":
-				this.api.electron.makeNotification(this.api.lang.getText("TAX_ATTACKED",[var5,var9]));
-				this.api.kernel.showMessage(undefined,"<img src=\"CautionIcon\" hspace=\'0\' vspace=\'0\' width=\'13\' height=\'13\' /><a href=\'asfunction:onHref,OpenGuildTaxCollectors\'>" + this.api.lang.getText("TAX_ATTACKED",[var5,var9]) + "</a>","GUILD_CHAT");
-				this.api.sounds.events.onTaxcollectorAttack();
-				break;
-			case "S":
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("TAX_ATTACKED_SUVIVED",[var5,var9]),"GUILD_CHAT");
-				break;
-			case "D":
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("TAX_ATTACKED_DIED",[var5,var9]),"GUILD_CHAT");
+			switch(null)
+			{
+				case "S":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("TAX_ATTACKED_SUVIVED",[var5,var9]),"GUILD_CHAT");
+					break;
+				case "D":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("TAX_ATTACKED_DIED",[var5,var9]),"GUILD_CHAT");
+			}
+		}
+		else
+		{
+			this.api.electron.makeNotification(this.api.lang.getText("TAX_ATTACKED",[var5,var9]));
+			this.api.kernel.showMessage(undefined,"<img src=\"CautionIcon\" hspace=\'0\' vspace=\'0\' width=\'13\' height=\'13\' /><a href=\'asfunction:onHref,OpenGuildTaxCollectors\'>" + this.api.lang.getText("TAX_ATTACKED",[var5,var9]) + "</a>","GUILD_CHAT");
+			this.api.sounds.events.onTaxcollectorAttack();
 		}
 	}
-	function onTaxCollectorInfo(§\x1e\x12\x1a§)
+	function onTaxCollectorInfo(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = var3[0].charAt(0);
@@ -701,36 +693,32 @@ class dofus.aks.Guild extends dofus.aks.Handler
 		var var8 = var3[3];
 		var var9 = "(" + var7 + ", " + var8 + ")";
 		var var10 = var3[4];
-		if((var var0 = var4) !== "S")
+		switch(var4)
 		{
-			switch(null)
-			{
-				case "R":
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("TAXCOLLECTOR_REMOVED",[var5,var9,var10]),"GUILD_CHAT");
-					break;
-				case "G":
-					var var11 = var3[5].split(";");
-					var var12 = Number(var11[0]);
-					var var13 = var12 + " " + this.api.lang.getText("EXPERIENCE_POINT");
-					var var14 = 1;
-					while(var14 < var11.length)
-					{
-						var var15 = var11[var14].split(",");
-						var var16 = var15[0];
-						var var17 = var15[1];
-						var13 = var13 + (",<br/>" + var17 + " x " + this.api.lang.getItemUnicText(var16).n);
-						var14 = var14 + 1;
-					}
-					var13 = var13 + ".";
-					this.api.kernel.showMessage(undefined,this.api.lang.getText("TAXCOLLECTOR_RECOLTED",[var5,var9,var10,var13]),"GUILD_CHAT");
-			}
-		}
-		else
-		{
-			this.api.kernel.showMessage(undefined,this.api.lang.getText("TAXCOLLECTOR_ADDED",[var5,var9,var10]),"GUILD_CHAT");
+			case "S":
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("TAXCOLLECTOR_ADDED",[var5,var9,var10]),"GUILD_CHAT");
+				break;
+			case "R":
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("TAXCOLLECTOR_REMOVED",[var5,var9,var10]),"GUILD_CHAT");
+				break;
+			case "G":
+				var var11 = var3[5].split(";");
+				var var12 = Number(var11[0]);
+				var var13 = var12 + " " + this.api.lang.getText("EXPERIENCE_POINT");
+				var var14 = 1;
+				while(var14 < var11.length)
+				{
+					var var15 = var11[var14].split(",");
+					var var16 = var15[0];
+					var var17 = var15[1];
+					var13 = var13 + (",<br/>" + var17 + " x " + this.api.lang.getItemUnicText(var16).n);
+					var14 = var14 + 1;
+				}
+				var13 = var13 + ".";
+				this.api.kernel.showMessage(undefined,this.api.lang.getText("TAXCOLLECTOR_RECOLTED",[var5,var9,var10,var13]),"GUILD_CHAT");
 		}
 	}
-	function onUserInterfaceOpen(§\x1e\x12\x1a§)
+	function onUserInterfaceOpen(var2)
 	{
 		switch(var2)
 		{
@@ -754,29 +742,28 @@ class dofus.aks.Guild extends dofus.aks.Handler
 				break;
 		}
 	}
-	function cancel(§\x1e\x19\x18§)
+	function cancel(var2)
 	{
-		org.flashdevelop.utils.FlashConnect.mtrace(var2.target._name,"dofus.aks.Guild::cancel","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Guild.as",1121);
 		if((var var0 = var2.target._name) === "AskCancelGuild")
 		{
 			this.refuseInvitation(var2.params.spriteID);
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoIgnoreGuild")
 		{
 			this.acceptInvitation(var2.params.spriteID);
 		}
 	}
-	function no(§\x1e\x19\x18§)
+	function no(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoIgnoreGuild")
 		{
 			this.refuseInvitation(var2.params.spriteID);
 		}
 	}
-	function ignore(§\x1e\x19\x18§)
+	function ignore(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoIgnoreGuild")
 		{

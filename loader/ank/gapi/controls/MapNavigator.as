@@ -13,7 +13,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		super();
 	}
-	function __set__buttonMargin(§\b\r§)
+	function __set__buttonMargin(var2)
 	{
 		this._nButtonMargin = Number(var2);
 		return this.__get__buttonMargin();
@@ -22,7 +22,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		return this._nButtonMargin;
 	}
-	function __set__showGrid(§\x15\x10§)
+	function __set__showGrid(var2)
 	{
 		this._bShowGrid = var2;
 		if(this.initialized)
@@ -48,7 +48,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		return this._sURL;
 	}
-	function __set__wPage(§\x1e\x1b\x0b§)
+	function __set__wPage(var2)
 	{
 		this._nWPage = var2;
 		return this.__get__wPage();
@@ -57,7 +57,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		return this._nWPage;
 	}
-	function __set__hPage(§\x1e\x1b\x02§)
+	function __set__hPage(var2)
 	{
 		this._nHPage = var2;
 		return this.__get__hPage();
@@ -66,7 +66,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		return this._nHPage;
 	}
-	function __set__zoom(§\x1e\x1a\x1c§)
+	function __set__zoom(var2)
 	{
 		if(_global.isNaN(var2))
 		{
@@ -91,7 +91,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		return this._nZoom;
 	}
-	function __set__interactionMode(§\x1e\x11\x14§)
+	function __set__interactionMode(var2)
 	{
 		this._sInteractionMode = var2;
 		if(this.initialized)
@@ -124,23 +124,23 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 	{
 		return this._ldrMap;
 	}
-	function setMapPosition(§\x1e\x1b\r§, §\x1e\x1b\x05§)
+	function setMapPosition(nX, nY)
 	{
 		this._mcXtra._xscale = this._mcXtra._yscale = this._nZoom;
-		if(var2 == undefined || var3 == undefined)
+		if(nX == undefined || nY == undefined)
 		{
 			return undefined;
 		}
 		this.removeAreaClip();
-		this._nXCurrent = var2;
-		this._nYCurrent = var3;
+		this._nXCurrent = nX;
+		this._nYCurrent = nY;
 		var var4 = this._ldrMap.content;
-		var4._x = this._mcXtra._x = (- this.virtualWPage) * (0.5 + var2);
-		var4._y = this._mcXtra._y = (- this.virtualHPage) * (0.5 + var3);
+		var4._x = this._mcXtra._x = (- this.virtualWPage) * (0.5 + nX);
+		var4._y = this._mcXtra._y = (- this.virtualHPage) * (0.5 + nY);
 		var var5 = 15;
 		var var6 = 15;
-		var var7 = Math.floor(var2 - this._nMapWidth / (2 * this.virtualWPage) + 0.5);
-		var var8 = Math.floor(var3 - this._nMapHeight / (2 * this.virtualHPage) + 0.5);
+		var var7 = Math.floor(nX - this._nMapWidth / (2 * this.virtualWPage) + 0.5);
+		var var8 = Math.floor(nY - this._nMapHeight / (2 * this.virtualHPage) + 0.5);
 		var var9 = Math.floor(var7 / var5);
 		var var10 = Math.floor(var8 / var6);
 		var var11 = var9 + Math.ceil(Math.floor(this._nMapWidth / this.virtualWPage) / var5);
@@ -161,7 +161,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 			var13 = var13 + 1;
 		}
 	}
-	function addSubareaClip(§\x1e\x1d\x04§, §\x07\x0e§, §\t\n§)
+	function addSubareaClip(var2, var3, var4)
 	{
 		if(var2 == this._nLastSubAreaID)
 		{
@@ -180,15 +180,15 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		this._ldrMap.content._mcSubarea.removeMovieClip();
 		delete this._nLastSubAreaID;
 	}
-	function addXtraClip(§\x1e\x10\x1b§, §\x1e\x11\x04§, §\x1e\x1b\r§, §\x1e\x1b\x05§, §\x07\x0e§, §\t\n§, §\x1b\x0b§, §\x1b\x01§)
+	function addXtraClip(var2, var3, var4, var5, var6, var7, var8, var9)
 	{
-		var var10 = this._mcXtra[var3]["clipByCoord_" + var4 + "_" + var5];
+		var var10 = this._mcXtra[var3]["clipByCoord_" + nX + "_" + nY];
 		if(var9 == true && var10 != undefined)
 		{
 			return var10;
 		}
-		var var11 = this._nWPage * (0.5 + var4);
-		var var12 = this._nHPage * (0.5 + var5);
+		var var11 = this._nWPage * (0.5 + nX);
+		var var12 = this._nHPage * (0.5 + nY);
 		var var13 = this._mcXtra.getNextHighestDepth();
 		var var14 = this._mcXtra[var3];
 		if(var14 == undefined)
@@ -197,7 +197,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		}
 		var13 = var14.getNextHighestDepth();
 		var var15 = var14.attachMovie(var2,"clip" + var13,var13,{_x:var11,_y:var12});
-		this._mcXtra[var3]["clipByCoord_" + var4 + "_" + var5] = var15;
+		this._mcXtra[var3]["clipByCoord_" + nX + "_" + nY] = var15;
 		if(var6 != undefined)
 		{
 			var var16 = new Color(var15._mcColor);
@@ -214,14 +214,14 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		var15._alpha = var7 != undefined?var7:100;
 		return var15;
 	}
-	function loadXtraLayer(§\x1e\x12\x18§, §\x1e\x11\x04§)
+	function loadXtraLayer(var2, var3)
 	{
 		var var4 = this.createXtraLayer(var3);
 		var var5 = new MovieClipLoader();
 		var5.addListener(this);
 		var5.loadClip(var2,var4);
 	}
-	function createXtraLayer(§\x1e\x11\x04§)
+	function createXtraLayer(var2)
 	{
 		var var3 = this._mcXtra.getNextHighestDepth();
 		var var4 = this._mcXtra[var2];
@@ -231,11 +231,11 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		}
 		return var4;
 	}
-	function getXtraLayer(§\x1e\x11\x04§)
+	function getXtraLayer(var2)
 	{
 		return this._mcXtra[var2];
 	}
-	function clear(§\x1e\x11\x04§)
+	function clear(var2)
 	{
 		if(var2 != undefined)
 		{
@@ -243,7 +243,8 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		}
 		else
 		{
-			for(var k in this._mcXtra)
+			§§enumerate(this._mcXtra);
+			while((var var0 = §§enumeration()) != null)
 			{
 				this._mcXtra[k].removeMovieClip();
 			}
@@ -353,7 +354,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		this.setMovieClipColor(this._mcGrid,var2.gridcolor);
 		this.setMovieClipColor(this._mcMapBackground,var2.bgcolor);
 	}
-	function drawGrid(§\x13\x15§)
+	function drawGrid(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -394,7 +395,7 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 		this.drawGrid(true);
 		this.dispatchEvent({type:"zoom"});
 	}
-	function moveMap(§\x1e\x1b\x06§, §\x1e\x1b\x01§)
+	function moveMap(var2, var3)
 	{
 		this.setMapPosition(this._nXCurrent + var2,this._nYCurrent + var3);
 	}
@@ -414,12 +415,13 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 				this._btnSE.enabled = true;
 				break;
 			default:
-				if(var0 !== "select")
+				switch(null)
 				{
-					break;
+					case "zoom-":
+					case "select":
 				}
+				break;
 			case "zoom+":
-			case "zoom-":
 				this._btnNW.enabled = false;
 				this._btnN.enabled = false;
 				this._btnNE.enabled = false;
@@ -430,19 +432,19 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 				this._btnSE.enabled = false;
 		}
 	}
-	function getRealFromCoordinates(§\x1e\x1b\r§, §\x1e\x1b\x05§)
+	function getRealFromCoordinates(nX, nY)
 	{
-		var var4 = this.virtualWPage * (var2 - this._nXCurrent - 0.5);
-		var var5 = this.virtualHPage * (var3 - this._nYCurrent - 0.5);
+		var var4 = this.virtualWPage * (nX - this._nXCurrent - 0.5);
+		var var5 = this.virtualHPage * (nY - this._nYCurrent - 0.5);
 		return {x:var4,y:var5};
 	}
-	function getCoordinatesFromReal(§\x1e\x1e\x1c§, §\x1e\x1e\x1b§)
+	function getCoordinatesFromReal(var2, var3)
 	{
 		var var4 = Math.floor((var2 + this.virtualWPage * 0.5) / this.virtualWPage) + this._nXCurrent;
 		var var5 = Math.floor((var3 + this.virtualHPage * 0.5) / this.virtualHPage) + this._nYCurrent;
 		return {x:var4,y:var5};
 	}
-	function getCoordinatesFromRealWithRef(§\x1e\x1e\x1c§, §\x1e\x1e\x1b§)
+	function getCoordinatesFromRealWithRef(var2, var3)
 	{
 		var var4 = Math.floor((var2 + this.virtualWPage * 0.5) / this.virtualWPage) - this._nXRefPress;
 		var var5 = Math.floor((var3 + this.virtualHPage * 0.5) / this.virtualHPage) - this._nYRefPress;
@@ -517,8 +519,9 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 			this.gapi.hideTooltip();
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
+		loop0:
 		switch(var2.target._name)
 		{
 			case "_btnNW":
@@ -535,20 +538,24 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 				{
 					case "_btnW":
 						this.moveMap(-1,0);
-						break;
+						break loop0;
 					case "_btnE":
 						this.moveMap(1,0);
-						break;
+						break loop0;
 					case "_btnSW":
 						this.moveMap(-1,1);
-						break;
+						break loop0;
 					case "_btnS":
 						this.moveMap(0,1);
-						break;
+						break loop0;
 					case "_btnSE":
 						this.moveMap(1,1);
-						break;
-					case "_btnLocateClick":
+						break loop0;
+					default:
+						if(var0 !== "_btnLocateClick")
+						{
+							break loop0;
+						}
 						var var3 = this._ldrMap._xmouse;
 						var var4 = this._ldrMap._ymouse;
 						var var5 = this.getCoordinatesFromReal(var3,var4);
@@ -567,23 +574,24 @@ class ank.gapi.controls.MapNavigator extends ank.gapi.core.UIAdvancedComponent
 							case "select":
 								this.dispatchEvent({type:"select",coordinates:var5});
 						}
+						break loop0;
 				}
 		}
 		this.gapi.hideTooltip();
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		this.dispatchEvent(var2);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.dispatchEvent(var2);
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		this.setZoom();
 	}
-	function onLoadInit(§\x0b\x14§)
+	function onLoadInit(var2)
 	{
 		this.dispatchEvent({type:"xtraLayerLoad",mc:var2});
 	}

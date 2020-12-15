@@ -5,12 +5,12 @@ class dofus.graphics.gapi.controls.guildmembersviewer.GuildMembersViewerMember e
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -63,7 +63,7 @@ class dofus.graphics.gapi.controls.guildmembersviewer.GuildMembersViewerMember e
 		this._btnBann.addEventListener("click",this);
 		this._btnProfil.addEventListener("click",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -87,11 +87,11 @@ class dofus.graphics.gapi.controls.guildmembersviewer.GuildMembersViewerMember e
 				this._mcList.gapi.loadUIComponent("GuildMemberInfos","GuildMemberInfos",{member:this._oItem});
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this._mcList.gapi.api.network.Guild.bann(var2.params.name);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if(this._oItem.state != 0)
 		{
@@ -129,7 +129,7 @@ class dofus.graphics.gapi.controls.guildmembersviewer.GuildMembersViewerMember e
 		}
 		var3.ui.showTooltip(var3.lang.getText("GUILD_LAST_CONNECTION",[var9]),this._mcOver,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this._mcList.gapi.api.ui.hideTooltip();
 	}

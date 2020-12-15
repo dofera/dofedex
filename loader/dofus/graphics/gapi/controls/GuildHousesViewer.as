@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 	{
 		super();
 	}
-	function __set__houses(§\x10\x10§)
+	function __set__houses(var2)
 	{
 		this.updateData(var2);
 		return this.__get__houses();
@@ -36,22 +36,21 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 		this._lstHouses.addEventListener("itemSelected",this);
 		this._btnTeleport.addEventListener("click",this);
 	}
-	function updateData(§\x10\x10§)
+	function updateData(var2)
 	{
 		this._lstHouses.dataProvider = var2;
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		this._hSelectedHouse = (dofus.datacenter.House)var2.row.item;
 		this._lblHouseName.text = this._hSelectedHouse.name;
 		this._lblHouseCoords.text = this._hSelectedHouse.coords.x + ";" + this._hSelectedHouse.coords.y;
 		this._lblHouseOwner.text = this._hSelectedHouse.ownerName;
-		var var3 = new ank.utils.
-();
+		var var3 = new ank.utils.();
 		var var4 = 0;
 		while(var4 < this._hSelectedHouse.skills.length)
 		{
-			var var5 = new dofus.datacenter.(this._hSelectedHouse.skills[var4]);
+			var var5 = new dofus.datacenter.(this._hSelectedHouse.skills[var4]);
 			if(!_global.isNaN(var5.id))
 			{
 				var3.push({id:var5.id,label:var5.description});
@@ -72,7 +71,7 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 		this._mcMask._visible = false;
 		this._lblSelectHouse._visible = false;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target) === this._btnTeleport)
 		{
@@ -87,14 +86,14 @@ class dofus.graphics.gapi.controls.GuildHousesViewer extends dofus.graphics.gapi
 			this.api.network.Guild.teleportToGuildHouse(this._hSelectedHouse.id);
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._btnTeleport)
 		{
 			this.gapi.showTooltip(this.api.lang.getText("GUILD_HOUSE_TELEPORT_TOOLTIP"),this._btnTeleport,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

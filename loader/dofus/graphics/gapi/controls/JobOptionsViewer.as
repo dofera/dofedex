@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__job(§\x1e\x19\x0b§)
+	function __set__job(var2)
 	{
 		this._oJob.removeEventListener("optionsChanged",this);
 		this._oJob = var2;
@@ -58,11 +58,11 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 	{
 		this._btnEnabled.label = !this.api.datacenter.Player.craftPublicMode?this.api.lang.getText("ENABLE"):this.api.lang.getText("DISABLE");
 	}
-	function refreshCraftComplexityLabel(§\x02\x1c§)
+	function refreshCraftComplexityLabel(var2)
 	{
 		this._lblCraftComplexityValue.text = var2.toString() + " " + ank.utils.PatternDecoder.combine(this.api.lang.getText("SLOT"),"m",var2 < 2);
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		if((var var0 = var2.target._name) === "_vsCraftComplexity")
 		{
@@ -70,7 +70,7 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 			this._btnValidate.enabled = true;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -96,7 +96,7 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 				}
 		}
 	}
-	function optionsChanged(§\x1e\x19\x18§)
+	function optionsChanged(var2)
 	{
 		if(this._oJob != undefined && this._btnNotFree.selected != undefined)
 		{
@@ -117,7 +117,6 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 				this._vsCraftComplexity._visible = false;
 			}
 			this.refreshCraftComplexityLabel(var3.minSlots);
-			org.flashdevelop.utils.FlashConnect.mtrace("Test " + this._btnNotFree.selected,"dofus.graphics.gapi.controls.JobOptionsViewer::optionsChanged","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/controls/JobOptionsViewer.as",233);
 			this._btnNotFree.selected = var3.isNotFree;
 			this._btnFreeIfFailed.selected = var3.isFreeIfFailed;
 			this._btnFreeIfFailed.enabled = !this._btnNotFree.selected?false:true;
@@ -125,14 +124,14 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 			this._btnValidate.enabled = false;
 		}
 	}
-	function craftPublicModeChanged(§\x1e\x19\x18§)
+	function craftPublicModeChanged(var2)
 	{
 		this._lblPublicMode.text = this.api.lang.getText("PUBLIC_MODE") + " (" + this.api.lang.getText(!this.api.datacenter.Player.craftPublicMode?"INACTIVE":"ACTIVE") + ")";
 		this.refreshBtnEnabledLabel();
 		this._mcPublicDisable._visible = !this.api.datacenter.Player.craftPublicMode;
 		this._mcPublicEnable._visible = this.api.datacenter.Player.craftPublicMode;
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._btnEnabled)
 		{
@@ -140,7 +139,7 @@ class dofus.graphics.gapi.controls.JobOptionsViewer extends dofus.graphics.gapi.
 			this.gapi.showTooltip(var3,var2.target,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

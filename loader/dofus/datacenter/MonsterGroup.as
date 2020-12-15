@@ -4,14 +4,14 @@ class dofus.datacenter.MonsterGroup extends ank.battlefield.datacenter.Sprite
 	var _bAllDirections = false;
 	var _bForceWalk = true;
 	var _nAlignmentIndex = -1;
-	function MonsterGroup(sID, clipClass, §\x1e\x12\f§, §\x13\n§, §\x11\b§, bonus)
+	function MonsterGroup(sID, clipClass, §\x1e\x11\x1c§, §\x13\x05§, §\x10\x1d§, bonus)
 	{
 		super();
 		this.api = _global.API;
 		this._nBonusValue = bonus;
 		this.initialize(sID,clipClass,var5,var6,var7,null);
 	}
-	function __set__name(§\x1e\n\x0f§)
+	function __set__name(var2)
 	{
 		this._aNamesList = new Array();
 		var var3 = var2.split(",");
@@ -32,7 +32,7 @@ class dofus.datacenter.MonsterGroup extends ank.battlefield.datacenter.Sprite
 	{
 		return this.getName();
 	}
-	function getName(§\x1e\x13\x06§)
+	function getName(var2)
 	{
 		var2 = var2 != undefined?var2:"\n";
 		var var3 = new Array();
@@ -58,7 +58,7 @@ class dofus.datacenter.MonsterGroup extends ank.battlefield.datacenter.Sprite
 		var var2 = this.api.datacenter.Map;
 		return "Groupe niveau " + this.totalLevel + " en " + var2.x + "," + var2.y + " : <br/>" + this.getName("<br/>");
 	}
-	function __set__Level(§\x1e\n\x0f§)
+	function __set__Level(var2)
 	{
 		this._aLevelsList = var2.split(",");
 		return this.__get__Level();
@@ -80,6 +80,6 @@ class dofus.datacenter.MonsterGroup extends ank.battlefield.datacenter.Sprite
 	}
 	function __get__alignment()
 	{
-		return new dofus.datacenter.(this._nAlignmentIndex,0);
+		return new dofus.datacenter.(this._nAlignmentIndex,0);
 	}
 }

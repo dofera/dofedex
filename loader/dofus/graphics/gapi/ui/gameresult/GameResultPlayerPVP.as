@@ -4,12 +4,12 @@ class dofus.graphics.gapi.ui.gameresult.GameResultPlayerPVP extends ank.gapi.cor
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		var4.items.sortOn("_itemLevel",Array.DESCENDING | Array.NUMERIC);
 		this._oItems = var4;
@@ -137,7 +137,7 @@ class dofus.graphics.gapi.ui.gameresult.GameResultPlayerPVP extends ank.gapi.cor
 		this._pbDisgrace.addEventListener("over",this);
 		this._pbDisgrace.addEventListener("out",this);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -160,23 +160,21 @@ class dofus.graphics.gapi.ui.gameresult.GameResultPlayerPVP extends ank.gapi.cor
 					this._mcList.gapi.showTooltip(var4,var2.target,30);
 				}
 				break;
-			default:
-				if(var0 !== this._pbDisgrace)
-				{
-					var var7 = var2.target.contentData;
-					var var8 = var7.style + "ToolTip";
-					this._mcList.gapi.showTooltip(var7.Quantity + " x " + var7.name,var2.target,20,undefined,var8);
-					break;
-				}
 			case this._pbHonour:
+			case this._pbDisgrace:
 				this._mcList.gapi.showTooltip(var2.target.value + " / " + var2.target.maximum,var2.target,20);
+				break;
+			default:
+				var var7 = var2.target.contentData;
+				var var8 = var7.style + "ToolTip";
+				this._mcList.gapi.showTooltip(var7.Quantity + " x " + var7.name,var2.target,20,undefined,var8);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this._mcList.gapi.hideTooltip();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		var var3 = var2.target.contentData;
 		if(Key.isDown(dofus.Constants.CHAT_INSERT_ITEM_KEY) && var3 != undefined)

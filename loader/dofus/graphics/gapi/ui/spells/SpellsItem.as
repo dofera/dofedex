@@ -4,12 +4,12 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{
@@ -81,7 +81,7 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 		this._btnBoost.addEventListener("over",this);
 		this._btnBoost.addEventListener("out",this);
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		if(!dofus.Constants.DOUBLEFRAMERATE)
 		{
@@ -92,7 +92,7 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 		var var5 = var3.kernel.OptionsManager.getOption("RemasteredSpellIconsPack");
 		var4.gotoAndStop(var5);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		var var3 = this._mcList._parent._parent.api;
 		if((var var0 = var2.target) === this._btnBoost)
@@ -107,7 +107,7 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 			}
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		if(this._mcList._parent._parent.boostSpell(this._oItem))
 		{
@@ -118,7 +118,7 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 			}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var var3 = this._mcList._parent._parent.api;
 		if((var var0 = var2.target) === this._btnBoost)
@@ -126,7 +126,7 @@ class dofus.graphics.gapi.ui.spells.SpellsItem extends ank.gapi.core.UIBasicComp
 			var3.ui.showTooltip(var3.lang.getText("CLICK_HERE_FOR_SPELL_BOOST",[this._mcList._parent._parent.getCostForBoost(this._oItem),this._oItem.name,String(this._oItem.level + 1)]),var2.target,-30,{bXLimit:true,bYLimit:false});
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		var var3 = this._mcList._parent._parent.api;
 		if((var var0 = var2.target) === this._btnBoost)

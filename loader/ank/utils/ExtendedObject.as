@@ -5,18 +5,18 @@ class ank.utils.ExtendedObject extends Object
 		super();
 		this.initialize();
 	}
-	function initialize(§\x1e\n\f§)
+	function initialize(var2)
 	{
 		this.clear();
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 	}
-	function clear(§\x1e\n\f§)
+	function clear(var2)
 	{
 		this._items = new Object();
 		this._count = 0;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function addItemAt(§\f\x0e§, §\f\x15§)
+	function addItemAt(var2, var3)
 	{
 		if(this._items[var2] == undefined)
 		{
@@ -25,7 +25,7 @@ class ank.utils.ExtendedObject extends Object
 		this._items[var2] = var3;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function removeItemAt(§\f\x0e§)
+	function removeItemAt(var2)
 	{
 		var var3 = this._items[var2];
 		delete this._items.register2;
@@ -33,11 +33,11 @@ class ank.utils.ExtendedObject extends Object
 		this.dispatchEvent({type:"modelChanged"});
 		return var3;
 	}
-	function removeAll(§\x1e\n\f§)
+	function removeAll(var2)
 	{
 		this.clear();
 	}
-	function removeAllExcept(§\f\x0e§)
+	function removeAllExcept(var2)
 	{
 		§§enumerate(this._items);
 		while((var var0 = §§enumeration()) != null)
@@ -50,7 +50,7 @@ class ank.utils.ExtendedObject extends Object
 		this._count = 1;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function replaceItemAt(§\f\x0e§, §\f\x15§)
+	function replaceItemAt(var2, var3)
 	{
 		if(this._items[var2] == undefined)
 		{
@@ -59,15 +59,15 @@ class ank.utils.ExtendedObject extends Object
 		this._items[var2] = var3;
 		this.dispatchEvent({type:"modelChanged"});
 	}
-	function getLength(§\x1e\n\f§)
+	function getLength(var2)
 	{
 		return this._count;
 	}
-	function getItemAt(§\f\x0e§)
+	function getItemAt(var2)
 	{
 		return this._items[var2];
 	}
-	function getItems(§\x1e\n\f§)
+	function getItems(var2)
 	{
 		return this._items;
 	}
@@ -81,7 +81,7 @@ class ank.utils.ExtendedObject extends Object
 		}
 		return var2;
 	}
-	function getPropertyValues(§\x1e\x0e\x18§)
+	function getPropertyValues(var2)
 	{
 		var var3 = new Array();
 		§§enumerate(this._items);

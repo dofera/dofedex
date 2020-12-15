@@ -9,7 +9,7 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__html(§\x19\t§)
+	function __set__html(var2)
 	{
 		this._bHTML = var2;
 		this.setTextFieldProperties();
@@ -19,7 +19,7 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bHTML;
 	}
-	function __set__multiline(§\x17\x15§)
+	function __set__multiline(var2)
 	{
 		this._bMultiline = var2;
 		this.setTextFieldProperties();
@@ -29,7 +29,7 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bMultiline;
 	}
-	function __set__wordWrap(§\x13\x17§)
+	function __set__wordWrap(var2)
 	{
 		this._bWordWrap = var2;
 		this.setTextFieldProperties();
@@ -39,7 +39,7 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bWordWrap;
 	}
-	function __set__text(§\x1e\r\x02§)
+	function __set__text(var2)
 	{
 		this._sText = var2;
 		this._bSettingNewText = true;
@@ -58,12 +58,12 @@ class ank.gapi.controls.Label extends ank.gapi.core.UIBasicComponent
 	{
 		return this._tText.textWidth;
 	}
-	function __set__textColor(§\x07\x0e§)
+	function __set__textColor(var2)
 	{
 		this._tText.textColor = var2;
 		return this.__get__textColor();
 	}
-	function setPreferedSize(§\x1e\x14\x1b§)
+	function setPreferedSize(var2)
 	{
 		this._tText.autoSize = var2;
 		this.setSize(this.textWidth + 5,this.textHeight);

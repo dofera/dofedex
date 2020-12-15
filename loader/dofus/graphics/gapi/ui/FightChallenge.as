@@ -9,7 +9,7 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 	{
 		return this._aChallengeList;
 	}
-	function addChallenge(§\x0f\x02§)
+	function addChallenge(var2)
 	{
 		this._aChallengeList.push(var2);
 		this.updateList();
@@ -24,12 +24,11 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 			var2 = var2 + 1;
 		}
 		this._aChallengeIcon = new Array();
-		this._aChallengeList = new ank.utils.
-();
+		this._aChallengeList = new ank.utils.();
 		this.FightChallengeViewer.unloadMovie();
 		this._visible = false;
 	}
-	function updateChallenge(§\r\b§, §\x1e\f\x0e§)
+	function updateChallenge(var2, var3)
 	{
 		var var4 = 0;
 		while(var4 < this._aChallengeIcon.length)
@@ -54,8 +53,7 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 	}
 	function init()
 	{
-		this._aChallengeList = new ank.utils.
-();
+		this._aChallengeList = new ank.utils.();
 		super.init(false,dofus.graphics.gapi.ui.FightChallenge.CLASS_NAME);
 	}
 	function createChildren()
@@ -84,7 +82,7 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 			var3 = var3 + 1;
 		}
 	}
-	function click(§\x10\x1a§)
+	function click(var2)
 	{
 		var var3 = 0;
 		while(var3 < this._aChallengeIcon.length)
@@ -93,14 +91,14 @@ class dofus.graphics.gapi.ui.FightChallenge extends dofus.graphics.gapi.core.Dof
 			var3 = var3 + 1;
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._btnOpenClose)
 		{
 			this.gapi.showTooltip(this.api.lang.getText("PARTY_OPEN_CLOSE"),var2.target,20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

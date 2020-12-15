@@ -1,11 +1,11 @@
 class dofus.datacenter.Job extends Object
 {
-	function Job(§\x05\x02§, §\x10\x01§, options)
+	function Job(§\x04\x12§, §\x0f\x15§, options)
 	{
 		super();
 		this.initialize(var3,var4,options);
 	}
-	function __set__options(§\x1e\x1a\x1b§)
+	function __set__options(var2)
 	{
 		this._oOptions = var2;
 		this.dispatchEvent({type:"optionsChanged",value:var2});
@@ -39,7 +39,7 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._eaCrafts;
 	}
-	function __set__level(§\x04\x01§)
+	function __set__level(var2)
 	{
 		this._nLevel = var2;
 		return this.__get__level();
@@ -48,7 +48,7 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._nLevel;
 	}
-	function __set__xpMin(§\x1e\x1b\x07§)
+	function __set__xpMin(var2)
 	{
 		this._nXPmin = var2;
 		return this.__get__xpMin();
@@ -57,7 +57,7 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._nXPmin;
 	}
-	function __set__xp(§\x1e\x1b\f§)
+	function __set__xp(var2)
 	{
 		this._nXP = var2;
 		if(this.api.datacenter.Player.currentJobID == this.id)
@@ -74,7 +74,7 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._nXP;
 	}
-	function __set__xpMax(§\x1e\x1b\t§)
+	function __set__xpMax(var2)
 	{
 		this._nXPmax = var2;
 		return this.__get__xpMax();
@@ -87,9 +87,9 @@ class dofus.datacenter.Job extends Object
 	{
 		return this._oJobText.s;
 	}
-	function initialize(§\x05\x02§, §\x10\x01§, options)
+	function initialize(§\x04\x12§, §\x0f\x15§, options)
 	{
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 		this.api = _global.API;
 		this._nID = var2;
 		this._eaSkills = var3;
@@ -97,10 +97,8 @@ class dofus.datacenter.Job extends Object
 		this._oJobText = this.api.lang.getJobText(var2);
 		if(!_global.isNaN(var3.length))
 		{
-			this._eaCrafts = new ank.utils.
-();
-			var var5 = new ank.utils.
-();
+			this._eaCrafts = new ank.utils.();
+			var var5 = new ank.utils.();
 			var var6 = 0;
 			while(var6 < var3.length)
 			{

@@ -9,7 +9,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__titleHeight(§\x1e\x1c\x05§)
+	function __set__titleHeight(var2)
 	{
 		this._nTitleHeight = var2;
 		return this.__get__titleHeight();
@@ -18,7 +18,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nTitleHeight;
 	}
-	function __set__columnsWidths(§\t§)
+	function __set__columnsWidths(var2)
 	{
 		this._aColumnsWidths = var2;
 		return this.__get__columnsWidths();
@@ -27,7 +27,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._aColumnsWidths;
 	}
-	function __set__columnsNames(§\x0b§)
+	function __set__columnsNames(var2)
 	{
 		this._aColumnsNames = var2;
 		this.setLabels();
@@ -37,7 +37,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._aColumnsNames;
 	}
-	function __set__columnsProperties(§\n§)
+	function __set__columnsProperties(var2)
 	{
 		this._aColumnsProperties = var2;
 		return this.__get__columnsProperties();
@@ -46,7 +46,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._aColumnsProperties;
 	}
-	function __set__multipleSelection(§\x17\x14§)
+	function __set__multipleSelection(var2)
 	{
 		this._bMultipleSelection = var2;
 		return this.__get__multipleSelection();
@@ -55,7 +55,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bMultipleSelection;
 	}
-	function __set__rowHeight(§\x1e\x1e\x0f§)
+	function __set__rowHeight(var2)
 	{
 		if(var2 == 0)
 		{
@@ -68,7 +68,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nRowHeight;
 	}
-	function __set__cellRenderer(§\x1e\x14\x12§)
+	function __set__cellRenderer(var2)
 	{
 		this._sCellRenderer = var2;
 		return this.__get__cellRenderer();
@@ -77,7 +77,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sCellRenderer;
 	}
-	function __set__dataProvider(§\x10\x14§)
+	function __set__dataProvider(var2)
 	{
 		this._lstList.dataProvider = var2;
 		return this.__get__dataProvider();
@@ -86,7 +86,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._lstList.dataProvider;
 	}
-	function __set__selectedIndex(§\x04\x17§)
+	function __set__selectedIndex(var2)
 	{
 		this._lstList.selectedIndex = var2;
 		return this.__get__selectedIndex();
@@ -99,15 +99,15 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._lstList.selectedItem;
 	}
-	function addItem(§\x1e\x19\r§)
+	function addItem(var2)
 	{
 		this._lstList.addItem(var2);
 	}
-	function addItemAt(§\x1e\x19\r§, §\x04\x17§)
+	function addItemAt(var2, var3)
 	{
 		this._lstList.addItemAt(var2,var3);
 	}
-	function removeItemAt(§\x1e\x19\r§, §\x04\x17§)
+	function removeItemAt(var2, var3)
 	{
 		this._lstList.removeItemAt(var2,var3);
 	}
@@ -115,11 +115,11 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 	{
 		this._lstList.removeAll();
 	}
-	function setVPosition(§\x01\x17§)
+	function setVPosition(var2)
 	{
 		this._lstList.setVPosition(var2);
 	}
-	function sortOn(§\x1e\x0e\x17§, §\x02\r§)
+	function sortOn(var2, var3)
 	{
 		this._lstList.selectedIndex = -1;
 		this._lstList.sortOn(var2,var3);
@@ -196,7 +196,7 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 			}
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		var var3 = var2.target.params.index;
 		var var4 = this._aColumnsProperties[var3];
@@ -207,25 +207,25 @@ class ank.gapi.controls.DataGrid extends ank.gapi.core.UIBasicComponent
 		}
 		this.sortOn(var4,var5);
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		var2.list = var2.target;
 		var2.target = this;
 		this.dispatchEvent(var2);
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 		this.dispatchEvent(var2);
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 		this.dispatchEvent(var2);
 	}
-	function itemDrag(§\x1e\x19\x18§)
+	function itemDrag(var2)
 	{
 		this.dispatchEvent(var2);
 	}
-	function itemdblClick(§\x1e\x19\x18§)
+	function itemdblClick(var2)
 	{
 		this.dispatchEvent(var2);
 	}

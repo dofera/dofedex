@@ -20,7 +20,7 @@ class ank.gapi.controls.ColorPicker extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__sliderOutWidth(§\x1e\x1d\x15§)
+	function __set__sliderOutWidth(var2)
 	{
 		this._nSliderOutWidth = Number(var2);
 		return this.__get__sliderOutWidth();
@@ -29,7 +29,7 @@ class ank.gapi.controls.ColorPicker extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nSliderOutWidth;
 	}
-	function __set__sliderInWidth(§\x1e\x1d\x16§)
+	function __set__sliderInWidth(var2)
 	{
 		this._nSliderInWidth = Number(var2);
 		return this.__get__sliderInWidth();
@@ -131,17 +131,17 @@ class ank.gapi.controls.ColorPicker extends ank.gapi.core.UIBasicComponent
 		var15 = var15 + (127 - var15) * var16 / 255;
 		return (var13 << 16) + (var14 << 8) + var15;
 	}
-	function placeColorsCross(§\x1e\x1b\r§, §\x1e\x1b\x05§)
+	function placeColorsCross(nX, nY)
 	{
-		this._mcColorsCross._x = var2;
-		this._mcColorsCross._y = var3;
+		this._mcColorsCross._x = nX;
+		this._mcColorsCross._y = nY;
 	}
-	function placeSliderCross(§\x1e\x1b\r§, §\x1e\x1b\x05§)
+	function placeSliderCross(nX, nY)
 	{
-		this._mcSliderCross._x = var2;
-		this._mcSliderCross._y = var3;
+		this._mcSliderCross._x = nX;
+		this._mcSliderCross._y = nY;
 	}
-	function setColor(§\x07\x0e§)
+	function setColor(var2)
 	{
 		var var3 = ((var2 & 16711680) >> 16) / 255;
 		var var4 = ((var2 & 65280) >> 8) / 255;

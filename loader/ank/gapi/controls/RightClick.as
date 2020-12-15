@@ -10,8 +10,15 @@ class ank.gapi.controls.RightClick extends ContextMenu
 			proto.onRightClick(oAPI);
 		};
 	}
-	function onRightClick(§\x1d\x1c§)
+	function onRightClick(var2)
 	{
+		var2.ui.hideTooltip();
+		var var3 = ank.gapi.controls.PopupMenu.currentPopupMenu;
+		if(var3 != undefined)
+		{
+			var3.onMouseUp();
+		}
+		var2.mouseClicksMemorizer.storeCurrentMouseClick(true);
 		if(var2.gfx.rollOverMcSprite != undefined && !(var2.gfx.rollOverMcSprite.data instanceof dofus.datacenter.Character))
 		{
 			var2.gfx.onSpriteRelease(var2.gfx.rollOverMcSprite,true);
@@ -22,24 +29,24 @@ class ank.gapi.controls.RightClick extends ContextMenu
 			var2.gfx.onObjectRelease(var2.gfx.rollOverMcObject,true);
 			return undefined;
 		}
-		var var3 = 0;
-		while(var3 < dofus.Constants.INTERFACES_MANIPULATING_ITEMS.length)
+		var var4 = 0;
+		while(var4 < dofus.Constants.INTERFACES_MANIPULATING_ITEMS.length)
 		{
-			var var4 = var2.ui.getUIComponent(dofus.Constants.INTERFACES_MANIPULATING_ITEMS[var3]);
-			var var5 = var4.currentOverItem;
-			if(var5 != undefined)
+			var var5 = var2.ui.getUIComponent(dofus.Constants.INTERFACES_MANIPULATING_ITEMS[var4]);
+			var var6 = var5.currentOverItem;
+			if(var6 != undefined)
 			{
-				var4.itemViewer.createActionPopupMenu(var5);
+				var5.itemViewer.createActionPopupMenu(var6);
 				return undefined;
 			}
-			var3 = var3 + 1;
+			var4 = var4 + 1;
 		}
 		if(var2.datacenter.Basics.inGame && var2.datacenter.Player.isAuthorized)
 		{
-			var var6 = var2.kernel.AdminManager.getAdminPopupMenu(var2.datacenter.Player.Name,true);
-			var6.addItem("Client v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION + " >>",this,this.printRightClickPopupMenu,[var2]);
-			var6.items.unshift(var6.items.pop());
-			var6.show(_root._xmouse,_root._ymouse,true);
+			var var7 = var2.kernel.AdminManager.getAdminPopupMenu(var2.datacenter.Player.Name,true);
+			var7.addItem("Client v" + dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION + " >>",this,this.printRightClickPopupMenu,[var2]);
+			var7.items.unshift(var7.items.pop());
+			var7.show(_root._xmouse,_root._ymouse,true);
 		}
 		else
 		{
@@ -63,15 +70,15 @@ class ank.gapi.controls.RightClick extends ContextMenu
 			var2.addItem(api.lang.getText("QUALITY_BEST"),o,o.setQualityOption,["best"],o.getOption("DefaultQuality") != "best");
 			var2.show();
 		};
-		o.setQualityOption = function(§\x1e\x0e\x16§)
+		o.setQualityOption = function(var2)
 		{
 			o.setOption("DefaultQuality",var2);
 		};
-		o.setOption = function(§\x1e\x11\x10§, §\t\x14§)
+		o.setOption = function(var2, var3)
 		{
 			api.kernel.OptionsManager.setOption(var2,var3);
 		};
-		o.getOption = function(§\x1e\x11\x10§)
+		o.getOption = function(var2)
 		{
 			return api.kernel.OptionsManager.getOption(var2);
 		};

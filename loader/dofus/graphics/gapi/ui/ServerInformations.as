@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.ServerInformations extends dofus.graphics.gapi.core
 	{
 		super();
 	}
-	function __set__server(§\x1e\x1e\x01§)
+	function __set__server(var2)
 	{
 		this._nServerID = var2;
 		this._sServer = _global.API.datacenter.Basics.aks_servers.findFirstItem("id",var2).item;
@@ -71,7 +71,7 @@ class dofus.graphics.gapi.ui.ServerInformations extends dofus.graphics.gapi.core
 		this._lblCommunityValue.text = this._sServer.communityStr;
 		this._lblHowOldValue.text = this._sServer.dateStr;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -81,11 +81,7 @@ class dofus.graphics.gapi.ui.ServerInformations extends dofus.graphics.gapi.core
 			case "_mcBack":
 				this.dispatchEvent({type:"canceled"});
 				break;
-			default:
-				if(var0 !== "_btnMoreInfo")
-				{
-					break;
-				}
+			case "_btnMoreInfo":
 				this._bShowDescription = !this._bShowDescription;
 				if(this._bShowDescription)
 				{
@@ -98,12 +94,12 @@ class dofus.graphics.gapi.ui.ServerInformations extends dofus.graphics.gapi.core
 				break;
 		}
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.clip;
 		var3._xscale = var3._yscale = 136;
 	}
-	function error(§\x1e\x19\x18§)
+	function error(var2)
 	{
 		this._ldrSprite.contentPath = dofus.Constants.SERVER_SYMBOL_PATH + "0.swf";
 	}

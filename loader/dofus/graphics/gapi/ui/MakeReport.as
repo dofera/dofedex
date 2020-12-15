@@ -11,7 +11,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._bAllAccounts;
 	}
-	function __set__isAllAccounts(§\x1c\x17§)
+	function __set__isAllAccounts(var2)
 	{
 		this._bAllAccounts = var2;
 		return this.__get__isAllAccounts();
@@ -20,7 +20,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sTargetPseudos;
 	}
-	function __set__targetPseudos(§\x1e\x0b\x1c§)
+	function __set__targetPseudos(var2)
 	{
 		this._sTargetPseudos = var2;
 		return this.__get__targetPseudos();
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sDescription;
 	}
-	function __set__description(§\x11\n§)
+	function __set__description(var2)
 	{
 		this._sDescription = var2;
 		return this.__get__description();
@@ -38,7 +38,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sJailDialog;
 	}
-	function __set__jailDialog(§\x1e\x11\x13§)
+	function __set__jailDialog(var2)
 	{
 		this._sJailDialog = var2;
 		return this.__get__jailDialog();
@@ -47,7 +47,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sPenal;
 	}
-	function __set__penal(§\x1e\x17\x04§)
+	function __set__penal(var2)
 	{
 		this._sPenal = var2;
 		return this.__get__penal();
@@ -56,7 +56,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sFindAccounts;
 	}
-	function __set__findAccounts(§\x0e\x11§)
+	function __set__findAccounts(var2)
 	{
 		this._sFindAccounts = var2;
 		return this.__get__findAccounts();
@@ -65,7 +65,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._sReason;
 	}
-	function __set__reason(§\x1e\x15\x13§)
+	function __set__reason(var2)
 	{
 		this._sReason = var2;
 		return this.__get__reason();
@@ -118,7 +118,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 		this._tiReasonName.text = this._sReason;
 		this.showViewData(dofus.graphics.gapi.ui.MakeReport.FIRST_VIEW);
 	}
-	function showViewData(§\x1e\x1b\x15§)
+	function showViewData(var2)
 	{
 		var var3 = var2 == dofus.graphics.gapi.ui.MakeReport.FIRST_VIEW;
 		this._lblTarget._visible = var3;
@@ -189,7 +189,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 	{
 		this.api.datacenter.Temporary.Report = undefined;
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		var var3 = var2.target;
 		if((var var0 = var3) !== this._taComplementary)
@@ -221,7 +221,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 			this._sComplementary = var3.text;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -242,7 +242,7 @@ class dofus.graphics.gapi.ui.MakeReport extends dofus.graphics.gapi.core.DofusAd
 				this.unloadThis();
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoMakeReport")
 		{

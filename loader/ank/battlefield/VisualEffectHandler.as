@@ -1,21 +1,21 @@
 class ank.battlefield.VisualEffectHandler
 {
 	static var MAX_INDEX = 21;
-	function VisualEffectHandler(§\x1d\x03§, §\x13\x14§)
+	function VisualEffectHandler(var3, var4)
 	{
 		this.initialize(var2,var3);
 	}
-	function initialize(§\x1d\x03§, §\x13\x14§)
+	function initialize(var2, var3)
 	{
 		this._mcBattlefield = var2;
 		this._mcContainer = var3;
 		this.clear();
 	}
-	function clear(§\x1e\n\f§)
+	function clear(var2)
 	{
 		this._incIndex = 0;
 	}
-	function addEffect(§\x1e\x0e\x1c§, §\x1e\x17\x10§, §\b\x02§, displayType, §\x1e\x0b\x1b§, §\x14\x02§)
+	function addEffect(var2, var3, var4, var5, var6, var7)
 	{
 		if(displayType < 10)
 		{
@@ -44,7 +44,7 @@ class ank.battlefield.VisualEffectHandler
 		var11.loadClip(var3.file,var10.mc);
 		ank.utils.Timer.setTimer(var10,"battlefield",var10,var10.removeMovieClip,ank.battlefield.Constants.VISUAL_EFFECT_MAX_TIMER);
 	}
-	function onLoadInit(§\x0b\r§)
+	function onLoadInit(var2)
 	{
 		var var3 = var2._parent.sprite;
 		var var4 = var2._parent.targetSprite;
@@ -61,7 +61,6 @@ class ank.battlefield.VisualEffectHandler
 		var2.level = var6;
 		var2.angle = Math.atan2(var13.y - var12.y,var13.x - var12.x) * 180 / Math.PI;
 		var2.params = var7;
-		loop0:
 		switch(displayType)
 		{
 			case 10:
@@ -75,10 +74,21 @@ class ank.battlefield.VisualEffectHandler
 				var2._x = var13.x;
 				var2._y = var13.y;
 				break;
+			case 20:
+			case 21:
+				var2._x = var12.x;
+				var2._y = var12.y;
+				var var14 = Math.PI / 2;
+				var var15 = var13.x - var12.x;
+				var var16 = var13.y - var12.y;
+				var2.rotate._rotation = var2.angle;
+				var var17 = var2.attachMovie("shoot","shoot",10);
+				var17._x = var15;
+				var17._y = var16;
+				break;
 			default:
 				switch(null)
 				{
-					case 21:
 					case 30:
 					case 31:
 						var2._ACTION = var3;
@@ -97,7 +107,6 @@ class ank.battlefield.VisualEffectHandler
 						var var22 = (Math.atan2(var21,Math.abs(var20)) + var19) * var18;
 						var var23 = var22 - var19;
 						var xDest = Math.abs(var20);
-						var yDest = var21;
 						var2.startangle = var23;
 						if(var20 <= 0)
 						{
@@ -112,7 +121,6 @@ class ank.battlefield.VisualEffectHandler
 						var vyi;
 						var x;
 						var y;
-						var g = 9.81;
 						var halfg = g / 2;
 						var t = 0;
 						var vx = Math.sqrt(Math.abs(halfg * Math.pow(xDest,2) / Math.abs(yDest - Math.tan(var23) * xDest)));
@@ -139,20 +147,9 @@ class ank.battlefield.VisualEffectHandler
 								this.move._rotation = Math.atan(vyi / vx) * 180 / Math.PI;
 							}
 						};
-						break loop0;
-					default:
-						switch(null)
-						{
-							case 41:
-								break;
-							case 50:
-							case 51:
-								var2._ACTION = var3;
-								var2.cellFrom = var12;
-								var2.cellTo = var13;
-						}
-						break loop0;
+						break;
 					case 40:
+					case 41:
 						var2._ACTION = var3;
 						var2._x = var12.x;
 						var2._y = var12.y;
@@ -168,9 +165,6 @@ class ank.battlefield.VisualEffectHandler
 						var rot = Math.atan2(yDest - yStart,xDest - xStart);
 						var fullDist = Math.sqrt(Math.pow(xStart - xDest,2) + Math.pow(yStart - yDest,2));
 						var interval = fullDist / Math.floor(fullDist / var24);
-						var dist = 0;
-						var inc = 1;
-						var bNoDupliFrame = false;
 						var2.onEnterFrame = function()
 						{
 							dist = dist + interval;
@@ -197,20 +191,16 @@ class ank.battlefield.VisualEffectHandler
 							}
 							bNoDupliFrame = !bNoDupliFrame;
 						};
+						break;
+					case 50:
+					case 51:
+						var2._ACTION = var3;
+						var2.cellFrom = var12;
+						var2.cellTo = var13;
 				}
-			case 20:
-				var2._x = var12.x;
-				var2._y = var12.y;
-				var var14 = Math.PI / 2;
-				var var15 = var13.x - var12.x;
-				var var16 = var13.y - var12.y;
-				var2.rotate._rotation = var2.angle;
-				var var17 = var2.attachMovie("shoot","shoot",10);
-				var17._x = var15;
-				var17._y = var16;
 		}
 	}
-	function getNextIndex(§\x1e\n\f§)
+	function getNextIndex(var2)
 	{
 		this._incIndex++;
 		if(this._incIndex > ank.battlefield.VisualEffectHandler.MAX_INDEX)

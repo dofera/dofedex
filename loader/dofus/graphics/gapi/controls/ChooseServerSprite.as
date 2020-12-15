@@ -10,7 +10,7 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 		this._lblNumChar._visible = false;
 		this._mcNumChar._visible = false;
 	}
-	function __set__serverID(§\x1e\x1e\x01§)
+	function __set__serverID(var2)
 	{
 		this._nServerID = var2;
 		if(this.initialized)
@@ -37,7 +37,7 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 		}
 		return undefined;
 	}
-	function __set__selected(§\x15\x19§)
+	function __set__selected(var2)
 	{
 		this._bSelected = var2;
 		this.updateSelected(!var2?this.getStyle().overcolor:this.getStyle().selectedcolor);
@@ -150,7 +150,7 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 			this.enabled = false;
 		}
 	}
-	function updateSelected(§\x07\x0e§)
+	function updateSelected(var2)
 	{
 		if(this._bSelected || this._bOver && this._bEnabled)
 		{
@@ -163,11 +163,11 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 			this._mcSelect._visible = false;
 		}
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.clip;
 	}
-	function error(§\x1e\x19\x18§)
+	function error(var2)
 	{
 		this._ldrSprite.forceReload = true;
 		this._ldrSprite.contentPath = dofus.Constants.SERVER_SYMBOL_PATH + "0.swf";
@@ -187,18 +187,18 @@ class dofus.graphics.gapi.controls.ChooseServerSprite extends dofus.graphics.gap
 		this._bOver = false;
 		this.updateSelected(this.getStyle().selectedcolor);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._ctrServerState)
 		{
 			this.gapi.showTooltip(this.server.stateStr,_root._xmouse,_root._ymouse - 20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function modelChanged(§\x1e\x19\x18§)
+	function modelChanged(var2)
 	{
 		this.updateData();
 		this.dispatchEvent({type:"unselect"});

@@ -1,10 +1,10 @@
 class dofus.aks.Emotes extends dofus.aks.Handler
 {
-	function Emotes(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Emotes(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 	}
-	function useEmote(§\x06\x05§)
+	function useEmote(var2)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
@@ -17,11 +17,11 @@ class dofus.aks.Emotes extends dofus.aks.Handler
 		this.api.datacenter.Basics.aks_emote_lastActionTime = getTimer();
 		this.aks.send("eU" + var2,true);
 	}
-	function setDirection(§\x06\x14§)
+	function setDirection(var2)
 	{
 		this.aks.send("eD" + var2,true);
 	}
-	function onUse(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onUse(var2, var3)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{
@@ -51,7 +51,7 @@ class dofus.aks.Emotes extends dofus.aks.Handler
 			this.api.gfx.setSpriteTimerAnim(var5,var8,true,var7);
 		}
 	}
-	function onList(§\x1e\x12\x1a§)
+	function onList(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -84,7 +84,7 @@ class dofus.aks.Emotes extends dofus.aks.Handler
 		}
 		this.refresh();
 	}
-	function onAdd(§\x1e\x12\x1a§)
+	function onAdd(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -95,7 +95,7 @@ class dofus.aks.Emotes extends dofus.aks.Handler
 		}
 		this.refresh();
 	}
-	function onRemove(§\x1e\x12\x1a§)
+	function onRemove(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -106,7 +106,7 @@ class dofus.aks.Emotes extends dofus.aks.Handler
 		}
 		this.refresh();
 	}
-	function onDirection(§\x1e\x12\x1a§)
+	function onDirection(var2)
 	{
 		if(this.api.datacenter.Game.isFight)
 		{

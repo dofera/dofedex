@@ -58,7 +58,7 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 		this._lblPercentXP.text = this.api.lang.getText("MOUNT_PERCENT_XP");
 		this._lblInventory.text = this.api.lang.getText("MOUNT_INVENTORY_2");
 	}
-	function editName(§\x1a\x16§)
+	function editName(var2)
 	{
 		this._tiName._visible = var2;
 		this._btnNameValid._visible = var2;
@@ -66,12 +66,13 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 		this._lblNameValue._visible = !var2;
 		this._btnName._visible = !var2;
 	}
-	function mountXPPercentChanged(§\x1e\x19\x18§)
+	function mountXPPercentChanged(var2)
 	{
 		this._lblPercentXPValue.text = this.api.datacenter.Player.mountXPPercent + "%";
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
+		loop0:
 		switch(var2.target)
 		{
 			case this._btnNameValid:
@@ -92,20 +93,25 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 				{
 					case this._btnClose:
 						this.callClose();
-						break;
+						break loop0;
 					case this._btnRide:
 						this.api.network.Mount.ride();
-						break;
+						break loop0;
 					case this._btnInventory:
 						this.api.network.Exchange.request(15);
-						break;
-					case this._btnAction:
+						break loop0;
+					default:
+						if(var0 !== this._btnAction)
+						{
+							break loop0;
+						}
 						var var4 = this.api.ui.createPopupMenu();
 						var var5 = this.api.datacenter.Player.mount;
 						var4.addStaticItem(var5.name);
 						var4.addItem(this.api.lang.getText("MOUNT_CASTRATE_TOOLTIP"),this,this.castrateMount);
 						var4.addItem(this.api.lang.getText("MOUNT_KILL_TOOLTIP"),this,this.killMount);
 						var4.show(_root._xmouse,_root._ymouse);
+						break loop0;
 				}
 		}
 	}
@@ -117,14 +123,14 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_KILL_YOUR_MOUNT"),"CAUTION_YESNO",{name:"KillMount",listener:this});
 	}
-	function nameChanged(§\x1e\x19\x18§)
+	function nameChanged(var2)
 	{
 		var var3 = this.api.datacenter.Player.mount;
 		this._lblNameValue.text = var3.name;
 		this._tiName.text = var3.name;
 		this.editName(false);
 	}
-	function mountChanged(§\x1e\x19\x18§)
+	function mountChanged(var2)
 	{
 		var var3 = this.api.datacenter.Player.mount;
 		if(var3 != undefined)
@@ -139,7 +145,7 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 			this.callClose();
 		}
 	}
-	function validate(§\x1e\x19\x18§)
+	function validate(var2)
 	{
 		var var3 = var2.value;
 		if(_global.isNaN(var3))
@@ -156,7 +162,7 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		this.api.network.Mount.setXP(var3);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -180,11 +186,11 @@ class dofus.graphics.gapi.ui.Mount extends dofus.graphics.gapi.core.DofusAdvance
 				}
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		switch(var2.target._name)
 		{

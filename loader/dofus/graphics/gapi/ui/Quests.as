@@ -5,11 +5,11 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 	{
 		super();
 	}
-	function setPendingCount(§\x07\b§)
+	function setPendingCount(nCount)
 	{
-		this._lblQuestCount.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("PENDING_QUEST",[var2]),"m",var2 < 2);
+		this._lblQuestCount.text = ank.utils.PatternDecoder.combine(this.api.lang.getText("PENDING_QUEST",[nCount]),"m",nCount < 2);
 	}
-	function setStep(§\x1e\x17\x1b§)
+	function setStep(var2)
 	{
 		this.showStepViewer(true);
 		this._oCurrentStep = var2;
@@ -66,11 +66,11 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 	{
 		if(this.api.datacenter.Temporary.QuestBook == undefined)
 		{
-			this.api.datacenter.Temporary.QuestBook = new dofus.datacenter.();
+			this.api.datacenter.Temporary.QuestBook = new dofus.datacenter.();
 		}
 		this.api.network.Quests.getList();
 	}
-	function showStepViewer(§\x15\x13§)
+	function showStepViewer(var2)
 	{
 		if(var2)
 		{
@@ -95,7 +95,7 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 				this.attachMovie("QuestStepListViewer","_mcTab",this.getNextHighestDepth(),{_x:this._mcTabPlacer._x,_y:this._mcTabPlacer._y,steps:this._oCurrentStep.allSteps});
 		}
 	}
-	function setCurrentTab(§\x1e\x10\x04§)
+	function setCurrentTab(var2)
 	{
 		var var3 = this["_btnTab" + this._sCurrentTab];
 		var var4 = this["_btnTab" + var2];
@@ -106,7 +106,7 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 		this._sCurrentTab = var2;
 		this.updateCurrentTabInformations();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -131,7 +131,7 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 				}
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		var var3 = var2.row.item;
 		if(var3.isFinished)
@@ -153,11 +153,10 @@ class dofus.graphics.gapi.ui.Quests extends dofus.graphics.gapi.core.DofusAdvanc
 			this.api.datacenter.Basics.quests_lastID = var3.id;
 		}
 	}
-	function modelChanged(§\x1e\x19\x18§)
+	function modelChanged(var2)
 	{
 		var var3 = this.api.datacenter.Temporary.QuestBook.quests;
-		var var4 = new ank.utils.
-();
+		var var4 = new ank.utils.();
 		if(this._btnFinished.selected)
 		{
 			var4 = var3;

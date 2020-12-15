@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.BookPageTitle extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__page(§\x1e\x18\x16§)
+	function __set__page(var2)
 	{
 		this._oPage = var2;
 		if(this.initialized)

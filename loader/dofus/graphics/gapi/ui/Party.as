@@ -15,7 +15,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		return this._sFollowID;
 	}
-	function moveUI(§\x06\r§)
+	function moveUI(var2)
 	{
 		this._btnOpenClose._y = this._btnOpenClose._y + var2;
 		this._btnBlockJoinerExceptParty._y = this._btnBlockJoinerExceptParty._y + var2;
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 		this._piMember6._y = this._piMember6._y + var2;
 		this._piMember7._y = this._piMember7._y + var2;
 	}
-	function addMember(§\x1e\x19\x03§, §\x16\r§)
+	function addMember(var2, var3)
 	{
 		this._aMembers.push(var2);
 		if(var3)
@@ -37,7 +37,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 			this.updateData();
 		}
 	}
-	function getMember(§\x1e\x10\x10§)
+	function getMember(var2)
 	{
 		var var3 = this._aMembers.findFirstItem("id",var2);
 		if(var3.index != -1)
@@ -46,7 +46,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		return null;
 	}
-	function getMemberById(§\x03\x03§)
+	function getMemberById(var2)
 	{
 		var var3 = 0;
 		while(var3 < dofus.Constants.MEMBERS_COUNT_IN_PARTY)
@@ -59,7 +59,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 		}
 		return null;
 	}
-	function removeMember(§\x1e\x10\x10§, §\x16\r§)
+	function removeMember(var2, var3)
 	{
 		var var4 = this._aMembers.findFirstItem("id",var2);
 		if(this._sFollowID == var2)
@@ -80,7 +80,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		this.addToQueue({object:this,method:this.updateData});
 	}
-	function setLeader(§\x1e\x11\x01§)
+	function setLeader(var2)
 	{
 		this._sLeaderID = var2;
 		this.updateData();
@@ -89,7 +89,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 			this.api.kernel.GameManager.updateCompass(this.api.datacenter.Basics.banner_targetCoords[0],this.api.datacenter.Basics.banner_targetCoords[0]);
 		}
 	}
-	function setFollow(§\x1e\x12\x12§)
+	function setFollow(var2)
 	{
 		this._sFollowID = var2;
 		this.updateData();
@@ -97,8 +97,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 	function init()
 	{
 		super.init(false,dofus.graphics.gapi.ui.Party.CLASS_NAME);
-		this._aMembers = new ank.utils.
-();
+		this._aMembers = new ank.utils.();
 	}
 	function destroy()
 	{
@@ -127,7 +126,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 	{
 		this._btnBlockJoinerExceptParty.selected = this.api.kernel.OptionsManager.getOption("FightGroupAutoLock");
 	}
-	function updateData(§\x1e\x19\x02§)
+	function updateData(var2)
 	{
 		var var3 = 0;
 		this._nLvlTotal = 0;
@@ -183,7 +182,6 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 				}
 			}
 		}
-		var ref = this;
 		this._mcInfo.onRollOver = function()
 		{
 			ref.over({target:this});
@@ -193,7 +191,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 			ref.out({target:this});
 		};
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target) !== this._btnBlockJoinerExceptParty)
 		{
@@ -213,7 +211,7 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 			this.api.kernel.OptionsManager.setOption("FightGroupAutoLock",var3);
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -223,16 +221,11 @@ class dofus.graphics.gapi.ui.Party extends dofus.graphics.gapi.core.DofusAdvance
 			case this._mcInfo:
 				this.gapi.showTooltip("<b>" + this.api.lang.getText("INFORMATIONS") + "</b>\n" + this.api.lang.getText("TOTAL_LEVEL") + " : " + this._nLvlTotal + "\n" + this.api.lang.getText("TOTAL_DISCERNMENT") + " : " + this._nProspectionTotal,var2.target,20);
 				break;
-			default:
-				if(var0 !== this._btnBlockJoinerExceptParty)
-				{
-					break;
-				}
+			case this._btnBlockJoinerExceptParty:
 				this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_BLOCKJOINEREXCEPTPARTY"),var2.target,20);
-				break;
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}

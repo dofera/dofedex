@@ -5,9 +5,9 @@ class dofus.graphics.gapi.ui.Waypoints extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__data(§\x10\x15§)
+	function __set__data(var2)
 	{
-		this.addToQueue({object:this,method:function(§\x11\x17§)
+		this.addToQueue({object:this,method:function(var2)
 		{
 			this._eaData = var2;
 			if(this.initialized)
@@ -56,7 +56,7 @@ class dofus.graphics.gapi.ui.Waypoints extends dofus.graphics.gapi.core.DofusAdv
 			this._lstWaypoints.dataProvider = this._eaData;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -65,7 +65,7 @@ class dofus.graphics.gapi.ui.Waypoints extends dofus.graphics.gapi.core.DofusAdv
 				this.callClose();
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		var var3 = var2.row.item;
 		if(var3.isCurrent)
@@ -82,7 +82,7 @@ class dofus.graphics.gapi.ui.Waypoints extends dofus.graphics.gapi.core.DofusAdv
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("NOT_ENOUGH_RICH"),"ERROR_BOX");
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this.api.network.Waypoints.use(var2.target.params.waypointID);
 	}

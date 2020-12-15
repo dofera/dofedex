@@ -11,13 +11,13 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__label(§\x1e\x11\x0b§)
+	function __set__label(var2)
 	{
 		this._sLabel = var2;
 		this.displayLabel();
 		return this.__get__label();
 	}
-	function __set__selected(§\x15\x19§)
+	function __set__selected(var2)
 	{
 		if(this._bSelected != var2)
 		{
@@ -37,7 +37,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelected;
 	}
-	function __set__toggle(§\x14\x13§)
+	function __set__toggle(var2)
 	{
 		this._bToggle = var2;
 		return this.__get__toggle();
@@ -46,7 +46,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bToggle;
 	}
-	function __set__radio(§\x16\x12§)
+	function __set__radio(var2)
 	{
 		this._bRadio = var2;
 		return this.__get__radio();
@@ -55,7 +55,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bRadio;
 	}
-	function __set__icon(§\x1e\x11\x1b§)
+	function __set__icon(var2)
 	{
 		this._sIcon = var2;
 		if(this.initialized)
@@ -72,7 +72,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._mcIcon;
 	}
-	function __set__backgroundUp(§\x1e\x14\x18§)
+	function __set__backgroundUp(var2)
 	{
 		this._sBackgroundUp = var2;
 		if(this.initialized)
@@ -85,7 +85,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackgroundUp;
 	}
-	function __set__backgroundDown(§\x1e\x14\x19§)
+	function __set__backgroundDown(var2)
 	{
 		this._sBackgroundDown = var2;
 		if(this.initialized)
@@ -98,7 +98,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackgroundDown;
 	}
-	function setPreferedSize(§\x04\x05§)
+	function setPreferedSize(var2)
 	{
 		if(this._sLabel != "")
 		{
@@ -189,7 +189,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 		this._mcIcon._x = (this.__width - this._mcIcon._width) / 2 - var2.xMin;
 		this._mcIcon._y = (this.__height - this._mcIcon._height) / 2 - var2.yMin;
 	}
-	function setLabelStyle(§\x16\x18§)
+	function setLabelStyle(var2)
 	{
 		if(this._bSelected)
 		{
@@ -226,7 +226,7 @@ class ank.gapi.controls.Button extends ank.gapi.core.UIBasicComponent
 			this._lblLabel._y = (this.__height - this._lblLabel.textHeight) / 2 - 4;
 		}
 	}
-	function change(§\x1e\x19\x18§)
+	function change(var2)
 	{
 		this.placeLabel();
 	}

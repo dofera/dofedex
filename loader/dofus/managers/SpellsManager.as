@@ -1,16 +1,16 @@
 class dofus.managers.SpellsManager
 {
-	function SpellsManager(§\x11\x17§)
+	function SpellsManager(var2)
 	{
 		this.initialize(var2);
 	}
-	function initialize(§\x11\x17§)
+	function initialize(var2)
 	{
 		this._localPlayerData = var2;
 		this.api = var2.api;
 		this.clear();
 		this._oSpellsModificators = new Object();
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 	}
 	function clear()
 	{
@@ -20,7 +20,7 @@ class dofus.managers.SpellsManager
 		this._oSpellsCountByPlayer_Counter = new Object();
 		this._aSpellsDelay = new Array();
 	}
-	function addLaunchedSpell(§\x1e\x19\t§)
+	function addLaunchedSpell(var2)
 	{
 		var var3 = var2.spell;
 		var var4 = var3.launchCountByTurn;
@@ -77,7 +77,7 @@ class dofus.managers.SpellsManager
 		}
 		this.dispatchEvent({type:"nextTurn"});
 	}
-	function checkCanLaunchSpell(§\x1e\x0f\b§, §\x1e\x1d\x0b§)
+	function checkCanLaunchSpell(var2, var3)
 	{
 		var var4 = this.checkCanLaunchSpellReturnObject(var2,var3);
 		if(var4.can == false)
@@ -87,7 +87,7 @@ class dofus.managers.SpellsManager
 		}
 		return true;
 	}
-	function checkCanLaunchSpellReturnObject(§\x1e\x1d\r§, §\x1e\x1d\x0b§)
+	function checkCanLaunchSpellReturnObject(var2, var3)
 	{
 		if(!this.api.datacenter.Game.isRunning || this.api.datacenter.Game.isSpectator)
 		{
@@ -190,7 +190,7 @@ class dofus.managers.SpellsManager
 		}
 		return {can:true};
 	}
-	function checkCanLaunchSpellOnCell(mapHandler, §\x1e\x18\x04§, §\x13\t§, §\x1e\x15\x16§)
+	function checkCanLaunchSpellOnCell(mapHandler, §\x1e\x17\x17§, §\x13\x04§, §\x1e\x15\x0b§)
 	{
 		var var6 = Number(this._localPlayerData.data.cellNum);
 		var var7 = Number(var4.mc.num);

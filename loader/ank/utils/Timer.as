@@ -2,12 +2,12 @@ class ank.utils.Timer extends Object
 {
 	static var _nTimerIndex = 0;
 	static var _oIDs = new Object();
-	static var _tTimer = new ank.utils.();
+	static var _tTimer = new ank.utils.();
 	function Timer()
 	{
 		super();
 	}
-	static function setTimer(§\n\x01§, §\x1e\x11\x04§, §\n\x13§, §\x0e\x1a§, §\x04\x14§, §\x1e\x02§, §\x16\n§)
+	static function setTimer(var2, var3, var4, var5, var6, var7, var8)
 	{
 		ank.utils.Timer.garbageCollector();
 		var var9 = ank.utils.Timer.getNextTimerIndex();
@@ -20,7 +20,7 @@ class ank.utils.Timer extends Object
 		}
 		ank.utils.Timer._oIDs[var3][var9] = new Array(var2,var10,var3);
 	}
-	static function clear(§\x1e\x11\x04§)
+	static function clear(var2)
 	{
 		if(var2 != undefined)
 		{
@@ -47,7 +47,7 @@ class ank.utils.Timer extends Object
 	{
 		ank.utils.Timer.garbageCollector();
 	}
-	static function removeTimer(§\n\x01§, §\x1e\x11\x04§, §\x1e\x1c\t§)
+	static function removeTimer(var2, var3, var4)
 	{
 		if(var4 == undefined)
 		{
@@ -75,12 +75,10 @@ class ank.utils.Timer extends Object
 	}
 	static function garbageCollector()
 	{
-		for(var k in ank.utils.Timer._oIDs)
+		for(var var2 in ank.utils.Timer._oIDs)
 		{
-			var var2 = ank.utils.Timer._oIDs[k];
-			for(var kk in var2)
+			for(var var3 in var2)
 			{
-				var var3 = var2[kk];
 				if(var3[0] == undefined || (typeof var3[0] == "movieclip" && var3[0]._name == undefined || var3[0].__ANKTIMERID__ != var3[1]))
 				{
 					_global.clearInterval(var3[1]);
@@ -92,12 +90,10 @@ class ank.utils.Timer extends Object
 	static function getTimersCount()
 	{
 		var var2 = 0;
-		for(var k in ank.utils.Timer._oIDs)
+		for(var var3 in ank.utils.Timer._oIDs)
 		{
-			var var3 = ank.utils.Timer._oIDs[k];
-			for(var kk in var3)
+			for(var var2 in var3)
 			{
-				var2 = var2 + 1;
 			}
 		}
 		return var2;
@@ -106,7 +102,7 @@ class ank.utils.Timer extends Object
 	{
 		return ank.utils.Timer._nTimerIndex++;
 	}
-	function onTimer(§\x1e\x1c\t§, §\n\x01§, §\x1e\x11\x04§, §\n\x13§, §\x0e\x1a§, §\x1e\x02§)
+	function onTimer(var2, var3, var4, var5, var6, var7)
 	{
 		if(var3 == undefined)
 		{

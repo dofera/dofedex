@@ -13,7 +13,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return Number(this.getValueFromSOXtra("VERSION"));
 	}
-	function getText(§\x1e\x11\x10§, §\x1e\x02§)
+	function getText(var2, var3)
 	{
 		if(var3 == undefined)
 		{
@@ -33,15 +33,15 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		{
 			return "!" + var2 + "!";
 		}
-		return new ank.utils.(var7).replace(var4,var5);
+		return new ank.utils.(var7).replace(var4,var5);
 	}
-	function getConfigText(§\x1e\x11\x10§)
+	function getConfigText(var2)
 	{
 		var var3 = this.getValueFromSOLang("C")[var2];
 		if(typeof var3 == "string")
 		{
 			var var4 = var3;
-			var var5 = new ank.utils.(var4);
+			var var5 = new ank.utils.(var4);
 			return var5.replace(["%CMNT%","%CMNTT%"],[this.api.datacenter.Basics.aks_community_id,this.api.datacenter.Basics.aks_detected_country.toLowerCase()]);
 		}
 		return var3;
@@ -50,7 +50,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("MA").m;
 	}
-	function getMapMaxChallenge(§\x03\x18§)
+	function getMapMaxChallenge(var2)
 	{
 		var var3 = this.getValueFromSOXtra("MA").m[var2].c;
 		if(var3 == undefined || _global.isNaN(var3))
@@ -59,7 +59,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function getMapMaxTeam(§\x03\x18§)
+	function getMapMaxTeam(var2)
 	{
 		var var3 = this.getValueFromSOXtra("MA").m[var2].t;
 		if(var3 == undefined || _global.isNaN(var3))
@@ -68,7 +68,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function getMapText(§\x1e\x11\x10§)
+	function getMapText(var2)
 	{
 		return this.getValueFromSOXtra("MA").m[var2];
 	}
@@ -76,11 +76,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("MA").a;
 	}
-	function getMapSuperAreaText(§\x1e\x11\x10§)
+	function getMapSuperAreaText(var2)
 	{
 		return this.getValueFromSOXtra("MA").sua[var2];
 	}
-	function getMapAreaText(§\x1e\x11\x10§)
+	function getMapAreaText(var2)
 	{
 		return this.getValueFromSOXtra("MA").a[var2];
 	}
@@ -88,26 +88,26 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("MA").sa;
 	}
-	function getMapSubAreaText(§\x1e\x11\x10§)
+	function getMapSubAreaText(var2)
 	{
 		return this.getValueFromSOXtra("MA").sa[var2];
 	}
-	function getMapAreaInfos(§\x1e\x1d\x04§)
+	function getMapAreaInfos(var2)
 	{
 		var var3 = this.getValueFromSOXtra("MA").sa[var2];
 		var var4 = this.getValueFromSOXtra("MA").a[var3.a];
 		var var5 = this.getValueFromSOXtra("MA").a[var4.sua];
 		return {superareaID:var4.sua,superarea:var5,areaID:var3.a,area:var4,subArea:var3};
 	}
-	function getItemSetText(§\x04\n§)
+	function getItemSetText(var2)
 	{
 		return this.getValueFromSOXtra("IS")[var2];
 	}
-	function getItemStats(§\x04\n§)
+	function getItemStats(var2)
 	{
 		return this.getValueFromSOXtra("ISTA")[var2];
 	}
-	function getItemUnicText(§\x04\n§)
+	function getItemUnicText(var2)
 	{
 		return this.getValueFromSOXtra("I").u[var2];
 	}
@@ -119,11 +119,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("I").us;
 	}
-	function getItemTypeText(§\x1e\x1c\x02§)
+	function getItemTypeText(var2)
 	{
 		return this.getValueFromSOXtra("I").t[var2];
 	}
-	function getItemSuperTypeText(§\x1e\x1c\x1c§)
+	function getItemSuperTypeText(var2)
 	{
 		return this.getValueFromSOXtra("I").st[var2];
 	}
@@ -131,27 +131,27 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("I").t;
 	}
-	function getSlotsFromSuperType(§\x1e\x1c\x1c§)
+	function getSlotsFromSuperType(var2)
 	{
 		return this.getValueFromSOXtra("I").ss[var2];
 	}
-	function getInteractiveObjectDataByGfxText(§\x04\n§)
+	function getInteractiveObjectDataByGfxText(var2)
 	{
 		return this.getInteractiveObjectDataText(this.getValueFromSOXtra("IO").g[var2]);
 	}
-	function getInteractiveObjectDataText(§\x04\n§)
+	function getInteractiveObjectDataText(var2)
 	{
 		return this.getValueFromSOXtra("IO").d[var2];
 	}
-	function getHouseText(§\x05\x02§)
+	function getHouseText(var2)
 	{
 		return this.getValueFromSOXtra("H").h[var2];
 	}
-	function getHousesMapText(§\x03\x18§)
+	function getHousesMapText(var2)
 	{
 		return this.getValueFromSOXtra("H").m[var2];
 	}
-	function getHousesDoorText(§\x03\x18§, §\b\x02§)
+	function getHousesDoorText(var2, var3)
 	{
 		return this.getValueFromSOXtra("H").d[var2]["c" + var3];
 	}
@@ -159,11 +159,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("H").ids;
 	}
-	function getDungeonText(§\x05\x02§)
+	function getDungeonText(var2)
 	{
 		return this.getValueFromSOXtra("DU")[var2];
 	}
-	function getSpellText(§\x1e\x1d\r§)
+	function getSpellText(var2)
 	{
 		return this.getValueFromSOXtra("S")[var2];
 	}
@@ -171,7 +171,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("S");
 	}
-	function getEffectText(§\x06\x07§)
+	function getEffectText(var2)
 	{
 		return this.getValueFromSOXtra("E")[var2];
 	}
@@ -187,11 +187,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("J");
 	}
-	function getJobText(§\x04\x0f§)
+	function getJobText(var2)
 	{
 		return this.getAllJobsText()[var2];
 	}
-	function getCraftText(§\x05\x02§)
+	function getCraftText(var2)
 	{
 		return this.getValueFromSOXtra("CR")[var2];
 	}
@@ -199,19 +199,19 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("CR");
 	}
-	function getSkillText(§\x05\x02§)
+	function getSkillText(var2)
 	{
 		return this.getValueFromSOXtra("SK")[var2];
 	}
-	function getSkillForgemagus(§\x05\x02§)
+	function getSkillForgemagus(var2)
 	{
 		return Number(this.getValueFromSOXtra("SK")[var2].f);
 	}
-	function getDialogQuestionText(§\x01\b§)
+	function getDialogQuestionText(var2)
 	{
 		return this.getValueFromSOXtra("D").q[var2];
 	}
-	function getDialogResponseText(§\t\x02§)
+	function getDialogResponseText(var2)
 	{
 		return this.getValueFromSOXtra("D").a[var2];
 	}
@@ -219,15 +219,15 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("N").d;
 	}
-	function getNonPlayableCharactersText(§\x02\x13§)
+	function getNonPlayableCharactersText(var2)
 	{
 		return this.getNonPlayableCharactersTexts()[var2];
 	}
-	function getNonPlayableCharactersActionText(§\t\x0f§)
+	function getNonPlayableCharactersActionText(var2)
 	{
 		return this.getValueFromSOXtra("N").a[var2];
 	}
-	function getMonstersText(§\x02\x19§)
+	function getMonstersText(var2)
 	{
 		return this.getValueFromSOXtra("M")[var2];
 	}
@@ -235,7 +235,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("M");
 	}
-	function getMonstersRaceText(§\x01\x07§)
+	function getMonstersRaceText(var2)
 	{
 		return this.getValueFromSOXtra("MR")[var2];
 	}
@@ -243,7 +243,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("MR");
 	}
-	function getMonstersSuperRaceText(§\x1e\x1d\x01§)
+	function getMonstersSuperRaceText(var2)
 	{
 		return this.getValueFromSOXtra("MSR")[var2];
 	}
@@ -259,15 +259,15 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("G");
 	}
-	function getClassText(§\x07\x0f§)
+	function getClassText(var2)
 	{
 		return this.getAllClassText()[var2];
 	}
-	function getEmoteText(§\x06\x05§)
+	function getEmoteText(var2)
 	{
 		return this.getValueFromSOXtra("EM")[var2];
 	}
-	function getEmoteID(§\x1e\x13\x07§)
+	function getEmoteID(var2)
 	{
 		var var3 = this.getValueFromSOXtra("EM");
 		for(var k in var3)
@@ -279,33 +279,33 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		}
 		return null;
 	}
-	function getGuildBoosts(§\x1e\x14\f§)
+	function getGuildBoosts(var2)
 	{
 		return this.getValueFromSOXtra("GU").b[var2];
 	}
-	function getGuildBoostsMax(§\x1e\x14\f§)
+	function getGuildBoostsMax(var2)
 	{
 		return this.getValueFromSOXtra("GU").b[var2 + "m"];
 	}
-	function getNameText(§\x05\x02§)
+	function getNameText(var2)
 	{
 		return this.getValueFromSOXtra("NF").n[var2];
 	}
-	function getFirstnameText(§\x05\x02§)
+	function getFirstnameText(var2)
 	{
 		return this.getValueFromSOXtra("NF").f[var2];
 	}
-	function getFullNameText(§\x1e\x12§)
+	function getFullNameText(var2)
 	{
 		var2[0] = _global.parseInt(var2[0],36);
 		var2[1] = _global.parseInt(var2[1],36);
 		return this.getFirstnameText(var2[0]) + " " + this.getNameText(var2[1]);
 	}
-	function getRankInfos(§\x05\x02§)
+	function getRankInfos(var2)
 	{
 		return this.getValueFromSOXtra("R")[var2];
 	}
-	function getRanks(§\x05\x02§)
+	function getRanks(var2)
 	{
 		return this.getValueFromSOXtra("R");
 	}
@@ -313,15 +313,15 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("A").a;
 	}
-	function getAlignment(§\x05\x02§)
+	function getAlignment(var2)
 	{
 		return this.getValueFromSOXtra("A").a[var2];
 	}
-	function getAlignmentCanJoin(§\x04\x1d§, §\x04\x1c§)
+	function getAlignmentCanJoin(var2, var3)
 	{
 		return this.getValueFromSOXtra("A").jo[var2][var3];
 	}
-	function getAlignmentCanAttack(§\x04\x1d§, §\x04\x1c§)
+	function getAlignmentCanAttack(var2, var3)
 	{
 		return this.getValueFromSOXtra("A").at[var2][var3];
 	}
@@ -329,19 +329,19 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("A").s;
 	}
-	function getAlignmentSpecialization(§\x05\x02§)
+	function getAlignmentSpecialization(var2)
 	{
 		return this.getValueFromSOXtra("A").s[var2];
 	}
-	function getAlignmentOrder(§\x05\x02§)
+	function getAlignmentOrder(var2)
 	{
 		return this.getValueFromSOXtra("A").o[var2];
 	}
-	function getAlignmentFeat(§\x05\x02§)
+	function getAlignmentFeat(var2)
 	{
 		return this.getValueFromSOXtra("A").f[var2];
 	}
-	function getAlignmentFeatEffect(§\x05\x02§)
+	function getAlignmentFeatEffect(var2)
 	{
 		return this.getValueFromSOXtra("A").fe[var2];
 	}
@@ -349,7 +349,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("A").b;
 	}
-	function getAlignmentCanViewPvpGain(§\x04\x1d§, §\x04\x1c§)
+	function getAlignmentCanViewPvpGain(var2, var3)
 	{
 		return this.getValueFromSOXtra("A").g[var2][var3];
 	}
@@ -357,7 +357,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("TI");
 	}
-	function getTip(§\x05\x02§)
+	function getTip(var2)
 	{
 		return this.getValueFromSOXtra("TI")[var2];
 	}
@@ -373,11 +373,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("SST");
 	}
-	function getKeyboardShortcutsKeys(§\x1e\x1d\x1d§, §\x1e\x0e\x03§)
+	function getKeyboardShortcutsKeys(var2, var3)
 	{
 		return this.getValueFromSOXtra("SSK")[String(var2) + "|" + var3];
 	}
-	function getControlKeyString(§\x07\x04§)
+	function getControlKeyString(var2)
 	{
 		switch(var2)
 		{
@@ -391,7 +391,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 				return "";
 		}
 	}
-	function getKeyStringFromKeyCode(§\x04\t§)
+	function getKeyStringFromKeyCode(var2)
 	{
 		switch(var2)
 		{
@@ -401,11 +401,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 				return this.getText("KEY_F2");
 			case 114:
 				return this.getText("KEY_F3");
-			case 115:
-				return this.getText("KEY_F4");
 			default:
 				switch(null)
 				{
+					case 115:
+						return this.getText("KEY_F4");
 					case 116:
 						return this.getText("KEY_F5");
 					case 117:
@@ -425,58 +425,60 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 								return this.getText("KEY_F11");
 							case 123:
 								return this.getText("KEY_F12");
-							case 145:
-								return this.getText("KEY_SCROLL_LOCK");
 							default:
 								switch(null)
 								{
+									case 145:
+										return this.getText("KEY_SCROLL_LOCK");
 									case 19:
 										return this.getText("KEY_PAUSE");
 									case 45:
 										return this.getText("KEY_INSERT");
 									case 36:
 										return this.getText("KEY_HOME");
-									case 33:
-										return this.getText("KEY_PAGE_UP");
-									case 34:
-										return this.getText("KEY_PAGE_DOWN");
 									default:
 										switch(null)
 										{
+											case 33:
+												return this.getText("KEY_PAGE_UP");
+											case 34:
+												return this.getText("KEY_PAGE_DOWN");
 											case 35:
 												return this.getText("KEY_END");
 											case 37:
 												return this.getText("KEY_LEFT");
 											case 38:
 												return this.getText("KEY_UP");
-											case 39:
-												return this.getText("KEY_RIGHT");
-											case 40:
-												return this.getText("KEY_DOWN");
 											default:
 												switch(null)
 												{
+													case 39:
+														return this.getText("KEY_RIGHT");
+													case 40:
+														return this.getText("KEY_DOWN");
 													case 27:
 														return this.getText("KEY_ESCAPE");
 													case 8:
 														return this.getText("KEY_BACKSPACE");
-													case 20:
-														return this.getText("KEY_CAPS_LOCK");
-													case 13:
-														return this.getText("KEY_ENTER");
-													case 32:
-														return this.getText("KEY_SPACE");
 													default:
 														switch(null)
 														{
+															case 20:
+																return this.getText("KEY_CAPS_LOCK");
+															case 13:
+																return this.getText("KEY_ENTER");
+															case 32:
+																return this.getText("KEY_SPACE");
 															case 46:
 																return this.getText("KEY_DELETE");
 															case 144:
 																return this.getText("KEY_NUM_LOCK");
-															case -1:
-																return this.getText("KEY_UNDEFINED");
 															default:
-																return "(#" + String(var2) + ")";
+																if(var0 !== -1)
+																{
+																	return "(#" + String(var2) + ")";
+																}
+																return this.getText("KEY_UNDEFINED");
 														}
 												}
 										}
@@ -489,15 +491,15 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOLang("CNS");
 	}
-	function getServerInfos(§\x05\x02§)
+	function getServerInfos(var2)
 	{
 		return this.getValueFromSOXtra("SR")[var2];
 	}
-	function getServerPopulation(§\x05\x02§)
+	function getServerPopulation(var2)
 	{
 		return this.getValueFromSOXtra("SRP")[var2];
 	}
-	function getServerPopulationWeight(§\x05\x02§)
+	function getServerPopulationWeight(var2)
 	{
 		return Number(this.getValueFromSOXtra("SRPW")[var2]);
 	}
@@ -505,11 +507,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOLang("COM");
 	}
-	function getServerCommunity(§\x05\x02§)
+	function getServerCommunity(var2)
 	{
 		return this.getValueFromSOXtra("SRC")[var2].n;
 	}
-	function getServerCommunityDisplayed(§\x05\x02§)
+	function getServerCommunityDisplayed(var2)
 	{
 		return this.getValueFromSOXtra("SRC")[var2].d;
 	}
@@ -517,7 +519,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("SRVT");
 	}
-	function getServerSpecificText(§\x1e\x1c\x0e§, §\x1e\x1e\x01§)
+	function getServerSpecificText(var2, var3)
 	{
 		return this.getValueFromSOXtra("SRVC")[var2 + "|" + var3];
 	}
@@ -525,31 +527,31 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("Q").q;
 	}
-	function getQuestText(§\x05\x02§)
+	function getQuestText(var2)
 	{
 		return this.getQuests()[var2];
 	}
-	function getQuestStepText(§\x05\x02§)
+	function getQuestStepText(var2)
 	{
 		return this.getValueFromSOXtra("Q").s[var2];
 	}
-	function getQuestObjectiveText(§\x05\x02§)
+	function getQuestObjectiveText(var2)
 	{
 		return this.getValueFromSOXtra("Q").o[var2];
 	}
-	function getQuestObjectiveTypeText(§\x05\x02§)
+	function getQuestObjectiveTypeText(var2)
 	{
 		return this.getValueFromSOXtra("Q").t[var2];
 	}
-	function getState(§\x05\x02§)
+	function getState(var2)
 	{
 		return this.getValueFromSOXtra("ST")[var2];
 	}
-	function getStateText(§\x05\x02§)
+	function getStateText(var2)
 	{
 		return this.getValueFromSOXtra("ST")[var2].n;
 	}
-	function getGradeHonourPointsBounds(§\x0e\x07§)
+	function getGradeHonourPointsBounds(var2)
 	{
 		var var3 = this.getValueFromSOXtra("PP").hp;
 		return {min:var3[var2 - 1],max:var3[var2]};
@@ -558,15 +560,15 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("PP").maxdp;
 	}
-	function getRankLongName(§\x1e\x1d\x1b§, §\x1e\x1e\x1d§)
+	function getRankLongName(var2, var3)
 	{
 		return this.getValueFromSOXtra("PP").grds[var2][var3].nl;
 	}
-	function getRankShortName(§\x1e\x1d\x1b§, §\x1e\x1e\x1d§)
+	function getRankShortName(var2, var3)
 	{
 		return this.getValueFromSOXtra("PP").grds[var2][var3].nc;
 	}
-	function getHintsByMapID(§\x0b\x12§)
+	function getHintsByMapID(var2)
 	{
 		return this.getHintsBy("m",var2);
 	}
@@ -574,7 +576,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getHintsBy("c",categoryID);
 	}
-	function getHintsBy(§\x1e\x16\x11§, §\x1e\n\x0f§)
+	function getHintsBy(var2, var3)
 	{
 		var var4 = this.getValueFromSOXtra("HI");
 		var var5 = new Array();
@@ -590,7 +592,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		}
 		return var5;
 	}
-	function getHintsCategory(§\x05\x02§)
+	function getHintsCategory(var2)
 	{
 		return this.getValueFromSOXtra("HIC")[var2];
 	}
@@ -598,11 +600,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("HIC");
 	}
-	function getMountText(§\x05\x02§)
+	function getMountText(var2)
 	{
 		return this.getValueFromSOXtra("RI")[var2];
 	}
-	function getMountCapacity(§\x05\x02§)
+	function getMountCapacity(var2)
 	{
 		return this.getValueFromSOXtra("RIA")[var2];
 	}
@@ -610,7 +612,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("KBC");
 	}
-	function getKnownledgeBaseCategory(§\x05\x02§)
+	function getKnownledgeBaseCategory(var2)
 	{
 		return this.getValueFromSOXtra("KBC")[var2];
 	}
@@ -618,7 +620,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("KBA");
 	}
-	function getKnownledgeBaseArticle(§\x05\x02§)
+	function getKnownledgeBaseArticle(var2)
 	{
 		return this.getValueFromSOXtra("KBA")[var2];
 	}
@@ -626,39 +628,39 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("KBD");
 	}
-	function getKnownledgeBaseTip(§\x1e\x1c\x06§)
+	function getKnownledgeBaseTip(var2)
 	{
 		return this.getValueFromSOXtra("KBT")[var2];
 	}
-	function getMusicFromKeyname(§\x1e\x11\x0e§)
+	function getMusicFromKeyname(var2)
 	{
 		return Number(this.getValueFromSOXtra("AUMC")[var2]);
 	}
-	function getEffectFromKeyname(§\x1e\x11\x0e§)
+	function getEffectFromKeyname(var2)
 	{
 		return Number(this.getValueFromSOXtra("AUEC")[var2]);
 	}
-	function getEnvironmentFromKeyname(§\x1e\x11\x0e§)
+	function getEnvironmentFromKeyname(var2)
 	{
 		return Number(this.getValueFromSOXtra("AUAC")[var2]);
 	}
-	function getMusic(§\x02\x15§)
+	function getMusic(var2)
 	{
 		return this.getValueFromSOXtra("AUM")[var2];
 	}
-	function getEffect(§\x06\b§)
+	function getEffect(var2)
 	{
 		return this.getValueFromSOXtra("AUE")[var2];
 	}
-	function getEnvironment(§\x06\x03§)
+	function getEnvironment(var2)
 	{
 		return this.getValueFromSOXtra("AUA")[var2];
 	}
-	function getSubtitle(§\x1e\x1c\x04§, §\x04\x17§)
+	function getSubtitle(var2, var3)
 	{
 		return this.getValueFromSOXtra("SUB")[var2][var3];
 	}
-	function getTutorialText(§\x1e\x1c\x0e§)
+	function getTutorialText(var2)
 	{
 		return this.getValueFromSOXtra("SCR")[var2];
 	}
@@ -674,7 +676,7 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("SIM");
 	}
-	function getSpeakingItemsText(§\x05\x02§)
+	function getSpeakingItemsText(var2)
 	{
 		return this.getValueFromSOXtra("SIM")[var2];
 	}
@@ -682,19 +684,19 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		return this.getValueFromSOXtra("SIT");
 	}
-	function getSpeakingItemsTrigger(§\x05\x02§)
+	function getSpeakingItemsTrigger(var2)
 	{
 		return this.getValueFromSOXtra("SIT")[var2];
 	}
-	function getFightChallenge(§\x05\x02§)
+	function getFightChallenge(var2)
 	{
 		return this.getValueFromSOXtra("FC")[var2];
 	}
-	function getTitle(§\x05\x02§)
+	function getTitle(var2)
 	{
 		return this.getValueFromSOXtra("PT")[var2];
 	}
-	function getLangFileSize(§\x1e\x11\x07§)
+	function getLangFileSize(var2)
 	{
 		var var3 = new String();
 		if(var2.toUpperCase() == "LANG")
@@ -724,9 +726,9 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 		}
 		return var7;
 	}
-	function fetchString(§\x1e\x15\n§)
+	function fetchString(var2)
 	{
-		var var3 = new ank.utils.(var2);
+		var var3 = new ank.utils.(var2);
 		if(this.fetchIn == undefined || (this.fetchOut == undefined || this._nLastServerID != this.api.datacenter.Basics.aks_current_server.id))
 		{
 			this.fetchIn = new Array();
@@ -750,11 +752,11 @@ class dofus.utils.DofusTranslator extends dofus.utils.ApiElement
 	{
 		this._aSOXtraCache = new Array();
 	}
-	function getValueFromSOLang(§\x1e\x11\x10§)
+	function getValueFromSOLang(var2)
 	{
 		return _global[dofus.Constants.GLOBAL_SO_LANG_NAME].data[var2];
 	}
-	function getValueFromSOXtra(§\x1e\x11\x10§)
+	function getValueFromSOXtra(var2)
 	{
 		var var3 = _global[dofus.Constants.XTRA_SHAREDOBJECT_NAME + "_" + var2];
 		if(var3 == undefined)

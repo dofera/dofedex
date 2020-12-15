@@ -3,7 +3,7 @@ class ank.utils.rss.RSSLoader extends XML
 	function RSSLoader()
 	{
 		super();
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 		this.ignoreWhite = true;
 		this.initialize();
 	}
@@ -15,7 +15,7 @@ class ank.utils.rss.RSSLoader extends XML
 	{
 		return this._aChannels;
 	}
-	function load(§\x1e\f\x0b§, §\x1e\x1a\x02§)
+	function load(var2, var3)
 	{
 		super.load(var3);
 		this._oData = var4;
@@ -41,7 +41,7 @@ class ank.utils.rss.RSSLoader extends XML
 		{
 			if(var3.nodeName.toLowerCase() == "channel")
 			{
-				var var4 = new ank.utils.rss.();
+				var var4 = new ank.utils.rss.();
 				if(var4.parse(var3))
 				{
 					this._aChannels.push(var4);
@@ -51,7 +51,7 @@ class ank.utils.rss.RSSLoader extends XML
 		}
 		return true;
 	}
-	function onLoad(§\x14\x1b§)
+	function onLoad(var2)
 	{
 		if(var2)
 		{

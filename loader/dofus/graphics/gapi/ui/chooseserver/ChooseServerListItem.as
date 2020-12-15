@@ -4,12 +4,12 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		var var5 = this._mcList._parent._parent.api;
 		if(var2)
@@ -34,12 +34,12 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 				case 3:
 					var6 = "de";
 					break;
+				case 4:
+					var6 = "es";
+					break;
 				default:
 					switch(null)
 					{
-						case 4:
-							var6 = "es";
-							break loop0;
 						case 5:
 							var6 = "ru";
 							break loop0;
@@ -49,34 +49,36 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 						case 7:
 							var6 = "nl";
 							break loop0;
+						case 8:
+							var6 = "jp";
+							break loop0;
+						case 9:
+							var6 = "it";
+							break loop0;
 						default:
-							switch(null)
+							if(var0 !== 2)
 							{
-								case 8:
-									var6 = "jp";
-									break loop0;
-								case 9:
-									var6 = "it";
-									break loop0;
-								case 2:
-								default:
-									var6 = "us";
 							}
+							var6 = "us";
 					}
 			}
 			this._ldrFlag.contentPath = "Flag_" + var6;
 			this._lblName.text = var4.sortName;
 			this._lblCommunity.text = var4.sortCommunity;
-			switch(var4.state)
+			if((var0 = var4.state) !== dofus.datacenter.Server.SERVER_OFFLINE)
 			{
-				case dofus.datacenter.Server.SERVER_OFFLINE:
-					this._lblOnline.styleName = "RedCenterSmallLabel";
-					break;
-				case dofus.datacenter.Server.SERVER_ONLINE:
-					this._lblOnline.styleName = "GreenCenterSmallLabel";
-					break;
-				default:
+				if(var0 !== dofus.datacenter.Server.SERVER_ONLINE)
+				{
 					this._lblOnline.styleName = "BrownCenterSmallLabel";
+				}
+				else
+				{
+					this._lblOnline.styleName = "GreenCenterSmallLabel";
+				}
+			}
+			else
+			{
+				this._lblOnline.styleName = "RedCenterSmallLabel";
 			}
 			this._lblOnline.text = var4.sortOnline;
 			if((var0 = var4.sortPopulation) !== 0)
@@ -144,7 +146,7 @@ class dofus.graphics.gapi.ui.chooseserver.ChooseServerListItem extends ank.gapi.
 		var var3 = ank.utils.PatternDecoder.combine(var2.lang.getText("A_POSSESS_CHARACTER",[this._oItem.search,this._oItem.friendCharactersCount]),null,this._oItem.friendCharactersCount == 1);
 		var2.ui.showTooltip(var3,this._mcOver,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this._mcList.gapi.api.ui.hideTooltip();
 	}

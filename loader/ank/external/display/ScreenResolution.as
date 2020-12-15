@@ -12,7 +12,7 @@ class ank.external.display.ScreenResolution extends ank.external.ExternalConnect
 		ank.external.ExternalConnector.getInstance().removeEventListener("onScreenResolutionError",this);
 		ank.external.ExternalConnector.getInstance().removeEventListener("onScreenResolutionSuccess",this);
 	}
-	function enable(§\x1e\x1b\x0f§, §\x05\x07§, §\b\x15§)
+	function enable(var2, var3, var4)
 	{
 		ank.external.ExternalConnector.getInstance().pushCall("ScreenResolutionEnable",var2,var3,var4);
 	}
@@ -20,11 +20,11 @@ class ank.external.display.ScreenResolution extends ank.external.ExternalConnect
 	{
 		ank.external.ExternalConnector.getInstance().pushCall("ScreenResolutionDisable");
 	}
-	function onScreenResolutionError(§\x1e\x19\x18§)
+	function onScreenResolutionError(var2)
 	{
 		this.dispatchEvent({type:"onScreenResolutionError"});
 	}
-	function onScreenResolutionSuccess(§\x1e\x19\x18§)
+	function onScreenResolutionSuccess(var2)
 	{
 		this.dispatchEvent({type:"onScreenResolutionSuccess"});
 	}

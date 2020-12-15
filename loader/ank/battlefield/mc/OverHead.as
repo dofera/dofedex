@@ -3,7 +3,7 @@ class ank.battlefield.mc.OverHead extends MovieClip
 	static var TOP_Y = -50;
 	static var BOTTOM_Y = 10;
 	static var MODERATOR_Y = 15;
-	function OverHead(§\n\x1b§, §\x1e\x1a\x1c§, mcBattlefield)
+	function OverHead(§\n\x0e§, §\x1e\x1a\x11§, mcBattlefield)
 	{
 		super();
 		this._mcBattlefield = mcBattlefield;
@@ -37,7 +37,7 @@ class ank.battlefield.mc.OverHead extends MovieClip
 	{
 		this.createEmptyMovieClip("_mcItems",10);
 	}
-	function setPosition(§\x04\x10§, §\x03\x05§)
+	function setPosition(var2, var3)
 	{
 		var var4 = {x:this._parent._parent._x,y:this._parent._parent._y};
 		this._parent._parent.localToGlobal(var4);
@@ -51,8 +51,9 @@ class ank.battlefield.mc.OverHead extends MovieClip
 		{
 			this._mcItems._y = this._mcItems._y + (this.bottom + var2);
 			var var8 = 0;
-			for(var var9 in this._oLayers)
+			for(var k in this._oLayers)
 			{
+				var var9 = this._mcItems["item" + var8];
 				var9.reverseClip();
 				var8 = var8 + 1;
 			}
@@ -83,7 +84,7 @@ class ank.battlefield.mc.OverHead extends MovieClip
 			this._x = this._mcBattlefield.screenWidth * var5 - var11;
 		}
 	}
-	function addItem(§\x1e\x11\x03§, className, §\x1d\x13§, §\x11\r§)
+	function addItem(var2, var3, var4, var5)
 	{
 		var var6 = new Object();
 		var6.id = this._nCurrentItemID;
@@ -97,7 +98,7 @@ class ank.battlefield.mc.OverHead extends MovieClip
 		this._nCurrentItemID++;
 		this.refresh();
 	}
-	function remove(§\x1e\n\f§)
+	function remove(var2)
 	{
 		this.swapDepths(1);
 		this.removeMovieClip();
@@ -108,8 +109,9 @@ class ank.battlefield.mc.OverHead extends MovieClip
 		var var2 = 0;
 		var var3 = 0;
 		var var4 = 0;
-		for(var var5 in this._oLayers)
+		for(var k in this._oLayers)
 		{
+			var var5 = this._oLayers[k];
 			var var6 = this._mcItems.attachClassMovie(var5.className,"item" + var2,var2,var5.args);
 			var3 = var3 - var6.height;
 			var4 = Math.max(var4,var6.width);
@@ -118,12 +120,12 @@ class ank.battlefield.mc.OverHead extends MovieClip
 		}
 		this.setPosition(Math.abs(var3),var4);
 	}
-	function removeLayer(§\f\x05§)
+	function removeLayer(var2)
 	{
 		delete this._oLayers.register2;
 		this.refresh();
 	}
-	function removeItem(§\x04\x13§)
+	function removeItem(var2)
 	{
 		for(var var3 in this._oLayers)
 		{

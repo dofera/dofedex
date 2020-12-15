@@ -7,7 +7,7 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 	{
 		super();
 	}
-	function __set__servers(§\x10\x02§)
+	function __set__servers(var2)
 	{
 		this._eaServers = var2;
 		this._eaServersSave = var2;
@@ -17,7 +17,7 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 		}
 		return this.__get__servers();
 	}
-	function __set__serverID(§\x1e\x1e\x01§)
+	function __set__serverID(var2)
 	{
 		this._nServerID = var2;
 		return this.__get__serverID();
@@ -49,7 +49,7 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 		var ref = this;
 		var var2 = new Object();
-		var2.onSetFocus = function(§\x1e\x19\b§, §\x06\x01§)
+		var2.onSetFocus = function(var2, var3)
 		{
 			if(eval(Selection.getFocus())._parent == ref._tiSearch)
 			{
@@ -87,10 +87,8 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 			this._btnDisplayAllCommunities.selected = true;
 			this._alreadySetShowAll = true;
 		}
-		var var2 = new ank.utils.
-();
-		var var3 = new ank.utils.
-();
+		var var2 = new ank.utils.();
+		var var3 = new ank.utils.();
 		var var4 = new Object();
 		var var5 = 0;
 		while(var5 < this._eaServers.length)
@@ -114,8 +112,7 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 				{
 					if(var4[var9] == undefined)
 					{
-						var4[var9] = new ank.utils.
-();
+						var4[var9] = new ank.utils.();
 					}
 					var4[var9].push(var8);
 				}
@@ -172,10 +169,9 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 		this._nLastSearchTimer = getTimer();
 		this.api.network.Account.searchForFriend(this._tiSearch.text);
 	}
-	function setSearchResult(§\x1d\x14§)
+	function setSearchResult(var2)
 	{
-		this._eaServers = new ank.utils.
-();
+		this._eaServers = new ank.utils.();
 		var var3 = 0;
 		while(var3 < this._eaServersSave.length)
 		{
@@ -215,16 +211,16 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 		this.gapi.getUIComponent("ServerInformations").addEventListener("serverSelected",this);
 		this.gapi.getUIComponent("ServerInformations").addEventListener("canceled",this);
 	}
-	function serverSelected(§\x1e\x19\x18§)
+	function serverSelected(var2)
 	{
 		this.gapi.unloadUIComponent("ServerInformations");
 		this.dispatchEvent({type:"serverSelected",serverID:var2.value});
 	}
-	function canceled(§\x1e\x19\x18§)
+	function canceled(var2)
 	{
 		this.gapi.unloadUIComponent("ServerInformations");
 	}
-	function onShortcut(§\x1e\x0e\x04§)
+	function onShortcut(var2)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && this._tiSearch.focused)
 		{
@@ -233,7 +229,7 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 		}
 		return true;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -250,19 +246,19 @@ class dofus.graphics.gapi.ui.ServerList extends dofus.graphics.gapi.core.DofusAd
 				this.findFriend();
 		}
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 		var2.row.cellRenderer_mc.over();
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 		var2.row.cellRenderer_mc.out();
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		this._nServerID = this._dgServers.selectedItem.id;
 	}
-	function itemdblClick(§\x1e\x19\x18§)
+	function itemdblClick(var2)
 	{
 		this.onServerSelected();
 	}

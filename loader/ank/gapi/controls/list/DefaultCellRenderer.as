@@ -4,10 +4,10 @@ class ank.gapi.controls.list.DefaultCellRenderer extends ank.gapi.core.UIBasicCo
 	{
 		super();
 	}
-	function setState(§\x1e\r\x16§)
+	function setState(var2)
 	{
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{

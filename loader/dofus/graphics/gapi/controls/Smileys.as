@@ -28,8 +28,7 @@ class dofus.graphics.gapi.controls.Smileys extends dofus.graphics.gapi.core.Dofu
 	}
 	function initData()
 	{
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		if(this.api.config.isStreaming)
 		{
 			this._ldrStreaming.contentPath = dofus.Constants.SMILEYS_ICONS_PATH + "all.swf";
@@ -47,8 +46,7 @@ class dofus.graphics.gapi.controls.Smileys extends dofus.graphics.gapi.core.Dofu
 			}
 			this._cgSmileys.dataProvider = var2;
 		}
-		var var5 = new ank.utils.
-();
+		var var5 = new ank.utils.();
 		var var6 = this.api.datacenter.Player.Emotes.getItems();
 		for(var k in var6)
 		{
@@ -110,11 +108,11 @@ class dofus.graphics.gapi.controls.Smileys extends dofus.graphics.gapi.core.Dofu
 			var7 = var7 + 1;
 		}
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		this.attachSmileys();
 	}
-	function selectItem(§\x1e\x19\x18§)
+	function selectItem(var2)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 == undefined)
@@ -130,7 +128,7 @@ class dofus.graphics.gapi.controls.Smileys extends dofus.graphics.gapi.core.Dofu
 				this.dispatchEvent({type:"selectEmote",index:var3.index});
 		}
 	}
-	function overItem(§\x1e\x19\x18§)
+	function overItem(var2)
 	{
 		var var3 = var2.target.contentData;
 		if(var3 != undefined)
@@ -141,7 +139,7 @@ class dofus.graphics.gapi.controls.Smileys extends dofus.graphics.gapi.core.Dofu
 			this.gapi.showTooltip(var5 + var6,var2.target,-20);
 		}
 	}
-	function outItem(§\x1e\x19\x18§)
+	function outItem(var2)
 	{
 		this.gapi.hideTooltip();
 	}

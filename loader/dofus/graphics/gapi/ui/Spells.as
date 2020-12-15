@@ -55,8 +55,7 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 		this._dgSpells.columnsNames = [this.api.lang.getText("NAME_BIG"),this.api.lang.getText("LEVEL")];
 		this._lblBonusTitle.text = this.api.lang.getText("SPELL_BOOST_POINT");
 		this._lblSpellType.text = this.api.lang.getText("SPELL_TYPE");
-		var var2 = new ank.utils.
-();
+		var var2 = new ank.utils.();
 		var2.push({label:this.api.lang.getText("WITHOUT_TYPE_FILTER"),type:-2});
 		var2.push({label:this.api.lang.getText("SPELL_TAB_GUILD"),type:0});
 		var2.push({label:this.api.lang.getText("SPELL_TAB_WATER"),type:1});
@@ -69,8 +68,7 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 	function updateSpells()
 	{
 		var var2 = this.api.datacenter.Player.Spells;
-		var var3 = new ank.utils.
-();
+		var var3 = new ank.utils.();
 		for(var k in var2)
 		{
 			var var4 = var2[k];
@@ -93,7 +91,7 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 					var8 = var3[var9].ID == var7;
 					var9 = var9 + 1;
 				}
-				var var10 = new dofus.datacenter.(var7,1);
+				var var10 = new dofus.datacenter.(var7,1);
 				if(!var8 && (var10.classID == this._nSelectedSpellType || this._nSelectedSpellType == -2))
 				{
 					var3.push(var10);
@@ -104,12 +102,12 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 		var3.sortOn("_minPlayerLevel",Array.NUMERIC);
 		this._dgSpells.dataProvider = var3;
 	}
-	function updateBonus(§\x1e\x1b\x17§)
+	function updateBonus(var2)
 	{
 		this._lblBonus.text = var2 != undefined?String(var2):String(this.api.datacenter.Player.BonusPointsSpell);
 		this.updateSpells();
 	}
-	function hideSpellBoostViewer(§\x19\x0e§, §\x1e\x18\x04§)
+	function hideSpellBoostViewer(var2, var3)
 	{
 		this._sbvSpellBoostViewer._visible = !var2;
 		if(var3 != undefined)
@@ -117,7 +115,7 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 			this._sbvSpellBoostViewer.spell = var3;
 		}
 	}
-	function showDetails(§\x15\x13§)
+	function showDetails(var2)
 	{
 		this._sfivSpellFullInfosViewer.removeMovieClip();
 		if(var2)
@@ -126,12 +124,12 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 			this._sfivSpellFullInfosViewer.addEventListener("close",this);
 		}
 	}
-	function boostSpell(§\x1e\x18\x04§)
+	function boostSpell(var2)
 	{
 		this.api.sounds.events.onSpellsBoostButtonClick();
 		if(this.canBoost(var2) != undefined)
 		{
-			var var3 = new dofus.datacenter.(var2.ID,var2.level + 1);
+			var var3 = new dofus.datacenter.(var2.ID,var2.level + 1);
 			if(this.api.datacenter.Player.Level < var3.minPlayerLevel)
 			{
 				this.api.kernel.showMessage(undefined,this.api.lang.getText("LEVEL_NEED_TO_BOOST",[var3.minPlayerLevel]),"ERROR_BOX");
@@ -144,11 +142,11 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		return false;
 	}
-	function getCostForBoost(§\x1e\x18\x04§)
+	function getCostForBoost(var2)
 	{
 		return var2.level >= var2.maxLevel?-1:dofus.Constants.SPELL_BOOST_BONUS[var2.level];
 	}
-	function canBoost(§\x1e\x18\x04§)
+	function canBoost(var2)
 	{
 		if(var2 != undefined)
 		{
@@ -163,14 +161,14 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 		}
 		return false;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target._name) === "_btnClose")
 		{
 			this.callClose();
 		}
 	}
-	function itemDrag(§\x1e\x19\x18§)
+	function itemDrag(var2)
 	{
 		if(var2.row.item == undefined)
 		{
@@ -183,13 +181,13 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 		this.gapi.removeCursor();
 		this.gapi.setCursor(var2.row.item,undefined,true);
 	}
-	function itemRollOver(§\x1e\x19\x18§)
+	function itemRollOver(var2)
 	{
 	}
-	function itemRollOut(§\x1e\x19\x18§)
+	function itemRollOut(var2)
 	{
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		switch(var2.target)
 		{
@@ -212,15 +210,15 @@ class dofus.graphics.gapi.ui.Spells extends dofus.graphics.gapi.core.DofusAdvanc
 				this.updateSpells();
 		}
 	}
-	function bonusSpellsChanged(§\x1e\x19\x18§)
+	function bonusSpellsChanged(var2)
 	{
 		this.updateBonus(var2.value);
 	}
-	function close(§\x1e\x19\x18§)
+	function close(var2)
 	{
 		this.showDetails(false);
 	}
-	function modelChanged(§\x1e\x19\x18§)
+	function modelChanged(var2)
 	{
 		switch(var2.eventName)
 		{

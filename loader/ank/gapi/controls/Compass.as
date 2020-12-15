@@ -9,7 +9,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__updateOnLoad(§\x14\f§)
+	function __set__updateOnLoad(var2)
 	{
 		this._bUpdateOnLoad = var2;
 		return this.__get__updateOnLoad();
@@ -18,7 +18,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bUpdateOnLoad;
 	}
-	function __set__background(§\x1e\x14\x1a§)
+	function __set__background(var2)
 	{
 		this._sBackground = var2;
 		return this.__get__background();
@@ -27,7 +27,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sBackground;
 	}
-	function __set__arrow(§\x1e\x15\x02§)
+	function __set__arrow(var2)
 	{
 		this._sArrow = var2;
 		return this.__get__arrow();
@@ -36,7 +36,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sArrow;
 	}
-	function __set__noArrow(§\x1e\x10\x01§)
+	function __set__noArrow(var2)
 	{
 		this._sNoArrow = var2;
 		return this.__get__noArrow();
@@ -45,7 +45,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		return this._sNoArrow;
 	}
-	function __set__currentCoords(§\x04§)
+	function __set__currentCoords(var2)
 	{
 		this._aCurrentCoords = var2;
 		if(this.initialized)
@@ -54,7 +54,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 		}
 		return this.__get__currentCoords();
 	}
-	function __set__targetCoords(§\x1d\t§)
+	function __set__targetCoords(var2)
 	{
 		this._aTargetCoords = var2;
 		if(this.initialized)
@@ -67,7 +67,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 	{
 		return this._aTargetCoords;
 	}
-	function __set__allCoords(§\x1e\x1a\x17§)
+	function __set__allCoords(var2)
 	{
 		this._aTargetCoords = var2.targetCoords;
 		this._aCurrentCoords = var2.currentCoords;
@@ -142,7 +142,7 @@ class ank.gapi.controls.Compass extends ank.gapi.core.UIBasicComponent
 			this.smoothRotation(var4,1);
 		}
 	}
-	function smoothRotation(§\x03\x13§, §\x1e\x1d\x0f§)
+	function smoothRotation(var2, var3)
 	{
 		this._mcArrow._ldrArrow.content._rotation = this._mcArrow._ldrArrow.content._rotation + var3;
 		var3 = (- this._mcArrow._ldrArrow.content._rotation) * 0.2 + var3 * 0.7;

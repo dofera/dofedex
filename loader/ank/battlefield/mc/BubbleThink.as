@@ -1,10 +1,10 @@
 class ank.battlefield.mc.BubbleThink extends ank.battlefield.mc.Bubble
 {
-	function BubbleThink(§\x1e\x0b\x15§, §\x1e\n\x04§, §\x1e\t\x18§, §\x0b\x0e§)
+	function BubbleThink(var3, var4, var5, var6)
 	{
 		super(var3,var4,var5,var6);
 	}
-	function drawCircle(§\x0b\r§, §\x1e\n\x04§, §\x1e\t\x18§, §\x1e\x15\x14§, §\x12\x19§)
+	function drawCircle(var2, var3, var4, var5, var6)
 	{
 		var var7 = var3 + Math.sin(360 / 15 * 0 * Math.PI / 180) * var5;
 		var var8 = var4 + Math.cos(360 / 15 * 0 * Math.PI / 180) * var5;
@@ -20,7 +20,7 @@ class ank.battlefield.mc.BubbleThink extends ank.battlefield.mc.Bubble
 		}
 		var2.endFill();
 	}
-	function drawBackground(§\x1e\n\x0b§, §\r\x13§)
+	function drawBackground(var2, var3)
 	{
 		var var4 = ank.battlefield.Constants.BUBBLE_MARGIN * 2;
 		this.createEmptyMovieClip("_bg",10);

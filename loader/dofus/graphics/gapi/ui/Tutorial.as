@@ -19,22 +19,22 @@ class dofus.graphics.gapi.ui.Tutorial extends dofus.graphics.gapi.core.DofusAdva
 		this._btnCancel.addEventListener("over",this);
 		this._btnCancel.addEventListener("out",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target._name) === "_btnCancel")
 		{
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("LEAVE_TUTORIAL"),"CAUTION_YESNO",{name:"Tutorial",listener:this});
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		this.gapi.showTooltip(this.api.lang.getText("CANCEL_TUTORIAL"),var2.target,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this.api.kernel.TutorialManager.cancel();
 	}

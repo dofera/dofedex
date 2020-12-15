@@ -6,9 +6,9 @@ class dofus.graphics.gapi.ui.ServersManagerRetry extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__timer(§\x1e\x1c\n§)
+	function __set__timer(var2)
 	{
-		this.addToQueue({object:this,method:function(§\t\x10§)
+		this.addToQueue({object:this,method:function(var2)
 		{
 			this._nTimer = Number(var2);
 			if(this.initialized)

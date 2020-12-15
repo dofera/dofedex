@@ -6,27 +6,27 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__id(§\x02\x13§)
+	function __set__id(var2)
 	{
 		this._nNpcID = var2;
 		return this.__get__id();
 	}
-	function __set__name(§\x1e\x10\x06§)
+	function __set__name(var2)
 	{
 		this._sName = var2;
 		return this.__get__name();
 	}
-	function __set__gfx(§\x1e\x12\r§)
+	function __set__gfx(var2)
 	{
 		this._sGfx = var2;
 		return this.__get__gfx();
 	}
-	function __set__customArtwork(§\x05\n§)
+	function __set__customArtwork(var2)
 	{
 		this._nCustomArtwork = var2;
 		return this.__get__customArtwork();
 	}
-	function __set__colors(§\f§)
+	function __set__colors(var2)
 	{
 		this._aColors = var2;
 		return this.__get__colors();
@@ -68,7 +68,7 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 	{
 		this.showElements(false);
 	}
-	function showElements(§\x15\x13§)
+	function showElements(var2)
 	{
 		this._ldrArtwork._visible = var2;
 		this._mcPic._visible = var2;
@@ -76,7 +76,7 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 		this._winBackgroundUp._visible = var2;
 		this._qvQuestionViewer._visible = var2;
 	}
-	function setQuestion(§\x1e\x18\x11§)
+	function setQuestion(var2)
 	{
 		this._oQuestion = var2;
 		if(this._qvQuestionViewer == undefined)
@@ -92,7 +92,7 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 		}
 		this.showElements(true);
 	}
-	function applyColor(§\x0b\r§, §\x1e\t\x10§)
+	function applyColor(var2, var3)
 	{
 		var var4 = this._aColors[var3];
 		if(var4 == -1 || var4 == undefined)
@@ -111,7 +111,7 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 	{
 		this.callClose();
 	}
-	function response(§\x1e\x19\x18§)
+	function response(var2)
 	{
 		if(var2.response.id == -1)
 		{
@@ -123,20 +123,20 @@ class dofus.graphics.gapi.ui.NpcDialog extends dofus.graphics.gapi.core.DofusAdv
 			this._bFirstQuestion = false;
 		}
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		var ref = this;
-		this._ldrArtwork.content.stringCourseColor = function(§\x0b\r§, §\x1e\t\x14§)
+		this._ldrArtwork.content.stringCourseColor = function(var2, var3)
 		{
 			ref.applyColor(var2,var3);
 		};
 	}
-	function resize(§\x1e\x19\x18§)
+	function resize(var2)
 	{
 		this._winBackground.setSize(undefined,var2.target.height + (var2.target._y - this._winBackground._y) + 12);
 		this._winBackgroundUp.setSize(undefined,var2.target.height + (var2.target._y - this._winBackground._y) + 10);
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		this._mcPic._visible = true;
 	}

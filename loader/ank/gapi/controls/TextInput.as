@@ -8,7 +8,7 @@ class ank.gapi.controls.TextInput extends ank.gapi.controls.Label
 	{
 		super();
 	}
-	function __set__restrict(§\x1e\x0e\x0f§)
+	function __set__restrict(var2)
 	{
 		this._sRestrict = var2 != "none"?var2:null;
 		if(this._tText != undefined)
@@ -21,7 +21,7 @@ class ank.gapi.controls.TextInput extends ank.gapi.controls.Label
 	{
 		return this._tText.restrict;
 	}
-	function __set__maxChars(§\x03\x12§)
+	function __set__maxChars(var2)
 	{
 		this._nMaxChars = var2 != -1?var2:null;
 		if(this._tText != undefined)
@@ -38,7 +38,7 @@ class ank.gapi.controls.TextInput extends ank.gapi.controls.Label
 	{
 		return eval(Selection.getFocus()) == this._tText;
 	}
-	function __set__tabIndex(§\x1e\x1c\x19§)
+	function __set__tabIndex(var2)
 	{
 		this._tText.tabIndex = var2;
 		return this.__get__tabIndex();
@@ -47,7 +47,7 @@ class ank.gapi.controls.TextInput extends ank.gapi.controls.Label
 	{
 		return this._tText.tabIndex;
 	}
-	function __set__tabEnabled(§\x1a\x11§)
+	function __set__tabEnabled(var2)
 	{
 		this._tText.tabEnabled = var2;
 		return this.__get__tabEnabled();
@@ -56,7 +56,7 @@ class ank.gapi.controls.TextInput extends ank.gapi.controls.Label
 	{
 		return this._tText.tabEnabled;
 	}
-	function __set__password(§\x16\x15§)
+	function __set__password(var2)
 	{
 		this._tText.password = var2;
 		return this.__get__password();

@@ -1,6 +1,6 @@
 class com.ankamagames.types.Point
 {
-	function Point(§\x1e\n\x04§, §\x1e\t\x18§)
+	function Point(var3, var4)
 	{
 		this.x = var2;
 		this.y = var3;

@@ -20,17 +20,17 @@ class dofus.graphics.gapi.ui.AskMainMenu extends ank.gapi.ui.FlyWindow
 		this.setEnabledBtnQuit(System.capabilities.playerType == "StandAlone" || this.api.electron.enabled);
 		this.setEnabledBtnChange(this.api.ui.getUIComponent("Banner") != undefined);
 	}
-	function setEnabledBtnChange(§\x1a\x12§)
+	function setEnabledBtnChange(var2)
 	{
 		var var3 = this._winBackground.content._btnChange;
 		var3.enabled = var2;
 	}
-	function setEnabledBtnQuit(§\x1a\x12§)
+	function setEnabledBtnQuit(var2)
 	{
 		var var3 = this._winBackground.content._btnQuit;
 		var3.enabled = var2;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -40,8 +40,13 @@ class dofus.graphics.gapi.ui.AskMainMenu extends ank.gapi.ui.FlyWindow
 			case "_btnDisconnect":
 				this.api.kernel.disconnect();
 				break;
-			case "_btnQuit":
+			default:
+				if(var0 !== "_btnQuit")
+				{
+					break;
+				}
 				this.api.kernel.quit();
+				break;
 		}
 		this.unloadThis();
 	}

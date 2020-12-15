@@ -6,7 +6,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 	{
 		super();
 	}
-	function __set__spell(§\x1e\x18\x04§)
+	function __set__spell(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -18,7 +18,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 		}
 		if(!var2.isValid)
 		{
-			this._oSpell = new dofus.datacenter.(var2.ID,1);
+			this._oSpell = new dofus.datacenter.(var2.ID,1);
 		}
 		else
 		{
@@ -229,8 +229,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 					var3.type = var0 = 180;
 					if(var0)
 					{
-						var var5 = new ank.utils.
-();
+						var var5 = new ank.utils.();
 						var var6 = this.api.datacenter.Player.data;
 						var5.push(var6.name + " (" + this.api.lang.getText("LEVEL") + " " + this.api.datacenter.Player.Level + ")");
 						var5.push(this.api.lang.getText("LP") + " : " + this.api.datacenter.Player.LP);
@@ -241,8 +240,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 					}
 					var4 = var4 + 1;
 				}
-				var var7 = new ank.utils.
-();
+				var var7 = new ank.utils.();
 				if(var3 != undefined)
 				{
 					var var8 = var3.param1;
@@ -257,40 +255,39 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 				this._lstEffects.dataProvider = var7;
 				break;
 			default:
-				switch(null)
+				if(var0 !== "Trap")
 				{
-					case "Glyph":
-					case "Trap":
-						var var12 = 400;
-						if(this._sCurrentTab == "Glyph")
-						{
-							var12 = 401;
-						}
-						var var13 = this._oSpell.effectsNormalHit;
-						var var15 = 0;
-						while(var15 < var13.length)
-						{
-							var var14 = var13[var15];
-							if(var14.type == var12)
-							{
-								break;
-							}
-							var15 = var15 + 1;
-						}
-						var var16 = new ank.utils.
-();
-						if(var14 != undefined)
-						{
-							var var17 = var14.param1;
-							var var18 = var14.param2;
-							var var19 = this.api.kernel.CharactersManager.getSpellObjectFromData(var17 + "~" + var18 + "~");
-							var16 = var19.effectsNormalHit;
-						}
-						this._lstEffects.dataProvider = var16;
+					break;
 				}
+			case "Glyph":
+				var var12 = 400;
+				if(this._sCurrentTab == "Glyph")
+				{
+					var12 = 401;
+				}
+				var var13 = this._oSpell.effectsNormalHit;
+				var var15 = 0;
+				while(var15 < var13.length)
+				{
+					var var14 = var13[var15];
+					if(var14.type == var12)
+					{
+						break;
+					}
+					var15 = var15 + 1;
+				}
+				var var16 = new ank.utils.();
+				if(var14 != undefined)
+				{
+					var var17 = var14.param1;
+					var var18 = var14.param2;
+					var var19 = this.api.kernel.CharactersManager.getSpellObjectFromData(var17 + "~" + var18 + "~");
+					var16 = var19.effectsNormalHit;
+				}
+				this._lstEffects.dataProvider = var16;
 		}
 	}
-	function setCurrentTab(§\x1e\x10\x04§)
+	function setCurrentTab(var2)
 	{
 		var var3 = this["_btnTab" + this._sCurrentTab];
 		var var4 = this["_btnTab" + var2];
@@ -312,7 +309,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 		this._mcCrossFreeCell._visible = true;
 		this._mcCheckFreeCell._visible = false;
 	}
-	function setLevel(§\x04\x01§)
+	function setLevel(var2)
 	{
 		var var3 = this.api.kernel.CharactersManager.getSpellObjectFromData(this._oSpell.ID + "~" + var2);
 		if(var3.isValid)
@@ -324,7 +321,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 			this["_btnLevel" + var2].selected = false;
 		}
 	}
-	function complete(§\x1e\x19\x18§)
+	function complete(var2)
 	{
 		if(!dofus.Constants.DOUBLEFRAMERATE)
 		{
@@ -334,7 +331,7 @@ class dofus.graphics.gapi.controls.SpellFullInfosViewer extends dofus.graphics.g
 		var var4 = this.api.kernel.OptionsManager.getOption("RemasteredSpellIconsPack");
 		var3.gotoAndStop(var4);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target._name)

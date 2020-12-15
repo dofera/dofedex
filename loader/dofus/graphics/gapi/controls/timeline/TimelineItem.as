@@ -13,7 +13,7 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 	{
 		return this._ldrSprite;
 	}
-	function __set__data(§\x1e\x1a\x02§)
+	function __set__data(var2)
 	{
 		this._oData = var2;
 		this.updateHealth();
@@ -27,7 +27,7 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 	{
 		this.addToQueue({object:this,method:this.loadSprite,params:[this._oData.gfxFile]});
 	}
-	function loadSprite(§\x1e\x12\x18§)
+	function loadSprite(var2)
 	{
 		this._ldrSprite.contentPath = var2;
 		this._ldrSprite.addEventListener("initialization",this);
@@ -69,7 +69,7 @@ class dofus.graphics.gapi.controls.timeline.TimelineItem extends dofus.graphics.
 			this.gapi.loadUIComponent("PlayerInfos","PlayerInfos",{data:this._oData},{bForceLoad:var3});
 		}
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.target.content;
 		var3.attachMovie("staticR","anim",10);

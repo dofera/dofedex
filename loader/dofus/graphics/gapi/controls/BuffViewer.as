@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.BuffViewer extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__itemData(§\x1e\x19\r§)
+	function __set__itemData(var2)
 	{
 		this._oItem = var2;
 		this.addToQueue({object:this,method:this.showItemData,params:[var2]});
@@ -18,7 +18,7 @@ class dofus.graphics.gapi.controls.BuffViewer extends dofus.graphics.gapi.core.D
 	function createChildren()
 	{
 	}
-	function showItemData(§\x1e\x19\r§)
+	function showItemData(var2)
 	{
 		if(var2 != undefined)
 		{

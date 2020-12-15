@@ -7,7 +7,7 @@ class ank.gapi.controls.Fps extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__averageOffset(§\b\x1c§)
+	function __set__averageOffset(var2)
 	{
 		this._nAverageOffset = var2;
 		return this.__get__averageOffset();
@@ -43,7 +43,7 @@ class ank.gapi.controls.Fps extends ank.gapi.core.UIBasicComponent
 		this._mcBack._alpha = var2.backalpha;
 		this._lblText.styleName = var2.labelstyle;
 	}
-	function pushValue(§\x1e\x1b\x17§)
+	function pushValue(var2)
 	{
 		this._aValues.push(var2);
 		if(this._aValues.length > this._nAverageOffset)

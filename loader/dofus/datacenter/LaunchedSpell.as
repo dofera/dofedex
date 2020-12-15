@@ -1,10 +1,10 @@
 class dofus.datacenter.LaunchedSpell
 {
-	function LaunchedSpell(§\x1e\x1d\r§, §\x1e\r\x19§)
+	function LaunchedSpell(var3, var4)
 	{
 		this.initialize(var2,var3);
 	}
-	function __set__remainingTurn(§\x1e\x1e\x16§)
+	function __set__remainingTurn(var2)
 	{
 		this._nRemainingTurn = Number(var2);
 		return this.__get__remainingTurn();
@@ -21,7 +21,7 @@ class dofus.datacenter.LaunchedSpell
 	{
 		return this._oSpell;
 	}
-	function initialize(§\x1e\x1d\r§, §\x1e\r\x19§)
+	function initialize(var2, var3)
 	{
 		this._oSpell = _global.API.datacenter.Player.Spells.findFirstItem("ID",var2).item;
 		this._sSpriteOnID = var3;

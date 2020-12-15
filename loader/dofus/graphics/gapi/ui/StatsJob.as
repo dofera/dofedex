@@ -212,7 +212,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 		this._svStats.removeMovieClip();
 		this._btnClosePanel._visible = false;
 	}
-	function showJob(§\x1e\x19\x0b§)
+	function showJob(var2)
 	{
 		this.hideAlignment();
 		this.hideStats();
@@ -264,7 +264,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 		this._avAlignment.removeMovieClip();
 		this._btnClosePanel._visible = false;
 	}
-	function activateBoostButtons(§\x1c\x1d§)
+	function activateBoostButtons(var2)
 	{
 		var var3 = 10;
 		while(var3 < 16)
@@ -273,7 +273,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 			var3 = var3 + 1;
 		}
 	}
-	function updateCharacteristicButton(§\x07\x13§)
+	function updateCharacteristicButton(var2)
 	{
 		var var3 = this.api.datacenter.Player.getBoostCostAndCountForCharacteristic(var2).cost;
 		var var4 = this["_btn" + var2];
@@ -286,7 +286,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 			var4._visible = false;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -313,6 +313,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 					default:
 						switch(null)
 						{
+							case "_btn14":
 							case "_btn15":
 								break loop1;
 							case "_btnClose":
@@ -328,7 +329,6 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 					case "_btn11":
 					case "_btn12":
 					case "_btn13":
-					case "_btn14":
 				}
 				this.api.sounds.events.onStatsJobBoostButtonClick();
 				var var3 = var2.target._name.substr(4);
@@ -338,7 +338,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 				}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -364,15 +364,15 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 		var var4 = this.api.datacenter.Player.getBoostCostAndCountForCharacteristic(var3);
 		this.gapi.showTooltip(this.api.lang.getText("COST") + " : " + var4.cost + " " + this.api.lang.getText("POUR") + " " + var4.count,var2.target,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function nameChanged(§\x1e\x19\x18§)
+	function nameChanged(var2)
 	{
 		this._lblName.text = var2.value;
 	}
-	function levelChanged(§\x1e\x19\x18§)
+	function levelChanged(var2)
 	{
 		this._lblLevel.text = this.api.lang.getText("LEVEL") + " " + String(var2.value);
 	}
@@ -383,60 +383,60 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 		this._pbXP.value = oEvent.value;
 		this._mcXP.onRollOver = function()
 		{
-			this._parent.gapi.showTooltip(new ank.utils.(oEvent.value).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbXP.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+			this._parent.gapi.showTooltip(new ank.utils.(oEvent.value).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(this._parent._pbXP.maximum).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 		};
 		this._mcXP.onRollOut = function()
 		{
 			this._parent.gapi.hideTooltip();
 		};
 	}
-	function lpChanged(§\x1e\x19\x18§)
+	function lpChanged(var2)
 	{
 		this._lblLPValue.text = String(var2.value);
 	}
-	function lpMaxChanged(§\x1e\x19\x18§)
+	function lpMaxChanged(var2)
 	{
 		this._lblLPmaxValue.text = String(var2.value);
 	}
-	function apChanged(§\x1e\x19\x18§)
+	function apChanged(var2)
 	{
 		this._lblAPValue.text = String(Math.max(0,var2.value));
 	}
-	function mpChanged(§\x1e\x19\x18§)
+	function mpChanged(var2)
 	{
 		this._lblMPValue.text = String(Math.max(0,var2.value));
 	}
-	function forceXtraChanged(§\x1e\x19\x18§)
+	function forceXtraChanged(var2)
 	{
 		this._lblForceValue.text = this.api.datacenter.Player.Force + (var2.value == 0?"":(var2.value <= 0?" (":" (+") + String(var2.value) + ")");
 		this.updateCharacteristicButton(10);
 	}
-	function vitalityXtraChanged(§\x1e\x19\x18§)
+	function vitalityXtraChanged(var2)
 	{
 		this._lblVitalityValue.text = this.api.datacenter.Player.Vitality + (var2.value == 0?"":(var2.value <= 0?" (":" (+") + String(var2.value) + ")");
 		this.updateCharacteristicButton(11);
 	}
-	function wisdomXtraChanged(§\x1e\x19\x18§)
+	function wisdomXtraChanged(var2)
 	{
 		this._lblWisdomValue.text = this.api.datacenter.Player.Wisdom + (var2.value == 0?"":(var2.value <= 0?" (":" (+") + String(var2.value) + ")");
 		this.updateCharacteristicButton(12);
 	}
-	function chanceXtraChanged(§\x1e\x19\x18§)
+	function chanceXtraChanged(var2)
 	{
 		this._lblChanceValue.text = this.api.datacenter.Player.Chance + (var2.value == 0?"":(var2.value <= 0?" (":" (+") + String(var2.value) + ")");
 		this.updateCharacteristicButton(13);
 	}
-	function agilityXtraChanged(§\x1e\x19\x18§)
+	function agilityXtraChanged(var2)
 	{
 		this._lblAgilityValue.text = this.api.datacenter.Player.Agility + (var2.value == 0?"":(var2.value <= 0?" (":" (+") + String(var2.value) + ")");
 		this.updateCharacteristicButton(14);
 	}
-	function intelligenceXtraChanged(§\x1e\x19\x18§)
+	function intelligenceXtraChanged(var2)
 	{
 		this._lblIntelligenceValue.text = this.api.datacenter.Player.Intelligence + (var2.value == 0?"":(var2.value <= 0?" (":" (+") + String(var2.value) + ")");
 		this.updateCharacteristicButton(15);
 	}
-	function bonusPointsChanged(§\x1e\x19\x18§)
+	function bonusPointsChanged(var2)
 	{
 		this._lblCapitalValue.text = String(var2.value);
 	}
@@ -446,7 +446,7 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 		{
 			this._mcEnergy.onRollOver = function()
 			{
-				this._parent.gapi.showTooltip(new ank.utils.(oEvent.value).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(Math.max(10000,this._parent._pbEnergy.maximum)).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
+				this._parent.gapi.showTooltip(new ank.utils.(oEvent.value).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3) + " / " + new ank.utils.(Math.max(10000,this._parent._pbEnergy.maximum)).addMiddleChar(this._parent.api.lang.getConfigText("THOUSAND_SEPARATOR"),3),this,-10);
 			};
 			this._mcEnergy.onRollOut = function()
 			{
@@ -461,23 +461,23 @@ class dofus.graphics.gapi.ui.StatsJob extends dofus.graphics.gapi.core.DofusAdva
 			this._pbEnergy.enabled = false;
 		}
 	}
-	function energyMaxChanged(§\x1e\x19\x18§)
+	function energyMaxChanged(var2)
 	{
 		this._pbEnergy.maximum = var2.value;
 	}
-	function alignmentChanged(§\x1e\x19\x18§)
+	function alignmentChanged(var2)
 	{
 		this._ctrAlignment.contentPath = var2.alignment.iconFile;
 	}
-	function initiativeChanged(§\x1e\x19\x18§)
+	function initiativeChanged(var2)
 	{
 		this._lblInitiativeValue.text = String(var2.value);
 	}
-	function discernmentChanged(§\x1e\x19\x18§)
+	function discernmentChanged(var2)
 	{
 		this._lblDiscernmentValue.text = String(var2.value);
 	}
-	function stateChanged(§\x1e\x19\x18§)
+	function stateChanged(var2)
 	{
 		this.activateBoostButtons(!(var2.value > 1 && var2.value != undefined));
 	}

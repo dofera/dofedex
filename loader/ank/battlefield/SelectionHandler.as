@@ -1,17 +1,17 @@
 class ank.battlefield.SelectionHandler
 {
-	function SelectionHandler(§\x1d\x03§, §\x13\x14§, §\x11\x17§)
+	function SelectionHandler(var3, var4, var5)
 	{
 		this.initialize(var2,var3,var4);
 	}
-	function initialize(§\x1d\x03§, §\x13\x14§, §\x11\x17§)
+	function initialize(var2, var3, var4)
 	{
 		this._mcBattlefield = var2;
 		this._oDatacenter = var4;
 		this._mcContainer = var3;
 		this.clear();
 	}
-	function clear(§\x1e\n\f§)
+	function clear(var2)
 	{
 		for(var k in this._mcContainer.Select)
 		{
@@ -27,7 +27,7 @@ class ank.battlefield.SelectionHandler
 			var3.removeMovieClip();
 		}
 	}
-	function clearLayer(§\x1e\x11\x04§)
+	function clearLayer(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -37,15 +37,14 @@ class ank.battlefield.SelectionHandler
 		if(var3 != undefined)
 		{
 			var var4 = var3.inObjectClips;
-			§§enumerate(var4);
-			while((var var0 = §§enumeration()) != null)
+			for(var k in var4)
 			{
 				var4[k].removeMovieClip();
 			}
 		}
 		var3.removeMovieClip();
 	}
-	function select(§\x15\x19§, §\b\x02§, §\x07\x0e§, §\x1e\x11\x04§, §\t\n§)
+	function select(var2, var3, var4, var5, var6)
 	{
 		var var7 = this._mcBattlefield.mapHandler.getCellData(var3);
 		if(var5 == undefined)
@@ -81,7 +80,6 @@ class ank.battlefield.SelectionHandler
 				else
 				{
 					var11 = var8.attachMovie("s" + var7.groundSlope,var10,var3 * 100);
-					org.flashdevelop.utils.FlashConnect.mtrace("mcLayer : " + var8,"ank.battlefield.SelectionHandler::select","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\ank-common\\classes/ank/battlefield/SelectionHandler.as",131);
 				}
 				var11._x = var7.x;
 				var11._y = var7.y;
@@ -101,7 +99,7 @@ class ank.battlefield.SelectionHandler
 			}
 		}
 	}
-	function selectMultiple(§\x15\x1b§, §\x0f§, §\x07\x0e§, §\x1e\x11\x04§, §\t\n§)
+	function selectMultiple(var2, var3, var4, var5, var6)
 	{
 		for(var i in var3)
 		{
@@ -111,8 +109,9 @@ class ank.battlefield.SelectionHandler
 	function getLayers()
 	{
 		var var2 = new Array();
-		for(var var3 in this._mcContainer.Select)
+		for(var k in this._mcContainer.Select)
 		{
+			var var3 = this._mcContainer.Select[k];
 			if(var3 != undefined)
 			{
 				var2.push(var3._name);

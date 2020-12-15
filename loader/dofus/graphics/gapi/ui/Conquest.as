@@ -6,19 +6,19 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 	{
 		super();
 	}
-	function __set__currentTab(§\x1e\r\x10§)
+	function __set__currentTab(var2)
 	{
 		this._sCurrentTab = var2;
 		return this.__get__currentTab();
 	}
-	function sharePropertiesWithTab(§\x1e\x16\x10§)
+	function sharePropertiesWithTab(var2)
 	{
 		for(var i in var2)
 		{
 			this._mcTabViewer[i] = var2[i];
 		}
 	}
-	function setBalance(§\x1e\n\x05§, §\x1d\x17§)
+	function setBalance(var2, var3)
 	{
 		this._nWorldBalance = var2;
 		this._nAreaBalance = var3;
@@ -65,6 +65,7 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 		this._btnTabZones.addEventListener("click",this);
 		this._ctrAlignment.addEventListener("over",this);
 		this._ctrAlignment.addEventListener("out",this);
+		var ref = this;
 		this._mcBalanceInteractivity.onRollOver = function()
 		{
 			ref.over({target:this});
@@ -89,7 +90,7 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 		this.alignmentChanged({alignment:this.api.datacenter.Player.alignment});
 		this.api.network.Conquest.requestBalance();
 	}
-	function setCurrentTab(§\x1e\x10\x04§)
+	function setCurrentTab(var2)
 	{
 		this._mcComboBoxPopup.removeMovieClip();
 		var var3 = this["_btnTab" + this._sCurrentTab];
@@ -159,7 +160,7 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 				this.api.network.Conquest.prismInfosLeave();
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -174,16 +175,16 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 				}
 				if(this._nAreaBalance != undefined && (!_global.isNaN(this._nAreaBalance) && this._nAreaBalance > 0))
 				{
-					var3 = var3 + (MountPark + this.api.lang.getText("CONQUEST_ZONE_BALANCE") + ": " + this._nAreaBalance + "%");
+					var3 = var3 + ("\n\n" + this.api.lang.getText("CONQUEST_ZONE_BALANCE") + ": " + this._nAreaBalance + "%");
 				}
 				this.gapi.showTooltip(var3,var2.target,-20);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -196,7 +197,7 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 				this.setCurrentTab(var2.target._name.substr(7));
 		}
 	}
-	function rankChanged(§\x1e\x19\x18§)
+	function rankChanged(var2)
 	{
 		this._rRank = (dofus.datacenter.Rank)var2.rank;
 		if(this._rRank.enable && this._lblStats.text != undefined)
@@ -222,7 +223,7 @@ class dofus.graphics.gapi.ui.Conquest extends dofus.graphics.gapi.core.DofusAdva
 			this._mcPvpInactive._visible = true;
 		}
 	}
-	function alignmentChanged(§\x1e\x19\x18§)
+	function alignmentChanged(var2)
 	{
 		this._ctrAlignment.contentPath = var2.alignment.iconFile;
 	}

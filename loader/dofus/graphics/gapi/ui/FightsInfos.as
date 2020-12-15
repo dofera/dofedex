@@ -9,7 +9,7 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 	{
 		return this._eaFights;
 	}
-	function addFightTeams(§\x05\x16§, §\x0f\x19§, §\x0f\x18§)
+	function addFightTeams(var2, var3, var4)
 	{
 		var var6 = this._eaFights.findFirstItem("id",var2);
 		if(var6.index != -1)
@@ -31,8 +31,7 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 	}
 	function createChildren()
 	{
-		this._eaFights = new ank.utils.
-();
+		this._eaFights = new ank.utils.();
 		this.showTeamInfos(false);
 		this.addToQueue({object:this,method:this.initTexts});
 		this.addToQueue({object:this,method:this.addListeners});
@@ -71,7 +70,7 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 	{
 		this._dgFights.dataProvider = this._eaFights;
 	}
-	function showTeamInfos(§\x15\x13§, §\x1e\x19\x14§)
+	function showTeamInfos(var2, var3)
 	{
 		this._lblTeam1Level._visible = var2;
 		this._lblTeam2Level._visible = var2;
@@ -90,7 +89,7 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 			this._lstTeam2.dataProvider = var3.team2Players;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -103,11 +102,10 @@ class dofus.graphics.gapi.ui.FightsInfos extends dofus.graphics.gapi.core.DofusA
 				this.callClose();
 		}
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		if((var var0 = var2.target._name) !== "_dgFights")
 		{
-			org.flashdevelop.utils.FlashConnect.mtrace(var2.row,"dofus.graphics.gapi.ui.FightsInfos::itemSelected","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/graphics/gapi/ui/FightsInfos.as",241);
 			if(var2.row.item.type == "player")
 			{
 				var var3 = var2.row.item.name;

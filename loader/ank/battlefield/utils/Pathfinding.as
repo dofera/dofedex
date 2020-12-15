@@ -3,7 +3,7 @@ class ank.battlefield.utils.Pathfinding
 	function Pathfinding()
 	{
 	}
-	static function pathFind(§\x1d\x1c§, mapHandler, §\b\x05§, §\b\x04§, §\x1e\x18\x15§)
+	static function pathFind(var2, var3, var4, var5, var6)
 	{
 		var var7 = var2.datacenter.Game.isFight;
 		if(var4 == undefined)
@@ -195,7 +195,7 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return null;
 	}
-	static function goalDistEstimate(mapHandler, §\b\x07§, §\b\x06§)
+	static function goalDistEstimate(mapHandler, §\x07\x16§, §\x07\x15§)
 	{
 		var var5 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var3);
 		var var6 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var4);
@@ -203,7 +203,7 @@ class ank.battlefield.utils.Pathfinding
 		var var8 = Math.abs(var5.y - var6.y);
 		return Math.sqrt(Math.pow(var7,2) + Math.pow(var8,2));
 	}
-	static function goalDistance(mapHandler, §\b\x07§, §\b\x06§)
+	static function goalDistance(mapHandler, §\x07\x16§, §\x07\x15§)
 	{
 		var var5 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var3);
 		var var6 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var4);
@@ -211,7 +211,7 @@ class ank.battlefield.utils.Pathfinding
 		var var8 = Math.abs(var5.y - var6.y);
 		return var7 + var8;
 	}
-	static function getCaseCoordonnee(mapHandler, §\x02\x12§)
+	static function getCaseCoordonnee(mapHandler, §\x02\x05§)
 	{
 		var var4 = mapHandler.getWidth();
 		var var5 = Math.floor(var3 / (var4 * 2 - 1));
@@ -222,7 +222,7 @@ class ank.battlefield.utils.Pathfinding
 		var8.x = (var3 - (var4 - 1) * var8.y) / var4;
 		return var8;
 	}
-	static function getDirection(mapHandler, §\b\x07§, §\b\x06§)
+	static function getDirection(mapHandler, §\x07\x16§, §\x07\x15§)
 	{
 		var var5 = mapHandler.getWidth();
 		var var6 = [1,var5,var5 * 2 - 1,var5 - 1,-1,- var5,- var5 * 2 + 1,- var5 - 1];
@@ -254,7 +254,7 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return 5;
 	}
-	static function getDirectionFromCoordinates(§\x1e\n\x03§, §\x1e\t\x17§, §\x1e\n\x02§, §\x1e\t\x16§, §\x1c\x15§)
+	static function getDirectionFromCoordinates(var2, var3, var4, var5, var6)
 	{
 		var var7 = Math.atan2(var5 - var3,var4 - var2);
 		if(var6)
@@ -313,11 +313,12 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return 1;
 	}
-	static function getArroundCellNum(mapHandler, §\b\x02§, §\x06\x12§, §\x04\x17§)
+	static function getArroundCellNum(mapHandler, §\x07\x11§, §\x06\x05§, §\x04\n§)
 	{
 		var var6 = mapHandler.getWidth();
 		var var7 = [1,var6,var6 * 2 - 1,var6 - 1,-1,- var6,- var6 * 2 + 1,- var6 - 1];
 		var var8 = 0;
+		loop0:
 		switch(var5 % 8)
 		{
 			case 0:
@@ -326,26 +327,30 @@ class ank.battlefield.utils.Pathfinding
 			case 1:
 				var8 = 6;
 				break;
-			case 2:
-				var8 = 4;
-				break;
-			case 3:
-				var8 = 0;
-				break;
 			default:
 				switch(null)
 				{
+					case 2:
+						var8 = 4;
+						break loop0;
+					case 3:
+						var8 = 0;
+						break loop0;
 					case 4:
 						var8 = 3;
-						break;
+						break loop0;
 					case 5:
 						var8 = 5;
-						break;
-					case 6:
-						var8 = 1;
-						break;
-					case 7:
-						var8 = 7;
+						break loop0;
+					default:
+						switch(null)
+						{
+							case 6:
+								var8 = 1;
+								break;
+							case 7:
+								var8 = 7;
+						}
 				}
 		}
 		var8 = (var8 + var4) % 8;
@@ -358,11 +363,11 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return var3;
 	}
-	static function convertHeightToFourDirection(§\x06\x13§)
+	static function convertHeightToFourDirection(var2)
 	{
 		return var2 | 1;
 	}
-	static function getSlopeOk(§\x1e\x10\x16§, §\x0b\x1d§, §\x1e\x10\x15§, §\x0b\x1c§, §\x11\b§)
+	static function getSlopeOk(var2, var3, var4, var5, var6)
 	{
 		switch(var6)
 		{
@@ -437,7 +442,7 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return true;
 	}
-	static function checkView(mapHandler, §\x13\r§, §\x13\f§)
+	static function checkView(mapHandler, §\x13\b§, §\x13\x07§)
 	{
 		var var5 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var3);
 		var var6 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var4);
@@ -500,7 +505,7 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return true;
 	}
-	static function checkCellView(mapHandler, §\x1e\n\x04§, §\x1e\t\x18§, §\x16\x1d§, §\x1e\x17\x0f§, §\x1e\x17\x0e§, §\x1e\t\x12§, §\x11\x17§)
+	static function checkCellView(mapHandler, §\x1e\t\x14§, §\x1e\t\x0b§, §\x16\x18§, §\x1e\x17\x05§, §\x1e\x17\x04§, §\x1e\t\x05§, §\x11\x10§)
 	{
 		var var10 = ank.battlefield.utils.Pathfinding.getCaseNum(mapHandler,var3,var4);
 		var var11 = mapHandler.getCellData(var10);
@@ -518,12 +523,12 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return false;
 	}
-	static function getCaseNum(mapHandler, §\x1e\n\x04§, §\x1e\t\x18§)
+	static function getCaseNum(mapHandler, §\x1e\t\x14§, §\x1e\t\x0b§)
 	{
 		var var5 = mapHandler.getWidth();
 		return var3 * var5 + var4 * (var5 - 1);
 	}
-	static function checkAlign(mapHandler, §\x13\r§, §\x13\f§)
+	static function checkAlign(mapHandler, §\x13\b§, §\x13\x07§)
 	{
 		var var5 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var3);
 		var var6 = ank.battlefield.utils.Pathfinding.getCaseCoordonnee(mapHandler,var4);
@@ -537,7 +542,7 @@ class ank.battlefield.utils.Pathfinding
 		}
 		return false;
 	}
-	static function checkRange(mapHandler, §\b\x07§, §\b\x06§, §\x18\x06§, §\x01\x02§, §\x01\x03§, §\x01\x01§)
+	static function checkRange(mapHandler, §\x07\x16§, §\x07\x15§, §\x18\x01§, §\x1e\x1e\x12§, §\x1e\x1e\x13§, §\x1e\x1e\x11§)
 	{
 		var6 = Number(var6);
 		var7 = Number(var7);

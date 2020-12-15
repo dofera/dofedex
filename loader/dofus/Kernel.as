@@ -2,23 +2,22 @@ class dofus.Kernel extends dofus.utils.ApiElement
 {
 	var XTRA_LANG_FILES_LOADED = false;
 	static var FAST_SWITCHING_SERVER_REQUEST = undefined;
-	function Kernel(§\x1e\x1a\x16§)
+	function Kernel(oAPI)
 	{
 		super();
-		org.flashdevelop.utils.FlashConnect.mtrace("Kernel constructor " + var3,"dofus.Kernel::Kernel","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/Kernel.as",53);
-		this.initialize(var3);
+		this.initialize(oAPI);
 		if(this.AudioManager == null)
 		{
-			dofus.sounds.AudioManager.initialize(_root.createEmptyMovieClip("SoundNest",99999),var3);
+			dofus.sounds.AudioManager.initialize(_root.createEmptyMovieClip("SoundNest",99999),oAPI);
 			this.AudioManager = dofus.sounds.AudioManager.getInstance();
 		}
 		if((this.CharactersManager = dofus.managers.CharactersManager.getInstance()) == null)
 		{
-			this.CharactersManager = new dofus.managers.CharactersManager(var3);
+			this.CharactersManager = new dofus.managers.CharactersManager(oAPI);
 		}
 		if((this.ChatManager = dofus.managers.ChatManager.getInstance()) == null)
 		{
-			this.ChatManager = new dofus.managers.ChatManager(var3);
+			this.ChatManager = new dofus.managers.ChatManager(oAPI);
 		}
 		if((this.MapsServersManager = dofus.managers.MapsServersManager.getInstance()) == null)
 		{
@@ -34,15 +33,15 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		}
 		if((this.GameManager = dofus.managers.GameManager.getInstance()) == null)
 		{
-			this.GameManager = new dofus.managers.GameManager(var3);
+			this.GameManager = new dofus.managers.GameManager(oAPI);
 		}
 		if((this.KeyManager = dofus.managers.KeyManager.getInstance()) == null)
 		{
-			this.KeyManager = new dofus.managers.KeyManager(var3);
+			this.KeyManager = new dofus.managers.KeyManager(oAPI);
 		}
 		if((this.NightManager = dofus.managers.NightManager.getInstance()) == null)
 		{
-			this.NightManager = new dofus.managers.NightManager(var3);
+			this.NightManager = new dofus.managers.NightManager(oAPI);
 		}
 		if((this.AreasManager = dofus.managers.AreasManager.getInstance()) == null)
 		{
@@ -50,37 +49,37 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		}
 		if((this.TutorialManager = dofus.managers.TutorialManager.getInstance()) == null)
 		{
-			this.TutorialManager = new dofus.managers.TutorialManager(var3);
+			this.TutorialManager = new dofus.managers.TutorialManager(oAPI);
 		}
-		this.Console = new dofus.utils.consoleParsers.(var3);
-		this.DebugConsole = new dofus.utils.consoleParsers.(var3);
+		this.Console = new dofus.utils.consoleParsers.(oAPI);
+		this.DebugConsole = new dofus.utils.consoleParsers.(oAPI);
 		if((this.OptionsManager = dofus.managers.OptionsManager.getInstance()) == null)
 		{
-			this.OptionsManager = new dofus.managers.OptionsManager(var3);
+			this.OptionsManager = new dofus.managers.OptionsManager(oAPI);
 		}
 		if((this.AdminManager = dofus.managers.AdminManager.getInstance()) == null)
 		{
-			this.AdminManager = new dofus.managers.AdminManager(var3);
+			this.AdminManager = new dofus.managers.AdminManager(oAPI);
 		}
 		if((this.DebugManager = dofus.managers.DebugManager.getInstance()) == null)
 		{
-			this.DebugManager = new dofus.managers.DebugManager(var3);
+			this.DebugManager = new dofus.managers.DebugManager(oAPI);
 		}
 		if((this.TipsManager = dofus.managers.TipsManager.getInstance()) == null)
 		{
-			this.TipsManager = new dofus.managers.TipsManager(var3);
+			this.TipsManager = new dofus.managers.TipsManager(oAPI);
 		}
 		if((this.SpellsBoostsManager = dofus.managers.SpellsBoostsManager.getInstance()) == null)
 		{
-			this.SpellsBoostsManager = new dofus.managers.SpellsBoostsManager(var3);
+			this.SpellsBoostsManager = new dofus.managers.SpellsBoostsManager(oAPI);
 		}
 		if((this.SpeakingItemsManager = dofus.managers.SpeakingItemsManager.getInstance()) == null)
 		{
-			this.SpeakingItemsManager = new dofus.managers.SpeakingItemsManager(var3);
+			this.SpeakingItemsManager = new dofus.managers.SpeakingItemsManager(oAPI);
 		}
 		if((this.StreamingDisplayManager = dofus.managers.StreamingDisplayManager.getInstance()) == null)
 		{
-			this.StreamingDisplayManager = new dofus.managers.StreamingDisplayManager(var3);
+			this.StreamingDisplayManager = new dofus.managers.StreamingDisplayManager(oAPI);
 		}
 		dofus.managers.UIdManager.getInstance().update();
 		this._sendScreenInfoTimer = _global.setInterval(this,"sendScreenInfo",1000);
@@ -95,9 +94,9 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		this.OptionsManager.setOption("sendResolution",true);
 		this.api.network.Infos.sendScreenInfo();
 	}
-	function initialize(§\x1e\x1a\x16§)
+	function initialize(oAPI)
 	{
-		super.initialize(var3);
+		super.initialize(oAPI);
 	}
 	function start()
 	{
@@ -116,7 +115,6 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		}
 		if(this.api.config.isStreaming)
 		{
-			org.flashdevelop.utils.FlashConnect.mtrace("[?!!] Mode streaming activé (" + this.api.config.streamingMethod + ")!","dofus.Kernel::start","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/Kernel.as",187);
 			if(this.api.config.streamingMethod == "explod")
 			{
 				this.api.gfx.setStreaming(true,dofus.Constants.GFX_OBJECTS_PATH,dofus.Constants.GFX_GROUNDS_PATH);
@@ -126,7 +124,7 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		this.setQuality(this.OptionsManager.getOption("DefaultQuality"));
 		this.autoLogon();
 	}
-	function quit(§\x1c\x0e§)
+	function quit(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -161,15 +159,15 @@ class dofus.Kernel extends dofus.utils.ApiElement
 	{
 		return Number(getVersion().split(" ")[1].split(",")[0]);
 	}
-	function setQuality(§\x1e\x16\n§)
+	function setQuality(var2)
 	{
 		_root._quality = var2;
 	}
-	function setDisplayStyle(§\x1e\r\x15§, §\x1a\x19§)
+	function setDisplayStyle(var2, var3)
 	{
 		if(System.capabilities.playerType == "StandAlone" && System.capabilities.os.indexOf("Windows") != -1)
 		{
-			var var4 = new ank.external.display.();
+			var var4 = new ank.external.display.();
 			switch(var2)
 			{
 				case "normal":
@@ -184,11 +182,7 @@ class dofus.Kernel extends dofus.utils.ApiElement
 					}
 					var4.enable(800,600,32);
 					break;
-				default:
-					if(var0 !== "maximized")
-					{
-						break;
-					}
+				case "maximized":
 					var4.addEventListener("onScreenResolutionError",this);
 					var4.addEventListener("onScreenResolutionSuccess",this);
 					if(var3 != true)
@@ -196,7 +190,6 @@ class dofus.Kernel extends dofus.utils.ApiElement
 						var4.addEventListener("onExternalError",this);
 					}
 					var4.enable(1024,768,32);
-					break;
 			}
 		}
 		else
@@ -204,7 +197,7 @@ class dofus.Kernel extends dofus.utils.ApiElement
 			_root._loader.setDisplayStyle(var2);
 		}
 	}
-	function onFastServerSwitchFail(§\x1e\x10\x0f§)
+	function onFastServerSwitchFail(var2)
 	{
 		dofus.Kernel.FAST_SWITCHING_SERVER_REQUEST = undefined;
 		if(var2 == undefined)
@@ -213,12 +206,12 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		}
 		this.api.kernel.showMessage(undefined,"Fast server switching failed : " + var2,"ERROR_BOX");
 	}
-	function onFastServerSwitchSuccess(§\x1e\x10\x0f§)
+	function onFastServerSwitchSuccess(var2)
 	{
 		dofus.Kernel.FAST_SWITCHING_SERVER_REQUEST = undefined;
 		this.api.kernel.showMessage(undefined,"<b>(Fast server switch)</b> : Welcome on <b>" + this.api.datacenter.Basics.aks_current_server.label + "</b>","COMMANDS_CHAT");
 	}
-	function changeServer(§\x17\x07§)
+	function changeServer(var2)
 	{
 		if(var2 == true)
 		{
@@ -229,7 +222,7 @@ class dofus.Kernel extends dofus.utils.ApiElement
 			this.showMessage(undefined,this.api.lang.getText("DO_U_SWITCH_CHARACTER"),"CAUTION_YESNO",{name:"ChangeCharacter"});
 		}
 	}
-	function showMessage(§\x1e\f\x1b§, §\x1e\x10\x07§, §\x1e\f\x14§, §\x1e\x18\x15§, §\x1e\f\f§)
+	function showMessage(var2, var3, var4, var5, var6)
 	{
 		loop0:
 		switch(var4)
@@ -284,12 +277,12 @@ class dofus.Kernel extends dofus.utils.ApiElement
 					case "MESSAGE_CHAT":
 						this.ChatManager.addText(var3,dofus.Constants.MSG_CHAT_COLOR,true,var6);
 						break loop0;
-					case "EMOTE_CHAT":
-						this.ChatManager.addText(var3,dofus.Constants.EMOTE_CHAT_COLOR,true,var6);
-						break loop0;
 					default:
 						switch(null)
 						{
+							case "EMOTE_CHAT":
+								this.ChatManager.addText(var3,dofus.Constants.EMOTE_CHAT_COLOR,true,var6);
+								break loop0;
 							case "THINK_CHAT":
 								this.ChatManager.addText(var3,dofus.Constants.THINK_CHAT_COLOR,true,var6);
 								break loop0;
@@ -305,12 +298,12 @@ class dofus.Kernel extends dofus.utils.ApiElement
 								var3 = this.api.kernel.ChatManager.parseInlinePos(var3);
 								this.ChatManager.addText(var3,dofus.Constants.PVP_CHAT_COLOR,true,var6);
 								break loop0;
-							case "WHISP_CHAT":
-								this.ChatManager.addText(var3,dofus.Constants.MSGCHUCHOTE_CHAT_COLOR,true,var6);
-								break loop0;
 							default:
 								switch(null)
 								{
+									case "WHISP_CHAT":
+										this.ChatManager.addText(var3,dofus.Constants.MSGCHUCHOTE_CHAT_COLOR,true,var6);
+										break loop0;
 									case "PARTY_CHAT":
 										this.ChatManager.addText(var3,dofus.Constants.GROUP_CHAT_COLOR,true,var6);
 										break loop0;
@@ -320,12 +313,12 @@ class dofus.Kernel extends dofus.utils.ApiElement
 									case "GUILD_CHAT_SOUND":
 										this.ChatManager.addText(var3,dofus.Constants.GUILD_CHAT_COLOR,true,var6);
 										break loop0;
-									case "RECRUITMENT_CHAT":
-										this.ChatManager.addText(var3,dofus.Constants.RECRUITMENT_CHAT_COLOR,false,var6);
-										break loop0;
 									default:
 										switch(null)
 										{
+											case "RECRUITMENT_CHAT":
+												this.ChatManager.addText(var3,dofus.Constants.RECRUITMENT_CHAT_COLOR,false,var6);
+												break loop0;
 											case "TRADE_CHAT":
 												this.ChatManager.addText(var3,dofus.Constants.TRADE_CHAT_COLOR,false,var6);
 												break loop0;
@@ -338,17 +331,17 @@ class dofus.Kernel extends dofus.utils.ApiElement
 											case "COMMANDS_CHAT":
 												this.ChatManager.addText(var3,dofus.Constants.COMMANDS_CHAT_COLOR,false,var6);
 												break loop0;
-											case "DEBUG_LOG":
-												this.api.datacenter.Basics.aks_a_logs = this.api.datacenter.Basics.aks_a_logs + ("\n<font color=\"#FFFFFF\">" + var3 + "</font>");
-												var var10 = (dofus.graphics.gapi.ui.Debug)this.api.ui.getUIComponent("Debug");
-												if(var10 != undefined)
-												{
-													var10.refresh();
-												}
-												break loop0;
 											default:
 												switch(null)
 												{
+													case "DEBUG_LOG":
+														this.api.datacenter.Basics.aks_a_logs = this.api.datacenter.Basics.aks_a_logs + ("\n<font color=\"#FFFFFF\">" + var3 + "</font>");
+														var var10 = (dofus.graphics.gapi.ui.Debug)this.api.ui.getUIComponent("Debug");
+														if(var10 != undefined)
+														{
+															var10.refresh();
+														}
+														break;
 													case "DEBUG_ERROR":
 														this.api.datacenter.Basics.aks_a_logs = this.api.datacenter.Basics.aks_a_logs + ("\n<font color=\"#FF0000\">" + var3 + "</font>");
 														var var11 = (dofus.graphics.gapi.ui.Debug)this.api.ui.getUIComponent("Debug");
@@ -412,13 +405,13 @@ class dofus.Kernel extends dofus.utils.ApiElement
 			var2.onRelease = function()
 			{
 				this.stopDrag();
-				this.api.network.Basics.onAuthorizedCommand(true,"2" + new ank.utils.(this._dropTarget).replace("/","."));
+				this.api.network.Basics.onAuthorizedCommand(true,"2" + new ank.utils.(this._dropTarget).replace("/","."));
 				this.startDrag(true);
 			};
 			var2.startDrag(true);
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -428,11 +421,15 @@ class dofus.Kernel extends dofus.utils.ApiElement
 			case "AskYesNoDisconnect":
 				this.api.network.disconnect(false,false);
 				break;
-			case "AskYesNoChangeCharacter":
-				this.api.network.disconnect(true,false,true);
-				break;
-			case "AskYesNoClearCache":
-				this.clearCache();
+			default:
+				switch(null)
+				{
+					case "AskYesNoChangeCharacter":
+						this.api.network.disconnect(true,false,true);
+						break;
+					case "AskYesNoClearCache":
+						this.clearCache();
+				}
 		}
 	}
 	function onInitAndLoginFinished()
@@ -450,17 +447,17 @@ class dofus.Kernel extends dofus.utils.ApiElement
 		this.api.network.Account.sendIdentity();
 		this.api.network.Account.getServersList();
 	}
-	function onScreenResolutionError(§\x1e\x19\x18§)
+	function onScreenResolutionError(var2)
 	{
 		var var3 = (ank.external.display.ScreenResolution)var2.target;
 		var3.removeListeners();
 	}
-	function onScreenResolutionSuccess(§\x1e\x19\x18§)
+	function onScreenResolutionSuccess(var2)
 	{
 		var var3 = (ank.external.display.ScreenResolution)var2.target;
 		var3.removeListeners();
 	}
-	function onExternalError(§\x1e\x19\x18§)
+	function onExternalError(var2)
 	{
 	}
 }

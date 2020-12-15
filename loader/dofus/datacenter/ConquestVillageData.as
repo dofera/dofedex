@@ -1,6 +1,6 @@
 class dofus.datacenter.ConquestVillageData extends Object
 {
-	function ConquestVillageData(§\r\b§, alignment, door, prism)
+	function ConquestVillageData(§\f\x1c§, alignment, door, prism)
 	{
 		super();
 		this._nSubAreaId = var3;

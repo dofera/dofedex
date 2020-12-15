@@ -5,13 +5,13 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__member(§\x1e\x19\x03§)
+	function __set__member(var2)
 	{
 		this._oMember = var2;
 		this._oMemberClone = new Object();
 		this._oMemberClone.rank = this._oMember.rank;
 		this._oMemberClone.percentxp = this._oMember.percentxp;
-		this._oMemberClone.rights = new dofus.datacenter.(this._oMember.rights.value);
+		this._oMemberClone.rights = new dofus.datacenter.(this._oMember.rights.value);
 		return this.__get__member();
 	}
 	function init()
@@ -106,8 +106,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 		{
 			this._cbRanks._visible = true;
 			var var5 = this.api.lang.getRanks().slice();
-			var var6 = new ank.utils.
-();
+			var var6 = new ank.utils.();
 			var5.sortOn("o",Array.NUMERIC);
 			if(this.api.datacenter.Player.guildInfos.playerRights.isBoss)
 			{
@@ -134,7 +133,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 			this._lblRankValue.text = this.api.lang.getRankInfos(this._oMemberClone.rank).n;
 		}
 	}
-	function setRank(§\x1e\x1e\x1d§)
+	function setRank(var2)
 	{
 		this._oMemberClone.rank = var2;
 		this._oMemberClone.rankOrder = this.api.lang.getRankInfos(var2).o;
@@ -144,7 +143,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 	{
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("DO_U_GIVERIGHTS",[this._oMember.name]),"CAUTION_YESNO",{name:"GuildSetBoss",listener:this});
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		if(this._cbRanks.selectedItem.id == 1)
 		{
@@ -155,7 +154,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 			this.setRank(this._cbRanks.selectedItem.id);
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target._name)
@@ -214,19 +213,19 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 							this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 8;
 						}
 						break loop0;
-					case "_btnRBann":
-						if(this._btnRBann.selected)
-						{
-							this._oMemberClone.rights.value = this._oMemberClone.rights.value | 16;
-						}
-						else
-						{
-							this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 16;
-						}
-						break loop0;
 					default:
 						switch(null)
 						{
+							case "_btnRBann":
+								if(this._btnRBann.selected)
+								{
+									this._oMemberClone.rights.value = this._oMemberClone.rights.value | 16;
+								}
+								else
+								{
+									this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 16;
+								}
+								break loop0;
 							case "_btnRPercentXP":
 								if(this._btnRPercentXP.selected)
 								{
@@ -267,19 +266,19 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 									this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 256;
 								}
 								break loop0;
-							case "_btnRCollect":
-								if(this._btnRCollect.selected)
-								{
-									this._oMemberClone.rights.value = this._oMemberClone.rights.value | 512;
-								}
-								else
-								{
-									this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 512;
-								}
-								break loop0;
 							default:
 								switch(null)
 								{
+									case "_btnRCollect":
+										if(this._btnRCollect.selected)
+										{
+											this._oMemberClone.rights.value = this._oMemberClone.rights.value | 512;
+										}
+										else
+										{
+											this._oMemberClone.rights.value = this._oMemberClone.rights.value ^ 512;
+										}
+										break;
 									case "_bntRCanUseMountPark":
 										if(this._bntRCanUseMountPark.selected)
 										{
@@ -313,7 +312,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 				}
 		}
 	}
-	function validate(§\x1e\x19\x18§)
+	function validate(var2)
 	{
 		var var3 = var2.value;
 		if(_global.isNaN(var3))
@@ -331,7 +330,7 @@ class dofus.graphics.gapi.ui.GuildMemberInfos extends dofus.graphics.gapi.core.D
 		this._oMemberClone.percentxp = var3;
 		this.updateData();
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this.setRank(1);
 	}

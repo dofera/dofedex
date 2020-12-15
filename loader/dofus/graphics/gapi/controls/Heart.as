@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.Heart extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__value(§\x1e\x1b\x17§)
+	function __set__value(var2)
 	{
 		var2 = Number(var2);
 		if(_global.isNaN(var2))
@@ -23,7 +23,7 @@ class dofus.graphics.gapi.controls.Heart extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nValue;
 	}
-	function __set__max(§\x03\x14§)
+	function __set__max(var2)
 	{
 		var2 = Number(var2);
 		if(_global.isNaN(var2))

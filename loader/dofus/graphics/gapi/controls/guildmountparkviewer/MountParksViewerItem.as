@@ -5,12 +5,12 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 		super();
 		this.api = _global.API;
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		this._bUsed = var2;
 		if(var2)
@@ -65,7 +65,7 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 		};
 		this._btnTeleport.addEventListener("click",this);
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var var3 = this._mcList._parent._parent.api;
 		if((var var0 = var2.target) === this._lblMounts)
@@ -77,7 +77,7 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 			{
 				if(var6 > 0)
 				{
-					var4 = var4 + MountPark;
+					var4 = var4 + "\n\n";
 				}
 				var var7 = var5[var6];
 				var4 = var4 + (var3.lang.getText("MOUNT_OF",[var7.ownerName]) + " : " + var7.name + "\n(" + var7.modelName + ")");
@@ -89,7 +89,7 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 			}
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if((var var0 = var2.target) === this._btnTeleport)
 		{
@@ -100,7 +100,7 @@ class dofus.graphics.gapi.controls.guildmountparkviewer.MountParksViewerItem ext
 			this.api.network.Guild.teleportToGuildFarm(this._oItem.map);
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		var var3 = this._mcList._parent._parent.api;
 		var3.ui.hideTooltip();

@@ -1,6 +1,6 @@
 class dofus.datacenter.Order extends Object
 {
-	function Order(§\x04\x17§)
+	function Order(var3)
 	{
 		super();
 		this.api = _global.API;
@@ -10,7 +10,7 @@ class dofus.datacenter.Order extends Object
 	{
 		return this._nIndex;
 	}
-	function __set__index(§\x04\x17§)
+	function __set__index(var2)
 	{
 		this._nIndex = !(_global.isNaN(var2) || var2 == undefined)?var2:0;
 		return this.__get__index();
@@ -21,13 +21,13 @@ class dofus.datacenter.Order extends Object
 	}
 	function __get__alignment()
 	{
-		return new dofus.datacenter.(this._oOrderInfos.a);
+		return new dofus.datacenter.(this._oOrderInfos.a);
 	}
 	function __get__iconFile()
 	{
 		return dofus.Constants.ORDERS_PATH + this._nIndex + ".swf";
 	}
-	function initialize(§\x04\x17§)
+	function initialize(var2)
 	{
 		this._nIndex = var2;
 		this._oOrderInfos = this.api.lang.getAlignmentOrder(var2);

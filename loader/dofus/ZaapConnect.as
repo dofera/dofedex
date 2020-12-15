@@ -16,17 +16,16 @@ class dofus.ZaapConnect extends dofus.utils.ApiElement
 		this._nPort = _global.CONFIG.zaapConnectPort;
 		this._bDebug = dofus.Constants.DEBUG;
 		this._xSocket = new XMLSocket();
-		var ref = this;
-		this._xSocket.onConnect = function(§\x14\x1b§)
+		this._xSocket.onConnect = function(var2)
 		{
 			ref.setConnected(var2);
 			ref.onConnect(var2);
 		};
-		this._xSocket.onData = function(§\x1e\x13\x10§)
+		this._xSocket.onData = function(var2)
 		{
 			ref.onData(var2);
 		};
-		this._xSocket.onClose = function(§\x1e\x13\x10§)
+		this._xSocket.onClose = function(var2)
 		{
 			ref.setConnected(false);
 		};
@@ -42,7 +41,7 @@ class dofus.ZaapConnect extends dofus.utils.ApiElement
 		{
 			delete dofus.ZaapConnect.instance;
 		}
-		dofus.ZaapConnect.instance = new dofus.	();
+		dofus.ZaapConnect.instance = new dofus.	();
 		return dofus.ZaapConnect.instance;
 	}
 	static function getInstance()
@@ -86,11 +85,11 @@ class dofus.ZaapConnect extends dofus.utils.ApiElement
 	{
 		return this._bConnected;
 	}
-	function setConnected(§\x1b\x10§)
+	function setConnected(var2)
 	{
 		this._bConnected = var2;
 	}
-	function debugLog(§\x1e\x10\x0f§)
+	function debugLog(var2)
 	{
 		if(!this.isDebug() || var2 == null)
 		{
@@ -100,7 +99,7 @@ class dofus.ZaapConnect extends dofus.utils.ApiElement
 		this.api.kernel.showMessage(undefined,var2,"DEBUG_LOG");
 		this.api.electron.log(var2);
 	}
-	function processRequest(§\x1e\f\x14§, §\x17§)
+	function processRequest(var2, var3)
 	{
 		switch(var2)
 		{
@@ -146,12 +145,12 @@ class dofus.ZaapConnect extends dofus.utils.ApiElement
 			var2.refreshAutoLoginUi();
 		}
 	}
-	function send(§\x1e\x13\x10§)
+	function send(var2)
 	{
 		this.debugLog("--&gt; " + var2);
 		this._xSocket.send(var2);
 	}
-	function onData(§\x1e\x13\x10§)
+	function onData(var2)
 	{
 		this.debugLog("&lt;-- " + var2);
 		var var3 = var2.split(" ");
@@ -165,7 +164,7 @@ class dofus.ZaapConnect extends dofus.utils.ApiElement
 		}
 		this.processRequest(var5,var4);
 	}
-	function onConnect(§\x14\x1b§)
+	function onConnect(var2)
 	{
 		if(!var2)
 		{

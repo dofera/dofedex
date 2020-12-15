@@ -1,10 +1,10 @@
-class mx.events.EventDispatcher
+class eval(mx).events.EventDispatcher
 {
 	static var _fEventDispatcher = undefined;
 	function EventDispatcher()
 	{
 	}
-	static function _removeEventListener(queue, §\x0f\r§, §\r\x12§)
+	static function _removeEventListener(queue, §\x0f\x04§, §\r\t§)
 	{
 		if(queue != undefined)
 		{
@@ -22,18 +22,18 @@ class mx.events.EventDispatcher
 			}
 		}
 	}
-	static function initialize(§\x1e\x1a\x11§)
+	static function initialize(var2)
 	{
-		if(mx.events.EventDispatcher._fEventDispatcher == undefined)
+		if(eval(mx).events.EventDispatcher._fEventDispatcher == undefined)
 		{
-			mx.events.EventDispatcher._fEventDispatcher = new mx.events.();
+			eval(mx).events.EventDispatcher._fEventDispatcher = new eval(mx).events.();
 		}
-		var2.__proto__.addEventListener = mx.events.EventDispatcher._fEventDispatcher.addEventListener;
-		var2.__proto__.removeEventListener = mx.events.EventDispatcher._fEventDispatcher.removeEventListener;
-		var2.__proto__.dispatchEvent = mx.events.EventDispatcher._fEventDispatcher.dispatchEvent;
-		var2.__proto__.dispatchQueue = mx.events.EventDispatcher._fEventDispatcher.dispatchQueue;
+		var2.__proto__.addEventListener = eval(mx).events.EventDispatcher._fEventDispatcher.addEventListener;
+		var2.__proto__.removeEventListener = eval(mx).events.EventDispatcher._fEventDispatcher.removeEventListener;
+		var2.__proto__.dispatchEvent = eval(mx).events.EventDispatcher._fEventDispatcher.dispatchEvent;
+		var2.__proto__.dispatchQueue = eval(mx).events.EventDispatcher._fEventDispatcher.dispatchQueue;
 	}
-	function dispatchQueue(§\x1e\x15\x1b§, §\x0f\x0b§)
+	function dispatchQueue(var2, var3)
 	{
 		var var4 = "__q_" + var3.type;
 		var var5 = var2[var4];
@@ -61,7 +61,7 @@ class mx.events.EventDispatcher
 			}
 		}
 	}
-	function dispatchEvent(§\x0f\x0b§)
+	function dispatchEvent(var2)
 	{
 		if(var2.target == undefined)
 		{
@@ -70,7 +70,7 @@ class mx.events.EventDispatcher
 		this[var2.type + "Handler"](var2);
 		this.dispatchQueue(this,var2);
 	}
-	function addEventListener(§\x0f\r§, §\r\x12§)
+	function addEventListener(var2, var3)
 	{
 		var var4 = "__q_" + var2;
 		if(this[var4] == undefined)
@@ -78,12 +78,12 @@ class mx.events.EventDispatcher
 			this[var4] = new Array();
 		}
 		_global.ASSetPropFlags(this,var4,1);
-		mx.events.EventDispatcher._removeEventListener(this[var4],var2,var3);
+		eval(mx).events.EventDispatcher._removeEventListener(this[var4],var2,var3);
 		this[var4].push(var3);
 	}
-	function removeEventListener(§\x0f\r§, §\r\x12§)
+	function removeEventListener(var2, var3)
 	{
 		var var4 = "__q_" + var2;
-		mx.events.EventDispatcher._removeEventListener(this[var4],var2,var3);
+		eval(mx).events.EventDispatcher._removeEventListener(this[var4],var2,var3);
 	}
 }

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.DirectionChooser extends dofus.graphics.gapi.core.D
 	{
 		super();
 	}
-	function __set__target(§\n\x1b§)
+	function __set__target(var2)
 	{
 		this._mcSprite = var2;
 		return this.__get__target();
@@ -71,52 +71,53 @@ class dofus.graphics.gapi.ui.DirectionChooser extends dofus.graphics.gapi.core.D
 		this._btnR.addEventListener("out",this);
 		this._btnB.addEventListener("out",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		var var3 = 0;
-		if((var var0 = var2.target) !== this._btnR)
+		loop0:
+		switch(var2.target)
 		{
-			switch(null)
-			{
-				case this._btnBR:
-					var3 = 1;
-					break;
-				case this._btnB:
-					var3 = 2;
-					break;
-				case this._btnBL:
-					var3 = 3;
-					break;
-				case this._btnL:
-					var3 = 4;
-					break;
-				default:
-					switch(null)
-					{
-						case this._btnTL:
-							var3 = 5;
-							break;
-						case this._btnT:
-							var3 = 6;
-							break;
-						case this._btnTR:
-							var3 = 7;
-					}
-			}
-		}
-		else
-		{
-			var3 = 0;
+			case this._btnR:
+				var3 = 0;
+				break;
+			case this._btnBR:
+				var3 = 1;
+				break;
+			default:
+				switch(null)
+				{
+					case this._btnB:
+						var3 = 2;
+						break loop0;
+					case this._btnBL:
+						var3 = 3;
+						break loop0;
+					case this._btnL:
+						var3 = 4;
+						break loop0;
+					default:
+						switch(null)
+						{
+							case this._btnTL:
+								var3 = 5;
+								break;
+							case this._btnT:
+								var3 = 6;
+								break;
+							case this._btnTR:
+								var3 = 7;
+						}
+				}
 		}
 		this.api.network.Emotes.setDirection(var3);
 		this.unloadThis();
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var2.target._alpha = 80;
 		this.onMouseUp = undefined;
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		if((var var0 = var2.target) !== this._btnT)
 		{

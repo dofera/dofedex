@@ -6,7 +6,7 @@ class ank.utils.QueueEmbedMovieClip extends MovieClip
 	{
 		super();
 	}
-	function addToQueue(§\x1e\x1a\x0e§)
+	function addToQueue(var2)
 	{
 		ank.utils.QueueEmbedMovieClip._aQueue.push(var2);
 		if(ank.utils.QueueEmbedMovieClip._mcEnterFrame.onEnterFrame == undefined)

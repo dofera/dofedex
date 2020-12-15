@@ -8,19 +8,19 @@ class ank.battlefield.mc.Cell extends MovieClip
 	{
 		return this.data.num;
 	}
-	function initialize(§\x1d\x03§)
+	function initialize(var2)
 	{
 		this._mcBattlefield = var2;
 	}
-	function _release(§\x1e\n\f§)
+	function _release(var2)
 	{
 		this._mcBattlefield.onCellRelease(this);
 	}
-	function _rollOver(§\x1e\n\f§)
+	function _rollOver(var2)
 	{
 		this._mcBattlefield.onCellRollOver(this);
 	}
-	function _rollOut(§\x1e\n\f§)
+	function _rollOut(var2)
 	{
 		this._mcBattlefield.onCellRollOut(this);
 	}

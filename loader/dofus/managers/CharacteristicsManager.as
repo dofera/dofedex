@@ -39,14 +39,14 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 	static var INITIATIVE = 44;
 	static var PROSPECTION = 48;
 	static var STATE = 71;
-	function CharacteristicsManager(oSprite, §\x1e\x1a\x16§)
+	function CharacteristicsManager(oSprite, oAPI)
 	{
 		super();
-		this.initialize(oSprite,var4);
+		this.initialize(oSprite,oAPI);
 	}
-	function initialize(oSprite, §\x1e\x1a\x16§)
+	function initialize(oSprite, oAPI)
 	{
-		super.initialize(var4);
+		super.initialize(oAPI);
 		this._oSprite = oSprite;
 		this._aEffects = new Array();
 		this._aModerators = new Array(20);
@@ -62,7 +62,7 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 	{
 		return this._aEffects;
 	}
-	function getModeratorValue(§\x1e\x1c\x03§)
+	function getModeratorValue(var2)
 	{
 		var2 = Number(var2);
 		var var3 = Number(this._aModerators[var2]);
@@ -72,7 +72,7 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 		}
 		return var3;
 	}
-	function addEffect(§\x1e\x19\x1c§)
+	function addEffect(var2)
 	{
 		this._aEffects.push(var2);
 		this.onEffectStart(var2);
@@ -101,42 +101,41 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 			}
 		}
 	}
-	function onEffectStart(§\x1e\x19\x1c§)
+	function onEffectStart(var2)
 	{
 		var var3 = var2.characteristic;
-		if((var var0 = var3) !== dofus.managers.CharacteristicsManager.GFX)
+		switch(var3)
 		{
-			if(var0 !== dofus.managers.CharacteristicsManager.INVISIBILITY)
-			{
+			case dofus.managers.CharacteristicsManager.GFX:
+				if(this._oSprite.mount != undefined)
+				{
+					this._oSprite.mount.chevauchorGfxID = var2.param2;
+				}
+				else
+				{
+					this._oSprite.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + var2.param2 + ".swf";
+				}
+				this._oSprite.mc.draw();
+				break;
+			case dofus.managers.CharacteristicsManager.INVISIBILITY:
+				if(this._oSprite.id == this.api.datacenter.Player.ID)
+				{
+					this._oSprite.mc.setAlpha(40);
+				}
+				else
+				{
+					this._oSprite.mc.setVisible(false);
+				}
+				break;
+			default:
 				if(this._aModerators[var3] == undefined)
 				{
 					this._aModerators[var3] = 0;
 				}
 				this._aModerators[var3] = this._aModerators[var3] + Number(var2.getParamWithOperator(1));
-			}
-			else if(this._oSprite.id == this.api.datacenter.Player.ID)
-			{
-				this._oSprite.mc.setAlpha(40);
-			}
-			else
-			{
-				this._oSprite.mc.setVisible(false);
-			}
-		}
-		else
-		{
-			if(this._oSprite.mount != undefined)
-			{
-				this._oSprite.mount.chevauchorGfxID = var2.param2;
-			}
-			else
-			{
-				this._oSprite.gfxFile = dofus.Constants.CLIPS_PERSOS_PATH + var2.param2 + ".swf";
-			}
-			this._oSprite.mc.draw();
 		}
 	}
-	function onEffectEnd(§\x1e\x19\x1c§)
+	function onEffectEnd(var2)
 	{
 		if((var var0 = var2.characteristic) !== dofus.managers.CharacteristicsManager.GFX)
 		{
@@ -174,7 +173,7 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 			this.api.network.defaultProcessAction = this.defaultProcessAction;
 		}
 	}
-	function defaultProcessAction(§\x1e\f\x14§, §\x1e\x15\x07§, §\x1a\x10§, §\x1e\x13\x10§)
+	function defaultProcessAction(var2, var3, var4, var5)
 	{
 		var var6 = 0;
 		var var7 = 0;
@@ -184,60 +183,59 @@ class dofus.managers.CharacteristicsManager extends dofus.utils.ApiElement
 			var7 = var7 + 1;
 		}
 		var var8 = 0;
-		loop1:
-		switch(var6 % 13)
+		if((var var0 = var6 % 13) !== 0)
 		{
-			case 0:
-				var8 = _global.parseInt(this.api.datacenter.Player.ID);
-				break;
-			case 1:
-				var8 = this.api.datacenter.Player.Level;
-				break;
-			case 2:
-				var8 = this.api.datacenter.Player.Sex;
-				break;
-			default:
-				switch(null)
-				{
-					case 3:
-						var8 = _global.parseInt(this.api.datacenter.Player.ID) + var5.length;
-						break loop1;
-					case 4:
-						var8 = this.api.datacenter.Player.Kama;
-						break loop1;
-					case 5:
-						var8 = this.api.datacenter.Player.XP;
-						break loop1;
-					case 6:
-						var8 = var5.length;
-						break loop1;
-					default:
-						switch(null)
-						{
-							case 7:
-								var8 = this.api.datacenter.Player.Force;
-								break loop1;
-							case 8:
-								var8 = this.api.datacenter.Player.Wisdom;
-								break loop1;
-							case 9:
-								var8 = this.api.datacenter.Player.Chance;
-								break loop1;
-							case 10:
-								var8 = this.api.datacenter.Player.Agility;
-								break loop1;
-							case 11:
-								var8 = this.api.datacenter.Player.Intelligence;
-								break loop1;
-							default:
-								if(var0 !== 12)
-								{
-									break loop1;
-								}
-								var8 = this.api.datacenter.Player.currentWeight;
-								break loop1;
-						}
-				}
+			loop1:
+			switch(null)
+			{
+				case 1:
+					var8 = this.api.datacenter.Player.Level;
+					break;
+				case 2:
+					var8 = this.api.datacenter.Player.Sex;
+					break;
+				case 3:
+					var8 = _global.parseInt(this.api.datacenter.Player.ID) + var5.length;
+					break;
+				case 4:
+					var8 = this.api.datacenter.Player.Kama;
+					break;
+				case 5:
+					var8 = this.api.datacenter.Player.XP;
+					break;
+				default:
+					switch(null)
+					{
+						case 6:
+							var8 = var5.length;
+							break loop1;
+						case 7:
+							var8 = this.api.datacenter.Player.Force;
+							break loop1;
+						case 8:
+							var8 = this.api.datacenter.Player.Wisdom;
+							break loop1;
+						case 9:
+							var8 = this.api.datacenter.Player.Chance;
+							break loop1;
+						case 10:
+							var8 = this.api.datacenter.Player.Agility;
+							break loop1;
+						default:
+							switch(null)
+							{
+								case 11:
+									var8 = this.api.datacenter.Player.Intelligence;
+									break;
+								case 12:
+									var8 = this.api.datacenter.Player.currentWeight;
+							}
+					}
+			}
+		}
+		else
+		{
+			var8 = _global.parseInt(this.api.datacenter.Player.ID);
 		}
 		var8 = var8 + _global.parseInt(this.api.datacenter.Player.ID);
 		var var9 = var5.substr(0,2) + var8.toString();

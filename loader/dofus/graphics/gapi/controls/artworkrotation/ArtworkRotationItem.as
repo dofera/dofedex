@@ -10,12 +10,12 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 		super();
 		this._mcAlphaMask._visible = false;
 	}
-	function __set__sex(§\x1e\x1d\x1c§)
+	function __set__sex(var2)
 	{
 		this._nSex = Number(var2);
 		return this.__get__sex();
 	}
-	function __set__scale(§\x1e\x1e\n§)
+	function __set__scale(var2)
 	{
 		this._nScale = Number(var2);
 		return this.__get__scale();
@@ -24,7 +24,7 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 	{
 		super.init(false,dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem.CLASS_NAME);
 	}
-	function loadArtwork(§\x07\x0f§)
+	function loadArtwork(var2)
 	{
 		var var3 = dofus.Constants.GUILDS_BIG_PATH + var2 + this._nSex + ".swf";
 		this._ldrArtwork.addEventListener("initialization",this);
@@ -33,7 +33,7 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 		this._mcAlphaMask._xscale = this._mcAlphaMask._yscale = 85;
 		this._ldrArtwork.setMask(this._mcAlphaMask);
 	}
-	function colorize(§\x17\x05§, §\x1c\x14§)
+	function colorize(var2, var3)
 	{
 		if(var3 == undefined)
 		{
@@ -74,7 +74,7 @@ class dofus.graphics.gapi.controls.artworkrotation.ArtworkRotationItem extends a
 			};
 		}
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var2.clip._xscale = var2.clip._yscale = this._nScale;
 	}

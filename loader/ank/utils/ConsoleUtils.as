@@ -3,7 +3,7 @@ class ank.utils.ConsoleUtils
 	function ConsoleUtils()
 	{
 	}
-	static function autoCompletion(§\x1e\x0b§, §\x1e\x14\b§)
+	static function autoCompletion(var2, var3)
 	{
 		var var4 = ank.utils.ConsoleUtils.removeAndGetLastWord(var3);
 		var var5 = var4.lastWord;
@@ -35,7 +35,7 @@ class ank.utils.ConsoleUtils
 		}
 		return {result:var3 + var5,list:var6,isFull:false};
 	}
-	static function removeAndGetLastWord(§\x1e\x14\b§)
+	static function removeAndGetLastWord(var2)
 	{
 		var var3 = var2.split(" ");
 		if(var3.length == 0)
@@ -45,7 +45,7 @@ class ank.utils.ConsoleUtils
 		var var4 = String(var3.pop());
 		return {leftCmd:(var3.length != 0?var3.join(" ") + " ":""),lastWord:var4};
 	}
-	static function autoCompletionRecurcive(§\x1e\x0b§, §\x1e\x10\x1d§, §\x1e\x0f\r§)
+	static function autoCompletionRecurcive(var2, var3, var4)
 	{
 		var4 = var4.toLowerCase();
 		var var5 = ank.utils.ConsoleUtils.getStringsStartWith(var2,var4);
@@ -74,7 +74,7 @@ class ank.utils.ConsoleUtils
 		}
 		return {result:var3 + var4,list:var2,isFull:false};
 	}
-	static function getStringsStartWith(§\x1e\x0b§, §\x1e\x0f\r§)
+	static function getStringsStartWith(var2, var3)
 	{
 		var var4 = new Array();
 		var var5 = 0;

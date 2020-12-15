@@ -1,39 +1,20 @@
-if(!dofus.graphics.gapi.ui.FightOptionButtons)
+class dofus.graphics.gapi.ui.FightOptionButtons extends dofus.graphics.gapi.core.DofusAdvancedComponent
 {
-	if(!dofus)
-	{
-		_global.dofus = new Object();
-	}
-	if(!dofus.graphics)
-	{
-		_global.dofus.graphics = new Object();
-	}
-	if(!dofus.graphics.gapi)
-	{
-		_global.dofus.graphics.gapi = new Object();
-	}
-	if(!dofus.graphics.gapi.ui)
-	{
-		_global.dofus.graphics.gapi.ui = new Object();
-	}
-	dofus.graphics.gapi.ui.FightOptionButtons = function()
+	static var CLASS_NAME = "FightOptionButtons";
+	function FightOptionButtons()
 	{
 		super();
-	} extends dofus.graphics.gapi.core.DofusAdvancedComponent;
-	var var1 = dofus.graphics.gapi.ui.FightOptionButtons = function()
-	{
-		super();
-	}.prototype;
-	var1.init = function init()
+	}
+	function init()
 	{
 		super.init(false,dofus.graphics.gapi.ui.FightOptionButtons.CLASS_NAME);
-	};
-	var1.createChildren = function createChildren()
+	}
+	function createChildren()
 	{
 		this.addToQueue({object:this,method:this.addListeners});
 		this.addToQueue({object:this,method:this.initData});
-	};
-	var1.addListeners = function addListeners()
+	}
+	function addListeners()
 	{
 		this._btnTactic.addEventListener("click",this);
 		this._btnTactic.addEventListener("over",this);
@@ -56,8 +37,8 @@ if(!dofus.graphics.gapi.ui.FightOptionButtons)
 		this._btnToggleSprites.addEventListener("click",this);
 		this._btnToggleSprites.addEventListener("over",this);
 		this._btnToggleSprites.addEventListener("out",this);
-	};
-	var1.initData = function initData()
+	}
+	function initData()
 	{
 		if(!this.api.datacenter.Game.isSpectator)
 		{
@@ -87,16 +68,16 @@ if(!dofus.graphics.gapi.ui.FightOptionButtons)
 		}
 		this._btnTactic.selected = this.api.datacenter.Game.isTacticMode;
 		this._btnToggleSprites._visible = false;
-	};
-	var1.onGameRunning = function onGameRunning()
+	}
+	function onGameRunning()
 	{
 		this._btnBlockJoinerExceptParty._visible = false;
 		this._btnBlockJoiner._visible = false;
 		this._btnHelp._visible = false;
 		this._btnToggleSprites._visible = true;
 		this._btnTactic._x = 662;
-	};
-	var1.click = function click(§\x1e\x19\x18§)
+	}
+	function click(var2)
 	{
 		loop0:
 		switch(var2.target)
@@ -107,12 +88,12 @@ if(!dofus.graphics.gapi.ui.FightOptionButtons)
 			case this._btnFlag:
 				this.api.kernel.GameManager.switchToFlagSet();
 				break;
-			case this._btnBlockJoinerExceptParty:
-				this.api.network.Fights.blockJoinerExceptParty();
-				break;
 			default:
 				switch(null)
 				{
+					case this._btnBlockJoinerExceptParty:
+						this.api.network.Fights.blockJoinerExceptParty();
+						break loop0;
 					case this._btnBlockJoiner:
 						this.api.network.Fights.blockJoiner();
 						break loop0;
@@ -137,8 +118,8 @@ if(!dofus.graphics.gapi.ui.FightOptionButtons)
 						break loop0;
 				}
 		}
-	};
-	var1.over = function over(§\x1e\x19\x18§)
+	}
+	function over(var2)
 	{
 		loop0:
 		switch(var2.target)
@@ -149,32 +130,35 @@ if(!dofus.graphics.gapi.ui.FightOptionButtons)
 			case this._btnFlag:
 				this.gapi.showTooltip(this.api.lang.getText("FLAG_INDICATOR_HELP"),this._btnFlag,-30);
 				break;
-			case this._btnBlockJoinerExceptParty:
-				this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_BLOCKJOINEREXCEPTPARTY"),this._btnFlag,-30);
-				break;
 			default:
 				switch(null)
 				{
+					case this._btnBlockJoinerExceptParty:
+						this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_BLOCKJOINEREXCEPTPARTY"),this._btnFlag,-30);
+						break loop0;
 					case this._btnBlockJoiner:
 						this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_BLOCKJOINER"),this._btnFlag,-30);
 						break loop0;
 					case this._btnHelp:
 						this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_HELP"),this._btnFlag,-30);
 						break loop0;
-					case this._btnBlockSpectators:
 					default:
-						this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_SPECTATOR"),this._btnFlag,-30);
-						break loop0;
-					case this._btnToggleSprites:
-						this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_SPRITES"),this._btnFlag,-30);
+						switch(null)
+						{
+							case this._btnBlockSpectators:
+								this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_SPECTATOR"),this._btnFlag,-30);
+								break;
+							case this._btnToggleSprites:
+								this.gapi.showTooltip(this.api.lang.getText("FIGHT_OPTION_SPRITES"),this._btnFlag,-30);
+						}
 				}
 		}
-	};
-	var1.out = function out(§\x1e\x19\x18§)
+	}
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
-	};
-	var1.moveButtons = function moveButtons(§\x06\r§)
+	}
+	function moveButtons(var2)
 	{
 		this._btnTactic._y = this._btnTactic._y + var2;
 		this._btnFlag._y = this._btnFlag._y + var2;
@@ -183,10 +167,5 @@ if(!dofus.graphics.gapi.ui.FightOptionButtons)
 		this._btnHelp._y = this._btnHelp._y + var2;
 		this._btnBlockSpectators._y = this._btnBlockSpectators._y + var2;
 		this._btnToggleSprites._y = this._btnToggleSprites._y + var2;
-	};
-	eval("\b\x14R\x17�\r")(var1,null,1);
-	dofus.graphics.gapi.ui.FightOptionButtons = function()
-	{
-		super();
-	}["\x02\x04\x01\x07\x03"] = "�5";
+	}
 }

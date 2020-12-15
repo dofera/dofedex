@@ -1,12 +1,12 @@
 class ank.battlefield.mc.Zone extends MovieClip
 {
 	static var ALPHA = 30;
-	function Zone(§\x0b\x13§)
+	function Zone(var2)
 	{
 		super();
 		this.initialize(var3);
 	}
-	function initialize(§\x0b\x13§)
+	function initialize(var2)
 	{
 		this._oMap = var2;
 		this.clear();
@@ -19,14 +19,14 @@ class ank.battlefield.mc.Zone extends MovieClip
 	{
 		this.removeMovieClip();
 	}
-	function drawCircle(§\x01\x06§, §\x07\x0e§, §\x07\x1d§)
+	function drawCircle(var2, var3, var4)
 	{
 		var var5 = this._mcZone;
 		var5.beginFill(var3,ank.battlefield.mc.Zone.ALPHA);
 		this.drawCircleBorder(var2,var3,var4);
 		var5.endFill();
 	}
-	function drawRing(§\x01\x05§, §\x01\x04§, §\x07\x0e§, §\x07\x1d§)
+	function drawRing(var2, var3, var4, var5)
 	{
 		var var6 = this._mcZone;
 		var6.beginFill(var4,ank.battlefield.mc.Zone.ALPHA);
@@ -34,14 +34,14 @@ class ank.battlefield.mc.Zone extends MovieClip
 		this.drawCircleBorder(var2,var4,var5);
 		var6.endFill();
 	}
-	function drawRectangle(§\x1e\x1b\x0f§, §\x05\x07§, §\x07\x0e§, §\x07\x1d§)
+	function drawRectangle(var2, var3, var4, var5)
 	{
 		var var6 = this._mcZone;
 		var6.beginFill(var4,ank.battlefield.mc.Zone.ALPHA);
 		this.drawRectangleBorder(var2,var3,var4,var5);
 		var6.endFill();
 	}
-	function drawCross(§\x01\x06§, §\x07\x0e§, §\x07\x1d§)
+	function drawCross(var2, var3, var4)
 	{
 		var var5 = ank.battlefield.Constants.CELL_COORD;
 		var var6 = this._oMap.getWidth();
@@ -129,7 +129,7 @@ class ank.battlefield.mc.Zone extends MovieClip
 		}
 		var10.endFill();
 	}
-	function drawLine(§\f\x02§, §\x07\x0e§, §\x0f\x04§, §\x1e\x15\x12§, §\x1b\x17§, §\x16\x19§)
+	function drawLine(var2, var3, var4, var5, var6, var7)
 	{
 		var var8 = 0;
 		var var9 = 0;
@@ -240,14 +240,14 @@ class ank.battlefield.mc.Zone extends MovieClip
 		}
 		var18.endFill();
 	}
-	function getGroundData(§\b\x02§)
+	function getGroundData(var2)
 	{
 		var var3 = this._oMap.getCellData(var2);
 		var var4 = var3.groundSlope != undefined?var3.groundSlope:1;
 		var var5 = var3.groundLevel != undefined?var3.groundLevel - 7:0;
 		return {gf:var4,gl:var5};
 	}
-	function drawCircleBorder(§\x01\x06§, §\x07\x0e§, §\x07\x1d§)
+	function drawCircleBorder(var2, var3, var4)
 	{
 		var var5 = ank.battlefield.Constants.CELL_COORD;
 		var var6 = this._oMap.getWidth();
@@ -304,7 +304,7 @@ class ank.battlefield.mc.Zone extends MovieClip
 			var10 = var10 - 1;
 		}
 	}
-	function drawRectangleBorder(§\x1e\x1b\x0f§, §\x05\x07§, §\x07\x0e§, §\x07\x1d§)
+	function drawRectangleBorder(var2, var3, var4, var5)
 	{
 		var var6 = ank.battlefield.Constants.CELL_COORD;
 		var var7 = this._oMap.getWidth() * 2 - 1;

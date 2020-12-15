@@ -4,12 +4,12 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 	{
 		super();
 	}
-	function __set__list(§\x0b\x05§)
+	function __set__list(var2)
 	{
 		this._mcList = var2;
 		return this.__get__list();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		this._oItem = var4;
 		if(var2)
@@ -25,13 +25,8 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 				case 2:
 					this._lblItemName.styleName = "GreenLeftSmallBoldLabel";
 					break;
-				default:
-					if(var0 !== 3)
-					{
-						break;
-					}
+				case 3:
 					this._lblItemName.styleName = "RedLeftSmallBoldLabel";
-					break;
 			}
 			this._mcTooltip.onRollOver = function()
 			{
@@ -111,11 +106,11 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 		}
 		this._ctrItemIcon.addEventListener("click",this);
 	}
-	function setContainerContentData(§\x04\x17§, §\x1e\x19\r§)
+	function setContainerContentData(var2, var3)
 	{
 		this["_ctr" + var2].contentData = var3;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -151,21 +146,20 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 	function onTooltipRollOver()
 	{
 		var var2 = "";
-		switch(this._oItem.difficulty)
+		if((var var0 = this._oItem.difficulty) !== 1)
 		{
-			case 1:
-				var2 = this._mcList._parent.gapi.api.lang.getText("CRAFT_DIFFICULTY1");
-				break;
-			case 2:
-				var2 = this._mcList._parent.gapi.api.lang.getText("CRAFT_DIFFICULTY2");
-				break;
-			default:
-				if(var0 !== 3)
-				{
+			switch(null)
+			{
+				case 2:
+					var2 = this._mcList._parent.gapi.api.lang.getText("CRAFT_DIFFICULTY2");
 					break;
-				}
-				var2 = this._mcList._parent.gapi.api.lang.getText("CRAFT_DIFFICULTY3");
-				break;
+				case 3:
+					var2 = this._mcList._parent.gapi.api.lang.getText("CRAFT_DIFFICULTY3");
+			}
+		}
+		else
+		{
+			var2 = this._mcList._parent.gapi.api.lang.getText("CRAFT_DIFFICULTY1");
 		}
 		this._mcList._parent.gapi.showTooltip(var2,this._mcTooltip,15);
 	}
@@ -173,12 +167,12 @@ class dofus.graphics.gapi.controls.craftviewer.CraftViewerCraftItem extends ank.
 	{
 		this._mcList._parent.gapi.hideTooltip();
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var var3 = var2.target.contentData;
 		this._mcList._parent.gapi.showTooltip("x" + var3.Quantity + " - " + var3.name,var2.target,-20);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this._mcList._parent.gapi.hideTooltip();
 	}

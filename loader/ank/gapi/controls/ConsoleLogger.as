@@ -9,12 +9,12 @@ class ank.gapi.controls.ConsoleLogger extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bShadowy;
 	}
-	function __set__shadowy(§\x1d\x03§)
+	function __set__shadowy(var2)
 	{
 		this._bShadowy = var2;
 		return this.__get__shadowy();
 	}
-	function log(§\x1e\r\x02§, §\x1e\x12\x05§, §\x1e\x11\x02§)
+	function log(var2, var3, var4)
 	{
 		var var5 = new Object();
 		var5.text = var2;
@@ -87,7 +87,7 @@ class ank.gapi.controls.ConsoleLogger extends ank.gapi.core.UIBasicComponent
 		this._tText.htmlText = var2;
 		this._tText.scroll = this._tText.maxscroll;
 	}
-	function onHref(§\x1e\x0f\x13§)
+	function onHref(var2)
 	{
 		this.dispatchEvent({type:"href",params:var2});
 	}

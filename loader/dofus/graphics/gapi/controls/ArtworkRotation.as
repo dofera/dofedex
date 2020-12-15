@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.ArtworkRotation extends ank.gapi.core.UIBasic
 	{
 		super();
 	}
-	function __set__classID(§\x07\x0f§)
+	function __set__classID(var2)
 	{
 		this._ariMan.loadArtwork(var2);
 		this._ariWoman.loadArtwork(var2);
@@ -19,7 +19,7 @@ class dofus.graphics.gapi.controls.ArtworkRotation extends ank.gapi.core.UIBasic
 	{
 		this._i = 2.02;
 	}
-	function setPosition(§\x1e\x1d\x1c§)
+	function setPosition(var2)
 	{
 		if(this._nCurrentSex == var2)
 		{
@@ -46,7 +46,7 @@ class dofus.graphics.gapi.controls.ArtworkRotation extends ank.gapi.core.UIBasic
 		this._ariWoman._xscale = 100 - var4;
 		this._ariWoman._yscale = 100 - var4;
 	}
-	function rotate(§\x1e\x1d\x1c§)
+	function rotate(var2)
 	{
 		if(this._nCurrentSex == var2)
 		{

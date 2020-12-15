@@ -14,7 +14,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		super();
 	}
-	function __set__multipleContainerSelectionEnabled(§\x17\x16§)
+	function __set__multipleContainerSelectionEnabled(var2)
 	{
 		this._bMultiContainerSelection = var2;
 		return this.__get__multipleContainerSelectionEnabled();
@@ -23,7 +23,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bMultiContainerSelection;
 	}
-	function __set__selectable(§\x15\x1a§)
+	function __set__selectable(var2)
 	{
 		this._bSelectable = var2;
 		return this.__get__selectable();
@@ -32,7 +32,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bSelectable;
 	}
-	function __set__visibleRowCount(§\x1e\x1b\x13§)
+	function __set__visibleRowCount(var2)
 	{
 		this._nVisibleRowCount = var2;
 		return this.__get__visibleRowCount();
@@ -41,7 +41,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nVisibleRowCount;
 	}
-	function __set__visibleColumnCount(§\x1e\x1b\x14§)
+	function __set__visibleColumnCount(var2)
 	{
 		this._nVisibleColumnCount = var2;
 		return this.__get__visibleColumnCount();
@@ -50,7 +50,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._nVisibleColumnCount;
 	}
-	function __set__dataProvider(§\x10\x14§)
+	function __set__dataProvider(var2)
 	{
 		this._eaDataProvider = var2;
 		this._eaDataProvider.addEventListener("modelChanged",this);
@@ -66,7 +66,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._eaDataProvider;
 	}
-	function __set__selectedIndex(§\x1e\x1e\x03§)
+	function __set__selectedIndex(var2)
 	{
 		this.setSelectedItem(var2);
 		return this.__get__selectedIndex();
@@ -79,7 +79,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._mcScrollContent["c" + this.selectedIndex];
 	}
-	function __set__scrollBar(§\x15\x1d§)
+	function __set__scrollBar(var2)
 	{
 		this._bScrollBar = var2;
 		return this.__get__scrollBar();
@@ -88,7 +88,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	{
 		return this._bScrollBar;
 	}
-	function isSelectedIndex(§\x04\x17§)
+	function isSelectedIndex(var2)
 	{
 		var var3 = 0;
 		while(var3 < this._aSelectedIndexes.length)
@@ -102,7 +102,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		}
 		return false;
 	}
-	function setVPosition(§\x01\x17§)
+	function setVPosition(var2)
 	{
 		var var3 = this.getMaxRow();
 		if(var2 > var3)
@@ -121,7 +121,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 			this.layoutContent();
 		}
 	}
-	function getContainer(§\x04\x17§)
+	function getContainer(var2)
 	{
 		return (ank.gapi.controls.Container)this._mcScrollContent["c" + var2];
 	}
@@ -256,8 +256,9 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		var var4 = var2.containerborder;
 		var var5 = var2.containerhighlight;
 		this._nStyleMargin = var2.containermargin;
-		for(var var6 in this._mcScrollContent)
+		for(var k in this._mcScrollContent)
 		{
+			var var6 = this._mcScrollContent[k];
 			var6.backgroundRenderer = var3;
 			var6.borderRenderer = var4;
 			var6.highlightRenderer = var5;
@@ -271,8 +272,9 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 	}
 	function setEnabled()
 	{
-		for(this._mcScrollContent[k].enabled in this._mcScrollContent)
+		for(var k in this._mcScrollContent)
 		{
+			this._mcScrollContent[k].enabled = this._bEnabled;
 		}
 		this.addToQueue({object:this,method:function()
 		{
@@ -290,7 +292,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		this._sbVertical.setScrollProperties(var3,0,var2);
 		this._sbVertical.scrollPosition = this._nScrollPosition;
 	}
-	function getItemById(§\x04\x17§)
+	function getItemById(var2)
 	{
 		var var3 = 0;
 		var var4 = 0;
@@ -324,12 +326,12 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		var2.reverse();
 		return var2;
 	}
-	function selectContainer(§\x1e\x1a\x05§)
+	function selectContainer(var2)
 	{
 		var2.selected = true;
 		this._aSelectedIndexes.push({index:var2.id,item:var2.contentData});
 	}
-	function unSelectContainer(§\x1e\x1a\x05§)
+	function unSelectContainer(var2)
 	{
 		var2.selected = false;
 		var var3 = new Array();
@@ -344,7 +346,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		}
 		this._aSelectedIndexes = var3;
 	}
-	function setSelectedItem(§\x04\x17§, §\x16\x07§)
+	function setSelectedItem(var2, var3)
 	{
 		if(var3 == undefined)
 		{
@@ -397,7 +399,7 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		}
 		this.selectContainer(var10);
 	}
-	function modelChanged(§\x1e\x19\x18§)
+	function modelChanged(var2)
 	{
 		this.unSelectAll();
 		var var3 = this._nRowCount;
@@ -407,19 +409,19 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		this.draw();
 		this.setScrollBarProperties();
 	}
-	function scroll(§\x1e\x19\x18§)
+	function scroll(var2)
 	{
 		this.setVPosition(var2.target.scrollPosition);
 	}
-	function drag(§\x1e\x19\x18§)
+	function drag(var2)
 	{
 		this.dispatchEvent({type:"dragItem",target:var2.target});
 	}
-	function drop(§\x1e\x19\x18§)
+	function drop(var2)
 	{
 		this.dispatchEvent({type:"dropItem",target:var2.target});
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if(this._bSelectable && (this._bMultiContainerSelection && (Key.isDown(dofus.Constants.SELECT_MULTIPLE_ITEMS_KEY) && Key.isDown(Key.SHIFT))))
 		{
@@ -427,11 +429,11 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		}
 		this.dispatchEvent({type:"overItem",target:var2.target});
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.dispatchEvent({type:"outItem",target:var2.target});
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		if(this._bSelectable)
 		{
@@ -439,15 +441,15 @@ class ank.gapi.controls.ContainerGrid extends ank.gapi.core.UIBasicComponent
 		}
 		this.dispatchEvent({type:"selectItem",target:var2.target,owner:this});
 	}
-	function dblClick(§\x1e\x19\x18§)
+	function dblClick(var2)
 	{
 		var var3 = this.getSelectedItems();
 		this.unSelectAll();
 		this.dispatchEvent({type:"dblClickItem",target:var2.target,targets:var3,owner:this});
 	}
-	function onMouseWheel(§\x06\x17§, §\x0b\r§)
+	function onMouseWheel(var2, var3)
 	{
-		if(Key.isDown(Key.CONTROL))
+		if(dofus.graphics.gapi.ui.Zoom.isZooming())
 		{
 			return undefined;
 		}

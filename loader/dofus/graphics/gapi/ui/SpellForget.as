@@ -34,11 +34,9 @@ class dofus.graphics.gapi.ui.SpellForget extends dofus.graphics.gapi.core.DofusA
 	function initData()
 	{
 		var var2 = this.api.datacenter.Player.Spells;
-		var var3 = new ank.utils.
-();
-		for(var k in var2)
+		var var3 = new ank.utils.();
+		for(var var4 in var2)
 		{
-			var var4 = var2[k];
 			if(var4.classID != -1 && var4.level > 1)
 			{
 				var3.push(var4);
@@ -46,11 +44,11 @@ class dofus.graphics.gapi.ui.SpellForget extends dofus.graphics.gapi.core.DofusA
 		}
 		this._lstSpells.dataProvider = var3;
 	}
-	function itemSelected(§\x1e\x19\x18§)
+	function itemSelected(var2)
 	{
 		this._btnValidate.enabled = true;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -68,7 +66,7 @@ class dofus.graphics.gapi.ui.SpellForget extends dofus.graphics.gapi.core.DofusA
 				this.unloadThis();
 		}
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoSpellForget")
 		{

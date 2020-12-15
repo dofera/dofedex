@@ -14,7 +14,7 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 	{
 		super();
 	}
-	function __set__opened(§\x16\x1b§)
+	function __set__opened(var2)
 	{
 		this._bOpened = var2;
 		this.layout_mc._visible = var2;
@@ -28,7 +28,7 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 	{
 		this.generate();
 	}
-	function nextTurn(§\r\b§, §\x13\x18§)
+	function nextTurn(var2, var3)
 	{
 		if(var3 = undefined)
 		{
@@ -55,19 +55,19 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 		this.layout_mc.pointer_mc._y = !var4._oData.isSummoned?0:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_HEIGHT_DELTA;
 		this._currentDisplayIndex = var2;
 	}
-	function hideItem(§\r\b§)
+	function hideItem(var2)
 	{
 		var var3 = this.layout_mc.items_mc["item" + var2];
 		var var4 = new Color(var3.sprite);
 		var4.setRGB(dofus.graphics.gapi.controls.Timeline.HIDE_COLOR);
 	}
-	function showItem(§\r\b§)
+	function showItem(var2)
 	{
 		var var3 = this.layout_mc.items_mc["item" + var2];
 		var var4 = new Color(var3.sprite);
 		var4.setTransform({ra:100,ga:100,ba:100,rb:0,gb:0,bb:0});
 	}
-	function startChrono(§\x06\t§)
+	function startChrono(var2)
 	{
 		this._vcChrono.startTimer(var2);
 	}
@@ -115,7 +115,7 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 			this._parent.opened = !this._parent.opened;
 		};
 	}
-	function generate(§\x11\x1d§)
+	function generate(var2)
 	{
 		var var3 = this.api.datacenter;
 		if(var2 == undefined)
@@ -143,13 +143,11 @@ class dofus.graphics.gapi.controls.Timeline extends dofus.graphics.gapi.core.Dof
 			var7 = var7 + (!var8.isSummoned?dofus.graphics.gapi.controls.Timeline.ITEM_WIDTH:dofus.graphics.gapi.controls.Timeline.ITEM_SUMMONED_WIDTH);
 			var5 = var5 + 1;
 		}
-		for(var k in this._previousCharacList)
+		for(var var9 in this._previousCharacList)
 		{
-			var var9 = this._previousCharacList[k].id;
 			var var10 = false;
-			for(var kk in var4)
+			for(var var11 in var4)
 			{
-				var var11 = var4[kk].id;
 				if(var9 == var11)
 				{
 					var10 = true;

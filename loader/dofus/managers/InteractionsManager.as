@@ -2,17 +2,17 @@ class dofus.managers.InteractionsManager extends dofus.utils.ApiElement
 {
 	static var STATE_MOVE_SINGLE = 0;
 	static var STATE_SELECT = 1;
-	function InteractionsManager(§\x1e\x16\x1a§, §\x1e\x1a\x16§)
+	function InteractionsManager(§\x1e\x16\x10§, oAPI)
 	{
 		super();
-		this.initialize(var3,var4);
+		this.initialize(var3,oAPI);
 	}
-	function initialize(§\x1e\x16\x1a§, §\x1e\x1a\x16§)
+	function initialize(§\x1e\x16\x10§, oAPI)
 	{
-		super.initialize(var4);
+		super.initialize(oAPI);
 		this._playerManager = var3;
 	}
-	function setState(§\x1a\x0b§)
+	function setState(var2)
 	{
 		if(var2)
 		{
@@ -24,7 +24,7 @@ class dofus.managers.InteractionsManager extends dofus.utils.ApiElement
 			this._state = dofus.managers.InteractionsManager.STATE_MOVE_SINGLE;
 		}
 	}
-	function calculatePath(mapHandler, §\x13\x0e§, §\x16\f§, §\x18\x15§, §\x19\x07§, §\x1c\x16§)
+	function calculatePath(mapHandler, §\x13\t§, §\x16\x07§, §\x18\x10§, §\x19\x02§, §\x1c\x13§)
 	{
 		if(!var6)
 		{
@@ -40,23 +40,11 @@ class dofus.managers.InteractionsManager extends dofus.utils.ApiElement
 			var var13 = false;
 			if(var12 != undefined)
 			{
-				§§enumerate(var9.allSpritesOn);
-				while((var var0 = §§enumeration()) != null)
+				for(var sID in var9.allSpritesOn)
 				{
 					if(var9.allSpritesOn[sID] && var12.getMember(String(sID)) != undefined)
 					{
 						var13 = true;
-						var11 = false;
-						!var9.allSpritesOn[sID];
-						var11 = "gapi";
-						!var11;
-						var13 = true;
-						§§push(!!var13);
-						§§push(!!var11[var12 = (var9.allSpritesOn[sID].sID.ui.Party)this.api.ui.getUIComponent("Party")].isFight);
-						§§push(dofus.graphics);
-						§§push(var11);
-						§§push(this.api.datacenter);
-						§§push(var12.getMember(String(Game)) == undefined);
 						break;
 					}
 				}
@@ -100,11 +88,10 @@ class dofus.managers.InteractionsManager extends dofus.utils.ApiElement
 		}
 		return false;
 	}
-	function convertToSimplePath(§\x1e\x15§)
+	function convertToSimplePath(var2)
 	{
 		var var3 = new Array();
-		§§enumerate(var2);
-		while((var var0 = §§enumeration()) != null)
+		for(var k in var2)
 		{
 			var3.push(var2[k].num);
 		}

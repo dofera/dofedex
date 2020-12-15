@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.SpouseViewer extends dofus.graphics.gapi.core
 	{
 		super();
 	}
-	function __set__spouse(§\x1e\x18\x03§)
+	function __set__spouse(var2)
 	{
 		this._oSpouse = var2;
 		if(this.initialized)
@@ -76,7 +76,7 @@ class dofus.graphics.gapi.controls.SpouseViewer extends dofus.graphics.gapi.core
 			}
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{

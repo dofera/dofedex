@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.CrafterCard extends dofus.graphics.gapi.core.DofusA
 		super();
 		this._bInit = false;
 	}
-	function __set__crafter(§\x1e\x1a\x03§)
+	function __set__crafter(var2)
 	{
 		this._oCrafter = var2;
 		if(this._bInit)
@@ -93,12 +93,12 @@ class dofus.graphics.gapi.ui.CrafterCard extends dofus.graphics.gapi.core.DofusA
 		}
 		this._btnLocate._visible = var2;
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.target.content;
 		var3.attachMovie("staticF","anim",10);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{

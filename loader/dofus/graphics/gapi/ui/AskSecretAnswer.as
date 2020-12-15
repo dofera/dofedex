@@ -10,7 +10,7 @@ class dofus.graphics.gapi.ui.AskSecretAnswer extends ank.gapi.ui.FlyWindow
 	{
 		return this._char;
 	}
-	function __set__charToDelete(§\x13\x14§)
+	function __set__charToDelete(var2)
 	{
 		this._char = var2;
 		return this.__get__charToDelete();
@@ -18,7 +18,7 @@ class dofus.graphics.gapi.ui.AskSecretAnswer extends ank.gapi.ui.FlyWindow
 	function initWindowContent()
 	{
 		var var2 = this._winBackground.content;
-		var2._txtHelp.text = this.api.lang.getText("DELETING_CHARACTER_ANSWER") + IComparable + _global.unescape(this.api.datacenter.Basics.aks_secret_question);
+		var2._txtHelp.text = this.api.lang.getText("DELETING_CHARACTER_ANSWER") + "\r\n" + _global.unescape(this.api.datacenter.Basics.aks_secret_question);
 		var2._btnOk.label = this.api.lang.getText("OK");
 		var2._btnCancel.label = this.api.lang.getText("CANCEL_SMALL");
 		var2._btnOk.addEventListener("click",this);
@@ -26,7 +26,7 @@ class dofus.graphics.gapi.ui.AskSecretAnswer extends ank.gapi.ui.FlyWindow
 		var2._tiNickName.setFocus();
 		this.api.kernel.KeyManager.addShortcutsListener("onShortcut",this);
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -41,7 +41,7 @@ class dofus.graphics.gapi.ui.AskSecretAnswer extends ank.gapi.ui.FlyWindow
 				this.unloadThis();
 		}
 	}
-	function onShortcut(§\x1e\x0e\x04§)
+	function onShortcut(var2)
 	{
 		if(var2 == "ACCEPT_CURRENT_DIALOG" && this.api.ui.getUIComponent("AskYesNoSecretAnswer") == undefined)
 		{
@@ -50,12 +50,12 @@ class dofus.graphics.gapi.ui.AskSecretAnswer extends ank.gapi.ui.FlyWindow
 		}
 		return true;
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		this.api.network.Account.deleteCharacter(this._char.id,var2.params.nickname);
 		this.unloadThis();
 	}
-	function no(§\x1e\x19\x18§)
+	function no(var2)
 	{
 		this.unloadThis();
 	}

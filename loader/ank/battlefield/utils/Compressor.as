@@ -4,7 +4,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 	{
 		super();
 	}
-	static function uncompressMap(§\x0b\x12§, §\t\t§, §\x1e\n\x06§, §\r\x10§, §\x1d\x02§, §\x1e\x13\x10§, §\x1e\x19\x04§, §\x19\x1d§)
+	static function uncompressMap(var2, var3, var4, var5, var6, var7, var8, var9)
 	{
 		if(var8 == undefined)
 		{
@@ -29,7 +29,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		var8.backgroundNum = var6;
 		var8.data = var10;
 	}
-	static function uncompressCell(§\x1e\x13\x10§, §\x19\x1d§, nPermanentLevel)
+	static function uncompressCell(§\x1e\x13\x04§, §\x19\x19§, nPermanentLevel)
 	{
 		if(var3 == undefined)
 		{
@@ -43,7 +43,8 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		{
 			nPermanentLevel = Number(nPermanentLevel);
 		}
-		var var5 = new ank.battlefield.datacenter.();
+		var var5 = new ank.battlefield.datacenter.
+();
 		var var6 = var2.split("");
 		var var7 = var6.length - 1;
 		var var8 = new Array();
@@ -74,7 +75,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		}
 		return var5;
 	}
-	static function compressMap(§\x1e\x19\x04§)
+	static function compressMap(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -91,7 +92,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		}
 		return var3.join("");
 	}
-	static function compressCell(§\x1e\x1a\r§)
+	static function compressCell(var2)
 	{
 		var var4 = new Array(0,0,0,0,0,0,0,0,0,0);
 		var4[0] = (!var2.active?0:1) << 5;
@@ -125,7 +126,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		var var3 = var4.join("");
 		return var3;
 	}
-	static function compressPath(§\x1e\x14§, §\x13\x1a§)
+	static function compressPath(var2, var3)
 	{
 		var var4 = new String();
 		var var5 = ank.battlefield.utils.Compressor.makeLightPath(var2,var3);
@@ -144,7 +145,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		}
 		return var4;
 	}
-	static function makeLightPath(§\x1e\x15§, §\x13\x1a§)
+	static function makeLightPath(var2, var3)
 	{
 		if(var2 == undefined)
 		{
@@ -168,7 +169,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		}
 		return var4;
 	}
-	static function extractFullPath(mapHandler, §\x12\x14§)
+	static function extractFullPath(mapHandler, §\x12\x0f§)
 	{
 		var var4 = new Array();
 		var var5 = var3.split("");
@@ -196,7 +197,7 @@ class ank.battlefield.utils.Compressor extends ank.utils.Compressor
 		}
 		return ank.battlefield.utils.Compressor.makeFullPath(mapHandler,var4);
 	}
-	static function makeFullPath(mapHandler, §\x1e\x0e§)
+	static function makeFullPath(mapHandler, §\x1e\r§)
 	{
 		var var4 = new Array();
 		var var6 = 0;

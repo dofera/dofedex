@@ -5,7 +5,7 @@ class dofus.graphics.gapi.controls.SpellBoostViewer extends dofus.graphics.gapi.
 	{
 		super();
 	}
-	function __set__spell(§\x1e\x18\x04§)
+	function __set__spell(var2)
 	{
 		this._oSpell = var2;
 		if(this.initialized)

@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.BuffInfos extends dofus.graphics.gapi.core.DofusAdv
 	{
 		super();
 	}
-	function __set__data(§\x1e\x1a\x02§)
+	function __set__data(var2)
 	{
 		this._oData = var2;
 		if(this.initialized)
@@ -42,7 +42,7 @@ class dofus.graphics.gapi.ui.BuffInfos extends dofus.graphics.gapi.core.DofusAdv
 	{
 		this._bvBuffViewer.itemData = this._oData;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		this.callClose();
 	}

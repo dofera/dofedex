@@ -8,7 +8,7 @@ class dofus.utils.DofusConfiguration
 			_global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME] = ank.utils.SharedObjectFix.getLocal(dofus.Constants.OPTIONS_SHAREDOBJECT_NAME);
 		}
 	}
-	function __set__dataServers(§\x1e\x13§)
+	function __set__dataServers(var2)
 	{
 		this._aDataServers = var2;
 		return this.__get__dataServers();
@@ -17,7 +17,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return this._aDataServers;
 	}
-	function __set__language(§\x1e\x11\x06§)
+	function __set__language(var2)
 	{
 		var var3 = _global[dofus.Constants.GLOBAL_SO_OPTIONS_NAME];
 		var3.data.language = var2;
@@ -45,7 +45,6 @@ class dofus.utils.DofusConfiguration
 					default:
 						switch(null)
 						{
-							case "nl":
 							case "es":
 							case "it":
 								break loop0;
@@ -56,13 +55,14 @@ class dofus.utils.DofusConfiguration
 					case "de":
 					case "pt":
 					case "ru":
+					case "nl":
 				}
 			}
 			return var3;
 		}
 		return var2.toLowerCase();
 	}
-	function __set__languages(§\x1e\x0f§)
+	function __set__languages(var2)
 	{
 		this._aLanguages = var2;
 		return this.__get__languages();
@@ -103,7 +103,7 @@ class dofus.utils.DofusConfiguration
 		}
 		return var2;
 	}
-	function __set__xmlLanguages(§\x1c§)
+	function __set__xmlLanguages(var2)
 	{
 		this._aXmlLanguages = var2;
 		return this.__get__xmlLanguages();
@@ -112,7 +112,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return this._aXmlLanguages;
 	}
-	function __set__skipLanguageVerification(§\x1d\x03§)
+	function __set__skipLanguageVerification(var2)
 	{
 		this._bSkipLanguageVerification = var2;
 		return this.__get__skipLanguageVerification();
@@ -121,7 +121,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return this._bSkipLanguageVerification;
 	}
-	function __set__cacheAsBitmap(§\x13§)
+	function __set__cacheAsBitmap(var2)
 	{
 		this._aCacheAsBitmap = var2;
 		return this.__get__cacheAsBitmap();
@@ -130,7 +130,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return this._aCacheAsBitmap;
 	}
-	function __set__isExpo(§\x1a\r§)
+	function __set__isExpo(var2)
 	{
 		this._bIsExpo = var2;
 		return this.__get__isExpo();
@@ -139,7 +139,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return this._bIsExpo;
 	}
-	function __set__isStreaming(§\x14\x1d§)
+	function __set__isStreaming(var2)
 	{
 		this._bIsStreaming = var2;
 		return this.__get__isStreaming();
@@ -148,7 +148,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return this._bIsStreaming;
 	}
-	function __set__streamingMethod(§\x1e\x10\x06§)
+	function __set__streamingMethod(var2)
 	{
 		this._sStreamingMethod = var2;
 		return this.__get__streamingMethod();
@@ -169,7 +169,7 @@ class dofus.utils.DofusConfiguration
 	{
 		return String(System.capabilities.version).indexOf("MAC") > -1;
 	}
-	function getCustomIP(§\x1e\x1e\x01§)
+	function getCustomIP(var2)
 	{
 		return this.customServersIP[var2];
 	}

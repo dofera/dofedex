@@ -6,7 +6,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 	{
 		super();
 	}
-	function __set__quitMode(§\x1e\x0e\x15§)
+	function __set__quitMode(var2)
 	{
 		this._sQuitMode = var2;
 		if(this.initialized)
@@ -85,7 +85,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 			this._btnSubscribe._visible = false;
 		}
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -102,19 +102,19 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 			case this._btnOptions:
 				this.gapi.loadUIComponent("Options","Options",{_y:(this.gapi.screenHeight != 432?0:-50)},{bAlwaysOnTop:true});
 				break;
-			case this._btnHelp:
-				if(this.api.ui.getUIComponent("Banner") != undefined)
-				{
-					this.gapi.loadUIComponent("KnownledgeBase","KnownledgeBase");
-				}
-				else
-				{
-					_root.getURL(this.api.lang.getConfigText("TUTORIAL_FILE"),"_blank");
-				}
-				break;
 			default:
 				switch(null)
 				{
+					case this._btnHelp:
+						if(this.api.ui.getUIComponent("Banner") != undefined)
+						{
+							this.gapi.loadUIComponent("KnownledgeBase","KnownledgeBase");
+						}
+						else
+						{
+							_root.getURL(this.api.lang.getConfigText("TUTORIAL_FILE"),"_blank");
+						}
+						break;
 					case this._btnSubscribe:
 						_root.getURL(this.api.lang.getConfigText("PAY_LINK"),"_blank");
 						break;
@@ -123,7 +123,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 				}
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target)
 		{
@@ -154,7 +154,7 @@ class dofus.graphics.gapi.ui.MainMenu extends dofus.graphics.gapi.core.DofusAdva
 				}
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.api.ui.hideTooltip();
 	}

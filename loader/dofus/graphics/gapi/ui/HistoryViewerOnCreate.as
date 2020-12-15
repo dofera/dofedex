@@ -9,7 +9,7 @@ class dofus.graphics.gapi.ui.HistoryViewerOnCreate extends dofus.graphics.gapi.c
 	{
 		return this._nBreed;
 	}
-	function __set__breed(§\t\x10§)
+	function __set__breed(var2)
 	{
 		this._nBreed = var2;
 		return this.__get__breed();
@@ -42,7 +42,7 @@ class dofus.graphics.gapi.ui.HistoryViewerOnCreate extends dofus.graphics.gapi.c
 		};
 		this._mcWindowBg.useHandCursor = false;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target)
 		{
@@ -51,7 +51,7 @@ class dofus.graphics.gapi.ui.HistoryViewerOnCreate extends dofus.graphics.gapi.c
 				this.unloadThis();
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		if((var var0 = var2.target) === this._btnClose)
 		{

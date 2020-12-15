@@ -15,12 +15,12 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 	{
 		return this._txtChat.selectable;
 	}
-	function __set__selectable(§\x15\x1a§)
+	function __set__selectable(var2)
 	{
 		this._txtChat.selectable = var2;
 		return this.__get__selectable();
 	}
-	function open(§\x16\x1c§)
+	function open(var2)
 	{
 		if(var2 == !this._bOpened)
 		{
@@ -39,7 +39,7 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 		this._y = this._y - var3 * dofus.graphics.gapi.controls.Chat.OPEN_OFFSET;
 		this._bOpened = !var2;
 	}
-	function setText(§\x1e\r\x02§)
+	function setText(var2)
 	{
 		this._txtChat.text = var2;
 	}
@@ -47,16 +47,16 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 	{
 		this._sSmileys.update();
 	}
-	function hideSmileys(§\x19\x0e§)
+	function hideSmileys(var2)
 	{
 		this._sSmileys._visible = !var2;
 		this._bSmileysOpened = !var2;
 	}
-	function showSitDown(§\x15\x13§)
+	function showSitDown(var2)
 	{
 		this._btnSitDown._visible = var2;
 	}
-	function selectFilter(§\x05\x10§, §\x15\x1b§)
+	function selectFilter(var2, var3)
 	{
 		this["_btnFilter" + var2].selected = var3;
 	}
@@ -133,7 +133,7 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 		this.api.kernel.ChatManager.setTypeVisible(1,true);
 		this.api.kernel.ChatManager.refresh();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -149,18 +149,15 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 				this.api.sounds.events.onBannerChatButtonClick();
 				this.hideSmileys(this._bSmileysOpened);
 				break;
-			default:
-				if(var0 !== "_btnOpenClose")
-				{
-					this.dispatchEvent({type:"filterChanged",filter:Number(var2.target._name.substr(10)),selected:var2.target.selected});
-					break;
-				}
+			case "_btnOpenClose":
 				this.api.sounds.events.onBannerChatButtonClick();
 				this.open(!var2.target.selected);
 				break;
+			default:
+				this.dispatchEvent({type:"filterChanged",filter:Number(var2.target._name.substr(10)),selected:var2.target.selected});
 		}
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -181,11 +178,11 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 				break;
 		}
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function selectSmiley(§\x1e\x19\x18§)
+	function selectSmiley(var2)
 	{
 		if(!this.api.datacenter.Player.data.isInMove)
 		{
@@ -197,7 +194,7 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 			}
 		}
 	}
-	function selectEmote(§\x1e\x19\x18§)
+	function selectEmote(var2)
 	{
 		if(!this.api.datacenter.Player.data.isInMove)
 		{
@@ -209,7 +206,7 @@ class dofus.graphics.gapi.controls.Chat extends dofus.graphics.gapi.core.DofusAd
 			this._btnSmileys.selected = false;
 		}
 	}
-	function href(§\x1e\x19\x18§)
+	function href(var2)
 	{
 		this.dispatchEvent(var2);
 	}

@@ -3,7 +3,7 @@ class ank.utils.MouseEvents
 	function MouseEvents()
 	{
 	}
-	static function addListener(§\x1e\x19\x06§)
+	static function addListener(var2)
 	{
 		Mouse.addListener(var2);
 		ank.utils.MouseEvents.garbageCollector();

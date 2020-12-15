@@ -14,7 +14,7 @@ class dofus.datacenter.Shop extends Object
 	{
 		return this._sID;
 	}
-	function __set__name(§\x1e\x10\x06§)
+	function __set__name(var2)
 	{
 		this._sName = var2;
 		return this.__get__name();
@@ -23,7 +23,7 @@ class dofus.datacenter.Shop extends Object
 	{
 		return this._sName;
 	}
-	function __set__gfx(§\x1e\x12\r§)
+	function __set__gfx(var2)
 	{
 		this._sGfx = var2;
 		return this.__get__gfx();
@@ -32,7 +32,7 @@ class dofus.datacenter.Shop extends Object
 	{
 		return this._sGfx;
 	}
-	function __set__inventory(§\x10\x0f§)
+	function __set__inventory(var2)
 	{
 		this._eaInventory = var2;
 		this.dispatchEvent({type:"modelChanged"});
@@ -44,6 +44,6 @@ class dofus.datacenter.Shop extends Object
 	}
 	function initialize()
 	{
-		mx.events.EventDispatcher.initialize(this);
+		eval(mx).events.EventDispatcher.initialize(this);
 	}
 }

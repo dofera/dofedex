@@ -1,6 +1,6 @@
 class dofus.datacenter.FightInfos extends Object
 {
-	function FightInfos(§\x05\x02§, §\x06\t§)
+	function FightInfos(var3, var4)
 	{
 		super();
 		this.initialize(var3,var4);
@@ -63,28 +63,28 @@ class dofus.datacenter.FightInfos extends Object
 		}
 		return var2;
 	}
-	function initialize(§\x05\x02§, §\x06\t§)
+	function initialize(var2, var3)
 	{
 		this.api = _global.API;
 		this._nID = var2;
 		this.duration = var3;
 	}
-	function addTeam(§\x04\x17§, §\x1e\x1c\x03§, §\t\x0b§, §\x07\b§)
+	function addTeam(§\x04\n§, §\x1e\x1b\x13§, §\b\x1a§, nCount)
 	{
 		switch(var2)
 		{
 			case 1:
 				this._nTeam1Type = var3;
 				this._nTeam1AlignmentIndex = var4;
-				this._nTeam1Count = var5;
+				this._nTeam1Count = nCount;
 				break;
 			case 2:
 				this._nTeam2Type = var3;
 				this._nTeam2AlignmentIndex = var4;
-				this._nTeam2Count = var5;
+				this._nTeam2Count = nCount;
 		}
 	}
-	function addPlayers(§\x04\x17§, §\x10\x06§)
+	function addPlayers(var2, var3)
 	{
 		switch(var2)
 		{

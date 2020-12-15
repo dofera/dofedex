@@ -4,7 +4,7 @@ class dofus.graphics.gapi.controls.questionviewer.QuestionViewerAnswerItem exten
 	{
 		super();
 	}
-	function setValue(§\x14\t§, §\x1e\r\x11§, §\x1e\x19\r§)
+	function setValue(var2, var3, var4)
 	{
 		if(var2)
 		{

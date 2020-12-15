@@ -13,13 +13,13 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 		}
 		return this.__get__data();
 	}
-	function __set__isFollowing(§\x18\x14§)
+	function __set__isFollowing(var2)
 	{
 		this._bIsFollowing = var2;
 		this._mcFollow._visible = var2;
 		return this.__get__isFollowing();
 	}
-	function __set__isLeader(§\x18\x12§)
+	function __set__isLeader(var2)
 	{
 		this._bIsLeader = var2;
 		this._mcLeader._visible = var2;
@@ -29,7 +29,7 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 	{
 		return this._bIsLeader;
 	}
-	function __get__isInGroup(§\x18\x13§)
+	function __get__isInGroup(var2)
 	{
 		return this._bIsInGroup;
 	}
@@ -67,13 +67,11 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 			var var5 = oSprite.accessories;
 			var var6 = new Array();
 			var var7 = new Array();
-			§§enumerate(var4);
-			while((var var0 = §§enumeration()) != null)
+			for(var i in var4)
 			{
 				var6.push(var4[i].unicID);
 			}
-			§§enumerate(var5);
-			while((var var0 = §§enumeration()) != null)
+			for(var i in var5)
 			{
 				var7.push(var5[i].unicID);
 			}
@@ -141,28 +139,28 @@ class dofus.graphics.gapi.ui.party.PartyItem extends dofus.graphics.gapi.core.Do
 		this.api.network.Party.where();
 		this.api.ui.loadUIAutoHideComponent("MapExplorer","MapExplorer");
 	}
-	function initialization(§\x1e\x19\x18§)
+	function initialization(var2)
 	{
 		var var3 = var2.target.content;
 		var3.attachMovie("staticR","anim",10);
 		var3._xscale = -65;
 		var3._yscale = 65;
 	}
-	function over(§\x1e\x19\x18§)
+	function over(var2)
 	{
 		var var3 = this._oSprite.life.split(",");
 		this._mcHealth._yscale = var3[0] / var3[1] * 100;
 		this.gapi.showTooltip(this._oSprite.name + "\n" + this.api.lang.getText("LEVEL") + " : " + this._oSprite.level + "\n" + this.api.lang.getText("LIFEPOINTS") + " : " + var3[0] + " / " + var3[1],var2.target,30);
 	}
-	function out(§\x1e\x19\x18§)
+	function out(var2)
 	{
 		this.gapi.hideTooltip();
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		this.api.kernel.GameManager.showPlayerPopupMenu(undefined,this._oSprite.name,this);
 	}
-	function addPartyMenuItems(§\x1e\x16\x18§)
+	function addPartyMenuItems(var2)
 	{
 		var2.addStaticItem(this.api.lang.getText("PARTY"));
 		var2.addItem(this.api.lang.getText("PARTY_WHERE"),this,this.partyWhere,[]);

@@ -1,11 +1,11 @@
 class dofus.aks.Account extends dofus.aks.Handler
 {
-	function Account(§\x1e\x1a\x19§, §\x1e\x1a\x16§)
+	function Account(§\x1e\x1a\x0e§, oAPI)
 	{
-		super.initialize(var3,var4);
+		super.initialize(var3,oAPI);
 		this.WaitQueueTimer = new Object();
 	}
-	function logon(§\x1e\x10\x18§, §\x1e\x0f\x10§, §\x13\x16§)
+	function logon(var2, var3, var4)
 	{
 		if(this.api.datacenter.Basics.connexionKey == undefined)
 		{
@@ -36,7 +36,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 		else if(this.api.lang.getConfigText("CRYPTO_METHOD") == 2)
 		{
 			var var5 = new ank.utils.
-();
+	();
 			var var6 = "#2" + var5.hex_md5(var5.hex_md5(var3) + this.api.datacenter.Basics.connexionKey);
 			this.aks.send(var2 + "\n" + var6);
 		}
@@ -45,7 +45,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.aks.send(var2 + "\n" + ank.utils.Crypt.cryptPassword(var3,this.api.datacenter.Basics.connexionKey));
 		}
 	}
-	function setNickName(§\x1e\x10\x02§)
+	function setNickName(var2)
 	{
 		this.aks.send(var2,true,this.api.lang.getText("WAITING_MSG_LOADING"));
 	}
@@ -61,7 +61,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 	{
 		this.aks.send("Ax",true,this.api.lang.getText("WAITING_MSG_LOADING"));
 	}
-	function setServer(§\x1e\x1e\x01§)
+	function setServer(var2)
 	{
 		if(var2 == undefined)
 		{
@@ -70,29 +70,29 @@ class dofus.aks.Account extends dofus.aks.Handler
 		this.api.datacenter.Basics.aks_incoming_server_id = var2;
 		this.aks.send("AX" + var2,true,this.api.lang.getText("WAITING_MSG_LOADING"));
 	}
-	function searchForFriend(§\x1e\x10\x03§)
+	function searchForFriend(var2)
 	{
 		this.aks.send("AF" + var2);
 	}
-	function setCharacter(§\x1e\x14\x0f§)
+	function setCharacter(var2)
 	{
 		this.aks.send("AS" + var2,true,this.api.lang.getText("WAITING_MSG_LOADING"));
 		this.api.ui.unloadUIComponent("ChooseCharacter");
 		this.getQueuePosition();
 	}
-	function editCharacterName(§\x1e\x10\x06§)
+	function editCharacterName(var2)
 	{
 		this.aks.send("AEn" + var2,true);
 	}
-	function editCharacterColors(§\x07\r§, §\x07\f§, §\x07\x0b§)
+	function editCharacterColors(var2, var3, var4)
 	{
 		this.aks.send("AEc" + var2 + "|" + var3 + "|" + var4,true);
 	}
-	function addCharacter(§\x1e\x10\x06§, §\x07\x10§, §\x07\r§, §\x07\f§, §\x07\x0b§, §\x1e\x1d\x1c§)
+	function addCharacter(var2, var3, var4, var5, var6, var7)
 	{
 		this.aks.send("AA" + var2 + "|" + var3 + "|" + var7 + "|" + var4 + "|" + var5 + "|" + var6,true,this.api.lang.getText("WAITING_MSG_RECORDING"));
 	}
-	function deleteCharacter(§\x07\x17§, §\x1e\x0e\t§)
+	function deleteCharacter(var2, var3)
 	{
 		if(var2 == undefined)
 		{
@@ -102,22 +102,22 @@ class dofus.aks.Account extends dofus.aks.Handler
 		{
 			var3 = "";
 		}
-		var var4 = new ank.utils.(_global.escape(var3));
+		var var4 = new ank.utils.(_global.escape(var3));
 		this.aks.send("AD" + var2 + "|" + var4.replace(["|","\r","\n",String.fromCharCode(0)],["","","",""]),true,this.api.lang.getText("WAITING_MSG_DELETING"));
 	}
-	function resetCharacter(§\x07\x17§)
+	function resetCharacter(var2)
 	{
 		this.aks.send("AR" + var2);
 	}
-	function boost(§\b\x12§)
+	function boost(var2)
 	{
 		this.aks.send("AB" + var2);
 	}
-	function sendTicket(§\x1e\r\x01§)
+	function sendTicket(var2)
 	{
 		this.aks.send("AT" + var2);
 	}
-	function rescue(§\x1e\r\x01§)
+	function rescue(var2)
 	{
 		var var3 = "";
 		if(this.api.datacenter.Game.isFight)
@@ -130,7 +130,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 	{
 		this.aks.send("Ag" + this.api.config.language);
 	}
-	function attributeGiftToCharacter(§\x05\b§, §\x07\x15§)
+	function attributeGiftToCharacter(var2, var3)
 	{
 		this.aks.send("AG" + var2 + "|" + var3);
 	}
@@ -143,7 +143,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 	{
 		this.aks.send("AP",false);
 	}
-	function useKey(§\x04\b§)
+	function useKey(var2)
 	{
 		this.aks.send("Ak" + dofus.aks.Aks.HEX_CHARS[var2],false);
 	}
@@ -176,19 +176,19 @@ class dofus.aks.Account extends dofus.aks.Handler
 		this.aks.send("Ai" + this.api.datacenter.Basics.aks_identity,false);
 		var2.close();
 	}
-	function validCharacterMigration(§\x07\x15§, §\x1e\x10\x06§)
+	function validCharacterMigration(var2, var3)
 	{
 		this.aks.send("AM" + var2 + ";" + var3,false);
 	}
-	function deleteCharacterMigration(§\x07\x15§)
+	function deleteCharacterMigration(var2)
 	{
 		this.aks.send("AM-" + var2,false);
 	}
-	function askCharacterMigration(§\x07\x15§, §\x1e\x10\x06§)
+	function askCharacterMigration(var2, var3)
 	{
 		this.aks.send("AM?" + var2 + ";" + var3,false);
 	}
-	function onRegionalVersion(§\x1e\x12\x1a§)
+	function onRegionalVersion(var2)
 	{
 		var var3 = this.api.lang.getConfigText("MAXIMUM_ALLOWED_VERSION");
 		var var4 = Number(var2);
@@ -206,7 +206,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 		this.getCharacters();
 		this.api.network.Account.getQueuePosition();
 	}
-	function onCharacterDelete(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onCharacterDelete(var2, var3)
 	{
 		if(!var2)
 		{
@@ -214,11 +214,11 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.kernel.showMessage(undefined,this.api.lang.getText("CHARACTER_DELETION_FAILED"),"ERROR_BOX");
 		}
 	}
-	function onSecretQuestion(§\x1e\x12\x1a§)
+	function onSecretQuestion(var2)
 	{
 		this.api.datacenter.Basics.aks_secret_question = var2;
 	}
-	function onKey(§\x1e\x12\x1a§)
+	function onKey(var2)
 	{
 		var var3 = _global.parseInt(var2.substr(0,1),16);
 		var var4 = var2.substr(1);
@@ -226,11 +226,11 @@ class dofus.aks.Account extends dofus.aks.Handler
 		this.useKey(var3);
 		this.aks.startUsingKey(var3);
 	}
-	function onDofusPseudo(§\x1e\x12\x1a§)
+	function onDofusPseudo(var2)
 	{
 		this.api.datacenter.Basics.dofusPseudo = var2;
 	}
-	function onCommunity(§\x1e\x12\x1a§)
+	function onCommunity(var2)
 	{
 		var var3 = Number(var2);
 		if(var3 >= 0)
@@ -238,7 +238,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.datacenter.Basics.communityId = var3;
 		}
 	}
-	function onLogin(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onLogin(var2, var3)
 	{
 		ank.utils.Timer.removeTimer(this.WaitQueueTimer,"WaitQueue");
 		this.api.ui.unloadUIComponent("CenterText");
@@ -256,88 +256,85 @@ class dofus.aks.Account extends dofus.aks.Handler
 		{
 			var var4 = var3.charAt(0);
 			var var6 = false;
-			org.flashdevelop.utils.FlashConnect.mtrace(var4,"dofus.aks.Account::onLogin","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",399);
-			if((var var0 = var4) !== "n")
+			loop1:
+			switch(var4)
 			{
-				loop1:
-				switch(null)
-				{
-					case "a":
-						var var5 = this.api.lang.getText("ALREADY_LOGGED");
-						break;
-					case "c":
-						var5 = this.api.lang.getText("ALREADY_LOGGED_GAME_SERVER");
-						break;
-					case "v":
-						var5 = this.api.lang.getText("BAD_VERSION",[dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION + (dofus.Constants.BETAVERSION <= 0?"":" Beta " + dofus.Constants.BETAVERSION),var3.substr(1)]);
-						var6 = true;
-						break;
-					case "p":
-						var5 = this.api.lang.getText("NOT_PLAYER");
-						break;
-					default:
-						switch(null)
-						{
-							case "b":
-								var5 = this.api.lang.getText("BANNED");
-								break loop1;
-							case "d":
-								var5 = this.api.lang.getText("U_DISCONNECT_ACCOUNT");
-								break loop1;
-							case "k":
-								var var7 = var3.substr(1).split("|");
-								var var8 = 0;
-								while(var8 < var7.length)
+				case "n":
+					var var5 = this.api.lang.getText("CONNECT_NOT_FINISHED");
+					break;
+				case "a":
+					var5 = this.api.lang.getText("ALREADY_LOGGED");
+					break;
+				case "c":
+					var5 = this.api.lang.getText("ALREADY_LOGGED_GAME_SERVER");
+					break;
+				default:
+					switch(null)
+					{
+						case "v":
+							var5 = this.api.lang.getText("BAD_VERSION",[dofus.Constants.VERSION + "." + dofus.Constants.SUBVERSION + "." + dofus.Constants.SUBSUBVERSION + (dofus.Constants.BETAVERSION <= 0?"":" Beta " + dofus.Constants.BETAVERSION),var3.substr(1)]);
+							var6 = true;
+							break loop1;
+						case "p":
+							var5 = this.api.lang.getText("NOT_PLAYER");
+							break loop1;
+						case "b":
+							var5 = this.api.lang.getText("BANNED");
+							break loop1;
+						case "d":
+							var5 = this.api.lang.getText("U_DISCONNECT_ACCOUNT");
+							break loop1;
+						case "k":
+							var var7 = var3.substr(1).split("|");
+							var var8 = 0;
+							while(var8 < var7.length)
+							{
+								if(var7[var8] == 0)
 								{
-									if(var7[var8] == 0)
-									{
-										var7[var8] = undefined;
-									}
-									var8 = var8 + 1;
+									var7[var8] = undefined;
 								}
-								var5 = ank.utils.PatternDecoder.getDescription(this.api.lang.getText("KICKED"),var7);
-								break loop1;
-							case "w":
-								var5 = this.api.lang.getText("SERVER_FULL");
-								break loop1;
-							case "o":
-								var5 = this.api.lang.getText("OLD_ACCOUNT",[this.api.datacenter.Basics.login]);
-								break loop1;
-							case "e":
-								var5 = this.api.lang.getText("OLD_ACCOUNT_USE_NEW",[this.api.datacenter.Basics.login]);
-								break loop1;
-							default:
-								switch(null)
-								{
-									case "m":
-										var5 = this.api.lang.getText("MAINTAIN_ACCOUNT");
-										break loop1;
-									case "r":
-										this.api.ui.loadUIComponent("ChooseNickName","ChooseNickName");
-										return undefined;
-									case "s":
-										this.api.ui.getUIComponent("ChooseNickName").nickAlreadyUsed = true;
-										return undefined;
-									case "i":
-										var5 = this.api.lang.getText("LOGIN_ERROR_ANONYMOUS_IP");
-										break loop1;
-									default:
-										if(var0 === "f")
-										{
+								var8 = var8 + 1;
+							}
+							var5 = ank.utils.PatternDecoder.getDescription(this.api.lang.getText("KICKED"),var7);
+							break loop1;
+						default:
+							switch(null)
+							{
+								case "w":
+									var5 = this.api.lang.getText("SERVER_FULL");
+									break loop1;
+								case "o":
+									var5 = this.api.lang.getText("OLD_ACCOUNT",[this.api.datacenter.Basics.login]);
+									break loop1;
+								case "e":
+									var5 = this.api.lang.getText("OLD_ACCOUNT_USE_NEW",[this.api.datacenter.Basics.login]);
+									break loop1;
+								case "m":
+									var5 = this.api.lang.getText("MAINTAIN_ACCOUNT");
+									break loop1;
+								case "r":
+									this.api.ui.loadUIComponent("ChooseNickName","ChooseNickName");
+									return undefined;
+								case "s":
+									this.api.ui.getUIComponent("ChooseNickName").nickAlreadyUsed = true;
+									return undefined;
+								default:
+									switch(null)
+									{
+										case "i":
+											var5 = this.api.lang.getText("LOGIN_ERROR_ANONYMOUS_IP");
+											break loop1;
+										case "f":
 											if(this.api.config.isStreaming)
 											{
 												var5 = this.api.lang.getText("ACCESS_DENIED_MINICLIP");
 												break loop1;
 											}
-										}
-										var5 = this.api.lang.getText("ACCESS_DENIED");
-								}
-						}
-				}
-			}
-			else
-			{
-				var5 = this.api.lang.getText("CONNECT_NOT_FINISHED");
+										default:
+											var5 = this.api.lang.getText("ACCESS_DENIED");
+									}
+							}
+					}
 			}
 			if(dofus.Constants.USE_JS_LOG && _global.CONFIG.isNewAccount)
 			{
@@ -349,7 +346,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.kernel.manualLogon();
 		}
 	}
-	function onServersList(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onServersList(var2, var3)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		var var4 = this.api.datacenter.Basics.aks_servers;
@@ -440,7 +437,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			}
 			else if(var7 != -1 && this.api.config.isStreaming)
 			{
-				var var19 = new dofus.datacenter.(var7,1,0);
+				var var19 = new dofus.datacenter.(var7,1,0);
 				if(var19.isAllowed())
 				{
 					this.api.datacenter.Basics.aks_current_server = var19;
@@ -457,7 +454,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.ui.loadUIComponent("AutomaticServer","AutomaticServer",{servers:var4,remainingTime:var6});
 		}
 	}
-	function onHosts(§\x1e\x12\x1a§)
+	function onHosts(var2)
 	{
 		var var3 = this.api.datacenter.Basics.aks_servers;
 		var var4 = new Array();
@@ -470,7 +467,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			var var9 = Number(var7[1]);
 			var var10 = Number(var7[2]);
 			var var11 = var7[3] == "1";
-			var var12 = new dofus.datacenter.(var8,var9,var10,var11);
+			var var12 = new dofus.datacenter.(var8,var9,var10,var11);
 			if(!(_global.CONFIG.onlyHardcore && var12.typeNum != dofus.datacenter.Server.SERVER_HARDCORE))
 			{
 				var var13 = var3.findFirstItem("id",var8).item;
@@ -484,7 +481,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 		}
 		this.api.datacenter.Basics.aks_servers.createFromArray(var4);
 	}
-	function onCharactersList(§\x14\x1b§, §\x1e\x12\x1a§, §\x18\x11§)
+	function onCharactersList(var2, var3, var4)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.unloadUIComponent("WaitingQueue");
@@ -578,7 +575,6 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.kernel.onFastServerSwitchFail("Could not find " + var20 + " on this characters list !");
 		}
 		this.api.datacenter.Basics.oldCharList = var9;
-		org.flashdevelop.utils.FlashConnect.mtrace("ignoreMigration 2 : " + this.api.datacenter.Basics.ignoreMigration,"dofus.aks.Account::onCharactersList","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",811);
 		if((!var4 || this.api.datacenter.Basics.ignoreMigration) && ((this.api.datacenter.Basics.createCharacter || !var8) && !this.api.datacenter.Basics.ignoreCreateCharacter))
 		{
 			this.api.ui.loadUIComponent("CreateCharacter","CreateCharacter",{remainingTime:var7});
@@ -609,7 +605,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 	{
 		this.api.datacenter.Basics.first_connection_from_miniclip = true;
 	}
-	function onCharacterAdd(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onCharacterAdd(var2, var3)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		if(dofus.Constants.USE_JS_LOG && _global.CONFIG.isNewAccount)
@@ -618,26 +614,22 @@ class dofus.aks.Account extends dofus.aks.Handler
 		}
 		if(!var2)
 		{
-			if((var var0 = var3) !== "s")
+			switch(var3)
 			{
-				switch(null)
-				{
-					case "f":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("CREATE_CHARACTER_FULL"),"ERROR_BOX",{name:"CreateNameExists"});
-						break;
-					case "a":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("NAME_ALEREADY_EXISTS"),"ERROR_BOX",{name:"CreateNameExists"});
-						break;
-					case "n":
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("CREATE_CHARACTER_BAD_NAME"),"ERROR_BOX",{name:"CreateNameExists"});
-						break;
-					default:
-						this.api.kernel.showMessage(undefined,this.api.lang.getText("CREATE_CHARACTER_ERROR"),"ERROR_BOX",{name:"CreateNameExists"});
-				}
-			}
-			else
-			{
-				this.api.kernel.showMessage(undefined,this.api.lang.getText("SUBSCRIPTION_OUT"),"ERROR_BOX",{name:"CreateNameExists"});
+				case "s":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("SUBSCRIPTION_OUT"),"ERROR_BOX",{name:"CreateNameExists"});
+					break;
+				case "f":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("CREATE_CHARACTER_FULL"),"ERROR_BOX",{name:"CreateNameExists"});
+					break;
+				case "a":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("NAME_ALEREADY_EXISTS"),"ERROR_BOX",{name:"CreateNameExists"});
+					break;
+				case "n":
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("CREATE_CHARACTER_BAD_NAME"),"ERROR_BOX",{name:"CreateNameExists"});
+					break;
+				default:
+					this.api.kernel.showMessage(undefined,this.api.lang.getText("CREATE_CHARACTER_ERROR"),"ERROR_BOX",{name:"CreateNameExists"});
 			}
 		}
 		else
@@ -645,14 +637,14 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.datacenter.Basics.createCharacter = false;
 		}
 	}
-	function onSelectServerMinimal(§\x1e\x12\x1a§)
+	function onSelectServerMinimal(var2)
 	{
 		var var3 = Number(var2);
-		var var4 = new dofus.datacenter.(var3,1,0);
+		var var4 = new dofus.datacenter.(var3,1,0);
 		this.api.datacenter.Basics.aks_current_server = var4;
 		this.api.network.Basics.onAuthorizedCommandPrompt(this.api.datacenter.Basics.aks_current_server.label);
 	}
-	function onSelectServer(§\x14\x1b§, §\x14\b§, §\x1e\x12\x1a§)
+	function onSelectServer(var2, var3, var4)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		if(var2)
@@ -688,7 +680,6 @@ class dofus.aks.Account extends dofus.aks.Handler
 				var5 = var16.ip;
 				var6 = var16.port;
 			}
-			org.flashdevelop.utils.FlashConnect.mtrace(var5 + "/" + var6 + "/" + var7,"dofus.aks.Account::onSelectServer","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",963);
 			this.api.datacenter.Basics.aks_ticket = var7;
 			this.api.datacenter.Basics.aks_gameserver_ip = var5;
 			this.api.datacenter.Basics.aks_gameserver_port = var6;
@@ -728,7 +719,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 						var var19 = 0;
 						while(var19 < var18.length)
 						{
-							var var20 = new dofus.datacenter.(var18[var19]);
+							var var20 = new dofus.datacenter.(var18[var19]);
 							var17 = var17 + var20.label;
 							var17 = var17 + (var19 != var18.length - 1?", ":".");
 							var19 = var19 + 1;
@@ -752,7 +743,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			}
 		}
 	}
-	function onRescue(§\x14\x1b§)
+	function onRescue(var2)
 	{
 		this.api.datacenter.Player.data.GameActionsManager.clear();
 		this.api.ui.unloadUIComponent("WaitingMessage");
@@ -764,7 +755,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.aks.disconnect(false,true);
 		}
 	}
-	function onTicketResponse(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onTicketResponse(var2, var3)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		if(var2)
@@ -786,7 +777,6 @@ class dofus.aks.Account extends dofus.aks.Handler
 			}
 			else if(var4 == -1)
 			{
-				org.flashdevelop.utils.FlashConnect.mtrace("[?!!] Le serveur semble ne pas connaître le protocole de cryptage!","dofus.aks.Account::onTicketResponse","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",1106);
 			}
 			this.api.datacenter.Basics.aks_current_regional_version = Number.POSITIVE_INFINITY;
 			this.requestRegionalVersion();
@@ -796,7 +786,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.aks.disconnect(false,true);
 		}
 	}
-	function onCharacterSelected(§\x14\x1b§, §\x1e\x12\x1a§)
+	function onCharacterSelected(var2, var3)
 	{
 		this.api.datacenter.Basics.inGame = true;
 		if(var2 && this.api.datacenter.Player.isAuthorized)
@@ -835,7 +825,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.aks.disconnect(false,true);
 		}
 	}
-	function onStats(§\x1e\x12\x1a§)
+	function onStats(var2)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		var var3 = var2.split("|");
@@ -858,8 +848,8 @@ class dofus.aks.Account extends dofus.aks.Handler
 		}
 		var var8 = Number(var5[0]);
 		var var9 = Number(var5[1]);
-		var4.alignment = new dofus.datacenter.(var8,var9);
-		var4.fakeAlignment = new dofus.datacenter.(var6,var9);
+		var4.alignment = new dofus.datacenter.(var8,var9);
+		var4.fakeAlignment = new dofus.datacenter.(var6,var9);
 		var4.data.alignment = var4.alignment.clone();
 		var var10 = Number(var5[2]);
 		var var11 = Number(var5[3]);
@@ -890,7 +880,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			var16 = var16 - 1;
 		}
 		var var17 = 9;
-		while(var17 < 51)
+		for(; var17 < 51; var17 = var17 + 1)
 		{
 			var5 = var3[var17].split(",");
 			var var18 = Number(var5[0]);
@@ -914,19 +904,19 @@ class dofus.aks.Account extends dofus.aks.Handler
 						var4.MP = var18 + var19 + var20;
 					}
 					break;
+				case 11:
+					var15[0].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarthBonus"});
+					var4.Force = var18;
+					var4.ForceXtra = var19 + var20;
+					break;
+				case 12:
+					var15[0].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconVita"});
+					var4.Vitality = var18;
+					var4.VitalityXtra = var19 + var20;
+					break;
 				default:
 					switch(null)
 					{
-						case 11:
-							var15[0].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarthBonus"});
-							var4.Force = var18;
-							var4.ForceXtra = var19 + var20;
-							break loop2;
-						case 12:
-							var15[0].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconVita"});
-							var4.Vitality = var18;
-							var4.VitalityXtra = var19 + var20;
-							break loop2;
 						case 13:
 							var15[0].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconWisdom"});
 							var4.Wisdom = var18;
@@ -937,24 +927,24 @@ class dofus.aks.Account extends dofus.aks.Handler
 							var4.Chance = var18;
 							var4.ChanceXtra = var19 + var20;
 							break loop2;
+						case 15:
+							var15[0].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconAirBonus"});
+							var4.Agility = var18;
+							var4.AgilityXtra = var19 + var20;
+							var4.AgilityTotal = var18 + var19 + var20 + var21;
+							break loop2;
+						case 16:
+							var15[0].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconFireBonus"});
+							var4.Intelligence = var18;
+							var4.IntelligenceXtra = var19 + var20;
+							break loop2;
+						case 17:
+							var15[0].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
+							var4.RangeModerator = var18 + var19 + var20;
+							break loop2;
 						default:
 							switch(null)
 							{
-								case 15:
-									var15[0].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconAirBonus"});
-									var4.Agility = var18;
-									var4.AgilityXtra = var19 + var20;
-									var4.AgilityTotal = var18 + var19 + var20 + var21;
-									break loop2;
-								case 16:
-									var15[0].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconFireBonus"});
-									var4.Intelligence = var18;
-									var4.IntelligenceXtra = var19 + var20;
-									break loop2;
-								case 17:
-									var15[0].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
-									var4.RangeModerator = var18 + var19 + var20;
-									break loop2;
 								case 18:
 									var15[0].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21});
 									var4.MaxSummonedCreatures = var18 + var19 + var20;
@@ -965,118 +955,117 @@ class dofus.aks.Account extends dofus.aks.Handler
 								case 20:
 									var15[1].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21});
 									break loop2;
+								case 21:
+									var15[1].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21});
+									break loop2;
+								case 22:
+									var15[1].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21});
+									break loop2;
 								default:
 									switch(null)
 									{
-										case 21:
-											var15[1].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21});
-											break loop2;
-										case 22:
-											var15[1].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21});
-											break loop2;
 										case 23:
 											var15[1].push({id:var17,o:7,s:var18,i:var19,d:var20,b:var21});
 											break loop2;
 										case 24:
 											var15[1].push({id:var17,o:5,s:var18,i:var19,d:var20,b:var21});
 											break loop2;
+										case 25:
+											var15[1].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21});
+											break loop2;
+										case 26:
+											var15[1].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21});
+											break loop2;
+										case 27:
+											var15[1].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
+											var4.CriticalHitBonus = var18 + var19 + var20 + var21;
+											break loop2;
 										default:
 											switch(null)
 											{
-												case 25:
-													var15[1].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21});
-													break loop2;
-												case 26:
-													var15[1].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21});
-													break loop2;
-												case 27:
-													var15[1].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21});
-													var4.CriticalHitBonus = var18 + var19 + var20 + var21;
-													break loop2;
 												case 28:
 													var15[1].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21});
+													break loop2;
+												case 29:
+													var15[1].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"Star"});
+													break loop2;
+												case 30:
+													var15[1].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconMP"});
+													break loop2;
+												case 31:
+													var15[2].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
+													break loop2;
+												case 32:
+													var15[2].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 													break loop2;
 												default:
 													switch(null)
 													{
-														case 29:
-															var15[1].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"Star"});
+														case 33:
+															var15[3].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 															break loop2;
-														case 30:
-															var15[1].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconMP"});
+														case 34:
+															var15[3].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
 															break loop2;
-														case 31:
-															var15[2].push({id:var17,o:1,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
+														case 35:
+															var15[2].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
 															break loop2;
-														case 32:
-															var15[2].push({id:var17,o:2,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
+														case 36:
+															var15[2].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
 															break loop2;
 														default:
 															switch(null)
 															{
-																case 33:
-																	var15[3].push({id:var17,o:11,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
-																	break loop2;
-																case 34:
-																	var15[3].push({id:var17,o:12,s:var18,i:var19,d:var20,b:var21,p:"IconNeutral"});
-																	break loop2;
-																case 35:
-																	var15[2].push({id:var17,o:3,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
-																	break loop2;
-																case 36:
-																	var15[2].push({id:var17,o:4,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
-																	break loop2;
 																case 37:
 																	var15[3].push({id:var17,o:13,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+																	break loop2;
+																case 38:
+																	var15[3].push({id:var17,o:14,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+																	break loop2;
+																case 39:
+																	var15[2].push({id:var17,o:7,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																	break loop2;
+																case 40:
+																	var15[2].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																	break loop2;
+																case 41:
+																	var15[3].push({id:var17,o:17,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
 																	break loop2;
 																default:
 																	switch(null)
 																	{
-																		case 38:
-																			var15[3].push({id:var17,o:14,s:var18,i:var19,d:var20,b:var21,p:"IconEarth"});
+																		case 42:
+																			var15[3].push({id:var17,o:18,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
 																			break loop2;
-																		case 39:
-																			var15[2].push({id:var17,o:7,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																		case 43:
+																			var15[2].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
 																			break loop2;
-																		case 40:
-																			var15[2].push({id:var17,o:8,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																		case 44:
+																			var15[2].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
 																			break loop2;
-																		case 41:
-																			var15[3].push({id:var17,o:17,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
+																		case 45:
+																			var15[3].push({id:var17,o:19,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
 																			break loop2;
 																		default:
 																			switch(null)
 																			{
-																				case 42:
-																					var15[3].push({id:var17,o:18,s:var18,i:var19,d:var20,b:var21,p:"IconWater"});
-																					break loop2;
-																				case 43:
-																					var15[2].push({id:var17,o:9,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
-																					break loop2;
-																				case 44:
-																					var15[2].push({id:var17,o:10,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
-																					break loop2;
-																				case 45:
-																					var15[3].push({id:var17,o:19,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
-																					break loop2;
 																				case 46:
 																					var15[3].push({id:var17,o:20,s:var18,i:var19,d:var20,b:var21,p:"IconAir"});
 																					break loop2;
 																				case 47:
 																					var15[2].push({id:var17,o:5,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
 																					break loop2;
+																				case 48:
+																					var15[2].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
+																					break loop2;
+																				case 49:
+																					var15[3].push({id:var17,o:15,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
+																					break loop2;
+																				case 50:
+																					var15[3].push({id:var17,o:16,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
+																					break loop2;
 																				default:
-																					switch(null)
-																					{
-																						case 48:
-																							var15[2].push({id:var17,o:6,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
-																							break;
-																						case 49:
-																							var15[3].push({id:var17,o:15,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
-																							break;
-																						case 50:
-																							var15[3].push({id:var17,o:16,s:var18,i:var19,d:var20,b:var21,p:"IconFire"});
-																					}
+																					continue;
 																			}
 																	}
 															}
@@ -1086,12 +1075,11 @@ class dofus.aks.Account extends dofus.aks.Handler
 							}
 					}
 			}
-			var17 = var17 + 1;
 		}
 		var4.FullStats = var15;
 		this.api.network.Basics.getDate();
 	}
-	function onNewLevel(§\x1e\x12\x1a§)
+	function onNewLevel(var2)
 	{
 		var var3 = Number(var2);
 		this.api.kernel.showMessage(this.api.lang.getText("INFORMATIONS"),this.api.lang.getText("NEW_LEVEL",[var3]),"ERROR_BOX",{name:"NewLevel"});
@@ -1099,11 +1087,11 @@ class dofus.aks.Account extends dofus.aks.Handler
 		this.api.datacenter.Player.data.Level = var3;
 		this.api.kernel.TipsManager.showNewTip(dofus.managers.TipsManager.TIP_GAIN_LEVEL);
 	}
-	function onRestrictions(§\x1e\x12\x1a§)
+	function onRestrictions(var2)
 	{
 		this.api.datacenter.Player.restrictions = _global.parseInt(var2,36);
 	}
-	function onGiftsList(§\x1e\x12\x1a§)
+	function onGiftsList(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -1142,12 +1130,12 @@ class dofus.aks.Account extends dofus.aks.Handler
 		var18.items = var14;
 		this.api.datacenter.Basics.aks_gifts_stack.push(var18);
 	}
-	function onGiftStored(§\x14\x1b§)
+	function onGiftStored(var2)
 	{
 		this.api.ui.unloadUIComponent("WaitingMessage");
 		this.api.ui.getUIComponent("Gifts").checkNextGift();
 	}
-	function onQueue(§\x1e\x12\x1a§)
+	function onQueue(var2)
 	{
 		var var3 = Number(var2);
 		if(var3 > 1)
@@ -1155,7 +1143,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			this.api.ui.loadUIComponent("WaitingMessage","WaitingMessage",{text:this.api.lang.getText("CONNECTING") + " ( " + this.api.lang.getText("WAIT_QUEUE_POSITION",[var3]) + " )"},{bAlwaysOnTop:true,bForceLoad:true});
 		}
 	}
-	function onNewQueue(§\x1e\x12\x1a§)
+	function onNewQueue(var2)
 	{
 		var var3 = var2.split("|");
 		var var4 = Number(var3[0]);
@@ -1170,14 +1158,12 @@ class dofus.aks.Account extends dofus.aks.Handler
 				var7 = true;
 		}
 		var var8 = Number(var3[4]);
-		org.flashdevelop.utils.FlashConnect.mtrace("AskQueue","dofus.aks.Account::onNewQueue","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",1552);
 		if(var4 > 1)
 		{
-			org.flashdevelop.utils.FlashConnect.mtrace("ShowQueue","dofus.aks.Account::onNewQueue","C:\\Users\\Azlino\\Projects\\dofus-retro\\client\\src\\core\\classes/dofus/aks/Account.as",1556);
 			this.api.ui.loadUIComponent("WaitingQueue","WaitingQueue",{queueInfos:{position:var4,totalAbo:var5,totalNonAbo:var6,subscriber:var7,queueId:var8}},{bAlwaysOnTop:true,bForceLoad:true});
 		}
 	}
-	function onCharacterNameGenerated(§\x14\x1b§, §\x1e\x14\n§)
+	function onCharacterNameGenerated(var2, var3)
 	{
 		if(var2)
 		{
@@ -1214,7 +1200,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 			}
 		}
 	}
-	function onCharactersMigrationAskConfirm(§\x1e\x13\x10§)
+	function onCharactersMigrationAskConfirm(var2)
 	{
 		var var3 = var2.split(";");
 		var var4 = _global.parseInt(var3[0],10);
@@ -1222,7 +1208,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 		var var6 = {name:"ConfirmMigration",params:{nCharacterID:var4,sName:var5},listener:this};
 		this.api.kernel.showMessage(undefined,this.api.lang.getText("CONFIRM_MIGRATION",[var5]),"CAUTION_YESNO",var6);
 	}
-	function onFriendServerList(§\x1e\x13\x10§)
+	function onFriendServerList(var2)
 	{
 		var var3 = var2.split(";");
 		var var4 = new Array();
@@ -1235,7 +1221,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 		}
 		this.api.ui.getUIComponent("ServerList").setSearchResult(var4);
 	}
-	function yes(§\x1e\x19\x18§)
+	function yes(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -1247,7 +1233,7 @@ class dofus.aks.Account extends dofus.aks.Handler
 				this.validCharacterMigration(var2.target.params.nCharacterID,var2.target.params.sName);
 		}
 	}
-	function no(§\x1e\x19\x18§)
+	function no(var2)
 	{
 		if((var var0 = var2.target._name) === "AskYesNoSwitchToEnglish")
 		{

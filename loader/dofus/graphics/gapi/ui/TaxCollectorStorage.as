@@ -5,7 +5,7 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 	{
 		super();
 	}
-	function __set__data(§\x1e\x1a\x02§)
+	function __set__data(var2)
 	{
 		this._oData = var2;
 		return this.__get__data();
@@ -73,7 +73,7 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 		this._ldrArtwork.contentPath = dofus.Constants.ARTWORKS_BIG_PATH + this._oData.gfx + ".swf";
 		this.modelChanged();
 	}
-	function refreshGetItemButton(§\x1e\x1c\x17§)
+	function refreshGetItemButton(var2)
 	{
 		var var3 = this.api.datacenter.Player.guildInfos.playerRights;
 		var var4 = var3.canCollect;
@@ -100,7 +100,7 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 			this._btnGetItem.label = this._sGetItemText + " (" + var2 + ")";
 		}
 	}
-	function hideItemViewer(§\x19\x0e§)
+	function hideItemViewer(var2)
 	{
 		this._itvItemViewer._visible = !var2;
 		this._winItemViewer._visible = !var2;
@@ -109,16 +109,16 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 			this._oSelectedItem = undefined;
 		}
 	}
-	function setGetItemMode(§\x1c\x1c§)
+	function setGetItemMode(var2)
 	{
 		this._mcBuyArrow._visible = var2;
 	}
-	function askQuantity(§\x01\x0e§, §\x1e\x18\x15§)
+	function askQuantity(var2, var3)
 	{
 		var var4 = this.gapi.loadUIComponent("PopupQuantity","PopupQuantity",{value:var2,max:var2,params:var3});
 		var4.addEventListener("validate",this);
 	}
-	function validateGetItems(§\x1d\x10§)
+	function validateGetItems(var2)
 	{
 		var var3 = new Array();
 		var var4 = 0;
@@ -132,7 +132,7 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 		this.hideItemViewer(true);
 		this.setGetItemMode(false);
 	}
-	function validateGetItem(§\x01\x0e§)
+	function validateGetItem(var2)
 	{
 		if(var2 <= 0)
 		{
@@ -143,11 +143,11 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 		this.hideItemViewer(true);
 		this.setGetItemMode(false);
 	}
-	function modelChanged(§\x1e\x19\x18§)
+	function modelChanged(var2)
 	{
 		this._livInventory2.dataProvider = this._oData.inventory;
 	}
-	function click(§\x1e\x19\x18§)
+	function click(var2)
 	{
 		switch(var2.target._name)
 		{
@@ -175,17 +175,17 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 				this.callClose();
 		}
 	}
-	function rollOverItem(§\x1e\x19\x18§)
+	function rollOverItem(var2)
 	{
 		var var3 = var2.targets.length;
 		this.refreshGetItemButton(var3);
 	}
-	function rollOutItem(§\x1e\x19\x18§)
+	function rollOutItem(var2)
 	{
 		var var3 = var2.targets.length;
 		this.refreshGetItemButton(var3);
 	}
-	function selectedItem(§\x1e\x19\x18§)
+	function selectedItem(var2)
 	{
 		if(var2.item == undefined)
 		{
@@ -212,7 +212,7 @@ class dofus.graphics.gapi.ui.TaxCollectorStorage extends dofus.graphics.gapi.cor
 			}
 		}
 	}
-	function validate(§\x1e\x19\x18§)
+	function validate(var2)
 	{
 		this.validateGetItem(var2.value);
 	}

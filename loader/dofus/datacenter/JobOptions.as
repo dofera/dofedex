@@ -1,6 +1,6 @@
 class dofus.datacenter.JobOptions extends Object
 {
-	function JobOptions(§\x02\x04§, §\x02\x1c§, nMaxSlot)
+	function JobOptions(§\x01\x14§, §\x02\x0f§, nMaxSlot)
 	{
 		super();
 		this._nParams = var3;

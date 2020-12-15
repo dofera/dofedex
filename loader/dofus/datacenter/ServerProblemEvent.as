@@ -1,6 +1,6 @@
 class dofus.datacenter.ServerProblemEvent extends Object
 {
-	function ServerProblemEvent(nTimestamp, nEventID, bTranslated, §\x1e\x13\x1d§)
+	function ServerProblemEvent(nTimestamp, nEventID, bTranslated, §\x1e\x13\x11§)
 	{
 		super();
 		this._nTimestamp = nTimestamp;
@@ -12,7 +12,7 @@ class dofus.datacenter.ServerProblemEvent extends Object
 		var var8 = var7.lang.getConfigText("HOUR_FORMAT");
 		var var9 = var7.config.language;
 		var var10 = new Date(this._nTimestamp);
-		this._sHour = org.utils.SimpleDateFormatter.formatDate(var10,var8,var9);
+		this._sHour = eval(org).utils.SimpleDateFormatter.formatDate(var10,var8,var9);
 	}
 	function __get__timestamp()
 	{
