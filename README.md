@@ -16,6 +16,7 @@
 
 | Version | Classic | Remastered |
 | - | - | - |
+| 1.34.4 | Download | Download |
 | [1.34.3](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3/dofus-1.34.3.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3-remastered/dofus-1.34.3-remastered.zip) |
 | [1.34.2](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12906008) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.2/dofus-1.34.2.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.2-remastered/dofus-1.34.2-remastered.zip) |
 | [1.34.1](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12889119) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.1/dofus-1.34.1.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.1-remastered/dofus-1.34.1-remastered.zip) |
