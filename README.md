@@ -1,21 +1,32 @@
 <p align="center">
-	<img
-		alt="dofedex"
-		src="https://raw.githubusercontent.com/dofera/dofedex/master/dofedex.png"
-		width="300"
-	/>
+  <img
+    alt="dofedex"
+    src="https://raw.githubusercontent.com/dofera/dofedex/master/dofedex.png"
+    width="300"
+  />
 </p>
+
 <h1 align="center">Dofedex</h1>
+
 <p align="center">A Dofus Retro encyclopedia</p>
 
-![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Latest releases sources will now (almost) be fully deobfuscated and available in the "loader" directory.**
+<p align="center">
+  <a href="#clients">Clients</a>
+  •
+  <a href="#deobfuscated-loaders">Deobfuscated loaders</a>
+  •
+  <a href="#language-files">Language files</a>
+  •
+  <a href="#contributors">Contributors</a>
+  •
+  <a href="#contributing">Contributing</a>
+</p>
 
-![NEW](https://img.shields.io/static/v1?label=&message=NEW&color=red) **Langfiles are now available in the "langs" directory.**
-
-## Releases
+## Clients
 
 | Version | Classic | Remastered |
 | - | - | - |
+| [1.34.6](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12915054) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6/dofus-1.34.6.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6-remastered/dofus-1.34.6-remastered.zip) |
 | 1.34.5 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.5/dofus-1.34.5.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.5-remastered/dofus-1.34.5-remastered.zip) |
 | [1.34.4](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12910456) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.4/dofus-1.34.4.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.4-remastered/dofus-1.34.4-remastered.zip) |
 | 1.34.3 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3/dofus-1.34.3.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3-remastered/dofus-1.34.3-remastered.zip) |
@@ -110,11 +121,31 @@
 | 7 | [Download](https://github.com/dofera/dofedex/releases/download/7b/dofus-7b.zip) |
 | 5 | [Download](https://github.com/dofera/dofedex/releases/download/5b/dofus-5b.zip) |
 
+
+## Deobfuscated loaders
+
+- [1.34.1](https://github.com/dofera/dofedex/tree/e5f679871d00008aed5dd16e9035c1d1c22499de/loader)
+- [1.34.0](https://github.com/dofera/dofedex/tree/46cdc23592150a2215696d35c867d3d28064613d/loader)
+- [1.33.6](https://github.com/dofera/dofedex/tree/7c9167532bebbce90554c615f37d5191d1fbd8dc/loader)
+- [1.32.0](https://github.com/dofera/dofedex/tree/47fee050de0250fa9b69f631dca402e9be2b4dd7)
+- [1.31.3](https://github.com/dofera/dofedex/tree/e727f862a7b2af0d8d0d1279f9cab28f6ccf8b59)
+
+## Language files
+
+- [Deutsch](https://github.com/dofera/dofedex/tree/master/langs/de)
+- [English](https://github.com/dofera/dofedex/tree/master/langs/en)
+- [Español](https://github.com/dofera/dofedex/tree/master/langs/es)
+- [Français](https://github.com/dofera/dofedex/tree/master/langs/fr)
+- [Italiano](https://github.com/dofera/dofedex/tree/master/langs/it)
+- [Nederlands](https://github.com/dofera/dofedex/tree/master/langs/nl)
+- [Português](https://github.com/dofera/dofedex/tree/master/langs/pt)
+
 ## Contributors
 
-- [Ygg](https://github.com/Yggdrasilife) (1.0.0 - 1.33.3)
-- [Jisagi](https://github.com/Jisagi) (1.25.0)
+| [![Ygg](https://avatars1.githubusercontent.com/u/32265676?s=100)](https://github.com/Yggdrasilife) | [![Jisagi](https://avatars1.githubusercontent.com/u/12082489?s=100)](https://github.com/Jisagi) |
+| :-: | :-: |
+| 1.0.0 - 1.33.3 | 1.25.0 |
 
 ## Contributing
 
-If you have any client that doesn't appears on the list above, feel free to submit it by opening an [issue](https://github.com/dofera/dofedex/issues/new).
+If you have any resource that doesn't appears on this repository, feel free to submit it by opening an [issue](https://github.com/dofera/dofedex/issues/new) or creating a pull request.
