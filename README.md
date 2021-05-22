@@ -26,6 +26,7 @@
 
 | Version | Classic | Remastered |
 | - | - | - |
+| 1.34.12 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.12/dofus-1.34.12.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.12-remastered/dofus-1.34.12-remastered.zip) |
 | 1.34.11 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.11/dofus-1.34.11.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.11-remastered/dofus-1.34.11-remastered.zip) |
 | [1.34.6](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12915054) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6/dofus-1.34.6.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6-remastered/dofus-1.34.6-remastered.zip) |
 | 1.34.5 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.5/dofus-1.34.5.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.5-remastered/dofus-1.34.5-remastered.zip) |
@@ -151,13 +152,13 @@
 
 ## Language files
 
-- [Deutsch](https://github.com/dofera/dofedex/tree/master/langs/de)
-- [English](https://github.com/dofera/dofedex/tree/master/langs/en)
-- [Español](https://github.com/dofera/dofedex/tree/master/langs/es)
-- [Français](https://github.com/dofera/dofedex/tree/master/langs/fr)
-- [Italiano](https://github.com/dofera/dofedex/tree/master/langs/it)
-- [Nederlands](https://github.com/dofera/dofedex/tree/master/langs/nl)
-- [Português](https://github.com/dofera/dofedex/tree/master/langs/pt)
+- [Deutsch](https://github.com/dofera/dofedex/tree/master/lang/de)
+- [English](https://github.com/dofera/dofedex/tree/master/lang/en)
+- [Español](https://github.com/dofera/dofedex/tree/master/lang/es)
+- [Français](https://github.com/dofera/dofedex/tree/master/lang/fr)
+- [Italiano](https://github.com/dofera/dofedex/tree/master/lang/it)
+- [Nederlands](https://github.com/dofera/dofedex/tree/master/lang/nl)
+- [Português](https://github.com/dofera/dofedex/tree/master/lang/pt)
 
 ## Contributors
 
