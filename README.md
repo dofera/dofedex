@@ -26,6 +26,7 @@
 
 | Version | Classic | Remastered |
 | - | - | - |
+| 1.34.13 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.13/dofus-1.34.13.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.13-remastered/dofus-1.34.13-remastered.zip) |
 | 1.34.12 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.12/dofus-1.34.12.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.12-remastered/dofus-1.34.12-remastered.zip) |
 | 1.34.11 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.11/dofus-1.34.11.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.11-remastered/dofus-1.34.11-remastered.zip) |
 | [1.34.6](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12915054) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6/dofus-1.34.6.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6-remastered/dofus-1.34.6-remastered.zip) |
@@ -136,6 +137,7 @@
 | [13b](https://web.archive.org/web/20040706115519/http://www.dofus.com/index.php?page=informations&rubrique=betatests&ssrubrique=beta13&contenu=beta13) | Download |
 | 12b | Download |
 | [11b](https://web.archive.org/web/20040605182939/http://dofus.com/?page=informations&rubrique=news&contenu=news_display&idnews=82) | Download |
+| 10b | Download |
 | [9.1b](https://web.archive.org/web/20040423032957/http://dofus.com/?page=informations&rubrique=news&contenu=news_display&idnews=57) | Download |
 | [9b](https://web.archive.org/web/20040504015817/http://dofus.com/?page=informations&rubrique=news&contenu=news_display&idnews=56) | Download |
 | 7b | [Download](https://github.com/dofera/dofedex/releases/download/7b/dofus-7b.zip) |
