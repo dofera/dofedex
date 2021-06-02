@@ -17,6 +17,8 @@
   •
   <a href="#language-files">Language files</a>
   •
+  <a href="#maps">Maps</a>
+  •
   <a href="#contributors">Contributors</a>
   •
   <a href="#contributing">Contributing</a>
@@ -26,6 +28,8 @@
 
 | Version | Classic | Remastered |
 | - | - | - |
+| [1.35.1](https://www.dofus.com/fr/forum/1751-dofus-retro/2358329-dofus-retro-ilyzaelle-tan-mise-jour-1-35?page=1#entry12962150) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.1/dofus-1.35.1.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.1-remastered/dofus-1.35.1-remastered.zip) |
+| [1.35.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2358329-dofus-retro-ilyzaelle-tan-mise-jour-1-35) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.0/dofus-1.35.0.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.0-remastered/dofus-1.35.0-remastered.zip) |
 | 1.34.13 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.13/dofus-1.34.13.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.13-remastered/dofus-1.34.13-remastered.zip) |
 | 1.34.12 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.12/dofus-1.34.12.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.12-remastered/dofus-1.34.12-remastered.zip) |
 | 1.34.11 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.11/dofus-1.34.11.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.11-remastered/dofus-1.34.11-remastered.zip) |
@@ -143,7 +147,6 @@
 | 7b | [Download](https://github.com/dofera/dofedex/releases/download/7b/dofus-7b.zip) |
 | 5b | [Download](https://github.com/dofera/dofedex/releases/download/5b/dofus-5b.zip) |
 
-
 ## Deobfuscated loaders
 
 - [1.34.1](https://github.com/dofera/dofedex/tree/e5f679871d00008aed5dd16e9035c1d1c22499de/loader)
@@ -161,6 +164,10 @@
 - [Italiano](https://github.com/dofera/dofedex/tree/master/lang/it)
 - [Nederlands](https://github.com/dofera/dofedex/tree/master/lang/nl)
 - [Português](https://github.com/dofera/dofedex/tree/master/lang/pt)
+
+## Maps
+
+`https://github.com/dofera/dofedex/tree/master/maps/{map-id}`
 
 ## Contributors
 
