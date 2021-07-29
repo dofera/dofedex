@@ -28,6 +28,7 @@
 
 | Version | Classic | Remastered |
 | - | - | - |
+| [1.35.4](https://www.dofus.com/fr/forum/1751-dofus-retro/2358329-dofus-retro-ilyzaelle-tan-mise-jour-1-35?page=1#entry12977832) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.4/dofus-1.35.4.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.4-remastered/dofus-1.35.4-remastered.zip) |
 | [1.35.1](https://www.dofus.com/fr/forum/1751-dofus-retro/2358329-dofus-retro-ilyzaelle-tan-mise-jour-1-35?page=1#entry12962150) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.1/dofus-1.35.1.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.1-remastered/dofus-1.35.1-remastered.zip) |
 | [1.35.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2358329-dofus-retro-ilyzaelle-tan-mise-jour-1-35) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.0/dofus-1.35.0.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.35.0-remastered/dofus-1.35.0-remastered.zip) |
 | 1.34.13 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.13/dofus-1.34.13.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.13-remastered/dofus-1.34.13-remastered.zip) |
