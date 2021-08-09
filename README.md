@@ -146,7 +146,9 @@
 | 10b | Download |
 | [9.1b](https://web.archive.org/web/20040423032957/http://dofus.com/?page=informations&rubrique=news&contenu=news_display&idnews=57) | Download |
 | [9b](https://web.archive.org/web/20040504015817/http://dofus.com/?page=informations&rubrique=news&contenu=news_display&idnews=56) | Download |
+| 8b | Download |
 | 7b | [Download](https://github.com/dofera/dofedex/releases/download/7b/dofus-7b.zip) |
+| 6b | Download |
 | 5b | [Download](https://github.com/dofera/dofedex/releases/download/5b/dofus-5b.zip) |
 
 ## Deobfuscated loaders
