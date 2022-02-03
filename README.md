@@ -185,7 +185,7 @@
 
 ## Contributors
 
-| [![Ygg](https://avatars1.githubusercontent.com/u/32265676?s=100)](https://github.com/Yggdrasilife) | [![Jisagi](https://avatars1.githubusercontent.com/u/12082489?s=100)](https://github.com/Jisagi) |
+| [![Lounek](https://avatars.githubusercontent.com/u/32265676?v=4&s=100)](https://github.com/LounekGit) | [![Jisagi](https://avatars.githubusercontent.com/u/12082489?v=4&s=100)](https://github.com/Jisagi) |
 | :-: | :-: |
 | 1.0.0 - 1.33.3 | 1.25.0 |
 
