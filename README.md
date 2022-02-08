@@ -1,8 +1,8 @@
 <p align="center">
   <img
     alt="dofedex"
-    src="https://raw.githubusercontent.com/dofera/dofedex/master/dofedex.png"
-    width="300"
+    src="https://raw.githubusercontent.com/dofera/dofedex/master/dofedex.svg"
+    width="200"
   />
 </p>
 
