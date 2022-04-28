@@ -53,7 +53,7 @@
 | [1.34.6](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12915054) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6/dofus-1.34.6-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.6/dofus-1.34.6-remastered.zip) |
 | 1.34.5 | [Download](https://github.com/dofera/dofedex/releases/download/1.34.5/dofus-1.34.5-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.5/dofus-1.34.5-remastered.zip) |
 | [1.34.4](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12910456) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.4/dofus-1.34.4-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.4/dofus-1.34.4-remastered.zip) |
-| [1.34.3](https://github.com/dofera/dofedex/releases/tag/1.34.3) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3/dofus-1.34.3.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3/dofus-1.34.3-remastered.zip) |
+| [1.34.3](https://github.com/dofera/dofedex/releases/tag/1.34.3) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3/dofus-1.34.3-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.3/dofus-1.34.3-remastered.zip) |
 | [1.34.2](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12906008) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.2/dofus-1.34.2-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.2/dofus-1.34.2-remastered.zip) |
 | [1.34.1](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34?page=1#entry12889119) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.1/dofus-1.34.1-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.1/dofus-1.34.1-remastered.zip) |
 | [1.34.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2348287-dofus-retro-mise-jour-1-34) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.0/dofus-1.34.0-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.34.0/dofus-1.34.0-remastered.zip) |
@@ -67,10 +67,16 @@
 | [1.32.1](https://www.dofus.com/fr/forum/1747-actualite/2331667-maj-dofus-retro-1-32-1) | [Download](https://github.com/dofera/dofedex/releases/download/1.32.1/dofus-1.32.1-classic.zip) | [Download](https://github.com/dofera/dofedex/releases/download/1.32.1/dofus-1.32.1-remastered.zip) |
 | [1.32.0](https://www.dofus.com/fr/mmorpg/actualites/news/1155616-maj-1-32-demain-serveurs-retro) | Download | [Download](https://github.com/dofera/dofedex/releases/download/1.32.0/dofus-1.32.0-remastered.zip) |
 | [1.31.3](https://www.dofus.com/fr/forum/1747-actualite/2323644-maj-dofus-retro-1-31-3) | Download | [Download](https://github.com/dofera/dofedex/releases/download/1.31.3/dofus-1.31.3-remastered.zip) |
-| [1.31.2](https://www.dofus.com/fr/forum/1751-dofus-retro/2321937-maj-dofus-retro-1-31-2-remastered) | | [Download](https://github.com/dofera/dofedex/releases/download/1.31.2/dofus-1.31.2-remastered.zip) |
-| [1.31.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2319640-maj-dofus-retro-1-31) | [Download](https://github.com/dofera/dofedex/releases/download/1.31.0/dofus-1.31.0-classic.zip) | |
-| 1.30.21 | [Download](https://github.com/dofera/dofedex/releases/download/1.30.21/dofus-1.30.21-classic.zip) | |
-| 1.30.18 | [Download](https://github.com/dofera/dofedex/releases/download/1.30.18/dofus-1.30.18-classic.zip) | |
+
+| Version | Remastered |
+| - | - |
+| [1.31.2](https://www.dofus.com/fr/forum/1751-dofus-retro/2321937-maj-dofus-retro-1-31-2-remastered) | [Download](https://github.com/dofera/dofedex/releases/download/1.31.2/dofus-1.31.2.zip) |
+
+| Version | Classic |
+| - | - |
+| [1.31.0](https://www.dofus.com/fr/forum/1751-dofus-retro/2319640-maj-dofus-retro-1-31) | [Download](https://github.com/dofera/dofedex/releases/download/1.31.0/dofus-1.31.0.zip) |
+| 1.30.21 | [Download](https://github.com/dofera/dofedex/releases/download/1.30.21/dofus-1.30.21.zip) |
+| 1.30.18 | [Download](https://github.com/dofera/dofedex/releases/download/1.30.18/dofus-1.30.18.zip) |
 
 | Version | Alpha | Classic |
 | - | - | - |
