@@ -192,7 +192,7 @@
 
 | [![Lounek](https://avatars.githubusercontent.com/u/32265676?v=4&s=100)](https://github.com/LounekGit) | [![Jisagi](https://avatars.githubusercontent.com/u/12082489?v=4&s=100)](https://github.com/Jisagi) |
 | :-: | :-: |
-| [1.0.0](https://github.com/dofera/dofedex/releases/1.0.0) & [1.33.3]((https://github.com/dofera/dofedex/releases/1.33.3) | [1.25.0](https://github.com/dofera/dofedex/releases/1.25.0) |
+| [1.0.0](https://github.com/dofera/dofedex/releases/1.0.0) & [1.33.3](https://github.com/dofera/dofedex/releases/1.33.3) | [1.25.0](https://github.com/dofera/dofedex/releases/1.25.0) |
 
 ## Contributing
 
