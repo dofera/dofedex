@@ -1,14 +1,8 @@
-<p align="center">
-  <img
-    alt="dofedex"
-    src="dofedex.svg"
-    width="200"
-  />
-</p>
-
-<h1 align="center">Dofedex</h1>
-
-<p align="center">A Dofus Retro encyclopedia</p>
+<div align="center">
+  <img alt="dofedex" src="dofedex.svg" height="150"/>
+  <h1>Dofedex</h1>
+  <p>A Dofus Retro encyclopedia</p>
+</div>
 
 <p align="center">
   <a href="#clients">Clients</a>
